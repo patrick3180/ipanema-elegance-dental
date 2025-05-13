@@ -34,12 +34,12 @@ const Hero = () => {
         </div>
         <div className="order-1 lg:order-2 flex justify-center lg:justify-end animate-fade-in">
           <div className="relative">
-            {/* Placeholder for doctor's image */}
             <div className="w-[320px] md:w-[420px] h-[500px] md:h-[600px] bg-dental-purple/10 rounded-2xl flex items-center justify-center overflow-hidden">
-              <div className="text-dental-gray text-center p-8">
-                <p className="text-lg font-medium mb-2">Imagem da Dra. Carla Christoph</p>
-                <p className="text-sm">Esta é uma imagem placeholder</p>
-              </div>
+              <img 
+                src="/lovable-uploads/3c795ff5-b1ea-4d7b-ab2a-f6267e0a935f.png"
+                alt="Dra. Carla Christoph sorrindo vestindo jaleco branco"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-dental-gold/20 rounded-full"></div>
             <div className="absolute -top-6 -right-6 w-24 h-24 bg-dental-gold/20 rounded-full"></div>
