@@ -17,15 +17,19 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               <a
-                href="#"
+                href="https://www.instagram.com/dracarlachristoph/"
                 aria-label="Instagram"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-dental-gold/70 transition-colors"
               >
                 <Instagram size={18} />
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/dracarlachristoph"
                 aria-label="Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-dental-gold/70 transition-colors"
               >
                 <Facebook size={18} />

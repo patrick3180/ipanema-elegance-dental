@@ -18,12 +18,11 @@ const AboutSection = () => {
 
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="aspect-square bg-dental-beige/50 rounded-2xl overflow-hidden">
-            <div className="h-full flex items-center justify-center">
-              <div className="text-dental-gray text-center p-8">
-                <p className="text-lg font-medium mb-2">Imagem da Dra. Carla no consultório</p>
-                <p className="text-sm">Esta é uma imagem placeholder</p>
-              </div>
-            </div>
+            <img 
+              src="/lovable-uploads/3c795ff5-b1ea-4d7b-ab2a-f6267e0a935f.png" 
+              alt="Dra. Carla Christoph em seu consultório"
+              className="w-full h-full object-cover"
+            />
           </div>
 
           <div className="space-y-6">

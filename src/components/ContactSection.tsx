@@ -118,8 +118,7 @@ const ContactSection = () => {
                   <div>
                     <p className="font-medium">Horário de atendimento</p>
                     <p className="text-dental-charcoal/80">
-                      Segunda à Sexta: 9h às 18h<br />
-                      Sábados: 9h às 13h
+                      Segunda à Sexta: 9h às 19h
                     </p>
                   </div>
                 </div>
@@ -135,11 +134,17 @@ const ContactSection = () => {
 
             <div>
               <h3 className="text-2xl font-display mb-6">Localização</h3>
-              <div className="aspect-video bg-dental-sand/50 rounded-lg flex items-center justify-center">
-                <div className="text-dental-taupe text-center p-8">
-                  <p className="text-lg font-medium mb-2">Mapa do Google</p>
-                  <p className="text-sm">Esta é uma imagem placeholder</p>
-                </div>
+              <div className="aspect-video bg-dental-sand/50 rounded-lg overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4586.581678884269!2d-43.2116873!3d-22.9836633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bd5070f90d87f%3A0x446370e6f29c86c4!2sDra.%20Carla%20Christoph%20-%20Reabilita%C3%A7%C3%A3o%20oral%20e%20est%C3%A9tica!5e1!3m2!1spt-BR!2sbr!4v1747142945090!5m2!1spt-BR!2sbr"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Mapa de localização do consultório"
+                />
               </div>
             </div>
           </div>
