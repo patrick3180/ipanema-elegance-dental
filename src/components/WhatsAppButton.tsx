@@ -14,7 +14,7 @@ const WhatsAppButton = () => {
   return (
     <button
       onClick={handleWhatsAppClick}
-      className="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#1ea952] text-white rounded-full p-4 shadow-lg transition-transform hover:scale-105 flex items-center gap-2"
+      className="fixed bottom-8 right-8 z-50 bg-[#25D366] hover:bg-[#1ea952] text-white rounded-full p-4 shadow-lg transition-transform hover:scale-105 flex items-center gap-2 elegant-shadow"
       aria-label="Converse pelo WhatsApp"
     >
       <MessageCircle size={20} />

@@ -5,16 +5,16 @@ import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section id="início" className="min-h-screen relative overflow-hidden pt-24">
-      <div className="container mx-auto grid lg:grid-cols-2 gap-12 items-center py-12 lg:py-24">
-        <div className="order-2 lg:order-1 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl xl:text-6xl font-display font-medium leading-tight mb-6">
+    <section id="início" className="min-h-screen relative overflow-hidden pt-28 section-spacing">
+      <div className="container-custom grid lg:grid-cols-2 gap-16 items-center">
+        <div className="order-2 lg:order-1 animate-slide-up">
+          <h1 className="heading-xl mb-8">
             Sorrisos impecáveis com cuidado personalizado
           </h1>
-          <p className="text-lg md:text-xl text-dental-charcoal/80 mb-8 max-w-lg">
+          <p className="body-lg mb-10 max-w-lg">
             Odontologia de excelência em Ipanema com a Dra. Carla Christoph, especialista em transformar sorrisos com elegância e precisão.
           </p>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-6">
             <Button
               asChild
               className="bg-dental-gold hover:bg-dental-gold/90 text-white rounded-md px-8 py-6 text-base"
@@ -26,7 +26,7 @@ const Hero = () => {
             <Button
               variant="outline"
               asChild
-              className="border-dental-taupe text-dental-charcoal hover:bg-dental-taupe/10 rounded-md px-8 py-6 text-base"
+              className="border-dental-gray text-dental-purple hover:bg-dental-beige/50 rounded-md px-8 py-6 text-base"
             >
               <a href="#tratamentos">Conheça nossos tratamentos</a>
             </Button>
@@ -35,8 +35,8 @@ const Hero = () => {
         <div className="order-1 lg:order-2 flex justify-center lg:justify-end animate-fade-in">
           <div className="relative">
             {/* Placeholder for doctor's image */}
-            <div className="w-[320px] md:w-[420px] h-[500px] md:h-[600px] bg-dental-sand/50 rounded-2xl flex items-center justify-center overflow-hidden">
-              <div className="text-dental-taupe text-center p-8">
+            <div className="w-[320px] md:w-[420px] h-[500px] md:h-[600px] bg-dental-purple/10 rounded-2xl flex items-center justify-center overflow-hidden">
+              <div className="text-dental-gray text-center p-8">
                 <p className="text-lg font-medium mb-2">Imagem da Dra. Carla Christoph</p>
                 <p className="text-sm">Esta é uma imagem placeholder</p>
               </div>
@@ -46,7 +46,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-dental-cream to-transparent"></div>
+      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-dental-beige to-transparent"></div>
     </section>
   );
 };

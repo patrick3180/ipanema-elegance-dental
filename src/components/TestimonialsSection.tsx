@@ -27,35 +27,35 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section id="depoimentos" className="py-24 bg-white">
-      <div className="container mx-auto">
+    <section id="depoimentos" className="section-spacing bg-white">
+      <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-display font-medium mb-4">
+          <h2 className="heading-lg mb-4">
             O Que Nossos Pacientes Dizem
           </h2>
           <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />
-          <p className="text-dental-charcoal/80 mb-6">
+          <p className="text-dental-gray mb-6">
             Experiências reais de quem confiou seu sorriso aos nossos cuidados
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="bg-dental-cream/30 border-none p-6">
+            <Card key={index} className="bg-dental-beige/30 border-none p-6 elegant-shadow">
               <CardContent className="p-0 space-y-4">
                 <div className="flex">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <StarIcon 
                       key={i} 
-                      className={`w-5 h-5 ${i < testimonial.rating ? "text-dental-gold" : "text-dental-sand"}`} 
+                      className={`w-5 h-5 ${i < testimonial.rating ? "text-dental-gold" : "text-dental-gray/30"}`} 
                       fill={i < testimonial.rating ? "currentColor" : "none"} 
                     />
                   ))}
                 </div>
-                <p className="text-dental-charcoal italic">"{testimonial.testimonial}"</p>
+                <p className="text-dental-purple italic">&ldquo;{testimonial.testimonial}&rdquo;</p>
                 <div className="pt-4 flex flex-col">
-                  <span className="font-medium text-dental-charcoal">{testimonial.name}</span>
-                  <span className="text-sm text-dental-charcoal/70">{testimonial.location}</span>
+                  <span className="font-medium text-dental-purple">{testimonial.name}</span>
+                  <span className="text-sm text-dental-gray">{testimonial.location}</span>
                 </div>
               </CardContent>
             </Card>

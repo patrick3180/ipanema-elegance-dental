@@ -25,12 +25,12 @@ const Header = () => {
       className={cn(
         "fixed w-full top-0 z-50 transition-all duration-300 px-6 lg:px-12",
         isScrolled
-          ? "py-3 bg-dental-cream/90 backdrop-blur-md shadow-sm"
+          ? "py-3 bg-dental-beige/90 backdrop-blur-md shadow-sm"
           : "py-6 bg-transparent"
       )}
     >
       <div className="container mx-auto flex items-center justify-between">
-        <a href="#" className="text-dental-charcoal font-display text-2xl">
+        <a href="#" className="text-dental-purple font-display text-2xl">
           Dra. Carla Christoph
         </a>
 
@@ -41,7 +41,7 @@ const Header = () => {
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="text-sm font-medium text-dental-charcoal/80 hover:text-dental-gold transition-colors"
+                className="text-sm font-medium text-dental-purple/80 hover:text-dental-gold transition-colors"
               >
                 {item}
               </a>
@@ -52,7 +52,7 @@ const Header = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden text-dental-charcoal p-2"
+          className="md:hidden text-dental-purple p-2"
           aria-label="Toggle menu"
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -62,7 +62,7 @@ const Header = () => {
       {/* Mobile Navigation */}
       <div
         className={cn(
-          "md:hidden fixed inset-0 bg-dental-cream pt-24 px-6 z-40 transition-transform duration-300",
+          "md:hidden fixed inset-0 bg-dental-beige pt-24 px-6 z-40 transition-transform duration-300",
           isMenuOpen ? "translate-y-0" : "-translate-y-full"
         )}
       >
@@ -72,7 +72,7 @@ const Header = () => {
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="text-xl font-medium text-dental-charcoal hover:text-dental-gold transition-colors"
+                className="text-xl font-medium text-dental-purple hover:text-dental-gold transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item}

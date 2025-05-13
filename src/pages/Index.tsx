@@ -1,26 +1,21 @@
 
 import React from "react";
-import Header from "@/components/Header";
+import PageLayout from "@/components/PageLayout";
 import Hero from "@/components/Hero";
 import AboutSection from "@/components/AboutSection";
 import ServicesSection from "@/components/ServicesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Index = () => {
   return (
-    <div className="bg-dental-cream min-h-screen">
-      <Header />
+    <PageLayout className="pt-0">
       <Hero />
       <AboutSection />
       <ServicesSection />
       <TestimonialsSection />
       <ContactSection />
-      <Footer />
-      <WhatsAppButton />
-    </div>
+    </PageLayout>
   );
 };
 

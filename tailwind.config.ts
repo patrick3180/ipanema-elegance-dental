@@ -53,13 +53,12 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Custom dental practice colors
+        // Custom dental practice colors with the new color scheme
         dental: {
-          cream: "#f8f5f0",
-          sand: "#e5dfd3",
-          taupe: "#b2a59b",
-          gold: "#c8b273",
-          charcoal: "#3d3d3d",
+          purple: "#381F47",      // Deep purple for titles, noble backgrounds, footer
+          beige: "#CFCBB4",       // Light beige as main background
+          gray: "#808080",        // Neutral gray for secondary text and borders
+          gold: "#B3955F",        // Copper gold for refined details and icons
         },
       },
       borderRadius: {
@@ -69,7 +68,7 @@ export default {
       },
       fontFamily: {
         display: ["Playfair Display", "serif"],
-        sans: ["Montserrat", "sans-serif"],
+        sans: ["Raleway", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {
@@ -84,11 +83,16 @@ export default {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
+        slideUp: {
+          "0%": { transform: "translateY(20px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fadeIn 0.5s ease-in-out",
+        "slide-up": "slideUp 0.7s ease-out",
       },
     },
   },
