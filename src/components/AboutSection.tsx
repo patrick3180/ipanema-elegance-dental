@@ -1,5 +1,7 @@
+
 import React from "react";
 import { Separator } from "@/components/ui/separator";
+
 const AboutSection = () => {
   return <section id="sobre" className="section-spacing bg-white">
       <div className="container-custom">
@@ -14,13 +16,12 @@ const AboutSection = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div className="aspect-square bg-dental-beige/50 rounded-2xl overflow-hidden">
-            <div className="h-full flex items-center justify-center">
-              <div className="text-dental-gray text-center p-8">
-                <p className="text-lg font-medium mb-2">Imagem da Dra. Carla no consultório</p>
-                <p className="text-sm">Esta é uma imagem placeholder</p>
-              </div>
-            </div>
+          <div className="aspect-square rounded-2xl overflow-hidden">
+            <img 
+              src="/lovable-uploads/607903e2-aac7-4140-a41e-31379305ab2a.png" 
+              alt="Dra. Carla Christoph no consultório" 
+              className="w-full h-full object-cover"
+            />
           </div>
 
           <div className="space-y-6">

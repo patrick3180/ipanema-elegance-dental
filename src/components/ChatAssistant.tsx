@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MessageCircle, Send, X } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { toast } from "@/components/ui/sonner";
 
 interface Message {
   id: string;
@@ -20,6 +21,9 @@ const predefinedMessages = [
   "Vocês atendem planos de saúde?"
 ];
 
+// Webhook URL for the online chat integration
+const WEBHOOK_URL = "https://patrick3180.app.n8n.cloud/webhook/6dfd7345-82ac-46eb-9e73-01fed8f5a80f";
+
 const ChatAssistant = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isChatMinimized, setIsChatMinimized] = useState(true);
@@ -33,7 +37,7 @@ const ChatAssistant = () => {
     }
   ]);
   
-  const handleSendMessage = (text: string) => {
+  const handleSendMessage = async (text: string) => {
     if (!text.trim()) return;
     
     // Add user message
@@ -47,17 +51,40 @@ const ChatAssistant = () => {
     setMessages(prev => [...prev, newUserMessage]);
     setInputValue("");
     
-    // Simulate assistant response (in a real implementation, this would be handled by N8N)
-    setTimeout(() => {
-      const assistantResponse: Message = {
-        id: (Date.now() + 1).toString(),
-        text: `Agradecemos seu contato! Nossa equipe responderá sua mensagem "${text}" em breve. Para atendimento imediato, recomendamos utilizar nosso WhatsApp.`,
-        sender: "assistant",
-        timestamp: new Date()
-      };
+    try {
+      // Send message to webhook
+      const response = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: text,
+          timestamp: new Date().toISOString(),
+          source: 'website-chat'
+        }),
+      });
       
-      setMessages(prev => [...prev, assistantResponse]);
-    }, 1000);
+      if (!response.ok) {
+        throw new Error('Falha ao enviar mensagem');
+      }
+      
+      // Simulate assistant response (in a real implementation, this might come from the webhook response)
+      setTimeout(() => {
+        const assistantResponse: Message = {
+          id: (Date.now() + 1).toString(),
+          text: `Agradecemos seu contato! Nossa equipe responderá sua mensagem "${text}" em breve. Para atendimento imediato, recomendamos utilizar nosso WhatsApp.`,
+          sender: "assistant",
+          timestamp: new Date()
+        };
+        
+        setMessages(prev => [...prev, assistantResponse]);
+      }, 1000);
+      
+    } catch (error) {
+      console.error("Erro ao enviar mensagem:", error);
+      toast.error("Erro ao enviar mensagem. Por favor, tente novamente.");
+    }
   };
   
   const handleSubmit = (e: React.FormEvent) => {
