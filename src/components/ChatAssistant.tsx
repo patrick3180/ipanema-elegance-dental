@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MessageCircle, Send, X } from "lucide-react";
@@ -12,6 +12,10 @@ interface Message {
   text: string;
   sender: "user" | "assistant";
   timestamp: Date;
+}
+
+interface WebhookResponse {
+  response?: string;
 }
 
 const predefinedMessages = [
@@ -26,7 +30,7 @@ const WEBHOOK_URL = "https://patrick3180.app.n8n.cloud/webhook/6dfd7345-82ac-46e
 
 const ChatAssistant = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isChatMinimized, setIsChatMinimized] = useState(true);
+  const [isChatMinimized, setIsChatMinimized] = useState(false); // Iniciando como false para abrir completo
   const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -65,15 +69,25 @@ const ChatAssistant = () => {
         }),
       });
       
-      if (!response.ok) {
-        throw new Error('Falha ao enviar mensagem');
+      let responseText = `Agradecemos seu contato! Nossa equipe responderá sua mensagem "${text}" em breve. Para atendimento imediato, recomendamos utilizar nosso WhatsApp.`;
+      
+      // Try to get actual response from webhook if available
+      if (response.ok) {
+        try {
+          const data = await response.json() as WebhookResponse;
+          if (data && data.response) {
+            responseText = data.response;
+          }
+        } catch (jsonError) {
+          console.log("Webhook não retornou um JSON válido, usando resposta padrão");
+        }
       }
       
-      // Simulate assistant response (in a real implementation, this might come from the webhook response)
+      // Add assistant response
       setTimeout(() => {
         const assistantResponse: Message = {
           id: (Date.now() + 1).toString(),
-          text: `Agradecemos seu contato! Nossa equipe responderá sua mensagem "${text}" em breve. Para atendimento imediato, recomendamos utilizar nosso WhatsApp.`,
+          text: responseText,
           sender: "assistant",
           timestamp: new Date()
         };
@@ -97,15 +111,20 @@ const ChatAssistant = () => {
       setIsChatMinimized(false);
     } else {
       setIsOpen(false);
-      setTimeout(() => setIsChatMinimized(true), 300);
+      setTimeout(() => setIsChatMinimized(false), 300); // Resetar para não minimizado quando fechar
     }
+  };
+
+  const handleOpenChat = () => {
+    setIsOpen(true);
+    setIsChatMinimized(false); // Garante que o chat abre sempre em modo completo
   };
 
   return (
     <>
       {/* Chat button */}
       <button
-        onClick={() => setIsOpen(true)}
+        onClick={handleOpenChat}
         className="fixed bottom-8 left-8 z-50 bg-dental-purple hover:bg-dental-purple/90 text-white rounded-full p-4 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center gap-2 elegant-shadow"
         aria-label="Abrir chat"
       >
@@ -133,7 +152,7 @@ const ChatAssistant = () => {
             <div className="flex items-center gap-2">
               <MessageCircle size={20} />
               <div>
-                <h3 className="font-medium">Assistente Virtual</h3>
+                <DialogTitle className="font-medium text-white m-0 p-0">Assistente Virtual</DialogTitle>
                 {!isChatMinimized && (
                   <p className="text-xs text-white/80">Resposta em tempo real</p>
                 )}
