@@ -1,10 +1,7 @@
-
 import React from "react";
 import { Separator } from "@/components/ui/separator";
-
 const AboutSection = () => {
-  return (
-    <section id="sobre" className="section-spacing bg-white">
+  return <section id="sobre" className="section-spacing bg-white">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="heading-lg mb-4">
@@ -18,11 +15,12 @@ const AboutSection = () => {
 
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="aspect-square bg-dental-beige/50 rounded-2xl overflow-hidden">
-            <img 
-              src="/lovable-uploads/bdebba38-b6ad-4687-8e89-5baff81f9f7e.png" 
-              alt="Dra. Carla Christoph em seu consultório"
-              className="w-full h-full object-cover"
-            />
+            <div className="h-full flex items-center justify-center">
+              <div className="text-dental-gray text-center p-8">
+                <p className="text-lg font-medium mb-2">Imagem da Dra. Carla no consultório</p>
+                <p className="text-sm">Esta é uma imagem placeholder</p>
+              </div>
+            </div>
           </div>
 
           <div className="space-y-6">
@@ -37,25 +35,14 @@ const AboutSection = () => {
             </p>
 
             <ul className="grid grid-cols-2 gap-6 mt-8">
-              {[
-                "Odontologia Estética",
-                "Reabilitação Oral",
-                "Implantes Dentários",
-                "Facetas de Porcelana",
-                "Clareamento Dental",
-                "Tratamento de Gengivas"
-              ].map((specialty, index) => (
-                <li key={index} className="flex items-center gap-3">
+              {["Odontologia Estética", "Reabilitação Oral", "Implantes Dentários", "Facetas de Porcelana", "Clareamento Dental", "Tratamento de Gengivas"].map((specialty, index) => <li key={index} className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-dental-gold"></div>
                   <span className="text-dental-purple">{specialty}</span>
-                </li>
-              ))}
+                </li>)}
             </ul>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default AboutSection;
