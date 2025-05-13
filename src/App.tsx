@@ -13,6 +13,8 @@ import DifferentialsPage from "./pages/DifferentialsPage";
 import BlogPage from "./pages/BlogPage";
 import BlogPost from "./pages/BlogPost";
 import ContactPage from "./pages/ContactPage";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfUse from "./pages/TermsOfUse";
 
 const queryClient = new QueryClient();
 
