@@ -19,7 +19,7 @@ const AboutSection = () => {
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="aspect-square bg-dental-beige/50 rounded-2xl overflow-hidden">
             <img 
-              src="/lovable-uploads/3c795ff5-b1ea-4d7b-ab2a-f6267e0a935f.png" 
+              src="/lovable-uploads/bdebba38-b6ad-4687-8e89-5baff81f9f7e.png" 
               alt="Dra. Carla Christoph em seu consultório"
               className="w-full h-full object-cover"
             />
