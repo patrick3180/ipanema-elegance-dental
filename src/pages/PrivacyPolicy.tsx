@@ -6,77 +6,65 @@ import { Separator } from "@/components/ui/separator";
 const PrivacyPolicy = () => {
   return (
     <PageLayout>
-      <section className="section-spacing bg-dental-beige">
+      <section className="section-spacing">
         <div className="container-custom">
-          <div className="max-w-3xl mx-auto mb-16">
-            <h1 className="heading-lg text-dental-purple mb-4">Política de Privacidade</h1>
-            <Separator className="w-24 h-1 bg-dental-gold mb-6" />
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h1 className="heading-lg mb-4">Política de Privacidade</h1>
+            <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />
+            <p className="text-dental-gray mb-6">
+              Como protegemos seus dados
+            </p>
           </div>
 
           <div className="prose prose-lg max-w-3xl mx-auto">
-            <p className="body-md text-gray-700 mb-6">
-              A privacidade dos nossos pacientes é de extrema importância para o consultório da Dra. Carla Christoph. Esta Política de Privacidade explica como coletamos, usamos e protegemos suas informações pessoais.
+            <p>
+              A sua privacidade é importante para nós. É política da Ipanema Elegance Dental respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar em nosso site e outros sites que possuímos e operamos.
             </p>
             
-            <h2 className="heading-md text-dental-purple mt-10 mb-4">Informações Coletadas</h2>
-            <p className="body-md text-gray-700 mb-6">
-              Coletamos informações pessoais como nome, endereço, telefone, e-mail, histórico médico e dados de saúde bucal relevantes para seu tratamento odontológico.
+            <p>
+              Solicitamos informações pessoais apenas quando realmente precisamos delas para lhe fornecer um serviço. Fazemo-lo por meios justos e legais, com o seu conhecimento e consentimento. Também informamos por que estamos coletando e como será usado.
             </p>
             
-            <h2 className="heading-md text-dental-purple mt-10 mb-4">Uso das Informações</h2>
-            <p className="body-md text-gray-700 mb-6">
-              As informações coletadas são utilizadas exclusivamente para:
+            <p>
+              Apenas retemos as informações coletadas pelo tempo necessário para fornecer o serviço solicitado. Quando armazenamos dados, protegemos dentro de meios comercialmente aceitáveis para evitar perdas e roubos, bem como acesso, divulgação, cópia, uso ou modificação não autorizados.
             </p>
-            <ul className="list-disc pl-6 mb-6">
-              <li className="body-md text-gray-700 mb-2">Fornecer tratamento odontológico adequado</li>
-              <li className="body-md text-gray-700 mb-2">Comunicação sobre consultas e tratamentos</li>
-              <li className="body-md text-gray-700 mb-2">Processamento de pagamentos</li>
-              <li className="body-md text-gray-700 mb-2">Melhorar nossos serviços</li>
+            
+            <p>
+              Não compartilhamos informações de identificação pessoal publicamente ou com terceiros, exceto quando exigido por lei.
+            </p>
+            
+            <p>
+              O nosso site pode ter links para sites externos que não são operados por nós. Esteja ciente de que não temos controle sobre o conteúdo e práticas desses sites e não podemos aceitar responsabilidade por suas respectivas políticas de privacidade.
+            </p>
+            
+            <p>
+              Você é livre para recusar a nossa solicitação de informações pessoais, entendendo que talvez não possamos fornecer alguns dos serviços desejados.
+            </p>
+            
+            <p>
+              O uso continuado de nosso site será considerado como aceitação de nossas práticas em torno de privacidade e informações pessoais. Se você tiver alguma dúvida sobre como lidamos com dados do usuário e informações pessoais, entre em contato conosco.
+            </p>
+            
+            <h2>Compromisso do Usuário</h2>
+            
+            <p>
+              O usuário se compromete a fazer uso adequado dos conteúdos e da informação que a Ipanema Elegance Dental oferece no site e com caráter enunciativo, mas não limitativo:
+            </p>
+            
+            <ul>
+              <li>Não se envolver em atividades que sejam ilegais ou contrárias à boa fé e à ordem pública;</li>
+              <li>Não difundir propaganda ou conteúdo de natureza racista, xenofóbica, ou casas de apostas, jogos de sorte e azar, qualquer tipo de pornografia ilegal, de apologia ao terrorismo ou contra os direitos humanos;</li>
+              <li>Não causar danos aos sistemas físicos (hardwares) e lógicos (softwares) da Ipanema Elegance Dental, de seus fornecedores ou terceiros, para introduzir ou disseminar vírus informáticos ou quaisquer outros sistemas de hardware ou software que sejam capazes de causar danos anteriormente mencionados.</li>
             </ul>
             
-            <h2 className="heading-md text-dental-purple mt-10 mb-4">Proteção de Dados</h2>
-            <p className="body-md text-gray-700 mb-6">
-              Implementamos medidas de segurança técnicas, físicas e administrativas para proteger suas informações pessoais contra acesso não autorizado, uso indevido ou divulgação.
+            <h2>Mais informações</h2>
+            
+            <p>
+              Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver algo que você não tem certeza se precisa ou não, geralmente é mais seguro deixar os cookies ativados, caso interaja com um dos recursos que você usa em nosso site.
             </p>
             
-            <h2 className="heading-md text-dental-purple mt-10 mb-4">Compartilhamento de Informações</h2>
-            <p className="body-md text-gray-700 mb-6">
-              Não vendemos, alugamos ou compartilhamos suas informações pessoais com terceiros para fins de marketing. Compartilhamos informações apenas quando:
-            </p>
-            <ul className="list-disc pl-6 mb-6">
-              <li className="body-md text-gray-700 mb-2">Necessário para seu tratamento (ex: laboratórios, especialistas)</li>
-              <li className="body-md text-gray-700 mb-2">Exigido por lei</li>
-              <li className="body-md text-gray-700 mb-2">Com seu consentimento explícito</li>
-            </ul>
-            
-            <h2 className="heading-md text-dental-purple mt-10 mb-4">Cookies e Tecnologias Semelhantes</h2>
-            <p className="body-md text-gray-700 mb-6">
-              Nosso site pode utilizar cookies para melhorar sua experiência de navegação. Você pode configurar seu navegador para recusar cookies, mas isso pode afetar a funcionalidade do site.
-            </p>
-            
-            <h2 className="heading-md text-dental-purple mt-10 mb-4">Seus Direitos</h2>
-            <p className="body-md text-gray-700 mb-6">
-              Você tem direito a:
-            </p>
-            <ul className="list-disc pl-6 mb-6">
-              <li className="body-md text-gray-700 mb-2">Acessar seus dados pessoais</li>
-              <li className="body-md text-gray-700 mb-2">Solicitar correção de informações imprecisas</li>
-              <li className="body-md text-gray-700 mb-2">Solicitar a exclusão de seus dados (quando aplicável por lei)</li>
-              <li className="body-md text-gray-700 mb-2">Retirar seu consentimento a qualquer momento</li>
-            </ul>
-            
-            <h2 className="heading-md text-dental-purple mt-10 mb-4">Alterações na Política de Privacidade</h2>
-            <p className="body-md text-gray-700 mb-6">
-              Esta política pode ser atualizada periodicamente. Recomendamos verificá-la regularmente.
-            </p>
-            
-            <h2 className="heading-md text-dental-purple mt-10 mb-4">Contato</h2>
-            <p className="body-md text-gray-700 mb-6">
-              Para questões relacionadas à privacidade, entre em contato através do email: contato@dracarlachristoph.com
-            </p>
-            
-            <p className="body-md text-gray-700 mb-6 italic mt-10">
-              Última atualização: Maio de 2025
+            <p>
+              Esta política é efetiva a partir de Maio de 2023.
             </p>
           </div>
         </div>

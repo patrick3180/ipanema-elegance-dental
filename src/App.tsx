@@ -15,6 +15,15 @@ import BlogPost from "./pages/BlogPost";
 import ContactPage from "./pages/ContactPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
+import WhatsAppPopup from "./components/WhatsAppPopup";
+import ChatAssistant from "./components/ChatAssistant";
+
+// Add type declaration for dataLayer
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
 
 const queryClient = new QueryClient();
 
@@ -33,12 +42,12 @@ const App = () => (
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:postSlug" element={<BlogPost />} />
           <Route path="/contato" element={<ContactPage />} />
-          {/* Add routes for privacy policy and terms of use */}
           <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
           <Route path="/termos-de-uso" element={<TermsOfUse />} />
-          {/* Catch-all route for 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <WhatsAppPopup />
+        <ChatAssistant />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
