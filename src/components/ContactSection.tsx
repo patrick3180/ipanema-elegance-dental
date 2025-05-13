@@ -97,8 +97,9 @@ const ContactSection = () => {
                   <div>
                     <p className="font-medium">Endereço</p>
                     <p className="text-dental-charcoal/80">
-                      Rua Visconde de Pirajá, 000 - Sala 000<br />
-                      Ipanema, Rio de Janeiro - RJ
+                      Rua Visconde de Pirajá, 550 - Sala 1107<br />
+                      Ipanema, Rio de Janeiro - RJ<br />
+                      CEP: 22410-901
                     </p>
                   </div>
                 </div>
@@ -106,7 +107,10 @@ const ContactSection = () => {
                   <Phone className="text-dental-gold mt-1" />
                   <div>
                     <p className="font-medium">Telefone</p>
-                    <p className="text-dental-charcoal/80">(21) 99999-9999</p>
+                    <p className="text-dental-charcoal/80">
+                      (21) 3738-7909<br />
+                      (21) 99330-4045
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -123,7 +127,7 @@ const ContactSection = () => {
                   <MessageCircle className="text-dental-gold mt-1" />
                   <div>
                     <p className="font-medium">WhatsApp</p>
-                    <p className="text-dental-charcoal/80">(21) 99999-9999</p>
+                    <p className="text-dental-charcoal/80">(21) 99330-4045</p>
                   </div>
                 </div>
               </div>

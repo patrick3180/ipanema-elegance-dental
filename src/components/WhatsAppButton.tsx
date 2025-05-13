@@ -18,7 +18,7 @@ const WhatsAppButton = () => {
     console.log("WhatsApp button clicked - tracking event");
     
     // Open WhatsApp with pre-defined message
-    const phoneNumber = "5521999999999"; // Replace with actual number
+    const phoneNumber = "5521993304045"; // Correct phone number format with country code
     const message = "Olá! Gostaria de agendar uma consulta.";
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");

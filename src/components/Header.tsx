@@ -36,7 +36,7 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          {["Início", "Sobre", "Tratamentos", "Depoimentos", "Contato"].map(
+          {["Início", "Sobre", "Tratamentos", "Blog", "Depoimentos", "Contato"].map(
             (item) => (
               <a
                 key={item}
@@ -67,7 +67,7 @@ const Header = () => {
         )}
       >
         <nav className="flex flex-col items-center gap-6">
-          {["Início", "Sobre", "Tratamentos", "Depoimentos", "Contato"].map(
+          {["Início", "Sobre", "Tratamentos", "Blog", "Depoimentos", "Contato"].map(
             (item) => (
               <a
                 key={item}

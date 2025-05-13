@@ -43,7 +43,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-display mb-4">Navegação</h3>
             <ul className="space-y-2">
-              {["Início", "Sobre", "Tratamentos", "Depoimentos", "Contato"].map(
+              {["Início", "Sobre", "Tratamentos", "Blog", "Depoimentos", "Contato"].map(
                 (item) => (
                   <li key={item}>
                     <a
@@ -61,15 +61,23 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-display mb-4">Contato</h3>
             <address className="not-italic text-white/70 space-y-2">
-              <p>Rua Visconde de Pirajá, 000 - Sala 000</p>
+              <p>Rua Visconde de Pirajá, 550 - Sala 1107</p>
               <p>Ipanema, Rio de Janeiro - RJ</p>
-              <p>CEP: 22000-000</p>
+              <p>CEP: 22410-901</p>
               <p className="mt-3">
                 <a 
-                  href="tel:+552199999999" 
+                  href="tel:+552137387909" 
                   className="hover:text-dental-gold transition-colors"
                 >
-                  (21) 99999-9999
+                  (21) 3738-7909
+                </a>
+              </p>
+              <p>
+                <a 
+                  href="tel:+5521993304045" 
+                  className="hover:text-dental-gold transition-colors"
+                >
+                  (21) 99330-4045
                 </a>
               </p>
               <p>

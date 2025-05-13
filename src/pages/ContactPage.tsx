@@ -157,8 +157,9 @@ const ContactPage = () => {
                     <div>
                       <p className="font-medium">Endereço</p>
                       <p className="text-dental-gray">
-                        Rua Visconde de Pirajá, 000 - Sala 000<br />
-                        Ipanema, Rio de Janeiro - RJ
+                        Rua Visconde de Pirajá, 550 - Sala 1107<br />
+                        Ipanema, Rio de Janeiro - RJ<br />
+                        CEP: 22410-901
                       </p>
                     </div>
                   </div>
@@ -166,14 +167,17 @@ const ContactPage = () => {
                     <Phone className="text-dental-gold mt-1" />
                     <div>
                       <p className="font-medium">Telefone</p>
-                      <p className="text-dental-gray">(21) 99999-9999</p>
+                      <p className="text-dental-gray">
+                        (21) 3738-7909<br />
+                        (21) 99330-4045
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <Mail className="text-dental-gold mt-1" />
                     <div>
                       <p className="font-medium">Email</p>
-                      <p className="text-dental-gray">contato@ipanemaelegancedental.com.br</p>
+                      <p className="text-dental-gray">contato@dracarlachristoph.com</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
