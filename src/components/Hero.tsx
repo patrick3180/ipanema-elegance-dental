@@ -30,10 +30,10 @@ const Hero = () => {
       <div className="container-custom grid lg:grid-cols-2 gap-16 items-center">
         <div className="order-2 lg:order-1 animate-slide-up">
           <h1 className="heading-xl mb-8">
-            Sorrisos impecáveis com cuidado personalizado
+            Dra. Carla Christoph: Dentista em Ipanema para um Sorriso Perfeito
           </h1>
           <p className="body-lg mb-10 max-w-lg">
-            Odontologia de excelência em Ipanema com a Dra. Carla Christoph, especialista em transformar sorrisos com elegância e precisão.
+            Em nossa clínica odontológica em Ipanema, a Dra. Carla Christoph une a excelência da odontologia estética a um atendimento personalizado. Cuidamos do seu sorriso com a dedicação que ele merece.
           </p>
           <div className="flex flex-wrap gap-6">
             <Button
