@@ -1,17 +1,40 @@
 
 import React from "react";
 import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+import { MessageCircle } from "lucide-react";
 
 const AboutSection = () => {
+  const handleWhatsAppClick = () => {
+    // Track event with Google Tag Manager (if available)
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'whatsapp_click',
+        event_category: 'Contact',
+        event_action: 'Click',
+        event_label: 'WhatsApp About Section Button'
+      });
+    }
+    
+    // Log for development purposes
+    console.log("WhatsApp button clicked from About section - tracking event");
+    
+    // Open WhatsApp with pre-defined message
+    const phoneNumber = "5521993304045"; // Correct phone number format with country code
+    const message = "Olá! Gostaria de agendar uma consulta.";
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
+  };
+
   return <section id="sobre" className="section-spacing bg-white">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="heading-lg mb-4">
-            Sobre Dra. Carla Christoph
+            Conheça a Dra. Carla Christoph, sua Dentista em Ipanema
           </h2>
           <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />
           <p className="text-dental-gray mb-6">
-            Excelência e dedicação em cada atendimento
+            Uma trajetória de paixão pela odontologia e dedicação em transformar sorrisos em Ipanema
           </p>
         </div>
 
@@ -26,13 +49,13 @@ const AboutSection = () => {
 
           <div className="space-y-6">
             <p className="body-md">
-              Com mais de 15 anos de experiência, a Dra. Carla Christoph é especialista em odontologia estética e reabilitação oral pela renomada Universidade de São Paulo.
+              Com mais de 20 anos de experiência dedicados à odontologia, a Dra. Carla Christoph é uma referência em reabilitação oral e odontologia estética em Ipanema. Sua jornada inclui 8 anos de atuação como dentista militar na Odontoclínica Central da Marinha.
             </p>
             <p className="body-md">
-              Seu consultório em Ipanema combina tecnologia de ponta e um ambiente acolhedor, proporcionando tratamentos personalizados que respeitam a individualidade de cada paciente.
+              A paixão da Dra. Carla Christoph é restaurar a função mastigatória e a beleza do sorriso de cada paciente. Como especialista em Prótese Dental e com profundo conhecimento em Implantodontia, ela somente utiliza materiais de excelência, assegurando resultados estéticos de alta qualidade e durabilidade.
             </p>
             <p className="body-md">
-              Comprometida com a excelência, a Dra. Carla realiza constantes atualizações profissionais nos principais centros odontológicos do Brasil e exterior, trazendo as técnicas mais modernas e seguras para seus pacientes.
+              Em nossa clínica odontológica em Ipanema, o planejamento do seu tratamento é feito com atenção individualizada. Contamos com tecnologias avançadas, como o escaneamento digital intraoral e ferramentas de design digital do sorriso (DSD), que podem ser utilizadas em casos específicos para aprimorar o planejamento, oferecer maior previsibilidade e permitir que você visualize potenciais resultados, sempre que indicado.
             </p>
 
             <ul className="grid grid-cols-2 gap-6 mt-8">
@@ -41,6 +64,15 @@ const AboutSection = () => {
                   <span className="text-dental-purple">{specialty}</span>
                 </li>)}
             </ul>
+            
+            <div className="pt-6">
+              <Button
+                onClick={handleWhatsAppClick}
+                className="bg-dental-gold hover:bg-dental-gold/90 text-white rounded-md px-6 py-5 mt-4"
+              >
+                <MessageCircle size={18} className="mr-2" /> Agende sua consulta
+              </Button>
+            </div>
           </div>
         </div>
       </div>
