@@ -225,12 +225,12 @@ const ChatAssistant = () => {
               <Separator />
               
               {/* Chat input */}
-              <form onSubmit={handleSubmit} className="p-3 bg-white flex flex-col gap-2 mt-auto">
+              <form onSubmit={handleSubmit} className="p-3 bg-white flex gap-2 mt-auto">
                 <Textarea
                   placeholder="Digite sua mensagem..."
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  className="border-dental-gray/20 focus-visible:ring-dental-gold min-h-[60px] resize-none text-sm"
+                  className="border-dental-gray/20 focus-visible:ring-dental-gold min-h-[60px] resize-none text-sm flex-1"
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' && !e.shiftKey) {
                       e.preventDefault();
@@ -242,11 +242,11 @@ const ChatAssistant = () => {
                 />
                 <Button 
                   type="submit" 
-                  className="bg-dental-gold hover:bg-dental-gold/90 text-white w-full flex items-center justify-center gap-1"
+                  className="bg-dental-purple hover:bg-dental-purple/90 text-white self-end min-h-[60px] px-3"
                   disabled={!inputValue.trim()}
                 >
-                  <Send size={16} />
-                  <span>Enviar</span>
+                  <Send size={20} />
+                  <span className="sr-only">Enviar</span>
                 </Button>
               </form>
             </div>
