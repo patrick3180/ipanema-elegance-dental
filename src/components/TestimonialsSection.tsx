@@ -6,22 +6,22 @@ import { StarIcon } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Mariana Costa",
-    testimonial: "A Dra. Carla transformou meu sorriso e minha autoconfiança. Seu trabalho é impecável e o atendimento é sempre acolhedor e profissional.",
+    name: "Beatriz M.",
+    testimonial: "Eu sempre tive receio de dentista, mas a Dra. Carla Christoph e sua equipe em Ipanema mudaram completamente minha percepção. O planejamento do meu novo sorriso com as lentes de contato dental foi incrível, e o resultado superou todas as minhas expectativas. Hoje sorrio com muito mais confiança! Recomendo de olhos fechados o atendimento e o profissionalismo desta excelente dentista em Ipanema.",
     rating: 5,
     location: "Rio de Janeiro"
   },
   {
-    name: "Ricardo Mendes",
-    testimonial: "Excelente profissional! Resolveu um problema complexo que outros dentistas não conseguiram diagnosticar. Recomendo sem hesitação.",
+    name: "Roberto S.",
+    testimonial: "Após anos com dificuldades para mastigar, encontrei na Dra. Carla Christoph a solução que tanto buscava. O tratamento de reabilitação oral com prótese dentária foi realizado com um cuidado e uma atenção que nunca vi igual. A clínica em Ipanema é impecável e toda a equipe é muito atenciosa. Sou muito grata por ter meu conforto e minha autoestima de volta.",
     rating: 5,
-    location: "Ipanema"
+    location: "Ipanema, RJ"
   },
   {
-    name: "Juliana Pereira",
-    testimonial: "Ambiente sofisticado e acolhedor. A Dra. Carla e sua equipe são extremamente atenciosos e os resultados superam todas as expectativas.",
+    name: "Juliana P.",
+    testimonial: "Fazer meu clareamento dental e minhas consultas de rotina na clínica odontológica em Ipanema da Dra. Carla é sempre uma experiência positiva. O atendimento é pontual, o ambiente é acolhedor e sinto que minha saúde bucal está realmente em boas mãos. Uma profissional que transmite muita segurança e carinho.",
     rating: 5,
-    location: "Leblon"
+    location: "Leblon, RJ / BR"
   }
 ];
 
@@ -31,11 +31,11 @@ const TestimonialsSection = () => {
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="heading-lg mb-4">
-            O Que Nossos Pacientes Dizem
+            Pacientes Felizes: Depoimentos sobre nossa Clínica em Ipanema
           </h2>
           <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />
           <p className="text-dental-gray mb-6">
-            Experiências reais de quem confiou seu sorriso aos nossos cuidados
+            A experiência dos nossos pacientes é a nossa maior prioridade. Veja o que alguns deles dizem sobre o atendimento e os resultados alcançados em nossa clínica odontológica em Ipanema.
           </p>
         </div>
 
