@@ -30,7 +30,7 @@ const WEBHOOK_URL = "https://patrick3180.app.n8n.cloud/webhook/6dfd7345-82ac-46e
 
 const ChatAssistant = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isChatMinimized, setIsChatMinimized] = useState(false); // Iniciando como false para abrir completo
+  const [isChatMinimized, setIsChatMinimized] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -111,13 +111,13 @@ const ChatAssistant = () => {
       setIsChatMinimized(false);
     } else {
       setIsOpen(false);
-      setTimeout(() => setIsChatMinimized(false), 300); // Resetar para não minimizado quando fechar
+      setTimeout(() => setIsChatMinimized(false), 300);
     }
   };
 
   const handleOpenChat = () => {
     setIsOpen(true);
-    setIsChatMinimized(false); // Garante que o chat abre sempre em modo completo
+    setIsChatMinimized(false);
   };
 
   return (
@@ -135,7 +135,7 @@ const ChatAssistant = () => {
       {/* Chat dialog */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent 
-          className={`sm:max-w-[380px] p-0 rounded-lg overflow-hidden border-none shadow-xl transition-all duration-300 ${isChatMinimized ? 'h-[72px]' : 'h-[500px] max-h-[80vh]'}`}
+          className={`sm:max-w-[380px] p-0 rounded-lg overflow-hidden border-none shadow-xl transition-all duration-300 ${isChatMinimized ? 'h-[72px]' : 'h-[600px] max-h-[90vh]'}`}
           style={{ 
             position: 'fixed', 
             bottom: '24px', 
@@ -173,9 +173,9 @@ const ChatAssistant = () => {
           </div>
           
           {!isChatMinimized && (
-            <>
+            <div className="flex flex-col h-[calc(100%-72px)]">
               {/* Chat messages */}
-              <div className="p-4 h-[350px] overflow-y-auto bg-white">
+              <div className="p-4 overflow-y-auto flex-grow bg-white">
                 {messages.map((message) => (
                   <div
                     key={message.id}
@@ -198,7 +198,7 @@ const ChatAssistant = () => {
               </div>
               
               {/* Quick replies */}
-              <div className="px-4 py-3 bg-dental-beige/30">
+              <div className="px-4 py-2 bg-dental-beige/30">
                 <p className="text-xs text-dental-gray mb-2">Perguntas frequentes:</p>
                 <div className="flex flex-wrap gap-2">
                   {predefinedMessages.map((message, index) => (
@@ -215,7 +215,7 @@ const ChatAssistant = () => {
               <Separator />
               
               {/* Chat input */}
-              <form onSubmit={handleSubmit} className="p-4 bg-white flex items-center gap-2">
+              <form onSubmit={handleSubmit} className="p-4 bg-white flex items-center gap-2 mt-auto">
                 <Input
                   placeholder="Digite sua mensagem..."
                   value={inputValue}
@@ -232,7 +232,7 @@ const ChatAssistant = () => {
                   <span className="sr-only">Enviar</span>
                 </Button>
               </form>
-            </>
+            </div>
           )}
         </DialogContent>
       </Dialog>
