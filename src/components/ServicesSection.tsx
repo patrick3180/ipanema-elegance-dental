@@ -2,7 +2,7 @@
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { ArrowRight, Tooth } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const services = [
   {
