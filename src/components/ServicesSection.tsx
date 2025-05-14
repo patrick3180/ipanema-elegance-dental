@@ -7,49 +7,49 @@ import { ArrowRight } from "lucide-react";
 const services = [
   {
     title: "Lentes de Contato Dental e Facetas de Porcelana",
-    description: "Transforme seu sorriso com lentes ultrafinas e facetas de porcelana que proporcionam resultados naturais e duradouros.",
+    description: "Transforme seu sorriso com finas lâminas de porcelana, corrigindo cor, forma e imperfeições com naturalidade e precisão estética.",
     icon: "💎",
     slug: "lentes-e-facetas"
   },
   {
     title: "Clareamento Dental Profissional",
-    description: "Dentes mais brancos e brilhantes com técnicas avançadas de clareamento que respeitam o esmalte dental.",
+    description: "Conquiste dentes visivelmente mais brancos e um sorriso radiante com nossas técnicas de clareamento seguras e eficazes, realizadas em consultório ou supervisionadas em casa.",
     icon: "✨",
     slug: "clareamento-dental"
   },
   {
     title: "Próteses Dentárias",
-    description: "Recupere função e estética com próteses personalizadas de alta qualidade e acabamento natural.",
+    description: "Recupere a função mastigatória e a estética do seu sorriso com próteses dentárias personalizadas, desenvolvidas pela especialista Dra. Carla Christoph.",
     icon: "👄",
     slug: "proteses-dentarias"
   },
   {
     title: "Implantes Dentários",
-    description: "Substitua dentes perdidos com implantes de titânio que funcionam como raízes naturais, devolvendo função e estética.",
+    description: "A solução definitiva para a perda de dentes. Implantes seguros e duradouros para restaurar seu sorriso e qualidade de vida em Ipanema.",
     icon: "🦷",
     slug: "implantes-dentarios"
   },
   {
     title: "Clínica Geral e Prevenção",
-    description: "Check-ups regulares, limpeza profissional e orientações para manter a saúde bucal em dia.",
+    description: "Cuide da sua saúde bucal com nossos check-ups digitais, profilaxia (limpeza) profissional e planos de prevenção personalizados.",
     icon: "🔍",
     slug: "clinica-geral-e-prevencao"
   },
   {
     title: "Restaurações Estéticas",
-    description: "Tratamento de cáries e fraturas com materiais que imitam a aparência natural dos dentes.",
+    description: "Tratamento de cáries e reconstrução de dentes fraturados ou trincados com materiais modernos que imitam a cor natural dos seus dentes.",
     icon: "🔧",
     slug: "restauracoes-esteticas"
   },
   {
     title: "Tratamento de Canal (Endodontia)",
-    description: "Procedimentos precisos para eliminar infecções e preservar dentes comprometidos com conforto e tecnologia.",
+    description: "Alivie a dor e preserve seu dente natural com nosso tratamento de canal realizado com técnicas avançadas e foco no seu conforto.",
     icon: "🌱",
     slug: "tratamento-de-canal"
   },
   {
     title: "Saúde da Gengiva (Periodontia)",
-    description: "Prevenção e tratamento de doenças gengivais para garantir a base saudável do seu sorriso.",
+    description: "Tratamento especializado para gengivite e periodontite, cuidando da base do seu sorriso e prevenindo problemas futuros.",
     icon: "❤️",
     slug: "saude-da-gengiva"
   }
@@ -61,11 +61,11 @@ const ServicesSection = () => {
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="heading-lg mb-4">
-            Nossos Tratamentos
+            Nossos Tratamentos Odontológicos para seu Sorriso em Ipanema
           </h2>
           <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />
           <p className="text-dental-gray mb-6">
-            Conheça as soluções odontológicas exclusivas que oferecemos
+            Em nossa clínica odontológica em Ipanema, a Dra. Carla Christoph oferece uma gama completa de tratamentos odontológicos, desde a prevenção e cuidados essenciais até a mais avançada odontologia estética e reabilitação oral. Explore nossas soluções e descubra como podemos cuidar do seu sorriso.
           </p>
         </div>
 
