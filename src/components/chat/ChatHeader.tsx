@@ -13,15 +13,15 @@ interface ChatHeaderProps {
 const ChatHeader: React.FC<ChatHeaderProps> = ({ isChatMinimized, toggleChat, closeChat }) => {
   return (
     <div 
-      className="bg-dental-purple text-white p-2 cursor-pointer flex items-center justify-between"
+      className="bg-dental-purple text-white py-1.5 px-3 cursor-pointer flex items-center justify-between"
       onClick={toggleChat}
     >
       <div className="flex items-center gap-2">
-        <MessageCircle size={18} />
+        <MessageCircle size={16} />
         <div>
-          <DialogTitle className="font-medium text-white m-0 p-0 text-base">Assistente Virtual</DialogTitle>
+          <DialogTitle className="font-medium text-white m-0 p-0 text-sm">Assistente Virtual</DialogTitle>
           {!isChatMinimized && (
-            <p className="text-xs text-white/80">Resposta em tempo real</p>
+            <p className="text-[10px] text-white/80">Resposta em tempo real</p>
           )}
         </div>
       </div>
@@ -29,9 +29,9 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ isChatMinimized, toggleChat, cl
         variant="ghost" 
         size="icon" 
         onClick={closeChat}
-        className="text-white hover:bg-dental-purple/20 h-7 w-7"
+        className="text-white hover:bg-dental-purple/20 h-6 w-6"
       >
-        <X size={14} />
+        <X size={12} />
         <span className="sr-only">Fechar</span>
       </Button>
     </div>

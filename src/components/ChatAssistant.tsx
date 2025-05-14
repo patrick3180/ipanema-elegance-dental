@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "@/components/ui/sonner";
@@ -8,6 +8,7 @@ import ChatHeader from "@/components/chat/ChatHeader";
 import ChatMessages from "@/components/chat/ChatMessages";
 import QuickReplies from "@/components/chat/QuickReplies";
 import ChatInput from "@/components/chat/ChatInput";
+import TypingAnimation from "@/components/chat/TypingAnimation";
 import { Message, WebhookResponse } from "@/components/chat/types";
 
 const predefinedMessages = [
@@ -23,6 +24,7 @@ const WEBHOOK_URL = "https://patrick3180.app.n8n.cloud/webhook/6dfd7345-82ac-46e
 const ChatAssistant = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isChatMinimized, setIsChatMinimized] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "initial",
@@ -44,6 +46,7 @@ const ChatAssistant = () => {
     };
     
     setMessages(prev => [...prev, newUserMessage]);
+    setIsTyping(true);
     
     try {
       // Send message to webhook
@@ -73,8 +76,9 @@ const ChatAssistant = () => {
         }
       }
       
-      // Add assistant response
+      // Add assistant response with delay for typing effect
       setTimeout(() => {
+        setIsTyping(false);
         const assistantResponse: Message = {
           id: (Date.now() + 1).toString(),
           text: responseText,
@@ -83,10 +87,11 @@ const ChatAssistant = () => {
         };
         
         setMessages(prev => [...prev, assistantResponse]);
-      }, 1000);
+      }, 1500);
       
     } catch (error) {
       console.error("Erro ao enviar mensagem:", error);
+      setIsTyping(false);
       toast.error("Erro ao enviar mensagem. Por favor, tente novamente.");
     }
   };
@@ -116,12 +121,14 @@ const ChatAssistant = () => {
       
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent 
-          className={`sm:max-w-[380px] p-0 rounded-lg overflow-hidden border-none shadow-xl transition-all duration-300 ${isChatMinimized ? 'h-[72px]' : 'h-[600px] max-h-[90vh]'}`}
+          className="sm:max-w-[380px] p-0 rounded-lg overflow-hidden border-none shadow-xl transition-all duration-300"
           style={{ 
             position: 'fixed', 
             bottom: '24px', 
             left: '24px', 
             margin: 0,
+            height: isChatMinimized ? '46px' : '500px',
+            maxHeight: '90vh',
             transform: 'translate(0, 0)'
           }}
         >
@@ -132,8 +139,15 @@ const ChatAssistant = () => {
           />
           
           {!isChatMinimized && (
-            <div className="flex flex-col h-[calc(100%-56px)]">
-              <ChatMessages messages={messages} />
+            <div className="flex flex-col h-[calc(100%-46px)]">
+              <div className="flex-grow overflow-hidden flex flex-col">
+                <ChatMessages messages={messages} />
+                {isTyping && (
+                  <div className="p-4">
+                    <TypingAnimation />
+                  </div>
+                )}
+              </div>
               <QuickReplies 
                 predefinedMessages={predefinedMessages} 
                 onSelectMessage={handleSendMessage}
