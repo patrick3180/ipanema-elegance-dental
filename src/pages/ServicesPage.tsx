@@ -7,9 +7,9 @@ import ServicesSection from "@/components/ServicesSection";
 const ServicesPage = () => {
   return (
     <PageLayout>
-      <section className="section-spacing">
+      <section className="pt-8 pb-0 md:pt-16 md:pb-0">
         <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center mb-16">
+          <div className="max-w-3xl mx-auto text-center mb-8">
             <h1 className="heading-lg mb-4">Nossos Tratamentos</h1>
             <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />
             <p className="text-dental-gray mb-6">
