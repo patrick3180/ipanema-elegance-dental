@@ -246,7 +246,7 @@ const ChatAssistant = () => {
                   disabled={!inputValue.trim()}
                 >
                   <Send size={20} />
-                  <span className="sr-only">Enviar</span>
+                  <span>Enviar</span>
                 </Button>
               </form>
             </div>
