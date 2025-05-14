@@ -47,25 +47,20 @@ const AboutSection = () => {
             />
           </div>
 
-          <div className="space-y-6">
-            <p className="body-md">
-              Com mais de 20 anos de experiência dedicados à odontologia, a Dra. Carla Christoph é uma referência em reabilitação oral e odontologia estética em Ipanema. Sua jornada inclui 8 anos de atuação como dentista militar na Odontoclínica Central da Marinha.
-            </p>
-            <p className="body-md">
-              A paixão da Dra. Carla Christoph é restaurar a função mastigatória e a beleza do sorriso de cada paciente. Como especialista em Prótese Dental e com profundo conhecimento em Implantodontia, ela somente utiliza materiais de excelência, assegurando resultados estéticos de alta qualidade e durabilidade.
-            </p>
-            <p className="body-md">
-              Em nossa clínica odontológica em Ipanema, o planejamento do seu tratamento é feito com atenção individualizada. Contamos com tecnologias avançadas, como o escaneamento digital intraoral e ferramentas de design digital do sorriso (DSD), que podem ser utilizadas em casos específicos para aprimorar o planejamento, oferecer maior previsibilidade e permitir que você visualize potenciais resultados, sempre que indicado.
-            </p>
-
-            <ul className="grid grid-cols-2 gap-6 mt-8">
-              {["Odontologia Estética", "Reabilitação Oral", "Implantes Dentários", "Facetas de Porcelana", "Clareamento Dental", "Tratamento de Gengivas"].map((specialty, index) => <li key={index} className="flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-dental-gold"></div>
-                  <span className="text-dental-purple">{specialty}</span>
-                </li>)}
-            </ul>
+          <div className="flex flex-col justify-between h-full">
+            <div className="space-y-6">
+              <p className="body-md">
+                Com mais de 20 anos de experiência dedicados à odontologia, a Dra. Carla Christoph é uma referência em reabilitação oral e odontologia estética em Ipanema. Sua jornada inclui 8 anos de atuação como dentista militar na Odontoclínica Central da Marinha.
+              </p>
+              <p className="body-md">
+                A paixão da Dra. Carla Christoph é restaurar a função mastigatória e a beleza do sorriso de cada paciente. Como especialista em Prótese Dental e com profundo conhecimento em Implantodontia, ela somente utiliza materiais de excelência, assegurando resultados estéticos de alta qualidade e durabilidade.
+              </p>
+              <p className="body-md">
+                Em nossa clínica odontológica em Ipanema, o planejamento do seu tratamento é feito com atenção individualizada. Contamos com tecnologias avançadas, como o escaneamento digital intraoral e ferramentas de design digital do sorriso (DSD), que podem ser utilizadas em casos específicos para aprimorar o planejamento, oferecer maior previsibilidade e permitir que você visualize potenciais resultados, sempre que indicado.
+              </p>
+            </div>
             
-            <div className="pt-6">
+            <div className="pt-6 mt-auto">
               <Button
                 onClick={handleWhatsAppClick}
                 className="bg-dental-gold hover:bg-dental-gold/90 text-white rounded-md px-6 py-5 mt-4"
