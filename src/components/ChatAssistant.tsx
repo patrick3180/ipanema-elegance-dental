@@ -1,23 +1,14 @@
 
-import React, { useState, useRef, useEffect } from "react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { MessageCircle, Send, X } from "lucide-react";
+import React, { useState } from "react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "@/components/ui/sonner";
-
-interface Message {
-  id: string;
-  text: string;
-  sender: "user" | "assistant";
-  timestamp: Date;
-}
-
-interface WebhookResponse {
-  response?: string;
-}
+import ChatButton from "@/components/chat/ChatButton";
+import ChatHeader from "@/components/chat/ChatHeader";
+import ChatMessages from "@/components/chat/ChatMessages";
+import QuickReplies from "@/components/chat/QuickReplies";
+import ChatInput from "@/components/chat/ChatInput";
+import { Message, WebhookResponse } from "@/components/chat/types";
 
 const predefinedMessages = [
   "Quais são os tratamentos disponíveis?",
@@ -32,7 +23,6 @@ const WEBHOOK_URL = "https://patrick3180.app.n8n.cloud/webhook/6dfd7345-82ac-46e
 const ChatAssistant = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isChatMinimized, setIsChatMinimized] = useState(false);
-  const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "initial",
@@ -41,14 +31,6 @@ const ChatAssistant = () => {
       timestamp: new Date()
     }
   ]);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  
-  // Auto-scroll to bottom when messages change
-  useEffect(() => {
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [messages]);
   
   const handleSendMessage = async (text: string) => {
     if (!text.trim()) return;
@@ -62,7 +44,6 @@ const ChatAssistant = () => {
     };
     
     setMessages(prev => [...prev, newUserMessage]);
-    setInputValue("");
     
     try {
       // Send message to webhook
@@ -110,11 +91,6 @@ const ChatAssistant = () => {
     }
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    handleSendMessage(inputValue);
-  };
-  
   const toggleChat = () => {
     if (isChatMinimized) {
       setIsChatMinimized(false);
@@ -128,20 +104,16 @@ const ChatAssistant = () => {
     setIsOpen(true);
     setIsChatMinimized(false);
   };
+  
+  const handleCloseChat = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsOpen(false);
+  };
 
   return (
     <>
-      {/* Chat button */}
-      <button
-        onClick={handleOpenChat}
-        className="fixed bottom-8 left-8 z-50 bg-dental-purple hover:bg-dental-purple/90 text-white rounded-full p-4 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center gap-2 elegant-shadow"
-        aria-label="Abrir chat"
-      >
-        <MessageCircle size={20} className="animate-pulse" />
-        <span className="hidden md:inline font-medium">Chat online</span>
-      </button>
+      <ChatButton onClick={handleOpenChat} />
       
-      {/* Chat dialog */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent 
           className={`sm:max-w-[380px] p-0 rounded-lg overflow-hidden border-none shadow-xl transition-all duration-300 ${isChatMinimized ? 'h-[72px]' : 'h-[600px] max-h-[90vh]'}`}
@@ -153,102 +125,21 @@ const ChatAssistant = () => {
             transform: 'translate(0, 0)'
           }}
         >
-          {/* Chat header - REDUCED HEIGHT */}
-          <div 
-            className="bg-dental-purple text-white p-2 cursor-pointer flex items-center justify-between"
-            onClick={toggleChat}
-          >
-            <div className="flex items-center gap-2">
-              <MessageCircle size={18} />
-              <div>
-                <DialogTitle className="font-medium text-white m-0 p-0 text-base">Assistente Virtual</DialogTitle>
-                {!isChatMinimized && (
-                  <p className="text-xs text-white/80">Resposta em tempo real</p>
-                )}
-              </div>
-            </div>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsOpen(false);
-              }}
-              className="text-white hover:bg-dental-purple/20 h-7 w-7"
-            >
-              <X size={14} />
-              <span className="sr-only">Fechar</span>
-            </Button>
-          </div>
+          <ChatHeader 
+            isChatMinimized={isChatMinimized} 
+            toggleChat={toggleChat} 
+            closeChat={handleCloseChat}
+          />
           
           {!isChatMinimized && (
             <div className="flex flex-col h-[calc(100%-56px)]">
-              {/* Chat messages */}
-              <div className="p-4 overflow-y-auto flex-grow bg-white">
-                {messages.map((message) => (
-                  <div
-                    key={message.id}
-                    className={`mb-4 ${message.sender === 'user' ? 'text-right' : ''}`}
-                  >
-                    <div
-                      className={`inline-block rounded-lg px-4 py-2 max-w-[80%] ${
-                        message.sender === 'user'
-                          ? 'bg-dental-purple text-white'
-                          : 'bg-dental-beige/80 text-dental-purple'
-                      }`}
-                    >
-                      {message.text}
-                    </div>
-                    <div className="text-xs text-dental-gray mt-1">
-                      {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                    </div>
-                  </div>
-                ))}
-                <div ref={messagesEndRef} /> {/* Reference element for scrolling */}
-              </div>
-              
-              {/* Quick replies */}
-              <div className="px-4 py-2 bg-dental-beige/30">
-                <p className="text-xs text-dental-gray mb-2">Perguntas frequentes:</p>
-                <div className="flex flex-wrap gap-2">
-                  {predefinedMessages.map((message, index) => (
-                    <button
-                      key={index}
-                      className="bg-white text-dental-purple text-xs px-3 py-1 rounded-full border border-dental-gray/20 hover:bg-dental-beige/50 transition-colors"
-                      onClick={() => handleSendMessage(message)}
-                    >
-                      {message}
-                    </button>
-                  ))}
-                </div>
-              </div>
+              <ChatMessages messages={messages} />
+              <QuickReplies 
+                predefinedMessages={predefinedMessages} 
+                onSelectMessage={handleSendMessage}
+              />
               <Separator />
-              
-              {/* Chat input - Ensuring this is displayed */}
-              <form onSubmit={handleSubmit} className="p-3 bg-white flex gap-2 mt-auto">
-                <Textarea
-                  placeholder="Digite sua mensagem..."
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  className="border-dental-gray/20 focus-visible:ring-dental-gold min-h-[60px] resize-none text-sm flex-1"
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' && !e.shiftKey) {
-                      e.preventDefault();
-                      if (inputValue.trim()) {
-                        handleSubmit(e);
-                      }
-                    }
-                  }}
-                />
-                <Button 
-                  type="submit" 
-                  className="bg-dental-purple hover:bg-dental-purple/90 text-white self-end min-h-[60px] px-3"
-                  disabled={!inputValue.trim()}
-                >
-                  <Send size={20} />
-                  <span>Enviar</span>
-                </Button>
-              </form>
+              <ChatInput onSendMessage={handleSendMessage} />
             </div>
           )}
         </DialogContent>
