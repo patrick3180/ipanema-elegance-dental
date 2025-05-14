@@ -10,7 +10,7 @@ const WhatsAppButton = () => {
         event: 'whatsapp_click',
         event_category: 'Contact',
         event_action: 'Click',
-        event_label: 'WhatsApp Button'
+        event_label: 'WhatsApp Floating Button'
       });
     }
     

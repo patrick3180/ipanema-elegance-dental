@@ -4,6 +4,27 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
+  const handleWhatsAppClick = () => {
+    // Track event with Google Tag Manager (if available)
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'whatsapp_click',
+        event_category: 'Contact',
+        event_action: 'Click',
+        event_label: 'WhatsApp Hero Button'
+      });
+    }
+    
+    // Log for development purposes
+    console.log("WhatsApp button clicked from Hero section - tracking event");
+    
+    // Open WhatsApp with pre-defined message
+    const phoneNumber = "5521993304045"; // Correct phone number format with country code
+    const message = "Olá! Gostaria de agendar uma consulta.";
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
+  };
+
   return (
     <section id="início" className="min-h-screen relative overflow-hidden pt-28 section-spacing">
       <div className="container-custom grid lg:grid-cols-2 gap-16 items-center">
@@ -16,12 +37,10 @@ const Hero = () => {
           </p>
           <div className="flex flex-wrap gap-6">
             <Button
-              asChild
+              onClick={handleWhatsAppClick}
               className="bg-dental-gold hover:bg-dental-gold/90 text-white rounded-md px-8 py-6 text-base"
             >
-              <a href="#contato">
-                Agende sua consulta <ArrowRight size={16} className="ml-2" />
-              </a>
+              Agende sua consulta <ArrowRight size={16} className="ml-2" />
             </Button>
             <Button
               variant="outline"

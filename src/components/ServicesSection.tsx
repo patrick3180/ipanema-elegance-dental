@@ -2,44 +2,56 @@
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Tooth } from "lucide-react";
 
 const services = [
   {
-    title: "Odontologia Estética",
-    description: "Transforme seu sorriso com procedimentos estéticos personalizados que valorizam sua beleza natural.",
-    icon: "✨",
-    slug: "odontologia-estetica"
-  },
-  {
-    title: "Implantes Dentários",
-    description: "Recupere função e estética com implantes de titânio de alta qualidade e acabamento perfeito.",
-    icon: "🦷",
-    slug: "implantes-dentarios"
-  },
-  {
-    title: "Facetas de Porcelana",
-    description: "Corrija imperfeições e conquiste o sorriso dos sonhos com facetas personalizadas e naturais.",
+    title: "Lentes de Contato Dental e Facetas de Porcelana",
+    description: "Transforme seu sorriso com lentes ultrafinas e facetas de porcelana que proporcionam resultados naturais e duradouros.",
     icon: "💎",
-    slug: "facetas-de-porcelana"
+    slug: "lentes-e-facetas"
   },
   {
-    title: "Clareamento Dental",
-    description: "Técnicas avançadas para clareamento seguro e eficaz, com resultados duradouros.",
+    title: "Clareamento Dental Profissional",
+    description: "Dentes mais brancos e brilhantes com técnicas avançadas de clareamento que respeitam o esmalte dental.",
     icon: "✨",
     slug: "clareamento-dental"
   },
   {
-    title: "Ortodontia Invisível",
-    description: "Alinhamento dentário discreto e confortável com tecnologia de ponta.",
-    icon: "👑",
-    slug: "ortodontia-invisivel"
+    title: "Próteses Dentárias",
+    description: "Recupere função e estética com próteses personalizadas de alta qualidade e acabamento natural.",
+    icon: "👄",
+    slug: "proteses-dentarias"
   },
   {
-    title: "Harmonização Orofacial",
-    description: "Tratamentos que equilibram estética facial e saúde bucal para resultados harmoniosos.",
-    icon: "👄",
-    slug: "harmonizacao-orofacial"
+    title: "Implantes Dentários",
+    description: "Substitua dentes perdidos com implantes de titânio que funcionam como raízes naturais, devolvendo função e estética.",
+    icon: "🦷",
+    slug: "implantes-dentarios"
+  },
+  {
+    title: "Clínica Geral e Prevenção",
+    description: "Check-ups regulares, limpeza profissional e orientações para manter a saúde bucal em dia.",
+    icon: "🔍",
+    slug: "clinica-geral-e-prevencao"
+  },
+  {
+    title: "Restaurações Estéticas",
+    description: "Tratamento de cáries e fraturas com materiais que imitam a aparência natural dos dentes.",
+    icon: "🔧",
+    slug: "restauracoes-esteticas"
+  },
+  {
+    title: "Tratamento de Canal (Endodontia)",
+    description: "Procedimentos precisos para eliminar infecções e preservar dentes comprometidos com conforto e tecnologia.",
+    icon: "🌱",
+    slug: "tratamento-de-canal"
+  },
+  {
+    title: "Saúde da Gengiva (Periodontia)",
+    description: "Prevenção e tratamento de doenças gengivais para garantir a base saudável do seu sorriso.",
+    icon: "❤️",
+    slug: "saude-da-gengiva"
   }
 ];
 
