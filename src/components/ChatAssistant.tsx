@@ -1,8 +1,9 @@
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { MessageCircle, Send, X } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "@/components/ui/sonner";
@@ -40,6 +41,14 @@ const ChatAssistant = () => {
       timestamp: new Date()
     }
   ]);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  
+  // Auto-scroll to bottom when messages change
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
   
   const handleSendMessage = async (text: string) => {
     if (!text.trim()) return;
@@ -195,6 +204,7 @@ const ChatAssistant = () => {
                     </div>
                   </div>
                 ))}
+                <div ref={messagesEndRef} /> {/* Reference element for scrolling */}
               </div>
               
               {/* Quick replies */}
@@ -215,21 +225,28 @@ const ChatAssistant = () => {
               <Separator />
               
               {/* Chat input */}
-              <form onSubmit={handleSubmit} className="p-4 bg-white flex items-center gap-2 mt-auto">
-                <Input
+              <form onSubmit={handleSubmit} className="p-3 bg-white flex flex-col gap-2 mt-auto">
+                <Textarea
                   placeholder="Digite sua mensagem..."
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  className="border-dental-gray/20 focus-visible:ring-dental-gold"
+                  className="border-dental-gray/20 focus-visible:ring-dental-gold min-h-[60px] resize-none text-sm"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault();
+                      if (inputValue.trim()) {
+                        handleSubmit(e);
+                      }
+                    }
+                  }}
                 />
                 <Button 
                   type="submit" 
-                  size="icon"
-                  className="bg-dental-gold hover:bg-dental-gold/90 text-white h-10 w-10"
+                  className="bg-dental-gold hover:bg-dental-gold/90 text-white w-full flex items-center justify-center gap-1"
                   disabled={!inputValue.trim()}
                 >
                   <Send size={16} />
-                  <span className="sr-only">Enviar</span>
+                  <span>Enviar</span>
                 </Button>
               </form>
             </div>
