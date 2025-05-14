@@ -153,15 +153,15 @@ const ChatAssistant = () => {
             transform: 'translate(0, 0)'
           }}
         >
-          {/* Chat header */}
+          {/* Chat header - REDUCED HEIGHT */}
           <div 
-            className="bg-dental-purple text-white p-4 cursor-pointer flex items-center justify-between"
+            className="bg-dental-purple text-white p-2 cursor-pointer flex items-center justify-between"
             onClick={toggleChat}
           >
             <div className="flex items-center gap-2">
-              <MessageCircle size={20} />
+              <MessageCircle size={18} />
               <div>
-                <DialogTitle className="font-medium text-white m-0 p-0">Assistente Virtual</DialogTitle>
+                <DialogTitle className="font-medium text-white m-0 p-0 text-base">Assistente Virtual</DialogTitle>
                 {!isChatMinimized && (
                   <p className="text-xs text-white/80">Resposta em tempo real</p>
                 )}
@@ -174,15 +174,15 @@ const ChatAssistant = () => {
                 e.stopPropagation();
                 setIsOpen(false);
               }}
-              className="text-white hover:bg-dental-purple/20 h-8 w-8"
+              className="text-white hover:bg-dental-purple/20 h-7 w-7"
             >
-              <X size={16} />
+              <X size={14} />
               <span className="sr-only">Fechar</span>
             </Button>
           </div>
           
           {!isChatMinimized && (
-            <div className="flex flex-col h-[calc(100%-72px)]">
+            <div className="flex flex-col h-[calc(100%-56px)]">
               {/* Chat messages */}
               <div className="p-4 overflow-y-auto flex-grow bg-white">
                 {messages.map((message) => (
@@ -224,7 +224,7 @@ const ChatAssistant = () => {
               </div>
               <Separator />
               
-              {/* Chat input */}
+              {/* Chat input - Ensuring this is displayed */}
               <form onSubmit={handleSubmit} className="p-3 bg-white flex gap-2 mt-auto">
                 <Textarea
                   placeholder="Digite sua mensagem..."
