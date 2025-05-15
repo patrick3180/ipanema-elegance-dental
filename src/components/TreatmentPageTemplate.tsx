@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
@@ -10,7 +9,6 @@ import StepsSection from "@/components/treatment/StepsSection";
 import FAQSection from "@/components/treatment/FAQSection";
 import CTASection from "@/components/treatment/CTASection";
 import { TreatmentPageProps, TreatmentSection } from "@/components/treatment/types";
-
 const TreatmentPageTemplate = ({
   slug,
   title,
@@ -52,9 +50,7 @@ const TreatmentPageTemplate = ({
         return null;
     }
   };
-
-  return (
-    <PageLayout className="pt-16">
+  return <PageLayout className="pt-16">
       <Helmet>
         <title>{title} | Dra. Carla Christoph</title>
         <meta name="description" content={metaDescription} />
@@ -68,26 +64,20 @@ const TreatmentPageTemplate = ({
 
           <div className="prose prose-lg max-w-3xl mx-auto">
             {/* Render sections based on their type */}
-            {sections.map(section => (
-              <div id={section.id} key={section.id}>
+            {sections.map(section => <div id={section.id} key={section.id}>
                 {renderSection(section)}
-              </div>
-            ))}
+              </div>)}
 
             {/* FAQ Section */}
-            {faqs.length > 0 && (
-              <div id="faq">
+            {faqs.length > 0 && <div id="faq">
                 <FAQSection faqs={faqs} />
-              </div>
-            )}
+              </div>}
 
             {/* CTA Final */}
             <CTASection title={title} whatsappMessage={whatsappMessage} heading={ctaHeading} />
           </div>
         </div>
       </section>
-    </PageLayout>
-  );
+    </PageLayout>;
 };
-
 export default TreatmentPageTemplate;
