@@ -9,4 +9,6 @@ export interface BlogPost {
   date: string;
   imageUrl: string;
   category: string;
+  metaDescription?: string;
+  tags?: string[];
 }
