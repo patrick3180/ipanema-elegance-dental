@@ -57,6 +57,61 @@ const TreatmentPageTemplate = ({
     });
   }
 
+  // Helper function to render section content based on its type
+  const renderSectionContent = (section: TreatmentSection) => {
+    // For string content, just render as paragraph
+    if (typeof section.content === 'string') {
+      return <p className="body-md">{section.content}</p>;
+    }
+    
+    // For ReactNode content, render directly
+    if (React.isValidElement(section.content)) {
+      return section.content;
+    }
+    
+    // For array content, render based on section type
+    if (Array.isArray(section.content)) {
+      if (section.type === "benefits") {
+        return (
+          <ul className="space-y-3">
+            {section.content.map((benefit, index) => (
+              <li className="flex items-start" key={index}>
+                <CheckCircle className="text-dental-gold h-6 w-6 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="body-md">{benefit}</span>
+              </li>
+            ))}
+          </ul>
+        );
+      } else if (section.type === "steps") {
+        return (
+          <ol className="space-y-4">
+            {section.content.map((step, index) => {
+              // If step is a string
+              if (typeof step === 'string') {
+                return <li className="body-md" key={index}>{step}</li>;
+              }
+              
+              // If step is an object with title and description
+              if (typeof step === 'object' && 'title' in step && 'description' in step) {
+                const typedStep = step as { title: string; description: string };
+                return (
+                  <li className="body-md" key={index}>
+                    <strong>{index + 1}. {typedStep.title}</strong> {typedStep.description}
+                  </li>
+                );
+              }
+              
+              return null;
+            })}
+          </ol>
+        );
+      }
+    }
+    
+    // Default fallback
+    return null;
+  };
+
   return (
     <PageLayout className="pt-16">
       <Helmet>
@@ -102,41 +157,13 @@ const TreatmentPageTemplate = ({
             {sections.map((section) => (
               <div className="my-12" id={section.id} key={section.id}>
                 <h2 className="heading-md mb-4">{section.title}</h2>
-                
-                {section.type === "benefits" ? (
-                  <>
-                    {typeof section.content === 'string' && <p className="body-md mb-4">{section.content}</p>}
-                    <ul className="space-y-3">
-                      {Array.isArray(section.content) && section.content.map((benefit, index) => (
-                        <li className="flex items-start" key={index}>
-                          <CheckCircle className="text-dental-gold h-6 w-6 mr-2 flex-shrink-0 mt-0.5" />
-                          <span className="body-md">{benefit}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                ) : section.type === "steps" ? (
-                  <>
-                    {typeof section.content === 'string' && <p className="body-md mb-4">{section.content}</p>}
-                    <ol className="space-y-4">
-                      {Array.isArray(section.content) && 
-                        section.content.map((step, index) => (
-                          <li className="body-md" key={index}>
-                            {typeof step === 'string' ? (
-                              step
-                            ) : 'title' in step && 'description' in step ? (
-                              <>
-                                <strong>{index + 1}. {step.title}</strong> {step.description}
-                              </>
-                            ) : null}
-                          </li>
-                        ))}
-                    </ol>
-                  </>
-                ) : section.type === "faq" ? (
-                  null // FAQs are rendered separately
+                {section.type === "default" ? (
+                  renderSectionContent(section)
                 ) : (
-                  <p className="body-md">{section.content}</p>
+                  <>
+                    {typeof section.content === 'string' && <p className="body-md mb-4">{section.content}</p>}
+                    {renderSectionContent(section)}
+                  </>
                 )}
               </div>
             ))}
