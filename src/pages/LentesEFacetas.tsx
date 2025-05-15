@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
@@ -7,12 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 import { Helmet } from "react-helmet-async";
-
 const LentesEFacetas = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
   return <PageLayout className="pt-16">
       <Helmet>
         <title>Lentes de Contato e Facetas em Ipanema | Dra. Carla Christoph</title>
@@ -210,5 +207,4 @@ const LentesEFacetas = () => {
       </section>
     </PageLayout>;
 };
-
 export default LentesEFacetas;
