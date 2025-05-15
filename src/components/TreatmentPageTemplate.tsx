@@ -11,8 +11,8 @@ import { ArrowLeft, CheckCircle } from "lucide-react";
 export interface TreatmentSection {
   id: string;
   title: string;
-  content: string | React.ReactNode;
-  type?: "default" | "benefits" | "steps" | "faq";
+  content: string | React.ReactNode | string[] | { title: string; description: string }[];
+  type: "default" | "benefits" | "steps" | "faq";
 }
 
 export interface FAQ {
@@ -105,7 +105,7 @@ const TreatmentPageTemplate = ({
                 
                 {section.type === "benefits" ? (
                   <>
-                    <p className="body-md mb-4">{section.content}</p>
+                    {typeof section.content === 'string' && <p className="body-md mb-4">{section.content}</p>}
                     <ul className="space-y-3">
                       {Array.isArray(section.content) && section.content.map((benefit, index) => (
                         <li className="flex items-start" key={index}>
@@ -117,13 +117,20 @@ const TreatmentPageTemplate = ({
                   </>
                 ) : section.type === "steps" ? (
                   <>
-                    <p className="body-md mb-4">{typeof section.content === 'string' ? section.content : null}</p>
+                    {typeof section.content === 'string' && <p className="body-md mb-4">{section.content}</p>}
                     <ol className="space-y-4">
-                      {Array.isArray(section.content) && section.content.map((step, index) => (
-                        <li className="body-md" key={index}>
-                          <strong>{index + 1}. {step.title}</strong> {step.description}
-                        </li>
-                      ))}
+                      {Array.isArray(section.content) && 
+                        section.content.map((step, index) => (
+                          <li className="body-md" key={index}>
+                            {typeof step === 'string' ? (
+                              step
+                            ) : 'title' in step && 'description' in step ? (
+                              <>
+                                <strong>{index + 1}. {step.title}</strong> {step.description}
+                              </>
+                            ) : null}
+                          </li>
+                        ))}
                     </ol>
                   </>
                 ) : section.type === "faq" ? (

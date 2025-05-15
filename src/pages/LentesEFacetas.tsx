@@ -14,32 +14,29 @@ const LentesEFacetas = () => {
         id: "o-que-sao",
         title: "O Que São Lentes de Contato Dental e Facetas de Porcelana?",
         content: "As lentes de contato dental e as facetas de porcelana são peças ultrafinas de cerâmica pura, moldadas individualmente para cada paciente e cimentadas sobre a superfície dos dentes. Embora ambas visem aprimorar a estética do sorriso, as lentes de contato são tipicamente mais finas e requerem mínimo ou nenhum desgaste dental, sendo ideais para correções mais sutis. Já as facetas de porcelana, um pouco mais espessas, permitem correções mais significativas. Ambas as técnicas, realizadas com maestria pela Dra. Carla Christoph em Ipanema, proporcionam um resultado incrivelmente natural, mimetizando a translucidez e o brilho dos dentes naturais, para uma verdadeira transformação do sorriso com lentes dentais.",
-        type: "default"
+        type: "default" as const
       },
       {
         id: "indicacoes",
         title: "Indicações: Quando Optar por Lentes de Contato Dental ou Facetas?",
         content: "Se você busca um sorriso mais harmônico e esteticamente agradável em Ipanema, as lentes de contato dental ou facetas de porcelana podem ser a solução ideal. Estes tratamentos são indicados para: Corrigir dentes manchados, escurecidos ou com alteração de cor que não respondem bem ao clareamento dental; Fechar espaços entre os dentes (diastemas); Restaurar dentes lascados, fraturados ou desgastados; Melhorar a forma e o tamanho de dentes desproporcionais ou dentes pequenos; Promover um alinhamento estético para dentes levemente desalinhados; Proporcionar um rejuvenescimento geral do sorriso. Uma avaliação cuidadosa com a Dra. Carla Christoph, sua dentista especialista em lentes de contato dental em Ipanema, definirá qual a melhor abordagem para o seu caso.",
-        type: "default"
+        type: "default" as const
       },
       {
         id: "beneficios",
         title: "Benefícios que Vão Além da Estética: Lentes e Facetas",
-        content: "Optar por lentes de contato dental ou facetas de porcelana na clínica da Dra. Carla Christoph em Ipanema oferece múltiplos benefícios:",
-        type: "benefits",
         content: [
           "<strong>Resultados Altamente Estéticos:</strong> A porcelana possui características ópticas semelhantes ao esmalte dental, conferindo naturalidade incomparável.",
           "<strong>Durabilidade e Resistência:</strong> São peças resistentes a manchas e ao desgaste, mantendo a beleza do sorriso por muitos anos com os devidos cuidados.",
           "<strong>Preservação da Estrutura Dental:</strong> Especialmente com as lentes de contato, o desgaste do dente é mínimo ou inexistente.",
           "<strong>Melhora da Autoestima:</strong> Um sorriso renovado impacta positivamente a confiança e a forma como você se apresenta ao mundo.",
           "<strong>Planejamento Personalizado:</strong> Com o auxílio do Design Digital do Sorriso (DSD), você participa ativamente da criação do seu novo sorriso."
-        ]
+        ],
+        type: "benefits" as const
       },
       {
         id: "como-e-feito",
         title: "Seu Tratamento com Lentes ou Facetas em Ipanema: Passo a Passo",
-        content: "O processo para a transformação do seu sorriso com lentes dentais ou facetas na nossa clínica em Ipanema é realizado com precisão e cuidado pela Dra. Carla Christoph:",
-        type: "steps",
         content: [
           {
             title: "Avaliação e Planejamento:",
@@ -65,13 +62,14 @@ const LentesEFacetas = () => {
             title: "Cimentação:",
             description: "As peças são provadas e, após sua aprovação, cimentadas aos dentes com adesivos de alta performance, garantindo uma união forte e duradoura."
           }
-        ]
+        ],
+        type: "steps" as const
       },
       {
         id: "cuidados",
         title: "Cuidados Essenciais para a Durabilidade das suas Lentes e Facetas",
         content: "Para garantir a longevidade e a beleza das suas lentes de contato dental ou facetas de porcelana, alguns cuidados são importantes: Mantenha uma excelente higiene bucal, com escovação e uso de fio dental regulares. Realize visitas periódicas à Dra. Carla Christoph em Ipanema para acompanhamento e profilaxia. Evite hábitos como roer unhas ou morder objetos duros. Se você tem bruxismo, o uso de uma placa miorrelaxante pode ser recomendado. Com os cuidados com facetas de porcelana e lentes adequados, seu novo sorriso permanecerá impecável por muitos anos.",
-        type: "default"
+        type: "default" as const
       }
     ],
     
