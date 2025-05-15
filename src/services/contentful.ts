@@ -204,7 +204,7 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
   try {
     const entries = await client.getEntries({
       content_type: 'blogCarla',
-      order: '-fields.publishDate',
+      order: ['-fields.publishDate'],
     });
 
     if (entries.items.length === 0) {
@@ -303,7 +303,7 @@ export const getBlogPostsByCategory = async (category: string): Promise<BlogPost
     const entries = await client.getEntries({
       content_type: 'blogCarla',
       'fields.category.sys.id': categoryId,
-      order: '-fields.publishDate',
+      order: ['-fields.publishDate'],
     });
 
     // Get related content for all entries
