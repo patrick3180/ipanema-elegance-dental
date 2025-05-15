@@ -21,6 +21,14 @@ const PageNavigation = ({ navigationItems }: PageNavigationProps) => {
     if (id === "cuidados-pos-clareamento") return "Cuidados";
     if (id === "faq-clareamento") return "FAQ";
     
+    // Handle specific sections for Prótese Dentária
+    if (id === "o-que-e-protese") return "O Que é?";
+    if (id === "tipos-de-protese") return "Tipos";
+    if (id === "beneficios-protese") return "Benefícios";
+    if (id === "como-e-feito-protese") return "Como é Feito?";
+    if (id === "cuidados-com-protese") return "Cuidados";
+    if (id === "faq-protese") return "FAQ";
+    
     // Original patterns for other pages
     if (id === "o-que-e" || id === "o-que-sao") return "O Que é?";
     if (id.includes("indicac")) return "Indicações";

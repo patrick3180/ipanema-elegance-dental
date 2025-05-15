@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
@@ -24,7 +23,7 @@ const serviceData = {
     title: "Próteses Dentárias",
     description: "Recupere a função mastigatória e a estética do seu sorriso com próteses dentárias personalizadas.",
     fullContent: "As próteses dentárias são soluções personalizadas para substituir dentes perdidos, restaurando tanto a função mastigatória quanto a estética do sorriso. Como especialista em Prótese Dental, a Dra. Carla Christoph projeta próteses fixas (coroas e pontes) e removíveis que se integram perfeitamente à sua boca. Utilizamos materiais modernos que garantem conforto, durabilidade e aparência natural.",
-    detailPageUrl: ""
+    detailPageUrl: "/protese-dentaria"
   },
   "implantes-dentarios": {
     title: "Implantes Dentários",
