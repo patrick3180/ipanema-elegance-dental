@@ -54,7 +54,7 @@ const serviceData = {
     title: "Saúde da Gengiva (Periodontia)",
     description: "Tratamento especializado para gengivite e periodontite, cuidando da base do seu sorriso.",
     fullContent: "A saúde das gengivas é fundamental para a manutenção dos dentes e do sorriso como um todo. Nossa clínica em Ipanema oferece diagnóstico e tratamento de problemas gengivais, desde a gengivite inicial até casos mais avançados de periodontite. Os tratamentos incluem limpeza profunda, raspagem e alisamento radicular, e orientações personalizadas de higiene. A Dra. Carla Christoph trabalha para reverter problemas gengivais existentes e prevenir futuros danos, garantindo uma base sólida para seu sorriso.",
-    detailPageUrl: ""
+    detailPageUrl: "/saude-da-gengiva"
   }
 };
 

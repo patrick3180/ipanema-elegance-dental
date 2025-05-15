@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -24,6 +23,7 @@ import ImplantesDentarios from "./pages/ImplantesDentarios";
 import ClinicaGeralPrevencao from "./pages/ClinicaGeralPrevencao";
 import RestaureacoesEsteticas from "./pages/RestaureacoesEsteticas";
 import TratamentoDeCanal from "./pages/TratamentoDeCanal";
+import SaudeDaGengiva from "./pages/SaudeDaGengiva";
 
 // Add type declaration for dataLayer
 declare global {
@@ -58,6 +58,7 @@ const App = () => (
           <Route path="/clinica-geral-e-prevencao" element={<ClinicaGeralPrevencao />} />
           <Route path="/restauracoes-esteticas" element={<RestaureacoesEsteticas />} />
           <Route path="/tratamento-de-canal" element={<TratamentoDeCanal />} />
+          <Route path="/saude-da-gengiva" element={<SaudeDaGengiva />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <WhatsAppPopup />

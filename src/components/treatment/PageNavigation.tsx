@@ -57,6 +57,13 @@ const PageNavigation = ({
     if (id === "como-e-feito-canal") return "Como é Feito?";
     if (id === "cuidados-pos-canal") return "Cuidados";
     if (id === "faq-canal") return "FAQ";
+    
+    // Handle specific sections for Saúde da Gengiva (Periodontia)
+    if (id === "o-que-e-doenca-periodontal") return "O Que é?";
+    if (id === "sinais-alerta-gengiva") return "Sinais de Alerta";
+    if (id === "tratamentos-gengiva") return "Tratamentos";
+    if (id === "importancia-prevencao-gengiva") return "Prevenção";
+    if (id === "faq-gengiva") return "FAQ";
 
     // Original patterns for other pages
     if (id === "o-que-e" || id === "o-que-sao") return "O Que é?";
