@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
@@ -11,7 +10,7 @@ import {
   AccordionTrigger
 } from "@/components/ui/accordion";
 import { ArrowLeft, CheckCircle } from "lucide-react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const LentesEFacetas = () => {
   useEffect(() => {
@@ -42,7 +41,7 @@ const LentesEFacetas = () => {
             <h1 className="heading-lg mb-4">Lentes de Contato Dental e Facetas de Porcelana em Ipanema</h1>
             <Separator className="w-24 h-1 bg-dental-gold mb-6" />
             <p className="body-md">
-              Descubra a arte de um sorriso naturalmente deslumbrante com as lentes de contato dental e facetas de porcelana oferecidas pela Dra. Carla Christoph em nossa clínica em Ipanema. Essas finas lâminas de porcelana são a chave para uma transformação do sorriso completa, corrigindo imperfeições de cor, forma e alinhamento com resultados estéticos excepcionais e duradouros.
+              Descubra a arte de um sorriso naturalmente deslumbrante com as lentes de contato dental e facetas de porcelana oferecidas pela Dra. Carla Christoph em nossa clínica em Ipanema. Essas finas lâminas de porcelana são a chave para uma transformação do sorriso completo, corrigindo imperfeições de cor, forma e alinhamento com resultados estéticos excepcionais e duradouros.
             </p>
           </div>
 
