@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
@@ -29,19 +30,19 @@ const serviceData = {
     title: "Implantes Dentários",
     description: "A solução definitiva para a perda de dentes. Implantes seguros e duradouros para restaurar seu sorriso.",
     fullContent: "Os implantes dentários são a solução mais avançada para substituir dentes perdidos. Eles funcionam como raízes artificiais, proporcionando uma base sólida para dentes fixos ou removíveis. Com profundo conhecimento em Implantodontia, a Dra. Carla Christoph oferece implantes de alta qualidade que se integram naturalmente ao osso maxilar, garantindo durabilidade e função idêntica à dos dentes naturais. Este tratamento não apenas restaura seu sorriso, mas também previne a perda óssea e mantém a estrutura facial intacta.",
-    detailPageUrl: ""
+    detailPageUrl: "/implantes-dentarios"
   },
   "clinica-geral-e-prevencao": {
     title: "Clínica Geral e Prevenção",
     description: "Cuide da sua saúde bucal com nossos check-ups digitais e planos de prevenção personalizados.",
     fullContent: "A prevenção é o pilar da odontologia moderna. Em nossa clínica em Ipanema, a Dra. Carla Christoph oferece check-ups completos com tecnologia digital para identificar problemas em estágio inicial. Nossos serviços incluem limpeza profissional (profilaxia), aplicação de flúor, orientação de higiene bucal personalizada e planos preventivos. Investir na prevenção significa menos tratamentos invasivos no futuro e uma saúde bucal duradoura.",
-    detailPageUrl: ""
+    detailPageUrl: "/clinica-geral-e-prevencao"
   },
   "restauracoes-esteticas": {
     title: "Restaurações Estéticas",
     description: "Tratamento de cáries e reconstrução de dentes com materiais que imitam a cor natural dos dentes.",
     fullContent: "As restaurações estéticas são tratamentos que reparam dentes danificados por cáries, fraturas ou desgastes, devolvendo tanto a função quanto a beleza natural. A Dra. Carla Christoph utiliza resinas compostas da mais alta qualidade, que imitam perfeitamente a cor e a translucidez dos dentes naturais. O resultado são restaurações praticamente invisíveis, que se integram harmoniosamente ao seu sorriso enquanto devolvem a força e a função aos dentes afetados.",
-    detailPageUrl: ""
+    detailPageUrl: "/restauracoes-esteticas"
   },
   "tratamento-de-canal": {
     title: "Tratamento de Canal (Endodontia)",

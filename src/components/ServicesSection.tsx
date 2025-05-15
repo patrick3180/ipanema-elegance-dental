@@ -64,7 +64,8 @@ const ServicesSection = () => {
       "clareamento-dental",
       "protese-dentaria",
       "implantes-dentarios",
-      "clinica-geral-e-prevencao"
+      "clinica-geral-e-prevencao",
+      "restauracoes-esteticas"
     ];
 
     return directRoutes.includes(slug) ? `/${slug}` : `/servicos/${slug}`;

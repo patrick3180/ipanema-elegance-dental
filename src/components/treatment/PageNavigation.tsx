@@ -44,6 +44,14 @@ const PageNavigation = ({ navigationItems }: PageNavigationProps) => {
     if (id === "consulta-preventiva") return "Consulta";
     if (id === "faq-prevencao") return "FAQ";
     
+    // Handle specific sections for Restaurações Estéticas
+    if (id === "o-que-sao-restauracoes") return "O Que São?";
+    if (id === "indicacoes-restauracoes") return "Indicações";
+    if (id === "beneficios-restauracoes") return "Benefícios";
+    if (id === "como-e-feito-restauracoes") return "Como é Feito?";
+    if (id === "cuidados-restauracoes") return "Cuidados";
+    if (id === "faq-restauracoes") return "FAQ";
+    
     // Original patterns for other pages
     if (id === "o-que-e" || id === "o-que-sao") return "O Que é?";
     if (id.includes("indicac")) return "Indicações";
