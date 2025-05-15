@@ -1,7 +1,7 @@
 
 import { Entry } from 'contentful';
 import { BlogPost } from '@/types/BlogPost';
-import { BlogPostSkeleton, CategorySkeleton } from './types';
+import { BlogPostSkeleton, ContentfulRichText } from './types';
 import { formatImageUrl } from './client';
 
 // Transform Contentful data to our BlogPost format
@@ -11,21 +11,21 @@ export const transformBlogPostEntry = (entry: Entry<BlogPostSkeleton>): BlogPost
   
   return {
     id: entry.sys.id,
-    slug: fields.slug as string,
-    title: fields.title as string,
-    excerpt: fields.excerpt ? fields.excerpt as string : '',
+    slug: fields.slug ? fields.slug.toString() : '',
+    title: fields.title ? fields.title.toString() : '',
+    excerpt: fields.excerpt ? fields.excerpt.toString() : '',
     content: fields.content ? '' : '', // Will be populated with HTML content later
-    author: fields.author ? fields.author as string : 'Admin',
-    date: fields.publishDate ? new Date(fields.publishDate as string).toLocaleDateString('pt-BR') : '',
+    author: fields.author ? fields.author.toString() : 'Admin',
+    date: fields.publishDate ? new Date(fields.publishDate.toString()).toLocaleDateString('pt-BR') : '',
     imageUrl: '', // Will be populated with image URL later
     category: '', // Will be populated with category name later
-    metaDescription: fields.metaDescription ? fields.metaDescription as string : '',
-    tags: fields.tags ? fields.tags as string[] : [],
+    metaDescription: fields.metaDescription ? fields.metaDescription.toString() : '',
+    tags: fields.tags ? fields.tags as unknown as string[] : [],
   };
 };
 
 // Convert rich text content to HTML
-export const richTextToHtml = (content: any): string => {
+export const richTextToHtml = (content: ContentfulRichText | undefined): string => {
   if (!content || !content.content) {
     return '';
   }
@@ -80,9 +80,12 @@ export const richTextToHtml = (content: any): string => {
       return '';
     };
     
-    content.content.forEach((node: any) => {
-      html += processNode(node);
-    });
+    const contentValue = Object.values(content)[0];
+    if (contentValue && contentValue.content) {
+      contentValue.content.forEach((node: any) => {
+        html += processNode(node);
+      });
+    }
     
     return html;
   } catch (error) {

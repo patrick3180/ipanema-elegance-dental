@@ -1,4 +1,5 @@
-import { EntryFieldTypes, EntrySkeletonType } from 'contentful';
+
+import { EntryFieldTypes, EntrySkeletonType, Asset, AssetLink, ChainModifiers, Entry, EntryLink, RichTextDocument } from 'contentful';
 
 // Define Contentful content types that properly extend EntrySkeletonType
 export interface BlogPostSkeleton extends EntrySkeletonType {
@@ -25,29 +26,17 @@ export interface CategorySkeleton extends EntrySkeletonType {
   };
 }
 
-// For backwards compatibility - we'll keep these but not use them as type arguments
-export interface BlogPostFields {
-  title: EntryFieldTypes.Text;
-  slug: EntryFieldTypes.Text;
-  excerpt?: EntryFieldTypes.Text;
-  content?: EntryFieldTypes.RichText;
-  featuredImage?: EntryFieldTypes.AssetLink;
-  category?: EntryFieldTypes.EntryLink<CategorySkeleton>;
-  author?: EntryFieldTypes.Text;
-  publishDate?: EntryFieldTypes.Date;
-  metaDescription?: EntryFieldTypes.Text;
-  tags?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
-}
-
-export interface CategoryFields {
-  name: EntryFieldTypes.Text;
-  slug: EntryFieldTypes.Text;
-}
-
-export interface ContentfulAsset {
-  sys: {
-    id: string;
+// For extended entry with related content
+export interface ExtendedBlogPostEntry extends Entry<BlogPostSkeleton> {
+  fields: BlogPostSkeleton['fields'] & {
+    categoryName?: string;
+    categorySlug?: string;
+    imageUrl?: string;
   };
+}
+
+// Type for Contentful assets
+export interface ContentfulAsset extends Asset {
   fields: {
     file: {
       url: string;
@@ -64,14 +53,6 @@ export interface ContentfulAsset {
   };
 }
 
-// Extended entry type for the transformations
-export interface ExtendedBlogPostEntry {
-  sys: {
-    id: string;
-  };
-  fields: BlogPostSkeleton['fields'] & {
-    categoryName?: string;
-    categorySlug?: string;
-    imageUrl?: string;
-  };
-}
+// Helper types for working with raw entry data
+export type ContentfulFieldValue<T> = { [locale: string]: T };
+export type ContentfulRichText = ContentfulFieldValue<RichTextDocument>;

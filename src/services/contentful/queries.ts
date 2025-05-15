@@ -1,5 +1,5 @@
 
-import { Entry } from 'contentful';
+import { Entry, Asset } from 'contentful';
 import { contentfulClient } from './client';
 import { BlogPostSkeleton, CategorySkeleton, ContentfulAsset, ExtendedBlogPostEntry } from './types';
 import { transformBlogPostEntry, richTextToHtml } from './transformers';
@@ -16,13 +16,29 @@ const getRelatedContent = async (entries: Entry<BlogPostSkeleton>[]) => {
     const fields = entry.fields;
     
     // Collect featured image references
-    if (fields.featuredImage && fields.featuredImage.sys && 'id' in fields.featuredImage.sys) {
-      assetIds.push(fields.featuredImage.sys.id);
+    if (fields.featuredImage && fields.featuredImage.sys) {
+      try {
+        // Safely get the ID from sys
+        const assetId = 'id' in fields.featuredImage.sys ? fields.featuredImage.sys.id : null;
+        if (assetId) {
+          assetIds.push(assetId);
+        }
+      } catch (error) {
+        console.error('Error accessing featuredImage.sys.id:', error);
+      }
     }
     
     // Collect category references
-    if (fields.category && fields.category.sys && 'id' in fields.category.sys) {
-      categoryIds.push(fields.category.sys.id);
+    if (fields.category && fields.category.sys) {
+      try {
+        // Safely get the ID from sys
+        const categoryId = 'id' in fields.category.sys ? fields.category.sys.id : null;
+        if (categoryId) {
+          categoryIds.push(categoryId);
+        }
+      } catch (error) {
+        console.error('Error accessing category.sys.id:', error);
+      }
     }
   });
 
@@ -33,7 +49,7 @@ const getRelatedContent = async (entries: Entry<BlogPostSkeleton>[]) => {
   // Fetch all required assets if needed
   if (assetIds.length > 0) {
     const assetEntries = await contentfulClient.getAssets({
-      'sys.id[in]': assetIds
+      'sys.id[in]': assetIds.join(',')
     });
     
     assetEntries.items.forEach(asset => {
@@ -44,7 +60,7 @@ const getRelatedContent = async (entries: Entry<BlogPostSkeleton>[]) => {
   // Fetch all required categories if needed
   if (categoryIds.length > 0) {
     const categoryEntries = await contentfulClient.getEntries<CategorySkeleton>({
-      'sys.id[in]': categoryIds,
+      'sys.id[in]': categoryIds.join(','),
       content_type: 'categoria'
     });
     
@@ -54,14 +70,16 @@ const getRelatedContent = async (entries: Entry<BlogPostSkeleton>[]) => {
   }
 
   // Populate references in the entries
-  return entries.map(entry => {
-    const fields = entry.fields;
-    const result = { ...entry } as ExtendedBlogPostEntry;
-    const extendedFields = { ...fields } as any;
-
+  return entries.map((entry) => {
+    const result = { ...entry };
+    const extendedResult = result as unknown as ExtendedBlogPostEntry;
+    
+    // Make a copy of the fields to modify
+    const extendedFields = { ...result.fields } as any;
+    
     // Populate featured image
-    if (fields.featuredImage && fields.featuredImage.sys && 'id' in fields.featuredImage.sys) {
-      const assetId = fields.featuredImage.sys.id;
+    if (result.fields.featuredImage && result.fields.featuredImage.sys && 'id' in result.fields.featuredImage.sys) {
+      const assetId = result.fields.featuredImage.sys.id;
       if (assets[assetId]) {
         const imageUrl = assets[assetId].fields.file?.url;
         extendedFields.imageUrl = formatImageUrl(imageUrl);
@@ -69,16 +87,18 @@ const getRelatedContent = async (entries: Entry<BlogPostSkeleton>[]) => {
     }
 
     // Populate category
-    if (fields.category && fields.category.sys && 'id' in fields.category.sys) {
-      const categoryId = fields.category.sys.id;
+    if (result.fields.category && result.fields.category.sys && 'id' in result.fields.category.sys) {
+      const categoryId = result.fields.category.sys.id;
       if (categories[categoryId]) {
-        extendedFields.categoryName = categories[categoryId].fields.name || '';
-        extendedFields.categorySlug = categories[categoryId].fields.slug || '';
+        const categoryFields = categories[categoryId].fields;
+        extendedFields.categoryName = categoryFields.name ? categoryFields.name.toString() : '';
+        extendedFields.categorySlug = categoryFields.slug ? categoryFields.slug.toString() : '';
       }
     }
 
-    (result as any).fields = extendedFields;
-    return result;
+    // Assign the extended fields
+    extendedResult.fields = extendedFields;
+    return extendedResult;
   });
 };
 
@@ -98,8 +118,8 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
     const entriesWithRelatedContent = await getRelatedContent(entries.items);
 
     // Transform entries into blog posts
-    return entriesWithRelatedContent.map((entry: ExtendedBlogPostEntry) => {
-      const transformedPost = transformBlogPostEntry(entry as unknown as Entry<BlogPostSkeleton>);
+    return entriesWithRelatedContent.map((entry) => {
+      const transformedPost = transformBlogPostEntry(entry);
       
       // Add the related content data
       if (entry.fields.categoryName) {
@@ -112,7 +132,7 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
       
       // Convert rich text to HTML
       if (entry.fields.content) {
-        transformedPost.content = richTextToHtml(entry.fields.content);
+        transformedPost.content = richTextToHtml(entry.fields.content as any);
       }
       
       return transformedPost;
@@ -137,10 +157,10 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
 
     // Get related content for the entry
     const entriesWithRelatedContent = await getRelatedContent(entries.items);
-    const entry = entriesWithRelatedContent[0] as ExtendedBlogPostEntry;
+    const entry = entriesWithRelatedContent[0];
 
     // Transform entry into blog post
-    const transformedPost = transformBlogPostEntry(entry as unknown as Entry<BlogPostSkeleton>);
+    const transformedPost = transformBlogPostEntry(entry);
     
     // Add the related content data
     if (entry.fields.categoryName) {
@@ -153,7 +173,7 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
     
     // Convert rich text to HTML
     if (entry.fields.content) {
-      transformedPost.content = richTextToHtml(entry.fields.content);
+      transformedPost.content = richTextToHtml(entry.fields.content as any);
     }
     
     return transformedPost;
@@ -166,11 +186,13 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
 // Get all categories
 export const getAllCategories = async (): Promise<string[]> => {
   try {
-    const entries = await contentfulClient.getEntries({
+    const entries = await contentfulClient.getEntries<CategorySkeleton>({
       content_type: 'categoria',
     });
 
-    return entries.items.map((entry: any) => entry.fields.name);
+    return entries.items.map((entry) => {
+      return entry.fields.name ? entry.fields.name.toString() : '';
+    });
   } catch (error) {
     console.error('Error fetching categories:', error);
     return [];
@@ -181,7 +203,7 @@ export const getAllCategories = async (): Promise<string[]> => {
 export const getBlogPostsByCategory = async (category: string): Promise<BlogPost[]> => {
   try {
     // First get category entry by name
-    const categoryEntries = await contentfulClient.getEntries({
+    const categoryEntries = await contentfulClient.getEntries<CategorySkeleton>({
       content_type: 'categoria',
       'fields.name': category,
     });
@@ -203,8 +225,8 @@ export const getBlogPostsByCategory = async (category: string): Promise<BlogPost
     const entriesWithRelatedContent = await getRelatedContent(entries.items);
 
     // Transform entries into blog posts
-    return entriesWithRelatedContent.map((entry: ExtendedBlogPostEntry) => {
-      const transformedPost = transformBlogPostEntry(entry as unknown as Entry<BlogPostSkeleton>);
+    return entriesWithRelatedContent.map((entry) => {
+      const transformedPost = transformBlogPostEntry(entry);
       
       // Add the related content data
       if (entry.fields.categoryName) {
@@ -217,7 +239,7 @@ export const getBlogPostsByCategory = async (category: string): Promise<BlogPost
       
       // Convert rich text to HTML
       if (entry.fields.content) {
-        transformedPost.content = richTextToHtml(entry.fields.content);
+        transformedPost.content = richTextToHtml(entry.fields.content as any);
       }
       
       return transformedPost;
