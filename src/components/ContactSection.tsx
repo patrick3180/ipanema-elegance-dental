@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -5,20 +6,23 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { MapPin, Phone, Clock, MessageCircle } from "lucide-react";
+
 const ContactSection = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted");
     // In a real implementation, this would send the form data
   };
+  
   return <section id="contato" className="py-24 bg-dental-cream">
       <div className="container mx-auto">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div className="max-w-3xl mx-auto text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-display font-medium mb-4">
             Entre em Contato
           </h2>
           <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />
-          <p className="text-dental-charcoal/80 mb-6">Transforme seu Sorriso: Agende sua Consulta em Ipanema</p>
+          <p className="text-dental-charcoal/80 mb-4">Transforme seu Sorriso: Agende sua Consulta em Ipanema</p>
+          <p className="text-red-600 font-bold mb-6 text-lg">NÃO TRABALHAMOS COM PLANOS E CONVÊNIOS</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
@@ -116,4 +120,5 @@ const ContactSection = () => {
       </div>
     </section>;
 };
+
 export default ContactSection;

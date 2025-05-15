@@ -1,5 +1,6 @@
 
-import { EntryFieldTypes, EntrySkeletonType, Asset, AssetLink, ChainModifiers, Entry, EntryLink, RichTextDocument } from 'contentful';
+import { EntryFieldTypes, EntrySkeletonType, Asset, AssetLink, ChainModifiers, Entry, EntryLink } from 'contentful';
+import { Document } from '@contentful/rich-text-types';
 
 // Define Contentful content types that properly extend EntrySkeletonType
 export interface BlogPostSkeleton extends EntrySkeletonType {
@@ -26,33 +27,44 @@ export interface CategorySkeleton extends EntrySkeletonType {
   };
 }
 
-// For extended entry with related content
-export interface ExtendedBlogPostEntry extends Entry<BlogPostSkeleton> {
-  fields: BlogPostSkeleton['fields'] & {
-    categoryName?: string;
-    categorySlug?: string;
-    imageUrl?: string;
-  };
-}
-
-// Type for Contentful assets
-export interface ContentfulAsset extends Asset {
-  fields: {
-    file: {
-      url: string;
-      details: {
-        size: number;
-        image?: {
-          width: number;
-          height: number;
-        };
-      };
-    };
-    title: string;
-    description: string;
-  };
+// Simplified structure for blog posts
+export interface SimplifiedBlogPost {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  author: string;
+  date: string;
+  imageUrl: string;
+  category: string;
+  categorySlug?: string;
+  metaDescription?: string;
+  tags: string[];
 }
 
 // Helper types for working with raw entry data
 export type ContentfulFieldValue<T> = { [locale: string]: T };
-export type ContentfulRichText = ContentfulFieldValue<RichTextDocument>;
+export type ContentfulRichText = ContentfulFieldValue<Document>;
+
+// Helper function to extract localized field value
+export function getLocalizedValue<T>(field: ContentfulFieldValue<T> | T | undefined): T | undefined {
+  if (!field) return undefined;
+  
+  // If it's an object with locale keys
+  if (typeof field === 'object' && field !== null && !Array.isArray(field)) {
+    // Try common locale keys
+    const keys = Object.keys(field as object);
+    if (keys.length > 0) {
+      // Try common locale patterns
+      for (const locale of ['pt-BR', 'en-US', keys[0]]) {
+        if (locale in (field as any)) {
+          return (field as any)[locale];
+        }
+      }
+    }
+  }
+  
+  // Return as is if not a localized field
+  return field as T;
+}

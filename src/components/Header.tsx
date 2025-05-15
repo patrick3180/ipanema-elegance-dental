@@ -41,7 +41,12 @@ const Header = () => {
       )}
     >
       <div className="container mx-auto flex items-center justify-between">
-        <Link to="/" className="text-dental-purple font-display text-2xl">
+        <Link to="/" className="flex items-center gap-2 text-dental-purple font-display text-2xl">
+          <img 
+            src="/lovable-uploads/5d54a1bb-4d66-446c-b9a8-54a03d2a376b.png" 
+            alt="Logo Dra. Carla Christoph" 
+            className="h-10 w-auto" 
+          />
           Dra. Carla Christoph
         </Link>
 

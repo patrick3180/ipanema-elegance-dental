@@ -10,6 +10,7 @@ import QuickReplies from "@/components/chat/QuickReplies";
 import ChatInput from "@/components/chat/ChatInput";
 import TypingAnimation from "@/components/chat/TypingAnimation";
 import { Message, WebhookResponse } from "@/components/chat/types";
+import { v4 as uuidv4 } from 'uuid';
 
 const predefinedMessages = [
   "Quais são os tratamentos disponíveis?",
@@ -19,12 +20,13 @@ const predefinedMessages = [
 ];
 
 // Webhook URL for the online chat integration
-const WEBHOOK_URL = "https://patrick3180.app.n8n.cloud/webhook/6dfd7345-82ac-46eb-9e73-01fed8f5a80f";
+const WEBHOOK_URL = "https://patrick3180.app.n8n.cloud/webhook-test/site_chat";
 
 const ChatAssistant = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isChatMinimized, setIsChatMinimized] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [sessionId, setSessionId] = useState<string>("");
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "initial",
@@ -33,6 +35,11 @@ const ChatAssistant = () => {
       timestamp: new Date()
     }
   ]);
+  
+  // Initialize session ID when component mounts
+  useEffect(() => {
+    setSessionId(uuidv4());
+  }, []);
   
   const handleSendMessage = async (text: string) => {
     if (!text.trim()) return;
@@ -58,13 +65,14 @@ const ChatAssistant = () => {
         body: JSON.stringify({
           message: text,
           timestamp: new Date().toISOString(),
+          session_id: sessionId,
           source: 'website-chat'
         }),
       });
       
-      let responseText = `Agradecemos seu contato! Nossa equipe responderá sua mensagem "${text}" em breve. Para atendimento imediato, recomendamos utilizar nosso WhatsApp.`;
+      let responseText = "Agradecemos seu contato! Um momento enquanto processamos sua mensagem.";
       
-      // Try to get actual response from webhook if available
+      // Try to get actual response from webhook
       if (response.ok) {
         try {
           const data = await response.json() as WebhookResponse;
@@ -87,7 +95,7 @@ const ChatAssistant = () => {
         };
         
         setMessages(prev => [...prev, assistantResponse]);
-      }, 1500);
+      }, 1000);
       
     } catch (error) {
       console.error("Erro ao enviar mensagem:", error);

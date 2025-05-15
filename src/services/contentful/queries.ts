@@ -1,106 +1,11 @@
 
 import { Entry, Asset } from 'contentful';
 import { contentfulClient } from './client';
-import { BlogPostSkeleton, CategorySkeleton, ContentfulAsset, ExtendedBlogPostEntry } from './types';
+import { BlogPostSkeleton, CategorySkeleton, getLocalizedValue } from './types';
 import { transformBlogPostEntry, richTextToHtml } from './transformers';
 import { formatImageUrl } from './client';
 import { BlogPost } from '@/types/BlogPost';
-
-// Get related content (categories, images) for blog posts
-const getRelatedContent = async (entries: Entry<BlogPostSkeleton>[]) => {
-  // Build a list of all required asset IDs and category IDs
-  const assetIds: string[] = [];
-  const categoryIds: string[] = [];
-
-  entries.forEach(entry => {
-    const fields = entry.fields;
-    
-    // Collect featured image references
-    if (fields.featuredImage && fields.featuredImage.sys) {
-      try {
-        // Safely get the ID from sys
-        const assetId = 'id' in fields.featuredImage.sys ? fields.featuredImage.sys.id : null;
-        if (assetId) {
-          assetIds.push(assetId);
-        }
-      } catch (error) {
-        console.error('Error accessing featuredImage.sys.id:', error);
-      }
-    }
-    
-    // Collect category references
-    if (fields.category && fields.category.sys) {
-      try {
-        // Safely get the ID from sys
-        const categoryId = 'id' in fields.category.sys ? fields.category.sys.id : null;
-        if (categoryId) {
-          categoryIds.push(categoryId);
-        }
-      } catch (error) {
-        console.error('Error accessing category.sys.id:', error);
-      }
-    }
-  });
-
-  // Create a map to hold assets and categories
-  const assets: Record<string, ContentfulAsset> = {};
-  const categories: Record<string, Entry<CategorySkeleton>> = {};
-
-  // Fetch all required assets if needed
-  if (assetIds.length > 0) {
-    const assetEntries = await contentfulClient.getAssets({
-      'sys.id[in]': assetIds.join(',')
-    });
-    
-    assetEntries.items.forEach(asset => {
-      assets[asset.sys.id] = asset as unknown as ContentfulAsset;
-    });
-  }
-
-  // Fetch all required categories if needed
-  if (categoryIds.length > 0) {
-    const categoryEntries = await contentfulClient.getEntries<CategorySkeleton>({
-      'sys.id[in]': categoryIds.join(','),
-      content_type: 'categoria'
-    });
-    
-    categoryEntries.items.forEach(category => {
-      categories[category.sys.id] = category as Entry<CategorySkeleton>;
-    });
-  }
-
-  // Populate references in the entries
-  return entries.map((entry) => {
-    const result = { ...entry };
-    const extendedResult = result as unknown as ExtendedBlogPostEntry;
-    
-    // Make a copy of the fields to modify
-    const extendedFields = { ...result.fields } as any;
-    
-    // Populate featured image
-    if (result.fields.featuredImage && result.fields.featuredImage.sys && 'id' in result.fields.featuredImage.sys) {
-      const assetId = result.fields.featuredImage.sys.id;
-      if (assets[assetId]) {
-        const imageUrl = assets[assetId].fields.file?.url;
-        extendedFields.imageUrl = formatImageUrl(imageUrl);
-      }
-    }
-
-    // Populate category
-    if (result.fields.category && result.fields.category.sys && 'id' in result.fields.category.sys) {
-      const categoryId = result.fields.category.sys.id;
-      if (categories[categoryId]) {
-        const categoryFields = categories[categoryId].fields;
-        extendedFields.categoryName = categoryFields.name ? categoryFields.name.toString() : '';
-        extendedFields.categorySlug = categoryFields.slug ? categoryFields.slug.toString() : '';
-      }
-    }
-
-    // Assign the extended fields
-    extendedResult.fields = extendedFields;
-    return extendedResult;
-  });
-};
+import { Document } from '@contentful/rich-text-types';
 
 // Get all blog posts
 export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
@@ -114,29 +19,59 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
       return [];
     }
 
-    // Get related content for all entries
-    const entriesWithRelatedContent = await getRelatedContent(entries.items);
-
     // Transform entries into blog posts
-    return entriesWithRelatedContent.map((entry) => {
+    const posts = await Promise.all(entries.items.map(async (entry) => {
+      // Create the base transformed post
       const transformedPost = transformBlogPostEntry(entry);
       
-      // Add the related content data
-      if (entry.fields.categoryName) {
-        transformedPost.category = entry.fields.categoryName;
+      // Process category reference if it exists
+      if (entry.fields.category) {
+        try {
+          // Get the category ID safely
+          const categoryLink = entry.fields.category;
+          const categoryId = categoryLink.sys?.id;
+          
+          if (categoryId) {
+            // Get the category entry
+            const categoryEntry = await contentfulClient.getEntry<CategorySkeleton>(categoryId);
+            transformedPost.category = getLocalizedValue(categoryEntry.fields.name) || '';
+            transformedPost.categorySlug = getLocalizedValue(categoryEntry.fields.slug) || '';
+          }
+        } catch (err) {
+          console.error('Error fetching category:', err);
+        }
       }
-
-      if (entry.fields.imageUrl) {
-        transformedPost.imageUrl = entry.fields.imageUrl;
+      
+      // Process featured image if it exists
+      if (entry.fields.featuredImage) {
+        try {
+          // Get the asset ID safely
+          const assetLink = entry.fields.featuredImage;
+          const assetId = assetLink.sys?.id;
+          
+          if (assetId) {
+            // Get the asset
+            const asset = await contentfulClient.getAsset(assetId);
+            const fileUrl = getLocalizedValue(asset.fields.file)?.url;
+            if (fileUrl) {
+              transformedPost.imageUrl = formatImageUrl(fileUrl);
+            }
+          }
+        } catch (err) {
+          console.error('Error fetching image:', err);
+        }
       }
       
       // Convert rich text to HTML
       if (entry.fields.content) {
-        transformedPost.content = richTextToHtml(entry.fields.content as any);
+        const contentDocument = getLocalizedValue(entry.fields.content) as Document;
+        transformedPost.content = richTextToHtml(contentDocument);
       }
       
       return transformedPost;
-    });
+    }));
+    
+    return posts;
   } catch (error) {
     console.error('Error fetching blog posts:', error);
     return [];
@@ -155,25 +90,53 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
       return null;
     }
 
-    // Get related content for the entry
-    const entriesWithRelatedContent = await getRelatedContent(entries.items);
-    const entry = entriesWithRelatedContent[0];
-
+    const entry = entries.items[0];
+    
     // Transform entry into blog post
     const transformedPost = transformBlogPostEntry(entry);
     
-    // Add the related content data
-    if (entry.fields.categoryName) {
-      transformedPost.category = entry.fields.categoryName;
+    // Process category reference if it exists
+    if (entry.fields.category) {
+      try {
+        // Get the category ID safely
+        const categoryLink = entry.fields.category;
+        const categoryId = categoryLink.sys?.id;
+        
+        if (categoryId) {
+          // Get the category entry
+          const categoryEntry = await contentfulClient.getEntry<CategorySkeleton>(categoryId);
+          transformedPost.category = getLocalizedValue(categoryEntry.fields.name) || '';
+          transformedPost.categorySlug = getLocalizedValue(categoryEntry.fields.slug) || '';
+        }
+      } catch (err) {
+        console.error('Error fetching category:', err);
+      }
     }
-
-    if (entry.fields.imageUrl) {
-      transformedPost.imageUrl = entry.fields.imageUrl;
+    
+    // Process featured image if it exists
+    if (entry.fields.featuredImage) {
+      try {
+        // Get the asset ID safely
+        const assetLink = entry.fields.featuredImage;
+        const assetId = assetLink.sys?.id;
+        
+        if (assetId) {
+          // Get the asset
+          const asset = await contentfulClient.getAsset(assetId);
+          const fileUrl = getLocalizedValue(asset.fields.file)?.url;
+          if (fileUrl) {
+            transformedPost.imageUrl = formatImageUrl(fileUrl);
+          }
+        }
+      } catch (err) {
+        console.error('Error fetching image:', err);
+      }
     }
     
     // Convert rich text to HTML
     if (entry.fields.content) {
-      transformedPost.content = richTextToHtml(entry.fields.content as any);
+      const contentDocument = getLocalizedValue(entry.fields.content) as Document;
+      transformedPost.content = richTextToHtml(contentDocument);
     }
     
     return transformedPost;
@@ -191,7 +154,7 @@ export const getAllCategories = async (): Promise<string[]> => {
     });
 
     return entries.items.map((entry) => {
-      return entry.fields.name ? entry.fields.name.toString() : '';
+      return getLocalizedValue(entry.fields.name) || '';
     });
   } catch (error) {
     console.error('Error fetching categories:', error);
@@ -221,29 +184,44 @@ export const getBlogPostsByCategory = async (category: string): Promise<BlogPost
       order: ['-fields.publishDate'],
     });
 
-    // Get related content for all entries
-    const entriesWithRelatedContent = await getRelatedContent(entries.items);
-
     // Transform entries into blog posts
-    return entriesWithRelatedContent.map((entry) => {
+    const posts = await Promise.all(entries.items.map(async (entry) => {
+      // Create the base transformed post
       const transformedPost = transformBlogPostEntry(entry);
       
-      // Add the related content data
-      if (entry.fields.categoryName) {
-        transformedPost.category = entry.fields.categoryName;
-      }
-
-      if (entry.fields.imageUrl) {
-        transformedPost.imageUrl = entry.fields.imageUrl;
+      // Category is already known
+      transformedPost.category = category;
+      
+      // Process featured image if it exists
+      if (entry.fields.featuredImage) {
+        try {
+          // Get the asset ID safely
+          const assetLink = entry.fields.featuredImage;
+          const assetId = assetLink.sys?.id;
+          
+          if (assetId) {
+            // Get the asset
+            const asset = await contentfulClient.getAsset(assetId);
+            const fileUrl = getLocalizedValue(asset.fields.file)?.url;
+            if (fileUrl) {
+              transformedPost.imageUrl = formatImageUrl(fileUrl);
+            }
+          }
+        } catch (err) {
+          console.error('Error fetching image:', err);
+        }
       }
       
       // Convert rich text to HTML
       if (entry.fields.content) {
-        transformedPost.content = richTextToHtml(entry.fields.content as any);
+        const contentDocument = getLocalizedValue(entry.fields.content) as Document;
+        transformedPost.content = richTextToHtml(contentDocument);
       }
       
       return transformedPost;
-    });
+    }));
+    
+    return posts;
   } catch (error) {
     console.error('Error fetching blog posts by category:', error);
     return [];
