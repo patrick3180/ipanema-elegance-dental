@@ -6,102 +6,105 @@ const ClareamentoDental = () => {
   const treatmentData = {
     slug: "clareamento-dental",
     title: "Clareamento Dental Profissional em Ipanema",
-    metaDescription: "Clareamento dental profissional em Ipanema com a Dra. Carla Christoph. Técnicas seguras para um sorriso mais branco e radiante.",
-    introduction: "O clareamento dental profissional é um dos tratamentos estéticos mais procurados e eficazes para transformar seu sorriso. Na clínica da Dra. Carla Christoph em Ipanema, oferecemos técnicas avançadas e seguras de clareamento que respeitam a estrutura do seu dente enquanto removem manchas e devolvem o brilho natural ao seu sorriso.",
+    metaDescription: "Clareamento dental profissional em Ipanema com a Dra. Carla Christoph. Obtenha dentes mais brancos com técnicas seguras de consultório ou caseiras supervisionadas.",
+    introduction: "Sonha com dentes mais brancos e um sorriso impactante? O clareamento dental profissional oferecido pela Dra. Carla Christoph em Ipanema é a maneira segura e eficaz de alcançar o tom desejado, realçando a beleza natural do seu sorriso com resultados que iluminam sua expressão.",
     
     sections: [
       {
-        id: "o-que-e",
+        id: "o-que-e-clareamento",
         title: "O Que é o Clareamento Dental Profissional?",
-        content: "O clareamento dental profissional é um procedimento estético que utiliza agentes clareadores específicos para remover manchas e clarear o tom natural dos dentes. Diferente dos produtos de uso doméstico disponíveis no mercado, o tratamento profissional realizado pela Dra. Carla Christoph em Ipanema emprega produtos de alta qualidade em concentrações adequadas, garantindo resultados superiores e seguros. O processo age nos pigmentos depositados no esmalte e na dentina, quebrando as moléculas responsáveis pelas manchas sem afetar a estrutura dental.",
+        content: "O clareamento dental profissional é um procedimento odontológico estético que visa clarear a pigmentação dos dentes, removendo manchas e devolvendo uma tonalidade mais clara e uniforme ao esmalte e dentina. Realizado ou supervisionado por um dentista, como a Dra. Carla Christoph em Ipanema, este tratamento utiliza agentes clareadores em concentrações seguras e eficazes, muito superiores aos produtos de venda livre, garantindo resultados visíveis e com responsabilidade pela sua saúde bucal.",
         type: "default" as const
       },
       {
-        id: "tecnicas",
-        title: "Técnicas de Clareamento Disponíveis",
+        id: "tipos-de-clareamento",
+        title: "Tipos de Clareamento Dental Oferecidos em Nossa Clínica em Ipanema",
         content: [
-          "<strong>Clareamento em Consultório:</strong> Procedimento realizado em sessões de aproximadamente uma hora, com aplicação de gel clareador de alta concentração ativado por luz especial. Ideal para quem busca resultados rápidos.",
-          "<strong>Clareamento Caseiro Supervisionado:</strong> Utilizamos moldeiras personalizadas e gel clareador de concentração adequada para uso doméstico, sob orientação profissional. O tratamento é realizado pelo próprio paciente, com duração de 1-2 semanas.",
-          "<strong>Técnica Combinada:</strong> Associação do clareamento em consultório com o caseiro, potencializando os resultados e garantindo maior durabilidade do tratamento.",
-          "<strong>Clareamento Interno:</strong> Técnica específica para dentes desvitalizados (tratados endodonticamente) que apresentam escurecimento."
+          "<strong>Clareamento Dental em Consultório:</strong> Realizado integralmente na clínica, esta técnica utiliza um gel clareador de maior concentração, ativado ou não por fontes de luz (como LED ou laser, dependendo da técnica específica), proporcionando dentes mais brancos em menos sessões. É ideal para quem busca resultados rápidos.",
+          "<strong>Clareamento Dental Caseiro Supervisionado:</strong> O paciente utiliza moldeiras personalizadas com um gel clareador de menor concentração em casa, seguindo rigorosamente as orientações e o acompanhamento da Dra. Carla Christoph. É uma opção gradual e confortável.",
+          "<strong>Clareamento Dental Combinado:</strong> Uma associação das duas técnicas anteriores para potencializar e prolongar os resultados, unindo a rapidez do consultório com a continuidade do tratamento caseiro. A melhor opção de clareamento dental em Ipanema para você será definida após uma avaliação detalhada."
         ],
         type: "benefits" as const
       },
       {
-        id: "indicacoes",
-        title: "Indicações para o Clareamento Dental",
-        content: "O clareamento dental profissional realizado pela Dra. Carla Christoph em nossa clínica em Ipanema é indicado para pacientes que apresentam: Amarelamento natural dos dentes devido à idade; Manchas causadas pelo consumo frequente de café, chá, vinho tinto ou cigarro; Alterações de cor decorrentes de medicamentos (em alguns casos); Escurecimento leve a moderado do esmalte dental; Desejo de melhorar a aparência do sorriso de forma conservadora e não invasiva. Uma avaliação prévia é fundamental para determinar se o clareamento é o tratamento mais adequado para o seu caso.",
-        type: "default" as const
+        id: "beneficios-clareamento",
+        title: "Benefícios de um Sorriso Mais Branco e Confiante em Ipanema",
+        content: [
+          "<strong>Resultados Notáveis:</strong> Conquista de dentes mais brancos e um sorriso visivelmente rejuvenescido.",
+          "<strong>Segurança:</strong> O procedimento é realizado ou supervisionado por um profissional qualificado, garantindo um clareamento dental seguro e minimizando riscos de sensibilidade.",
+          "<strong>Melhora da Autoestima:</strong> Um sorriso mais claro e bonito aumenta a confiança e o bem-estar.",
+          "<strong>Personalização:</strong> O tratamento é adaptado às suas necessidades e características dentais.",
+          "<strong>Rapidez e Conveniência:</strong> Especialmente com o clareamento em consultório, os resultados podem ser vistos rapidamente."
+        ],
+        type: "benefits" as const
       },
       {
-        id: "processo",
-        title: "Como é Realizado o Procedimento?",
+        id: "como-e-feito-clareamento",
+        title: "Seu Tratamento de Clareamento Dental em Ipanema: O Processo",
         content: [
           {
             title: "Avaliação Inicial",
-            description: "Consulta para exame clínico, registro da cor atual dos dentes e identificação da causa do escurecimento dental."
+            description: "A Dra. Carla Christoph realiza um exame clínico completo para verificar a saúde bucal e se não há contraindicações para o clareamento dental. A tonalidade atual dos dentes é registrada."
           },
           {
-            title: "Profilaxia",
-            description: "Limpeza profissional para remover placa bacteriana e tártaro antes do procedimento."
+            title: "Planejamento",
+            description: "A técnica de clareamento mais adequada (consultório, caseiro ou combinado) é definida em conjunto com você."
           },
           {
-            title: "Proteção dos Tecidos Moles",
-            description: "Aplicação de barreira gengival para proteger gengivas e mucosas durante o procedimento em consultório."
+            title: "Preparo (para clareamento em consultório)",
+            description: "As gengivas e mucosas são protegidas, e o gel clareador é aplicado sobre os dentes. Pode-se usar uma fonte de luz para acelerar o processo."
           },
           {
-            title: "Aplicação do Agente Clareador",
-            description: "O gel clareador é aplicado sobre a superfície dental e, quando indicado, ativado por luz específica."
+            title: "Sessões (para clareamento em consultório)",
+            description: "Podem ser necessárias algumas sessões, dependendo do resultado desejado."
           },
           {
-            title: "Orientações Pós-Tratamento",
-            description: "Instruções detalhadas sobre cuidados e restrições alimentares para garantir o sucesso do tratamento."
+            title: "Orientações (para clareamento caseiro)",
+            description: "São confeccionadas moldeiras personalizadas e você recebe o gel clareador com todas as instruções de uso e tempo."
           },
           {
-            title: "Sessões de Acompanhamento",
-            description: "Visitas de controle para avaliar os resultados e realizar eventuais ajustes no tratamento."
+            title: "Acompanhamento",
+            description: "Visitas de controle são agendadas para monitorar o progresso e a saúde bucal."
           }
         ],
         type: "steps" as const
       },
       {
-        id: "resultados",
-        title: "Resultados e Durabilidade",
-        content: "Os resultados do clareamento dental variam de acordo com o caso clínico, a técnica utilizada e os hábitos do paciente. Em geral, é possível observar um clareamento significativo já nas primeiras sessões, com os dentes ficando de 2 a 8 tons mais claros. A durabilidade do tratamento pode variar de 1 a 3 anos, sendo influenciada por fatores como alimentação, tabagismo e manutenção da higiene oral. Para prolongar os efeitos do clareamento, a Dra. Carla Christoph recomenda consultas regulares de manutenção e, quando necessário, sessões de reforço.",
-        type: "default" as const
-      },
-      {
-        id: "cuidados",
-        title: "Cuidados Durante e Após o Tratamento",
-        content: "Para garantir o sucesso do clareamento dental e minimizar a sensibilidade, alguns cuidados são essenciais: Durante o período de tratamento, evite o consumo de alimentos e bebidas com corantes (café, vinho tinto, molho de tomate, açaí, etc). Mantenha uma excelente higiene bucal, com escovação e uso de fio dental após as refeições. Utilize cremes dentais dessensibilizantes, caso recomendado pela Dra. Carla Christoph. Evite o tabagismo, que além de manchar os dentes, prejudica a saúde bucal como um todo. Compareça às consultas de acompanhamento agendadas para avaliar os resultados e receber orientações personalizadas.",
+        id: "cuidados-pos-clareamento",
+        title: "Mantendo seu Sorriso Branco e Radiante: Cuidados Pós-Clareamento",
+        content: "Para prolongar os resultados do clareamento dental e manter seus dentes mais brancos por mais tempo: Evite alimentos e bebidas com alta pigmentação (café, chá, vinho tinto, açaí) nos primeiros dias após o tratamento. Mantenha uma higiene bucal rigorosa. Não fume. Realize consultas de manutenção do clareamento dental com a Dra. Carla Christoph em Ipanema conforme recomendado. Um clareamento dental duradouro depende também dos seus hábitos e cuidados.",
         type: "default" as const
       }
     ],
     
     faqs: [
       {
-        question: "O clareamento dental causa sensibilidade?",
-        answer: "Alguns pacientes podem experimentar sensibilidade temporária durante ou após o tratamento. A Dra. Carla Christoph utiliza produtos de última geração que minimizam esse efeito e pode recomendar o uso de dessensibilizantes quando necessário."
+        question: "Qual a diferença entre clareamento dental caseiro e de consultório? Qual o melhor?",
+        answer: "O clareamento em consultório utiliza géis mais concentrados para resultados rápidos. O caseiro supervisionado é gradual, com géis menos concentrados. Muitas vezes, o melhor clareamento dental em Ipanema é uma combinação de ambos, personalizada pela Dra. Carla."
       },
       {
-        question: "Qualquer pessoa pode fazer clareamento dental?",
-        answer: "Não. O tratamento não é recomendado para gestantes, lactantes, crianças e adolescentes com dentes em formação. Também requer avaliação prévia em pacientes com restaurações estéticas extensas, lesões de cárie ativas ou problemas gengivais."
+        question: "Clareamento dental dói ou causa sensibilidade?",
+        answer: "Alguma sensibilidade pode ocorrer, mas é temporária e pode ser minimizada com técnicas e produtos específicos utilizados pela Dra. Carla Christoph. Um clareamento dental seguro é nossa prioridade."
       },
       {
-        question: "O clareamento dental danifica o esmalte dos dentes?",
-        answer: "Quando realizado por profissional qualificado como a Dra. Carla Christoph, o clareamento não causa danos à estrutura dental. Os produtos utilizados são seguros e específicos para uso odontológico."
+        question: "O clareamento dental em consultório é seguro?",
+        answer: "Sim, quando realizado por um profissional qualificado, seguindo todos os protocolos de proteção, é um procedimento seguro e eficaz."
       },
       {
-        question: "Quanto tempo dura uma sessão de clareamento em consultório?",
-        answer: "Geralmente, uma sessão de clareamento em consultório dura entre 45 minutos e 1 hora. O número de sessões necessárias varia de acordo com o grau de escurecimento e os resultados desejados."
+        question: "Quanto tempo dura o resultado do clareamento dental profissional?",
+        answer: "Os resultados podem durar de 1 a 3 anos, dependendo dos hábitos do paciente e dos cuidados de manutenção."
       },
       {
-        question: "Posso fazer clareamento se tenho restaurações ou facetas?",
-        answer: "O clareamento afeta apenas dentes naturais, não alterando a cor de restaurações, facetas ou coroas. Em alguns casos, pode ser necessário substituir trabalhos estéticos anteriores após o clareamento para harmonizar a cor."
+        question: "Quais cuidados são necessários após realizar um clareamento dental?",
+        answer: "Evitar alimentos pigmentados, manter boa higiene e seguir as orientações da Dra. Carla são cruciais para a manutenção do clareamento dental."
       },
       {
-        question: "O clareamento dental funciona em todos os tipos de manchas?",
-        answer: "Não. O clareamento é mais eficaz em manchas superficiais e amareladas. Manchas acinzentadas (causadas por tetraciclina) ou fluorose podem responder de forma limitada. A Dra. Carla Christoph poderá avaliar seu caso específico e recomendar o melhor tratamento."
+        question: "O clareamento dental funciona para todos os tipos de dentes/manchas?",
+        answer: "O clareamento é eficaz para a maioria das manchas extrínsecas. Manchas intrínsecas (como por tetraciclina) ou dentes com restaurações podem não clarear. Uma avaliação na nossa clínica em Ipanema é essencial."
+      },
+      {
+        question: "O que considerar ao avaliar o investimento em um clareamento dental profissional?",
+        answer: "Considere a segurança do procedimento supervisionado, a qualidade dos materiais, a personalização do tratamento e a durabilidade dos resultados ao escolher seu clareamento dental profissional em Ipanema."
       }
     ],
     
