@@ -9,7 +9,7 @@ const services = [
     title: "Lentes de Contato Dental e Facetas de Porcelana",
     description: "Transforme seu sorriso com finas lâminas de porcelana, corrigindo cor, forma e imperfeições com naturalidade e precisão estética.",
     icon: "💎",
-    slug: "lentes-e-facetas"
+    slug: "lentes-de-contato-dental-e-facetas-de-porcelana"
   },
   {
     title: "Clareamento Dental Profissional",
@@ -81,7 +81,9 @@ const ServicesSection = () => {
                   {service.description}
                 </CardDescription>
                 <a 
-                  href={`/servicos/${service.slug}`}
+                  href={service.slug === "lentes-de-contato-dental-e-facetas-de-porcelana" 
+                    ? `/${service.slug}` 
+                    : `/servicos/${service.slug}`}
                   className="inline-flex items-center text-dental-gold hover:text-dental-gold/80 font-medium text-sm"
                 >
                   Saiba mais <ArrowRight size={16} className="ml-1" />

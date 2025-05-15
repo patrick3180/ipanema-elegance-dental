@@ -17,6 +17,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
 import WhatsAppPopup from "./components/WhatsAppPopup";
 import ChatAssistant from "./components/ChatAssistant";
+import LentesEFacetas from "./pages/LentesEFacetas";
 
 // Add type declaration for dataLayer
 declare global {
@@ -44,6 +45,7 @@ const App = () => (
           <Route path="/contato" element={<ContactPage />} />
           <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
           <Route path="/termos-de-uso" element={<TermsOfUse />} />
+          <Route path="/lentes-de-contato-dental-e-facetas-de-porcelana" element={<LentesEFacetas />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <WhatsAppPopup />
