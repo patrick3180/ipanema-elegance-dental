@@ -11,12 +11,14 @@ const serviceData = {
   "lentes-e-facetas": {
     title: "Lentes de Contato Dental e Facetas de Porcelana",
     description: "Transforme seu sorriso com finas lâminas de porcelana, corrigindo cor, forma e imperfeições com naturalidade e precisão estética.",
-    fullContent: "As lentes de contato dental e facetas de porcelana são lâminas ultrafinas que são aplicadas sobre a superfície visível dos dentes para transformar completamente o sorriso. Este tratamento é ideal para corrigir dentes manchados, desgastados, quebrados, desalinhados ou com espaçamentos. Na clínica da Dra. Carla Christoph em Ipanema, utilizamos materiais de alta qualidade e técnicas modernas para garantir resultados naturais e duradouros."
+    fullContent: "As lentes de contato dental e facetas de porcelana são lâminas ultrafinas que são aplicadas sobre a superfície visível dos dentes para transformar completamente o sorriso. Este tratamento é ideal para corrigir dentes manchados, desgastados, quebrados, desalinhados ou com espaçamentos. Na clínica da Dra. Carla Christoph em Ipanema, utilizamos materiais de alta qualidade e técnicas modernas para garantir resultados naturais e duradouros.",
+    detailPageUrl: "/lentes-de-contato-dental-e-facetas-de-porcelana"
   },
   "clareamento-dental": {
     title: "Clareamento Dental Profissional",
     description: "Conquiste dentes visivelmente mais brancos e um sorriso radiante com nossas técnicas de clareamento seguras e eficazes.",
-    fullContent: "O clareamento dental profissional é um procedimento rápido e eficaz para remover manchas e clarear o tom natural dos seus dentes. Em nossa clínica odontológica em Ipanema, oferecemos tanto o clareamento em consultório quanto o supervisionado para uso em casa. A Dra. Carla Christoph utiliza produtos de alta qualidade que clareiam os dentes sem danificar o esmalte dental, proporcionando um sorriso mais branco e radiante com segurança."
+    fullContent: "O clareamento dental profissional é um procedimento rápido e eficaz para remover manchas e clarear o tom natural dos seus dentes. Em nossa clínica odontológica em Ipanema, oferecemos tanto o clareamento em consultório quanto o supervisionado para uso em casa. A Dra. Carla Christoph utiliza produtos de alta qualidade que clareiam os dentes sem danificar o esmalte dental, proporcionando um sorriso mais branco e radiante com segurança.",
+    detailPageUrl: "/clareamento-dental"
   },
   "proteses-dentarias": {
     title: "Próteses Dentárias",
@@ -80,13 +82,25 @@ const ServiceDetail = () => {
                 <p className="body-md mb-6">{service.description}</p>
                 <p className="body-md">{service.fullContent}</p>
                 
-                <div className="mt-12">
+                <div className="mt-12 flex flex-col sm:flex-row gap-4">
                   <Button 
                     className="bg-dental-gold hover:bg-dental-gold/90 text-white rounded-md px-6 py-5"
                     onClick={() => window.open("https://wa.me/5521999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20" + encodeURIComponent(service.title), "_blank")}
                   >
                     Agendar consulta
                   </Button>
+                  
+                  {service.detailPageUrl && (
+                    <Button 
+                      variant="outline" 
+                      className="border-dental-gold text-dental-gold hover:bg-dental-gold/10"
+                      asChild
+                    >
+                      <Link to={service.detailPageUrl}>
+                        Ver detalhes do tratamento
+                      </Link>
+                    </Button>
+                  )}
                 </div>
               </>
             ) : (

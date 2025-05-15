@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,6 +17,7 @@ import TermsOfUse from "./pages/TermsOfUse";
 import WhatsAppPopup from "./components/WhatsAppPopup";
 import ChatAssistant from "./components/ChatAssistant";
 import LentesEFacetas from "./pages/LentesEFacetas";
+import ClareamentoDental from "./pages/ClareamentoDental";
 
 // Add type declaration for dataLayer
 declare global {
@@ -46,6 +46,7 @@ const App = () => (
           <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
           <Route path="/termos-de-uso" element={<TermsOfUse />} />
           <Route path="/lentes-de-contato-dental-e-facetas-de-porcelana" element={<LentesEFacetas />} />
+          <Route path="/clareamento-dental" element={<ClareamentoDental />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <WhatsAppPopup />
