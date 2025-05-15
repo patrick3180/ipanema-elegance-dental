@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PageLayout from "@/components/PageLayout";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
@@ -7,7 +6,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { useNavigate } from "react-router-dom";
-import { getAllBlogPosts, getAllCategories, getBlogPostsByCategory } from "@/services/contentful";
+import { getAllBlogPosts, getAllCategories, getBlogPostsByCategory } from "@/services/contentful/queries";
 import { useQuery } from "@tanstack/react-query";
 import { BlogPost } from "@/types/BlogPost";
 import { Loader } from "lucide-react";

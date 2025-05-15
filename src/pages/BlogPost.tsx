@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, User, Share2, Loader, Tag } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card, CardContent } from "@/components/ui/card";
-import { getBlogPostBySlug, getAllBlogPosts } from "@/services/contentful";
+import { getBlogPostBySlug, getAllBlogPosts } from "@/services/contentful/queries";
 import { useQuery } from "@tanstack/react-query";
 import { BlogPost as BlogPostType } from "@/types/BlogPost";
 import { Helmet } from "react-helmet-async";
