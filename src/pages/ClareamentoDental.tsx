@@ -1,4 +1,3 @@
-
 import React from "react";
 import TreatmentPageTemplate from "@/components/TreatmentPageTemplate";
 

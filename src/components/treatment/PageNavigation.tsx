@@ -13,10 +13,19 @@ interface PageNavigationProps {
 const PageNavigation = ({ navigationItems }: PageNavigationProps) => {
   // Map navigation items to shorter display names based on content type
   const getDisplayName = (title: string, id: string) => {
-    if (id === "o-que-e" || id === "o-que-sao") return "O";
+    // Handle specific sections for Clareamento Dental
+    if (id === "o-que-e-clareamento") return "O Que é?";
+    if (id === "tipos-de-clareamento") return "Tipos";
+    if (id === "beneficios-clareamento") return "Benefícios";
+    if (id === "como-e-feito-clareamento") return "Como é Feito?";
+    if (id === "cuidados-pos-clareamento") return "Cuidados";
+    if (id === "faq-clareamento") return "FAQ";
+    
+    // Original patterns for other pages
+    if (id === "o-que-e" || id === "o-que-sao") return "O Que é?";
     if (id.includes("indicac")) return "Indicações";
     if (id.includes("benefic")) return "Benefícios";
-    if (id.includes("como") || id.includes("process") || id.includes("tecnica") || id.includes("seu")) return "Seu";
+    if (id.includes("como") || id.includes("process") || id.includes("tecnica") || id.includes("seu")) return "Como é Feito?";
     if (id.includes("cuidad")) return "Cuidados";
     if (id === "faq") return "FAQ";
     
