@@ -1,13 +1,13 @@
 
-import { Entry, Asset } from 'contentful';
 import { BlogPost } from '@/types/BlogPost';
-import { BlogPostSkeleton, ContentfulRichText, getLocalizedValue } from './types';
-import { formatImageUrl } from './client';
+import { getLocalizedValue } from './types';
+
+// Import rich-text-html-renderer
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { Document } from '@contentful/rich-text-types';
 
 // Transform Contentful data to our BlogPost format
-export const transformBlogPostEntry = (entry: Entry<BlogPostSkeleton>): BlogPost => {
+export const transformBlogPostEntry = (entry: any): BlogPost => {
   // Extract fields
   const fields = entry.fields;
   
@@ -27,14 +27,14 @@ export const transformBlogPostEntry = (entry: Entry<BlogPostSkeleton>): BlogPost
 };
 
 // Convert rich text content to HTML
-export const richTextToHtml = (content: Document | ContentfulRichText | undefined): string => {
+export const richTextToHtml = (content: Document | any | undefined): string => {
   if (!content) {
     return '';
   }
   
   try {
-    // Handle localized content (if it's a ContentfulRichText)
-    const document = getLocalizedValue(content as ContentfulRichText) || content as Document;
+    // Handle localized content
+    const document = getLocalizedValue(content) || content;
     
     if (!document) return '';
     

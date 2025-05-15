@@ -70,7 +70,7 @@ const ChatAssistant = () => {
         }),
       });
       
-      let responseText = "Agradecemos seu contato! Um momento enquanto processamos sua mensagem.";
+      let responseText = "";
       
       // Try to get actual response from webhook
       if (response.ok) {
@@ -80,8 +80,15 @@ const ChatAssistant = () => {
             responseText = data.response;
           }
         } catch (jsonError) {
-          console.log("Webhook não retornou um JSON válido, usando resposta padrão");
+          console.log("Webhook não retornou um JSON válido");
+          return; // Don't add an empty message if response isn't valid
         }
+      }
+      
+      if (!responseText) {
+        // If no response text was received, don't add a message
+        setIsTyping(false);
+        return;
       }
       
       // Add assistant response with delay for typing effect
