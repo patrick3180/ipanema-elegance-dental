@@ -24,37 +24,37 @@ const serviceData = {
     title: "Próteses Dentárias",
     description: "Recupere a função mastigatória e a estética do seu sorriso com próteses dentárias personalizadas.",
     fullContent: "As próteses dentárias são soluções personalizadas para substituir dentes perdidos, restaurando tanto a função mastigatória quanto a estética do sorriso. Como especialista em Prótese Dental, a Dra. Carla Christoph projeta próteses fixas (coroas e pontes) e removíveis que se integram perfeitamente à sua boca. Utilizamos materiais modernos que garantem conforto, durabilidade e aparência natural.",
-    detailPageUrl: "" // Adding empty string as default
+    detailPageUrl: ""
   },
   "implantes-dentarios": {
     title: "Implantes Dentários",
     description: "A solução definitiva para a perda de dentes. Implantes seguros e duradouros para restaurar seu sorriso.",
     fullContent: "Os implantes dentários são a solução mais avançada para substituir dentes perdidos. Eles funcionam como raízes artificiais, proporcionando uma base sólida para dentes fixos ou removíveis. Com profundo conhecimento em Implantodontia, a Dra. Carla Christoph oferece implantes de alta qualidade que se integram naturalmente ao osso maxilar, garantindo durabilidade e função idêntica à dos dentes naturais. Este tratamento não apenas restaura seu sorriso, mas também previne a perda óssea e mantém a estrutura facial intacta.",
-    detailPageUrl: "" // Adding empty string as default
+    detailPageUrl: ""
   },
   "clinica-geral-e-prevencao": {
     title: "Clínica Geral e Prevenção",
     description: "Cuide da sua saúde bucal com nossos check-ups digitais e planos de prevenção personalizados.",
     fullContent: "A prevenção é o pilar da odontologia moderna. Em nossa clínica em Ipanema, a Dra. Carla Christoph oferece check-ups completos com tecnologia digital para identificar problemas em estágio inicial. Nossos serviços incluem limpeza profissional (profilaxia), aplicação de flúor, orientação de higiene bucal personalizada e planos preventivos. Investir na prevenção significa menos tratamentos invasivos no futuro e uma saúde bucal duradoura.",
-    detailPageUrl: "" // Adding empty string as default
+    detailPageUrl: ""
   },
   "restauracoes-esteticas": {
     title: "Restaurações Estéticas",
     description: "Tratamento de cáries e reconstrução de dentes com materiais que imitam a cor natural dos dentes.",
     fullContent: "As restaurações estéticas são tratamentos que reparam dentes danificados por cáries, fraturas ou desgastes, devolvendo tanto a função quanto a beleza natural. A Dra. Carla Christoph utiliza resinas compostas da mais alta qualidade, que imitam perfeitamente a cor e a translucidez dos dentes naturais. O resultado são restaurações praticamente invisíveis, que se integram harmoniosamente ao seu sorriso enquanto devolvem a força e a função aos dentes afetados.",
-    detailPageUrl: "" // Adding empty string as default
+    detailPageUrl: ""
   },
   "tratamento-de-canal": {
     title: "Tratamento de Canal (Endodontia)",
     description: "Alivie a dor e preserve seu dente natural com nosso tratamento de canal com técnicas avançadas.",
     fullContent: "O tratamento de canal é um procedimento que salva dentes severamente infectados ou danificados, eliminando a necessidade de extração. Em nossa clínica em Ipanema, a Dra. Carla Christoph realiza este procedimento com técnicas modernas e instrumentos de precisão, tornando o processo confortável e eficaz. O procedimento remove a polpa infectada, limpa o interior do dente, desinfeta os canais e os sela para prevenir futuras infecções, preservando seu dente natural.",
-    detailPageUrl: "" // Adding empty string as default
+    detailPageUrl: ""
   },
   "saude-da-gengiva": {
     title: "Saúde da Gengiva (Periodontia)",
     description: "Tratamento especializado para gengivite e periodontite, cuidando da base do seu sorriso.",
     fullContent: "A saúde das gengivas é fundamental para a manutenção dos dentes e do sorriso como um todo. Nossa clínica em Ipanema oferece diagnóstico e tratamento de problemas gengivais, desde a gengivite inicial até casos mais avançados de periodontite. Os tratamentos incluem limpeza profunda, raspagem e alisamento radicular, e orientações personalizadas de higiene. A Dra. Carla Christoph trabalha para reverter problemas gengivais existentes e prevenir futuros danos, garantindo uma base sólida para seu sorriso.",
-    detailPageUrl: "" // Adding empty string as default
+    detailPageUrl: ""
   }
 };
 

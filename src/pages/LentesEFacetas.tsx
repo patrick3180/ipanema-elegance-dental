@@ -39,27 +39,27 @@ const LentesEFacetas = () => {
         title: "Seu Tratamento com Lentes ou Facetas em Ipanema: Passo a Passo",
         content: [
           {
-            title: "Avaliação e Planejamento:",
+            title: "Avaliação e Planejamento",
             description: "Uma consulta inicial detalhada para entender seus desejos e avaliar a saúde bucal. Fotografias, radiografias e, quando indicado, o escaneamento intraoral são realizados."
           },
           {
-            title: "Design Digital do Sorriso (DSD):",
+            title: "Design Digital do Sorriso (DSD)",
             description: "Em muitos casos, utilizamos o Design Digital do Sorriso. Essa tecnologia permite que você visualize uma simulação do resultado final e aprove o planejamento antes de qualquer intervenção."
           },
           {
-            title: "Preparo Dental (se necessário):",
+            title: "Preparo Dental (se necessário)",
             description: "Um mínimo desgaste pode ser realizado para garantir o encaixe perfeito das peças. Para lentes de contato, muitas vezes não há necessidade de desgaste."
           },
           {
-            title: "Moldagem/Escaneamento:",
+            title: "Moldagem/Escaneamento",
             description: "Realizamos a moldagem ou escaneamento preciso dos seus dentes."
           },
           {
-            title: "Confecção das Lâminas:",
+            title: "Confecção das Lâminas",
             description: "As lentes ou facetas são confeccionadas artisticamente em laboratório especializado, seguindo o planejamento digital."
           },
           {
-            title: "Cimentação:",
+            title: "Cimentação",
             description: "As peças são provadas e, após sua aprovação, cimentadas aos dentes com adesivos de alta performance, garantindo uma união forte e duradoura."
           }
         ],

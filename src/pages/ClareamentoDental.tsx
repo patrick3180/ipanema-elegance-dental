@@ -38,27 +38,27 @@ const ClareamentoDental = () => {
         title: "Como é Realizado o Procedimento?",
         content: [
           {
-            title: "Avaliação Inicial:",
+            title: "Avaliação Inicial",
             description: "Consulta para exame clínico, registro da cor atual dos dentes e identificação da causa do escurecimento dental."
           },
           {
-            title: "Profilaxia:",
+            title: "Profilaxia",
             description: "Limpeza profissional para remover placa bacteriana e tártaro antes do procedimento."
           },
           {
-            title: "Proteção dos Tecidos Moles:",
+            title: "Proteção dos Tecidos Moles",
             description: "Aplicação de barreira gengival para proteger gengivas e mucosas durante o procedimento em consultório."
           },
           {
-            title: "Aplicação do Agente Clareador:",
+            title: "Aplicação do Agente Clareador",
             description: "O gel clareador é aplicado sobre a superfície dental e, quando indicado, ativado por luz específica."
           },
           {
-            title: "Orientações Pós-Tratamento:",
+            title: "Orientações Pós-Tratamento",
             description: "Instruções detalhadas sobre cuidados e restrições alimentares para garantir o sucesso do tratamento."
           },
           {
-            title: "Sessões de Acompanhamento:",
+            title: "Sessões de Acompanhamento",
             description: "Visitas de controle para avaliar os resultados e realizar eventuais ajustes no tratamento."
           }
         ],

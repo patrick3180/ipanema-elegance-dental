@@ -77,7 +77,7 @@ const TreatmentPageTemplate = ({
             {section.content.map((benefit, index) => (
               <li className="flex items-start" key={index}>
                 <CheckCircle className="text-dental-gold h-6 w-6 mr-2 flex-shrink-0 mt-0.5" />
-                <span className="body-md">{benefit}</span>
+                <span className="body-md">{typeof benefit === 'string' ? benefit : null}</span>
               </li>
             ))}
           </ul>
@@ -92,7 +92,7 @@ const TreatmentPageTemplate = ({
               }
               
               // If step is an object with title and description
-              if (typeof step === 'object' && 'title' in step && 'description' in step) {
+              if (typeof step === 'object' && step !== null && 'title' in step && 'description' in step) {
                 const typedStep = step as { title: string; description: string };
                 return (
                   <li className="body-md" key={index}>
