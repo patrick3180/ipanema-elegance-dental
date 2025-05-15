@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,14 +22,29 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Function to handle section navigation
+  const handleSectionNavigation = (sectionId: string) => {
+    if (location.pathname === '/') {
+      // If on homepage, scroll to section
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+      setIsMenuOpen(false);
+    } else {
+      // If not on homepage, navigate to homepage then scroll
+      window.location.href = `/#${sectionId}`;
+    }
+  };
+
   // Navigation items with their routes
   const navigationItems = [
     { title: "Início", path: "/" },
     { title: "Sobre", path: "/sobre" },
     { title: "Tratamentos", path: "/servicos" },
     { title: "Blog", path: "/blog" },
-    { title: "Depoimentos", path: "/#depoimentos" },
-    { title: "Contato", path: "/contato" }
+    { title: "Depoimentos", action: () => handleSectionNavigation("depoimentos") },
+    { title: "Contato", action: () => handleSectionNavigation("contato") }
   ];
 
   return (
@@ -48,13 +64,23 @@ const Header = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {navigationItems.map((item) => (
-            <Link
-              key={item.title}
-              to={item.path}
-              className="text-sm font-medium text-dental-purple/80 hover:text-dental-gold transition-colors"
-            >
-              {item.title}
-            </Link>
+            item.action ? (
+              <button
+                key={item.title}
+                onClick={item.action}
+                className="text-sm font-medium text-dental-purple/80 hover:text-dental-gold transition-colors"
+              >
+                {item.title}
+              </button>
+            ) : (
+              <Link
+                key={item.title}
+                to={item.path}
+                className="text-sm font-medium text-dental-purple/80 hover:text-dental-gold transition-colors"
+              >
+                {item.title}
+              </Link>
+            )
           ))}
         </nav>
 
@@ -77,14 +103,24 @@ const Header = () => {
       >
         <nav className="flex flex-col items-center gap-6">
           {navigationItems.map((item) => (
-            <Link
-              key={item.title}
-              to={item.path}
-              className="text-xl font-medium text-dental-purple hover:text-dental-gold transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {item.title}
-            </Link>
+            item.action ? (
+              <button
+                key={item.title}
+                onClick={item.action}
+                className="text-xl font-medium text-dental-purple hover:text-dental-gold transition-colors"
+              >
+                {item.title}
+              </button>
+            ) : (
+              <Link
+                key={item.title}
+                to={item.path}
+                className="text-xl font-medium text-dental-purple hover:text-dental-gold transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.title}
+              </Link>
+            )
           ))}
         </nav>
       </div>

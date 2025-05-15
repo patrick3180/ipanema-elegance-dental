@@ -1,8 +1,6 @@
 
 import { BlogPost } from '@/types/BlogPost';
 import { getLocalizedValue } from './types';
-
-// Import rich-text-html-renderer
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { Document } from '@contentful/rich-text-types';
 
@@ -22,7 +20,7 @@ export const transformBlogPostEntry = (entry: any): BlogPost => {
     imageUrl: '', // Will be populated with image URL later
     category: '', // Will be populated with category name later
     metaDescription: getLocalizedValue(fields.metaDescription) || '',
-    tags: Array.isArray(getLocalizedValue(fields.tags)) ? getLocalizedValue(fields.tags) as string[] : [],
+    tags: Array.isArray(getLocalizedValue(fields.tags)) ? getLocalizedValue(fields.tags) : [],
   };
 };
 

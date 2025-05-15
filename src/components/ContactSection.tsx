@@ -1,209 +1,140 @@
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent } from "@/components/ui/card";
+import { Map, Clock, Phone, Mail } from "lucide-react";
 
 const ContactSection = () => {
   return (
-    <section id="contato" className="section-spacing">
+    <section id="contato" className="section-spacing bg-dental-beige">
       <div className="container-custom">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="heading-lg mb-4">Contato</h2>
+        <div className="max-w-3xl mx-auto text-center mb-8">
+          <h2 className="heading-lg mb-4">
+            Entre em Contato
+          </h2>
           <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />
-          <p className="text-dental-gray">
+          <p className="text-dental-gray mb-4">
             Transforme seu Sorriso: Agende sua Consulta em Ipanema
           </p>
-          <p className="text-red-600 font-bold mt-4 text-xl">
+          {/* Warning about insurance plans */}
+          <p className="text-red-600 font-bold text-lg mb-6">
             NÃO TRABALHAMOS COM PLANOS E CONVÊNIOS
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-          <div className="bg-white rounded-xl p-8 shadow-sm">
-            <form className="space-y-6">
-              <div className="space-y-4">
-                <input
-                  type="text"
-                  placeholder="Nome completo"
-                  className="w-full px-4 py-3 rounded border border-dental-gray/20 focus:outline-none focus:ring-2 focus:ring-dental-gold/50"
-                  required
-                />
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input
-                  type="email"
-                  placeholder="E-mail"
-                  className="w-full px-4 py-3 rounded border border-dental-gray/20 focus:outline-none focus:ring-2 focus:ring-dental-gold/50"
-                  required
-                />
-                <input
-                  type="tel"
-                  placeholder="Telefone"
-                  className="w-full px-4 py-3 rounded border border-dental-gray/20 focus:outline-none focus:ring-2 focus:ring-dental-gold/50"
-                  required
-                />
-              </div>
-              <div>
-                <select
-                  className="w-full px-4 py-3 rounded border border-dental-gray/20 focus:outline-none focus:ring-2 focus:ring-dental-gold/50 bg-white"
-                  required
-                >
-                  <option value="" disabled selected>
-                    Selecione o serviço de interesse
-                  </option>
-                  <option value="Lentes de Contato e Facetas">Lentes de Contato e Facetas</option>
-                  <option value="Clareamento Dental">Clareamento Dental</option>
-                  <option value="Implantes Dentários">Implantes Dentários</option>
-                  <option value="Ortodontia">Ortodontia</option>
-                  <option value="Prótese Dentária">Prótese Dentária</option>
-                  <option value="Clínica Geral e Prevenção">Clínica Geral e Prevenção</option>
-                  <option value="Outro">Outro</option>
-                </select>
-              </div>
-              <div>
-                <textarea
-                  placeholder="Mensagem"
-                  rows={4}
-                  className="w-full px-4 py-3 rounded border border-dental-gray/20 focus:outline-none focus:ring-2 focus:ring-dental-gold/50 resize-none"
-                ></textarea>
-              </div>
-              <div>
-                <Button
-                  type="submit"
-                  className="w-full bg-dental-purple text-white hover:bg-dental-purple/90 py-6 font-medium"
-                >
-                  Enviar mensagem
-                </Button>
-              </div>
-            </form>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {/* Contact Form */}
+          <div>
+            <Card className="border-none shadow-sm">
+              <CardContent className="p-6">
+                <form className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Input
+                        placeholder="Nome"
+                        className="border-dental-gray/30"
+                      />
+                    </div>
+                    <div>
+                      <Input
+                        placeholder="Telefone"
+                        className="border-dental-gray/30"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <Input
+                      placeholder="E-mail"
+                      type="email"
+                      className="border-dental-gray/30"
+                    />
+                  </div>
+                  <div>
+                    <Textarea
+                      placeholder="Mensagem"
+                      className="min-h-[120px] border-dental-gray/30"
+                    />
+                  </div>
+                  <div>
+                    <Button className="w-full bg-dental-purple hover:bg-dental-purple/90">
+                      Enviar Mensagem
+                    </Button>
+                  </div>
+                </form>
+              </CardContent>
+            </Card>
           </div>
 
+          {/* Contact Info */}
           <div className="space-y-8">
             <div>
-              <h3 className="font-display text-xl font-medium text-dental-purple mb-4">
+              <h3 className="font-display text-xl font-medium mb-4 text-dental-purple">
                 Informações de Contato
               </h3>
+
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <Phone className="w-5 h-5 text-dental-gold mr-3 mt-0.5" />
+                  <Map className="w-5 h-5 text-dental-gold mt-1 mr-3" />
                   <div>
-                    <p className="text-dental-gray">Telefone</p>
-                    <p className="font-medium">(21) 99999-9999</p>
+                    <h4 className="font-medium text-dental-purple">Endereço</h4>
+                    <p className="text-dental-gray">
+                      Rua Visconde de Pirajá, 550 - Sala 1107<br />
+                      Ipanema, Rio de Janeiro - RJ<br />
+                      CEP: 22410-901
+                    </p>
                   </div>
                 </div>
+
                 <div className="flex items-start">
-                  <Mail className="w-5 h-5 text-dental-gold mr-3 mt-0.5" />
+                  <Clock className="w-5 h-5 text-dental-gold mt-1 mr-3" />
                   <div>
-                    <p className="text-dental-gray">E-mail</p>
-                    <p className="font-medium">contato@dracarla.com.br</p>
+                    <h4 className="font-medium text-dental-purple">Horário de Atendimento</h4>
+                    <p className="text-dental-gray">
+                      Segunda a Sexta: 9h às 18h<br />
+                      Sábados: 9h às 13h
+                    </p>
                   </div>
                 </div>
+
                 <div className="flex items-start">
-                  <MapPin className="w-5 h-5 text-dental-gold mr-3 mt-0.5" />
+                  <Phone className="w-5 h-5 text-dental-gold mt-1 mr-3" />
                   <div>
-                    <p className="text-dental-gray">Endereço</p>
-                    <p className="font-medium">
-                      Rua Visconde de Pirajá, 000 - Sala 000
-                      <br />
-                      Ipanema, Rio de Janeiro - RJ, 22410-001
+                    <h4 className="font-medium text-dental-purple">Telefone</h4>
+                    <p className="text-dental-gray">
+                      (21) 3738-7909<br />
+                      (21) 99330-4045
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <Mail className="w-5 h-5 text-dental-gold mt-1 mr-3" />
+                  <div>
+                    <h4 className="font-medium text-dental-purple">E-mail</h4>
+                    <p className="text-dental-gray">
+                      contato@dracarlachristoph.com
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
+            {/* Map */}
             <div>
-              <h3 className="font-display text-xl font-medium text-dental-purple mb-4">
-                Horário de Funcionamento
-              </h3>
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <p className="text-dental-gray">Segunda a Sexta</p>
-                  <p className="font-medium">09:00 – 18:00</p>
-                </div>
-                <div className="flex justify-between items-center">
-                  <p className="text-dental-gray">Sábado</p>
-                  <p className="font-medium">09:00 – 13:00</p>
-                </div>
-                <div className="flex justify-between items-center">
-                  <p className="text-dental-gray">Domingo</p>
-                  <p className="font-medium">Fechado</p>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-display text-xl font-medium text-dental-purple mb-4">
-                Redes Sociais
-              </h3>
-              <div className="flex space-x-4">
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-dental-beige/50 hover:bg-dental-gold/20 transition-colors"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-dental-purple"
-                  >
-                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-                  </svg>
-                </a>
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-dental-beige/50 hover:bg-dental-gold/20 transition-colors"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-dental-purple"
-                  >
-                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                  </svg>
-                </a>
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-dental-beige/50 hover:bg-dental-gold/20 transition-colors"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-dental-purple"
-                  >
-                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-                  </svg>
-                </a>
-              </div>
+              <AspectRatio ratio={16 / 9}>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3673.8038117882485!2d-43.20445902529023!3d-22.9554811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bd5982d11a59b%3A0xf72b52f26c87f5c0!2sR.%20Visc.%20de%20Piraj%C3%A1%2C%20550%20-%20Ipanema%2C%20Rio%20de%20Janeiro%20-%20RJ%2C%2022410-002!5e0!3m2!1spt-BR!2sbr!4v1714480152894!5m2!1spt-BR!2sbr"
+                  className="w-full h-full rounded-lg"
+                  style={{ border: 0 }}
+                  allowFullScreen={false}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </AspectRatio>
             </div>
           </div>
         </div>

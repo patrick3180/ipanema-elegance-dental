@@ -1,5 +1,5 @@
 
-import { EntryFieldTypes, EntrySkeletonType, Asset, AssetLink, ChainModifiers, Entry, EntryLink } from 'contentful';
+import { EntryFieldTypes, EntrySkeletonType } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
 
 // Define Contentful content types that properly extend EntrySkeletonType
@@ -25,22 +25,6 @@ export interface CategorySkeleton extends EntrySkeletonType {
     name: EntryFieldTypes.Text;
     slug: EntryFieldTypes.Text;
   };
-}
-
-// Simplified structure for blog posts
-export interface SimplifiedBlogPost {
-  id: string;
-  slug: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  author: string;
-  date: string;
-  imageUrl: string;
-  category: string;
-  categorySlug?: string;
-  metaDescription?: string;
-  tags: string[];
 }
 
 // Helper types for working with raw entry data

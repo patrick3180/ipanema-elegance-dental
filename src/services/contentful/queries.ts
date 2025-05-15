@@ -1,54 +1,149 @@
 
 import { BlogPost } from '@/types/BlogPost';
+import { contentfulClient, formatImageUrl } from './client';
 import { transformBlogPostEntry, richTextToHtml } from './transformers';
-import { formatImageUrl } from './client';
 import { getLocalizedValue } from './types';
 import { blogPosts, getBlogPostBySlug as getLocalBlogPostBySlug } from '@/data/blogPosts';
 
-// Get all blog posts
+// Get all blog posts from Contentful
 export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
   try {
-    // For now, just return our local blog posts
-    return blogPosts;
+    // Fetch blog posts from Contentful
+    const response = await contentfulClient.getEntries({
+      content_type: 'blogCarla',
+      order: '-fields.publishDate',
+      include: 2 // Include 2 levels of linked entries (for categories, etc)
+    });
+
+    // Transform entries to BlogPost objects
+    const posts = response.items.map((entry: any) => {
+      // First get the base post with text fields
+      const post = transformBlogPostEntry(entry);
+      
+      // Add HTML content from rich text
+      if (entry.fields.content) {
+        post.content = richTextToHtml(entry.fields.content);
+      }
+      
+      // Add category if available
+      if (entry.fields.category) {
+        const category = getLocalizedValue(entry.fields.category.fields?.name);
+        if (category) {
+          post.category = category;
+          post.categorySlug = getLocalizedValue(entry.fields.category.fields?.slug) || '';
+        }
+      }
+      
+      // Add image URL if available
+      if (entry.fields.featuredImage) {
+        const imageUrl = getLocalizedValue(entry.fields.featuredImage.fields?.file?.url);
+        if (imageUrl) {
+          post.imageUrl = formatImageUrl(imageUrl);
+        }
+      }
+      
+      return post;
+    });
+
+    return posts;
   } catch (error) {
-    console.error('Error fetching blog posts:', error);
+    console.error('Error fetching blog posts from Contentful:', error);
     // Fallback to local data if Contentful fails
     return blogPosts;
   }
 };
 
-// Get a single blog post by slug
+// Get a single blog post by slug from Contentful
 export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> => {
   try {
-    // For now, just return a local blog post
-    const post = getLocalBlogPostBySlug(slug);
-    return post || null;
+    // Fetch blog post from Contentful
+    const response = await contentfulClient.getEntries({
+      content_type: 'blogCarla',
+      'fields.slug': slug,
+      include: 2 // Include 2 levels of linked entries
+    });
+
+    // If no post found, return null
+    if (!response.items.length) {
+      return getLocalBlogPostBySlug(slug);
+    }
+
+    // Get the first (and should be only) entry
+    const entry = response.items[0];
+    
+    // Transform entry to BlogPost object
+    const post = transformBlogPostEntry(entry);
+    
+    // Add HTML content from rich text
+    if (entry.fields.content) {
+      post.content = richTextToHtml(entry.fields.content);
+    }
+    
+    // Add category if available
+    if (entry.fields.category) {
+      const category = getLocalizedValue(entry.fields.category.fields?.name);
+      if (category) {
+        post.category = category;
+        post.categorySlug = getLocalizedValue(entry.fields.category.fields?.slug) || '';
+      }
+    }
+    
+    // Add image URL if available
+    if (entry.fields.featuredImage) {
+      const imageUrl = getLocalizedValue(entry.fields.featuredImage.fields?.file?.url);
+      if (imageUrl) {
+        post.imageUrl = formatImageUrl(imageUrl);
+      }
+    }
+    
+    return post;
   } catch (error) {
-    console.error('Error fetching blog post by slug:', error);
+    console.error('Error fetching blog post from Contentful:', error);
     // Fallback to local data if Contentful fails
-    return getLocalBlogPostBySlug(slug) || null;
+    return getLocalBlogPostBySlug(slug);
   }
 };
 
-// Get all categories
+// Get all categories from blog posts
 export const getAllCategories = async (): Promise<string[]> => {
   try {
-    // Extract unique categories from local blog posts
-    const categories = blogPosts.map(post => post.category);
+    // Fetch categories from Contentful
+    const response = await contentfulClient.getEntries({
+      content_type: 'categoria'
+    });
+
+    // Extract category names
+    const categories = response.items.map((entry: any) => 
+      getLocalizedValue(entry.fields.name) || ''
+    ).filter(Boolean);
+    
+    // If no categories found, extract from blog posts
+    if (!categories.length) {
+      const posts = await getAllBlogPosts();
+      const categoriesFromPosts = posts.map(post => post.category).filter(Boolean);
+      return [...new Set(categoriesFromPosts)];
+    }
+
     return [...new Set(categories)];
   } catch (error) {
-    console.error('Error fetching categories:', error);
-    return [];
+    console.error('Error fetching categories from Contentful:', error);
+    // Extract unique categories from local blog posts as fallback
+    const categories = blogPosts.map(post => post.category).filter(Boolean);
+    return [...new Set(categories)];
   }
 };
 
 // Filter blog posts by category
 export const getBlogPostsByCategory = async (category: string): Promise<BlogPost[]> => {
   try {
-    // Filter local blog posts by category
-    return blogPosts.filter(post => post.category === category);
+    // Get all posts first
+    const allPosts = await getAllBlogPosts();
+    
+    // Filter by category
+    return allPosts.filter(post => post.category === category);
   } catch (error) {
     console.error('Error fetching blog posts by category:', error);
-    return [];
+    // Filter local blog posts by category as fallback
+    return blogPosts.filter(post => post.category === category);
   }
 };
