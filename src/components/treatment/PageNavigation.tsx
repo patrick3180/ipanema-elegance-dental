@@ -13,6 +13,14 @@ interface PageNavigationProps {
 const PageNavigation = ({ navigationItems }: PageNavigationProps) => {
   // Map navigation items to shorter display names based on content type
   const getDisplayName = (title: string, id: string) => {
+    // Handle specific sections for Implantes Dentários
+    if (id === "o-que-sao-implantes") return "O Que São?";
+    if (id === "indicacoes-implantes") return "Indicações";
+    if (id === "beneficios-implantes") return "Benefícios";
+    if (id === "como-e-feito-implantes") return "Como é Feito?";
+    if (id === "cuidados-pos-implantes") return "Cuidados";
+    if (id === "faq-implantes") return "FAQ";
+    
     // Handle specific sections for Clareamento Dental
     if (id === "o-que-e-clareamento") return "O Que é?";
     if (id === "tipos-de-clareamento") return "Tipos";
