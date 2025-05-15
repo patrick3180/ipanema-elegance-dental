@@ -74,11 +74,7 @@ const TreatmentPageTemplate = ({
             ))}
 
             {/* FAQ Section */}
-            {faqs.length > 0 && (
-              <div id="faq">
-                <FAQSection faqs={faqs} />
-              </div>
-            )}
+            {faqs.length > 0 && <FAQSection faqs={faqs} />}
 
             {/* CTA Final */}
             <CTASection title={title} whatsappMessage={whatsappMessage} />

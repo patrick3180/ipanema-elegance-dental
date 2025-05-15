@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 
@@ -21,16 +20,6 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Navigation items with their routes
-  const navigationItems = [
-    { title: "Início", path: "/" },
-    { title: "Sobre", path: "/sobre" },
-    { title: "Tratamentos", path: "/servicos" },
-    { title: "Blog", path: "/blog" },
-    { title: "Depoimentos", path: "/#depoimentos" },
-    { title: "Contato", path: "/contato" }
-  ];
-
   return (
     <header
       className={cn(
@@ -41,21 +30,23 @@ const Header = () => {
       )}
     >
       <div className="container mx-auto flex items-center justify-between">
-        <Link to="/" className="text-dental-purple font-display text-2xl">
+        <a href="#" className="text-dental-purple font-display text-2xl">
           Dra. Carla Christoph
-        </Link>
+        </a>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          {navigationItems.map((item) => (
-            <Link
-              key={item.title}
-              to={item.path}
-              className="text-sm font-medium text-dental-purple/80 hover:text-dental-gold transition-colors"
-            >
-              {item.title}
-            </Link>
-          ))}
+          {["Início", "Sobre", "Tratamentos", "Blog", "Depoimentos", "Contato"].map(
+            (item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-sm font-medium text-dental-purple/80 hover:text-dental-gold transition-colors"
+              >
+                {item}
+              </a>
+            )
+          )}
         </nav>
 
         {/* Mobile Menu Button */}
@@ -76,16 +67,18 @@ const Header = () => {
         )}
       >
         <nav className="flex flex-col items-center gap-6">
-          {navigationItems.map((item) => (
-            <Link
-              key={item.title}
-              to={item.path}
-              className="text-xl font-medium text-dental-purple hover:text-dental-gold transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {item.title}
-            </Link>
-          ))}
+          {["Início", "Sobre", "Tratamentos", "Blog", "Depoimentos", "Contato"].map(
+            (item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-xl font-medium text-dental-purple hover:text-dental-gold transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item}
+              </a>
+            )
+          )}
         </nav>
       </div>
     </header>
