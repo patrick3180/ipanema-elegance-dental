@@ -3,22 +3,14 @@ import { Link } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { 
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 import { Helmet } from "react-helmet-async";
-
 const LentesEFacetas = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  return (
-    <PageLayout>
+  return <PageLayout>
       <Helmet>
         <title>Lentes de Contato e Facetas em Ipanema | Dra. Carla Christoph</title>
         <meta name="description" content="Conquiste o sorriso dos sonhos com lentes de contato dental em Ipanema. Dra. Carla Christoph oferece facetas de porcelana." />
@@ -26,11 +18,7 @@ const LentesEFacetas = () => {
 
       <section className="section-spacing">
         <div className="container-custom">
-          <Button
-            variant="outline"
-            asChild
-            className="mb-8 border-dental-gray text-dental-purple hover:bg-dental-beige/50"
-          >
+          <Button variant="outline" asChild className="mb-8 border-dental-gray text-dental-purple hover:bg-dental-beige/50">
             <Link to="/servicos">
               <ArrowLeft size={16} className="mr-2" />
               Voltar para tratamentos
@@ -56,7 +44,7 @@ const LentesEFacetas = () => {
 
             {/* Seção 2 */}
             <div className="my-12">
-              <h2 className="heading-md mb-4">Indicações: Quando Optar por Lentes de Contato Dental ou Facetas em Ipanema?</h2>
+              <h2 className="heading-md mb-4">Indicações: Quando Optar por Lentes de Contato Dental ou Facetas?</h2>
               <p className="body-md">
                 Se você busca um sorriso mais harmônico e esteticamente agradável em Ipanema, as lentes de contato dental ou facetas de porcelana podem ser a solução ideal. Estes tratamentos são indicados para: Corrigir dentes manchados, escurecidos ou com alteração de cor que não respondem bem ao clareamento dental; Fechar espaços entre os dentes (diastemas); Restaurar dentes lascados, fraturados ou desgastados; Melhorar a forma e o tamanho de dentes desproporcionais ou dentes pequenos; Promover um alinhamento estético para dentes levemente desalinhados; Proporcionar um rejuvenescimento geral do sorriso. Uma avaliação cuidadosa com a Dra. Carla Christoph, sua dentista especialista em lentes de contato dental em Ipanema, definirá qual a melhor abordagem para o seu caso.
               </p>
@@ -64,7 +52,7 @@ const LentesEFacetas = () => {
 
             {/* Seção 3 */}
             <div className="my-12">
-              <h2 className="heading-md mb-4">Benefícios que Vão Além da Estética: Lentes e Facetas em Ipanema</h2>
+              <h2 className="heading-md mb-4">Benefícios que Vão Além da Estética: Lentes e Facetas</h2>
               <p className="body-md mb-4">
                 Optar por lentes de contato dental ou facetas de porcelana na clínica da Dra. Carla Christoph em Ipanema oferece múltiplos benefícios:
               </p>
@@ -204,17 +192,10 @@ const LentesEFacetas = () => {
                 Se você deseja uma transformação do sorriso com lentes de contato dental ou facetas de porcelana, agende uma avaliação com a Dra. Carla Christoph. Em nossa clínica em Ipanema, estamos prontos para desenhar o sorriso perfeito para você.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  className="bg-dental-gold hover:bg-dental-gold/90 text-white rounded-md px-6 py-5"
-                  onClick={() => window.open("https://wa.me/5521999999999?text=Olá,%20gostaria%20de%20agendar%20uma%20avaliação%20para%20lentes%20de%20contato%20dental%20ou%20facetas", "_blank")}
-                >
+                <Button className="bg-dental-gold hover:bg-dental-gold/90 text-white rounded-md px-6 py-5" onClick={() => window.open("https://wa.me/5521999999999?text=Olá,%20gostaria%20de%20agendar%20uma%20avaliação%20para%20lentes%20de%20contato%20dental%20ou%20facetas", "_blank")}>
                   Agendar Avaliação para Lentes/Facetas
                 </Button>
-                <Button
-                  variant="outline"
-                  className="border-dental-gold text-dental-gold hover:bg-dental-gold/10"
-                  asChild
-                >
+                <Button variant="outline" className="border-dental-gold text-dental-gold hover:bg-dental-gold/10" asChild>
                   <Link to="/servicos">
                     Ver Outros Tratamentos
                   </Link>
@@ -224,8 +205,6 @@ const LentesEFacetas = () => {
           </div>
         </div>
       </section>
-    </PageLayout>
-  );
+    </PageLayout>;
 };
-
 export default LentesEFacetas;
