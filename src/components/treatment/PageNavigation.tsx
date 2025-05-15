@@ -52,6 +52,14 @@ const PageNavigation = ({ navigationItems }: PageNavigationProps) => {
     if (id === "cuidados-restauracoes") return "Cuidados";
     if (id === "faq-restauracoes") return "FAQ";
     
+    // Handle specific sections for Tratamento de Canal (Endodontia)
+    if (id === "o-que-e-endodontia") return "O Que é?";
+    if (id === "quando-necessario-canal") return "Quando Necessário?";
+    if (id === "beneficios-canal") return "Benefícios";
+    if (id === "como-e-feito-canal") return "Como é Feito?";
+    if (id === "cuidados-pos-canal") return "Cuidados";
+    if (id === "faq-canal") return "FAQ";
+    
     // Original patterns for other pages
     if (id === "o-que-e" || id === "o-que-sao") return "O Que é?";
     if (id.includes("indicac")) return "Indicações";
