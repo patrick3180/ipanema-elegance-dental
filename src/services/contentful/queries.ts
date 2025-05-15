@@ -1,7 +1,7 @@
 
 import { Entry } from 'contentful';
 import { contentfulClient } from './client';
-import { BlogPostSkeleton, CategorySkeleton, ContentfulAsset } from './types';
+import { BlogPostSkeleton, CategorySkeleton, ContentfulAsset, ExtendedBlogPostEntry } from './types';
 import { transformBlogPostEntry, richTextToHtml } from './transformers';
 import { formatImageUrl } from './client';
 import { BlogPost } from '@/types/BlogPost';
@@ -16,12 +16,12 @@ const getRelatedContent = async (entries: Entry<BlogPostSkeleton>[]) => {
     const fields = entry.fields;
     
     // Collect featured image references
-    if (fields.featuredImage && fields.featuredImage.sys) {
+    if (fields.featuredImage && fields.featuredImage.sys && 'id' in fields.featuredImage.sys) {
       assetIds.push(fields.featuredImage.sys.id);
     }
     
     // Collect category references
-    if (fields.category && fields.category.sys) {
+    if (fields.category && fields.category.sys && 'id' in fields.category.sys) {
       categoryIds.push(fields.category.sys.id);
     }
   });
@@ -56,11 +56,11 @@ const getRelatedContent = async (entries: Entry<BlogPostSkeleton>[]) => {
   // Populate references in the entries
   return entries.map(entry => {
     const fields = entry.fields;
-    const result = { ...entry };
+    const result = { ...entry } as ExtendedBlogPostEntry;
     const extendedFields = { ...fields } as any;
 
     // Populate featured image
-    if (fields.featuredImage && fields.featuredImage.sys) {
+    if (fields.featuredImage && fields.featuredImage.sys && 'id' in fields.featuredImage.sys) {
       const assetId = fields.featuredImage.sys.id;
       if (assets[assetId]) {
         const imageUrl = assets[assetId].fields.file?.url;
@@ -69,7 +69,7 @@ const getRelatedContent = async (entries: Entry<BlogPostSkeleton>[]) => {
     }
 
     // Populate category
-    if (fields.category && fields.category.sys) {
+    if (fields.category && fields.category.sys && 'id' in fields.category.sys) {
       const categoryId = fields.category.sys.id;
       if (categories[categoryId]) {
         extendedFields.categoryName = categories[categoryId].fields.name || '';
@@ -98,8 +98,8 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
     const entriesWithRelatedContent = await getRelatedContent(entries.items);
 
     // Transform entries into blog posts
-    return entriesWithRelatedContent.map((entry: any) => {
-      const transformedPost = transformBlogPostEntry(entry);
+    return entriesWithRelatedContent.map((entry: ExtendedBlogPostEntry) => {
+      const transformedPost = transformBlogPostEntry(entry as unknown as Entry<BlogPostSkeleton>);
       
       // Add the related content data
       if (entry.fields.categoryName) {
@@ -137,10 +137,10 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
 
     // Get related content for the entry
     const entriesWithRelatedContent = await getRelatedContent(entries.items);
-    const entry = entriesWithRelatedContent[0];
+    const entry = entriesWithRelatedContent[0] as ExtendedBlogPostEntry;
 
     // Transform entry into blog post
-    const transformedPost = transformBlogPostEntry(entry);
+    const transformedPost = transformBlogPostEntry(entry as unknown as Entry<BlogPostSkeleton>);
     
     // Add the related content data
     if (entry.fields.categoryName) {
@@ -203,8 +203,8 @@ export const getBlogPostsByCategory = async (category: string): Promise<BlogPost
     const entriesWithRelatedContent = await getRelatedContent(entries.items);
 
     // Transform entries into blog posts
-    return entriesWithRelatedContent.map((entry: any) => {
-      const transformedPost = transformBlogPostEntry(entry);
+    return entriesWithRelatedContent.map((entry: ExtendedBlogPostEntry) => {
+      const transformedPost = transformBlogPostEntry(entry as unknown as Entry<BlogPostSkeleton>);
       
       // Add the related content data
       if (entry.fields.categoryName) {

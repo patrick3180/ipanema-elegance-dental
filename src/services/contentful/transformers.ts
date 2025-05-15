@@ -13,14 +13,14 @@ export const transformBlogPostEntry = (entry: Entry<BlogPostSkeleton>): BlogPost
     id: entry.sys.id,
     slug: fields.slug as string,
     title: fields.title as string,
-    excerpt: fields.excerpt as string || '',
+    excerpt: fields.excerpt ? fields.excerpt as string : '',
     content: fields.content ? '' : '', // Will be populated with HTML content later
-    author: fields.author as string || 'Admin',
+    author: fields.author ? fields.author as string : 'Admin',
     date: fields.publishDate ? new Date(fields.publishDate as string).toLocaleDateString('pt-BR') : '',
     imageUrl: '', // Will be populated with image URL later
     category: '', // Will be populated with category name later
-    metaDescription: fields.metaDescription as string || '',
-    tags: fields.tags as string[] || [],
+    metaDescription: fields.metaDescription ? fields.metaDescription as string : '',
+    tags: fields.tags ? fields.tags as string[] : [],
   };
 };
 
