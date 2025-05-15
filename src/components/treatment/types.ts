@@ -28,4 +28,5 @@ export interface TreatmentPageProps {
   sections: TreatmentSection[];
   faqs?: FAQ[];
   whatsappMessage?: string;
+  ctaHeading?: string;
 }

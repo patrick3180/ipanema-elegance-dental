@@ -74,7 +74,7 @@ const ProteseDentaria = () => {
       {
         id: "cuidados-com-protese",
         title: "Cuidados Essenciais com sua Prótese Dentária",
-        content: "Para garantir a longevidade e o bom funcionamento da sua prótese dentária, alguns cuidados são fundamentais: Higienize sua prótese e seus dentes naturais rigorosamente conforme as orientações da Dra. Carla Christoph. Visite regularmente seu dentista em Ipanema para avaliações e manutenção profissional da prótese. Evite morder alimentos excessivamente duros com próteses, especialmente as removíveis. Se sua prótese for removível, manuseie-a com cuidado para evitar quedas e fraturas. Siga todas as recomendações específicas para o seu tipo de prótese.",
+        content: "Para garantir a longevidade e o bom funcionamento da sua prótese dentária, alguns cuidados são fundamentais:\n\nHigienize sua prótese e seus dentes naturais rigorosamente conforme as orientações da Dra. Carla Christoph.\n\nVisite regularmente seu dentista em Ipanema para avaliações e manutenção profissional da prótese.\n\nEvite morder alimentos excessivamente duros com próteses, especialmente as removíveis.\n\nSe sua prótese for removível, manuseie-a com cuidado para evitar quedas e fraturas.\n\nSiga todas as recomendações específicas para o seu tipo de prótese.",
         type: "default" as const
       }
     ],
@@ -114,7 +114,8 @@ const ProteseDentaria = () => {
       }
     ],
     
-    whatsappMessage: "Olá, gostaria de agendar uma avaliação para prótese dentária"
+    whatsappMessage: "Olá, gostaria de agendar uma avaliação para prótese dentária",
+    ctaHeading: "Pronto para Restaurar seu Sorriso e Qualidade de Vida em Ipanema?"
   };
 
   return <TreatmentPageTemplate {...treatmentData} />;
