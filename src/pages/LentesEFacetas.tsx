@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
@@ -6,10 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+
 const LentesEFacetas = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return <PageLayout className="pt-16">
       <Helmet>
         <title>Lentes de Contato e Facetas em Ipanema | Dra. Carla Christoph</title>
@@ -25,7 +28,7 @@ const LentesEFacetas = () => {
             </Link>
           </Button>
           
-          <div className="max-w-3xl mx-auto mb-12">
+          <div className="max-w-3xl mx-auto mb-8">
             <h1 className="heading-lg mb-4">Lentes de Contato Dental e Facetas de Porcelana em Ipanema</h1>
             <Separator className="w-24 h-1 bg-dental-gold mb-6" />
             <p className="body-md">
@@ -33,9 +36,65 @@ const LentesEFacetas = () => {
             </p>
           </div>
 
+          {/* Navegação interna */}
+          <div className="max-w-3xl mx-auto mb-12 bg-dental-beige/70 p-5 rounded-lg border border-dental-gold/20">
+            <nav aria-label="Navegação interna da página">
+              <ul className="flex flex-wrap justify-center gap-3 md:gap-6">
+                <li>
+                  <a 
+                    href="#o-que-sao" 
+                    className="text-dental-purple font-medium px-3 py-2 rounded-md hover:bg-dental-beige hover:text-dental-gold transition-colors"
+                  >
+                    O Que São?
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#indicacoes" 
+                    className="text-dental-purple font-medium px-3 py-2 rounded-md hover:bg-dental-beige hover:text-dental-gold transition-colors"
+                  >
+                    Indicações
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#beneficios" 
+                    className="text-dental-purple font-medium px-3 py-2 rounded-md hover:bg-dental-beige hover:text-dental-gold transition-colors"
+                  >
+                    Benefícios
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#como-e-feito" 
+                    className="text-dental-purple font-medium px-3 py-2 rounded-md hover:bg-dental-beige hover:text-dental-gold transition-colors"
+                  >
+                    Como é Feito?
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#cuidados" 
+                    className="text-dental-purple font-medium px-3 py-2 rounded-md hover:bg-dental-beige hover:text-dental-gold transition-colors"
+                  >
+                    Cuidados
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#faq" 
+                    className="text-dental-purple font-medium px-3 py-2 rounded-md hover:bg-dental-beige hover:text-dental-gold transition-colors"
+                  >
+                    FAQ
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
           <div className="prose prose-lg max-w-3xl mx-auto">
             {/* Seção 1 */}
-            <div className="my-12">
+            <div className="my-12" id="o-que-sao">
               <h2 className="heading-md mb-4">O Que São Lentes de Contato Dental e Facetas de Porcelana?</h2>
               <p className="body-md">
                 As lentes de contato dental e as facetas de porcelana são peças ultrafinas de cerâmica pura, moldadas individualmente para cada paciente e cimentadas sobre a superfície dos dentes. Embora ambas visem aprimorar a estética do sorriso, as lentes de contato são tipicamente mais finas e requerem mínimo ou nenhum desgaste dental, sendo ideais para correções mais sutis. Já as facetas de porcelana, um pouco mais espessas, permitem correções mais significativas. Ambas as técnicas, realizadas com maestria pela Dra. Carla Christoph em Ipanema, proporcionam um resultado incrivelmente natural, mimetizando a translucidez e o brilho dos dentes naturais, para uma verdadeira transformação do sorriso com lentes dentais.
@@ -43,7 +102,7 @@ const LentesEFacetas = () => {
             </div>
 
             {/* Seção 2 */}
-            <div className="my-12">
+            <div className="my-12" id="indicacoes">
               <h2 className="heading-md mb-4">Indicações: Quando Optar por Lentes de Contato Dental ou Facetas?</h2>
               <p className="body-md">
                 Se você busca um sorriso mais harmônico e esteticamente agradável em Ipanema, as lentes de contato dental ou facetas de porcelana podem ser a solução ideal. Estes tratamentos são indicados para: Corrigir dentes manchados, escurecidos ou com alteração de cor que não respondem bem ao clareamento dental; Fechar espaços entre os dentes (diastemas); Restaurar dentes lascados, fraturados ou desgastados; Melhorar a forma e o tamanho de dentes desproporcionais ou dentes pequenos; Promover um alinhamento estético para dentes levemente desalinhados; Proporcionar um rejuvenescimento geral do sorriso. Uma avaliação cuidadosa com a Dra. Carla Christoph, sua dentista especialista em lentes de contato dental em Ipanema, definirá qual a melhor abordagem para o seu caso.
@@ -51,7 +110,7 @@ const LentesEFacetas = () => {
             </div>
 
             {/* Seção 3 */}
-            <div className="my-12">
+            <div className="my-12" id="beneficios">
               <h2 className="heading-md mb-4">Benefícios que Vão Além da Estética: Lentes e Facetas</h2>
               <p className="body-md mb-4">
                 Optar por lentes de contato dental ou facetas de porcelana na clínica da Dra. Carla Christoph em Ipanema oferece múltiplos benefícios:
@@ -81,7 +140,7 @@ const LentesEFacetas = () => {
             </div>
 
             {/* Seção 4 */}
-            <div className="my-12">
+            <div className="my-12" id="como-e-feito">
               <h2 className="heading-md mb-4">Seu Tratamento com Lentes ou Facetas em Ipanema: Passo a Passo</h2>
               <p className="body-md mb-4">
                 O processo para a transformação do seu sorriso com lentes dentais ou facetas na nossa clínica em Ipanema é realizado com precisão e cuidado pela Dra. Carla Christoph:
@@ -109,7 +168,7 @@ const LentesEFacetas = () => {
             </div>
 
             {/* Seção 5 */}
-            <div className="my-12">
+            <div className="my-12" id="cuidados">
               <h2 className="heading-md mb-4">Cuidados Essenciais para a Durabilidade das suas Lentes e Facetas</h2>
               <p className="body-md">
                 Para garantir a longevidade e a beleza das suas lentes de contato dental ou facetas de porcelana, alguns cuidados são importantes: Mantenha uma excelente higiene bucal, com escovação e uso de fio dental regulares. Realize visitas periódicas à Dra. Carla Christoph em Ipanema para acompanhamento e profilaxia. Evite hábitos como roer unhas ou morder objetos duros. Se você tem bruxismo, o uso de uma placa miorrelaxante pode ser recomendado. Com os cuidados com facetas de porcelana e lentes adequados, seu novo sorriso permanecerá impecável por muitos anos.
@@ -117,7 +176,7 @@ const LentesEFacetas = () => {
             </div>
 
             {/* Seção 6 - FAQ */}
-            <div className="my-12">
+            <div className="my-12" id="faq">
               <h2 className="heading-md mb-6">Perguntas Frequentes sobre Lentes de Contato Dental e Facetas</h2>
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="item-1">
