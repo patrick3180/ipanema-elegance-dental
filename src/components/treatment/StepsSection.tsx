@@ -1,21 +1,26 @@
 
 import React from "react";
-
-interface Step {
-  title: string;
-  description: string;
-}
+import { SectionContent, Step } from "./types";
 
 interface StepsSectionProps {
   title: string;
-  content: string | React.ReactNode | string[] | Step[];
+  content: SectionContent;
 }
 
 const StepsSection = ({ title, content }: StepsSectionProps) => {
+  // Helper function to check if an item is a Step
+  const isStep = (item: any): item is Step => {
+    return item && typeof item === 'object' && 'title' in item && 'description' in item;
+  };
+
   return (
     <div className="my-12">
       <h2 className="heading-md mb-4">{title}</h2>
+      
       {typeof content === "string" && <p className="body-md mb-4">{content}</p>}
+      
+      {!Array.isArray(content) && typeof content !== "string" && content}
+      
       {Array.isArray(content) && (
         <ol className="space-y-4">
           {content.map((step, index) => {
@@ -24,12 +29,11 @@ const StepsSection = ({ title, content }: StepsSectionProps) => {
               return <li className="body-md" key={index}>{step}</li>;
             }
 
-            // If step is an object with title and description
-            if (typeof step === "object" && step !== null && "title" in step && "description" in step) {
-              const typedStep = step as { title: string; description: string };
+            // If step is a Step object
+            if (isStep(step)) {
               return (
                 <li className="body-md" key={index}>
-                  <strong>{index + 1}. {typedStep.title}</strong> {typedStep.description}
+                  <strong>{index + 1}. {step.title}</strong> {step.description}
                 </li>
               );
             }

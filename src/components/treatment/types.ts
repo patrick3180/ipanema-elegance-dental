@@ -6,10 +6,17 @@ export interface FAQ {
   answer: string;
 }
 
+export interface Step {
+  title: string;
+  description: string;
+}
+
+export type SectionContent = string | React.ReactNode | string[] | Step[];
+
 export interface TreatmentSection {
   id: string;
   title: string;
-  content: string | React.ReactNode | string[] | { title: string; description: string }[];
+  content: SectionContent;
   type: "default" | "benefits" | "steps" | "faq";
 }
 
