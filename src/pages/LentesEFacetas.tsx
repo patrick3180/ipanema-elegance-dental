@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
@@ -6,19 +7,21 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+
 const LentesEFacetas = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  return <PageLayout>
+  
+  return <PageLayout className="pt-16">
       <Helmet>
         <title>Lentes de Contato e Facetas em Ipanema | Dra. Carla Christoph</title>
         <meta name="description" content="Conquiste o sorriso dos sonhos com lentes de contato dental em Ipanema. Dra. Carla Christoph oferece facetas de porcelana." />
       </Helmet>
 
-      <section className="section-spacing">
+      <section className="section-spacing pt-8">
         <div className="container-custom">
-          <Button variant="outline" asChild className="mb-8 border-dental-gray text-dental-purple hover:bg-dental-beige/50">
+          <Button variant="outline" asChild className="mb-6 border-dental-gray text-dental-purple hover:bg-dental-beige/50">
             <Link to="/servicos">
               <ArrowLeft size={16} className="mr-2" />
               Voltar para tratamentos
@@ -207,4 +210,5 @@ const LentesEFacetas = () => {
       </section>
     </PageLayout>;
 };
+
 export default LentesEFacetas;
