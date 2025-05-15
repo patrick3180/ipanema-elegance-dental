@@ -21,7 +21,7 @@ const services = [
     title: "Próteses Dentárias",
     description: "Recupere a função mastigatória e a estética do seu sorriso com próteses dentárias personalizadas, desenvolvidas pela especialista Dra. Carla Christoph.",
     icon: "👄",
-    slug: "proteses-dentarias"
+    slug: "protese-dentaria"
   },
   {
     title: "Implantes Dentários",
@@ -56,6 +56,20 @@ const services = [
 ];
 
 const ServicesSection = () => {
+  // Helper function to determine the correct URL for each service
+  const getServiceUrl = (slug: string) => {
+    // Direct routes for specific treatments
+    const directRoutes = [
+      "lentes-de-contato-dental-e-facetas-de-porcelana",
+      "clareamento-dental",
+      "protese-dentaria",
+      "implantes-dentarios",
+      "clinica-geral-e-prevencao"
+    ];
+
+    return directRoutes.includes(slug) ? `/${slug}` : `/servicos/${slug}`;
+  };
+
   return (
     <section id="tratamentos" className="section-spacing bg-dental-beige">
       <div className="container-custom">
@@ -81,9 +95,7 @@ const ServicesSection = () => {
                   {service.description}
                 </CardDescription>
                 <a 
-                  href={service.slug === "lentes-de-contato-dental-e-facetas-de-porcelana" 
-                    ? `/${service.slug}` 
-                    : `/servicos/${service.slug}`}
+                  href={getServiceUrl(service.slug)}
                   className="inline-flex items-center text-dental-gold hover:text-dental-gold/80 font-medium text-sm"
                 >
                   Saiba mais <ArrowRight size={16} className="ml-1" />

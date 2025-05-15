@@ -21,6 +21,7 @@ import LentesEFacetas from "./pages/LentesEFacetas";
 import ClareamentoDental from "./pages/ClareamentoDental";
 import ProteseDentaria from "./pages/ProteseDentaria";
 import ImplantesDentarios from "./pages/ImplantesDentarios";
+import ClinicaGeralPrevencao from "./pages/ClinicaGeralPrevencao";
 
 // Add type declaration for dataLayer
 declare global {
@@ -52,6 +53,7 @@ const App = () => (
           <Route path="/clareamento-dental" element={<ClareamentoDental />} />
           <Route path="/protese-dentaria" element={<ProteseDentaria />} />
           <Route path="/implantes-dentarios" element={<ImplantesDentarios />} />
+          <Route path="/clinica-geral-e-prevencao" element={<ClinicaGeralPrevencao />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <WhatsAppPopup />

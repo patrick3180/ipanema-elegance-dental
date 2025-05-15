@@ -37,6 +37,13 @@ const PageNavigation = ({ navigationItems }: PageNavigationProps) => {
     if (id === "cuidados-com-protese") return "Cuidados";
     if (id === "faq-protese") return "FAQ";
     
+    // Handle specific sections for Clínica Geral e Prevenção
+    if (id === "o-que-e-clinica-geral") return "O Que é?";
+    if (id === "servicos-preventivos") return "Serviços";
+    if (id === "beneficios-prevencao") return "Benefícios";
+    if (id === "consulta-preventiva") return "Consulta";
+    if (id === "faq-prevencao") return "FAQ";
+    
     // Original patterns for other pages
     if (id === "o-que-e" || id === "o-que-sao") return "O Que é?";
     if (id.includes("indicac")) return "Indicações";
