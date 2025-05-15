@@ -11,16 +11,16 @@ export const transformBlogPostEntry = (entry: Entry<BlogPostSkeleton>): BlogPost
   
   return {
     id: entry.sys.id,
-    slug: fields.slug,
-    title: fields.title,
-    excerpt: fields.excerpt || '',
+    slug: fields.slug as string,
+    title: fields.title as string,
+    excerpt: fields.excerpt as string || '',
     content: fields.content ? '' : '', // Will be populated with HTML content later
-    author: fields.author || 'Admin',
-    date: fields.publishDate ? new Date(fields.publishDate).toLocaleDateString('pt-BR') : '',
+    author: fields.author as string || 'Admin',
+    date: fields.publishDate ? new Date(fields.publishDate as string).toLocaleDateString('pt-BR') : '',
     imageUrl: '', // Will be populated with image URL later
     category: '', // Will be populated with category name later
-    metaDescription: fields.metaDescription || '',
-    tags: fields.tags || [],
+    metaDescription: fields.metaDescription as string || '',
+    tags: fields.tags as string[] || [],
   };
 };
 

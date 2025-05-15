@@ -16,12 +16,12 @@ const getRelatedContent = async (entries: Entry<BlogPostSkeleton>[]) => {
     const fields = entry.fields;
     
     // Collect featured image references
-    if (fields.featuredImage && fields.featuredImage.sys?.id) {
+    if (fields.featuredImage && fields.featuredImage.sys) {
       assetIds.push(fields.featuredImage.sys.id);
     }
     
     // Collect category references
-    if (fields.category && fields.category.sys?.id) {
+    if (fields.category && fields.category.sys) {
       categoryIds.push(fields.category.sys.id);
     }
   });
@@ -60,7 +60,7 @@ const getRelatedContent = async (entries: Entry<BlogPostSkeleton>[]) => {
     const extendedFields = { ...fields } as any;
 
     // Populate featured image
-    if (fields.featuredImage && fields.featuredImage.sys?.id) {
+    if (fields.featuredImage && fields.featuredImage.sys) {
       const assetId = fields.featuredImage.sys.id;
       if (assets[assetId]) {
         const imageUrl = assets[assetId].fields.file?.url;
@@ -69,7 +69,7 @@ const getRelatedContent = async (entries: Entry<BlogPostSkeleton>[]) => {
     }
 
     // Populate category
-    if (fields.category && fields.category.sys?.id) {
+    if (fields.category && fields.category.sys) {
       const categoryId = fields.category.sys.id;
       if (categories[categoryId]) {
         extendedFields.categoryName = categories[categoryId].fields.name || '';
@@ -102,8 +102,13 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
       const transformedPost = transformBlogPostEntry(entry);
       
       // Add the related content data
-      transformedPost.category = entry.fields.categoryName || 'Sem categoria';
-      transformedPost.imageUrl = entry.fields.imageUrl || '';
+      if (entry.fields.categoryName) {
+        transformedPost.category = entry.fields.categoryName;
+      }
+
+      if (entry.fields.imageUrl) {
+        transformedPost.imageUrl = entry.fields.imageUrl;
+      }
       
       // Convert rich text to HTML
       if (entry.fields.content) {
@@ -138,8 +143,13 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
     const transformedPost = transformBlogPostEntry(entry);
     
     // Add the related content data
-    transformedPost.category = entry.fields.categoryName || 'Sem categoria';
-    transformedPost.imageUrl = entry.fields.imageUrl || '';
+    if (entry.fields.categoryName) {
+      transformedPost.category = entry.fields.categoryName;
+    }
+
+    if (entry.fields.imageUrl) {
+      transformedPost.imageUrl = entry.fields.imageUrl;
+    }
     
     // Convert rich text to HTML
     if (entry.fields.content) {
@@ -197,8 +207,13 @@ export const getBlogPostsByCategory = async (category: string): Promise<BlogPost
       const transformedPost = transformBlogPostEntry(entry);
       
       // Add the related content data
-      transformedPost.category = entry.fields.categoryName || 'Sem categoria';
-      transformedPost.imageUrl = entry.fields.imageUrl || '';
+      if (entry.fields.categoryName) {
+        transformedPost.category = entry.fields.categoryName;
+      }
+
+      if (entry.fields.imageUrl) {
+        transformedPost.imageUrl = entry.fields.imageUrl;
+      }
       
       // Convert rich text to HTML
       if (entry.fields.content) {
