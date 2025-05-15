@@ -38,7 +38,8 @@ export const blogPosts: BlogPost[] = [
     author: "Dra. Carla Christoph",
     date: "15 de Maio de 2023",
     imageUrl: "https://images.unsplash.com/photo-1606265752439-1f18756aa8bc?q=80&w=1000",
-    category: "Estética Dental"
+    category: "Estética Dental",
+    tags: ["Clareamento", "Estética", "Cuidados"]
   },
   {
     id: "2",
@@ -71,7 +72,8 @@ export const blogPosts: BlogPost[] = [
     author: "Dra. Carla Christoph",
     date: "28 de Abril de 2023",
     imageUrl: "https://images.unsplash.com/photo-1609840112990-4265448268d1?q=80&w=1000",
-    category: "Tecnologia"
+    category: "Tecnologia",
+    tags: ["Tecnologia", "Inovação", "Odontologia Digital"]
   },
   {
     id: "3",
@@ -101,7 +103,8 @@ export const blogPosts: BlogPost[] = [
     author: "Dra. Carla Christoph",
     date: "10 de Março de 2023",
     imageUrl: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1000",
-    category: "Implantodontia"
+    category: "Implantodontia",
+    tags: ["Implantes", "Mitos", "Dúvidas Frequentes"]
   }
 ];
 
