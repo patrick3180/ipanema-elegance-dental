@@ -1,4 +1,3 @@
-
 import { createClient } from 'contentful';
 import { BlogPost } from '@/types/BlogPost';
 
@@ -89,7 +88,7 @@ const getRelatedContent = async (entries: any[]) => {
   // Fetch all required categories if needed
   if (categoryIds.length > 0) {
     const categoryEntries = await client.getEntries({
-      'sys.id[in]': categoryIds.join(','),
+      'sys.id[in]': categoryIds,
       content_type: 'categoria'
     });
     
