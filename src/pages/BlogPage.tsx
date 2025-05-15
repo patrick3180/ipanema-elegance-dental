@@ -1,4 +1,6 @@
+
 import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
@@ -46,13 +48,18 @@ const BlogPage = () => {
 
   return (
     <PageLayout>
+      <Helmet>
+        <title>Blog Dra. Carla Christoph | Dicas de Saúde Bucal em Ipanema</title>
+        <meta name="description" content="Acesse o blog de odontologia da Dra. Carla Christoph. Encontre dicas de saúde bucal em Ipanema, artigos informativos e novidades para o seu sorriso." />
+      </Helmet>
+      
       <section className="section-spacing">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <h1 className="heading-lg mb-4">Blog</h1>
+            <h1 className="heading-lg mb-4">Blog Odontológico da Dra. Carla Christoph: Informação e Cuidado para seu Sorriso</h1>
             <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />
             <p className="text-dental-gray mb-6">
-              Artigos e dicas sobre saúde bucal e estética
+              Bem-vindo ao nosso espaço de informação e dicas sobre saúde bucal! No blog da Dra. Carla Christoph, você encontrará artigos atualizados sobre tratamentos odontológicos, prevenção, novidades da odontologia estética e cuidados essenciais para manter seu sorriso sempre saudável e bonito em Ipanema.
             </p>
           </div>
 

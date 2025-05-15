@@ -11,7 +11,7 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
     // Fetch blog posts from Contentful
     const response = await contentfulClient.getEntries({
       content_type: 'blogCarla',
-      order: '-fields.publishDate',
+      order: ['-fields.publishDate'],
       include: 2 // Include 2 levels of linked entries (for categories, etc)
     });
 
@@ -26,19 +26,25 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
       }
       
       // Add category if available
-      if (entry.fields.category) {
-        const category = getLocalizedValue(entry.fields.category.fields?.name);
-        if (category) {
-          post.category = category;
-          post.categorySlug = getLocalizedValue(entry.fields.category.fields?.slug) || '';
+      if (entry.fields.category && typeof entry.fields.category === 'object') {
+        const categoryEntry = entry.fields.category;
+        if (categoryEntry && categoryEntry.fields) {
+          const category = getLocalizedValue(categoryEntry.fields.name);
+          if (category) {
+            post.category = category;
+            post.categorySlug = getLocalizedValue(categoryEntry.fields.slug) || '';
+          }
         }
       }
       
       // Add image URL if available
-      if (entry.fields.featuredImage) {
-        const imageUrl = getLocalizedValue(entry.fields.featuredImage.fields?.file?.url);
-        if (imageUrl) {
-          post.imageUrl = formatImageUrl(imageUrl);
+      if (entry.fields.featuredImage && typeof entry.fields.featuredImage === 'object') {
+        const imageEntry = entry.fields.featuredImage;
+        if (imageEntry && imageEntry.fields && imageEntry.fields.file) {
+          const imageUrl = getLocalizedValue(imageEntry.fields.file.url);
+          if (imageUrl) {
+            post.imageUrl = formatImageUrl(imageUrl);
+          }
         }
       }
       
@@ -80,19 +86,25 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
     }
     
     // Add category if available
-    if (entry.fields.category) {
-      const category = getLocalizedValue(entry.fields.category.fields?.name);
-      if (category) {
-        post.category = category;
-        post.categorySlug = getLocalizedValue(entry.fields.category.fields?.slug) || '';
+    if (entry.fields.category && typeof entry.fields.category === 'object') {
+      const categoryEntry = entry.fields.category;
+      if (categoryEntry && categoryEntry.fields) {
+        const category = getLocalizedValue(categoryEntry.fields.name);
+        if (category) {
+          post.category = category;
+          post.categorySlug = getLocalizedValue(categoryEntry.fields.slug) || '';
+        }
       }
     }
     
     // Add image URL if available
-    if (entry.fields.featuredImage) {
-      const imageUrl = getLocalizedValue(entry.fields.featuredImage.fields?.file?.url);
-      if (imageUrl) {
-        post.imageUrl = formatImageUrl(imageUrl);
+    if (entry.fields.featuredImage && typeof entry.fields.featuredImage === 'object') {
+      const imageEntry = entry.fields.featuredImage;
+      if (imageEntry && imageEntry.fields && imageEntry.fields.file) {
+        const imageUrl = getLocalizedValue(imageEntry.fields.file.url);
+        if (imageUrl) {
+          post.imageUrl = formatImageUrl(imageUrl);
+        }
       }
     }
     

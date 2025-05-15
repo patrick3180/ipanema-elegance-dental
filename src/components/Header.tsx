@@ -24,15 +24,16 @@ const Header = () => {
 
   // Function to handle section navigation
   const handleSectionNavigation = (sectionId: string) => {
+    setIsMenuOpen(false);
+    
     if (location.pathname === '/') {
-      // If on homepage, scroll to section
+      // If already on homepage, scroll to section
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
-      setIsMenuOpen(false);
     } else {
-      // If not on homepage, navigate to homepage then scroll
+      // If not on homepage, navigate to homepage then to section
       window.location.href = `/#${sectionId}`;
     }
   };
