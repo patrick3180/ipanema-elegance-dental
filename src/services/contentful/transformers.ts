@@ -1,11 +1,11 @@
 
 import { Entry } from 'contentful';
 import { BlogPost } from '@/types/BlogPost';
-import { BlogPostFields, CategoryFields } from './types';
+import { BlogPostSkeleton, CategorySkeleton } from './types';
 import { formatImageUrl } from './client';
 
 // Transform Contentful data to our BlogPost format
-export const transformBlogPostEntry = (entry: Entry<BlogPostFields>): BlogPost => {
+export const transformBlogPostEntry = (entry: Entry<BlogPostSkeleton>): BlogPost => {
   // Extract fields
   const fields = entry.fields;
   

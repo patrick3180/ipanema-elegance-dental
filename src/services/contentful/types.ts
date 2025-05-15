@@ -1,7 +1,32 @@
 
-import { EntryFieldTypes } from 'contentful';
+import { EntryFieldTypes, EntrySkeletonType } from 'contentful';
 
-// Define Contentful content types
+// Define Contentful content types that properly extend EntrySkeletonType
+export interface BlogPostSkeleton extends EntrySkeletonType {
+  contentTypeId: 'blogCarla';
+  fields: {
+    title: EntryFieldTypes.Text;
+    slug: EntryFieldTypes.Text;
+    excerpt?: EntryFieldTypes.Text;
+    content?: EntryFieldTypes.RichText;
+    featuredImage?: EntryFieldTypes.AssetLink;
+    category?: EntryFieldTypes.EntryLink<CategorySkeleton>;
+    author?: EntryFieldTypes.Text;
+    publishDate?: EntryFieldTypes.Date;
+    metaDescription?: EntryFieldTypes.Text;
+    tags?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
+  };
+}
+
+export interface CategorySkeleton extends EntrySkeletonType {
+  contentTypeId: 'categoria';
+  fields: {
+    name: EntryFieldTypes.Text;
+    slug: EntryFieldTypes.Text;
+  };
+}
+
+// Legacy interfaces for backwards compatibility if needed
 export interface BlogPostFields {
   title: EntryFieldTypes.Text;
   slug: EntryFieldTypes.Text;

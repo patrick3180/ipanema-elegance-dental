@@ -1,13 +1,13 @@
 
 import { Entry } from 'contentful';
 import { contentfulClient } from './client';
-import { BlogPostFields, CategoryFields, ContentfulAsset } from './types';
+import { BlogPostSkeleton, CategorySkeleton, ContentfulAsset } from './types';
 import { transformBlogPostEntry, richTextToHtml } from './transformers';
 import { formatImageUrl } from './client';
 import { BlogPost } from '@/types/BlogPost';
 
 // Get related content (categories, images) for blog posts
-const getRelatedContent = async (entries: Entry<BlogPostFields>[]) => {
+const getRelatedContent = async (entries: Entry<BlogPostSkeleton>[]) => {
   // Build a list of all required asset IDs and category IDs
   const assetIds: string[] = [];
   const categoryIds: string[] = [];
@@ -28,7 +28,7 @@ const getRelatedContent = async (entries: Entry<BlogPostFields>[]) => {
 
   // Create a map to hold assets and categories
   const assets: Record<string, ContentfulAsset> = {};
-  const categories: Record<string, Entry<CategoryFields>> = {};
+  const categories: Record<string, Entry<CategorySkeleton>> = {};
 
   // Fetch all required assets if needed
   if (assetIds.length > 0) {
@@ -43,13 +43,13 @@ const getRelatedContent = async (entries: Entry<BlogPostFields>[]) => {
 
   // Fetch all required categories if needed
   if (categoryIds.length > 0) {
-    const categoryEntries = await contentfulClient.getEntries({
+    const categoryEntries = await contentfulClient.getEntries<CategorySkeleton>({
       'sys.id[in]': categoryIds,
       content_type: 'categoria'
     });
     
     categoryEntries.items.forEach(category => {
-      categories[category.sys.id] = category as unknown as Entry<CategoryFields>;
+      categories[category.sys.id] = category as Entry<CategorySkeleton>;
     });
   }
 
@@ -57,16 +57,14 @@ const getRelatedContent = async (entries: Entry<BlogPostFields>[]) => {
   return entries.map(entry => {
     const fields = entry.fields;
     const result = { ...entry };
+    const extendedFields = { ...fields } as any;
 
     // Populate featured image
     if (fields.featuredImage && fields.featuredImage.sys?.id) {
       const assetId = fields.featuredImage.sys.id;
       if (assets[assetId]) {
         const imageUrl = assets[assetId].fields.file?.url;
-        (result as any).fields = {
-          ...result.fields,
-          imageUrl: formatImageUrl(imageUrl)
-        };
+        extendedFields.imageUrl = formatImageUrl(imageUrl);
       }
     }
 
@@ -74,14 +72,12 @@ const getRelatedContent = async (entries: Entry<BlogPostFields>[]) => {
     if (fields.category && fields.category.sys?.id) {
       const categoryId = fields.category.sys.id;
       if (categories[categoryId]) {
-        (result as any).fields = {
-          ...result.fields,
-          categoryName: categories[categoryId].fields.name || '',
-          categorySlug: categories[categoryId].fields.slug || ''
-        };
+        extendedFields.categoryName = categories[categoryId].fields.name || '';
+        extendedFields.categorySlug = categories[categoryId].fields.slug || '';
       }
     }
 
+    (result as any).fields = extendedFields;
     return result;
   });
 };
@@ -89,7 +85,7 @@ const getRelatedContent = async (entries: Entry<BlogPostFields>[]) => {
 // Get all blog posts
 export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
   try {
-    const entries = await contentfulClient.getEntries<BlogPostFields>({
+    const entries = await contentfulClient.getEntries<BlogPostSkeleton>({
       content_type: 'blogCarla',
       order: ['-fields.publishDate'],
     });
@@ -125,7 +121,7 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
 // Get a single blog post by slug
 export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> => {
   try {
-    const entries = await contentfulClient.getEntries<BlogPostFields>({
+    const entries = await contentfulClient.getEntries<BlogPostSkeleton>({
       content_type: 'blogCarla',
       'fields.slug': slug,
     });
@@ -187,7 +183,7 @@ export const getBlogPostsByCategory = async (category: string): Promise<BlogPost
     // Use the category ID to filter blog posts
     const categoryId = categoryEntries.items[0].sys.id;
     
-    const entries = await contentfulClient.getEntries<BlogPostFields>({
+    const entries = await contentfulClient.getEntries<BlogPostSkeleton>({
       content_type: 'blogCarla',
       'fields.category.sys.id': categoryId,
       order: ['-fields.publishDate'],
