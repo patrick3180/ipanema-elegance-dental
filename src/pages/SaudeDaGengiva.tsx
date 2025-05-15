@@ -46,19 +46,19 @@ const SaudeDaGengiva = () => {
         {
           id: "o-que-e-doenca-periodontal",
           title: "Entendendo a Doença Periodontal: Gengivite e Periodontite",
-          content: "A doença periodontal afeta as gengivas e as estruturas de suporte dos dentes. Ela geralmente começa com a **gengivite**, uma inflamação da gengiva causada pelo acúmulo de placa bacteriana, que pode causar vermelhidão, inchaço e sangramento. Se não tratada, a gengivite pode evoluir para a **periodontite**, uma forma mais grave onde há perda do osso que sustenta os dentes, podendo levar à mobilidade e até à perda dental. Cuidar da sua **saúde gengival em Ipanema** é essencial.",
+          content: "A doença periodontal afeta as gengivas e as estruturas de suporte dos dentes. Ela geralmente começa com a <strong>gengivite</strong>, uma inflamação da gengiva causada pelo acúmulo de placa bacteriana, que pode causar vermelhidão, inchaço e sangramento. Se não tratada, a gengivite pode evoluir para a <strong>periodontite</strong>, uma forma mais grave onde há perda do osso que sustenta os dentes, podendo levar à mobilidade e até à perda dental. Cuidar da sua <strong>saúde gengival em Ipanema</strong> é essencial.",
           type: "default"
         },
         {
           id: "sinais-alerta-gengiva",
           title: "Sinais de Alerta: Quando Procurar Tratamento para Gengiva em Ipanema?",
           content: [
-            "**Gengiva que sangra facilmente** durante a escovação ou uso do fio dental.",
-            "**Gengiva vermelha, inchada ou sensível.**",
-            "**Mau hálito persistente** ou gosto ruim na boca.",
-            "**Retração gengival** (gengiva se afastando dos dentes, fazendo-os parecerem mais longos).",
-            "**Presença de pus** entre os dentes e a gengiva.",
-            "**Dentes com mobilidade** ou que parecem estar se separando."
+            "<strong>Gengiva que sangra facilmente</strong> durante a escovação ou uso do fio dental.",
+            "<strong>Gengiva vermelha, inchada ou sensível.</strong>",
+            "<strong>Mau hálito persistente</strong> ou gosto ruim na boca.",
+            "<strong>Retração gengival</strong> (gengiva se afastando dos dentes, fazendo-os parecerem mais longos).",
+            "<strong>Presença de pus</strong> entre os dentes e a gengiva.",
+            "<strong>Dentes com mobilidade</strong> ou que parecem estar se separando."
           ],
           type: "benefits"
         },
@@ -66,10 +66,10 @@ const SaudeDaGengiva = () => {
           id: "tratamentos-gengiva",
           title: "Tratamentos para a Saúde da Gengiva Oferecidos em Ipanema",
           content: [
-            "**Profilaxia (Limpeza Dental Profissional):** Remoção da placa bacteriana e do tártaro para prevenir e tratar a gengivite inicial.",
-            "**Raspagem e Alisamento Radicular:** Procedimento para remover tártaro e placa aderidos abaixo da linha da gengiva e na superfície das raízes, indicado para casos de periodontite.",
-            "**Orientação de Higiene Bucal Específica:** Instruções personalizadas para melhorar seus cuidados em casa.",
-            "**Manutenção Periodontal:** Consultas regulares de acompanhamento para pacientes que já trataram a periodontite, visando controlar a doença e evitar recidivas."
+            "<strong>Profilaxia (Limpeza Dental Profissional):</strong> Remoção da placa bacteriana e do tártaro para prevenir e tratar a gengivite inicial.",
+            "<strong>Raspagem e Alisamento Radicular:</strong> Procedimento para remover tártaro e placa aderidos abaixo da linha da gengiva e na superfície das raízes, indicado para casos de periodontite.",
+            "<strong>Orientação de Higiene Bucal Específica:</strong> Instruções personalizadas para melhorar seus cuidados em casa.",
+            "<strong>Manutenção Periodontal:</strong> Consultas regulares de acompanhamento para pacientes que já trataram a periodontite, visando controlar a doença e evitar recidivas."
           ],
           type: "benefits"
         },
