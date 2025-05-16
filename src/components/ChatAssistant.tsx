@@ -138,8 +138,8 @@ const ChatAssistant = () => {
     setIsOpen(false);
   };
 
-  // Chat window dimensions similar to the Gol example
-  const chatHeight = '550px';
+  // Ajustando as dimensões para ficar mais parecido com o exemplo
+  const chatHeight = '600px'; // Aumentado para expandir mais para cima
   const chatWidth = '380px';
 
   return (
