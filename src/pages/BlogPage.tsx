@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
@@ -8,7 +7,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { useNavigate } from "react-router-dom";
-import { getAllBlogPosts, getAllCategories, getBlogPostsByCategory } from "@/services/contentful/queries";
+import { getAllBlogPosts } from "@/services/contentful/queries";
 import { useQuery } from "@tanstack/react-query";
 import { BlogPost } from "@/types/BlogPost";
 import { Loader } from "lucide-react";
@@ -17,30 +16,23 @@ const BlogPage = () => {
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   
+  // Static list of categories for now
+  const categories = ["Saúde Bucal", "Odontologia Estética", "Prevenção", "Tratamentos"];
+  
   // Fetch all blog posts
   const { 
     data: posts = [], 
     isLoading: isLoadingPosts,
     error: postsError
   } = useQuery({
-    queryKey: ['blogPosts', activeCategory],
-    queryFn: async () => {
-      if (activeCategory) {
-        return await getBlogPostsByCategory(activeCategory);
-      } else {
-        return await getAllBlogPosts();
-      }
-    }
+    queryKey: ['blogPosts'],
+    queryFn: getAllBlogPosts
   });
 
-  // Fetch all categories
-  const { 
-    data: categories = [],
-    isLoading: isLoadingCategories
-  } = useQuery({
-    queryKey: ['blogCategories'],
-    queryFn: getAllCategories
-  });
+  // Filter posts by category if a category is selected
+  const filteredPosts = activeCategory 
+    ? posts.filter((post: BlogPost) => post.category === activeCategory)
+    : posts;
 
   const handleCategoryClick = (category: string) => {
     setActiveCategory(activeCategory === category ? null : category);
@@ -65,24 +57,18 @@ const BlogPage = () => {
 
           {/* Categories */}
           <div className="flex flex-wrap justify-center gap-2 mb-12">
-            {isLoadingCategories ? (
-              <div className="flex items-center justify-center w-full py-4">
-                <Loader className="h-6 w-6 animate-spin text-dental-purple" />
-              </div>
-            ) : (
-              categories.map((category) => (
-                <Button
-                  key={category}
-                  variant={activeCategory === category ? "default" : "outline"}
-                  className={activeCategory === category 
-                    ? "bg-dental-gold hover:bg-dental-gold/90 text-white"
-                    : "border-dental-gray/30 text-dental-purple hover:bg-dental-beige/50"}
-                  onClick={() => handleCategoryClick(category)}
-                >
-                  {category}
-                </Button>
-              ))
-            )}
+            {categories.map((category) => (
+              <Button
+                key={category}
+                variant={activeCategory === category ? "default" : "outline"}
+                className={activeCategory === category 
+                  ? "bg-dental-gold hover:bg-dental-gold/90 text-white"
+                  : "border-dental-gray/30 text-dental-purple hover:bg-dental-beige/50"}
+                onClick={() => handleCategoryClick(category)}
+              >
+                {category}
+              </Button>
+            ))}
           </div>
 
           {/* Blog posts grid */}
@@ -102,7 +88,7 @@ const BlogPage = () => {
                 Tentar novamente
               </Button>
             </div>
-          ) : posts.length === 0 ? (
+          ) : filteredPosts.length === 0 ? (
             <div className="text-center py-16">
               <p className="text-dental-gray mb-4">Nenhum artigo encontrado{activeCategory ? ` na categoria ${activeCategory}` : ''}.</p>
               {activeCategory && (
@@ -117,7 +103,7 @@ const BlogPage = () => {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-              {posts.map((post: BlogPost) => (
+              {filteredPosts.map((post: BlogPost) => (
                 <Card key={post.id} className="border-none shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
                   <div className="cursor-pointer" onClick={() => navigate(`/blog/${post.slug}`)}>
                     <div className="relative">

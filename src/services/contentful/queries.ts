@@ -10,8 +10,8 @@ import { Entry, Asset, ContentfulClientApi } from 'contentful';
 export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
   try {
     const response = await contentfulClient.getEntries<BlogPostSkeleton>({
-      content_type: 'blogPost',
-      order: '-sys.createdAt',
+      content_type: 'blogCarla',
+      order: ['-sys.createdAt']
     });
 
     if (!response.items || response.items.length === 0) {
@@ -51,25 +51,20 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
           }
         }
         
-        // Get categories
-        const categoryRefs = item.fields.categories;
-        if (categoryRefs && categoryRefs.length > 0) {
-          const categoryIds = categoryRefs.map(cat => cat.sys.id);
+        // Get category
+        const categoryRef = item.fields.category;
+        if (categoryRef) {
           try {
-            const categoriesResponse = await contentfulClient.getEntries<CategorySkeleton>({
-              content_type: 'category',
-              'sys.id[in]': categoryIds.join(','),
+            const categoryResponse = await contentfulClient.getEntries<CategorySkeleton>({
+              content_type: 'categoria',
+              'sys.id': categoryRef.sys.id,
             });
             
-            if (categoriesResponse.items && categoriesResponse.items.length > 0) {
-              post.categories = categoriesResponse.items.map(cat => ({
-                id: cat.sys.id,
-                name: getLocalizedValue(cat.fields.name) || '',
-                slug: getLocalizedValue(cat.fields.slug) || '',
-              }));
+            if (categoryResponse.items && categoryResponse.items.length > 0) {
+              post.category = getLocalizedValue(categoryResponse.items[0].fields.name) || '';
             }
           } catch (error) {
-            console.error('Error fetching categories:', error);
+            console.error('Error fetching category:', error);
           }
         }
         
@@ -86,7 +81,7 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
 export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> => {
   try {
     const response = await contentfulClient.getEntries<BlogPostSkeleton>({
-      content_type: 'blogPost',
+      content_type: 'blogCarla',
       'fields.slug': slug,
       limit: 1,
     });
@@ -127,25 +122,20 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
       }
     }
     
-    // Get categories
-    const categoryRefs = item.fields.categories;
-    if (categoryRefs && categoryRefs.length > 0) {
-      const categoryIds = categoryRefs.map(cat => cat.sys.id);
+    // Get category
+    const categoryRef = item.fields.category;
+    if (categoryRef) {
       try {
-        const categoriesResponse = await contentfulClient.getEntries<CategorySkeleton>({
-          content_type: 'category',
-          'sys.id[in]': categoryIds.join(','),
+        const categoryResponse = await contentfulClient.getEntries<CategorySkeleton>({
+          content_type: 'categoria',
+          'sys.id': categoryRef.sys.id,
         });
         
-        if (categoriesResponse.items && categoriesResponse.items.length > 0) {
-          post.categories = categoriesResponse.items.map(cat => ({
-            id: cat.sys.id,
-            name: getLocalizedValue(cat.fields.name) || '',
-            slug: getLocalizedValue(cat.fields.slug) || '',
-          }));
+        if (categoryResponse.items && categoryResponse.items.length > 0) {
+          post.category = getLocalizedValue(categoryResponse.items[0].fields.name) || '';
         }
       } catch (error) {
-        console.error('Error fetching categories:', error);
+        console.error('Error fetching category:', error);
       }
     }
     
