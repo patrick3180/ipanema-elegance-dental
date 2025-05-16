@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
@@ -42,7 +43,7 @@ const AboutPage = () => {
 
           <div className="grid md:grid-cols-2 gap-16 items-center mb-16">
             <div className="aspect-square rounded-2xl overflow-hidden">
-              <img src="/lovable-uploads/164bae76-428b-4fae-a600-ba61172b5dac.png" alt="Dra. Carla Christoph em seu consultório" className="w-full h-full object-cover" />
+              <img src="/lovable-uploads/b1c1cbdb-bde0-4d9e-912e-74cf74cf716d.png" alt="Dra. Carla Christoph, dentista em Ipanema, sentada em seu consultório odontológico, especialista em odontologia estética e com ampla formação acadêmica." className="w-full h-full object-cover" />
             </div>
 
             <div className="prose max-w-none">

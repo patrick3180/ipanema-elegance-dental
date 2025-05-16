@@ -1,4 +1,3 @@
-
 import { BlogPost } from '@/types/BlogPost';
 import { contentfulClient, formatImageUrl } from './client';
 import { transformBlogPostEntry, richTextToHtml } from './transformers';
@@ -158,5 +157,42 @@ export const getBlogPostsByCategory = async (category: string): Promise<BlogPost
     console.error('Error fetching blog posts by category:', error);
     // Filter local blog posts by category as fallback
     return blogPosts.filter(post => post.category === category);
+  }
+};
+
+// Corrigir os erros TypeScript convertendo explicitamente para string
+export const getAssetUrl = (assetId: any, contentfulClient: ContentfulClientApi<undefined>): Promise<string> => {
+  if (!assetId) {
+    return Promise.resolve('');
+  }
+  
+  return contentfulClient.getAsset(assetId)
+    .then(asset => {
+      const url = asset.fields.file?.url;
+      return typeof url === 'string' ? url : '';
+    })
+    .catch(error => {
+      console.error('Error fetching asset:', error);
+      return '';
+    });
+};
+
+export const getAuthorImageUrl = async (authorId: any, contentfulClient: ContentfulClientApi<undefined>): Promise<string> => {
+  if (!authorId) {
+    return '';
+  }
+  
+  try {
+    const author = await contentfulClient.getEntry(authorId);
+    const imageId = author.fields.image?.sys?.id;
+    
+    if (imageId) {
+      return getAssetUrl(imageId, contentfulClient);
+    }
+    
+    return '';
+  } catch (error) {
+    console.error('Error fetching author image:', error);
+    return '';
   }
 };

@@ -55,8 +55,8 @@ const Hero = () => {
           <div className="relative">
             <div className="w-[320px] md:w-[420px] h-[500px] md:h-[600px] bg-dental-purple/10 rounded-2xl flex items-center justify-center overflow-hidden">
               <img 
-                src="/lovable-uploads/3c795ff5-b1ea-4d7b-ab2a-f6267e0a935f.png"
-                alt="Dra. Carla Christoph sorrindo vestindo jaleco branco"
+                src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png"
+                alt="Dra. Carla Christoph, dentista em Ipanema, sorrindo e de braços cruzados, especialista em odontologia estética e cuidados personalizados."
                 className="w-full h-full object-cover"
               />
             </div>

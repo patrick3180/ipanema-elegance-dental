@@ -41,8 +41,8 @@ const AboutSection = () => {
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="aspect-square rounded-2xl overflow-hidden">
             <img 
-              src="/lovable-uploads/607903e2-aac7-4140-a41e-31379305ab2a.png" 
-              alt="Dra. Carla Christoph no consultório" 
+              src="/lovable-uploads/fef24f70-4659-453e-8fee-79dee34b6220.png" 
+              alt="Dra. Carla Christoph, dentista em Ipanema, sorrindo em seu consultório de odontologia estética." 
               className="w-full h-full object-cover"
             />
           </div>

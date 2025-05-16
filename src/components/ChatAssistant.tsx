@@ -138,6 +138,9 @@ const ChatAssistant = () => {
     setIsOpen(false);
   };
 
+  // Increased chat window height by 50%
+  const chatHeight = '750px'; // Increased from 500px (50% higher)
+
   return (
     <>
       <ChatButton onClick={handleOpenChat} />
@@ -150,7 +153,7 @@ const ChatAssistant = () => {
             bottom: '24px', 
             left: '24px', 
             margin: 0,
-            height: isChatMinimized ? '46px' : '500px',
+            height: isChatMinimized ? '46px' : chatHeight,
             maxHeight: '90vh',
             transform: 'translate(0, 0)'
           }}
