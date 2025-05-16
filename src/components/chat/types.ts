@@ -7,5 +7,5 @@ export interface Message {
 }
 
 export interface WebhookResponse {
-  response?: string;
+  response?: string | { response: string };
 }

@@ -76,11 +76,18 @@ const ChatAssistant = () => {
       if (response.ok) {
         try {
           const data = await response.json() as WebhookResponse;
-          if (data && data.response) {
+          // Handle both possible response formats:
+          // 1. {"response": "string"}
+          // 2. {"response": {"response": "string"}}
+          if (data && typeof data.response === 'string') {
             responseText = data.response;
+          } else if (data && typeof data.response === 'object' && data.response && 'response' in data.response) {
+            responseText = data.response.response as string;
           }
         } catch (jsonError) {
-          console.log("Webhook não retornou um JSON válido");
+          console.log("Webhook não retornou um JSON válido", jsonError);
+          toast.error("Desculpe, houve um erro na comunicação. Por favor, tente novamente.");
+          setIsTyping(false);
           return; // Don't add an empty message if response isn't valid
         }
       }
@@ -88,6 +95,7 @@ const ChatAssistant = () => {
       if (!responseText) {
         // If no response text was received, don't add a message
         setIsTyping(false);
+        toast.error("Desculpe, não consegui processar sua pergunta. Por favor, tente novamente.");
         return;
       }
       
