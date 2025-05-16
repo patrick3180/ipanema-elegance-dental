@@ -1,5 +1,5 @@
 
-import { EntryFieldTypes, EntrySkeletonType } from 'contentful';
+import { Asset, Entry, EntryFieldTypes, EntrySkeletonType } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
 
 // Define Contentful content types that properly extend EntrySkeletonType
@@ -10,8 +10,8 @@ export interface BlogPostSkeleton extends EntrySkeletonType {
     slug: EntryFieldTypes.Text;
     excerpt?: EntryFieldTypes.Text;
     content?: EntryFieldTypes.RichText;
-    featuredImage?: EntryFieldTypes.AssetLink;
-    category?: EntryFieldTypes.EntryLink<CategorySkeleton>;
+    featuredImage?: Asset;
+    category?: Entry<CategorySkeleton>;
     author?: EntryFieldTypes.Text;
     publishDate?: EntryFieldTypes.Date;
     metaDescription?: EntryFieldTypes.Text;

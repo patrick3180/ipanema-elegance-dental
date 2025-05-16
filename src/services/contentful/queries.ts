@@ -2,21 +2,22 @@
 import { BlogPost } from '@/types/BlogPost';
 import { contentfulClient, formatImageUrl } from './client';
 import { transformBlogPostEntry, richTextToHtml } from './transformers';
-import { getLocalizedValue } from './types';
+import { getLocalizedValue, BlogPostSkeleton, CategorySkeleton } from './types';
 import { blogPosts, getBlogPostBySlug as getLocalBlogPostBySlug } from '@/data/blogPosts';
+import { Entry, EntryCollection } from 'contentful';
 
 // Get all blog posts from Contentful
 export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
   try {
     // Fetch blog posts from Contentful
-    const response = await contentfulClient.getEntries({
+    const response = await contentfulClient.getEntries<BlogPostSkeleton>({
       content_type: 'blogCarla',
       order: ['-fields.publishDate'],
       include: 2 // Include 2 levels of linked entries (for categories, etc)
     });
 
     // Transform entries to BlogPost objects
-    const posts = response.items.map((entry: any) => {
+    const posts = response.items.map((entry) => {
       // First get the base post with text fields
       const post = transformBlogPostEntry(entry);
       
@@ -26,8 +27,9 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
       }
       
       // Add category if available
-      if (entry.fields.category && typeof entry.fields.category === 'object') {
-        const categoryEntry = entry.fields.category;
+      if (entry.fields.category) {
+        // Type assertion to help TypeScript understand this is a Category entry
+        const categoryEntry = entry.fields.category as Entry<CategorySkeleton>;
         if (categoryEntry && categoryEntry.fields) {
           const category = getLocalizedValue(categoryEntry.fields.name);
           if (category) {
@@ -38,7 +40,8 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
       }
       
       // Add image URL if available
-      if (entry.fields.featuredImage && typeof entry.fields.featuredImage === 'object') {
+      if (entry.fields.featuredImage) {
+        // Access the image as an Asset type
         const imageEntry = entry.fields.featuredImage;
         if (imageEntry && imageEntry.fields && imageEntry.fields.file) {
           const imageUrl = getLocalizedValue(imageEntry.fields.file.url);
@@ -63,7 +66,7 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
 export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> => {
   try {
     // Fetch blog post from Contentful
-    const response = await contentfulClient.getEntries({
+    const response = await contentfulClient.getEntries<BlogPostSkeleton>({
       content_type: 'blogCarla',
       'fields.slug': slug,
       include: 2 // Include 2 levels of linked entries
@@ -86,8 +89,9 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
     }
     
     // Add category if available
-    if (entry.fields.category && typeof entry.fields.category === 'object') {
-      const categoryEntry = entry.fields.category;
+    if (entry.fields.category) {
+      // Type assertion to help TypeScript understand this is a Category entry
+      const categoryEntry = entry.fields.category as Entry<CategorySkeleton>;
       if (categoryEntry && categoryEntry.fields) {
         const category = getLocalizedValue(categoryEntry.fields.name);
         if (category) {
@@ -98,7 +102,7 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
     }
     
     // Add image URL if available
-    if (entry.fields.featuredImage && typeof entry.fields.featuredImage === 'object') {
+    if (entry.fields.featuredImage) {
       const imageEntry = entry.fields.featuredImage;
       if (imageEntry && imageEntry.fields && imageEntry.fields.file) {
         const imageUrl = getLocalizedValue(imageEntry.fields.file.url);
@@ -120,12 +124,12 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
 export const getAllCategories = async (): Promise<string[]> => {
   try {
     // Fetch categories from Contentful
-    const response = await contentfulClient.getEntries({
+    const response = await contentfulClient.getEntries<CategorySkeleton>({
       content_type: 'categoria'
     });
 
     // Extract category names
-    const categories = response.items.map((entry: any) => 
+    const categories = response.items.map((entry) => 
       getLocalizedValue(entry.fields.name) || ''
     ).filter(Boolean);
     

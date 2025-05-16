@@ -3,9 +3,11 @@ import { BlogPost } from '@/types/BlogPost';
 import { getLocalizedValue } from './types';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { Document } from '@contentful/rich-text-types';
+import { Entry } from 'contentful';
+import { BlogPostSkeleton } from './types';
 
 // Transform Contentful data to our BlogPost format
-export const transformBlogPostEntry = (entry: any): BlogPost => {
+export const transformBlogPostEntry = (entry: Entry<BlogPostSkeleton>): BlogPost => {
   // Extract fields
   const fields = entry.fields;
   
