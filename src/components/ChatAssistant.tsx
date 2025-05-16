@@ -138,8 +138,9 @@ const ChatAssistant = () => {
     setIsOpen(false);
   };
 
-  // Increased chat window height by 50%
-  const chatHeight = '750px'; // Increased from 500px (50% higher)
+  // Chat window dimensions similar to the Gol example
+  const chatHeight = '550px';
+  const chatWidth = '380px';
 
   return (
     <>
@@ -147,13 +148,14 @@ const ChatAssistant = () => {
       
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent 
-          className="sm:max-w-[380px] p-0 rounded-lg overflow-hidden border-none shadow-xl transition-all duration-300"
+          className="p-0 rounded-lg overflow-hidden border-none shadow-xl transition-all duration-300"
           style={{ 
             position: 'fixed', 
             bottom: '24px', 
             left: '24px', 
             margin: 0,
             height: isChatMinimized ? '46px' : chatHeight,
+            width: chatWidth,
             maxHeight: '90vh',
             transform: 'translate(0, 0)'
           }}

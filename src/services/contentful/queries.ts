@@ -1,9 +1,10 @@
+
 import { BlogPost } from '@/types/BlogPost';
 import { contentfulClient, formatImageUrl } from './client';
 import { transformBlogPostEntry, richTextToHtml } from './transformers';
 import { getLocalizedValue, BlogPostSkeleton, CategorySkeleton } from './types';
 import { blogPosts, getBlogPostBySlug as getLocalBlogPostBySlug } from '@/data/blogPosts';
-import { Entry, Asset } from 'contentful';
+import { Entry, Asset, ContentfulClientApi } from 'contentful';
 
 // Get all blog posts from Contentful
 export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
@@ -43,7 +44,7 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
         if (imageEntry && imageEntry.fields && imageEntry.fields.file) {
           const imageUrl = getLocalizedValue(imageEntry.fields.file.url);
           if (imageUrl) {
-            post.imageUrl = formatImageUrl(imageUrl);
+            post.imageUrl = formatImageUrl(imageUrl as string);
           }
         }
       }
@@ -103,7 +104,7 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
       if (imageEntry && imageEntry.fields && imageEntry.fields.file) {
         const imageUrl = getLocalizedValue(imageEntry.fields.file.url);
         if (imageUrl) {
-          post.imageUrl = formatImageUrl(imageUrl);
+          post.imageUrl = formatImageUrl(imageUrl as string);
         }
       }
     }
