@@ -10,6 +10,21 @@ interface CTASectionProps {
 }
 
 const CTASection = ({ title, whatsappMessage, heading }: CTASectionProps) => {
+  const handleWhatsAppClick = () => {
+    // Track event with Google Tag Manager
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'whatsapp_button_click',
+        event_category: 'Contact',
+        event_action: 'Click',
+        event_label: 'Treatment CTA Button'
+      });
+    }
+    
+    // Open WhatsApp with pre-defined message
+    window.open(`https://wa.me/5521993304045?text=${encodeURIComponent(whatsappMessage)}`, "_blank");
+  };
+
   return (
     <div className="my-12 bg-dental-beige/50 p-8 rounded-lg border border-dental-gold/20">
       <h2 className="heading-md mb-4 text-center">{heading || "Pronto para Conquistar o Sorriso dos Seus Sonhos?"}</h2>
@@ -18,8 +33,9 @@ const CTASection = ({ title, whatsappMessage, heading }: CTASectionProps) => {
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <Button 
+          id="btn-whatsapp-treatment-cta"
           className="bg-dental-gold hover:bg-dental-gold/90 text-white rounded-md px-6 py-5" 
-          onClick={() => window.open(`https://wa.me/5521999999999?text=${encodeURIComponent(whatsappMessage)}`, "_blank")}
+          onClick={handleWhatsAppClick}
         >
           Agendar Avaliação
         </Button>
