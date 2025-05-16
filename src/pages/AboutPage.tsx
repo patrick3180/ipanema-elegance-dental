@@ -1,11 +1,9 @@
-
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
-
 const AboutPage = () => {
   const handleWhatsAppClick = () => {
     // Track event with Google Tag Manager (if available)
@@ -17,19 +15,17 @@ const AboutPage = () => {
         event_label: 'WhatsApp About Page Button'
       });
     }
-    
+
     // Log for development purposes
     console.log("WhatsApp button clicked from About page - tracking event");
-    
+
     // Open WhatsApp with pre-defined message
     const phoneNumber = "5521993304045"; // Correct phone number format with country code
     const message = "Olá! Gostaria de agendar uma consulta.";
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
   };
-
-  return (
-    <PageLayout>
+  return <PageLayout>
       <Helmet>
         <title>Sobre Dra. Carla Christoph | Dentista em Ipanema</title>
         <meta name="description" content="Conheça a Dra. Carla Christoph, dentista em Ipanema com mais de 20 anos de experiência em prótese dental, implantes e reabilitação oral estética." />
@@ -41,18 +37,12 @@ const AboutPage = () => {
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h1 className="heading-lg mb-4">Dra. Carla Christoph: Sua Dentista Especialista em Ipanema</h1>
             <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />
-            <p className="text-dental-gray mb-6">
-              Uma trajetória de paixão pela odontologia e dedicação em transformar sorrisos em Ipanema
-            </p>
+            <p className="text-dental-gray mb-6">Uma trajetória de paixão pela odontologia e dedicação em transformar sorrisos</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-16 items-center mb-16">
             <div className="aspect-square rounded-2xl overflow-hidden">
-              <img 
-                src="/lovable-uploads/164bae76-428b-4fae-a600-ba61172b5dac.png" 
-                alt="Dra. Carla Christoph em seu consultório" 
-                className="w-full h-full object-cover"
-              />
+              <img src="/lovable-uploads/164bae76-428b-4fae-a600-ba61172b5dac.png" alt="Dra. Carla Christoph em seu consultório" className="w-full h-full object-cover" />
             </div>
 
             <div className="prose max-w-none">
@@ -130,18 +120,12 @@ const AboutPage = () => {
             <p className="text-lg text-dental-gray mb-8">
               Descubra como nossa expertise em odontologia estética e reabilitação oral pode transformar seu sorriso.
             </p>
-            <Button
-              onClick={handleWhatsAppClick}
-              className="bg-dental-gold hover:bg-dental-gold/90 text-white rounded-md px-8 py-6"
-              size="lg"
-            >
+            <Button onClick={handleWhatsAppClick} className="bg-dental-gold hover:bg-dental-gold/90 text-white rounded-md px-8 py-6" size="lg">
               <MessageCircle size={20} className="mr-2" /> Agendar Consulta
             </Button>
           </div>
         </div>
       </section>
-    </PageLayout>
-  );
+    </PageLayout>;
 };
-
 export default AboutPage;
