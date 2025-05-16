@@ -4,7 +4,7 @@ import { contentfulClient, formatImageUrl } from './client';
 import { transformBlogPostEntry, richTextToHtml } from './transformers';
 import { getLocalizedValue, BlogPostSkeleton, CategorySkeleton } from './types';
 import { blogPosts, getBlogPostBySlug as getLocalBlogPostBySlug } from '@/data/blogPosts';
-import { Entry, EntryCollection } from 'contentful';
+import { Entry, Asset } from 'contentful';
 
 // Get all blog posts from Contentful
 export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
@@ -28,8 +28,7 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
       
       // Add category if available
       if (entry.fields.category) {
-        // Type assertion to help TypeScript understand this is a Category entry
-        const categoryEntry = entry.fields.category as Entry<CategorySkeleton>;
+        const categoryEntry = entry.fields.category as unknown as Entry<CategorySkeleton>;
         if (categoryEntry && categoryEntry.fields) {
           const category = getLocalizedValue(categoryEntry.fields.name);
           if (category) {
@@ -41,8 +40,7 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
       
       // Add image URL if available
       if (entry.fields.featuredImage) {
-        // Access the image as an Asset type
-        const imageEntry = entry.fields.featuredImage;
+        const imageEntry = entry.fields.featuredImage as unknown as Asset;
         if (imageEntry && imageEntry.fields && imageEntry.fields.file) {
           const imageUrl = getLocalizedValue(imageEntry.fields.file.url);
           if (imageUrl) {
@@ -90,8 +88,7 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
     
     // Add category if available
     if (entry.fields.category) {
-      // Type assertion to help TypeScript understand this is a Category entry
-      const categoryEntry = entry.fields.category as Entry<CategorySkeleton>;
+      const categoryEntry = entry.fields.category as unknown as Entry<CategorySkeleton>;
       if (categoryEntry && categoryEntry.fields) {
         const category = getLocalizedValue(categoryEntry.fields.name);
         if (category) {
@@ -103,7 +100,7 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
     
     // Add image URL if available
     if (entry.fields.featuredImage) {
-      const imageEntry = entry.fields.featuredImage;
+      const imageEntry = entry.fields.featuredImage as unknown as Asset;
       if (imageEntry && imageEntry.fields && imageEntry.fields.file) {
         const imageUrl = getLocalizedValue(imageEntry.fields.file.url);
         if (imageUrl) {

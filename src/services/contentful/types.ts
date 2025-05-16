@@ -10,8 +10,8 @@ export interface BlogPostSkeleton extends EntrySkeletonType {
     slug: EntryFieldTypes.Text;
     excerpt?: EntryFieldTypes.Text;
     content?: EntryFieldTypes.RichText;
-    featuredImage?: Asset;
-    category?: Entry<CategorySkeleton>;
+    featuredImage?: EntryFieldTypes.AssetLink;
+    category?: EntryFieldTypes.EntryLink<CategorySkeleton>;
     author?: EntryFieldTypes.Text;
     publishDate?: EntryFieldTypes.Date;
     metaDescription?: EntryFieldTypes.Text;
