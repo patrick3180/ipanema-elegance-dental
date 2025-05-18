@@ -13,6 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 // Webhook URL for the online chat integration
 const WEBHOOK_URL = "https://patrick3180.app.n8n.cloud/webhook/site_chat";
+
 const ChatAssistant = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isChatMinimized, setIsChatMinimized] = useState(false);
@@ -29,6 +30,7 @@ const ChatAssistant = () => {
   useEffect(() => {
     setSessionId(uuidv4());
   }, []);
+
   const handleSendMessage = async (text: string) => {
     if (!text.trim()) return;
 
@@ -100,6 +102,7 @@ const ChatAssistant = () => {
       toast.error("Erro ao enviar mensagem. Por favor, tente novamente.");
     }
   };
+  
   const toggleChat = () => {
     if (isChatMinimized) {
       setIsChatMinimized(false);
@@ -108,14 +111,17 @@ const ChatAssistant = () => {
       setTimeout(() => setIsChatMinimized(false), 300);
     }
   };
+  
   const handleOpenChat = () => {
     setIsOpen(true);
     setIsChatMinimized(false);
   };
+  
   const handleCloseChat = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsOpen(false);
   };
+  
   return <>
       <ChatButton onClick={handleOpenChat} />
       
@@ -144,4 +150,5 @@ const ChatAssistant = () => {
       </Dialog>
     </>;
 };
+
 export default ChatAssistant;
