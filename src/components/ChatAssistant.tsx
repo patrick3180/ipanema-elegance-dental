@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
@@ -11,39 +10,29 @@ import ChatInput from "@/components/chat/ChatInput";
 import TypingAnimation from "@/components/chat/TypingAnimation";
 import { Message, WebhookResponse } from "@/components/chat/types";
 import { v4 as uuidv4 } from 'uuid';
-
-const predefinedMessages = [
-  "Quais são os tratamentos disponíveis?",
-  "Como funciona o clareamento dental?",
-  "Qual o valor da consulta?",
-  "Vocês atendem planos de saúde?"
-];
+const predefinedMessages = ["Quais são os tratamentos disponíveis?", "Como funciona o clareamento dental?", "Qual o valor da consulta?", "Vocês atendem planos de saúde?"];
 
 // Webhook URL for the online chat integration
 const WEBHOOK_URL = "https://patrick3180.app.n8n.cloud/webhook/site_chat";
-
 const ChatAssistant = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isChatMinimized, setIsChatMinimized] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [sessionId, setSessionId] = useState<string>("");
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "initial",
-      text: "Olá! Sou a assistente virtual da Dra. Carla Christoph. Como posso ajudar você hoje?",
-      sender: "assistant",
-      timestamp: new Date()
-    }
-  ]);
-  
+  const [messages, setMessages] = useState<Message[]>([{
+    id: "initial",
+    text: "Olá! Sou a assistente virtual da Dra. Carla Christoph. Como posso ajudar você hoje?",
+    sender: "assistant",
+    timestamp: new Date()
+  }]);
+
   // Initialize session ID when component mounts
   useEffect(() => {
     setSessionId(uuidv4());
   }, []);
-  
   const handleSendMessage = async (text: string) => {
     if (!text.trim()) return;
-    
+
     // Add user message
     const newUserMessage: Message = {
       id: Date.now().toString(),
@@ -51,31 +40,28 @@ const ChatAssistant = () => {
       sender: "user",
       timestamp: new Date()
     };
-    
     setMessages(prev => [...prev, newUserMessage]);
     setIsTyping(true);
-    
     try {
       // Send message to webhook
       const response = await fetch(WEBHOOK_URL, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           message: text,
           timestamp: new Date().toISOString(),
           session_id: sessionId,
           source: 'website-chat'
-        }),
+        })
       });
-      
       let responseText = "";
-      
+
       // Try to get actual response from webhook
       if (response.ok) {
         try {
-          const data = await response.json() as WebhookResponse;
+          const data = (await response.json()) as WebhookResponse;
           // Handle both possible response formats:
           // 1. {"response": "string"}
           // 2. {"response": {"response": "string"}}
@@ -91,14 +77,13 @@ const ChatAssistant = () => {
           return; // Don't add an empty message if response isn't valid
         }
       }
-      
       if (!responseText) {
         // If no response text was received, don't add a message
         setIsTyping(false);
         toast.error("Desculpe, não consegui processar sua pergunta. Por favor, tente novamente.");
         return;
       }
-      
+
       // Add assistant response with delay for typing effect
       setTimeout(() => {
         setIsTyping(false);
@@ -108,17 +93,14 @@ const ChatAssistant = () => {
           sender: "assistant",
           timestamp: new Date()
         };
-        
         setMessages(prev => [...prev, assistantResponse]);
       }, 1000);
-      
     } catch (error) {
       console.error("Erro ao enviar mensagem:", error);
       setIsTyping(false);
       toast.error("Erro ao enviar mensagem. Por favor, tente novamente.");
     }
   };
-  
   const toggleChat = () => {
     if (isChatMinimized) {
       setIsChatMinimized(false);
@@ -127,61 +109,42 @@ const ChatAssistant = () => {
       setTimeout(() => setIsChatMinimized(false), 300);
     }
   };
-
   const handleOpenChat = () => {
     setIsOpen(true);
     setIsChatMinimized(false);
   };
-  
   const handleCloseChat = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsOpen(false);
   };
-
-  return (
-    <>
+  return <>
       <ChatButton onClick={handleOpenChat} />
       
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent 
-          className="p-0 rounded-lg overflow-hidden border-none shadow-xl transition-all duration-300"
-          style={{ 
-            position: 'fixed', 
-            bottom: '24px', 
-            right: '24px', 
-            margin: 0,
-            height: isChatMinimized ? '46px' : '650px', // Increased height for more space
-            width: '380px',
-            maxHeight: '90vh',
-            transform: 'translate(0, 0)'
-          }}
-        >
-          <ChatHeader 
-            isChatMinimized={isChatMinimized} 
-            toggleChat={toggleChat} 
-            closeChat={handleCloseChat}
-          />
+        <DialogContent style={{
+        position: 'fixed',
+        bottom: '24px',
+        right: '24px',
+        margin: 0,
+        height: isChatMinimized ? '46px' : '650px',
+        // Increased height for more space
+        width: '380px',
+        maxHeight: '90vh',
+        transform: 'translate(0, 0)'
+      }} className="p-0 rounded-lg overflow-hidden border-none shadow-xl transition-all duration-300 py-px">
+          <ChatHeader isChatMinimized={isChatMinimized} toggleChat={toggleChat} closeChat={handleCloseChat} />
           
-          {!isChatMinimized && (
-            <div className="flex flex-col h-[calc(100%-46px)]"> 
+          {!isChatMinimized && <div className="flex flex-col h-[calc(100%-46px)]"> 
               <ChatMessages messages={messages} />
-              {isTyping && (
-                <div className="px-4 py-2 bg-white">
+              {isTyping && <div className="px-4 py-2 bg-white">
                   <TypingAnimation />
-                </div>
-              )}
-              <QuickReplies 
-                predefinedMessages={predefinedMessages} 
-                onSelectMessage={handleSendMessage}
-              />
+                </div>}
+              <QuickReplies predefinedMessages={predefinedMessages} onSelectMessage={handleSendMessage} />
               <Separator />
               <ChatInput onSendMessage={handleSendMessage} />
-            </div>
-          )}
+            </div>}
         </DialogContent>
       </Dialog>
-    </>
-  );
+    </>;
 };
-
 export default ChatAssistant;
