@@ -131,7 +131,7 @@ const ChatAssistant = () => {
         width: '380px',
         maxHeight: '90vh',
         transform: 'translate(0, 0)'
-      }} className="p-0 rounded-lg overflow-hidden border-none shadow-xl transition-all duration-300 py-px">
+      }} className="p-0 rounded-lg overflow-hidden border-none shadow-xl transition-all duration-300 py-0">
           <ChatHeader isChatMinimized={isChatMinimized} toggleChat={toggleChat} closeChat={handleCloseChat} />
           
           {!isChatMinimized && <div className="flex flex-col h-[calc(100%-46px)]"> 

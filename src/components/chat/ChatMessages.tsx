@@ -25,7 +25,7 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
     // Increased height for more messages
     minHeight: '420px',
     maxHeight: '420px'
-  }} className="p-4 overflow-y-auto flex-grow bg-white py-[57px]">
+  }} className="p-4 overflow-y-auto flex-grow bg-white py-[71px]">
       {messages.map(message => <ChatMessage key={message.id} message={message} />)}
       <div ref={messagesEndRef} /> {/* Reference element for scrolling */}
     </div>;
