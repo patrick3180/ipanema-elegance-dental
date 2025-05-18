@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
@@ -20,7 +19,7 @@ const predefinedMessages = [
 ];
 
 // Webhook URL for the online chat integration
-const WEBHOOK_URL = "https://patrick3180.app.n8n.cloud/webhook-test/site_chat";
+const WEBHOOK_URL = "https://patrick3180.app.n8n.cloud/webhook/site_chat";
 
 const ChatAssistant = () => {
   const [isOpen, setIsOpen] = useState(false);
