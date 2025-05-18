@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
@@ -137,10 +138,6 @@ const ChatAssistant = () => {
     setIsOpen(false);
   };
 
-  // Adjusted dimensions for better component visibility
-  const chatHeight = '550px';
-  const chatWidth = '380px';
-
   return (
     <>
       <ChatButton onClick={handleOpenChat} />
@@ -153,8 +150,8 @@ const ChatAssistant = () => {
             bottom: '24px', 
             right: '24px', 
             margin: 0,
-            height: isChatMinimized ? '46px' : chatHeight,
-            width: chatWidth,
+            height: isChatMinimized ? '46px' : '550px',
+            width: '380px',
             maxHeight: '90vh',
             transform: 'translate(0, 0)'
           }}
@@ -166,15 +163,13 @@ const ChatAssistant = () => {
           />
           
           {!isChatMinimized && (
-            <div className="flex flex-col h-[calc(100%-46px)]">
-              <div className="flex-grow overflow-hidden flex flex-col">
-                <ChatMessages messages={messages} />
-                {isTyping && (
-                  <div className="px-4 py-2">
-                    <TypingAnimation />
-                  </div>
-                )}
-              </div>
+            <div className="flex flex-col h-full">
+              <ChatMessages messages={messages} />
+              {isTyping && (
+                <div className="px-4 py-2">
+                  <TypingAnimation />
+                </div>
+              )}
               <QuickReplies 
                 predefinedMessages={predefinedMessages} 
                 onSelectMessage={handleSendMessage}
