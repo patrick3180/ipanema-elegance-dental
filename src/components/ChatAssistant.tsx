@@ -150,7 +150,7 @@ const ChatAssistant = () => {
             bottom: '24px', 
             right: '24px', 
             margin: 0,
-            height: isChatMinimized ? '46px' : '620px', // Increased height
+            height: isChatMinimized ? '46px' : '650px', // Increased height for more space
             width: '380px',
             maxHeight: '90vh',
             transform: 'translate(0, 0)'
