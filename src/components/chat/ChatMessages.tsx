@@ -30,9 +30,9 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
     <div 
       className="p-4 overflow-y-auto flex-grow bg-white"
       style={{
-        height: '340px',
-        minHeight: '340px',
-        maxHeight: '340px',
+        height: '380px',  // Increased height for more messages
+        minHeight: '380px',
+        maxHeight: '380px',
       }}
     >
       {messages.map(message => <ChatMessage key={message.id} message={message} />)}

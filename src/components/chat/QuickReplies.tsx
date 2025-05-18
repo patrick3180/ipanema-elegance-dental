@@ -11,8 +11,8 @@ const QuickReplies: React.FC<QuickRepliesProps> = ({
   onSelectMessage
 }) => {
   return (
-    <div className="px-4 py-3 bg-dental-beige/30">
-      <p className="text-xs text-dental-gray mb-2">Perguntas frequentes:</p>
+    <div className="px-4 py-2.5 bg-dental-beige/30">
+      <p className="text-xs text-dental-gray mb-1.5">Perguntas frequentes:</p>
       <div className="flex flex-wrap gap-2 mb-1">
         {predefinedMessages.map((message, index) => (
           <button 

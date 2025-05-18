@@ -150,7 +150,7 @@ const ChatAssistant = () => {
             bottom: '24px', 
             right: '24px', 
             margin: 0,
-            height: isChatMinimized ? '46px' : '550px',
+            height: isChatMinimized ? '46px' : '620px', // Increased height
             width: '380px',
             maxHeight: '90vh',
             transform: 'translate(0, 0)'
@@ -163,10 +163,10 @@ const ChatAssistant = () => {
           />
           
           {!isChatMinimized && (
-            <div className="flex flex-col h-full">
+            <div className="flex flex-col h-[calc(100%-46px)]"> 
               <ChatMessages messages={messages} />
               {isTyping && (
-                <div className="px-4 py-2">
+                <div className="px-4 py-2 bg-white">
                   <TypingAnimation />
                 </div>
               )}

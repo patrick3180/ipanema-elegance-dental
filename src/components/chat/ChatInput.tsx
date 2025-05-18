@@ -20,12 +20,12 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
   };
   
   return (
-    <form onSubmit={handleSubmit} className="p-3 bg-white flex gap-2">
+    <form onSubmit={handleSubmit} className="p-3 bg-white flex gap-2 border-t border-dental-gray/10">
       <Textarea
         placeholder="Digite sua mensagem..."
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
-        className="border-dental-gray/20 focus-visible:ring-dental-gold min-h-[60px] max-h-[80px] resize-none text-sm flex-1"
+        className="border border-dental-gray/20 focus-visible:ring-dental-gold min-h-[70px] max-h-[100px] resize-none text-sm flex-1 rounded-md"
         onKeyDown={(e) => {
           if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
@@ -37,7 +37,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
       />
       <Button 
         type="submit" 
-        className="bg-dental-purple hover:bg-dental-purple/90 text-white self-end h-[60px] px-3"
+        className="bg-dental-purple hover:bg-dental-purple/90 text-white self-end h-[70px] px-3 rounded-md"
         disabled={!inputValue.trim()}
       >
         <Send size={20} className="mr-2" />
