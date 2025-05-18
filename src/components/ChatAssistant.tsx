@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
@@ -138,8 +137,8 @@ const ChatAssistant = () => {
     setIsOpen(false);
   };
 
-  // Ajustando as dimensões para garantir que todos os elementos sejam visíveis
-  const chatHeight = '650px'; // Aumentado para expandir mais para cima
+  // Adjusted dimensions for better component visibility
+  const chatHeight = '550px';
   const chatWidth = '380px';
 
   return (
@@ -152,7 +151,7 @@ const ChatAssistant = () => {
           style={{ 
             position: 'fixed', 
             bottom: '24px', 
-            left: '24px', 
+            right: '24px', 
             margin: 0,
             height: isChatMinimized ? '46px' : chatHeight,
             width: chatWidth,
@@ -171,7 +170,7 @@ const ChatAssistant = () => {
               <div className="flex-grow overflow-hidden flex flex-col">
                 <ChatMessages messages={messages} />
                 {isTyping && (
-                  <div className="p-4">
+                  <div className="px-4 py-2">
                     <TypingAnimation />
                   </div>
                 )}
