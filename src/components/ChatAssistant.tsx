@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
@@ -5,12 +6,10 @@ import { toast } from "@/components/ui/sonner";
 import ChatButton from "@/components/chat/ChatButton";
 import ChatHeader from "@/components/chat/ChatHeader";
 import ChatMessages from "@/components/chat/ChatMessages";
-import QuickReplies from "@/components/chat/QuickReplies";
 import ChatInput from "@/components/chat/ChatInput";
 import TypingAnimation from "@/components/chat/TypingAnimation";
 import { Message, WebhookResponse } from "@/components/chat/types";
 import { v4 as uuidv4 } from 'uuid';
-const predefinedMessages = ["Quais são os tratamentos disponíveis?", "Como funciona o clareamento dental?", "Qual o valor da consulta?", "Vocês atendem planos de saúde?"];
 
 // Webhook URL for the online chat integration
 const WEBHOOK_URL = "https://patrick3180.app.n8n.cloud/webhook/site_chat";
@@ -127,7 +126,6 @@ const ChatAssistant = () => {
         right: '24px',
         margin: 0,
         height: isChatMinimized ? '46px' : '650px',
-        // Increased height for more space
         width: '380px',
         maxHeight: '90vh',
         transform: 'translate(0, 0)'
@@ -139,7 +137,6 @@ const ChatAssistant = () => {
               {isTyping && <div className="px-4 py-2 bg-white">
                   <TypingAnimation />
                 </div>}
-              <QuickReplies predefinedMessages={predefinedMessages} onSelectMessage={handleSendMessage} />
               <Separator />
               <ChatInput onSendMessage={handleSendMessage} />
             </div>}
