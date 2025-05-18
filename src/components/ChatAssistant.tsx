@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
@@ -137,8 +138,8 @@ const ChatAssistant = () => {
     setIsOpen(false);
   };
 
-  // Ajustando as dimensões para ficar mais parecido com o exemplo
-  const chatHeight = '600px'; // Aumentado para expandir mais para cima
+  // Ajustando as dimensões para garantir que todos os elementos sejam visíveis
+  const chatHeight = '650px'; // Aumentado para expandir mais para cima
   const chatWidth = '380px';
 
   return (
