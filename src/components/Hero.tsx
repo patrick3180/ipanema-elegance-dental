@@ -32,7 +32,7 @@ const Hero = () => {
     <section 
       id="início" 
       className="min-h-screen relative overflow-hidden section-spacing"
-      style={{ paddingTop: isMobile ? "120px" : "112px" }}
+      style={{ paddingTop: isMobile ? "150px" : "112px" }}
     >
       <div className="container-custom grid lg:grid-cols-2 gap-16 items-center">
         <div className="order-2 lg:order-1 animate-slide-up">

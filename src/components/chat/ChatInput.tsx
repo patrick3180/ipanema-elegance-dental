@@ -21,8 +21,8 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
     }
   };
   
-  const inputHeight = isMobile ? '60px' : '80px';
-  const buttonHeight = isMobile ? '60px' : '80px';
+  const inputHeight = isMobile ? '80px' : '80px';
+  const buttonHeight = isMobile ? '80px' : '80px';
   
   return (
     <form onSubmit={handleSubmit} className="p-3 bg-white flex gap-2 border-t border-dental-gray/10">
@@ -50,8 +50,8 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
         style={{ height: buttonHeight }}
         disabled={!inputValue.trim()}
       >
-        <Send size={isMobile ? 16 : 20} className={isMobile ? "mr-1" : "mr-2"} />
-        <span>{isMobile ? "" : "Enviar"}</span>
+        <Send size={isMobile ? 20 : 20} className={isMobile ? "mr-0" : "mr-2"} />
+        <span className="hidden md:inline">Enviar</span>
       </Button>
     </form>
   );

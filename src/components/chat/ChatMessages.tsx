@@ -1,6 +1,7 @@
 
 import React, { useRef, useEffect } from "react";
 import ChatMessage from "./ChatMessage";
+import QuickReplies from "./QuickReplies";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 interface Message {
@@ -12,10 +13,12 @@ interface Message {
 
 interface ChatMessagesProps {
   messages: Message[];
+  onQuickReplySelect?: (message: string) => void;
 }
 
 const ChatMessages: React.FC<ChatMessagesProps> = ({
-  messages
+  messages,
+  onQuickReplySelect
 }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
@@ -28,19 +31,34 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
     }
   }, [messages]);
 
-  const chatHeight = isMobile ? '350px' : '400px';
+  const chatHeight = isMobile ? '380px' : '400px';
+  
+  // Sample quick replies for the chat
+  const predefinedMessages = [
+    "Quanto custa uma consulta?",
+    "Como agendar?",
+    "Horário de atendimento"
+  ];
 
   return (
-    <div 
-      style={{
-        height: chatHeight,
-        minHeight: chatHeight,
-        maxHeight: chatHeight
-      }} 
-      className="p-4 overflow-y-auto flex-grow bg-white"
-    >
-      {messages.map(message => <ChatMessage key={message.id} message={message} />)}
-      <div ref={messagesEndRef} /> {/* Reference element for scrolling */}
+    <div className="flex flex-col flex-grow">
+      <div 
+        style={{
+          height: chatHeight,
+          minHeight: chatHeight,
+          maxHeight: chatHeight
+        }} 
+        className="p-4 overflow-y-auto flex-grow bg-white"
+      >
+        {messages.map(message => <ChatMessage key={message.id} message={message} />)}
+        <div ref={messagesEndRef} /> {/* Reference element for scrolling */}
+      </div>
+      {onQuickReplySelect && (
+        <QuickReplies 
+          predefinedMessages={predefinedMessages}
+          onSelectMessage={onQuickReplySelect}
+        />
+      )}
     </div>
   );
 };

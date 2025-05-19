@@ -124,8 +124,13 @@ const ChatAssistant = () => {
     setIsOpen(false);
   };
 
+  const handleQuickReplySelect = (message: string) => {
+    handleSendMessage(message);
+  };
+
   const chatHeight = isMobile ? '580px' : '650px';
-  const chatWidth = isMobile ? '320px' : '380px';
+  const chatWidth = isMobile ? '95vw' : '380px';
+  const chatMaxWidth = isMobile ? '450px' : '450px';
   
   return (
     <>
@@ -136,10 +141,12 @@ const ChatAssistant = () => {
           style={{
             position: 'fixed',
             bottom: '24px',
-            right: '24px',
+            right: isMobile ? '50%' : '24px',
             margin: 0,
+            marginRight: isMobile ? '-47.5%' : 0, // Center on mobile
             height: isChatMinimized ? '46px' : chatHeight,
             width: chatWidth,
+            maxWidth: chatMaxWidth,
             maxHeight: '90vh',
             transform: 'translate(0, 0)'
           }} 
@@ -149,7 +156,10 @@ const ChatAssistant = () => {
           
           {!isChatMinimized && (
             <div className="flex flex-col h-[calc(100%-46px)]"> 
-              <ChatMessages messages={messages} />
+              <ChatMessages 
+                messages={messages} 
+                onQuickReplySelect={handleQuickReplySelect}
+              />
               {isTyping && (
                 <div className="px-4 py-2 bg-white">
                   <TypingAnimation />

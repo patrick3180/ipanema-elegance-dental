@@ -53,10 +53,12 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "fixed w-full top-0 z-50 transition-all duration-300 px-6 lg:px-12",
-        isScrolled || isMobile
-          ? "py-3 bg-dental-beige/95 backdrop-blur-md shadow-sm"
-          : "py-6 bg-transparent"
+        "fixed w-full top-0 z-[60] transition-all duration-300 px-6 lg:px-12",
+        isMenuOpen
+          ? "py-3 bg-dental-beige shadow-sm"
+          : isScrolled || isMobile
+            ? "py-3 bg-dental-beige/95 backdrop-blur-md shadow-sm"
+            : "py-6 bg-transparent"
       )}
     >
       <div className="container mx-auto flex items-center justify-between">
@@ -87,20 +89,20 @@ const Header = () => {
           ))}
         </nav>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button - Always visible regardless of menu state */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden text-dental-purple p-2"
+          className="md:hidden text-dental-purple p-2 z-[70]"
           aria-label="Toggle menu"
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - Separate from header to ensure proper layering */}
       {isMenuOpen && (
         <div
-          className="md:hidden fixed inset-0 bg-dental-beige/95 backdrop-blur-md pt-24 px-6 z-40 transition-opacity duration-300 opacity-100"
+          className="md:hidden fixed inset-0 bg-dental-beige z-50 pt-24 px-6 transition-opacity duration-300 opacity-100"
           style={{ top: "0", left: "0", right: "0", bottom: "0" }}
         >
           <nav className="flex flex-col items-center gap-6">
