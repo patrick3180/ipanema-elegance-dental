@@ -31,7 +31,7 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
     }
   }, [messages]);
 
-  const chatHeight = isMobile ? '380px' : '400px';
+  const chatHeight = isMobile ? '410px' : '450px';
   
   // Sample quick replies for the chat
   const predefinedMessages = [
@@ -46,7 +46,10 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
         style={{
           height: chatHeight,
           minHeight: chatHeight,
-          maxHeight: chatHeight
+          maxHeight: chatHeight,
+          overflowY: 'auto',
+          backgroundColor: '#fff',
+          padding: '16px'
         }} 
         className="p-4 overflow-y-auto flex-grow bg-white"
       >

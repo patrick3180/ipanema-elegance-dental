@@ -21,8 +21,8 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
     }
   };
   
-  const inputHeight = isMobile ? '80px' : '80px';
-  const buttonHeight = isMobile ? '80px' : '80px';
+  const inputHeight = isMobile ? '90px' : '90px';
+  const buttonHeight = isMobile ? '90px' : '90px';
   
   return (
     <form onSubmit={handleSubmit} className="p-3 bg-white flex gap-2 border-t border-dental-gray/10">
@@ -30,10 +30,11 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
         placeholder="Digite sua mensagem..."
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
-        className={`border border-dental-gray/20 focus-visible:ring-dental-gold resize-none text-sm flex-1 rounded-md`}
+        className="border border-dental-gray/20 focus-visible:ring-dental-gold resize-none text-sm flex-1 rounded-md"
         style={{
           minHeight: inputHeight,
-          maxHeight: inputHeight
+          maxHeight: inputHeight,
+          padding: '12px'
         }}
         onKeyDown={(e) => {
           if (e.key === 'Enter' && !e.shiftKey) {
@@ -51,7 +52,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
         disabled={!inputValue.trim()}
       >
         <Send size={isMobile ? 20 : 20} className={isMobile ? "mr-0" : "mr-2"} />
-        <span className="hidden md:inline">Enviar</span>
+        <span className={isMobile ? "hidden" : "hidden md:inline"}>Enviar</span>
       </Button>
     </form>
   );

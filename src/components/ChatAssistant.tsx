@@ -127,10 +127,6 @@ const ChatAssistant = () => {
   const handleQuickReplySelect = (message: string) => {
     handleSendMessage(message);
   };
-
-  const chatHeight = isMobile ? '580px' : '650px';
-  const chatWidth = isMobile ? '95vw' : '380px';
-  const chatMaxWidth = isMobile ? '450px' : '450px';
   
   return (
     <>
@@ -141,21 +137,25 @@ const ChatAssistant = () => {
           style={{
             position: 'fixed',
             bottom: '24px',
-            right: isMobile ? '50%' : '24px',
+            right: isMobile ? '2.5%' : '24px',
             margin: 0,
-            marginRight: isMobile ? '-47.5%' : 0, // Center on mobile
-            height: isChatMinimized ? '46px' : chatHeight,
-            width: chatWidth,
-            maxWidth: chatMaxWidth,
+            marginRight: isMobile ? 0 : 0,
+            height: isChatMinimized ? '46px' : (isMobile ? '600px' : '650px'),
+            width: isMobile ? '95vw' : '380px',
+            maxWidth: '95vw',
             maxHeight: '90vh',
-            transform: 'translate(0, 0)'
+            transform: 'translate(0, 0)',
+            padding: 0,
+            overflow: 'hidden',
+            borderRadius: '12px',
+            boxShadow: '0 10px 25px rgba(0,0,0,0.15)'
           }} 
           className="p-0 rounded-lg overflow-hidden border-none shadow-xl transition-all duration-300 py-0"
         >
           <ChatHeader isChatMinimized={isChatMinimized} toggleChat={toggleChat} closeChat={handleCloseChat} />
           
           {!isChatMinimized && (
-            <div className="flex flex-col h-[calc(100%-46px)]"> 
+            <div className="flex flex-col h-[calc(100%-46px)] overflow-hidden"> 
               <ChatMessages 
                 messages={messages} 
                 onQuickReplySelect={handleQuickReplySelect}
