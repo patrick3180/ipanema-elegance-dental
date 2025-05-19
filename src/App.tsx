@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -15,7 +16,6 @@ import ContactPage from "./pages/ContactPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
 import WhatsAppPopup from "./components/WhatsAppPopup";
-import ChatAssistant from "./components/ChatAssistant";
 import LentesEFacetas from "./pages/LentesEFacetas";
 import ClareamentoDental from "./pages/ClareamentoDental";
 import ProteseDentaria from "./pages/ProteseDentaria";
@@ -62,7 +62,6 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
         <WhatsAppPopup />
-        <ChatAssistant />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
