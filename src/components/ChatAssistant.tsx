@@ -140,7 +140,7 @@ const ChatAssistant = () => {
             right: isMobile ? '2.5%' : '24px',
             margin: 0,
             marginRight: isMobile ? 0 : 0,
-            height: isChatMinimized ? '46px' : (isMobile ? '600px' : '650px'),
+            height: isChatMinimized ? '46px' : (isMobile ? '580px' : '650px'),
             width: isMobile ? '95vw' : '380px',
             maxWidth: '95vw',
             maxHeight: '90vh',
@@ -161,7 +161,7 @@ const ChatAssistant = () => {
                 onQuickReplySelect={handleQuickReplySelect}
               />
               {isTyping && (
-                <div className="px-4 py-2 bg-white">
+                <div className="px-3 py-2 bg-white">
                   <TypingAnimation />
                 </div>
               )}

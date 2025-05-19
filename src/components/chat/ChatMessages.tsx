@@ -31,7 +31,7 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
     }
   }, [messages]);
 
-  const chatHeight = isMobile ? '410px' : '450px';
+  const chatHeight = isMobile ? '350px' : '400px';
   
   // Sample quick replies for the chat
   const predefinedMessages = [
@@ -49,12 +49,12 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
           maxHeight: chatHeight,
           overflowY: 'auto',
           backgroundColor: '#fff',
-          padding: '16px'
+          padding: '12px'
         }} 
-        className="p-4 overflow-y-auto flex-grow bg-white"
+        className="overflow-y-auto flex-grow bg-white"
       >
         {messages.map(message => <ChatMessage key={message.id} message={message} />)}
-        <div ref={messagesEndRef} /> {/* Reference element for scrolling */}
+        <div ref={messagesEndRef} />
       </div>
       {onQuickReplySelect && (
         <QuickReplies 
