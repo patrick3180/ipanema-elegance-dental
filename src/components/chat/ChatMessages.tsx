@@ -1,6 +1,7 @@
 
 import React, { useRef, useEffect } from "react";
 import ChatMessage from "./ChatMessage";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface Message {
   id: string;
@@ -17,6 +18,7 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
   messages
 }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (messagesEndRef.current) {
@@ -26,14 +28,21 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
     }
   }, [messages]);
 
-  return <div style={{
-    height: '400px',
-    minHeight: '400px',
-    maxHeight: '400px'
-  }} className="p-4 overflow-y-auto flex-grow bg-white">
+  const chatHeight = isMobile ? '350px' : '400px';
+
+  return (
+    <div 
+      style={{
+        height: chatHeight,
+        minHeight: chatHeight,
+        maxHeight: chatHeight
+      }} 
+      className="p-4 overflow-y-auto flex-grow bg-white"
+    >
       {messages.map(message => <ChatMessage key={message.id} message={message} />)}
       <div ref={messagesEndRef} /> {/* Reference element for scrolling */}
-    </div>;
+    </div>
+  );
 };
 
 export default ChatMessages;

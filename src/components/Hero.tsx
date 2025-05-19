@@ -2,8 +2,11 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Hero = () => {
+  const isMobile = useIsMobile();
+  
   const handleWhatsAppClick = () => {
     // Track event with Google Tag Manager (if available)
     if (window.dataLayer) {
@@ -26,7 +29,11 @@ const Hero = () => {
   };
 
   return (
-    <section id="início" className="min-h-screen relative overflow-hidden pt-28 section-spacing">
+    <section 
+      id="início" 
+      className="min-h-screen relative overflow-hidden section-spacing"
+      style={{ paddingTop: isMobile ? "120px" : "112px" }}
+    >
       <div className="container-custom grid lg:grid-cols-2 gap-16 items-center">
         <div className="order-2 lg:order-1 animate-slide-up">
           <h1 className="heading-xl mb-8">

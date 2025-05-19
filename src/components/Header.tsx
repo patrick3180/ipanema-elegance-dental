@@ -3,11 +3,13 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,8 +54,8 @@ const Header = () => {
     <header
       className={cn(
         "fixed w-full top-0 z-50 transition-all duration-300 px-6 lg:px-12",
-        isScrolled
-          ? "py-3 bg-dental-beige/90 backdrop-blur-md shadow-sm"
+        isScrolled || isMobile
+          ? "py-3 bg-dental-beige/95 backdrop-blur-md shadow-sm"
           : "py-6 bg-transparent"
       )}
     >
@@ -96,35 +98,35 @@ const Header = () => {
       </div>
 
       {/* Mobile Navigation */}
-      <div
-        className={cn(
-          "md:hidden fixed inset-0 bg-dental-beige pt-24 px-6 z-40 transition-transform duration-300",
-          isMenuOpen ? "translate-y-0" : "-translate-y-full"
-        )}
-      >
-        <nav className="flex flex-col items-center gap-6">
-          {navigationItems.map((item) => (
-            item.action ? (
-              <button
-                key={item.title}
-                onClick={item.action}
-                className="text-xl font-medium text-dental-purple hover:text-dental-gold transition-colors"
-              >
-                {item.title}
-              </button>
-            ) : (
-              <Link
-                key={item.title}
-                to={item.path}
-                className="text-xl font-medium text-dental-purple hover:text-dental-gold transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.title}
-              </Link>
-            )
-          ))}
-        </nav>
-      </div>
+      {isMenuOpen && (
+        <div
+          className="md:hidden fixed inset-0 bg-dental-beige/95 backdrop-blur-md pt-24 px-6 z-40 transition-opacity duration-300 opacity-100"
+          style={{ top: "0", left: "0", right: "0", bottom: "0" }}
+        >
+          <nav className="flex flex-col items-center gap-6">
+            {navigationItems.map((item) => (
+              item.action ? (
+                <button
+                  key={item.title}
+                  onClick={item.action}
+                  className="text-xl font-medium text-dental-purple hover:text-dental-gold transition-colors"
+                >
+                  {item.title}
+                </button>
+              ) : (
+                <Link
+                  key={item.title}
+                  to={item.path}
+                  className="text-xl font-medium text-dental-purple hover:text-dental-gold transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.title}
+                </Link>
+              )
+            ))}
+          </nav>
+        </div>
+      )}
     </header>
   );
 };

@@ -10,6 +10,7 @@ import ChatInput from "@/components/chat/ChatInput";
 import TypingAnimation from "@/components/chat/TypingAnimation";
 import { Message, WebhookResponse } from "@/components/chat/types";
 import { v4 as uuidv4 } from 'uuid';
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // Webhook URL for the online chat integration
 const WEBHOOK_URL = "https://patrick3180.app.n8n.cloud/webhook/site_chat";
@@ -25,6 +26,7 @@ const ChatAssistant = () => {
     sender: "assistant",
     timestamp: new Date()
   }]);
+  const isMobile = useIsMobile();
 
   // Initialize session ID when component mounts
   useEffect(() => {
@@ -121,34 +123,46 @@ const ChatAssistant = () => {
     e.stopPropagation();
     setIsOpen(false);
   };
+
+  const chatHeight = isMobile ? '580px' : '650px';
+  const chatWidth = isMobile ? '320px' : '380px';
   
-  return <>
+  return (
+    <>
       <ChatButton onClick={handleOpenChat} />
       
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent style={{
-        position: 'fixed',
-        bottom: '24px',
-        right: '24px',
-        margin: 0,
-        height: isChatMinimized ? '46px' : '650px',
-        width: '380px',
-        maxHeight: '90vh',
-        transform: 'translate(0, 0)'
-      }} className="p-0 rounded-lg overflow-hidden border-none shadow-xl transition-all duration-300 py-0">
+        <DialogContent 
+          style={{
+            position: 'fixed',
+            bottom: '24px',
+            right: '24px',
+            margin: 0,
+            height: isChatMinimized ? '46px' : chatHeight,
+            width: chatWidth,
+            maxHeight: '90vh',
+            transform: 'translate(0, 0)'
+          }} 
+          className="p-0 rounded-lg overflow-hidden border-none shadow-xl transition-all duration-300 py-0"
+        >
           <ChatHeader isChatMinimized={isChatMinimized} toggleChat={toggleChat} closeChat={handleCloseChat} />
           
-          {!isChatMinimized && <div className="flex flex-col h-[calc(100%-46px)]"> 
+          {!isChatMinimized && (
+            <div className="flex flex-col h-[calc(100%-46px)]"> 
               <ChatMessages messages={messages} />
-              {isTyping && <div className="px-4 py-2 bg-white">
+              {isTyping && (
+                <div className="px-4 py-2 bg-white">
                   <TypingAnimation />
-                </div>}
+                </div>
+              )}
               <Separator />
               <ChatInput onSendMessage={handleSendMessage} />
-            </div>}
+            </div>
+          )}
         </DialogContent>
       </Dialog>
-    </>;
+    </>
+  );
 };
 
 export default ChatAssistant;
