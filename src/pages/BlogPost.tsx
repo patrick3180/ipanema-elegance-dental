@@ -16,15 +16,18 @@ const BlogPost = () => {
   const { postSlug } = useParams<{ postSlug: string }>();
   const navigate = useNavigate();
   
-  // Fetch the current blog post
+  // Fetch the current blog post with refetch capability
   const { 
     data: post, 
     isLoading, 
-    error 
+    error,
+    refetch
   } = useQuery({
     queryKey: ['blogPost', postSlug],
     queryFn: () => getBlogPostBySlug(postSlug || ""),
-    enabled: !!postSlug
+    enabled: !!postSlug,
+    staleTime: 0, // Don't cache
+    refetchOnMount: true
   });
 
   // Fetch all posts for related posts
@@ -37,6 +40,12 @@ const BlogPost = () => {
   useEffect(() => {
     if (!isLoading && !post && postSlug) {
       navigate("/blog");
+    }
+    
+    // Debug post content when it loads
+    if (post) {
+      console.log(`Post ${post.title} loaded`);
+      console.log(`Content length: ${post.content?.length || 0}`);
     }
   }, [post, postSlug, navigate, isLoading]);
 
@@ -74,6 +83,9 @@ const BlogPost = () => {
     .filter(p => p.category === post.category && p.id !== post.id)
     .slice(0, 2);
 
+  // Handle empty content case
+  const hasContent = post.content && post.content.length > 10;
+
   return (
     <PageLayout>
       {/* SEO metadata */}
@@ -98,14 +110,14 @@ const BlogPost = () => {
           
           <div className="max-w-3xl mx-auto mb-8">
             <div className="bg-dental-purple/10 text-dental-purple text-sm px-4 py-1 rounded-full inline-block mb-4">
-              {post.category}
+              {post.category || "Blog"}
             </div>
             <h1 className="heading-lg mb-4">{post.title}</h1>
             <Separator className="w-24 h-1 bg-dental-gold mb-6" />
             <div className="flex flex-wrap items-center text-dental-gray text-sm mb-8 gap-4">
               <div className="flex items-center">
                 <User size={16} className="mr-2" />
-                <span>{post.author}</span>
+                <span>{post.author || "Dra. Carla Christoph"}</span>
               </div>
               <div className="flex items-center">
                 <Calendar size={16} className="mr-2" />
@@ -136,8 +148,24 @@ const BlogPost = () => {
             </div>
           )}
 
+          {/* Content section with error handling */}
           <div className="prose prose-lg max-w-3xl mx-auto mb-16">
-            <div dangerouslySetInnerHTML={{ __html: post.content }} />
+            {hasContent ? (
+              <div dangerouslySetInnerHTML={{ __html: post.content }} />
+            ) : (
+              <div>
+                <p className="text-dental-gray mb-6">{post.excerpt}</p>
+                <p className="italic text-dental-gray/80 mb-6">O conteúdo completo está sendo carregado.</p>
+                <Button
+                  onClick={() => refetch()}
+                  variant="outline"
+                  className="border-dental-purple text-dental-purple hover:bg-dental-beige/50 mb-6"
+                >
+                  <Loader size={16} className="mr-2" />
+                  Tentar novamente
+                </Button>
+              </div>
+            )}
           </div>
 
           {/* Share buttons */}
