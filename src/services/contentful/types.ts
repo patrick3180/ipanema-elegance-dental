@@ -1,6 +1,7 @@
 
 import { Asset, Entry, EntryFieldTypes, EntrySkeletonType } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
+import { DEFAULT_LOCALE } from './client';
 
 // Define Contentful content types that properly extend EntrySkeletonType
 export interface BlogPostSkeleton extends EntrySkeletonType {
@@ -31,7 +32,7 @@ export interface CategorySkeleton extends EntrySkeletonType {
 export type ContentfulFieldValue<T> = { [locale: string]: T };
 export type ContentfulRichText = ContentfulFieldValue<Document>;
 
-// Helper function to extract localized field value with improved debugging
+// Helper function to extract localized field value with improved locale handling
 export function getLocalizedValue<T>(field: ContentfulFieldValue<T> | T | undefined): T | undefined {
   if (field === undefined || field === null) {
     return undefined;
@@ -43,11 +44,15 @@ export function getLocalizedValue<T>(field: ContentfulFieldValue<T> | T | undefi
     const keys = Object.keys(field as object);
     
     if (keys.length > 0) {
-      // Try common locale patterns
+      // Try default locale first
+      if (DEFAULT_LOCALE in (field as any)) {
+        return (field as any)[DEFAULT_LOCALE];
+      }
+      
+      // Fallback to other common locales
       for (const locale of ['pt-BR', 'en-US', keys[0]]) {
         if (locale in (field as any)) {
-          const value = (field as any)[locale];
-          return value;
+          return (field as any)[locale];
         }
       }
       

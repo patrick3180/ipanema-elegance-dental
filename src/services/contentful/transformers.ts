@@ -2,19 +2,17 @@
 import { BlogPost } from '@/types/BlogPost';
 import { getLocalizedValue } from './types';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import { Document } from '@contentful/rich-text-types';
+import { Document, BLOCKS } from '@contentful/rich-text-types';
 import { Entry } from 'contentful';
 import { BlogPostSkeleton } from './types';
+import { DEFAULT_LOCALE } from './client';
 
 // Transform Contentful data to our BlogPost format
 export const transformBlogPostEntry = (entry: Entry<BlogPostSkeleton>): BlogPost => {
   // Extract fields
   const fields = entry.fields;
   
-  // Debug what we're getting from contentful
-  console.log('Transforming entry:', entry.sys.id);
-  console.log('Entry fields:', JSON.stringify(fields, null, 2));
-  
+  // Create the BlogPost object
   return {
     id: entry.sys.id,
     slug: getLocalizedValue(fields.slug) || '',
@@ -30,45 +28,54 @@ export const transformBlogPostEntry = (entry: Entry<BlogPostSkeleton>): BlogPost
   };
 };
 
-// Convert rich text content to HTML with improved error handling and debugging
-export const richTextToHtml = (content: Document | any | undefined): string => {
+// Convert rich text content to HTML with improved error handling
+export const richTextToHtml = (content: any): string => {
   if (!content) {
-    console.log('Rich text content is empty or undefined');
     return '';
   }
   
   try {
-    // Debug content structure
-    console.log('Rich text content type:', typeof content);
-    
-    // Handle localized content
-    const document = getLocalizedValue(content) || content;
-    
-    if (!document) {
-      console.log('Failed to extract localized content');
-      return '';
+    // Direct approach - if it's already a Document object
+    if (content.nodeType && content.content) {
+      return documentToHtmlString(content, {
+        renderNode: {
+          // Add custom renderers for common block types
+          [BLOCKS.PARAGRAPH]: (node, next) => `<p>${next(node.content)}</p>`,
+          [BLOCKS.HEADING_1]: (node, next) => `<h1>${next(node.content)}</h1>`,
+          [BLOCKS.HEADING_2]: (node, next) => `<h2>${next(node.content)}</h2>`,
+          [BLOCKS.HEADING_3]: (node, next) => `<h3>${next(node.content)}</h3>`,
+          [BLOCKS.HEADING_4]: (node, next) => `<h4>${next(node.content)}</h4>`,
+          [BLOCKS.HEADING_5]: (node, next) => `<h5>${next(node.content)}</h5>`,
+          [BLOCKS.HEADING_6]: (node, next) => `<h6>${next(node.content)}</h6>`,
+          [BLOCKS.UL_LIST]: (node, next) => `<ul>${next(node.content)}</ul>`,
+          [BLOCKS.OL_LIST]: (node, next) => `<ol>${next(node.content)}</ol>`,
+          [BLOCKS.LIST_ITEM]: (node, next) => `<li>${next(node.content)}</li>`,
+          [BLOCKS.QUOTE]: (node, next) => `<blockquote>${next(node.content)}</blockquote>`,
+          [BLOCKS.HR]: () => '<hr/>',
+        }
+      });
     }
     
-    console.log('Document structure:', JSON.stringify({
-      nodeType: document.nodeType,
-      hasContent: !!document.content,
-      contentLength: document.content?.length
-    }));
-    
-    // Enhanced rendering options
-    const options = {
-      renderNode: {
-        // Add custom renderers for specific node types if needed
+    // Contentful sometimes nests the document under the locale
+    if (typeof content === 'object' && !Array.isArray(content)) {
+      // Try with the default locale
+      if (content[DEFAULT_LOCALE] && content[DEFAULT_LOCALE].nodeType) {
+        return documentToHtmlString(content[DEFAULT_LOCALE]);
       }
-    };
+      
+      // Try with any locale if default doesn't work
+      for (const locale in content) {
+        if (content[locale] && content[locale].nodeType) {
+          return documentToHtmlString(content[locale]);
+        }
+      }
+    }
     
-    // Use contentful's rich-text-html-renderer with options
-    const htmlContent = documentToHtmlString(document, options);
-    console.log('Generated HTML length:', htmlContent.length);
+    // Fallback: Just try to use the content as is
+    return documentToHtmlString(content);
     
-    return htmlContent;
   } catch (error) {
     console.error('Error parsing rich text:', error);
-    return '<p>Error rendering content</p>';
+    return '<p>Erro ao renderizar o conteúdo. Por favor, tente novamente mais tarde.</p>';
   }
 };

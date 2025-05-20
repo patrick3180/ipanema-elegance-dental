@@ -1,70 +1,90 @@
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, User, Share2, Loader, Tag } from "lucide-react";
+import { ArrowLeft, Calendar, User, Share2, Tag } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card, CardContent } from "@/components/ui/card";
 import { getBlogPostBySlug, getAllBlogPosts } from "@/services/contentful/queries";
 import { useQuery } from "@tanstack/react-query";
-import { BlogPost as BlogPostType } from "@/types/BlogPost";
 import { Helmet } from "react-helmet-async";
 
 const BlogPost = () => {
   const { postSlug } = useParams<{ postSlug: string }>();
   const navigate = useNavigate();
   
-  // Fetch the current blog post with refetch capability
+  // Fetch the current blog post
   const { 
     data: post, 
     isLoading, 
-    error,
-    refetch
+    error
   } = useQuery({
     queryKey: ['blogPost', postSlug],
     queryFn: () => getBlogPostBySlug(postSlug || ""),
     enabled: !!postSlug,
-    staleTime: 0, // Don't cache
+    staleTime: 60000, // Cache for 1 minute
     refetchOnMount: true
   });
 
-  // Fetch all posts for related posts
+  // Fetch all posts for related posts, but with lower priority
   const { data: allPosts = [] } = useQuery({
     queryKey: ['blogPosts'],
-    queryFn: getAllBlogPosts
+    queryFn: getAllBlogPosts,
+    staleTime: 300000 // Cache for 5 minutes
   });
   
-  // If post not found, navigate to blog page
-  useEffect(() => {
+  // If post not found and not loading, navigate to blog page
+  React.useEffect(() => {
     if (!isLoading && !post && postSlug) {
       navigate("/blog");
     }
-    
-    // Debug post content when it loads
-    if (post) {
-      console.log(`Post ${post.title} loaded`);
-      console.log(`Content length: ${post.content?.length || 0}`);
-    }
   }, [post, postSlug, navigate, isLoading]);
 
-  // If loading or error, show appropriate UI
+  // Loading state
   if (isLoading) {
     return (
       <PageLayout>
-        <div className="container-custom section-spacing flex flex-col items-center justify-center min-h-[50vh]">
-          <Loader className="h-12 w-12 animate-spin text-dental-purple mb-4" />
-          <p className="text-dental-gray">Carregando artigo...</p>
+        <div className="container-custom section-spacing">
+          <Button
+            variant="outline"
+            className="mb-8 border-dental-gray text-dental-purple hover:bg-dental-beige/50"
+            onClick={() => navigate("/blog")}
+          >
+            <ArrowLeft size={16} className="mr-2" />
+            Voltar para o blog
+          </Button>
+          
+          <div className="max-w-3xl mx-auto mb-8">
+            <div className="animate-pulse bg-dental-purple/10 h-6 w-24 rounded-full mb-4"></div>
+            <div className="animate-pulse bg-gray-200 h-12 w-3/4 rounded mb-4"></div>
+            <Separator className="w-24 h-1 bg-dental-gold mb-6" />
+            <div className="flex gap-4 mb-8">
+              <div className="animate-pulse bg-gray-200 h-4 w-32 rounded"></div>
+              <div className="animate-pulse bg-gray-200 h-4 w-32 rounded"></div>
+            </div>
+          </div>
+
+          <div className="max-w-3xl mx-auto mb-8">
+            <AspectRatio ratio={16 / 9} className="bg-dental-beige/30 rounded-lg overflow-hidden animate-pulse mb-8" />
+          </div>
+          
+          <div className="prose prose-lg max-w-3xl mx-auto mb-16">
+            <div className="animate-pulse bg-gray-200 h-4 w-full rounded mb-4"></div>
+            <div className="animate-pulse bg-gray-200 h-4 w-5/6 rounded mb-4"></div>
+            <div className="animate-pulse bg-gray-200 h-4 w-4/6 rounded mb-4"></div>
+          </div>
         </div>
       </PageLayout>
     );
   }
 
+  // Error state
   if (error || !post) {
     return (
       <PageLayout>
-        <div className="container-custom section-spacing text-center min-h-[50vh]">
+        <div className="container-custom section-spacing text-center">
           <p className="text-red-500 mb-4">Erro ao carregar o artigo</p>
           <Button 
             onClick={() => navigate("/blog")}
@@ -83,7 +103,7 @@ const BlogPost = () => {
     .filter(p => p.category === post.category && p.id !== post.id)
     .slice(0, 2);
 
-  // Handle empty content case
+  // Check if content exists
   const hasContent = post.content && post.content.length > 10;
 
   return (
@@ -108,6 +128,7 @@ const BlogPost = () => {
             Voltar para o blog
           </Button>
           
+          {/* Post header */}
           <div className="max-w-3xl mx-auto mb-8">
             <div className="bg-dental-purple/10 text-dental-purple text-sm px-4 py-1 rounded-full inline-block mb-4">
               {post.category || "Blog"}
@@ -126,6 +147,7 @@ const BlogPost = () => {
             </div>
           </div>
 
+          {/* Featured image */}
           <div className="max-w-3xl mx-auto mb-8">
             <AspectRatio ratio={16 / 9} className="bg-dental-beige/30 rounded-lg overflow-hidden mb-8">
               <img 
@@ -136,7 +158,7 @@ const BlogPost = () => {
             </AspectRatio>
           </div>
 
-          {/* Tags if available */}
+          {/* Tags */}
           {post.tags && post.tags.length > 0 && (
             <div className="max-w-3xl mx-auto mb-6 flex flex-wrap gap-2">
               {post.tags.map((tag, index) => (
@@ -148,27 +170,19 @@ const BlogPost = () => {
             </div>
           )}
 
-          {/* Content section with error handling */}
+          {/* Content */}
           <div className="prose prose-lg max-w-3xl mx-auto mb-16">
             {hasContent ? (
               <div dangerouslySetInnerHTML={{ __html: post.content }} />
             ) : (
               <div>
                 <p className="text-dental-gray mb-6">{post.excerpt}</p>
-                <p className="italic text-dental-gray/80 mb-6">O conteúdo completo está sendo carregado.</p>
-                <Button
-                  onClick={() => refetch()}
-                  variant="outline"
-                  className="border-dental-purple text-dental-purple hover:bg-dental-beige/50 mb-6"
-                >
-                  <Loader size={16} className="mr-2" />
-                  Tentar novamente
-                </Button>
+                <p>O conteúdo completo não está disponível no momento.</p>
               </div>
             )}
           </div>
 
-          {/* Share buttons */}
+          {/* Share button */}
           <div className="max-w-3xl mx-auto mb-16">
             <div className="flex items-center justify-center gap-4">
               <span className="text-dental-gray font-medium">Compartilhar:</span>

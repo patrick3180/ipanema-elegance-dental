@@ -5,11 +5,14 @@ import { createClient } from 'contentful';
 const SPACE_ID = 'g8ip8odd5vbl';
 const ACCESS_TOKEN = 'cr6Ra2NQPO9jz2qTWmAK2ykLy0I_4bIqVCyepF8ix-k';
 
+// Default locale for the application
+export const DEFAULT_LOCALE = 'pt-BR';
+
 // Create and export Contentful client with increased timeout
 export const contentfulClient = createClient({
   space: SPACE_ID,
   accessToken: ACCESS_TOKEN,
-  timeout: 30000, // Increase timeout to 30 seconds
+  timeout: 30000, // Increased timeout to 30 seconds
   // Enable console logging of requests in development
   retryOnError: true,
 });
