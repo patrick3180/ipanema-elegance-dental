@@ -1,10 +1,9 @@
-
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, User, Share2, Mail, Copy } from "lucide-react";
+import { ArrowLeft, Calendar, User, Share2, Mail, Copy, Tag } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card, CardContent } from "@/components/ui/card";
 import { getBlogPostBySlug, getAllBlogPosts } from "@/services/contentful/queries";
