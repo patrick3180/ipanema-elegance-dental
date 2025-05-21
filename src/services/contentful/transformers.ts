@@ -61,13 +61,13 @@ export const richTextToHtml = (content: any): string => {
         [BLOCKS.HEADING_6]: (node: any, next: any) => 
           `<h6 class="font-display font-medium text-base mt-4 mb-2 text-dental-purple">${next(node.content)}</h6>`,
         
-        // Lists with proper indentation and spacing
+        // Lists with proper indentation, spacing and visible bullets
         [BLOCKS.UL_LIST]: (node: any, next: any) => 
-          `<ul class="list-disc pl-6 mb-6 space-y-2">${next(node.content)}</ul>`,
+          `<ul class="list-disc pl-6 mb-6 space-y-2 marker:text-dental-purple">${next(node.content)}</ul>`,
         [BLOCKS.OL_LIST]: (node: any, next: any) => 
-          `<ol class="list-decimal pl-6 mb-6 space-y-2">${next(node.content)}</ol>`,
+          `<ol class="list-decimal pl-6 mb-6 space-y-2 marker:text-dental-purple">${next(node.content)}</ol>`,
         [BLOCKS.LIST_ITEM]: (node: any, next: any) => 
-          `<li>${next(node.content)}</li>`,
+          `<li class="text-dental-purple/90">${next(node.content)}</li>`,
         
         // Block quotes with styling
         [BLOCKS.QUOTE]: (node: any, next: any) => 
