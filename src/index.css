@@ -100,7 +100,7 @@
 }
 
 .blog-content h3 {
-  @apply text-xl font-display font-medium text-dental-purple mt-8 mb-4;
+  @apply text-xl font-display font-semibold text-dental-purple mt-10 mb-4 border-b border-dental-purple/10 pb-2;
 }
 
 .blog-content p {
@@ -108,7 +108,7 @@
 }
 
 .blog-content a {
-  @apply text-dental-gold font-medium hover:underline transition-colors;
+  @apply font-semibold text-dental-purple underline underline-offset-2 decoration-1 hover:decoration-2 transition-colors;
 }
 
 .blog-content strong, 

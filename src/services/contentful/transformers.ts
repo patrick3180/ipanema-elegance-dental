@@ -53,7 +53,7 @@ export const richTextToHtml = (content: any): string => {
         [BLOCKS.HEADING_2]: (node: any, next: any) => 
           `<h2 class="font-display font-semibold text-2xl md:text-3xl mt-8 mb-4 text-dental-purple">${next(node.content)}</h2>`,
         [BLOCKS.HEADING_3]: (node: any, next: any) => 
-          `<h3 class="font-display font-medium text-xl md:text-2xl mt-6 mb-3 text-dental-purple">${next(node.content)}</h3>`,
+          `<h3 class="font-display font-semibold text-xl md:text-2xl mt-8 mb-3 text-dental-purple border-b border-dental-purple/10 pb-2">${next(node.content)}</h3>`,
         [BLOCKS.HEADING_4]: (node: any, next: any) => 
           `<h4 class="font-display font-medium text-lg md:text-xl mt-6 mb-2 text-dental-purple">${next(node.content)}</h4>`,
         [BLOCKS.HEADING_5]: (node: any, next: any) => 
@@ -95,15 +95,15 @@ export const richTextToHtml = (content: any): string => {
           return '<p class="text-dental-gray/70 text-sm">[Imagem não disponível]</p>';
         },
         
-        // Hyperlinks
+        // Hyperlinks - Updated to use the same color as text and add underline
         [INLINES.HYPERLINK]: (node: any, next: any) => {
           const url = node.data.uri || '#';
-          return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-dental-gold font-medium hover:underline transition-colors">${next(node.content)}</a>`;
+          return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="font-semibold text-dental-purple underline underline-offset-2 decoration-1 hover:decoration-2 transition-all">${next(node.content)}</a>`;
         },
         
-        // Entry hyperlinks (internal links)
+        // Entry hyperlinks (internal links) - Updated styling
         [INLINES.ENTRY_HYPERLINK]: (node: any, next: any) => {
-          return `<span class="text-dental-gold font-medium">${next(node.content)}</span>`;
+          return `<span class="font-semibold text-dental-purple underline underline-offset-2 decoration-1">${next(node.content)}</span>`;
         },
       },
     };
