@@ -94,7 +94,68 @@ export default {
         "fade-in": "fadeIn 0.5s ease-in-out",
         "slide-up": "slideUp 0.7s ease-out",
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            color: '#381F47',
+            maxWidth: '100%',
+            h1: {
+              fontFamily: 'Playfair Display, serif',
+              fontWeight: '600',
+              marginTop: '2rem',
+              marginBottom: '1rem',
+              color: '#381F47',
+            },
+            h2: {
+              fontFamily: 'Playfair Display, serif',
+              fontWeight: '600',
+              fontSize: '1.5rem',
+              marginTop: '1.75rem',
+              marginBottom: '1rem',
+              color: '#381F47',
+              lineHeight: '1.3',
+            },
+            h3: {
+              fontFamily: 'Playfair Display, serif',
+              fontWeight: '500',
+              fontSize: '1.25rem',
+              marginTop: '1.5rem',
+              marginBottom: '0.75rem',
+              color: '#381F47',
+            },
+            p: {
+              marginTop: '1.2rem',
+              marginBottom: '1.2rem',
+              lineHeight: '1.75',
+            },
+            a: {
+              color: '#B3955F',
+              fontWeight: '500',
+              textDecoration: 'none',
+              '&:hover': {
+                textDecoration: 'underline',
+              },
+            },
+            'ul li': {
+              marginTop: '0.5rem',
+              marginBottom: '0.5rem',
+            },
+            'ol li': {
+              marginTop: '0.5rem',
+              marginBottom: '0.5rem',
+            },
+            blockquote: {
+              fontStyle: 'italic',
+              borderLeftColor: '#B3955F',
+              paddingLeft: '1rem',
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require('@tailwindcss/typography'),
+  ],
 } satisfies Config;

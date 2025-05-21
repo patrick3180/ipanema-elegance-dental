@@ -2,7 +2,7 @@
 import { BlogPost } from '@/types/BlogPost';
 import { getLocalizedValue } from './types';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import { Document, BLOCKS } from '@contentful/rich-text-types';
+import { Document, BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
 import { Entry } from 'contentful';
 import { BlogPostSkeleton } from './types';
 import { DEFAULT_LOCALE } from './client';
@@ -28,51 +28,106 @@ export const transformBlogPostEntry = (entry: Entry<BlogPostSkeleton>): BlogPost
   };
 };
 
-// Convert rich text content to HTML with improved error handling
+// Enhanced rich text to HTML conversion with proper styling
 export const richTextToHtml = (content: any): string => {
   if (!content) {
     return '';
   }
   
   try {
-    // Direct approach - if it's already a Document object
+    // Define custom options for rich text rendering with proper styling
+    const options = {
+      renderMark: {
+        [MARKS.BOLD]: (text: string) => `<strong class="font-semibold">${text}</strong>`,
+        [MARKS.ITALIC]: (text: string) => `<em class="italic">${text}</em>`,
+        [MARKS.UNDERLINE]: (text: string) => `<u class="underline">${text}</u>`,
+        [MARKS.CODE]: (text: string) => `<code class="bg-gray-100 rounded px-1 py-0.5 text-sm font-mono">${text}</code>`,
+      },
+      renderNode: {
+        // Paragraph with proper spacing
+        [BLOCKS.PARAGRAPH]: (node: any, next: any) => `<p class="mb-6 leading-relaxed">${next(node.content)}</p>`,
+        
+        // Headings with proper spacing, font, and weight
+        [BLOCKS.HEADING_1]: (node: any, next: any) => 
+          `<h1 class="font-display font-semibold text-3xl md:text-4xl mt-8 mb-4 text-dental-purple">${next(node.content)}</h1>`,
+        [BLOCKS.HEADING_2]: (node: any, next: any) => 
+          `<h2 class="font-display font-semibold text-2xl md:text-3xl mt-8 mb-4 text-dental-purple">${next(node.content)}</h2>`,
+        [BLOCKS.HEADING_3]: (node: any, next: any) => 
+          `<h3 class="font-display font-medium text-xl md:text-2xl mt-6 mb-3 text-dental-purple">${next(node.content)}</h3>`,
+        [BLOCKS.HEADING_4]: (node: any, next: any) => 
+          `<h4 class="font-display font-medium text-lg md:text-xl mt-6 mb-2 text-dental-purple">${next(node.content)}</h4>`,
+        [BLOCKS.HEADING_5]: (node: any, next: any) => 
+          `<h5 class="font-display font-medium text-base md:text-lg mt-4 mb-2 text-dental-purple">${next(node.content)}</h5>`,
+        [BLOCKS.HEADING_6]: (node: any, next: any) => 
+          `<h6 class="font-display font-medium text-base mt-4 mb-2 text-dental-purple">${next(node.content)}</h6>`,
+        
+        // Lists with proper indentation and spacing
+        [BLOCKS.UL_LIST]: (node: any, next: any) => 
+          `<ul class="list-disc pl-6 mb-6 space-y-2">${next(node.content)}</ul>`,
+        [BLOCKS.OL_LIST]: (node: any, next: any) => 
+          `<ol class="list-decimal pl-6 mb-6 space-y-2">${next(node.content)}</ol>`,
+        [BLOCKS.LIST_ITEM]: (node: any, next: any) => 
+          `<li>${next(node.content)}</li>`,
+        
+        // Block quotes with styling
+        [BLOCKS.QUOTE]: (node: any, next: any) => 
+          `<blockquote class="border-l-4 border-dental-gold pl-4 italic my-6 py-2 text-dental-purple/80">${next(node.content)}</blockquote>`,
+        
+        // Horizontal rule
+        [BLOCKS.HR]: () => '<hr class="my-8 border-dental-gray/30"/>',
+        
+        // Embedded asset/image
+        [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
+          // Safety check for embedded assets
+          if (node.data && node.data.target && node.data.target.fields) {
+            const fields = node.data.target.fields;
+            const title = getLocalizedValue(fields.title) || 'Image';
+            const url = getLocalizedValue(fields.file?.url);
+            
+            if (url) {
+              const imageUrl = url.startsWith('//') ? `https:${url}` : url;
+              return `<figure class="my-8">
+                <img src="${imageUrl}" alt="${title}" class="rounded-lg mx-auto shadow-sm" />
+                <figcaption class="text-center text-sm text-dental-gray mt-2">${title}</figcaption>
+              </figure>`;
+            }
+          }
+          return '<p class="text-dental-gray/70 text-sm">[Imagem não disponível]</p>';
+        },
+        
+        // Hyperlinks
+        [INLINES.HYPERLINK]: (node: any, next: any) => {
+          const url = node.data.uri || '#';
+          return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-dental-gold font-medium hover:underline transition-colors">${next(node.content)}</a>`;
+        },
+        
+        // Entry hyperlinks (internal links)
+        [INLINES.ENTRY_HYPERLINK]: (node: any, next: any) => {
+          return `<span class="text-dental-gold font-medium">${next(node.content)}</span>`;
+        },
+      },
+    };
+    
+    // Process different content formats
     if (content.nodeType && content.content) {
-      return documentToHtmlString(content, {
-        renderNode: {
-          // Add custom renderers for common block types
-          [BLOCKS.PARAGRAPH]: (node, next) => `<p>${next(node.content)}</p>`,
-          [BLOCKS.HEADING_1]: (node, next) => `<h1>${next(node.content)}</h1>`,
-          [BLOCKS.HEADING_2]: (node, next) => `<h2>${next(node.content)}</h2>`,
-          [BLOCKS.HEADING_3]: (node, next) => `<h3>${next(node.content)}</h3>`,
-          [BLOCKS.HEADING_4]: (node, next) => `<h4>${next(node.content)}</h4>`,
-          [BLOCKS.HEADING_5]: (node, next) => `<h5>${next(node.content)}</h5>`,
-          [BLOCKS.HEADING_6]: (node, next) => `<h6>${next(node.content)}</h6>`,
-          [BLOCKS.UL_LIST]: (node, next) => `<ul>${next(node.content)}</ul>`,
-          [BLOCKS.OL_LIST]: (node, next) => `<ol>${next(node.content)}</ol>`,
-          [BLOCKS.LIST_ITEM]: (node, next) => `<li>${next(node.content)}</li>`,
-          [BLOCKS.QUOTE]: (node, next) => `<blockquote>${next(node.content)}</blockquote>`,
-          [BLOCKS.HR]: () => '<hr/>',
-        }
-      });
+      return documentToHtmlString(content, options);
     }
     
-    // Contentful sometimes nests the document under the locale
+    // Try with localized content
     if (typeof content === 'object' && !Array.isArray(content)) {
-      // Try with the default locale
       if (content[DEFAULT_LOCALE] && content[DEFAULT_LOCALE].nodeType) {
-        return documentToHtmlString(content[DEFAULT_LOCALE]);
+        return documentToHtmlString(content[DEFAULT_LOCALE], options);
       }
       
-      // Try with any locale if default doesn't work
       for (const locale in content) {
         if (content[locale] && content[locale].nodeType) {
-          return documentToHtmlString(content[locale]);
+          return documentToHtmlString(content[locale], options);
         }
       }
     }
     
-    // Fallback: Just try to use the content as is
-    return documentToHtmlString(content);
+    // Fallback
+    return documentToHtmlString(content, options);
     
   } catch (error) {
     console.error('Error parsing rich text:', error);

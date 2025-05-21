@@ -170,10 +170,13 @@ const BlogPost = () => {
             </div>
           )}
 
-          {/* Content */}
+          {/* Content - Now using prose and custom styles */}
           <div className="prose prose-lg max-w-3xl mx-auto mb-16">
             {hasContent ? (
-              <div dangerouslySetInnerHTML={{ __html: post.content }} />
+              <div 
+                dangerouslySetInnerHTML={{ __html: post.content }}
+                className="blog-content"
+              />
             ) : (
               <div>
                 <p className="text-dental-gray mb-6">{post.excerpt}</p>
