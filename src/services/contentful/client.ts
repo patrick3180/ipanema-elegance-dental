@@ -17,12 +17,37 @@ export const contentfulClient = createClient({
   retryOnError: true,
 });
 
-// Helper function to format image URLs
-export const formatImageUrl = (url?: string): string => {
+// Enhanced helper function to format and optimize image URLs
+export const formatImageUrl = (url?: string, options?: { width?: number, quality?: number, format?: 'webp' | 'jpg' | 'png' }): string => {
   if (!url) {
     console.log('Image URL is empty');
     return '';
   }
-  const formattedUrl = url.startsWith('//') ? `https:${url}` : url;
-  return formattedUrl;
+  
+  // Ensure URL has https prefix
+  const baseUrl = url.startsWith('//') ? `https:${url}` : url;
+  
+  // Check if this is a Contentful image to apply optimizations
+  if (baseUrl.includes('images.ctfassets.net') || baseUrl.includes('downloads.ctfassets.net')) {
+    const separator = baseUrl.includes('?') ? '&' : '?';
+    let optimizedUrl = baseUrl;
+    
+    // Apply format (default to WebP for better compression)
+    const format = options?.format || 'webp';
+    optimizedUrl += `${separator}fm=${format}`;
+    
+    // Apply quality (default to 80 for good balance)
+    const quality = options?.quality || 80;
+    optimizedUrl += `&q=${quality}`;
+    
+    // Apply width if specified
+    if (options?.width) {
+      optimizedUrl += `&w=${options.width}`;
+    }
+    
+    return optimizedUrl;
+  }
+  
+  // Return original URL for non-Contentful images
+  return baseUrl;
 };

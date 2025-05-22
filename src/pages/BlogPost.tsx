@@ -9,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { getBlogPostBySlug, getAllBlogPosts } from "@/services/contentful/queries";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
+import OptimizedImage from "@/components/OptimizedImage";
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
@@ -187,13 +188,16 @@ const BlogPost = () => {
             </div>
           </div>
 
-          {/* Featured image */}
+          {/* Featured image - now using OptimizedImage */}
           <div className="max-w-3xl mx-auto mb-8">
             <AspectRatio ratio={16 / 9} className="bg-dental-beige/30 rounded-lg overflow-hidden mb-8">
-              <img 
+              <OptimizedImage 
                 src={post.imageUrl || '/placeholder.svg'} 
-                alt={post.title} 
-                className="object-cover w-full h-full"
+                alt={post.title}
+                className="w-full h-full"
+                objectFit="cover"
+                priority={true} // Load featured image with priority
+                width={1200} // Optimal width for blog post images
               />
             </AspectRatio>
           </div>
@@ -270,7 +274,7 @@ const BlogPost = () => {
             </div>
           </div>
 
-          {/* Related posts */}
+          {/* Related posts - now using OptimizedImage */}
           {relatedPosts.length > 0 && (
             <div className="max-w-4xl mx-auto">
               <h2 className="heading-md mb-6 text-center">Artigos relacionados</h2>
@@ -282,10 +286,12 @@ const BlogPost = () => {
                       onClick={() => navigate(`/blog/${relatedPost.slug}`)}
                     >
                       <AspectRatio ratio={16 / 9}>
-                        <img 
+                        <OptimizedImage 
                           src={relatedPost.imageUrl || '/placeholder.svg'} 
-                          alt={relatedPost.title} 
-                          className="object-cover w-full h-full rounded-t-md"
+                          alt={relatedPost.title}
+                          className="w-full h-full rounded-t-md"
+                          objectFit="cover"
+                          width={600} // Smaller width for thumbnail images
                         />
                       </AspectRatio>
                       <CardContent className="p-6">

@@ -3,6 +3,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import OptimizedImage from "@/components/OptimizedImage";
 
 const Hero = () => {
   const isMobile = useIsMobile();
@@ -61,10 +62,12 @@ const Hero = () => {
         <div className="order-1 lg:order-2 flex justify-center lg:justify-end animate-fade-in">
           <div className="relative">
             <div className="w-[320px] md:w-[420px] h-[500px] md:h-[600px] bg-dental-purple/10 rounded-2xl flex items-center justify-center overflow-hidden">
-              <img 
+              <OptimizedImage 
                 src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png"
                 alt="Dra. Carla Christoph, dentista em Ipanema, sorrindo e de braços cruzados, especialista em odontologia estética e cuidados personalizados."
-                className="w-full h-full object-cover"
+                className="w-full h-full"
+                objectFit="cover"
+                priority={true} // Priority loading for hero image
               />
             </div>
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-dental-gold/20 rounded-full"></div>
