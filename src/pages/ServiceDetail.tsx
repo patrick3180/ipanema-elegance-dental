@@ -2,6 +2,7 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
+import ServiceBreadcrumb from "@/components/ServiceBreadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
@@ -66,6 +67,11 @@ const ServiceDetail = () => {
     <PageLayout>
       <section className="section-spacing">
         <div className="container-custom">
+          {/* Breadcrumb navigation */}
+          {service && (
+            <ServiceBreadcrumb serviceName={service.title} serviceSlug={serviceSlug} />
+          )}
+          
           <Button
             variant="outline"
             asChild

@@ -2,6 +2,7 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
+import ServiceBreadcrumb from "@/components/ServiceBreadcrumb";
 import ServicesSection from "@/components/ServicesSection";
 
 const ServicesPage = () => {
@@ -15,8 +16,15 @@ const ServicesPage = () => {
         />
       </Helmet>
 
-      {/* Using the services section component */}
-      <ServicesSection />
+      <section className="section-spacing pt-8">
+        <div className="container-custom">
+          {/* Breadcrumb navigation */}
+          <ServiceBreadcrumb serviceName="Tratamentos Odontológicos" />
+          
+          {/* Using the services section component */}
+          <ServicesSection />
+        </div>
+      </section>
     </PageLayout>
   );
 };
