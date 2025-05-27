@@ -15,12 +15,6 @@ const ServicesPage = () => {
         />
       </Helmet>
 
-      <section className="section-spacing">
-        <div className="container-custom text-center mb-16">
-          <h1 className="heading-lg mb-4">Nossos Tratamentos Odontológicos para seu Sorriso em Ipanema</h1>
-        </div>
-      </section>
-      
       {/* Using the services section component */}
       <ServicesSection />
     </PageLayout>
