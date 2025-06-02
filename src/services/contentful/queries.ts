@@ -1,3 +1,4 @@
+
 import { BlogPost } from '@/types/BlogPost';
 import { contentfulClient, formatImageUrl, DEFAULT_LOCALE } from './client';
 import { transformBlogPostEntry, richTextToHtml } from './transformers';
@@ -8,19 +9,24 @@ import { Entry } from 'contentful';
 // Get all blog posts from Contentful
 export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
   try {
+    console.log('Fetching all blog posts from Contentful...');
     const response = await contentfulClient.getEntries<BlogPostSkeleton>({
       content_type: 'blogCarla',
       order: ['-sys.createdAt'],
-      include: 2, // Reduce include depth for faster loading of list
+      include: 3, // Increased include depth to get embedded assets
       locale: DEFAULT_LOCALE
     });
 
+    console.log(`Contentful response: ${response.items.length} items found`);
+
     if (!response.items || response.items.length === 0) {
+      console.log('No items from Contentful, falling back to local blog posts');
       return Promise.resolve(blogPosts);
     }
 
     return Promise.all(
       response.items.map(async (item) => {
+        console.log(`Processing blog post: ${item.fields.title?.[DEFAULT_LOCALE] || 'Unknown'}`);
         const post = transformBlogPostEntry(item);
         
         // Get the featured image
@@ -32,10 +38,11 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
               const imageUrl = getLocalizedValue(imageEntry.fields.file.url);
               if (imageUrl) {
                 post.imageUrl = formatImageUrl(imageUrl);
+                console.log(`Featured image loaded for ${post.title}: ${post.imageUrl}`);
               }
             }
           } catch (error) {
-            // Silently fail on image loading to keep the posts list loading fast
+            console.error(`Error loading featured image for ${post.title}:`, error);
           }
         }
         
@@ -52,7 +59,7 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
               post.category = getLocalizedValue(categoryResponse.fields.name) || '';
             }
           } catch (error) {
-            // Silently fail on category loading
+            console.error(`Error loading category for ${post.title}:`, error);
           }
         }
         
@@ -68,19 +75,24 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
 // Get a single blog post by slug from Contentful
 export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> => {
   try {
+    console.log(`Fetching blog post by slug: ${slug}`);
     const response = await contentfulClient.getEntries<BlogPostSkeleton>({
       content_type: 'blogCarla',
       'fields.slug': slug,
       limit: 1,
-      include: 2,
+      include: 4, // Increased include depth to ensure all embedded assets are loaded
       locale: DEFAULT_LOCALE
     });
 
+    console.log(`Contentful response for slug ${slug}:`, response.items.length > 0 ? 'Found' : 'Not found');
+
     if (!response.items || response.items.length === 0) {
+      console.log(`No Contentful item found for slug ${slug}, falling back to local data`);
       return getLocalBlogPostBySlug(slug);
     }
 
     const item = response.items[0];
+    console.log(`Processing blog post: ${item.fields.title?.[DEFAULT_LOCALE] || 'Unknown'}`);
     const post = transformBlogPostEntry(item);
     
     // Get the featured image
@@ -92,6 +104,7 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
           const imageUrl = getLocalizedValue(imageEntry.fields.file.url);
           if (imageUrl) {
             post.imageUrl = formatImageUrl(imageUrl);
+            console.log(`Featured image loaded: ${post.imageUrl}`);
           }
         }
       } catch (error) {
@@ -99,13 +112,18 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
       }
     }
     
-    // Process rich text content efficiently
+    // Process rich text content with improved asset handling
     if (item.fields.content) {
       try {
+        console.log('Processing rich text content...');
         const contentRichText = item.fields.content;
-        post.content = richTextToHtml(contentRichText);
+        
+        // Pass the full response object to get access to included assets
+        post.content = richTextToHtml(contentRichText, response);
+        console.log(`Rich text content processed, length: ${post.content.length}`);
       } catch (error) {
         console.error('Error converting rich text to HTML:', error);
+        post.content = '<p>Erro ao carregar o conteúdo. Por favor, tente novamente mais tarde.</p>';
       }
     }
     
@@ -126,6 +144,7 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
       }
     }
     
+    console.log(`Blog post processing complete for: ${post.title}`);
     return post;
   } catch (error) {
     console.error(`Error fetching blog post with slug ${slug}:`, error);

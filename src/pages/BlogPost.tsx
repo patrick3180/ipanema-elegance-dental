@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
@@ -79,9 +80,22 @@ const BlogPost = () => {
   // If post not found and not loading, navigate to blog page
   React.useEffect(() => {
     if (!isLoading && !post && postSlug) {
+      console.log(`Post not found for slug: ${postSlug}, redirecting to blog page`);
       navigate("/blog");
     }
   }, [post, postSlug, navigate, isLoading]);
+
+  // Debug logging for post data
+  React.useEffect(() => {
+    if (post) {
+      console.log('Blog post loaded:', {
+        title: post.title,
+        hasContent: !!post.content,
+        contentLength: post.content?.length || 0,
+        imageUrl: post.imageUrl
+      });
+    }
+  }, [post]);
 
   // Loading state
   if (isLoading) {
@@ -156,6 +170,49 @@ const BlogPost = () => {
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.metaDescription || post.excerpt} />
         {post.imageUrl && <meta property="og:image" content={post.imageUrl} />}
+        
+        {/* Add custom styles for blog images */}
+        <style>{`
+          .blog-content .blog-image-container {
+            margin: 2rem 0;
+            text-align: center;
+          }
+          
+          .blog-content .blog-embedded-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            display: block;
+          }
+          
+          .blog-content .blog-image-caption {
+            margin-top: 0.75rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+            font-style: italic;
+            text-align: center;
+          }
+          
+          .blog-content figure {
+            margin: 2rem 0;
+          }
+          
+          .blog-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+          }
+          
+          /* Ensure images are responsive */
+          @media (max-width: 768px) {
+            .blog-content .blog-embedded-image {
+              max-width: 100%;
+              margin: 0 auto;
+            }
+          }
+        `}</style>
       </Helmet>
 
       <section className="section-spacing">
@@ -214,7 +271,7 @@ const BlogPost = () => {
             </div>
           )}
 
-          {/* Content - Now using prose and custom styles */}
+          {/* Content - Now using prose and custom styles with better error handling */}
           <div className="prose prose-lg max-w-3xl mx-auto mb-16">
             {hasContent ? (
               <div 
@@ -222,9 +279,14 @@ const BlogPost = () => {
                 className="blog-content"
               />
             ) : (
-              <div>
-                <p className="text-dental-gray mb-6">{post.excerpt}</p>
-                <p>O conteúdo completo não está disponível no momento.</p>
+              <div className="text-center py-8">
+                <div className="bg-dental-beige/30 rounded-lg p-6 mb-6">
+                  <p className="text-dental-gray mb-4">{post.excerpt}</p>
+                  <p className="text-sm text-dental-gray/70">
+                    O conteúdo completo está sendo carregado. Se o problema persistir, 
+                    entre em contato conosco.
+                  </p>
+                </div>
               </div>
             )}
           </div>

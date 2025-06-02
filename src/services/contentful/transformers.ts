@@ -3,7 +3,7 @@ import { BlogPost } from '@/types/BlogPost';
 import { getLocalizedValue } from './types';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { Document, BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
-import { Entry } from 'contentful';
+import { Entry, EntryCollection } from 'contentful';
 import { BlogPostSkeleton } from './types';
 import { DEFAULT_LOCALE } from './client';
 
@@ -28,13 +28,25 @@ export const transformBlogPostEntry = (entry: Entry<BlogPostSkeleton>): BlogPost
   };
 };
 
-// Enhanced rich text to HTML conversion with proper styling
-export const richTextToHtml = (content: any): string => {
+// Enhanced rich text to HTML conversion with proper styling and asset handling
+export const richTextToHtml = (content: any, entryResponse?: EntryCollection<any>): string => {
   if (!content) {
+    console.log('No content provided to richTextToHtml');
     return '';
   }
   
   try {
+    console.log('Starting rich text to HTML conversion...');
+    
+    // Create a map of included assets for quick lookup
+    const assetsMap = new Map();
+    if (entryResponse?.includes?.Asset) {
+      entryResponse.includes.Asset.forEach((asset: any) => {
+        assetsMap.set(asset.sys.id, asset);
+        console.log(`Asset loaded: ${asset.sys.id} - ${getLocalizedValue(asset.fields?.title) || 'Unknown'}`);
+      });
+    }
+    
     // Define custom options for rich text rendering with proper styling
     const options = {
       renderMark: {
@@ -76,23 +88,53 @@ export const richTextToHtml = (content: any): string => {
         // Horizontal rule
         [BLOCKS.HR]: () => '<hr class="my-8 border-dental-gray/30"/>',
         
-        // Embedded asset/image
+        // Enhanced embedded asset/image handling
         [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
-          // Safety check for embedded assets
-          if (node.data && node.data.target && node.data.target.fields) {
-            const fields = node.data.target.fields;
-            const title = getLocalizedValue(fields.title) || 'Image';
-            const url = getLocalizedValue(fields.file?.url);
+          console.log('Processing embedded asset:', node.data?.target?.sys?.id);
+          
+          // Try to get asset from the node data first
+          let asset = node.data?.target;
+          
+          // If not available in node data, try to get from assets map
+          if (!asset?.fields && node.data?.target?.sys?.id) {
+            asset = assetsMap.get(node.data.target.sys.id);
+            console.log(`Asset found in map: ${asset ? 'Yes' : 'No'}`);
+          }
+          
+          if (asset?.fields) {
+            const fields = asset.fields;
+            const title = getLocalizedValue(fields.title) || 'Imagem do blog';
+            const description = getLocalizedValue(fields.description) || '';
+            const file = getLocalizedValue(fields.file);
             
-            if (url) {
-              const imageUrl = url.startsWith('//') ? `https:${url}` : url;
-              return `<figure class="my-8">
-                <img src="${imageUrl}" alt="${title}" class="rounded-lg mx-auto shadow-sm" />
-                <figcaption class="text-center text-sm text-dental-gray mt-2">${title}</figcaption>
+            if (file?.url) {
+              let imageUrl = file.url.startsWith('//') ? `https:${file.url}` : file.url;
+              
+              // Apply Contentful image optimizations
+              if (imageUrl.includes('images.ctfassets.net') || imageUrl.includes('downloads.ctfassets.net')) {
+                const separator = imageUrl.includes('?') ? '&' : '?';
+                imageUrl += `${separator}fm=webp&q=85&w=800`;
+              }
+              
+              console.log(`Rendering embedded image: ${title} - ${imageUrl}`);
+              
+              return `<figure class="blog-image-container my-8">
+                <img 
+                  src="${imageUrl}" 
+                  alt="${title}" 
+                  class="blog-embedded-image rounded-lg mx-auto shadow-sm max-w-full h-auto" 
+                  loading="lazy"
+                  decoding="async"
+                />
+                ${description ? `<figcaption class="blog-image-caption text-center text-sm text-dental-gray mt-3 italic">${description}</figcaption>` : ''}
               </figure>`;
             }
           }
-          return '<p class="text-dental-gray/70 text-sm">[Imagem não disponível]</p>';
+          
+          console.warn('Embedded asset could not be processed:', node.data);
+          return `<div class="my-8 p-4 bg-dental-beige/30 rounded-lg text-center">
+            <p class="text-dental-gray/70 text-sm">📷 Imagem não disponível</p>
+          </div>`;
         },
         
         // Hyperlinks - Updated to use the same color as text and add underline
@@ -110,27 +152,34 @@ export const richTextToHtml = (content: any): string => {
     
     // Process different content formats
     if (content.nodeType && content.content) {
-      return documentToHtmlString(content, options);
+      const html = documentToHtmlString(content, options);
+      console.log(`Rich text conversion completed, output length: ${html.length}`);
+      return html;
     }
     
     // Try with localized content
     if (typeof content === 'object' && !Array.isArray(content)) {
       if (content[DEFAULT_LOCALE] && content[DEFAULT_LOCALE].nodeType) {
-        return documentToHtmlString(content[DEFAULT_LOCALE], options);
+        const html = documentToHtmlString(content[DEFAULT_LOCALE], options);
+        console.log(`Rich text conversion completed (localized), output length: ${html.length}`);
+        return html;
       }
       
       for (const locale in content) {
         if (content[locale] && content[locale].nodeType) {
-          return documentToHtmlString(content[locale], options);
+          const html = documentToHtmlString(content[locale], options);
+          console.log(`Rich text conversion completed (fallback locale), output length: ${html.length}`);
+          return html;
         }
       }
     }
     
     // Fallback
+    console.log('Using fallback rich text conversion');
     return documentToHtmlString(content, options);
     
   } catch (error) {
     console.error('Error parsing rich text:', error);
-    return '<p>Erro ao renderizar o conteúdo. Por favor, tente novamente mais tarde.</p>';
+    return '<p class="text-red-500">Erro ao renderizar o conteúdo. Por favor, tente novamente mais tarde.</p>';
   }
 };
