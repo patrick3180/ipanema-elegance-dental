@@ -18,6 +18,7 @@ export interface TreatmentSection {
   title: string;
   content: SectionContent;
   type: "default" | "benefits" | "steps" | "faq";
+  imageUrl?: string;
 }
 
 export interface TreatmentPageProps {
