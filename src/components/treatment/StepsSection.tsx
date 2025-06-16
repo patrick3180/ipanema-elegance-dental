@@ -1,13 +1,15 @@
 
 import React from "react";
 import { SectionContent, Step } from "./types";
+import OptimizedImage from "@/components/OptimizedImage";
 
 interface StepsSectionProps {
   title: string;
   content: SectionContent;
+  imageUrl?: string;
 }
 
-const StepsSection = ({ title, content }: StepsSectionProps) => {
+const StepsSection = ({ title, content, imageUrl }: StepsSectionProps) => {
   // Helper function to check if an item is a Step
   const isStep = (item: any): item is Step => {
     return item && typeof item === 'object' && 'title' in item && 'description' in item;
@@ -16,6 +18,19 @@ const StepsSection = ({ title, content }: StepsSectionProps) => {
   return (
     <div className="my-12">
       <h2 className="heading-md mb-4">{title}</h2>
+      
+      {imageUrl && (
+        <div className="mb-6">
+          <OptimizedImage
+            src={imageUrl}
+            alt={title}
+            width={800}
+            height={400}
+            className="w-full h-64 md:h-80 rounded-lg shadow-lg object-cover"
+            priority={false}
+          />
+        </div>
+      )}
       
       {typeof content === "string" && <p className="body-md mb-4">{content}</p>}
       

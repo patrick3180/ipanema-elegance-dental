@@ -19,8 +19,7 @@ const ImplantesDentarios = () => {
         id: "indicacoes-implantes",
         title: "Quem Pode se Beneficiar dos Implantes Dentários em Ipanema?",
         content: "Os implantes dentários são uma excelente solução para a maioria dos pacientes em Ipanema que perderam um, vários ou todos os dentes. As principais indicações incluem: * Substituição de um único dente perdido. * Reposição de múltiplos dentes ausentes, servindo de suporte para pontes fixas. * Suporte para próteses totais (dentaduras), proporcionando muito mais estabilidade e conforto (prótese protocolo ou overdenture). * Pacientes que buscam uma alternativa mais fixa e confortável às próteses removíveis tradicionais. Uma avaliação detalhada com a Dra. Carla Christoph, especialista em implantes dentários em Ipanema, é essencial para confirmar a indicação e planejar seu caso.",
-        type: "default" as const,
-        imageUrl: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+        type: "default" as const
       },
       {
         id: "beneficios-implantes",
@@ -57,7 +56,8 @@ const ImplantesDentarios = () => {
             description: "Após a osseointegração, é confeccionada e instalada a prótese definitiva sobre o implante (coroa, ponte ou dentadura). Em alguns casos selecionados, pode ser possível realizar a técnica de implante dentário com carga imediata em Ipanema, onde uma prótese provisória é instalada logo após a cirurgia."
           }
         ],
-        type: "steps" as const
+        type: "steps" as const,
+        imageUrl: "/lovable-uploads/b1c1cbdb-bde0-4d9e-912e-74cf74cf716d.png"
       },
       {
         id: "cuidados-pos-implantes",

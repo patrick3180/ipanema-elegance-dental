@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
@@ -48,7 +49,7 @@ const TreatmentPageTemplate = ({
       case "benefits":
         return <BenefitsSection key={section.id} title={section.title} content={section.content} />;
       case "steps":
-        return <StepsSection key={section.id} title={section.title} content={section.content} />;
+        return <StepsSection key={section.id} title={section.title} content={section.content} imageUrl={section.imageUrl} />;
       default:
         return null;
     }
