@@ -21,14 +21,17 @@ const StepsSection = ({ title, content, imageUrl }: StepsSectionProps) => {
       
       {imageUrl && (
         <div className="mb-6">
-          <OptimizedImage
-            src={imageUrl}
-            alt={title}
-            width={800}
-            height={400}
-            className="w-full h-64 md:h-80 rounded-lg shadow-lg object-cover"
-            priority={false}
-          />
+          <div className="bg-dental-beige/20 rounded-lg p-4">
+            <OptimizedImage
+              src={imageUrl}
+              alt={title}
+              width={800}
+              height={500}
+              className="w-full max-h-96 rounded-lg shadow-lg mx-auto"
+              priority={false}
+              objectFit="contain"
+            />
+          </div>
         </div>
       )}
       

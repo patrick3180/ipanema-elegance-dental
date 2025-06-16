@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { useBlogOptimization } from '@/hooks/useBlogOptimization';
 
@@ -92,10 +91,14 @@ const BlogContent = ({ content, className = '' }: BlogContentProps) => {
         imageElement.style.transform = 'scale(0.95)';
         imageElement.style.transition = 'opacity 0.5s ease, transform 0.3s ease';
         
-        // Optimize Contentful images
+        // Improved image URL handling
+        let processedSrc = originalSrc;
+        
+        // Handle different image sources
         if (originalSrc.includes('ctfassets.net')) {
+          // Contentful images
           try {
-            const url = new URL(originalSrc);
+            const url = new URL(originalSrc.startsWith('//') ? `https:${originalSrc}` : originalSrc);
             
             // Clear existing optimization params
             url.searchParams.delete('q');
@@ -115,16 +118,36 @@ const BlogContent = ({ content, className = '' }: BlogContentProps) => {
               url.searchParams.set('dpr', Math.min(window.devicePixelRatio, 2).toString());
             }
             
-            const optimizedSrc = url.toString();
+            processedSrc = url.toString();
             console.log(`BlogContent: Optimizing Contentful image:`, {
               original: originalSrc,
-              optimized: optimizedSrc
+              optimized: processedSrc
             });
-            
-            imageElement.src = optimizedSrc;
           } catch (error) {
-            console.error('BlogContent: Error optimizing image URL:', error);
+            console.error('BlogContent: Error optimizing Contentful image URL:', error);
+            processedSrc = originalSrc;
           }
+        } else if (originalSrc.includes('/lovable-uploads/')) {
+          // Local Lovable uploads - use as is but ensure full URL
+          if (originalSrc.startsWith('/')) {
+            processedSrc = window.location.origin + originalSrc;
+          }
+          console.log(`BlogContent: Processing local image:`, {
+            original: originalSrc,
+            processed: processedSrc
+          });
+        } else if (originalSrc.startsWith('/')) {
+          // Other local paths
+          processedSrc = window.location.origin + originalSrc;
+          console.log(`BlogContent: Converting relative path:`, {
+            original: originalSrc,
+            processed: processedSrc
+          });
+        }
+        
+        // Update the image source
+        if (processedSrc !== originalSrc) {
+          imageElement.src = processedSrc;
         }
         
         // Set loading behavior
@@ -177,22 +200,21 @@ const BlogContent = ({ content, className = '' }: BlogContentProps) => {
       className={`blog-content prose prose-lg max-w-none ${className}`}
       dangerouslySetInnerHTML={{ __html: content }}
       style={{
-        // Enhanced prose styling specifically for dental blog content
-        '--tw-prose-body': 'rgb(139 92 246 / 0.9)', // dental-purple/90
-        '--tw-prose-headings': 'rgb(139 92 246)', // dental-purple
-        '--tw-prose-links': 'rgb(139 92 246)', // dental-purple
-        '--tw-prose-bold': 'rgb(139 92 246)', // dental-purple
-        '--tw-prose-counters': 'rgb(139 92 246)', // dental-purple
-        '--tw-prose-bullets': 'rgb(139 92 246)', // dental-purple
-        '--tw-prose-hr': 'rgb(156 163 175 / 0.3)', // dental-gray/30
-        '--tw-prose-quotes': 'rgb(139 92 246 / 0.8)', // dental-purple/80
-        '--tw-prose-quote-borders': 'rgb(245 158 11)', // dental-gold
-        '--tw-prose-captions': 'rgb(107 114 128)', // gray-500
-        '--tw-prose-code': 'rgb(139 92 246)', // dental-purple
-        '--tw-prose-pre-code': 'rgb(139 92 246)', // dental-purple
-        '--tw-prose-pre-bg': 'rgb(249 250 251)', // gray-50
-        '--tw-prose-th-borders': 'rgb(209 213 219)', // gray-300
-        '--tw-prose-td-borders': 'rgb(229 231 235)', // gray-200
+        '--tw-prose-body': 'rgb(139 92 246 / 0.9)',
+        '--tw-prose-headings': 'rgb(139 92 246)',
+        '--tw-prose-links': 'rgb(139 92 246)',
+        '--tw-prose-bold': 'rgb(139 92 246)',
+        '--tw-prose-counters': 'rgb(139 92 246)',
+        '--tw-prose-bullets': 'rgb(139 92 246)',
+        '--tw-prose-hr': 'rgb(156 163 175 / 0.3)',
+        '--tw-prose-quotes': 'rgb(139 92 246 / 0.8)',
+        '--tw-prose-quote-borders': 'rgb(245 158 11)',
+        '--tw-prose-captions': 'rgb(107 114 128)',
+        '--tw-prose-code': 'rgb(139 92 246)',
+        '--tw-prose-pre-code': 'rgb(139 92 246)',
+        '--tw-prose-pre-bg': 'rgb(249 250 251)',
+        '--tw-prose-th-borders': 'rgb(209 213 219)',
+        '--tw-prose-td-borders': 'rgb(229 231 235)',
       } as React.CSSProperties}
     />
   );
