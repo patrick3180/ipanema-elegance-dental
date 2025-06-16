@@ -57,7 +57,7 @@ const ImplantesDentarios = () => {
           }
         ],
         type: "steps" as const,
-        imageUrl: "/lovable-uploads/b26c8043-4495-4f92-9751-06295c1f5487.png"
+        imageUrl: "/lovable-uploads/088ef4e4-3351-4593-9ad8-74a79099f3cb.png"
       },
       {
         id: "cuidados-pos-implantes",
