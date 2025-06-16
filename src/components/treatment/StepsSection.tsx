@@ -26,8 +26,8 @@ const StepsSection = ({ title, content, imageUrl }: StepsSectionProps) => {
               src={imageUrl}
               alt={title}
               width={800}
-              height={500}
-              className="w-full max-h-96 rounded-lg shadow-lg mx-auto"
+              height={600}
+              className="w-full h-auto rounded-lg shadow-lg mx-auto"
               priority={false}
               objectFit="contain"
             />
