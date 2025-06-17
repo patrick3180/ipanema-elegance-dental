@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 interface ImageProcessorProps {
@@ -26,7 +27,7 @@ export const processImageUrl = ({ originalSrc, imageQuality, maxImageWidth }: Im
       url.searchParams.set('q', imageQuality.toString());
       url.searchParams.set('w', maxImageWidth.toString());
       url.searchParams.set('fm', 'webp');
-      url.searchParams.set('fit', 'fill');
+      url.searchParams.set('fit', 'scale'); // Changed from 'fill' to 'scale' to maintain aspect ratio
       
       // Add retina support
       if (window.devicePixelRatio > 1) {
@@ -73,9 +74,12 @@ export const applyImageStyles = (imageElement: HTMLImageElement, shouldPreloadIm
   imageElement.loading = shouldPreloadImages ? 'eager' : 'lazy';
   imageElement.decoding = 'async';
 
-  // Ensure responsive behavior
+  // Ensure responsive behavior without cropping
   imageElement.style.maxWidth = '100%';
   imageElement.style.height = 'auto';
+  imageElement.style.width = 'auto';
+  imageElement.style.objectFit = 'contain';
+  imageElement.style.maxHeight = 'none';
   
   // Enhanced styling for embedded images
   if (imageElement.classList.contains('blog-embedded-image')) {

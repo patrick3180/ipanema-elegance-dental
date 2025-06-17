@@ -138,6 +138,11 @@
 
 .blog-content img {
   @apply rounded-lg mx-auto my-8 shadow-sm max-w-full;
+  height: auto !important;
+  object-fit: contain !important;
+  width: auto !important;
+  max-height: none !important;
+  display: block;
 }
 
 .blog-content figure {

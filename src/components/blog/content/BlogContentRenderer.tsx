@@ -1,5 +1,5 @@
+
 import React from 'react';
-import { useContentProcessor } from '@/hooks/useContentProcessor';
 
 interface BlogContentRendererProps {
   content: string;
@@ -8,17 +8,14 @@ interface BlogContentRendererProps {
   shouldPreloadImages: boolean;
 }
 
-export const useContentProcessor = ({ 
+const BlogContentRenderer: React.FC<BlogContentRendererProps> = ({ 
   content, 
   imageQuality, 
   maxImageWidth, 
   shouldPreloadImages 
-}: BlogContentRendererProps) => {
-  // Re-export the hook from the dedicated hook file
-  return useContentProcessor({ 
-    content, 
-    imageQuality, 
-    maxImageWidth, 
-    shouldPreloadImages 
-  });
+}) => {
+  // This component is currently not used, but kept for future implementation
+  return null;
 };
+
+export default BlogContentRenderer;
