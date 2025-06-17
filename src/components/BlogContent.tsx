@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { useBlogOptimization } from '@/hooks/useBlogOptimization';
-import { useContentProcessor } from './blog/content/BlogContentRenderer';
+import { useContentProcessor } from '@/hooks/useContentProcessor';
 
 interface BlogContentProps {
   content: string;
@@ -11,7 +10,7 @@ interface BlogContentProps {
 const BlogContent = ({ content, className = '' }: BlogContentProps) => {
   const { imageQuality, maxImageWidth, shouldPreloadImages } = useBlogOptimization();
 
-  // Use the content processor hook
+  // Use the content processor hook directly
   useContentProcessor({
     content,
     imageQuality,

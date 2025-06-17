@@ -1,24 +1,29 @@
+
 import React from 'react';
 import { useContentProcessor } from '@/hooks/useContentProcessor';
 
-interface BlogContentRendererProps {
+interface ContentProcessorProps {
   content: string;
   imageQuality: number;
   maxImageWidth: number;
   shouldPreloadImages: boolean;
 }
 
-export const useContentProcessor = ({ 
+const ContentProcessor: React.FC<ContentProcessorProps> = ({ 
   content, 
   imageQuality, 
   maxImageWidth, 
   shouldPreloadImages 
-}: BlogContentRendererProps) => {
-  // Re-export the hook from the dedicated hook file
-  return useContentProcessor({ 
+}) => {
+  useContentProcessor({ 
     content, 
     imageQuality, 
     maxImageWidth, 
     shouldPreloadImages 
   });
+
+  // This component doesn't render anything, it just processes the content
+  return null;
 };
+
+export default ContentProcessor;
