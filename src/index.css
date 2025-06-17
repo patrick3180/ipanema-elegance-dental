@@ -141,7 +141,7 @@
   height: auto !important;
   object-fit: contain !important;
   width: auto !important;
-  max-height: none !important;
+  max-height: 400px !important;
   display: block;
 }
 
