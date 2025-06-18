@@ -1,6 +1,7 @@
 
 import React from "react";
 import PageLayout from "@/components/PageLayout";
+import SEOHead from "@/components/SEOHead";
 import Hero from "@/components/Hero";
 import AboutSection from "@/components/AboutSection";
 import ServicesSection from "@/components/ServicesSection";
@@ -8,14 +9,142 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
 
 const Index = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Dentist",
+    "name": "Dra. Carla Christoph",
+    "url": "https://dracarlachristoph.com.br",
+    "logo": "https://lovable.dev/opengraph-image-p98pqg.png",
+    "image": "https://lovable.dev/opengraph-image-p98pqg.png",
+    "description": "Dentista especialista em Ipanema com mais de 20 anos de experiência. Odontologia estética, implantes dentários, lentes de contato dental, clareamento dental e reabilitação oral.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Ipanema",
+      "addressLocality": "Rio de Janeiro",
+      "addressRegion": "RJ",
+      "postalCode": "22420",
+      "addressCountry": "BR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "-22.9868",
+      "longitude": "-43.2005"
+    },
+    "telephone": "+55 21 99330-4045",
+    "email": "contato@dracarlachristoph.com.br",
+    "priceRange": "$$",
+    "paymentAccepted": "Cash, Credit Card, Bank Transfer",
+    "currenciesAccepted": "BRL",
+    "openingHours": [
+      "Mo-Fr 08:00-18:00",
+      "Sa 08:00-14:00"
+    ],
+    "areaServed": {
+      "@type": "City",
+      "name": "Rio de Janeiro",
+      "sameAs": "https://en.wikipedia.org/wiki/Rio_de_Janeiro"
+    },
+    "serviceArea": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": "-22.9868",
+        "longitude": "-43.2005"
+      },
+      "geoRadius": "50000"
+    },
+    "sameAs": [
+      "https://instagram.com/dracarlachristoph",
+      "https://wa.me/5521993304045"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Serviços Odontológicos Especializados",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "MedicalProcedure",
+            "name": "Implantes Dentários",
+            "description": "Implantodontia especializada com mais de 20 anos de experiência"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "MedicalProcedure",
+            "name": "Lentes de Contato Dental e Facetas",
+            "description": "Transformação do sorriso com lentes ultrafinas e facetas de porcelana"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "MedicalProcedure",
+            "name": "Clareamento Dental Profissional",
+            "description": "Clareamento dental seguro e eficaz em consultório ou supervisionado"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "MedicalProcedure",
+            "name": "Prótese Dentária",
+            "description": "Próteses fixas e removíveis para reabilitação oral completa"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "MedicalProcedure",
+            "name": "Restaurações Estéticas",
+            "description": "Restaurações em resina e porcelana para um sorriso natural"
+          }
+        }
+      ]
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Carla Christoph",
+      "jobTitle": "Cirurgiã-Dentista",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Clínica Dra. Carla Christoph"
+      },
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Faculdade de Odontologia"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Especialista em Prótese Dental"
+        },
+        {
+          "@type": "EducationalOccupationalCredential", 
+          "name": "Especialista em Implantodontia"
+        }
+      ]
+    }
+  };
+
   return (
-    <PageLayout className="pt-0">
-      <Hero />
-      <AboutSection />
-      <ServicesSection />
-      <TestimonialsSection />
-      <ContactSection />
-    </PageLayout>
+    <>
+      <SEOHead
+        title="Dentista em Ipanema | Clínica Odontológica Dra. Carla Christoph"
+        description="Procurando dentista em Ipanema? A Dra. Carla Christoph oferece odontologia estética e reabilitação oral com atendimento personalizado. Agende sua consulta!"
+        keywords="dentista Ipanema, clínica odontológica Ipanema, odontologia estética Ipanema, implantes dentários Ipanema, lentes de contato dental, facetas de porcelana, clareamento dental, prótese dentária, Dra. Carla Christoph, dentista especialista Rio de Janeiro"
+        canonicalUrl="https://dracarlachristoph.com.br/"
+        structuredData={structuredData}
+      />
+      <PageLayout className="pt-0">
+        <Hero />
+        <AboutSection />
+        <ServicesSection />
+        <TestimonialsSection />
+        <ContactSection />
+      </PageLayout>
+    </>
   );
 };
 
