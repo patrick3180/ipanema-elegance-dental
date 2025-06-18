@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
@@ -96,7 +97,7 @@ const BlogPost = () => {
       "@type": "Person",
       "name": post.author || "Dra. Carla Christoph",
       "jobTitle": "Cirurgiã-Dentista Especialista",
-      "url": "https://dracarlachristoph.com.br/sobre"
+      "url": "https://dracarlachristoph.com/sobre"
     },
     "publisher": {
       "@type": "Organization",
@@ -110,7 +111,7 @@ const BlogPost = () => {
     "dateModified": post.updatedAt || post.date,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://dracarlachristoph.com.br/blog/${postSlug}`
+      "@id": `https://dracarlachristoph.com/blog/${postSlug}`
     },
     "articleSection": post.category,
     "keywords": post.tags?.join(", ") || `${post.category}, odontologia, saúde bucal, dentista Ipanema`,
@@ -132,7 +133,7 @@ const BlogPost = () => {
         keywords={`${post.tags?.join(", ") || post.category}, blog odontologia, dicas saúde bucal, dentista Ipanema, Dra. Carla Christoph`}
         ogImage={post.imageUrl}
         ogType="article"
-        canonicalUrl={`https://dracarlachristoph.com.br/blog/${postSlug}`}
+        canonicalUrl={`https://dracarlachristoph.com/blog/${postSlug}`}
         author={post.author || "Dra. Carla Christoph"}
         publishedTime={post.publishedAt || post.date}
         modifiedTime={post.updatedAt || post.date}

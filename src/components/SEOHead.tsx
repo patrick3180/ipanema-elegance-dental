@@ -38,7 +38,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     "@context": "https://schema.org",
     "@type": "Dentist",
     "name": "Dra. Carla Christoph",
-    "url": "https://dracarlachristoph.com.br",
+    "url": "https://dracarlachristoph.com",
     "logo": ogImage,
     "image": ogImage,
     "description": "Dentista especialista em Ipanema, Rio de Janeiro. Odontologia estética, implantes dentários, prótese dental e reabilitação oral com mais de 20 anos de experiência.",
@@ -55,6 +55,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       "longitude": "-43.2005"
     },
     "telephone": "+55 21 99330-4045",
+    "email": "contato@dracarlachristoph.com",
     "priceRange": "$$",
     "openingHours": [
       "Mo-Fr 08:00-18:00"

@@ -13,7 +13,7 @@ const Index = () => {
     "@context": "https://schema.org",
     "@type": "Dentist",
     "name": "Dra. Carla Christoph",
-    "url": "https://dracarlachristoph.com.br",
+    "url": "https://dracarlachristoph.com",
     "logo": "https://lovable.dev/opengraph-image-p98pqg.png",
     "image": "https://lovable.dev/opengraph-image-p98pqg.png",
     "description": "Dentista especialista em Ipanema com mais de 20 anos de experiência. Odontologia estética, implantes dentários, lentes de contato dental, clareamento dental e reabilitação oral.",
@@ -31,7 +31,7 @@ const Index = () => {
       "longitude": "-43.2005"
     },
     "telephone": "+55 21 99330-4045",
-    "email": "contato@dracarlachristoph.com.br",
+    "email": "contato@dracarlachristoph.com",
     "priceRange": "$$",
     "paymentAccepted": "Cash, Credit Card, Bank Transfer",
     "currenciesAccepted": "BRL",
@@ -134,7 +134,7 @@ const Index = () => {
         title="Dentista em Ipanema | Clínica Odontológica Dra. Carla Christoph"
         description="Procurando dentista em Ipanema? A Dra. Carla Christoph oferece odontologia estética e reabilitação oral com atendimento personalizado. Agende sua consulta!"
         keywords="dentista Ipanema, clínica odontológica Ipanema, odontologia estética Ipanema, implantes dentários Ipanema, lentes de contato dental, facetas de porcelana, clareamento dental, prótese dentária, Dra. Carla Christoph, dentista especialista Rio de Janeiro"
-        canonicalUrl="https://dracarlachristoph.com.br/"
+        canonicalUrl="https://dracarlachristoph.com/"
         structuredData={structuredData}
       />
       <PageLayout className="pt-0">
