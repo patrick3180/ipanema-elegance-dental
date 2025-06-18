@@ -21,6 +21,16 @@ const CTASection = ({ title, whatsappMessage, heading }: CTASectionProps) => {
       });
     }
     
+    // Google Ads conversion tracking
+    if (window.gtag) {
+      window.gtag('event', 'conversion', {
+        'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
+        'event_callback': function() {
+          console.log('Google Ads conversion tracked - Treatment CTA button');
+        }
+      });
+    }
+    
     // Open WhatsApp with pre-defined message
     window.open(`https://wa.me/5521993304045?text=${encodeURIComponent(whatsappMessage)}`, "_blank");
   };

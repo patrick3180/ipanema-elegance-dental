@@ -17,6 +17,16 @@ const AboutPage = () => {
       });
     }
 
+    // Google Ads conversion tracking
+    if (window.gtag) {
+      window.gtag('event', 'conversion', {
+        'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
+        'event_callback': function() {
+          console.log('Google Ads conversion tracked - About page button');
+        }
+      });
+    }
+
     console.log("WhatsApp button clicked from About page - tracking event");
 
     const phoneNumber = "5521993304045";
