@@ -1,99 +1,136 @@
 
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Main pages -->
   <url>
     <loc>https://dracarlachristoph.com/</loc>
-    <lastmod>2025-05-18</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://dracarlachristoph.com/sobre</loc>
-    <lastmod>2025-05-18</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dracarlachristoph.com/servicos</loc>
-    <lastmod>2025-05-18</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dracarlachristoph.com/diferenciais</loc>
-    <lastmod>2025-05-18</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://dracarlachristoph.com/blog</loc>
-    <lastmod>2025-05-18</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://dracarlachristoph.com/contato</loc>
-    <lastmod>2025-05-18</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Service pages -->
   <url>
     <loc>https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-porcelana</loc>
-    <lastmod>2025-05-18</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://dracarlachristoph.com/clareamento-dental</loc>
-    <lastmod>2025-05-18</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://dracarlachristoph.com/protese-dentaria</loc>
-    <lastmod>2025-05-18</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://dracarlachristoph.com/implantes-dentarios</loc>
-    <lastmod>2025-05-18</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://dracarlachristoph.com/clinica-geral-e-prevencao</loc>
-    <lastmod>2025-05-18</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://dracarlachristoph.com/restauracoes-esteticas</loc>
-    <lastmod>2025-05-18</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://dracarlachristoph.com/tratamento-de-canal</loc>
-    <lastmod>2025-05-18</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://dracarlachristoph.com/saude-da-gengiva</loc>
-    <lastmod>2025-05-18</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- Blog posts (sample from local data) -->
+  <url>
+    <loc>https://dracarlachristoph.com/blog/cuidados-pos-implante-dentario</loc>
+    <lastmod>2025-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dracarlachristoph.com/blog/lentes-de-contato-dental-tudo-que-voce-precisa-saber</loc>
+    <lastmod>2025-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dracarlachristoph.com/blog/clareamento-dental-mitos-e-verdades</loc>
+    <lastmod>2025-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dracarlachristoph.com/blog/higiene-bucal-rotina-diaria-perfeita</loc>
+    <lastmod>2025-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dracarlachristoph.com/blog/protese-dentaria-fixa-ou-removivel</loc>
+    <lastmod>2025-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Legal pages -->
   <url>
     <loc>https://dracarlachristoph.com/politica-de-privacidade</loc>
-    <lastmod>2025-05-18</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://dracarlachristoph.com/termos-de-uso</loc>
-    <lastmod>2025-05-18</lastmod>
+    <lastmod>2025-06-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

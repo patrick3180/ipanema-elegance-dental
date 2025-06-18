@@ -44,7 +44,7 @@ const BlogPage = () => {
     "@type": "Blog",
     "name": "Blog Dra. Carla Christoph",
     "description": "Blog de odontologia da Dra. Carla Christoph em Ipanema. Dicas de saúde bucal, tratamentos odontológicos e novidades em odontologia estética.",
-    "url": "https://dracarlachristoph.com.br/blog",
+    "url": "https://dracarlachristoph.com/blog",
     "author": {
       "@type": "Person",
       "name": "Dra. Carla Christoph",
@@ -75,7 +75,7 @@ const BlogPage = () => {
         title="Blog Dra. Carla Christoph | Dicas de Saúde Bucal em Ipanema"
         description="Acesse o blog de odontologia da Dra. Carla Christoph. Encontre dicas de saúde bucal em Ipanema, artigos informativos e novidades para o seu sorriso."
         keywords="blog odontologia, dicas saúde bucal, odontologia estética blog, implantes dentários blog, clareamento dental dicas, lentes de contato dental, Dra. Carla Christoph blog, dentista Ipanema blog"
-        canonicalUrl="https://dracarlachristoph.com.br/blog"
+        canonicalUrl="https://dracarlachristoph.com/blog"
         structuredData={structuredData}
       />
       <PageLayout>
