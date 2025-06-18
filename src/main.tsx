@@ -4,11 +4,14 @@ import App from './App.tsx'
 import './index.css'
 import { HelmetProvider } from 'react-helmet-async'
 
-// Initialize dataLayer for Google Tag Manager
+// Initialize dataLayer for Google Tag Manager and Google Ads
 window.dataLayer = window.dataLayer || [];
 function gtag(...args: any[]) {
   window.dataLayer.push(args);
 }
+
+// Make gtag globally available
+window.gtag = gtag;
 
 createRoot(document.getElementById("root")!).render(
   <HelmetProvider>
