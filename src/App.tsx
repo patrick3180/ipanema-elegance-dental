@@ -1,70 +1,244 @@
 
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-import AboutPage from "./pages/AboutPage";
-import ServicesPage from "./pages/ServicesPage";
-import ServiceDetail from "./pages/ServiceDetail";
-import DifferentialsPage from "./pages/DifferentialsPage";
-import BlogPage from "./pages/BlogPage";
-import BlogPost from "./pages/BlogPost";
-import ContactPage from "./pages/ContactPage";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsOfUse from "./pages/TermsOfUse";
-import WhatsAppPopup from "./components/WhatsAppPopup";
-import LentesEFacetas from "./pages/LentesEFacetas";
-import ClareamentoDental from "./pages/ClareamentoDental";
-import ProteseDentaria from "./pages/ProteseDentaria";
-import ImplantesDentarios from "./pages/ImplantesDentarios";
-import ClinicaGeralPrevencao from "./pages/ClinicaGeralPrevencao";
-import RestaureacoesEsteticas from "./pages/RestaureacoesEsteticas";
-import TratamentoDeCanal from "./pages/TratamentoDeCanal";
-import SaudeDaGengiva from "./pages/SaudeDaGengiva";
+import { Toaster } from "@/components/ui/sonner";
+import { lazy } from "react";
+import ErrorBoundary from "@/components/performance/ErrorBoundary";
+import PerformanceMonitor from "@/components/performance/PerformanceMonitor";
+import ResourcePreloader from "@/components/performance/ResourcePreloader";
+import LazyRouteWrapper from "@/components/performance/LazyRouteWrapper";
+import { useResourceOptimization } from "@/hooks/useResourceOptimization";
 
-// Add type declaration for dataLayer
-declare global {
-  interface Window {
-    dataLayer: any[];
+// Lazy load components for better code splitting
+const Index = lazy(() => import("./pages/Index"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const ServicesPage = lazy(() => import("./pages/ServicesPage"));
+const DifferentialsPage = lazy(() => import("./pages/DifferentialsPage"));
+const BlogPage = lazy(() => import("./pages/BlogPage"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
+// Service pages
+const LentesEFacetas = lazy(() => import("./pages/LentesEFacetas"));
+const ClareamentoDental = lazy(() => import("./pages/ClareamentoDental"));
+const ProteseDentaria = lazy(() => import("./pages/ProteseDentaria"));
+const ImplantesDentarios = lazy(() => import("./pages/ImplantesDentarios"));
+const ClinicaGeralPrevencao = lazy(() => import("./pages/ClinicaGeralPrevencao"));
+const RestaureacoesEsteticas = lazy(() => import("./pages/RestaureacoesEsteticas"));
+const TratamentoDeCanal = lazy(() => import("./pages/TratamentoDeCanal"));
+const SaudeDaGengiva = lazy(() => import("./pages/SaudeDaGengiva"));
+
+// Legal pages
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const TermsOfUse = lazy(() => import("./pages/TermsOfUse"));
+
+// Create a single QueryClient instance
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      gcTime: 10 * 60 * 1000, // 10 minutes (formerly cacheTime)
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
+// Critical resources to preload
+const criticalResources = [
+  {
+    href: '/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png',
+    as: 'image' as const
+  },
+  {
+    href: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap',
+    as: 'style' as const
   }
+];
+
+function AppContent() {
+  // Initialize resource optimization
+  useResourceOptimization({
+    enableImageOptimization: true,
+    enableFontOptimization: true,
+    enableScriptOptimization: true,
+    enablePrefetching: true
+  });
+
+  return (
+    <ErrorBoundary>
+      <div className="App">
+        <ResourcePreloader resources={criticalResources} />
+        
+        <Routes>
+          <Route 
+            path="/" 
+            element={
+              <LazyRouteWrapper minHeight="100vh">
+                <Index />
+              </LazyRouteWrapper>
+            } 
+          />
+          <Route 
+            path="/sobre" 
+            element={
+              <LazyRouteWrapper>
+                <AboutPage />
+              </LazyRouteWrapper>
+            } 
+          />
+          <Route 
+            path="/servicos" 
+            element={
+              <LazyRouteWrapper>
+                <ServicesPage />
+              </LazyRouteWrapper>
+            } 
+          />
+          <Route 
+            path="/diferenciais" 
+            element={
+              <LazyRouteWrapper>
+                <DifferentialsPage />
+              </LazyRouteWrapper>
+            } 
+          />
+          <Route 
+            path="/blog" 
+            element={
+              <LazyRouteWrapper>
+                <BlogPage />
+              </LazyRouteWrapper>
+            } 
+          />
+          <Route 
+            path="/blog/:slug" 
+            element={
+              <LazyRouteWrapper>
+                <BlogPost />
+              </LazyRouteWrapper>
+            } 
+          />
+          <Route 
+            path="/contato" 
+            element={
+              <LazyRouteWrapper>
+                <ContactPage />
+              </LazyRouteWrapper>
+            } 
+          />
+
+          {/* Service Routes */}
+          <Route 
+            path="/lentes-de-contato-dental-e-facetas-de-porcelana" 
+            element={
+              <LazyRouteWrapper>
+                <LentesEFacetas />
+              </LazyRouteWrapper>
+            } 
+          />
+          <Route 
+            path="/clareamento-dental" 
+            element={
+              <LazyRouteWrapper>
+                <ClareamentoDental />
+              </LazyRouteWrapper>
+            } 
+          />
+          <Route 
+            path="/protese-dentaria" 
+            element={
+              <LazyRouteWrapper>
+                <ProteseDentaria />
+              </LazyRouteWrapper>
+            } 
+          />
+          <Route 
+            path="/implantes-dentarios" 
+            element={
+              <LazyRouteWrapper>
+                <ImplantesDentarios />
+              </LazyRouteWrapper>
+            } 
+          />
+          <Route 
+            path="/clinica-geral-e-prevencao" 
+            element={
+              <LazyRouteWrapper>
+                <ClinicaGeralPrevencao />
+              </LazyRouteWrapper>
+            } 
+          />
+          <Route 
+            path="/restauracoes-esteticas" 
+            element={
+              <LazyRouteWrapper>
+                <RestaureacoesEsteticas />
+              </LazyRouteWrapper>
+            } 
+          />
+          <Route 
+            path="/tratamento-de-canal" 
+            element={
+              <LazyRouteWrapper>
+                <TratamentoDeCanal />
+              </LazyRouteWrapper>
+            } 
+          />
+          <Route 
+            path="/saude-da-gengiva" 
+            element={
+              <LazyRouteWrapper>
+                <SaudeDaGengiva />
+              </LazyRouteWrapper>
+            } 
+          />
+
+          {/* Legal Routes */}
+          <Route 
+            path="/politica-de-privacidade" 
+            element={
+              <LazyRouteWrapper>
+                <PrivacyPolicy />
+              </LazyRouteWrapper>
+            } 
+          />
+          <Route 
+            path="/termos-de-uso" 
+            element={
+              <LazyRouteWrapper>
+                <TermsOfUse />
+              </LazyRouteWrapper>
+            } 
+          />
+
+          {/* 404 Route */}
+          <Route 
+            path="*" 
+            element={
+              <LazyRouteWrapper>
+                <NotFound />
+              </LazyRouteWrapper>
+            } 
+          />
+        </Routes>
+        
+        <Toaster />
+        <PerformanceMonitor />
+      </div>
+    </ErrorBoundary>
+  );
 }
 
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/sobre" element={<AboutPage />} />
-          <Route path="/servicos" element={<ServicesPage />} />
-          <Route path="/servicos/:serviceSlug" element={<ServiceDetail />} />
-          <Route path="/diferenciais" element={<DifferentialsPage />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/blog/:postSlug" element={<BlogPost />} />
-          <Route path="/contato" element={<ContactPage />} />
-          <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
-          <Route path="/termos-de-uso" element={<TermsOfUse />} />
-          <Route path="/lentes-de-contato-dental-e-facetas-de-porcelana" element={<LentesEFacetas />} />
-          <Route path="/clareamento-dental" element={<ClareamentoDental />} />
-          <Route path="/protese-dentaria" element={<ProteseDentaria />} />
-          <Route path="/implantes-dentarios" element={<ImplantesDentarios />} />
-          <Route path="/clinica-geral-e-prevencao" element={<ClinicaGeralPrevencao />} />
-          <Route path="/restauracoes-esteticas" element={<RestaureacoesEsteticas />} />
-          <Route path="/tratamento-de-canal" element={<TratamentoDeCanal />} />
-          <Route path="/saude-da-gengiva" element={<SaudeDaGengiva />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <WhatsAppPopup />
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <AppContent />
+      </Router>
+    </QueryClientProvider>
+  );
+}
 
 export default App;

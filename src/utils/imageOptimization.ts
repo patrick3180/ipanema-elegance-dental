@@ -17,7 +17,7 @@ export const isAlreadyOptimized = (url: string): boolean => {
   return hasOptimizationParams;
 };
 
-// Optimize image URL with better error handling
+// Enhanced image optimization with performance considerations
 export const optimizeImageUrl = (src: string, width?: number, isMobile = false): string => {
   if (!src) {
     console.log('OptimizedImage: No src provided');
@@ -30,7 +30,7 @@ export const optimizeImageUrl = (src: string, width?: number, isMobile = false):
     isMobile
   });
   
-  // Handle Contentful images
+  // Handle Contentful images with enhanced optimization
   if (src.includes("ctfassets.net")) {
     try {
       // Check if already optimized to prevent double-optimization
@@ -48,26 +48,38 @@ export const optimizeImageUrl = (src: string, width?: number, isMobile = false):
       url.searchParams.delete('fm');
       url.searchParams.delete('dpr');
       url.searchParams.delete('fit');
+      url.searchParams.delete('f');
       
-      // Apply new optimization settings
+      // Apply WebP format for better compression
       url.searchParams.set('fm', 'webp');
-      url.searchParams.set('q', '80');
       
-      // Add responsive width based on device
+      // Adaptive quality based on connection and device
+      const connectionSpeed = getConnectionSpeed();
+      const quality = getOptimalQuality(connectionSpeed, isMobile);
+      url.searchParams.set('q', quality.toString());
+      
+      // Add responsive width based on device and connection
       if (width) {
-        const responsiveWidth = isMobile ? Math.min(width, 800) : width;
+        const responsiveWidth = getOptimalWidth(width, isMobile, connectionSpeed);
         url.searchParams.set('w', responsiveWidth.toString());
       }
       
-      // Add density for retina displays
+      // Add density for retina displays (but cap it for performance)
       if (typeof window !== 'undefined' && window.devicePixelRatio > 1) {
-        url.searchParams.set('dpr', Math.min(window.devicePixelRatio, 2).toString());
+        const dpr = Math.min(window.devicePixelRatio, connectionSpeed === 'slow' ? 1.5 : 2);
+        url.searchParams.set('dpr', dpr.toString());
       }
+      
+      // Add smart cropping for better composition
+      url.searchParams.set('fit', 'fill');
+      url.searchParams.set('f', 'face'); // Focus on faces when cropping
       
       const optimizedUrl = url.toString();
       console.log('OptimizedImage: Contentful URL optimized:', {
         original: src,
-        optimized: optimizedUrl
+        optimized: optimizedUrl,
+        quality,
+        connectionSpeed
       });
       
       return optimizedUrl;
@@ -91,4 +103,58 @@ export const optimizeImageUrl = (src: string, width?: number, isMobile = false):
   // Return as-is for other URLs
   console.log('OptimizedImage: Using URL as-is:', src);
   return src;
+};
+
+// Get connection speed for optimization decisions
+const getConnectionSpeed = (): 'slow' | 'fast' | 'unknown' => {
+  if ('connection' in navigator) {
+    const connection = (navigator as any).connection;
+    const effectiveType = connection?.effectiveType;
+    return ['slow-2g', '2g', '3g'].includes(effectiveType) ? 'slow' : 'fast';
+  }
+  return 'unknown';
+};
+
+// Get optimal image quality based on conditions
+const getOptimalQuality = (connectionSpeed: string, isMobile: boolean): number => {
+  if (connectionSpeed === 'slow') return 65;
+  if (isMobile) return 75;
+  return 85;
+};
+
+// Get optimal image width based on conditions
+const getOptimalWidth = (width: number, isMobile: boolean, connectionSpeed: string): number => {
+  let maxWidth = width;
+  
+  if (connectionSpeed === 'slow') {
+    maxWidth = Math.min(width, 800);
+  } else if (isMobile) {
+    maxWidth = Math.min(width, 900);
+  }
+  
+  return maxWidth;
+};
+
+// Preload critical images
+export const preloadImage = (src: string): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve();
+    img.onerror = reject;
+    img.src = src;
+  });
+};
+
+// Generate responsive image sources
+export const generateResponsiveSources = (
+  baseSrc: string, 
+  breakpoints: number[] = [320, 640, 768, 1024, 1280]
+): string[] => {
+  if (!baseSrc.includes('ctfassets.net')) {
+    return [baseSrc];
+  }
+  
+  return breakpoints.map(width => 
+    optimizeImageUrl(baseSrc, width, width <= 768)
+  );
 };
