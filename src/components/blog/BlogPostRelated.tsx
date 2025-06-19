@@ -24,7 +24,7 @@ const BlogPostRelated = ({ relatedPosts }: BlogPostRelatedProps) => {
         {relatedPosts.map((relatedPost) => (
           <Card key={relatedPost.id} className="border-none shadow-sm overflow-hidden">
             <div 
-              className="cursor-pointer" 
+              className="cursor-pointer hover:shadow-md transition-shadow" 
               onClick={() => navigate(`/blog/${relatedPost.slug}`)}
             >
               <AspectRatio ratio={16 / 9}>
@@ -37,14 +37,14 @@ const BlogPostRelated = ({ relatedPosts }: BlogPostRelatedProps) => {
                 />
               </AspectRatio>
               <CardContent className="p-6">
-                <h3 className="text-xl font-display font-medium mb-2">
+                <h3 className="text-xl font-display font-medium mb-2 text-dental-purple leading-tight">
                   {relatedPost.title}
                 </h3>
-                <p className="text-dental-gray/80 mb-4 line-clamp-2">
-                  {relatedPost.excerpt}
+                <p className="text-dental-gray/80 mb-4 leading-relaxed excerpt-text">
+                  {relatedPost.excerpt || "Leia mais sobre este importante tópico odontológico."}
                 </p>
-                <span className="text-dental-gold font-medium text-sm">
-                  Ler mais
+                <span className="text-dental-gold font-medium text-sm hover:text-dental-purple transition-colors">
+                  Ler mais →
                 </span>
               </CardContent>
             </div>

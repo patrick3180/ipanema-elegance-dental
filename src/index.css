@@ -88,6 +88,15 @@
   .elegant-shadow {
     @apply shadow-[0_4px_20px_rgba(0,0,0,0.08)];
   }
+
+  /* Custom text truncation for blog excerpts */
+  .excerpt-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-height: 3rem; /* Fallback for browsers that don't support line-clamp */
+  }
 }
 
 /* Enhanced blog content styling */
