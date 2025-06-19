@@ -1,8 +1,6 @@
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Card, CardContent } from "@/components/ui/card";
 import OptimizedImage from "@/components/OptimizedImage";
 import { BlogPost } from "@/types/BlogPost";
 
@@ -39,38 +37,46 @@ const BlogPostRelated = ({ relatedPosts }: BlogPostRelatedProps) => {
           console.log(`Rendering related post ${index}:`, relatedPost.title);
           
           return (
-            <Card key={relatedPost.id} className="border-none shadow-sm overflow-hidden">
-              <div 
-                className="cursor-pointer hover:shadow-md transition-shadow flex flex-col h-full" 
-                onClick={() => navigate(`/blog/${relatedPost.slug}`)}
-              >
-                {/* Image Section - Fixed height container */}
-                <div className="relative w-full h-48 flex-shrink-0">
-                  <OptimizedImage 
-                    src={relatedPost.imageUrl || '/placeholder.svg'} 
-                    alt={relatedPost.title}
-                    className="w-full h-full object-cover rounded-t-md"
-                    objectFit="cover"
-                    width={600}
-                  />
-                </div>
+            <article 
+              key={relatedPost.id}
+              className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden cursor-pointer flex flex-col"
+              onClick={() => navigate(`/blog/${relatedPost.slug}`)}
+              role="article"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  navigate(`/blog/${relatedPost.slug}`);
+                }
+              }}
+            >
+              {/* Image Section */}
+              <div className="relative w-full h-48 overflow-hidden">
+                <OptimizedImage 
+                  src={relatedPost.imageUrl || '/placeholder.svg'} 
+                  alt={relatedPost.title}
+                  className="w-full h-full object-cover"
+                  objectFit="cover"
+                  width={600}
+                />
+              </div>
+              
+              {/* Content Section */}
+              <div className="p-6 flex flex-col flex-grow">
+                <h3 className="text-xl font-display font-medium mb-3 text-dental-purple leading-tight">
+                  {relatedPost.title || `Post ${index + 1}`}
+                </h3>
                 
-                {/* Content Section - Separate from image */}
-                <CardContent className="p-6 flex-grow flex flex-col">
-                  <h3 className="text-xl font-display font-medium mb-2 text-dental-purple leading-tight">
-                    {relatedPost.title || `Post ${index + 1}`}
-                  </h3>
-                  
-                  <p className="text-dental-gray/80 mb-4 leading-relaxed flex-grow">
-                    {relatedPost.excerpt || "Leia mais sobre este importante tópico odontológico."}
-                  </p>
-                  
-                  <span className="text-dental-gold font-medium text-sm hover:text-dental-purple transition-colors mt-auto">
+                <p className="text-dental-gray/80 mb-4 leading-relaxed flex-grow">
+                  {relatedPost.excerpt || "Leia mais sobre este importante tópico odontológico."}
+                </p>
+                
+                <div className="flex items-center justify-between mt-auto">
+                  <span className="text-dental-gold font-medium text-sm hover:text-dental-purple transition-colors">
                     Ler mais →
                   </span>
-                </CardContent>
+                </div>
               </div>
-            </Card>
+            </article>
           );
         })}
       </div>
