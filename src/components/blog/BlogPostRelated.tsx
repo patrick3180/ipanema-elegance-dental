@@ -39,48 +39,33 @@ const BlogPostRelated = ({ relatedPosts }: BlogPostRelatedProps) => {
           console.log(`Rendering related post ${index}:`, relatedPost.title);
           
           return (
-            <Card key={relatedPost.id} className="border-none shadow-sm">
+            <Card key={relatedPost.id} className="border-none shadow-sm overflow-hidden">
               <div 
-                className="cursor-pointer hover:shadow-md transition-shadow" 
+                className="cursor-pointer hover:shadow-md transition-shadow flex flex-col h-full" 
                 onClick={() => navigate(`/blog/${relatedPost.slug}`)}
               >
-                <AspectRatio ratio={16 / 9}>
+                {/* Image Section - Fixed height container */}
+                <div className="relative w-full h-48 flex-shrink-0">
                   <OptimizedImage 
                     src={relatedPost.imageUrl || '/placeholder.svg'} 
                     alt={relatedPost.title}
-                    className="w-full h-full rounded-t-md"
+                    className="w-full h-full object-cover rounded-t-md"
                     objectFit="cover"
                     width={600}
                   />
-                </AspectRatio>
+                </div>
                 
-                <CardContent className="p-6">
-                  {/* Title with inline styles for debugging */}
-                  <h3 
-                    className="text-xl font-display font-medium mb-2 text-dental-purple leading-tight"
-                    style={{ 
-                      display: 'block', 
-                      visibility: 'visible', 
-                      minHeight: '2rem',
-                      backgroundColor: 'rgba(255, 0, 0, 0.1)' // Temporary red background for debugging
-                    }}
-                  >
+                {/* Content Section - Separate from image */}
+                <CardContent className="p-6 flex-grow flex flex-col">
+                  <h3 className="text-xl font-display font-medium mb-2 text-dental-purple leading-tight">
                     {relatedPost.title || `Post ${index + 1}`}
                   </h3>
                   
-                  {/* Excerpt with validation */}
-                  <p 
-                    className="text-dental-gray/80 mb-4 leading-relaxed"
-                    style={{ 
-                      display: 'block', 
-                      visibility: 'visible',
-                      backgroundColor: 'rgba(0, 255, 0, 0.1)' // Temporary green background for debugging
-                    }}
-                  >
+                  <p className="text-dental-gray/80 mb-4 leading-relaxed flex-grow">
                     {relatedPost.excerpt || "Leia mais sobre este importante tópico odontológico."}
                   </p>
                   
-                  <span className="text-dental-gold font-medium text-sm hover:text-dental-purple transition-colors">
+                  <span className="text-dental-gold font-medium text-sm hover:text-dental-purple transition-colors mt-auto">
                     Ler mais →
                   </span>
                 </CardContent>
