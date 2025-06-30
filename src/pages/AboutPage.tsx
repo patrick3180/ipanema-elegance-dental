@@ -90,7 +90,7 @@ const AboutPage = () => {
         title="Sobre Dra. Carla Christoph | Dentista Especialista em Ipanema"
         description="Conheça a Dra. Carla Christoph, dentista especialista em Ipanema com mais de 20 anos de experiência em prótese dental, implantes e reabilitação oral estética."
         keywords="Dra. Carla Christoph, dentista especialista em prótese Ipanema, especialista em reabilitação oral Ipanema, implantodontia Ipanema, experiência dentista Ipanema, formação dentista Rio de Janeiro"
-        canonicalUrl="https://dracarlachristoph.com.br/sobre"
+        canonicalUrl="https://dracarlachristoph.com/sobre"
         structuredData={structuredData}
       />
       <PageLayout>

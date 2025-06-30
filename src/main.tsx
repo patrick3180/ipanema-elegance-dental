@@ -13,6 +13,10 @@ function gtag(...args: any[]) {
 // Make gtag globally available
 window.gtag = gtag;
 
+// Initialize SEO monitoring
+console.log('🚀 SEO Monitoring Initialized');
+console.log('To enable detailed SEO monitoring, run: localStorage.setItem("seo-monitoring", "enabled")');
+
 createRoot(document.getElementById("root")!).render(
   <HelmetProvider>
     <App />

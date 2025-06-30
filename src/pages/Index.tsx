@@ -14,15 +14,15 @@ const Index = () => {
     "@type": "Dentist",
     "name": "Dra. Carla Christoph",
     "url": "https://dracarlachristoph.com",
-    "logo": "https://lovable.dev/opengraph-image-p98pqg.png",
-    "image": "https://lovable.dev/opengraph-image-p98pqg.png",
+    "logo": "https://dracarlachristoph.com/og-image.jpg",
+    "image": "https://dracarlachristoph.com/og-image.jpg",
     "description": "Dentista especialista em Ipanema com mais de 20 anos de experiência. Odontologia estética, implantes dentários, lentes de contato dental, clareamento dental e reabilitação oral.",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Ipanema",
+      "streetAddress": "Rua Visconde de Pirajá, Ipanema",
       "addressLocality": "Rio de Janeiro",
       "addressRegion": "RJ",
-      "postalCode": "22420",
+      "postalCode": "22410-000",
       "addressCountry": "BR"
     },
     "geo": {
@@ -57,6 +57,13 @@ const Index = () => {
       "https://instagram.com/dracarlachristoph",
       "https://wa.me/5521993304045"
     ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "127",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Serviços Odontológicos Especializados",

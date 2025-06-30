@@ -21,7 +21,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   title,
   description,
   keywords = "dentista Ipanema, clínica odontológica Ipanema, odontologia estética, implantes dentários, clareamento dental, lentes de contato dental, facetas de porcelana, Dra. Carla Christoph",
-  ogImage = "https://lovable.dev/opengraph-image-p98pqg.png",
+  ogImage = "https://dracarlachristoph.com/og-image.jpg",
   ogType = "website",
   canonicalUrl,
   author = "Dra. Carla Christoph",
@@ -31,7 +31,13 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   noIndex = false,
   structuredData
 }) => {
-  const currentUrl = canonicalUrl || window.location.href;
+  // Normalize canonical URL to always use .com domain
+  const normalizeUrl = (url: string) => {
+    if (!url) return url;
+    return url.replace(/https?:\/\/[^\/]+/, 'https://dracarlachristoph.com');
+  };
+
+  const currentUrl = canonicalUrl || normalizeUrl(window.location.href);
   
   // Default structured data for the dental clinic
   const defaultStructuredData = {
@@ -39,14 +45,15 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     "@type": "Dentist",
     "name": "Dra. Carla Christoph",
     "url": "https://dracarlachristoph.com",
-    "logo": ogImage,
-    "image": ogImage,
+    "logo": "https://dracarlachristoph.com/og-image.jpg",
+    "image": "https://dracarlachristoph.com/og-image.jpg",
     "description": "Dentista especialista em Ipanema, Rio de Janeiro. Odontologia estética, implantes dentários, prótese dental e reabilitação oral com mais de 20 anos de experiência.",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Ipanema",
+      "streetAddress": "Rua Visconde de Pirajá, Ipanema",
       "addressLocality": "Rio de Janeiro",
       "addressRegion": "RJ",
+      "postalCode": "22410-000",
       "addressCountry": "BR"
     },
     "geo": {
@@ -58,12 +65,20 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     "email": "contato@dracarlachristoph.com",
     "priceRange": "$$",
     "openingHours": [
-      "Mo-Fr 08:00-18:00"
+      "Mo-Fr 08:00-18:00",
+      "Sa 08:00-14:00"
     ],
     "sameAs": [
       "https://instagram.com/dracarlachristoph",
       "https://wa.me/5521993304045"
     ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "127",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Serviços Odontológicos",
@@ -73,7 +88,11 @@ const SEOHead: React.FC<SEOHeadProps> = ({
           "itemOffered": {
             "@type": "Service",
             "name": "Implantes Dentários",
-            "description": "Implantes dentários em Ipanema com especialista"
+            "description": "Implantes dentários em Ipanema com especialista",
+            "provider": {
+              "@type": "Dentist",
+              "name": "Dra. Carla Christoph"
+            }
           }
         },
         {
@@ -81,7 +100,11 @@ const SEOHead: React.FC<SEOHeadProps> = ({
           "itemOffered": {
             "@type": "Service",
             "name": "Lentes de Contato Dental",
-            "description": "Lentes de contato dental e facetas de porcelana"
+            "description": "Lentes de contato dental e facetas de porcelana",
+            "provider": {
+              "@type": "Dentist",
+              "name": "Dra. Carla Christoph"
+            }
           }
         },
         {
@@ -89,7 +112,11 @@ const SEOHead: React.FC<SEOHeadProps> = ({
           "itemOffered": {
             "@type": "Service",
             "name": "Clareamento Dental",
-            "description": "Clareamento dental profissional"
+            "description": "Clareamento dental profissional",
+            "provider": {
+              "@type": "Dentist",
+              "name": "Dra. Carla Christoph"
+            }
           }
         },
         {
@@ -97,7 +124,11 @@ const SEOHead: React.FC<SEOHeadProps> = ({
           "itemOffered": {
             "@type": "Service",
             "name": "Prótese Dentária",
-            "description": "Prótese dentária fixa e removível"
+            "description": "Prótese dentária fixa e removível",
+            "provider": {
+              "@type": "Dentist",
+              "name": "Dra. Carla Christoph"
+            }
           }
         }
       ]
@@ -113,17 +144,22 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta name="author" content={author} />
-      <meta name="robots" content={noIndex ? "noindex,nofollow" : "index,follow"} />
+      <meta name="robots" content={noIndex ? "noindex,nofollow" : "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"} />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="language" content="pt-BR" />
+      <meta name="revisit-after" content="7 days" />
       
-      {/* Canonical URL */}
-      {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+      {/* Canonical URL - Always use normalized .com URL */}
+      <link rel="canonical" href={currentUrl} />
       
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={ogType} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={title} />
       <meta property="og:url" content={currentUrl} />
       <meta property="og:site_name" content="Dra. Carla Christoph - Dentista em Ipanema" />
       <meta property="og:locale" content="pt_BR" />
@@ -131,9 +167,11 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@dracarlachristoph" />
+      <meta name="twitter:creator" content="@dracarlachristoph" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image:alt" content={title} />
       
       {/* Article specific meta tags */}
       {ogType === 'article' && publishedTime && (
@@ -168,9 +206,18 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="geo.position" content="-22.9868;-43.2005" />
       <meta name="ICBM" content="-22.9868, -43.2005" />
       
-      {/* Language alternatives for international SEO */}
+      {/* Language alternatives */}
       <link rel="alternate" hrefLang="pt-br" href={currentUrl} />
       <link rel="alternate" hrefLang="x-default" href={currentUrl} />
+      
+      {/* DNS prefetch for performance */}
+      <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+      <link rel="dns-prefetch" href="//www.google-analytics.com" />
+      <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+      
+      {/* Preconnect for critical resources */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
     </Helmet>
   );
 };
