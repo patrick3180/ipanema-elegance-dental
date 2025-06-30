@@ -8,6 +8,47 @@ interface SitemapUrl {
   priority: number;
 }
 
+export const generateRobotsTxt = (): string => {
+  const baseUrl = 'https://dracarlachristoph.com';
+  
+  return `# Robots.txt for Dra. Carla Christoph - Dentista em Ipanema
+# This file helps search engines understand how to crawl our site
+
+# Allow all search engines to crawl the entire site
+User-agent: *
+Allow: /
+
+# Special rules for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Social media crawlers
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Block access to sensitive areas (uncomment if needed)
+# Disallow: /admin/
+# Disallow: /api/
+# Disallow: /*.json$
+
+# Sitemap location
+Sitemap: ${baseUrl}/sitemap.xml
+
+# Host preference (helps with duplicate content)
+Host: ${baseUrl}`;
+};
+
 export const generateSitemap = async (): Promise<string> => {
   const baseUrl = 'https://dracarlachristoph.com';
   const today = new Date().toISOString().split('T')[0];
