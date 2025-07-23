@@ -1,5 +1,6 @@
 
 import { getAllBlogPosts } from '@/services/contentful/queries';
+import { blogPosts } from '@/data/blogPosts';
 
 interface SitemapUrl {
   loc: string;
@@ -164,34 +165,26 @@ export const generateSitemap = async (): Promise<string> => {
   let blogPages: SitemapUrl[] = [];
   
   try {
-    // Fetch blog posts from Contentful
-    const blogPosts = await getAllBlogPosts();
+    // First try to fetch blog posts from Contentful
+    const contentfulPosts = await getAllBlogPosts();
+    
+    if (contentfulPosts && contentfulPosts.length > 0) {
+      blogPages = contentfulPosts.map(post => ({
+        loc: `${baseUrl}/blog/${post.slug}`,
+        lastmod: post.updatedAt || post.publishedAt || post.date,
+        changefreq: 'monthly' as const,
+        priority: 0.7
+      }));
+    } else {
+      throw new Error('No posts from Contentful');
+    }
+  } catch (error) {
+    console.error('Error fetching blog posts from Contentful for sitemap, using local data:', error);
+    
+    // Fallback to local blog post data
     blogPages = blogPosts.map(post => ({
       loc: `${baseUrl}/blog/${post.slug}`,
-      lastmod: post.updatedAt || post.publishedAt || post.date,
-      changefreq: 'monthly' as const,
-      priority: 0.7
-    }));
-  } catch (error) {
-    console.error('Error fetching blog posts for sitemap:', error);
-    
-    // Fallback to static blog post URLs if Contentful fails
-    const fallbackBlogPosts = [
-      'cuidados-pos-implante-dentario',
-      'lentes-de-contato-dental-tudo-que-voce-precisa-saber',
-      'clareamento-dental-mitos-e-verdades',
-      'higiene-bucal-rotina-diaria-perfeita',
-      'protese-dentaria-fixa-ou-removivel',
-      'implantes-dentarios-quando-indicados',
-      'facetas-de-porcelana-transformacao-sorriso',
-      'gengivite-e-periodontite-diferencas',
-      'canal-quando-e-necessario',
-      'restauracoes-esteticas-tipos-materiais'
-    ];
-    
-    blogPages = fallbackBlogPosts.map(slug => ({
-      loc: `${baseUrl}/blog/${slug}`,
-      lastmod: today,
+      lastmod: post.date,
       changefreq: 'monthly' as const,
       priority: 0.7
     }));

@@ -8,6 +8,7 @@ import PerformanceMonitor from "@/components/performance/PerformanceMonitor";
 import ResourcePreloader from "@/components/performance/ResourcePreloader";
 import LazyRouteWrapper from "@/components/performance/LazyRouteWrapper";
 import { useResourceOptimization } from "@/hooks/useResourceOptimization";
+import SitemapUpdater from "@/components/SitemapUpdater";
 
 // Lazy load components for better code splitting
 const Index = lazy(() => import("./pages/Index"));
@@ -226,6 +227,7 @@ function AppContent() {
         
         <Toaster />
         <PerformanceMonitor />
+        <SitemapUpdater />
       </div>
     </ErrorBoundary>
   );

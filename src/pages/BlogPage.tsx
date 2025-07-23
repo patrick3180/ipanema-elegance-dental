@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import SEOHead from "@/components/SEOHead";
+import BlogSEOOptimizer from "@/components/BlogSEOOptimizer";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -78,6 +79,7 @@ const BlogPage = () => {
         canonicalUrl="https://dracarlachristoph.com/blog"
         structuredData={structuredData}
       />
+      <BlogSEOOptimizer posts={posts} />
       <PageLayout>
         <section className="section-spacing">
           <div className="container-custom">
