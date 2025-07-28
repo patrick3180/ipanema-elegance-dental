@@ -9,7 +9,8 @@ import ResourcePreloader from "@/components/performance/ResourcePreloader";
 import LazyRouteWrapper from "@/components/performance/LazyRouteWrapper";
 import { useResourceOptimization } from "@/hooks/useResourceOptimization";
 import SitemapUpdater from "@/components/SitemapUpdater";
-import { handleBlogRedirects } from "@/utils/urlRedirects";
+import { handlePageRedirects } from "@/utils/urlRedirects";
+import { seoMonitor } from "@/utils/seoMonitoring";
 
 // Lazy load components for better code splitting
 const Index = lazy(() => import("./pages/Index"));
@@ -20,6 +21,7 @@ const BlogPage = lazy(() => import("./pages/BlogPage"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const GonePage = lazy(() => import("./pages/GonePage"));
 
 // Service pages
 const LentesEFacetas = lazy(() => import("./pages/LentesEFacetas"));
@@ -70,9 +72,15 @@ function AppContent() {
     enablePrefetching: true
   });
   
-  // Handle URL redirects for blog posts
+  // Handle URL redirects and SEO monitoring
   useEffect(() => {
-    handleBlogRedirects();
+    const redirectResult = handlePageRedirects();
+    
+    if (redirectResult.type === 'redirect') {
+      seoMonitor.logRedirect(location.pathname, window.location.pathname);
+    } else if (redirectResult.type === 'gone') {
+      seoMonitor.logGone(location.pathname);
+    }
   }, [location.pathname]);
 
   return (
@@ -218,6 +226,16 @@ function AppContent() {
             element={
               <LazyRouteWrapper>
                 <TermsOfUse />
+              </LazyRouteWrapper>
+            } 
+          />
+
+          {/* 410 Gone Route */}
+          <Route 
+            path="/gone" 
+            element={
+              <LazyRouteWrapper>
+                <GonePage />
               </LazyRouteWrapper>
             } 
           />

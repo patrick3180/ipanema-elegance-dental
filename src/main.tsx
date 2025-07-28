@@ -13,9 +13,13 @@ function gtag(...args: any[]) {
 // Make gtag globally available
 window.gtag = gtag;
 
+// Initialize enhanced redirect middleware
+import('./middleware/redirectMiddleware');
+
 // Initialize SEO monitoring
 console.log('🚀 SEO Monitoring Initialized');
-console.log('To enable detailed SEO monitoring, run: localStorage.setItem("seo-monitoring", "enabled")');
+console.log('📊 Access SEO stats with: window.seoMonitor.getStats()');
+console.log('🔍 View redirect events with: window.seoMonitor.getEvents("redirect")');
 
 createRoot(document.getElementById("root")!).render(
   <HelmetProvider>
