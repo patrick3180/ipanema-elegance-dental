@@ -51,7 +51,7 @@ Host: ${baseUrl}`;
 };
 
 export const generateSitemap = async (): Promise<string> => {
-  const baseUrl = 'https://dracarlachristoph.com.br';
+  const baseUrl = 'https://dracarlachristoph.com';
   const today = new Date().toISOString().split('T')[0];
   
   // Static pages with their priorities and update frequencies
@@ -257,7 +257,7 @@ export const generateSitemap = async (): Promise<string> => {
 
 // Function to ping search engines about sitemap updates
 export const pingSearchEngines = async (): Promise<void> => {
-  const sitemapUrl = encodeURIComponent('https://dracarlachristoph.com.br/sitemap.xml');
+  const sitemapUrl = encodeURIComponent('https://dracarlachristoph.com/sitemap.xml');
   
   const pingUrls = [
     `https://www.google.com/ping?sitemap=${sitemapUrl}`,

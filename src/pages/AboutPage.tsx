@@ -41,7 +41,7 @@ const AboutPage = () => {
     "name": "Carla Christoph",
     "jobTitle": "Cirurgiã-Dentista Especialista",
     "description": "Dentista especialista em Ipanema com mais de 20 anos de experiência em prótese dental, implantes e reabilitação oral estética.",
-    "url": "https://dracarlachristoph.com.br/sobre",
+    "url": "https://dracarlachristoph.com/sobre",
     "image": "/lovable-uploads/b1c1cbdb-bde0-4d9e-912e-74cf74cf716d.png",
     "sameAs": [
       "https://instagram.com/dracarlachristoph",
