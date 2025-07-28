@@ -9,6 +9,7 @@ import ResourcePreloader from "@/components/performance/ResourcePreloader";
 import LazyRouteWrapper from "@/components/performance/LazyRouteWrapper";
 import { useResourceOptimization } from "@/hooks/useResourceOptimization";
 import SitemapUpdater from "@/components/SitemapUpdater";
+import SEOHealthMonitor from "@/components/SEOHealthMonitor";
 import { handlePageRedirects } from "@/utils/urlRedirects";
 import { seoMonitor } from "@/utils/seoMonitoring";
 
@@ -253,6 +254,7 @@ function AppContent() {
         
         <Toaster />
         <PerformanceMonitor />
+        <SEOHealthMonitor />
         <SitemapUpdater />
       </div>
     </ErrorBoundary>

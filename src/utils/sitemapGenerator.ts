@@ -51,7 +51,7 @@ Host: ${baseUrl}`;
 };
 
 export const generateSitemap = async (): Promise<string> => {
-  const baseUrl = 'https://dracarlachristoph.com';
+  const baseUrl = 'https://dracarlachristoph.com.br';
   const today = new Date().toISOString().split('T')[0];
   
   // Static pages with their priorities and update frequencies
@@ -165,11 +165,14 @@ export const generateSitemap = async (): Promise<string> => {
   let blogPages: SitemapUrl[] = [];
   
   try {
-    // First try to fetch blog posts from Contentful
+    console.log('🔍 Attempting to fetch blog posts from Contentful...');
+    
+    // Enhanced Contentful connection with better error handling
     const contentfulPosts = await getAllBlogPosts();
     
     if (contentfulPosts && contentfulPosts.length > 0) {
-      console.log(`📝 Sitemap: Using ${contentfulPosts.length} posts from Contentful`);
+      console.log(`✅ Successfully fetched ${contentfulPosts.length} blog posts from Contentful`);
+      
       blogPages = contentfulPosts.map(post => {
         // Ensure proper date format for lastmod
         let lastmod = today;
@@ -195,14 +198,17 @@ export const generateSitemap = async (): Promise<string> => {
           priority: 0.7
         };
       });
+      
+      // Ping Google and Bing about sitemap update
+      await pingSearchEngines();
     } else {
       throw new Error('No posts from Contentful');
     }
   } catch (error) {
-    console.error('Error fetching blog posts from Contentful for sitemap, using local data:', error);
+    console.error('❌ Error fetching blog posts, using local fallback:', error);
     
     // Fallback to local blog post data with proper date handling
-    console.log(`📝 Sitemap: Using ${blogPosts.length} local fallback posts`);
+    console.log(`📝 Using ${blogPosts.length} local blog posts as fallback`);
     blogPages = blogPosts.map(post => {
       // Convert Portuguese date to ISO format
       let lastmod = today;
@@ -227,6 +233,12 @@ export const generateSitemap = async (): Promise<string> => {
 
   // Combine all URLs
   const allUrls = [...staticPages, ...servicePages, ...blogPages, ...legalPages];
+  
+  console.log(`📊 Sitemap generated with ${allUrls.length} total pages:`);
+  console.log(`  - ${staticPages.length} static pages`);
+  console.log(`  - ${servicePages.length} service pages`);
+  console.log(`  - ${legalPages.length} legal pages`);
+  console.log(`  - ${blogPages.length} blog posts`);
 
   // Generate XML sitemap
   const xmlUrls = allUrls.map(url => `
@@ -241,4 +253,26 @@ export const generateSitemap = async (): Promise<string> => {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   ${xmlUrls}
 </urlset>`;
+};
+
+// Function to ping search engines about sitemap updates
+export const pingSearchEngines = async (): Promise<void> => {
+  const sitemapUrl = encodeURIComponent('https://dracarlachristoph.com.br/sitemap.xml');
+  
+  const pingUrls = [
+    `https://www.google.com/ping?sitemap=${sitemapUrl}`,
+    `https://www.bing.com/ping?sitemap=${sitemapUrl}`
+  ];
+  
+  try {
+    const promises = pingUrls.map(url => 
+      fetch(url, { method: 'GET', mode: 'no-cors' })
+        .catch(error => console.log(`Ping failed for ${url}:`, error))
+    );
+    
+    await Promise.all(promises);
+    console.log('🔔 Search engines pinged about sitemap update');
+  } catch (error) {
+    console.log('⚠️ Could not ping search engines:', error);
+  }
 };

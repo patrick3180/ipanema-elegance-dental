@@ -10,6 +10,37 @@ export const pageRedirects: Record<string, string> = {
   '/beneficios-da-odontologia-digital/': '/blog/beneficios-da-odontologia-digital',
   '/mitos-e-verdades-sobre-implantes-dentais/': '/blog/mitos-e-verdades-sobre-implantes-dentais',
   
+  // NEW: 29 problematic URLs from old site structure
+  '/block/footer/': '/',
+  '/page/2/': '/blog',
+  '/page/3/': '/blog',
+  '/page/4/': '/blog',
+  '/tag/odontologia/': '/blog',
+  '/tag/odontologia/page/2/': '/blog',
+  '/tag/saude-bucal/': '/blog',
+  '/tag/saude-bucal/page/2/': '/blog',
+  '/tag/implantes/': '/blog',
+  '/tag/clareamento/': '/blog',
+  '/category/dicas/': '/blog',
+  '/category/dicas/page/2/': '/blog',
+  '/category/tratamentos/': '/blog',
+  '/category/tratamentos/page/2/': '/blog',
+  '/author/admin/': '/blog',
+  '/author/dra-carla/': '/blog',
+  '/2022/12/tratamento-preventivo/': '/blog/tratamento-preventivo',
+  '/2022/11/cuidados-pos-cirurgia/': '/blog/cuidados-pos-cirurgia',
+  '/2022/10/higiene-bucal-diaria/': '/blog/higiene-bucal-diaria',
+  '/2021/09/escolha-escova-dental/': '/blog/escolha-escova-dental',
+  '/2021/08/alimentos-prejudiciais/': '/blog/alimentos-prejudiciais',
+  '/2021/07/beneficios-fio-dental/': '/blog/beneficios-fio-dental',
+  '/servicos/ortodontia/': '/clinica-geral-e-prevencao',
+  '/servicos/estetica/': '/restauracoes-esteticas',
+  '/servicos/cirurgia/': '/implantes-dentarios',
+  '/promocoes/clareamento/': '/clareamento-dental',
+  '/promocoes/primeira-consulta/': '/contato',
+  '/galeria/antes-depois/': '/sobre',
+  '/videos/depoimentos/': '/sobre',
+  
   // Old service page redirects
   '/servicos/lentes-de-contato-dental/': '/lentes-de-contato-dental-e-facetas-de-porcelana',
   '/servicos/facetas-de-porcelana/': '/lentes-de-contato-dental-e-facetas-de-porcelana',
@@ -120,6 +151,18 @@ export const goneUrls: Set<string> = new Set([
   '/teste/',
   '/demo/',
   '/example/',
+  
+  // Additional permanently removed URLs
+  '/old-newsletter/',
+  '/newsletter-archive/',
+  '/old-contact-form/',
+  '/legacy-booking/',
+  '/old-gallery/',
+  '/flash-content/',
+  '/legacy-widgets/',
+  '/old-testimonials/',
+  '/outdated-services/',
+  '/retired-blog-categories/',
 ]);
 
 // Function to check and handle all redirects

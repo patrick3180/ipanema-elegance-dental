@@ -14,7 +14,8 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
       content_type: 'blogCarla',
       order: ['-sys.createdAt'],
       include: 5, // Increased include depth to get all nested assets
-      locale: DEFAULT_LOCALE
+      locale: DEFAULT_LOCALE,
+      limit: 1000, // Increased limit to get all posts
     });
 
     console.log(`getAllBlogPosts: Contentful response - ${response.items.length} items, ${response.includes?.Asset?.length || 0} assets`);

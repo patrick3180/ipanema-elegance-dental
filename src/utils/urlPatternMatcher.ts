@@ -9,100 +9,172 @@ interface RedirectPattern {
 
 // Dynamic redirect patterns for complex URL structures
 export const redirectPatterns: RedirectPattern[] = [
-  // Date-based blog post patterns: /YYYY/MM/DD/slug/ -> /blog/slug
+  // WordPress date-based blog post URLs
   {
-    pattern: /^\/(\d{4})\/(\d{2})\/(\d{2})\/([a-z0-9-]+)\/?$/,
-    destination: (match) => `/blog/${match[4]}`,
+    pattern: /^\/(\d{4})\/(\d{2})\/(\d{2})\/(.+)\/?$/,
+    destination: (match) => `/blog/${match[4].replace(/\/$/, '')}`,
     type: 'redirect',
-    priority: 1
+    priority: 10
   },
   
-  // WordPress tag pages: /tag/anything/ -> /blog
-  {
-    pattern: /^\/tags?\/[^\/]+\/?$/,
-    destination: () => '/blog',
-    type: 'redirect',
-    priority: 2
-  },
-  
-  // WordPress category pages: /category/anything/ -> /blog
-  {
-    pattern: /^\/categor(y|ias?)\/[^\/]+\/?$/,
-    destination: () => '/blog',
-    type: 'redirect',
-    priority: 2
-  },
-  
-  // WordPress author pages: /author/anything/ -> /blog
-  {
-    pattern: /^\/author?\/[^\/]+\/?$/,
-    destination: () => '/blog',
-    type: 'redirect',
-    priority: 2
-  },
-  
-  // Year/month archives: /YYYY/MM/ -> /blog
-  {
-    pattern: /^\/(\d{4})\/(\d{2})\/?$/,
-    destination: () => '/blog',
-    type: 'redirect',
-    priority: 3
-  },
-  
-  // Year archives: /YYYY/ -> /blog
+  // WordPress yearly archives
   {
     pattern: /^\/(\d{4})\/?$/,
     destination: () => '/blog',
     type: 'redirect',
-    priority: 3
+    priority: 8
   },
   
-  // WordPress system files: /wp-anything -> 410 Gone
+  // WordPress monthly archives
   {
-    pattern: /^\/wp-.+/,
-    destination: () => '/gone',
-    type: 'gone',
-    priority: 1
+    pattern: /^\/(\d{4})\/(\d{2})\/?$/,
+    destination: () => '/blog',
+    type: 'redirect',
+    priority: 8
   },
   
-  // Development files: /.env, /config, etc. -> 410 Gone
+  // WordPress category pages with pagination
   {
-    pattern: /^\/(\.env|config|logs?|tmp|temp|test|demo|admin|administrator)/,
-    destination: () => '/gone',
-    type: 'gone',
-    priority: 1
+    pattern: /^\/category\/(.+)\/page\/(\d+)\/?$/,
+    destination: () => '/blog',
+    type: 'redirect',
+    priority: 8
   },
   
-  // File extensions that shouldn't exist: .php, .asp, etc.
+  // WordPress category pages
   {
-    pattern: /\.(php|asp|aspx|jsp|cfm)(\?.*)?$/,
-    destination: () => '/gone',
-    type: 'gone',
-    priority: 1
+    pattern: /^\/category\/(.+)\/?$/,
+    destination: () => '/blog',
+    type: 'redirect',
+    priority: 7
   },
   
-  // Old service structure: /servicos/anything/ -> check specific mapping
+  // WordPress tag pages with pagination
   {
-    pattern: /^\/servicos\/([a-z0-9-]+)\/?$/,
+    pattern: /^\/tag\/(.+)\/page\/(\d+)\/?$/,
+    destination: () => '/blog',
+    type: 'redirect',
+    priority: 8
+  },
+  
+  // WordPress tag pages
+  {
+    pattern: /^\/tag\/(.+)\/?$/,
+    destination: () => '/blog',
+    type: 'redirect',
+    priority: 7
+  },
+  
+  // WordPress author pages
+  {
+    pattern: /^\/author\/(.+)\/?$/,
+    destination: () => '/blog',
+    type: 'redirect',
+    priority: 7
+  },
+  
+  // WordPress pagination
+  {
+    pattern: /^\/page\/(\d+)\/?$/,
+    destination: () => '/blog',
+    type: 'redirect',
+    priority: 6
+  },
+  
+  // Block/widget patterns (WordPress blocks)
+  {
+    pattern: /^\/block\/(.+)\/?$/,
+    destination: () => '/',
+    type: 'redirect',
+    priority: 9
+  },
+  
+  // Promotional and marketing pages
+  {
+    pattern: /^\/promocoes\/(.+)\/?$/,
     destination: (match) => {
-      const serviceMap: Record<string, string> = {
-        'lentes-de-contato-dental': '/lentes-de-contato-dental-e-facetas-de-porcelana',
-        'facetas-de-porcelana': '/lentes-de-contato-dental-e-facetas-de-porcelana',
-        'clareamento-dental': '/clareamento-dental',
-        'protese-dentaria': '/protese-dentaria',
-        'implantes-dentarios': '/implantes-dentarios',
-        'clinica-geral': '/clinica-geral-e-prevencao',
-        'prevencao': '/clinica-geral-e-prevencao',
-        'restauracoes': '/restauracoes-esteticas',
-        'tratamento-de-canal': '/tratamento-de-canal',
-        'gengiva': '/saude-da-gengiva',
-        'periodontia': '/saude-da-gengiva'
-      };
-      
-      return serviceMap[match[1]] || '/servicos';
+      if (match[1].includes('clareamento')) return '/clareamento-dental';
+      if (match[1].includes('consulta') || match[1].includes('primeira')) return '/contato';
+      return '/';
     },
     type: 'redirect',
-    priority: 2
+    priority: 8
+  },
+  
+  // Gallery and media pages
+  {
+    pattern: /^\/(galeria|videos)\/(.+)\/?$/,
+    destination: () => '/sobre',
+    type: 'redirect',
+    priority: 7
+  },
+  
+  // Service page mappings
+  {
+    pattern: /^\/servicos\/lentes(-de)?(-contato)?(-dental)?\/?$/,
+    destination: () => '/lentes-de-contato-dental-e-facetas-de-porcelana',
+    type: 'redirect',
+    priority: 9
+  },
+  
+  {
+    pattern: /^\/servicos\/facetas(-de)?(-porcelana)?\/?$/,
+    destination: () => '/lentes-de-contato-dental-e-facetas-de-porcelana',
+    type: 'redirect',
+    priority: 9
+  },
+  
+  {
+    pattern: /^\/servicos\/(ortodontia|aparelho)\/?$/,
+    destination: () => '/clinica-geral-e-prevencao',
+    type: 'redirect',
+    priority: 9
+  },
+  
+  {
+    pattern: /^\/servicos\/(estetica|esteticos)\/?$/,
+    destination: () => '/restauracoes-esteticas',
+    type: 'redirect',
+    priority: 9
+  },
+  
+  {
+    pattern: /^\/servicos\/cirurgia\/?$/,
+    destination: () => '/implantes-dentarios',
+    type: 'redirect',
+    priority: 9
+  },
+  
+  // WordPress system files - mark as gone
+  {
+    pattern: /^\/wp-(content|admin|includes|login|config)\b/,
+    destination: () => '/410',
+    type: 'gone',
+    priority: 15
+  },
+  
+  // Other system files
+  {
+    pattern: /^\/\.(htaccess|env|git|svn)/,
+    destination: () => '/410',
+    type: 'gone',
+    priority: 15
+  },
+  
+  // Development and test URLs
+  {
+    pattern: /^\/(test|demo|staging|dev|temp|tmp)/,
+    destination: () => '/410',
+    type: 'gone',
+    priority: 12
+  },
+  
+  // Legacy and outdated content patterns
+  {
+    pattern: /^\/(old-|legacy-|outdated-|retired-)/,
+    destination: () => '/410',
+    type: 'gone',
+    priority: 11
   }
 ];
 
