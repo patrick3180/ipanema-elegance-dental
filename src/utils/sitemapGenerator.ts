@@ -169,25 +169,60 @@ export const generateSitemap = async (): Promise<string> => {
     const contentfulPosts = await getAllBlogPosts();
     
     if (contentfulPosts && contentfulPosts.length > 0) {
-      blogPages = contentfulPosts.map(post => ({
-        loc: `${baseUrl}/blog/${post.slug}`,
-        lastmod: post.updatedAt || post.publishedAt || post.date,
-        changefreq: 'monthly' as const,
-        priority: 0.7
-      }));
+      console.log(`📝 Sitemap: Using ${contentfulPosts.length} posts from Contentful`);
+      blogPages = contentfulPosts.map(post => {
+        // Ensure proper date format for lastmod
+        let lastmod = today;
+        if (post.updatedAt) {
+          lastmod = new Date(post.updatedAt).toISOString().split('T')[0];
+        } else if (post.publishedAt) {
+          lastmod = new Date(post.publishedAt).toISOString().split('T')[0];
+        } else if (post.date) {
+          // Handle different date formats
+          const dateStr = post.date.toString();
+          if (dateStr.includes('de')) {
+            // Portuguese date format - convert to ISO
+            lastmod = today; // Fallback to today for Portuguese dates
+          } else {
+            lastmod = new Date(post.date).toISOString().split('T')[0];
+          }
+        }
+        
+        return {
+          loc: `${baseUrl}/blog/${post.slug}`,
+          lastmod,
+          changefreq: 'monthly' as const,
+          priority: 0.7
+        };
+      });
     } else {
       throw new Error('No posts from Contentful');
     }
   } catch (error) {
     console.error('Error fetching blog posts from Contentful for sitemap, using local data:', error);
     
-    // Fallback to local blog post data
-    blogPages = blogPosts.map(post => ({
-      loc: `${baseUrl}/blog/${post.slug}`,
-      lastmod: post.date,
-      changefreq: 'monthly' as const,
-      priority: 0.7
-    }));
+    // Fallback to local blog post data with proper date handling
+    console.log(`📝 Sitemap: Using ${blogPosts.length} local fallback posts`);
+    blogPages = blogPosts.map(post => {
+      // Convert Portuguese date to ISO format
+      let lastmod = today;
+      if (post.date) {
+        const dateStr = post.date.toString();
+        if (dateStr.includes('de')) {
+          // Portuguese date - use today as fallback
+          lastmod = today;
+        } else {
+          lastmod = new Date(post.date).toISOString().split('T')[0];
+        }
+      }
+      
+      return {
+        loc: `${baseUrl}/blog/${post.slug}`,
+        lastmod,
+        changefreq: 'monthly' as const,
+        priority: 0.7
+      };
+    });
   }
 
   // Combine all URLs

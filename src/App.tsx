@@ -1,14 +1,15 @@
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/sonner";
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
 import ErrorBoundary from "@/components/performance/ErrorBoundary";
 import PerformanceMonitor from "@/components/performance/PerformanceMonitor";
 import ResourcePreloader from "@/components/performance/ResourcePreloader";
 import LazyRouteWrapper from "@/components/performance/LazyRouteWrapper";
 import { useResourceOptimization } from "@/hooks/useResourceOptimization";
 import SitemapUpdater from "@/components/SitemapUpdater";
+import { handleBlogRedirects } from "@/utils/urlRedirects";
 
 // Lazy load components for better code splitting
 const Index = lazy(() => import("./pages/Index"));
@@ -59,6 +60,8 @@ const criticalResources = [
 ];
 
 function AppContent() {
+  const location = useLocation();
+  
   // Initialize resource optimization
   useResourceOptimization({
     enableImageOptimization: true,
@@ -66,6 +69,11 @@ function AppContent() {
     enableScriptOptimization: true,
     enablePrefetching: true
   });
+  
+  // Handle URL redirects for blog posts
+  useEffect(() => {
+    handleBlogRedirects();
+  }, [location.pathname]);
 
   return (
     <ErrorBoundary>
