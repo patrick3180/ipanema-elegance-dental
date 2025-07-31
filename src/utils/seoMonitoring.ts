@@ -1,4 +1,5 @@
 // SEO monitoring utilities for tracking redirects and 404/410 errors
+import { seoDebouncer } from './seoDebouncer';
 
 interface SEOEvent {
   type: 'redirect' | 'not_found' | 'gone' | 'error';
@@ -14,53 +15,65 @@ class SEOMonitor {
   private maxEvents = 1000; // Keep last 1000 events
 
   logRedirect(originalPath: string, destination: string) {
-    this.addEvent({
-      type: 'redirect',
-      path: originalPath,
-      destination,
-      timestamp: Date.now(),
-      userAgent: navigator.userAgent,
-      referrer: document.referrer
+    const key = `redirect-${originalPath}-${destination}`;
+    seoDebouncer.debounce(key, () => {
+      this.addEvent({
+        type: 'redirect',
+        path: originalPath,
+        destination,
+        timestamp: Date.now(),
+        userAgent: navigator.userAgent,
+        referrer: document.referrer
+      });
+      
+      console.log(`🔄 SEO: Redirect ${originalPath} → ${destination}`);
     });
-    
-    console.log(`🔄 SEO: Redirect ${originalPath} → ${destination}`);
   }
 
   logNotFound(path: string) {
-    this.addEvent({
-      type: 'not_found',
-      path,
-      timestamp: Date.now(),
-      userAgent: navigator.userAgent,
-      referrer: document.referrer
+    const key = `not_found-${path}`;
+    seoDebouncer.debounce(key, () => {
+      this.addEvent({
+        type: 'not_found',
+        path,
+        timestamp: Date.now(),
+        userAgent: navigator.userAgent,
+        referrer: document.referrer
+      });
+      
+      console.log(`❌ SEO: 404 Not Found - ${path}`);
     });
-    
-    console.log(`❌ SEO: 404 Not Found - ${path}`);
   }
 
   logGone(path: string) {
-    this.addEvent({
-      type: 'gone',
-      path,
-      timestamp: Date.now(),
-      userAgent: navigator.userAgent,
-      referrer: document.referrer
+    const key = `gone-${path}`;
+    seoDebouncer.debounce(key, () => {
+      this.addEvent({
+        type: 'gone',
+        path,
+        timestamp: Date.now(),
+        userAgent: navigator.userAgent,
+        referrer: document.referrer
+      });
+      
+      console.log(`🚫 SEO: 410 Gone - ${path}`);
     });
-    
-    console.log(`🚫 SEO: 410 Gone - ${path}`);
   }
 
   logError(path: string, error: string) {
-    this.addEvent({
-      type: 'error',
-      path,
-      destination: error,
-      timestamp: Date.now(),
-      userAgent: navigator.userAgent,
-      referrer: document.referrer
+    const key = `error-${path}-${error}`;
+    seoDebouncer.debounce(key, () => {
+      this.addEvent({
+        type: 'error',
+        path,
+        destination: error,
+        timestamp: Date.now(),
+        userAgent: navigator.userAgent,
+        referrer: document.referrer
+      });
+      
+      console.error(`💥 SEO: Error on ${path} - ${error}`);
     });
-    
-    console.error(`💥 SEO: Error on ${path} - ${error}`);
   }
 
   private addEvent(event: SEOEvent) {

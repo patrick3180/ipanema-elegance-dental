@@ -42,8 +42,8 @@ export const handleRequestMiddleware = () => {
     return;
   }
   
-  // Skip processing for root path to avoid redirect loops
-  if (currentPath === '/') {
+  // Skip processing for root path and common valid paths
+  if (currentPath === '/' || currentPath === '/index.html' || currentPath === '') {
     return;
   }
 
@@ -106,5 +106,4 @@ export const getRedirectHeaders = (path: string): Record<string, string> | null 
   return null;
 };
 
-// Initialize middleware on module load
-handleRequestMiddleware();
+// Note: Middleware is now initialized only via useEffect in App.tsx to prevent double processing

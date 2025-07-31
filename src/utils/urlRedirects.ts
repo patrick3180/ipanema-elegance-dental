@@ -167,16 +167,14 @@ export const goneUrls: Set<string> = new Set([
 
 // Function to check and handle all redirects
 export const handlePageRedirects = (): { redirected: boolean; type: 'redirect' | 'gone' | null } => {
+  if (typeof window === 'undefined') return { redirected: false, type: null };
+  
   const currentPath = window.location.pathname;
   
-  // Import pattern matcher dynamically to avoid circular dependencies
-  import('./urlPatternMatcher').then(({ getRedirectInfo }) => {
-    const info = getRedirectInfo(currentPath);
-    
-    if (info.action === 'ignore') {
-      return { redirected: false, type: null };
-    }
-  });
+  // Skip processing for root path and common valid paths
+  if (currentPath === '/' || currentPath === '/index.html' || currentPath === '') {
+    return { redirected: false, type: null };
+  }
   
   // Check if current path should return 410 Gone
   if (goneUrls.has(currentPath)) {
@@ -215,7 +213,4 @@ export const getRedirectDestination = (path: string): string | null => {
   return pageRedirects[path] || null;
 };
 
-// Auto-execute redirect check on module load
-if (typeof window !== 'undefined') {
-  handlePageRedirects();
-}
+// Note: Auto-execution removed to prevent double processing - now handled via App.tsx useEffect

@@ -77,6 +77,17 @@ function AppContent() {
   
   // Handle URL redirects and SEO monitoring
   useEffect(() => {
+    // Initialize middleware on route change
+    const initializeMiddleware = async () => {
+      try {
+        const { handleRequestMiddleware } = await import('@/middleware/redirectMiddleware');
+        handleRequestMiddleware();
+      } catch (error) {
+        console.error('Error initializing middleware:', error);
+      }
+    };
+
+    // Handle page redirects
     const redirectResult = handlePageRedirects();
     
     if (redirectResult.type === 'redirect') {
@@ -84,6 +95,9 @@ function AppContent() {
     } else if (redirectResult.type === 'gone') {
       seoMonitor.logGone(location.pathname);
     }
+
+    // Initialize middleware after redirect handling
+    initializeMiddleware();
   }, [location.pathname]);
 
   return (
