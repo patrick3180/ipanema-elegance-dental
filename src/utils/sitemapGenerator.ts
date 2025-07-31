@@ -1,6 +1,7 @@
 
 import { getAllBlogPosts } from '@/services/contentful/queries';
 import { blogPosts } from '@/data/blogPosts';
+import { contentfulCache, CACHE_KEYS } from '@/utils/contentfulCache';
 
 interface SitemapUrl {
   loc: string;
@@ -51,6 +52,13 @@ Host: ${baseUrl}`;
 };
 
 export const generateSitemap = async (): Promise<string> => {
+  // Check cache first (cached for 1 hour)
+  const cachedSitemap = contentfulCache.get<string>(CACHE_KEYS.SITEMAP);
+  if (cachedSitemap) {
+    console.log('📋 Returning cached sitemap');
+    return cachedSitemap;
+  }
+
   const baseUrl = 'https://dracarlachristoph.com';
   const today = new Date().toISOString().split('T')[0];
   
@@ -240,19 +248,21 @@ export const generateSitemap = async (): Promise<string> => {
   console.log(`  - ${legalPages.length} legal pages`);
   console.log(`  - ${blogPages.length} blog posts`);
 
-  // Generate XML sitemap
-  const xmlUrls = allUrls.map(url => `
+  // Cache the sitemap for 1 hour
+  const generatedSitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  ${allUrls.map(url => `
   <url>
     <loc>${url.loc}</loc>
     <lastmod>${url.lastmod}</lastmod>
     <changefreq>${url.changefreq}</changefreq>
     <priority>${url.priority}</priority>
-  </url>`).join('');
-
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${xmlUrls}
+  </url>`).join('')}
 </urlset>`;
+
+  contentfulCache.set(CACHE_KEYS.SITEMAP, generatedSitemap, 60 * 60 * 1000); // 1 hour cache
+
+  return generatedSitemap;
 };
 
 // Function to ping search engines about sitemap updates

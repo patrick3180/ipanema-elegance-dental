@@ -4,10 +4,18 @@ import { contentfulClient, formatImageUrl, DEFAULT_LOCALE } from './client';
 import { transformBlogPostEntry, richTextToHtml } from './transformers';
 import { getLocalizedValue, BlogPostSkeleton, CategorySkeleton } from './types';
 import { blogPosts, getBlogPostBySlug as getLocalBlogPostBySlug } from '@/data/blogPosts';
+import { contentfulCache, CACHE_KEYS, cacheBlogPost, getCachedBlogPost } from '@/utils/contentfulCache';
 import { Entry } from 'contentful';
 
-// Get all blog posts from Contentful
+// Get all blog posts from Contentful with caching
 export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
+  // Check cache first
+  const cachedPosts = contentfulCache.get<BlogPost[]>(CACHE_KEYS.ALL_BLOG_POSTS);
+  if (cachedPosts) {
+    console.log(`getAllBlogPosts: Returning ${cachedPosts.length} cached posts`);
+    return cachedPosts;
+  }
+
   try {
     console.log('getAllBlogPosts: Fetching from Contentful...');
     const response = await contentfulClient.getEntries<BlogPostSkeleton>({
@@ -25,7 +33,7 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
       return Promise.resolve(blogPosts);
     }
 
-    return Promise.all(
+    const processedPosts = await Promise.all(
       response.items.map(async (item) => {
         const title = getLocalizedValue(item.fields.title) || 'Unknown';
         console.log(`getAllBlogPosts: Processing "${title}"`);
@@ -72,14 +80,27 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
         return post;
       })
     );
+
+    // Cache the results for 30 minutes
+    contentfulCache.set(CACHE_KEYS.ALL_BLOG_POSTS, processedPosts, 30 * 60 * 1000);
+    console.log(`getAllBlogPosts: Cached ${processedPosts.length} posts`);
+    
+    return processedPosts;
   } catch (error) {
     console.error('getAllBlogPosts: Error fetching from Contentful:', error);
     return Promise.resolve(blogPosts);
   }
 };
 
-// Get a single blog post by slug from Contentful with enhanced asset loading
+// Get a single blog post by slug from Contentful with enhanced asset loading and caching
 export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> => {
+  // Check cache first
+  const cachedPost = getCachedBlogPost(slug);
+  if (cachedPost) {
+    console.log(`getBlogPostBySlug: Returning cached post for "${slug}"`);
+    return cachedPost as BlogPost;
+  }
+
   try {
     console.log(`getBlogPostBySlug: Fetching post with slug "${slug}"`);
     
@@ -100,7 +121,7 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
 
     if (!response.items || response.items.length === 0) {
       console.log(`getBlogPostBySlug: No Contentful item found for "${slug}", trying local fallback`);
-      return getLocalBlogPostBySlug(slug);
+      return getLocalBlogPostBySlug(slug) || null;
     }
 
     const item = response.items[0];
@@ -201,9 +222,12 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
       contentLength: post.content.length
     });
     
+    // Cache the individual post for 1 hour
+    cacheBlogPost(slug, post, 60 * 60 * 1000);
+    
     return post;
   } catch (error) {
     console.error(`getBlogPostBySlug: Error fetching post with slug "${slug}":`, error);
-    return getLocalBlogPostBySlug(slug);
+    return getLocalBlogPostBySlug(slug) || null;
   }
 };

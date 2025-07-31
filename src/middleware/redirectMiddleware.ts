@@ -42,6 +42,11 @@ export const handleRequestMiddleware = () => {
     return;
   }
   
+  // Skip processing for root path to avoid redirect loops
+  if (currentPath === '/') {
+    return;
+  }
+
   // Handle URL redirects and 410 responses
   const redirectResult = handlePageRedirects();
   
