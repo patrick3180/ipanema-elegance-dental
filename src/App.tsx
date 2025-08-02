@@ -12,6 +12,7 @@ import SitemapUpdater from "@/components/SitemapUpdater";
 import SEOHealthMonitor from "@/components/SEOHealthMonitor";
 import SitemapResponse from "@/components/SitemapResponse";
 import RobotsResponse from "@/components/RobotsResponse";
+import { CrawlerOptimizer } from "@/components/performance/CrawlerOptimizer";
 import { handlePageRedirects } from "@/utils/urlRedirects";
 import { seoMonitor } from "@/utils/seoMonitoring";
 
@@ -276,6 +277,7 @@ function AppContent() {
         <PerformanceMonitor />
         <SEOHealthMonitor />
         <SitemapUpdater />
+        <CrawlerOptimizer />
       </div>
     </ErrorBoundary>
   );
