@@ -10,8 +10,6 @@ import LazyRouteWrapper from "@/components/performance/LazyRouteWrapper";
 import { useResourceOptimization } from "@/hooks/useResourceOptimization";
 import SitemapUpdater from "@/components/SitemapUpdater";
 import SEOHealthMonitor from "@/components/SEOHealthMonitor";
-import SitemapResponse from "@/components/SitemapResponse";
-import RobotsResponse from "@/components/RobotsResponse";
 import { CrawlerOptimizer } from "@/components/performance/CrawlerOptimizer";
 import { handlePageRedirects } from "@/utils/urlRedirects";
 import { seoMonitor } from "@/utils/seoMonitoring";
@@ -258,9 +256,6 @@ function AppContent() {
             } 
           />
 
-          {/* Dynamic SEO Routes */}
-          <Route path="/sitemap.xml" element={<SitemapResponse />} />
-          <Route path="/robots.txt" element={<RobotsResponse />} />
 
           {/* 404 Route */}
           <Route 
