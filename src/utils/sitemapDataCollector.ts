@@ -150,18 +150,37 @@ export const collectSitemapData = async (): Promise<SitemapData> => {
     allBlogPosts = blogPosts;
   }
 
-  // Generate blog post URLs
+  // Generate blog post URLs with robust date handling
   const blogPostUrls: SitemapUrl[] = allBlogPosts.map(post => {
     let lastmod = today;
-    if (post.updatedAt) {
-      lastmod = new Date(post.updatedAt).toISOString().split('T')[0];
-    } else if (post.publishedAt) {
-      lastmod = new Date(post.publishedAt).toISOString().split('T')[0];
-    } else if (post.date) {
-      const dateStr = post.date.toString();
-      if (!dateStr.includes('de')) {
-        lastmod = new Date(post.date).toISOString().split('T')[0];
+    
+    // Try to parse various date formats safely
+    try {
+      if (post.updatedAt) {
+        const updatedDate = new Date(post.updatedAt);
+        if (!isNaN(updatedDate.getTime())) {
+          lastmod = updatedDate.toISOString().split('T')[0];
+        }
+      } else if (post.publishedAt) {
+        const publishedDate = new Date(post.publishedAt);
+        if (!isNaN(publishedDate.getTime())) {
+          lastmod = publishedDate.toISOString().split('T')[0];
+        }
+      } else if (post.date) {
+        // Handle both string and Date objects
+        const dateStr = post.date.toString();
+        
+        // Skip Brazilian Portuguese date format like "5 de janeiro de 2024"
+        if (!dateStr.includes('de')) {
+          const parsedDate = new Date(post.date);
+          if (!isNaN(parsedDate.getTime())) {
+            lastmod = parsedDate.toISOString().split('T')[0];
+          }
+        }
       }
+    } catch (error) {
+      console.warn(`⚠️ Failed to parse date for post ${post.slug}:`, error);
+      // lastmod remains as today's date
     }
     
     return {

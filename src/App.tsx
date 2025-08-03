@@ -13,8 +13,11 @@ import SEOHealthMonitor from "@/components/SEOHealthMonitor";
 import SitemapResponse from "@/components/SitemapResponse";
 import RobotsResponse from "@/components/RobotsResponse";
 import { CrawlerOptimizer } from "@/components/performance/CrawlerOptimizer";
+import SEOSitemapManager from "@/components/SEOSitemapManager";
+import SEOMonitoringDashboard from "@/components/SEOMonitoringDashboard";
 import { handlePageRedirects } from "@/utils/urlRedirects";
 import { seoMonitor } from "@/utils/seoMonitoring";
+import "@/utils/404ErrorHandler"; // Initialize 404 error tracking
 
 // Lazy load components for better code splitting
 const Index = lazy(() => import("./pages/Index"));
@@ -277,7 +280,9 @@ function AppContent() {
         <PerformanceMonitor />
         <SEOHealthMonitor />
         <SitemapUpdater />
+        <SEOSitemapManager />
         <CrawlerOptimizer />
+        <SEOMonitoringDashboard />
       </div>
     </ErrorBoundary>
   );

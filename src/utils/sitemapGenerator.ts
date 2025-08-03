@@ -79,22 +79,25 @@ export const generateSitemap = async (): Promise<string> => {
     console.log(`  - ${sitemapData.blogTags.length} blog tags`);
     console.log(`  - ${sitemapData.blogPagination.length} pagination pages`);
     
-    // Ping search engines about the comprehensive update
-    await pingSearchEngines();
-
-    // Cache the comprehensive sitemap for 1 hour
+    // Build XML sitemap with proper escaping
     const generatedSitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   ${allUrls.map(url => `
   <url>
-    <loc>${url.loc}</loc>
+    <loc>${encodeURI(url.loc).replace(/&/g, '&amp;')}</loc>
     <lastmod>${url.lastmod}</lastmod>
     <changefreq>${url.changefreq}</changefreq>
     <priority>${url.priority}</priority>
   </url>`).join('')}
 </urlset>`;
 
+    // Cache the comprehensive sitemap for 1 hour
     contentfulCache.set(CACHE_KEYS.SITEMAP, generatedSitemap, 60 * 60 * 1000); // 1 hour cache
+    
+    // Ping search engines about the comprehensive update (don't await to avoid blocking)
+    pingSearchEngines().catch(error => {
+      console.warn('⚠️ Failed to ping search engines:', error);
+    });
 
     return generatedSitemap;
     
@@ -103,7 +106,7 @@ export const generateSitemap = async (): Promise<string> => {
     
     // Fallback to basic sitemap if comprehensive generation fails
     const basicSitemap = generateBasicSitemap();
-    contentfulCache.set(CACHE_KEYS.SITEMAP, basicSitemap, 60 * 60 * 1000);
+    contentfulCache.set(CACHE_KEYS.SITEMAP, basicSitemap, 5 * 60 * 1000); // 5 minutes cache for fallback
     return basicSitemap;
   }
 };
