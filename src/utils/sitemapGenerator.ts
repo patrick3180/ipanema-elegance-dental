@@ -1,6 +1,7 @@
 
 import { collectSitemapData, getTotalUrlCount, SitemapUrl } from '@/utils/sitemapDataCollector';
 import { contentfulCache, CACHE_KEYS } from '@/utils/contentfulCache';
+import { runSitemapDiagnostics, logDiagnosticSummary } from '@/utils/sitemapDiagnostics';
 
 export const generateRobotsTxt = (): string => {
   const baseUrl = 'https://dracarlachristoph.com';
@@ -52,6 +53,10 @@ export const generateSitemap = async (): Promise<string> => {
   }
 
   console.log('🔍 Collecting comprehensive sitemap data...');
+  
+  // Run diagnostics to identify issues
+  const diagnostics = await runSitemapDiagnostics();
+  logDiagnosticSummary(diagnostics);
   
   try {
     // Collect all sitemap data

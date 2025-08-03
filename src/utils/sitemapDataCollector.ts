@@ -1,4 +1,5 @@
 import { getAllBlogPosts } from '@/services/contentful/queries';
+import { getEnhancedBlogPosts, testContentfulConnectivity } from '@/utils/enhancedContentfulQueries';
 import { blogPosts, getBlogCategories } from '@/data/blogPosts';
 import { BlogPost } from '@/types/BlogPost';
 
@@ -132,22 +133,41 @@ export const collectSitemapData = async (): Promise<SitemapData> => {
     }
   ];
 
-  // Collect blog posts
+  // Enhanced blog posts collection with connectivity check
   let allBlogPosts: BlogPost[] = [];
   
   try {
-    console.log('🔍 Collecting blog posts from Contentful...');
-    const contentfulPosts = await getAllBlogPosts();
+    console.log('🔍 Testing Contentful connectivity first...');
+    const isConnected = await testContentfulConnectivity();
     
-    if (contentfulPosts && contentfulPosts.length > 0) {
-      console.log(`✅ Got ${contentfulPosts.length} posts from Contentful`);
-      allBlogPosts = contentfulPosts;
+    if (isConnected) {
+      console.log('✅ Contentful connected - fetching enhanced blog posts...');
+      const contentfulPosts = await getEnhancedBlogPosts();
+      
+      if (contentfulPosts && contentfulPosts.length > 0) {
+        console.log(`✅ Got ${contentfulPosts.length} posts from enhanced Contentful fetch`);
+        allBlogPosts = contentfulPosts;
+      } else {
+        throw new Error('No posts from enhanced Contentful fetch');
+      }
     } else {
-      throw new Error('No posts from Contentful');
+      throw new Error('Contentful connectivity test failed');
     }
   } catch (error) {
-    console.warn('⚠️ Using local blog posts fallback:', error);
-    allBlogPosts = blogPosts;
+    console.warn('⚠️ Enhanced fetch failed, trying standard method:', error);
+    
+    try {
+      const fallbackPosts = await getAllBlogPosts();
+      if (fallbackPosts && fallbackPosts.length > 0) {
+        console.log(`✅ Got ${fallbackPosts.length} posts from standard Contentful fetch`);
+        allBlogPosts = fallbackPosts;
+      } else {
+        throw new Error('Standard Contentful fetch also failed');
+      }
+    } catch (fallbackError) {
+      console.warn('⚠️ All Contentful methods failed, using local blog posts:', fallbackError);
+      allBlogPosts = blogPosts;
+    }
   }
 
   // Generate blog post URLs with robust date handling

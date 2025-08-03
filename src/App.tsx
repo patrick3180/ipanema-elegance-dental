@@ -29,6 +29,7 @@ const BlogPost = lazy(() => import("./pages/BlogPost"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const GonePage = lazy(() => import("./pages/GonePage"));
+const SEODashboardPage = lazy(() => import("./pages/SEODashboardPage"));
 
 // Service pages
 const LentesEFacetas = lazy(() => import("./pages/LentesEFacetas"));
@@ -259,6 +260,16 @@ function AppContent() {
                 <GonePage />
               </LazyRouteWrapper>
           } 
+          />
+
+          {/* SEO Dashboard - Development/Admin Route */}
+          <Route 
+            path="/seo-dashboard" 
+            element={
+              <LazyRouteWrapper>
+                <SEODashboardPage />
+              </LazyRouteWrapper>
+            } 
           />
 
           {/* Dynamic SEO Routes */}

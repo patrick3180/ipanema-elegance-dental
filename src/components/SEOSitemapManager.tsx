@@ -1,19 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { generateSitemap } from '@/utils/sitemapGenerator';
 import { searchEngineNotifier } from '@/utils/searchEngineNotifier';
+import { optimizeForSearchEngines } from '@/utils/searchEngineOptimizer';
+import { runSitemapDiagnostics, logDiagnosticSummary } from '@/utils/sitemapDiagnostics';
 
 export const SEOSitemapManager: React.FC = () => {
   const [lastUpdate, setLastUpdate] = useState<string | null>(null);
   const [urlCount, setUrlCount] = useState<number>(0);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [diagnosticsRun, setDiagnosticsRun] = useState(false);
 
   useEffect(() => {
     const initializeSitemapManager = async () => {
       try {
-        console.log('🚀 Initializing SEO Sitemap Manager...');
+        console.log('🚀 Initializing Enhanced SEO Sitemap Manager...');
         
-        // Generate sitemap to ensure it's up to date
         setIsUpdating(true);
+        
+        // Run comprehensive diagnostics first
+        if (!diagnosticsRun) {
+          console.log('🔍 Running initial diagnostics...');
+          const diagnostics = await runSitemapDiagnostics();
+          logDiagnosticSummary(diagnostics);
+          setDiagnosticsRun(true);
+        }
+        
+        // Generate sitemap with enhanced error handling
         const sitemap = await generateSitemap();
         
         // Count URLs in the sitemap
@@ -22,19 +34,27 @@ export const SEOSitemapManager: React.FC = () => {
         setUrlCount(count);
         setLastUpdate(new Date().toISOString());
         
-        console.log(`✅ Sitemap initialized with ${count} URLs`);
+        console.log(`✅ Enhanced sitemap initialized with ${count} URLs`);
         
         // Initialize search engine notifier
         searchEngineNotifier.init();
         
-        // Check if we should ping search engines
+        // Run search engine optimization
         if (searchEngineNotifier.shouldPing()) {
-          console.log('📡 Pinging search engines about sitemap updates...');
-          await searchEngineNotifier.pingSitemap();
+          console.log('🚀 Running search engine optimization...');
+          await optimizeForSearchEngines();
         }
         
       } catch (error) {
-        console.error('❌ Error initializing sitemap manager:', error);
+        console.error('❌ Error initializing enhanced sitemap manager:', error);
+        
+        // Run diagnostics on error to identify issues
+        try {
+          const errorDiagnostics = await runSitemapDiagnostics();
+          logDiagnosticSummary(errorDiagnostics);
+        } catch (diagError) {
+          console.error('❌ Diagnostics also failed:', diagError);
+        }
       } finally {
         setIsUpdating(false);
       }
