@@ -1,0 +1,19 @@
+# Server-side redirects for SEO files
+/sitemap.xml  /.netlify/functions/sitemap  200!
+/robots.txt   /.netlify/functions/robots   200!
+
+# Common 404 redirects based on analytics
+/admin                  /seo-dashboard      301
+/dashboard              /seo-dashboard      301
+/wp-admin               /seo-dashboard      301
+/sobre-nos              /sobre              301
+/servico                /servicos           301
+/contact                /contato            301
+/about                  /sobre              301
+/services               /servicos           301
+
+# Prevent indexing of development/admin routes
+/seo-dashboard          /seo-dashboard      200  X-Robots-Tag: noindex
+
+# SPA fallback for other routes
+/*                      /index.html         200

@@ -107,7 +107,26 @@ class Error404Handler {
   }
 
   private suggestRedirect(url: string) {
-    // Suggest potential redirects based on common patterns
+    // Auto-redirect for common patterns
+    const autoRedirects: Record<string, string> = {
+      '/seo-dashboard': '/seo-dashboard',
+      '/sobre-nos': '/sobre',
+      '/servico': '/servicos',
+      '/blog-post': '/blog',
+      '/contact': '/contato',
+      '/about': '/sobre',
+      '/services': '/servicos'
+    };
+
+    // Check for exact matches first
+    if (autoRedirects[url]) {
+      console.log(`🔄 Auto-redirecting ${url} → ${autoRedirects[url]}`);
+      window.history.replaceState(null, '', autoRedirects[url]);
+      window.location.reload();
+      return;
+    }
+
+    // Suggest potential redirects based on patterns
     const suggestions: string[] = [];
 
     // Check for blog post patterns
@@ -120,18 +139,9 @@ class Error404Handler {
       suggestions.push('/servicos');
     }
 
-    // Check for common misspellings
-    const redirectMap: Record<string, string> = {
-      '/contato': '/contato',
-      '/sobre-nos': '/sobre',
-      '/servico': '/servicos',
-      '/blog-post': '/blog'
-    };
-
-    for (const [pattern, redirect] of Object.entries(redirectMap)) {
-      if (url.includes(pattern)) {
-        suggestions.push(redirect);
-      }
+    // Check for admin/dashboard patterns
+    if (url.includes('admin') || url.includes('dashboard')) {
+      suggestions.push('/seo-dashboard');
     }
 
     if (suggestions.length > 0) {

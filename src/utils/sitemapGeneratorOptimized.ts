@@ -6,11 +6,30 @@ export const generateRobotsTxt = (): string => {
   return `User-agent: *
 Allow: /
 
+# Disallow admin and development pages
+Disallow: /seo-dashboard
+Disallow: /admin/
+Disallow: /dev/
+Disallow: /_netlify/
+
+# Allow important paths explicitly
+Allow: /blog/
+Allow: /servicos/
+Allow: /sobre
+Allow: /contato
+
 # Sitemaps
 Sitemap: https://dracarlachristoph.com/sitemap.xml
 
-# Crawl-delay
-Crawl-delay: 1`;
+# Crawl rate optimization
+Crawl-delay: 1
+
+# Specific directives for different bots
+User-agent: Googlebot
+Crawl-delay: 1
+
+User-agent: Bingbot
+Crawl-delay: 2`;
 };
 
 export const formatSitemapXML = (data: SitemapData): string => {

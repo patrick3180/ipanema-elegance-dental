@@ -19,6 +19,7 @@ import {
 import { runSitemapDiagnostics, type DiagnosticReport } from '@/utils/sitemapDiagnostics';
 import { generateOptimizedSitemap, getSitemapUrlCount } from '@/utils/sitemapGeneratorOptimized';
 import { optimizeForSearchEngines } from '@/utils/searchEngineOptimizer';
+import { indexingMonitor, type IndexingReport } from '@/utils/indexingMonitor';
 import SEODashboardError from '@/components/SEODashboardError';
 import { useToast } from '@/hooks/use-toast';
 
@@ -31,6 +32,8 @@ const SEODashboardOptimized: React.FC = () => {
   const [sitemapContent, setSitemapContent] = useState<string>('');
   const [urlCount, setUrlCount] = useState<number>(0);
   const [submissionGuide, setSubmissionGuide] = useState<string>('');
+  const [indexingReport, setIndexingReport] = useState<IndexingReport | null>(null);
+  const [isCheckingIndexing, setIsCheckingIndexing] = useState(false);
   
   const { toast } = useToast();
 
@@ -172,6 +175,44 @@ Sitemap URL Count: ${urlCount}
     setSubmissionGuide('');
     localStorage.removeItem('seo-submission-guide');
   }, []);
+
+  const checkIndexingStatus = useCallback(async () => {
+    if (isCheckingIndexing) return;
+    
+    setIsCheckingIndexing(true);
+    
+    try {
+      console.log('🔍 Checking indexing status...');
+      
+      // Get URLs from sitemap for indexing check
+      const sampleUrls = [
+        'https://dracarlachristoph.com/',
+        'https://dracarlachristoph.com/blog',
+        'https://dracarlachristoph.com/servicos',
+        'https://dracarlachristoph.com/sobre',
+        'https://dracarlachristoph.com/contato'
+      ];
+      
+      const report = await indexingMonitor.generateIndexingReport(sampleUrls);
+      setIndexingReport(report);
+      indexingMonitor.saveReport(report);
+      
+      toast({
+        title: "Indexing Check Complete",
+        description: `${report.indexedCount}/${report.totalUrls} URLs are indexed (${report.indexingRate}%)`,
+      });
+      
+    } catch (error) {
+      console.error('❌ Indexing check failed:', error);
+      toast({
+        title: "Indexing Check Failed",
+        description: "Could not complete indexing status check",
+        variant: "destructive",
+      });
+    } finally {
+      setIsCheckingIndexing(false);
+    }
+  }, [isCheckingIndexing, toast]);
 
   const getStatusColor = (status: boolean) => {
     return status ? 'default' : 'destructive';
