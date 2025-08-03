@@ -1,5 +1,5 @@
 import React from 'react';
-import SEODashboardEnhanced from '@/components/SEODashboardEnhanced';
+import SEODashboardOptimized from '@/components/SEODashboardOptimized';
 import SEOHead from '@/components/SEOHead';
 
 const SEODashboardPage: React.FC = () => {
@@ -11,7 +11,7 @@ const SEODashboardPage: React.FC = () => {
         canonicalUrl="https://dracarlachristoph.com/seo-dashboard"
       />
       <div className="min-h-screen bg-background">
-        <SEODashboardEnhanced />
+        <SEODashboardOptimized />
       </div>
     </>
   );

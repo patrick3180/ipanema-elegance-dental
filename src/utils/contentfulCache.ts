@@ -119,6 +119,8 @@ export const CACHE_KEYS = {
   ALL_BLOG_POSTS: 'contentful:all-blog-posts',
   BLOG_POST: (slug: string) => `contentful:blog-post:${slug}`,
   SITEMAP: 'sitemap:generated',
+  SITEMAP_GENERATED: 'sitemap:generated',
+  SITEMAP_URL_COUNT: 'sitemap:url-count',
   BLOG_CATEGORIES: 'contentful:blog-categories',
   FEATURED_POSTS: 'contentful:featured-posts'
 } as const;

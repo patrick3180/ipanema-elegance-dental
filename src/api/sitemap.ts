@@ -1,9 +1,9 @@
-import { generateSitemap } from '@/utils/sitemapGenerator';
+import { generateOptimizedSitemap } from '@/utils/sitemapGeneratorOptimized';
 
 export const handleSitemapRequest = async (): Promise<Response> => {
   try {
     console.log('🗺️ Serving dynamic sitemap request...');
-    const sitemap = await generateSitemap();
+    const sitemap = await generateOptimizedSitemap();
     
     return new Response(sitemap, {
       status: 200,
