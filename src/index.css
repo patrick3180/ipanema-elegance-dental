@@ -99,6 +99,11 @@
   }
 }
 
+/* FAQ content styles */
+.faq-content a {
+  @apply font-semibold text-foreground no-underline hover:text-dental-purple transition-colors;
+}
+
 /* Enhanced blog content styling */
 .blog-content h1 {
   @apply text-3xl font-display font-semibold text-dental-purple mt-8 mb-4;
