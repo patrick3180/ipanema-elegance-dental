@@ -113,12 +113,15 @@
         }
         
         // Function to send GCLID data to webhook
-        function sendGclidData(gclid) {
+        function sendGclidData(gclid, source) {
             var data = {
                 gclid: gclid,
                 page: window.location.href,
-                timestamp: new Date().toISOString()
+                timestamp: new Date().toISOString(),
+                source: source || 'unknown'
             };
+            
+            console.log('Sending GCLID data from ' + source + ':', data);
             
             // Send data to webhook with keepalive to ensure delivery even if page unloads
             fetch('https://n8n.srv876901.hstgr.cloud/webhook/webhook/gclid', {
@@ -135,6 +138,43 @@
             });
         }
         
+        // Function to check if URL contains WhatsApp
+        function isWhatsAppUrl(url) {
+            return url && (url.includes('wa.me') || url.includes('api.whatsapp.com'));
+        }
+        
+        // Function to get GCLID from storage
+        function getStoredGclid() {
+            var gclid = getCookie('gclid');
+            if (!gclid) {
+                try {
+                    gclid = localStorage.getItem('gclid');
+                } catch(e) {
+                    console.log('LocalStorage not available');
+                }
+            }
+            return gclid;
+        }
+        
+        // Intercept window.open calls for WhatsApp URLs
+        var originalWindowOpen = window.open;
+        window.open = function(url, target, features) {
+            console.log('window.open intercepted:', url);
+            
+            if (isWhatsAppUrl(url)) {
+                console.log('WhatsApp URL detected in window.open:', url);
+                var gclid = getStoredGclid();
+                if (gclid) {
+                    sendGclidData(gclid, 'window.open');
+                } else {
+                    console.log('No GCLID found for window.open WhatsApp call');
+                }
+            }
+            
+            // Call original window.open
+            return originalWindowOpen.call(this, url, target, features);
+        };
+        
         // Wait for DOM to be ready before adding event listeners
         function addWhatsAppListeners() {
             // Find all WhatsApp links (wa.me and api.whatsapp.com)
@@ -144,7 +184,7 @@
             var allLinks = document.querySelectorAll('a');
             for (var i = 0; i < allLinks.length; i++) {
                 var link = allLinks[i];
-                if (link.href && (link.href.includes('wa.me') || link.href.includes('api.whatsapp.com'))) {
+                if (link.href && isWhatsAppUrl(link.href)) {
                     if (Array.prototype.indexOf.call(whatsappLinks, link) === -1) {
                         whatsappLinks = Array.prototype.slice.call(whatsappLinks);
                         whatsappLinks.push(link);
@@ -152,22 +192,20 @@
                 }
             }
             
+            console.log('Found WhatsApp links:', whatsappLinks.length);
+            
             // Add click event listeners to WhatsApp links
             for (var i = 0; i < whatsappLinks.length; i++) {
                 whatsappLinks[i].addEventListener('click', function(event) {
-                    // Get GCLID from cookie or localStorage
-                    var gclid = getCookie('gclid');
-                    if (!gclid) {
-                        try {
-                            gclid = localStorage.getItem('gclid');
-                        } catch(e) {
-                            console.log('LocalStorage not available');
-                        }
-                    }
+                    console.log('WhatsApp link clicked:', this.href);
+                    
+                    var gclid = getStoredGclid();
                     
                     // Send GCLID data if available
                     if (gclid) {
-                        sendGclidData(gclid);
+                        sendGclidData(gclid, 'direct-link');
+                    } else {
+                        console.log('No GCLID found for direct link click');
                     }
                     
                     // Don't prevent default behavior - let WhatsApp link work normally
@@ -184,6 +222,8 @@
         
         // Also check periodically for dynamically added WhatsApp links
         setInterval(addWhatsAppListeners, 2000);
+        
+        console.log('GCLID tracking script initialized - window.open intercepted');
     })();
     </script>
     <!-- End GCLID Tracking Footer Script -->
