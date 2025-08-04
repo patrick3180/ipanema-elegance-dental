@@ -32,6 +32,48 @@
     })(window,document,'script','dataLayer','GTM-WZRDNBKQ');</script>
     <!-- End Google Tag Manager -->
 
+    <!-- GCLID Tracking Header Script -->
+    <script>
+    (function() {
+        // Function to get URL parameter by name
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+        
+        // Function to set cookie
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days*24*60*60*1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+        
+        // Capture GCLID from URL and store it
+        var gclid = getUrlParameter('gclid');
+        if (gclid) {
+            // Store in cookie for 90 days
+            setCookie('gclid', gclid, 90);
+            
+            // Store in localStorage as backup
+            try {
+                localStorage.setItem('gclid', gclid);
+                localStorage.setItem('gclid_timestamp', new Date().toISOString());
+            } catch(e) {
+                console.log('LocalStorage not available');
+            }
+            
+            console.log('GCLID captured and stored:', gclid);
+        }
+    })();
+    </script>
+    <!-- End GCLID Tracking Header Script -->
+
     <meta property="og:title" content="Dentista em Ipanema | Clínica Odontológica Dra. Carla Christoph" />
     <meta property="og:description" content="Procurando dentista em Ipanema? A Dra. Carla Christoph oferece odontologia estética e reabilitação oral com atendimento personalizado. Agende sua consulta!" />
     <meta property="og:type" content="website" />
@@ -54,5 +96,96 @@
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- GCLID Tracking Footer Script -->
+    <script>
+    (function() {
+        // Function to get cookie by name
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+        
+        // Function to send GCLID data to webhook
+        function sendGclidData(gclid) {
+            var data = {
+                gclid: gclid,
+                page: window.location.href,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Send data to webhook with keepalive to ensure delivery even if page unloads
+            fetch('https://n8n.srv876901.hstgr.cloud/webhook/webhook/gclid', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+                keepalive: true // Ensures request completes even if page unloads
+            }).then(function() {
+                console.log('GCLID data sent successfully:', data);
+            }).catch(function(error) {
+                console.log('Error sending GCLID data:', error);
+            });
+        }
+        
+        // Wait for DOM to be ready before adding event listeners
+        function addWhatsAppListeners() {
+            // Find all WhatsApp links (wa.me and api.whatsapp.com)
+            var whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
+            
+            // Also find dynamically created links by checking all links
+            var allLinks = document.querySelectorAll('a');
+            for (var i = 0; i < allLinks.length; i++) {
+                var link = allLinks[i];
+                if (link.href && (link.href.includes('wa.me') || link.href.includes('api.whatsapp.com'))) {
+                    if (Array.prototype.indexOf.call(whatsappLinks, link) === -1) {
+                        whatsappLinks = Array.prototype.slice.call(whatsappLinks);
+                        whatsappLinks.push(link);
+                    }
+                }
+            }
+            
+            // Add click event listeners to WhatsApp links
+            for (var i = 0; i < whatsappLinks.length; i++) {
+                whatsappLinks[i].addEventListener('click', function(event) {
+                    // Get GCLID from cookie or localStorage
+                    var gclid = getCookie('gclid');
+                    if (!gclid) {
+                        try {
+                            gclid = localStorage.getItem('gclid');
+                        } catch(e) {
+                            console.log('LocalStorage not available');
+                        }
+                    }
+                    
+                    // Send GCLID data if available
+                    if (gclid) {
+                        sendGclidData(gclid);
+                    }
+                    
+                    // Don't prevent default behavior - let WhatsApp link work normally
+                });
+            }
+        }
+        
+        // Run when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', addWhatsAppListeners);
+        } else {
+            addWhatsAppListeners();
+        }
+        
+        // Also check periodically for dynamically added WhatsApp links
+        setInterval(addWhatsAppListeners, 2000);
+    })();
+    </script>
+    <!-- End GCLID Tracking Footer Script -->
   </body>
 </html>
