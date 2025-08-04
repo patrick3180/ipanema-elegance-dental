@@ -13,7 +13,7 @@ const DefaultSection = ({ title, content, imageUrl }: DefaultSectionProps) => {
   // Only render string and ReactNode content types
   const renderContent = () => {
     if (typeof content === "string") {
-      return <p className="body-md">{content}</p>;
+      return <p className="body-md" dangerouslySetInnerHTML={{ __html: content }} />;
     }
     
     // If content is a ReactNode (not an array)

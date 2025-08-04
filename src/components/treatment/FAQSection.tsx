@@ -23,9 +23,7 @@ const FAQSection = ({ faqs }: FAQSectionProps) => {
             <AccordionTrigger className="text-base font-medium text-dental-purple">
               {faq.question}
             </AccordionTrigger>
-            <AccordionContent className="body-md">
-              {faq.answer}
-            </AccordionContent>
+            <AccordionContent className="body-md" dangerouslySetInnerHTML={{ __html: faq.answer }} />
           </AccordionItem>
         ))}
       </Accordion>
