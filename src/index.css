@@ -101,7 +101,7 @@
 
 /* FAQ content styles */
 .faq-content a {
-  @apply font-semibold text-foreground no-underline hover:text-dental-purple transition-colors;
+  @apply font-bold text-dental-purple underline underline-offset-2 decoration-1 hover:decoration-2 hover:text-primary transition-all;
 }
 
 /* Enhanced blog content styling */
