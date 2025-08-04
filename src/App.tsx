@@ -293,7 +293,7 @@ function AppContent() {
         <SitemapUpdater />
         <SEOSitemapManager />
         <CrawlerOptimizer />
-        <SEOMonitoringDashboard />
+        {/* <SEOMonitoringDashboard /> */}
       </div>
     </ErrorBoundary>
   );
