@@ -102,7 +102,7 @@ const TreatmentPageTemplate = ({
                   <img 
                     src={preImageUrl} 
                     alt="Antes e depois do clareamento dental - comparação de resultados" 
-                    className="w-full max-w-xl mx-auto rounded-lg shadow-lg"
+                    className="w-full max-w-md mx-auto rounded-lg shadow-lg"
                     loading="lazy"
                   />
                 </div>
