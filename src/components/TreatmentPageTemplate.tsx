@@ -21,7 +21,8 @@ const TreatmentPageTemplate = ({
   sections,
   faqs = [],
   whatsappMessage = "Olá, gostaria de agendar uma avaliação",
-  ctaHeading
+  ctaHeading,
+  preImageUrl
 }: TreatmentPageProps) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -93,6 +94,20 @@ const TreatmentPageTemplate = ({
                 )}
               </div>
             ))}
+
+            {/* Pre-FAQ Image */}
+            {preImageUrl && (
+              <LazySection>
+                <div className="my-12 text-center">
+                  <img 
+                    src={preImageUrl} 
+                    alt="Clareamento dental" 
+                    className="w-full max-w-3xl mx-auto rounded-lg shadow-lg"
+                    loading="lazy"
+                  />
+                </div>
+              </LazySection>
+            )}
 
             {/* FAQ Section with lazy loading */}
             {faqs.length > 0 && (

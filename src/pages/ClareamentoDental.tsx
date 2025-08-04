@@ -123,7 +123,8 @@ const ClareamentoDental = () => {
       }
     ],
     
-    whatsappMessage: "Olá, gostaria de agendar uma avaliação para clareamento dental"
+    whatsappMessage: "Olá, gostaria de agendar uma avaliação para clareamento dental",
+    preImageUrl: "/lovable-uploads/24fc77b2-c9c7-43b8-8c9f-18c90f65c23e.png"
   };
 
   return <TreatmentPageTemplate {...treatmentData} />;

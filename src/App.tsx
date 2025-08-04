@@ -289,7 +289,7 @@ function AppContent() {
         
         <Toaster />
         <PerformanceMonitor />
-        <SEOHealthMonitor />
+        {/* <SEOHealthMonitor /> */}
         <SitemapUpdater />
         <SEOSitemapManager />
         <CrawlerOptimizer />

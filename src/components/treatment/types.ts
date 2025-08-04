@@ -30,4 +30,5 @@ export interface TreatmentPageProps {
   faqs?: FAQ[];
   whatsappMessage?: string;
   ctaHeading?: string;
+  preImageUrl?: string;
 }
