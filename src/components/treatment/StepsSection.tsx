@@ -2,6 +2,7 @@
 import React from "react";
 import { SectionContent, Step } from "./types";
 import OptimizedImage from "@/components/OptimizedImage";
+import { processMarkdown } from "@/utils/markdownProcessor";
 
 interface StepsSectionProps {
   title: string;
@@ -32,7 +33,12 @@ const StepsSection = ({ title, content, imageUrl }: StepsSectionProps) => {
         </div>
       )}
       
-      {typeof content === "string" && <p className="body-md mb-4">{content}</p>}
+      {typeof content === "string" && (
+        <div 
+          className="body-md mb-4" 
+          dangerouslySetInnerHTML={{ __html: processMarkdown(content) }}
+        />
+      )}
       
       {!Array.isArray(content) && typeof content !== "string" && content}
       
@@ -41,14 +47,21 @@ const StepsSection = ({ title, content, imageUrl }: StepsSectionProps) => {
           {content.map((step, index) => {
             // If step is a string
             if (typeof step === "string") {
-              return <li className="body-md" key={index}>{step}</li>;
+              return (
+                <li 
+                  className="body-md" 
+                  key={index}
+                  dangerouslySetInnerHTML={{ __html: processMarkdown(step) }}
+                />
+              );
             }
 
             // If step is a Step object
             if (isStep(step)) {
               return (
                 <li className="body-md" key={index}>
-                  <strong>{index + 1}. {step.title}</strong> {step.description}
+                  <strong>{index + 1}. {step.title}</strong> 
+                  <span dangerouslySetInnerHTML={{ __html: processMarkdown(step.description) }} />
                 </li>
               );
             }
