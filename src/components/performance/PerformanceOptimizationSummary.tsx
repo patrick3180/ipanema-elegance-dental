@@ -43,7 +43,7 @@ const PerformanceOptimizationSummary = () => {
       cls: metrics.cls,
       overallScore: getOverallScore()
     });
-  }, [metrics, getOverallScore]);
+  }, [metrics]);
 
   // Only show in development
   if (import.meta.env.PROD) return null;

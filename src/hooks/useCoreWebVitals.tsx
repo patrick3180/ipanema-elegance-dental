@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 interface WebVitalsMetrics {
   lcp: number | null; // Largest Contentful Paint
@@ -180,7 +180,7 @@ export const useCoreWebVitals = () => {
     };
   }, []);
 
-  const getVitalScore = (vital: keyof WebVitalsMetrics, value: number): VitalScore => {
+  const getVitalScore = useCallback((vital: keyof WebVitalsMetrics, value: number): VitalScore => {
     const thresholds = {
       lcp: { good: 2500, needsImprovement: 4000 },
       fid: { good: 100, needsImprovement: 300 },
@@ -210,9 +210,9 @@ export const useCoreWebVitals = () => {
     }
 
     return { value, rating, percentile: Math.round(percentile) };
-  };
+  }, []);
 
-  const getOverallScore = (): number => {
+  const getOverallScore = useCallback((): number => {
     const { lcp, fid, cls } = metrics;
     if (!lcp || !fid || cls === null) return 0;
 
@@ -227,9 +227,9 @@ export const useCoreWebVitals = () => {
     );
 
     return Math.round(weightedScore);
-  };
+  }, [metrics, getVitalScore]);
 
-  const getRecommendations = (): string[] => {
+  const getRecommendations = useCallback((): string[] => {
     const recommendations: string[] = [];
     
     if (metrics.lcp && metrics.lcp > 2500) {
@@ -253,7 +253,7 @@ export const useCoreWebVitals = () => {
     }
 
     return recommendations;
-  };
+  }, [metrics]);
 
   return {
     metrics,
