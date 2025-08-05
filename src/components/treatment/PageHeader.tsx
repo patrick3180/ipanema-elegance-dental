@@ -28,7 +28,7 @@ const PageHeader = ({ title, introduction, imageUrl }: PageHeaderProps) => {
       <Separator className="w-24 h-1 bg-dental-gold mb-6" />
       
       <div className="prose prose-lg max-w-3xl mx-auto">
-        <p className="lead">{introduction}</p>
+        <div className="lead" dangerouslySetInnerHTML={{ __html: introduction }} />
       </div>
     </div>
   );
