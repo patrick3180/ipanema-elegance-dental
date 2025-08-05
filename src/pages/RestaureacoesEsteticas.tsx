@@ -1,151 +1,128 @@
 import React from "react";
 import TreatmentPageTemplate from "@/components/TreatmentPageTemplate";
 
-const LentesEFacetas = () => {
+const RestaureacoesEsteticas = () => {
   const treatmentData = {
-    slug: "lentes-e-facetas",
-    title: "Lentes de Contato Dental e Facetas de Porcelana em Ipanema",
-    metaDescription: "Lentes de contato dental em Ipanema com Dra. Carla Christoph. Ultrafinas (0,2-0,5mm), desgaste mínimo, resultados naturais. Mais de 20 anos de experiência. Facetas de porcelana para transformação completa do sorriso.",
-    introduction: "Descubra a arte de um sorriso naturalmente deslumbrante com as lentes de contato dental e facetas de porcelana oferecidas pela Dra. Carla Christoph em nossa clínica em Ipanema. Essas ultrafinas lâminas de cerâmica de última geração representam o que há de mais moderno em preservação da estrutura dentária, permitindo transformações estéticas significativas com mínimo ou nenhum desgaste do dente natural. Com mais de 20 anos de experiência e formação como especialista em Prótese Dental e Implantodontia, a <a href=\"/blog/odontologia-estetica-sorriso-natural\"><strong>odontologia estética moderna</strong></a> da Dra. Carla combina ciência, arte e tecnologia para criar sorrisos que parecem ter nascido assim, priorizando sempre a individualidade e as características únicas de cada paciente.",
+    slug: "restauracoes-esteticas",
+    title: "Restaurações Dentárias Estéticas em Ipanema: Beleza e Função para seu Sorriso",
+    metaDescription: "Restauração dental estética em Ipanema com Dra. Carla Christoph. Materiais de excelência para cáries, dentes trincados e fraturas. Resinas de alta qualidade com resultados naturais e duradouros.",
+    introduction: "Cáries, dentes quebrados ou trincados podem comprometer não apenas a estética do seu sorriso, mas também sua saúde bucal. Na clínica da Dra. Carla Christoph em Ipanema, realizamos restaurações dentárias estéticas que devolvem a forma, função e beleza natural aos seus dentes, utilizando materiais de excelência e técnicas precisas desenvolvidas ao longo de mais de 20 anos de experiência clínica.",
     
     sections: [
       {
-        id: "o-que-sao",
-        title: "Ciência e Arte: O Que São Lentes de Contato Dental e Facetas de Porcelana?",
-        content: "As lentes de contato dental e facetas de porcelana representam o ápice da odontologia estética minimamente invasiva. São peças ultrafinas de cerâmica pura de última geração, moldadas individualmente e cimentadas sobre a superfície dos dentes com precisão artística. A principal diferença técnica está na espessura: as lentes de contato dental possuem entre 0,2mm a 0,5mm - similar à espessura de uma lente de contato ocular - enquanto as facetas de porcelana variam entre 0,7mm a 1,2mm. Esta diferença determina o grau de invasividade do procedimento: as lentes de contato exigem desgaste mínimo ou inexistente da estrutura dental, sendo ideais para correções sutis, enquanto as facetas permitem correções mais significativas. As cerâmicas modernas utilizadas possuem características ópticas extraordinárias, com translucidez e resistência que mimetizam perfeitamente o esmalte dental natural, criando resultados indistinguíveis dos dentes originais. O objetivo é sempre alcançar resultados naturais que respeitem a individualidade de cada pessoa, harmonizando-se perfeitamente com as características faciais.",
+        id: "o-que-sao-restauracoes",
+        title: "O Que São Restaurações Dentárias Estéticas?",
+        content: "Restaurações dentárias estéticas, também conhecidas como obturações da cor do dente, são procedimentos utilizados para reparar dentes danificados por cáries, fraturas ou trincas. Diferentemente das antigas restaurações metálicas (amálgama), as restaurações estéticas modernas, como as de resina composta, são confeccionadas para mimetizar a cor e a translucidez natural dos seus dentes, proporcionando um resultado imperceptível e harmonioso. A <a href=\"/blog/odontologia-estetica-sorriso-natural\"><strong>odontologia estética moderna</strong></a> da Dra. Carla Christoph em Ipanema utiliza materiais de excelência e técnicas avançadas para devolver não apenas a função, mas também a beleza natural do seu sorriso.",
         type: "default" as const
       },
       {
-        id: "como-funciona",
-        title: "Como Funciona a Tecnologia das Lentes de Contato Dental",
-        content: "O processo científico por trás das lentes de contato dental envolve uma engenharia de precisão que combina materiais de excelência com técnicas de cimentação avançadas. As cerâmicas de última geração utilizadas possuem propriedades biomecânicas similares ao esmalte dental, incluindo coeficiente de expansão térmica compatível e resistência à fadiga. O sistema de adesão utiliza primers e adesivos de alta performance que criam uma união química e micromecânica entre a cerâmica e o dente, garantindo uma integração que pode durar décadas. A biocompatibilidade dos materiais elimina riscos de rejeição ou irritação gengival, enquanto a lisura da superfície cerâmica facilita a higienização e reduz o acúmulo de placa bacteriana. Esta tecnologia permite que as lentes se comportem como parte integrante do dente, respondendo naturalmente às forças mastigatórias e mantendo a funcionalidade completa.",
+        id: "indicacoes-restauracoes",
+        title: "Quando uma Restauração Dental Estética é Indicada em Ipanema?",
+        content: "O tratamento com restaurações estéticas na nossa clínica em Ipanema é recomendado para diversas situações: <br/><br/> * <strong>Tratamento de Cáries:</strong> Remoção do tecido cariado e preenchimento da cavidade com material estético. <br/><br/> * <strong>Reparo de Dentes Quebrados ou Fraturados:</strong> Reconstrução da porção perdida do dente. <br/><br/> * <strong>Tratamento de Dentes Trincados:</strong> Para selar trincas e evitar que evoluam para problemas maiores - uma condição silenciosa que pode comprometer significativamente a <a href=\"/blog/saude-bucal-dente-trincado\"><strong>integridade estrutural dos dentes</strong></a>. <br/><br/> * <strong>Substituição de Restaurações Antigas:</strong> Troca de restaurações de amálgama (escuras) ou resinas antigas e manchadas por novas restaurações estéticas. <br/><br/> * <strong>Correção de Pequenos Defeitos Estéticos:</strong> Fechamento de pequenos espaços ou correção de imperfeições na forma do dente. <br/><br/> Uma avaliação com a Dra. Carla Christoph é fundamental para um diagnóstico preciso e a indicação do melhor tratamento de restauração dental em Ipanema.",
         type: "default" as const
       },
       {
-        id: "indicacoes",
-        title: "Indicações Técnicas: Quando Optar por Lentes de Contato Dental ou Facetas?",
-        content: "A escolha entre lentes de contato dental e facetas de porcelana baseia-se em critérios técnicos precisos estabelecidos através de uma <a href=\"/blog/odontologia-estetica-sorriso-natural\"><strong>avaliação facial e dental integrada</strong></a>. As lentes de contato dental são idealmente indicadas para: correção de diastemas (espaços entre dentes) até 2mm, alterações leves de cor que não respondem ao clareamento profissional, pequenas correções de formato e contorno, dentes com desgastes mínimos, e casos onde a preservação máxima da estrutura dental é prioritária. As facetas de porcelana são recomendadas para: correções mais extensas de cor e formato, dentes com fraturas ou desgastes mais significativos, necessidade de alteração da dimensão vertical dos dentes, casos de fluorose severa ou manchas por tetraciclina, e situações que requerem mudanças mais dramáticas na forma dental. A análise inclui fatores como espessura do esmalte disponível, padrão oclusal, características periodontais e expectativas estéticas do paciente. Uma avaliação criteriosa com a Dra. Carla Christoph, considerando fotografias, modelos de estudo e análise facial, definirá a abordagem mais adequada para cada caso específico.",
-        type: "default" as const
-      },
-      {
-        id: "beneficios",
-        title: "Benefícios Científicos e Estéticos: Além da Aparência",
+        id: "beneficios-restauracoes",
+        title: "Vantagens das Restaurações Estéticas",
         content: [
-          "<strong>Biomimetismo Excepcional:</strong> As cerâmicas modernas possuem índice de refração similar ao esmalte dental (1,62), conferindo translucidez e fluorescência naturais que se integram perfeitamente à dentição.",
-          "<strong>Durabilidade Comprovada:</strong> Estudos clínicos demonstram longevidade superior a 15 anos com taxa de sucesso acima de 95% quando realizadas com técnica adequada e materiais de excelência.",
-          "<strong>Preservação Estrutural Máxima:</strong> As lentes de contato dental preservam até 95% da estrutura dental original, seguindo os princípios da odontologia minimamente invasiva.",
-          "<strong>Biocompatibilidade Superior:</strong> Material inerte que não causa reações alérgicas, mantém a saúde gengival e facilita a higienização pela lisura superficial.",
-          "<strong>Estabilidade de Cor:</strong> Resistência total a pigmentação por alimentos, bebidas ou tabaco, mantendo a cor original por décadas.",
-          "<strong>Melhora Funcional:</strong> Dentes com formato adequado otimizam a mastigação, facilitam a fonética e reduzem o acúmulo de placa bacteriana.",
-          "<strong>Impacto Psicológico Positivo:</strong> Estudos demonstram melhora significativa na autoestima, confiança social e oportunidades profissionais.",
-          "<strong>Planejamento Digital Avançado:</strong> Tecnologia DSD permite previsibilidade total dos resultados, aumentando a satisfação do paciente."
+          "<strong>Estética Superior:</strong> Resultado natural, com a cor e o brilho dos seus dentes originais.",
+          "<strong>Preservação da Estrutura Dental:</strong> Geralmente requerem menor desgaste do dente saudável em comparação com algumas restaurações metálicas.",
+          "<strong>Adesão ao Dente:</strong> As resinas compostas se unem quimicamente ao dente, proporcionando um selamento eficaz e maior resistência.",
+          "<strong>Ausência de Metais:</strong> Ideal para pacientes com alergia a metais ou que preferem materiais livres de mercúrio.",
+          "<strong>Versatilidade:</strong> Podem ser usadas tanto em dentes anteriores quanto posteriores, incluindo casos complexos como dentes danificados pelo bruxismo.",
+          "<strong>Reparo Facilitado:</strong> Pequenos reparos podem ser feitos na própria restauração de resina, se necessário.",
+          "<strong>Biocompatibilidade:</strong> Materiais de excelência que não causam reações adversas e se integram naturalmente aos tecidos bucais."
         ],
         type: "benefits" as const
       },
       {
-        id: "como-e-feito",
-        title: "Protocolo Técnico: Seu Tratamento Passo a Passo",
+        id: "como-e-feito-restauracoes",
+        title: "Seu Tratamento de Restauração Estética em Ipanema: Passo a Passo",
         content: [
-          {
-            title: "Diagnóstico e Planejamento Integrado",
-            description: "Consulta inicial com análise facial completa, avaliação da harmonia entre dentes, lábios e face. Exames complementares incluem fotografias padronizadas, radiografias, modelos de estudo e análise oclusal. Consideramos aspectos como linha do sorriso, proporção áurea, fonética e características periodontais."
+          { 
+            title: "Diagnóstico e Planejamento",
+            description: "Avaliação completa incluindo exame clínico detalhado, radiografias quando necessárias e análise das condições que levaram ao problema, como hábitos parafuncionais ou características individuais."
           },
-          {
-            title: "Design Digital do Sorriso (DSD)",
-            description: "Utilização de tecnologia de ponta para simulação digital dos resultados. O DSD permite visualizar o resultado final, fazer ajustes conforme suas preferências e garantir aprovação antes de qualquer intervenção irreversível. Esta ferramenta aumenta significativamente a previsibilidade e satisfação do tratamento."
+          { 
+            title: "Anestesia Local (se necessário)",
+            description: "Para garantir que o procedimento seja totalmente indolor, utilizando técnicas modernas de aplicação."
           },
-          {
-            title: "Preparo Dental Conservador",
-            description: "Para lentes de contato: desgaste mínimo (0,1-0,3mm) ou inexistente, preservando totalmente a estrutura dental. Para facetas: preparo conservador limitado ao esmalte (0,5-0,8mm). Utilizamos guias de redução para garantir uniformidade e preservação máxima da estrutura."
+          { 
+            title: "Remoção do Tecido Cariado ou Preparo do Dente",
+            description: "O tecido comprometido é removido de forma conservadora e o dente é preparado para receber o material restaurador, preservando o máximo de estrutura sadia."
           },
-          {
-            title: "Moldagem de Precisão ou Escaneamento Digital",
-            description: "Moldagem com materiais de alta precisão ou escaneamento intraoral digital para captura exata da geometria dental. A precisão desta etapa é fundamental para o encaixe perfeito e longevidade das peças."
+          { 
+            title: "Aplicação do Material Restaurador",
+            description: "A resina composta de alta qualidade é aplicada em camadas, sendo cada camada endurecida com uma luz especial (fotopolimerizador) para garantir propriedades ótimas."
           },
-          {
-            title: "Confecção Laboratorial Artística",
-            description: "As lentes são confeccionadas em laboratório especializado utilizando cerâmicas de última geração. Cada peça é individualizada considerando cor, translucidez, textura superficial e características anatômicas específicas do paciente."
+          { 
+            title: "Escultura e Modelagem",
+            description: "A Dra. Carla Christoph esculpe a resina para devolver a forma e a anatomia natural do dente, respeitando as características individuais."
           },
-          {
-            title: "Prova e Cimentação Definitiva",
-            description: "Prova das peças com aprovação estética e funcional. Cimentação com adesivos de alta performance após tratamento de superfície específico, garantindo união química duradoura. Ajustes oclusais finais e polimento para integração funcional perfeita."
+          { 
+            title: "Ajuste da Mordida e Polimento",
+            description: "A restauração é checada para garantir o encaixe correto na mordida e, em seguida, polida para um acabamento liso e brilhante que imita o esmalte natural."
           }
         ],
         type: "steps" as const
       },
       {
-        id: "seguranca-cuidados",
-        title: "Segurança e Protocolos: Prevenção de Complicações",
-        content: "A segurança nos procedimentos com lentes de contato dental baseia-se em protocolos rigorosos desenvolvidos ao longo de mais de 20 anos de experiência clínica. A seleção criteriosa dos casos é fundamental: pacientes com bruxismo severo não controlado, expectativas irreais ou saúde periodontal comprometida não são candidatos ideais. O protocolo de cimentação segue normas internacionais, incluindo isolamento absoluto, tratamento de superfície padronizado e controle rigoroso da umidade. O acompanhamento pós-operatório inclui avaliações em 48 horas, 1 semana, 1 mês e semestralmente. Possíveis intercorrências como sensibilidade transitória (menos de 5% dos casos) ou pequenos ajustes oclusais são rapidamente resolvidas. A experiência militar da Dra. Carla Christoph na Odontoclínica Central da Marinha consolidou uma visão preventiva e protocolos de segurança que garantem resultados previsíveis e duradouros.",
-        type: "default" as const
-      },
-      {
         id: "casos-especiais",
-        title: "Casos Especiais: Lentes de Contato Dental em Situações Complexas",
-        content: "Algumas situações requerem expertise técnica avançada e planejamento multidisciplinar. Em pacientes com dentes desgastados, danificados ou com restaurações antigas, as lentes podem ser integradas a um planejamento que inclui <a href=\"/tratamentos/restauracoes-esteticas\"><strong>restaurações dentárias estéticas</strong></a> para uma reabilitação completa, considerando proporções dentárias, suporte labial e harmonia geral. Para casos de bruxismo controlado - condição cada vez mais comum devido ao <a href=\"/blog/saude-bucal-bruxismo-e-estresse\"><strong>estresse e seus impactos na saúde bucal</strong></a> - utilizamos cerâmicas de maior resistência à flexão e planejamento oclusal específico, sempre com proteção noturna obrigatória. Em situações de dentes muito pequenos (microdoncia) ou com desgastes significativos, adaptamos a técnica de preparo e utilizamos sistemas adesivos específicos para garantir retenção adequada. Pacientes que necessitam reabilitação ampla podem se beneficiar da combinação entre lentes de contato dental e <a href=\"/tratamentos/implantes-dentarios\"><strong>implantes dentários</strong></a>, criando uma integração estética perfeita entre dentes naturais e implantados. A experiência de mais de 20 anos permite o manejo seguro dessas situações complexas, sempre priorizando resultados naturais, funcionais e duradouros.",
+        title: "Casos Especiais: Restaurações em Situações Complexas",
+        content: "Algumas situações requerem abordagem especializada e técnica diferenciada. Pacientes com <a href=\"/blog/saude-bucal-bruxismo-e-estresse\"><strong>bruxismo ou hábitos parafuncionais</strong></a> necessitam de materiais específicos e planejamento cuidadoso para garantir longevidade das restaurações. Em casos de dentes severamente comprometidos, pode ser necessário combinar restaurações com outros tratamentos, como <a href=\"/tratamentos/lentes-e-facetas\"><strong>lentes de contato dental</strong></a> para harmonização completa do sorriso. Dentes com extensas restaurações antigas podem necessitar de preparo diferenciado e, em alguns casos, a indicação pode evoluir para coroas protéticas. Pacientes que buscam excelência estética podem se beneficiar da combinação de restaurações com <a href=\"/tratamentos/clareamento-dental\"><strong>clareamento dental supervisionado</strong></a> para otimização da cor de base. A experiência de mais de 20 anos da Dra. Carla Christoph permite identificar essas necessidades específicas e oferecer soluções personalizadas que garantem resultados duradouros e naturais.",
         type: "default" as const
       },
       {
-        id: "fatores-individuais",
-        title: "Personalização Total: Fatores Individuais na Escolha do Tratamento",
-        content: "Cada sorriso é único, e a personalização é fundamental para resultados excepcionais. A análise individual considera fatores biológicos como idade, sexo, características étnicas e perfil facial. Aspectos funcionais incluem padrão mastigatório, hábitos parafuncionais, histórico de sensibilidade e expectativas de longevidade. Fatores estéticos envolvem preferências pessoais de cor, formato, textura e grau de naturalidade desejado. Em alguns casos, pode ser necessário combinar lentes com <a href=\"/tratamentos/restauracoes-esteticas\"><strong>restaurações estéticas em outros dentes</strong></a> para garantir harmonia total do sorriso. A personalidade do paciente também influencia: pessoas mais conservadoras tendem a preferir mudanças sutis, enquanto outras desejam transformações mais dramáticas. Consideramos ainda aspectos profissionais - profissionais da mídia podem ter necessidades diferentes de executivos ou professores. A idade influencia as escolhas: jovens podem priorizar formato e alinhamento, enquanto adultos maduros podem focar no rejuvenescimento. Esta análise multifatorial garante que cada tratamento seja verdadeiramente individualizado, resultando em sorrisos autenticamente pessoais que se integram naturalmente à personalidade e estilo de vida de cada paciente.",
-        type: "default" as const
-      },
-      {
-        id: "cuidados",
-        title: "Manutenção e Longevidade: Cuidados para Resultados Duradouros",
-        content: "A longevidade das lentes de contato dental e facetas de porcelana depende fundamentalmente dos cuidados pós-tratamento e manutenção adequada. A higienização deve ser rigorosa mas cuidadosa: escovação com cerdas macias, uso obrigatório de fio dental e enxaguante bucal sem álcool. Visitas regulares a cada 6 meses à Dra. Carla Christoph em Ipanema são essenciais para acompanhamento, profilaxia profissional e detecção precoce de qualquer alteração. Hábitos alimentares devem ser moderados: evitar morder objetos duros, abrir embalagens com os dentes ou roer unhas. Para pacientes com bruxismo, o uso de placa miorrelaxante noturna é obrigatório para proteger as peças e a dentição natural. O <a href=\"/tratamentos/clareamento-dental\"><strong>clareamento dental supervisionado</strong></a> pode ser realizado previamente ao tratamento para otimizar a cor de base. Com cuidados adequados, as lentes e facetas podem manter sua beleza e funcionalidade por 15-20 anos ou mais, representando um investimento duradouro na sua saúde e autoestima.",
+        id: "cuidados-restauracoes",
+        title: "Cuidados Após sua Restauração Dental Estética",
+        content: "Para manter sua restauração estética bonita e funcional por muitos anos, siga estas recomendações: Mantenha uma excelente higiene bucal, incluindo escovação após as refeições e uso diário de fio dental. Evite hábitos como morder objetos duros ou roer unhas, que podem danificar a restauração. Para pacientes com tendência ao bruxismo, o uso de placa miorrelaxante noturna é fundamental para proteger tanto as restaurações quanto os dentes naturais. Visite regularmente a Dra. Carla Christoph em Ipanema para check-ups e limpezas profissionais, permitindo o diagnóstico precoce de qualquer alteração. Se sentir alguma sensibilidade persistente ou notar alguma alteração na restauração, entre em contato conosco. Com os cuidados adequados, suas restaurações podem durar muitos anos mantendo a funcionalidade e estética ideais.",
         type: "default" as const
       }
     ],
     
     faqs: [
       {
-        question: "Qual a diferença técnica entre lentes de contato dental e facetas de porcelana?",
-        answer: "As diferenças principais estão na espessura e invasividade. Lentes de contato dental possuem 0,2mm a 0,5mm de espessura, requerendo desgaste mínimo (0,1-0,3mm) ou inexistente da estrutura dental. Facetas de porcelana têm 0,7mm a 1,2mm, necessitando preparo de 0,5-0,8mm. As lentes são ideais para correções sutis preservando máximo de estrutura dental, enquanto facetas permitem correções mais significativas. A Dra. Carla Christoph avaliará qual técnica oferece melhor resultado para seu caso específico."
+        question: "O que é uma restauração dental estética?",
+        answer: "É um procedimento para reparar dentes danificados por cáries, fraturas ou trincas utilizando materiais da cor do dente, como a resina composta de alta qualidade, para um resultado natural e imperceptível. A Dra. Carla Christoph utiliza materiais de excelência e técnicas avançadas para garantir longevidade e estética superior."
       },
       {
-        question: "Qual a durabilidade real das lentes de contato dental com base em estudos?",
-        answer: "Estudos clínicos longitudinais demonstram longevidade superior a 15 anos com taxa de sucesso acima de 95% quando realizadas com técnica adequada e materiais de excelência. Fatores que influenciam a durabilidade incluem: qualidade da cimentação, cuidados de higiene, hábitos parafuncionais e acompanhamento profissional regular. Com os protocolos da Dra. Carla Christoph e manutenção adequada, podem durar 20 anos ou mais."
+        question: "Quando uma restauração dental é necessária?",
+        answer: "É indicada para tratar cáries, reparar dentes quebrados ou trincados, substituir restaurações antigas, corrigir pequenos defeitos estéticos, selar trincas que podem evoluir para problemas maiores, e em casos onde o dente foi danificado por bruxismo ou outros hábitos parafuncionais."
       },
       {
-        question: "As lentes de contato dental realmente não desgastam os dentes?",
-        answer: "As lentes de contato dental preservam até 95% da estrutura dental original. O desgaste necessário é mínimo (0,1-0,3mm) e limitado ao esmalte superficial, ou em muitos casos inexistente. Esta abordagem segue os princípios da odontologia minimamente invasiva, contrastando com procedimentos mais antigos que requeriam desgastes significativos. A Dra. Carla utiliza guias de redução para garantir precisão e preservação máxima."
+        question: "Qual material é usado para restaurações estéticas na clínica em Ipanema?",
+        answer: "Priorizamos o uso de resinas compostas de última geração e alta qualidade, que oferecem excelente estética, durabilidade superior, adesão química ao dente e biocompatibilidade. Utilizamos apenas materiais de excelência que garantem resultados naturais e duradouros."
       },
       {
-        question: "Como funciona tecnicamente o Design Digital do Sorriso (DSD)?",
-        answer: "O DSD utiliza fotografias e vídeos padronizados do paciente para criar um projeto digital tridimensional do novo sorriso. Software especializado analisa proporções faciais, linha do sorriso, características labiais e permite simulação de diferentes opções de formato, tamanho e cor dos dentes. Esta tecnologia oferece previsibilidade de 95% dos resultados, permitindo ajustes antes do tratamento e garantindo maior satisfação do paciente."
+        question: "Restauração dental dói?",
+        answer: "O procedimento é geralmente realizado com anestesia local moderna para garantir seu conforto total. É comum não sentir dor durante o tratamento. Utilizamos técnicas avançadas de aplicação anestésica para tornar o processo o mais confortável possível."
       },
       {
-        question: "Quais cuidados específicos são necessários após o tratamento?",
-        answer: "Cuidados essenciais incluem: higiene rigorosa com escova de cerdas macias e fio dental, visitas semestrais para manutenção, evitar morder objetos duros ou usar dentes como ferramenta, uso de placa noturna se houver bruxismo. Alimentos muito duros devem ser consumidos com cuidado. Enxaguantes com álcool devem ser evitados. Com estes cuidados, a durabilidade é maximizada significativamente."
+        question: "Quanto tempo dura uma restauração em resina?",
+        answer: "Com bons cuidados, higiene adequada e acompanhamento regular, as restaurações em resina de alta qualidade podem durar muitos anos. A durabilidade varia conforme localização, tamanho da restauração, hábitos alimentares e presença de bruxismo. A Dra. Carla poderá dar uma estimativa personalizada para seu caso."
       },
       {
-        question: "Lentes de resina versus porcelana: qual a diferença na durabilidade e estética?",
-        answer: "Diferenças significativas em longevidade e estética: Porcelana oferece 15-20 anos de durabilidade versus 3-5 anos da resina. Esteticamente, a porcelana possui translucidez natural, resistência total a manchas e características ópticas similares ao esmalte. Resina pode amarelar com o tempo e manchar com café, vinho e tabaco. Apesar do investimento inicial maior, a porcelana oferece melhor custo-benefício a longo prazo e resultados estéticos superiores."
+        question: "É possível trocar minhas restaurações antigas (escuras) por estéticas?",
+        answer: "Sim, é um procedimento muito comum e procurado para melhorar significativamente a estética do sorriso. As restaurações antigas de amálgama podem ser substituídas por restaurações estéticas modernas que se harmonizam naturalmente com seus dentes. Agende uma avaliação em nossa clínica em Ipanema."
       },
       {
-        question: "É possível fazer lentes em apenas alguns dentes mantendo harmonia?",
-        answer: "Sim, mas requer planejamento cuidadoso para manter harmonia estética. Para resultados ideais, recomenda-se tratar pelo menos os 4-6 dentes anteriores superiores em conjunto. Tratamentos isolados podem criar discrepâncias de cor e formato. A Dra. Carla utiliza análise facial detalhada e simulação digital para determinar quantos dentes devem ser incluídos para garantir naturalidade e harmonia do conjunto."
+        question: "Como saber se meu dente está apenas trincado ou quebrado?",
+        answer: "Apenas um exame clínico detalhado e, às vezes, radiográfico realizado pelo dentista pode diagnosticar corretamente. Trincas podem ser muito sutis e difíceis de detectar, apresentando sintomas como dor ao mastigar ou sensibilidade ao frio. Se suspeitar de um dente trincado ou quebrado, procure a Dra. Carla Christoph imediatamente."
       },
       {
-        question: "Quais as contraindicações para lentes de contato dental?",
-        answer: "Principais contraindicações incluem: bruxismo severo não controlado, doença periodontal ativa, estrutura dental insuficiente, expectativas irreais, hábitos parafuncionais severos (roer objetos), higiene oral inadequada. Contraindicações relativas: idade muito jovem (aguardar maturidade dental), má oclusão severa não corrigida. Uma avaliação criteriosa identifica essas situações e propõe alternativas adequadas."
-      },
-      {
-        question: "Como é calculado o investimento em lentes de contato dental?",
-        answer: "O investimento varia conforme número de dentes tratados, complexidade do caso, necessidade de procedimentos auxiliares (clareamento, ajustes oclusais), tipo de material escolhido e tecnologias utilizadas (DSD, escaneamento digital). Durante a consulta inicial, a Dra. Carla Christoph elabora um plano de tratamento detalhado com todas as etapas e investimentos envolvidos, oferecendo opções de pagamento adequadas às suas necessidades."
-      },
-      {
-        question: "Lentes de contato dental podem ser refeitas ou remodeladas?",
-        answer: "Sim, embora sejam peças definitivas, podem ser substituídas se necessário devido a danos, mudanças estéticas desejadas ou final de vida útil. A remoção é técnica e preserva a estrutura dental. Pequenos ajustes de formato podem ser realizados com polimento específico. A vantagem das lentes é que, por preservarem praticamente toda estrutura dental, futuras substituições ou modificações são sempre possíveis mantendo a integridade dos dentes."
+        question: "O que influencia o custo de uma restauração dental estética?",
+        answer: "O tamanho e complexidade da restauração, o dente envolvido, o tipo de material utilizado, a necessidade de procedimentos auxiliares, e o número de superfícies dentárias afetadas são fatores que influenciam o investimento. Oferecemos um planejamento transparente e detalhado em Ipanema, sempre priorizando materiais de excelência."
       }
-    ],
-    
-    whatsappMessage: "Olá, gostaria de agendar uma avaliação para lentes de contato dental ou facetas"
+    ]
   };
 
-  return <TreatmentPageTemplate {...treatmentData} />;
+  return (
+    <TreatmentPageTemplate
+      {...treatmentData}
+      whatsappMessage="Olá, gostaria de agendar uma avaliação para restaurações dentárias estéticas"
+      ctaHeading="Restaure a Saúde e a Beleza do seu Sorriso em Ipanema!"
+    />
+  );
 };
 
-export default LentesEFacetas;
+export default RestaureacoesEsteticas;
