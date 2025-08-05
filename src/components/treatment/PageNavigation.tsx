@@ -11,6 +11,9 @@ const PageNavigation = ({
 }: PageNavigationProps) => {
   // Map navigation items to shorter display names based on content type
   const getDisplayName = (title: string, id: string) => {
+    // Safety checks to prevent errors
+    if (!id || !title) return "Seção";
+    
     // Handle specific sections for Implantes Dentários
     if (id === "o-que-sao-implantes") return "O Que São?";
     if (id === "indicacoes-implantes") return "Indicações";
@@ -65,21 +68,33 @@ const PageNavigation = ({
     if (id === "importancia-prevencao-gengiva") return "Prevenção";
     if (id === "faq-gengiva") return "FAQ";
 
+    // Handle specific sections for Lentes e Facetas
+    if (id === "o-que-sao") return "O Que São?";
+    if (id === "materiais-avancados") return "Materiais";
+    if (id === "como-funciona") return "Como Funciona?";
+    if (id === "indicacoes") return "Indicações";
+    if (id === "beneficios") return "Benefícios";
+    if (id === "como-e-feito") return "Como é Feito?";
+    if (id === "seguranca-cuidados") return "Segurança";
+    if (id === "casos-especiais") return "Casos Especiais";
+    if (id === "fatores-individuais") return "Personalização";
+    if (id === "cuidados") return "Cuidados";
+
     // Original patterns for other pages
-    if (id === "o-que-e" || id === "o-que-sao") return "O Que é?";
+    if (id === "o-que-e") return "O Que é?";
     if (id.includes("indicac")) return "Indicações";
     if (id.includes("benefic")) return "Benefícios";
     if (id.includes("como") || id.includes("process") || id.includes("tecnica") || id.includes("seu")) return "Como é Feito?";
     if (id.includes("cuidad")) return "Cuidados";
     if (id === "faq") return "FAQ";
 
-    // Default: return first word of the title
-    return title.split(" ")[0];
+    // Default: return first word of the title if available
+    return title.split(" ")[0] || "Seção";
   };
   return <div className="max-w-3xl mx-auto mb-12 bg-dental-beige/70 p-5 rounded-lg border border-dental-gold/20">
       <nav aria-label="Navegação interna da página">
         <ul className="flex flex-wrap justify-center gap-3 md:gap-6">
-          {navigationItems.map(item => <li key={item.id}>
+          {navigationItems.filter(item => item.id && item.title).map(item => <li key={item.id}>
               <a href={`#${item.id}`} className="text-dental-purple font-medium px-3 py-2 rounded-md hover:bg-dental-beige hover:text-dental-gold transition-colors">
                 {getDisplayName(item.title, item.id)}
               </a>

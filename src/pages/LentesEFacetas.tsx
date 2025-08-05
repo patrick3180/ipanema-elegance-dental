@@ -10,10 +10,6 @@ const LentesEFacetas = () => {
     
     sections: [
       {
-        question: "É possível fazer lentes de contato dental em uma única sessão?",
-        answer: "Depende do material escolhido. **Lentes de Resina:** Sim, aplicação direta em uma única sessão de 2-4 horas, com escultura e polimerização imediata no consultório. Ideal para casos de urgência estética ou orçamentos limitados. **Lentes de Porcelana:** Requerem 2-3 sessões devido à confecção laboratorial: 1ª sessão (preparo e moldagem), 2ª sessão (prova e cimentação). O tempo adicional garante precisão superior e resultado de longo prazo. A escolha entre velocidade (resina) e excelência (porcelana) deve considerar expectativas de durabilidade e investimento disponível."
-      },
-      {
         id: "o-que-sao",
         title: "Ciência e Arte: O Que São Lentes de Contato Dental e Facetas de Porcelana?",
         content: "As lentes de contato dental e facetas de porcelana representam o ápice da odontologia estética minimamente invasiva. São peças ultrafinas moldadas individualmente e cimentadas sobre a superfície dos dentes com precisão artística. Podem ser confeccionadas em dois materiais principais com propriedades distintas: **Lentes de Porcelana (Cerâmica):** Espessura de 0,2mm a 0,5mm, confeccionadas em cerâmica odontológica de última geração com índice de refração similar ao esmalte dental (1,62), oferecendo translucidez excepcional e biocompatibilidade superior. Durabilidade comprovada de 10-15 anos com resistência total a pigmentação. **Lentes de Resina:** Material composto polimérico aplicável diretamente em consultório, espessura similar, menor custo, aplicação em sessão única, mas durabilidade de 3-5 anos e susceptibilidade a manchas por alimentos pigmentados. **Facetas de Porcelana:** Espessura entre 0,7mm a 1,2mm, indicadas para correções mais significativas. A escolha do material considera fatores técnicos como extensão da correção necessária, expectativas de longevidade, investimento disponível e características individuais do caso clínico.",
