@@ -26,3 +26,10 @@ createRoot(document.getElementById("root")!).render(
     <App />
   </HelmetProvider>
 );
+
+// Register service worker for performance optimization
+if (import.meta.env.PROD) {
+  import('./utils/serviceWorkerRegistration').then(({ register }) => {
+    register();
+  });
+}

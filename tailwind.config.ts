@@ -67,8 +67,8 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        display: ["Playfair Display", "serif"],
-        sans: ["Raleway", "sans-serif"],
+        display: ["Playfair Display", "Georgia", "Times New Roman", "serif"],
+        sans: ["Montserrat", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Arial", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

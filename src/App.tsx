@@ -13,6 +13,8 @@ import SEOHealthMonitor from "@/components/SEOHealthMonitor";
 import SitemapResponse from "@/components/SitemapResponse";
 import RobotsResponse from "@/components/RobotsResponse";
 import { CrawlerOptimizer } from "@/components/performance/CrawlerOptimizer";
+import CoreWebVitalsOptimizer from "@/components/performance/CoreWebVitalsOptimizer";
+import PerformanceOptimizationSummary from "@/components/performance/PerformanceOptimizationSummary";
 import { SEOSitemapManager } from "@/components/SEOSitemapManager";
 import SEOMonitoringDashboard from "@/components/SEOMonitoringDashboard";
 import { handlePageRedirects } from "@/utils/urlRedirects";
@@ -293,6 +295,8 @@ function AppContent() {
         <SitemapUpdater />
         <SEOSitemapManager />
         <CrawlerOptimizer />
+        <CoreWebVitalsOptimizer />
+        <PerformanceOptimizationSummary />
         {/* <SEOMonitoringDashboard /> */}
       </div>
     </ErrorBoundary>

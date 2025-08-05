@@ -15,64 +15,38 @@
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://www.google-analytics.com">
     
-    <!-- Google Ads (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16894364517"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-16894364517');
-    </script>
+    <!-- DNS Prefetch for external domains -->
+    <link rel="dns-prefetch" href="//images.ctfassets.net">
+    <link rel="dns-prefetch" href="//cdn.gpteng.co">
+    <link rel="dns-prefetch" href="//n8n.srv876901.hstgr.cloud">
     
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WZRDNBKQ');</script>
-    <!-- End Google Tag Manager -->
-
-    <!-- GCLID Tracking Header Script -->
-    <script>
-    (function() {
-        // Function to get URL parameter by name
-        function getUrlParameter(name) {
-            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-            var results = regex.exec(location.search);
-            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-        }
-        
-        // Function to set cookie
-        function setCookie(name, value, days) {
-            var expires = "";
-            if (days) {
-                var date = new Date();
-                date.setTime(date.getTime() + (days*24*60*60*1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "") + expires + "; path=/";
-        }
-        
-        // Capture GCLID from URL and store it
-        var gclid = getUrlParameter('gclid');
-        if (gclid) {
-            // Store in cookie for 90 days
-            setCookie('gclid', gclid, 90);
-            
-            // Store in localStorage as backup
-            try {
-                localStorage.setItem('gclid', gclid);
-                localStorage.setItem('gclid_timestamp', new Date().toISOString());
-            } catch(e) {
-                console.log('LocalStorage not available');
-            }
-            
-            console.log('GCLID captured and stored:', gclid);
-        }
-    })();
-    </script>
-    <!-- End GCLID Tracking Header Script -->
+    <!-- Critical Resource Preloads -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/playfairdisplay/v36/nuFiD-vYSZviVYUb_rj3ij__anPXBYf9lWYe3bp_b-4.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Ew-.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png" as="image">
+    
+    <!-- Optimized Font Loading with font-display: swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Critical CSS Inlined (will be added via component) -->
+    <style>
+      /* Critical CSS for above-the-fold content */
+      body { 
+        font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+        background-color: hsl(45, 27%, 88%);
+        color: hsl(270, 40%, 20%);
+        margin: 0;
+        padding: 0;
+      }
+      .hero-section { 
+        min-height: 100vh;
+        background-color: hsl(45, 27%, 88%);
+      }
+      h1, h2, h3, h4, h5, h6 { 
+        font-family: 'Playfair Display', serif;
+        font-display: swap;
+      }
+    </style>
 
     <meta property="og:title" content="Dentista em Ipanema | Clínica Odontológica Dra. Carla Christoph" />
     <meta property="og:description" content="Procurando dentista em Ipanema? A Dra. Carla Christoph oferece odontologia estética e reabilitação oral com atendimento personalizado. Agende sua consulta!" />
@@ -83,7 +57,37 @@
     <meta name="twitter:site" content="@dracarlachristoph" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
     
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Defer non-critical scripts -->
+    <script>
+      // Optimized GCLID tracking - non-blocking
+      (function() {
+        function getUrlParameter(name) {
+          name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+          var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+          var results = regex.exec(location.search);
+          return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+        
+        function setCookie(name, value, days) {
+          var expires = "";
+          if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+          }
+          document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+        
+        var gclid = getUrlParameter('gclid');
+        if (gclid) {
+          setCookie('gclid', gclid, 90);
+          try {
+            localStorage.setItem('gclid', gclid);
+            localStorage.setItem('gclid_timestamp', new Date().toISOString());
+          } catch(e) {}
+        }
+      })();
+    </script>
   </head>
 
   <body>
@@ -93,6 +97,33 @@
     <!-- End Google Tag Manager (noscript) -->
     
     <div id="root"></div>
+    
+    <!-- Load analytics after main content -->
+    <script>
+      // Lazy load analytics after page load
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          // Google Ads (gtag.js)
+          var gtagScript = document.createElement('script');
+          gtagScript.async = true;
+          gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16894364517';
+          document.head.appendChild(gtagScript);
+          
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-16894364517');
+          
+          // Google Tag Manager
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-WZRDNBKQ');
+        }, 1000);
+      });
+    </script>
+    
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>

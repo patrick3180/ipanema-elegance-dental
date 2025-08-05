@@ -42,7 +42,7 @@ const Hero = () => {
   return (
     <section 
       id="início" 
-      className="min-h-screen relative overflow-hidden section-spacing"
+      className="hero-section min-h-screen relative overflow-hidden section-spacing"
       style={{ paddingTop: isMobile ? "150px" : "112px" }}
     >
       <div className="container-custom grid lg:grid-cols-2 gap-16 items-center">
@@ -78,6 +78,9 @@ const Hero = () => {
                 className="w-full h-full"
                 objectFit="cover"
                 priority={true} // Priority loading for hero image
+                lazy={false} // Disable lazy loading for above-the-fold content
+                width={420}
+                height={600}
               />
             </div>
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-dental-gold/20 rounded-full"></div>
