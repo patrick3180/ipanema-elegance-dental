@@ -1,6 +1,7 @@
 
 import React from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { processMarkdown } from "@/utils/markdownProcessor";
 
 export interface FAQ {
   question: string;
@@ -24,7 +25,7 @@ const FAQSection = ({ faqs }: FAQSectionProps) => {
               {faq.question}
             </AccordionTrigger>
             <AccordionContent className="body-md">
-              <div className="faq-content" dangerouslySetInnerHTML={{ __html: faq.answer }} />
+              <div className="faq-content" dangerouslySetInnerHTML={{ __html: processMarkdown(faq.answer) }} />
             </AccordionContent>
           </AccordionItem>
         ))}

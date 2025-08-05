@@ -39,10 +39,14 @@ const PageNavigation = ({
     if (id === "faq-protese") return "FAQ";
 
     // Handle specific sections for Clínica Geral e Prevenção
-    if (id === "o-que-e-clinica-geral") return "O Que é?";
-    if (id === "servicos-preventivos") return "Serviços";
-    if (id === "beneficios-prevencao") return "Benefícios";
-    if (id === "consulta-preventiva") return "Consulta";
+    if (id === "ciencia-prevencao") return "Ciência";
+    if (id === "tecnologia-ultrassom") return "Ultrassom";
+    if (id === "prevencao-integrada") return "Prevenção";
+    if (id === "diagnostico-precoce-avancado") return "Diagnóstico";
+    if (id === "protocolos-personalizados") return "Protocolos";
+    if (id === "casos-especiais-complexos") return "Casos Especiais";
+    if (id === "integracao-saude-sistemica") return "Saúde Sistêmica";
+    if (id === "consulta-preventiva-protocolo") return "Consulta";
     if (id === "faq-prevencao") return "FAQ";
 
     // Handle specific sections for Restaurações Estéticas

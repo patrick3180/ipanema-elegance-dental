@@ -2,6 +2,7 @@
 import React from "react";
 import { SectionContent } from "./types";
 import OptimizedImage from "@/components/OptimizedImage";
+import { processMarkdown } from "@/utils/markdownProcessor";
 
 interface DefaultSectionProps {
   title: string;
@@ -13,7 +14,7 @@ const DefaultSection = ({ title, content, imageUrl }: DefaultSectionProps) => {
   // Only render string and ReactNode content types
   const renderContent = () => {
     if (typeof content === "string") {
-      return <p className="body-md" dangerouslySetInnerHTML={{ __html: content }} />;
+      return <p className="body-md" dangerouslySetInnerHTML={{ __html: processMarkdown(content) }} />;
     }
     
     // If content is a ReactNode (not an array)

@@ -2,6 +2,7 @@
 import React from "react";
 import { CheckCircle } from "lucide-react";
 import { SectionContent } from "./types";
+import { processMarkdown } from "@/utils/markdownProcessor";
 
 interface BenefitsSectionProps {
   title: string;
@@ -14,7 +15,7 @@ const BenefitsSection = ({ title, content }: BenefitsSectionProps) => {
       <h2 className="heading-md mb-4">{title}</h2>
       
       {typeof content === "string" && (
-        <p className="body-md mb-4" dangerouslySetInnerHTML={{ __html: content }} />
+        <p className="body-md mb-4" dangerouslySetInnerHTML={{ __html: processMarkdown(content) }} />
       )}
       
       {!Array.isArray(content) && typeof content !== "string" && content}
@@ -27,7 +28,7 @@ const BenefitsSection = ({ title, content }: BenefitsSectionProps) => {
               <span 
                 className="body-md"
                 dangerouslySetInnerHTML={{ 
-                  __html: typeof benefit === "string" ? benefit : "" 
+                  __html: typeof benefit === "string" ? processMarkdown(benefit) : "" 
                 }}
               />
             </li>
