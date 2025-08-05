@@ -1,4 +1,3 @@
-
 import React from "react";
 import TreatmentPageTemplate from "@/components/TreatmentPageTemplate";
 import { FAQ } from "@/components/treatment/types";
@@ -7,28 +6,44 @@ const ClinicaGeralPrevencao = () => {
   // Define the FAQs
   const faqs: FAQ[] = [
     {
-      question: "Com que frequência devo visitar o dentista para um check-up e limpeza em Ipanema?",
-      answer: "Geralmente, recomenda-se uma visita a cada 6 meses. No entanto, a Dra. Carla Christoph poderá indicar uma frequência personalizada com base nas suas necessidades individuais."
+      question: "Qual a base científica para consultas preventivas semestrais?",
+      answer: "A frequência semestral baseia-se em evidências científicas sobre o ciclo de formação do biofilme bacteriano e desenvolvimento de lesões cariosas. Estudos demonstram que lesões incipientes podem ser revertidas em 3-6 meses com intervenção adequada, enquanto a formação de tártaro significativo ocorre entre 90-180 dias. A retração gengival, que afeta 58% da população adulta, progride gradualmente e pode ser detectada precocemente neste intervalo. Para pacientes de alto risco (doença periodontal, diabetes, xerostomia), intervalos de 3-4 meses são mais apropriados."
     },
     {
-      question: "O que é o check-up odontológico digital oferecido na clínica em Ipanema?",
-      answer: "Utilizamos câmeras intraorais e outras tecnologias para um exame mais detalhado e preciso, permitindo que você também visualize as condições da sua boca e entenda melhor qualquer necessidade de tratamento."
+      question: "Como o ultrassom odontológico revoluciona a limpeza preventiva?",
+      answer: "O ultrassom odontológico opera em frequências de 25.000-30.000 Hz, criando micromovimentos que fragmentam biofilme e cálculo dentário sem causar danos aos tecidos saudáveis. Comparado aos métodos tradicionais, oferece maior conforto (os pacientes relatam sensação de 'cócegas' suaves), eficiência superior (procedimentos 30-40% mais rápidos), e melhor acesso a áreas de difícil alcance. A irrigação simultânea remove bactérias e mantém a área resfriada, proporcionando limpeza mais completa."
     },
     {
-      question: "Limpeza dental profissional (profilaxia) dói?",
-      answer: "A profilaxia é geralmente um procedimento indolor e confortável. Se você tiver muita sensibilidade, nos avise para que possamos tomar cuidados adicionais."
+      question: "Por que 90% dos casos de mau hálito têm origem bucal?",
+      answer: "A cavidade bucal oferece condições ideais para bactérias anaeróbicas produtoras de compostos sulfurados voláteis - principais responsáveis pelo odor desagradável. A saburra lingual (camada esbranquiçada na língua), cáries, doenças gengivais, xerostomia e acúmulo de biofilme criam ambientes propícios para essas bactérias. Apenas 10% dos casos têm origem extra-bucal (problemas renais, hepáticos, diabetes descompensado). Por isso, a prevenção odontológica é fundamental para controlar a halitose."
     },
     {
-      question: "Como a prevenção odontológica pode evitar tratamentos mais caros e complexos?",
-      answer: "Ao identificar e tratar problemas como cáries iniciais ou gengivite precocemente, evitamos que evoluam para condições que exigiriam tratamentos como canal, extrações ou próteses mais extensas."
+      question: "Como prevenir a retração gengival que afeta 58% dos adultos?",
+      answer: "A retração gengival resulta principalmente de escovação agressiva, doenças periodontais, fatores genéticos e bruxismo. A prevenção inclui: técnica de escovação suave com escovas de cerdas macias, movimentos circulares delicados, uso correto do fio dental, tratamento de doenças gengivais, controle do bruxismo com placas de proteção, e consultas regulares para monitoramento. Pessoas com gengiva naturalmente fina têm maior predisposição e necessitam cuidados especiais."
     },
     {
-      question: "Crianças também precisam de acompanhamento em clínica geral e prevenção?",
-      answer: "Sim, os cuidados preventivos são fundamentais desde a infância para garantir um desenvolvimento oral saudável. Adaptamos o atendimento para todas as idades."
+      question: "Qual o processo científico da formação de cáries e como prevenir?",
+      answer: "A cárie é uma doença multifatorial envolvendo quatro fatores: bactérias específicas (principalmente Streptococcus mutans), açúcares fermentáveis, dente susceptível e tempo. As bactérias metabolizam açúcares produzindo ácidos que desmineralizam o esmalte. A prevenção baseia-se em: higiene adequada para remoção do biofilme, uso de flúor para remineralização, controle da dieta açucarada, estimulação da produção de saliva, e diagnóstico precoce através de check-ups regulares."
     },
     {
-      question: "Aplicação de flúor é apenas para crianças?",
-      answer: "Não, adultos também podem se beneficiar da aplicação de flúor, especialmente aqueles com maior risco de cáries ou sensibilidade dental. A indicação é personalizada."
+      question: "Como a tecnologia digital revoluciona o diagnóstico preventivo?",
+      answer: "O check-up digital utiliza câmeras intraorais com magnificação de 50-100x, permitindo detecção de alterações invisíveis ao exame convencional. Inclui análise de fluorescência para cáries incipientes, transiluminação para trincas, documentação fotográfica padronizada para acompanhamento longitudinal, e sistemas de análise computadorizada. Esta tecnologia aumenta a precisão diagnóstica em 40-60% comparada ao exame visual tradicional, permitindo intervenção em estágios reversíveis."
+    },
+    {
+      question: "Qual a relação entre xerostomia e problemas bucais múltiplos?",
+      answer: "A xerostomia (boca seca) compromete as funções protetivas da saliva: neutralização de ácidos, remineralização do esmalte, controle bacteriano e limpeza natural. Sua redução aumenta significativamente o risco de cáries (especialmente na raiz), mau hálito (pela proliferação bacteriana), doenças gengivais e maior susceptibilidade a infecções. Pode ser causada por medicamentos, diabetes, síndrome de Sjögren, radioterapia ou envelhecimento. O tratamento inclui hidratação adequada, substitutos salivares e acompanhamento intensificado."
+    },
+    {
+      question: "Como a prevenção se integra com tratamentos estéticos posteriores?",
+      answer: "A saúde periodontal ótima é pré-requisito para tratamentos estéticos, garantindo estabilidade gengival e ausência de inflamação que comprometeria resultados. O controle de biofilme adequado prolonga longevidade de restaurações estéticas em 30-50%. Protocolos preventivos específicos incluem aplicação de flúor pós-clareamento para reduzir sensibilidade, técnicas especiais de higiene para pacientes com lentes de contato dental ou facetas, e monitoramento de retração gengival que pode comprometer a estética."
+    },
+    {
+      question: "Qual o impacto econômico da prevenção versus tratamentos curativos?",
+      answer: "Estudos econômicos demonstram que cada real investido em prevenção economiza 8-50 reais em tratamentos curativos. Uma consulta preventiva custa tipicamente 10-15% de um tratamento endodôntico, 5% de um implante dental, 3% de um enxerto gengival, e 2-3% de uma reabilitação protética extensa. Considerando longevidade da dentição natural, qualidade de vida e ausência de dor, o retorno do investimento preventivo é extraordinário a longo prazo."
+    },
+    {
+      question: "Como personalizar protocolos preventivos conforme fatores de risco?",
+      answer: "A personalização baseia-se em análise multifatorial: índice de risco de cáries (CAMBRA), condição periodontal, análise salivar (fluxo, pH, capacidade tampão), hábitos alimentares, medicações xerostômicas, presença de restaurações, fatores sistêmicos e genéticos. Pacientes de baixo risco podem ter intervalos de 6-8 meses, enquanto alto risco necessita 3-4 meses com protocolos intensificados de flúor, antimicrobianos, orientação específica sobre higiene e controle de fatores causais como bruxismo."
     }
   ];
 
@@ -36,49 +51,67 @@ const ClinicaGeralPrevencao = () => {
     <TreatmentPageTemplate
       slug="clinica-geral-e-prevencao"
       title="Clínica Geral e Prevenção Odontológica em Ipanema"
-      metaDescription="Prevenção odontológica em Ipanema com a Dra. Carla Christoph. Cuide da sua saúde bucal com limpeza dental, check-ups digitais e orientação personalizada."
-      introduction="A base para um sorriso saudável e duradouro começa com a prevenção e os cuidados de rotina. Na clínica da Dra. Carla Christoph em Ipanema, oferecemos um acompanhamento completo em clínica geral, focado em manter sua saúde bucal em dia e evitar problemas futuros."
+      metaDescription="Prevenção odontológica científica em Ipanema com Dra. Carla Christoph. Ultrassom 25.000-30.000 Hz, check-up digital com magnificação 50-100x, protocolos baseados em evidências. Prevenção de cáries, retração gengival (58% dos adultos) e mau hálito (90% origem bucal)."
+      introduction="A base para um sorriso saudável e duradouro começa com a prevenção científica e os cuidados de rotina baseados em evidências consolidadas. Na clínica da Dra. Carla Christoph em Ipanema, oferecemos um acompanhamento completo em clínica geral, focado em manter sua saúde bucal através de protocolos avançados que podem prevenir até 90% dos problemas bucais. Com mais de 20 anos de experiência clínica e especialização em Prótese Dental e Implantodontia, nossa <a href=\"/blog/odontologia-estetica-sorriso-natural\"><strong>abordagem integral da saúde bucal</strong></a> combina prevenção baseada em evidências científicas, tecnologia de ponta e diagnóstico precoce de condições como <a href=\"/blog/saude-bucal-carie-dental-prevencao\"><strong>cáries em estágios reversíveis</strong></a>, problemas gengivais e <a href=\"/blog/saude-bucal-mau-halito\"><strong>halitose de origem bucal</strong></a>, oferecendo cuidados personalizados que podem reduzir em até 90% a necessidade de tratamentos complexos futuros."
       sections={[
         {
-          id: "o-que-e-clinica-geral",
-          title: "Entendendo a Clínica Geral Odontológica e a Prevenção",
-          content: "A Clínica Geral Odontológica é a área da odontologia que atua no diagnóstico, tratamento e prevenção da maioria dos problemas bucais. É o seu primeiro ponto de contato para um cuidado abrangente. A prevenção odontológica, por sua vez, engloba todas as medidas e tratamentos que visam evitar o surgimento de doenças como cáries e problemas gengivais. Na nossa clínica em Ipanema, a Dra. Carla Christoph integra esses dois pilares para oferecer um cuidado completo e contínuo.",
+          id: "ciencia-prevencao",
+          title: "A Ciência da Prevenção Odontológica: Fundamentos e Evidências",
+          content: "A Clínica Geral Odontológica moderna baseia-se em sólidos fundamentos científicos que comprovam a eficácia da prevenção na manutenção da saúde bucal integral. Estudos longitudinais demonstram que protocolos preventivos adequados podem reduzir a incidência de cáries em 20-40%, de doença periodontal em até 60%, e controlar efetivamente 90% dos casos de mau hálito que têm origem bucal. A prevenção de retração gengival - condição que afeta 58% da população adulta mundial - é especialmente importante, pois uma vez instalada, frequentemente requer intervenções cirúrgicas complexas. A abordagem preventiva atual utiliza conceitos de análise de risco individual, baseando-se em fatores como capacidade salivar, microbiota bucal, hábitos alimentares, condições sistêmicas e predisposição genética. O modelo CAMBRA (Caries Management by Risk Assessment) permite estratificação precisa dos pacientes, personalizando intervalos de consulta e protocolos terapêuticos. Na nossa clínica em Ipanema, a Dra. Carla Christoph implementa esses conceitos científicos através de tecnologia avançada, incluindo análise salivar quando indicada, teste de atividade de cáries, monitoramento digital longitudinal e protocolos específicos para cada tipo de risco. Esta abordagem baseada em evidências transforma a prevenção de uma prática empírica em ciência aplicada, oferecendo resultados mensuráveis e previsíveis.",
           type: "default"
         },
         {
-          id: "servicos-preventivos",
-          title: "Nossos Serviços de Clínica Geral e Prevenção em Ipanema",
+          id: "tecnologia-ultrassom",
+          title: "Ultrassom Odontológico: Revolução na Prevenção e Limpeza Profissional",
+          content: "O <a href=\"/blog/saude-bucal-ultrassom-odontologico\"><strong>ultrassom odontológico representa uma revolução</strong></a> na odontologia preventiva, utilizando vibrações ultrassônicas de 25.000 a 30.000 Hz para realizar limpezas mais eficazes, confortáveis e precisas. Esta tecnologia funciona através de micromovimentos que conseguem quebrar e fragmentar depósitos de biofilme dental e cálculo dentário sem causar danos aos tecidos saudáveis dos dentes e gengivas. **Vantagens Técnicas Comprovadas:** Maior conforto para o paciente (sensação de vibração suave vs pressão dos instrumentos manuais), otimização do tempo de atendimento (redução de 30-40% no tempo de procedimento), melhor assepsia com remoção superior de bactérias em áreas de difícil acesso, e irrigação simultânea que mantém a área limpa e resfriada. **Aplicações Específicas:** Remoção eficaz de biofilme que causa cáries e mau hálito, tratamento de doenças gengivais com acesso a bolsas periodontais profundas, alisamento radicular para prevenção de recolonização bacteriana, e limpeza delicada que não traumatiza a gengiva (prevenindo retração). A experiência dos pacientes é significativamente superior: muitos relatam que procedimentos que anteriormente evitavam devido ao desconforto se tornam toleráveis e até relaxantes com o ultrassom. Esta tecnologia é especialmente benéfica para pacientes com sensibilidade dental, ansiedade odontológica, ou grande quantidade de tártaro acumulado.",
+          type: "default"
+        },
+        {
+          id: "prevencao-integrada",
+          title: "Prevenção Integrada: Cáries, Doenças Gengivais, Mau Hálito e Retração",
           content: [
-            "**Check-up Odontológico Digital:** Avaliações completas e detalhadas com o auxílio de tecnologia digital para um diagnóstico preciso da sua saúde bucal.",
-            "**Limpeza Dental Profissional (Profilaxia):** Remoção de placa bacteriana e tártaro, polimento dos dentes e orientação para uma higiene oral eficaz. Essencial para prevenir cáries e doenças gengivais.",
-            "**Aplicação de Flúor:** Fortalece o esmalte dental, ajudando a prevenir a formação de cáries, especialmente em pacientes com maior risco.",
-            "**Orientação de Higiene Bucal Personalizada:** Instruções e dicas sobre as melhores técnicas de escovação, uso de fio dental e outros cuidados para manter seu sorriso saudável em casa.",
-            "**Diagnóstico e Tratamento Inicial de Problemas:** Identificação precoce e tratamento de cáries em estágio inicial, problemas gengivais leves e outras condições."
+            "**Prevenção de Cáries Baseada em Evidências:** A cárie é uma doença multifatorial envolvendo bactérias específicas (principalmente Streptococcus mutans), açúcares fermentáveis, dentes susceptíveis e tempo. Protocolos incluem controle de biofilme, fluoretação adequada, modificação da dieta cariogênica, estímulo da produção salivar e monitoramento de lesões incipientes através de métodos de fluorescência.",
+            "**Controle do Mau Hálito de Origem Bucal:** Como 90% dos casos de halitose têm origem na cavidade bucal, focamos na remoção da saburra lingual, tratamento de cáries ocultas, controle de doenças gengivais, e manejo da xerostomia. Protocolos específicos incluem limpeza adequada da língua, uso de antimicrobianos quando indicado, e controle dos fatores que favorecem bactérias anaeróbicas produtoras de compostos sulfurados.",
+            "**Prevenção de Retração Gengival:** Condição que afeta 58% da população adulta, requer educação sobre técnica correta de escovação (movimentos circulares suaves, escovas de cerdas macias), uso adequado do fio dental, tratamento precoce de doenças periodontais, controle do bruxismo, e monitoramento de pacientes com predisposição genética.",
+            "**Manejo de Xerostomia:** A boca seca aumenta drasticamente o risco de cáries, mau hálito e doenças gengivais. Protocolos incluem identificação de medicamentos xerostômicos, hidratação adequada, uso de substitutos salivares, estímulo mecânico da produção salivar, e acompanhamento intensificado com aplicações frequentes de flúor.",
+            "**Detecção Precoce com Tecnologia Digital:** Check-up com câmeras intraorais de alta definição, magnificação óptica de 50-100x, transiluminação para detecção de trincas, análise de fluorescência para lesões incipientes, e documentação fotográfica padronizada para acompanhamento longitudinal das condições bucais."
           ],
           type: "benefits"
         },
         {
-          id: "beneficios-prevencao",
-          title: "Por Que Investir na Prevenção Odontológica em Ipanema?",
-          content: [
-            "**Evita Dor e Desconforto:** A prevenção ajuda a impedir que pequenos problemas se tornem grandes e dolorosos.",
-            "**Economia a Longo Prazo:** Prevenir é menos custoso do que tratar doenças já instaladas.",
-            "**Mantém seu Sorriso Bonito e Saudável:** Consultas regulares garantem dentes limpos, hálito fresco e um sorriso confiante.",
-            "**Saúde Geral:** A saúde bucal está diretamente ligada à saúde do corpo como um todo.",
-            "**Diagnóstico Precoce:** Problemas identificados no início têm tratamento mais simples e rápido."
-          ],
-          type: "benefits"
+          id: "diagnostico-precoce-avancado",
+          title: "Diagnóstico Precoce Avançado: Identificando Problemas Antes dos Sintomas",
+          content: "O diagnóstico precoce representa a essência da odontologia preventiva moderna, utilizando tecnologias e protocolos científicos que identificam alterações em estágios reversíveis ou facilmente tratáveis. **Detecção de Lesões Cariosas Incipientes:** Métodos de fluorescência quantitativa (DIAGNOdent) identificam alterações metabólicas bacterianas antes da cavitação visível, permitindo remineralização através de protocolos específicos com flúor, cálcio e fosfato. Estas lesões podem ser completamente revertidas sem necessidade de restaurações. **Identificação de Problemas Gengivais Precoces:** Análise do fluido crevicular, sondagem periodontal computadorizada, e detecção de sangramento marginal identificam alterações inflamatórias antes da perda de inserção ou retração gengital visível. **Diagnóstico de Retração Gengival Incipiente:** A <a href=\"/blog/saude-bucal-retracao-gengival\"><strong>retração gengival em estágios iniciais</strong></a> é detectada através de análise comparativa fotográfica, medições precisas da margem gengival, e avaliação de fatores de risco como trauma de escovação e doenças periodontais. **Análise de Fatores Causais do Mau Hálito:** Investigação sistemática incluindo análise da saburra lingual, teste de fluxo salivar, identificação de cáries ocultas, avaliação de doenças gengivais, e correlação com fatores sistêmicos quando indicado. **Detecção de Dentes Trincados:** A <a href=\"/blog/saude-bucal-dente-trincado\"><strong>identificação precoce de trincas invisíveis</strong></a> através de transiluminação, teste de mordida específico, e análise de sintomatologia permite tratamento conservador antes da evolução para fraturas que comprometeriam a preservação dental. Esta abordagem diagnóstica transforma o conceito de 'aguardar sintomas aparecerem' em 'prevenir problemas antes que se desenvolvam'.",
+          type: "default"
         },
         {
-          id: "consulta-preventiva",
-          title: "Como é Sua Consulta de Clínica Geral e Prevenção em Ipanema?",
-          content: "Sua consulta de prevenção e clínica geral com a Dra. Carla Christoph em Ipanema é um momento dedicado integralmente à sua saúde bucal. Iniciamos com uma conversa para entender seu histórico e hábitos, seguido de um exame clínico minucioso, que pode incluir o check-up digital. Se indicada, a limpeza dental profissional (profilaxia) é realizada. Ao final, você recebe todas as orientações para manter os cuidados em casa e definimos a frequência ideal para seus retornos.",
+          id: "protocolos-personalizados",
+          title: "Protocolos Preventivos Personalizados: Ciência Aplicada à Individualidade",
+          content: "A personalização dos protocolos preventivos baseia-se em análise científica multifatorial que considera características biológicas, comportamentais e sistêmicas de cada paciente. **Estratificação de Risco de Cáries:** Aplicação do modelo CAMBRA considerando capacidade salivar (fluxo, pH, capacidade tampão), microbiota cariogênica, frequência de exposição a açúcares, presença de restaurações, uso de medicamentos xerostômicos, e histórico familiar. Pacientes de alto risco recebem protocolos intensificados com flúor de alta concentração, antimicrobianos específicos, e consultas trimestrais. **Avaliação de Risco Periodontal:** Utilização de índices padronizados (PSR/BPE), análise de fatores genéticos, avaliação de hábitos como tabagismo, controle de diabetes, e identificação de fatores traumáticos como bruxismo. **Protocolo para Prevenção de Retração Gengival:** Análise da técnica de higiene bucal, avaliação da espessura gengival (pacientes com gengiva fina têm maior predisposição), controle de doenças periodontais, manejo do bruxismo, e orientação específica sobre produtos adequados (escovas de cerdas ultramacias quando indicado). **Manejo Personalizado da Halitose:** Investigação das causas específicas (90% têm origem bucal), protocolos de limpeza lingual adequados, controle de xerostomia, tratamento de doenças gengivais associadas, e modificação de fatores comportamentais. **Integração com Condições Sistêmicas:** Diabéticos recebem protocolos específicos para controle glicêmico e prevenção de complicações periodontais, gestantes têm acompanhamento adaptado às alterações hormonais, e pacientes com medicações xerostômicas recebem cuidados intensificados para xerostomia.",
+          type: "default"
+        },
+        {
+          id: "casos-especiais-complexos",
+          title: "Casos Especiais: Prevenção em Situações Complexas e Multifatoriais",
+          content: "A prevenção odontológica moderna reconhece que determinados pacientes e condições demandam abordagens específicas e altamente personalizadas. **Pacientes com Bruxismo e Estresse:** O <a href=\"/blog/saude-bucal-bruxismo-e-estresse\"><strong>bruxismo relacionado ao estresse</strong></a> requer protocolo integrado incluindo análise oclusal detalhada, confecção de placas miorrelaxantes personalizadas, orientação sobre técnicas de manejo do estresse, acompanhamento frequente para monitoramento de desgastes, e prevenção específica da retração gengival causada por forças excessivas. **Prevenção Pré-Tratamentos Estéticos:** Pacientes candidatos a procedimentos estéticos necessitam preparo específico: otimização da saúde gengival, controle de fatores que causam mau hálito, tratamento de sensibilidade prévia, e orientações sobre manutenção pós-tratamento. A saúde periodontal ideal é pré-requisito para longevidade de restaurações estéticas. **Manejo de Múltiplos Fatores de Risco:** Pacientes que apresentam simultaneamente xerostomia, tendência a cáries, retração gengival e halitose recebem protocolos integrados que abordem todas as condições de forma sinérgica. Isso inclui hidratação intensificada, produtos específicos para boca seca, técnicas especiais de higiene, e monitoramento mais frequente. **Prevenção em Portadores de Próteses e Implantes:** Protocolos específicos para limpeza de próteses fixas, técnicas adequadas para higienização de implantes, uso de dispositivos auxiliares específicos, e monitoramento especializado dos tecidos peri-implantares para prevenção de complicações. **Geriatria Odontológica Preventiva:** Idosos com múltiplas comorbidades necessitam adaptação considerando limitações motoras, xerostomia medicamentosa, maior susceptibilidade a infecções, alterações no paladar, e necessidade de cuidadores. Protocolos incluem produtos adequados à limitação motora e orientação específica para familiares.",
+          type: "default"
+        },
+        {
+          id: "integracao-sistemica",
+          title: "Integração com Saúde Sistêmica: A Boca como Portal da Saúde Geral",
+          content: "A odontologia preventiva reconhece cientificamente a boca como parte integrante da saúde sistêmica, estabelecendo protocolos baseados em evidências sobre conexões boca-corpo comprovadas. **Prevenção Cardiovascular:** Estudos epidemiológicos demonstram que doença periodontal aumenta em 19% o risco de eventos cardiovasculares. Bactérias periodontais como P. gingivalis podem ativar cascatas inflamatórias sistêmicas, elevando marcadores como PCR e IL-6. Protocolos incluem controle intensivo de biofilme, uso de antimicrobianos quando indicado, e acompanhamento coordenado com cardiologistas. **Controle Glicêmico em Diabéticos:** Pacientes diabéticos com doença periodontal apresentam HbA1c elevada e descontrole metabólico. A inflamação periodontal compromete a sensibilidade à insulina. Protocolos específicos incluem consultas trimestrais, controle rigoroso de biofilme, tratamento precoce de infecções, monitoramento de cicatrização, e comunicação direta com endocrinologistas. **Prevenção de Partos Prematuros:** Gestantes com doença periodontal têm risco 2-3x maior de parto prematuro e baixo peso ao nascer. Protocolos incluem tratamento periodontal seguro durante segundo trimestre, orientação sobre alterações hormonais que favorecem gengivite, e acompanhamento intensificado. **Prevenção de Pneumonia Aspirativa:** Idosos e pacientes hospitalizados se beneficiam de protocolos rigorosos de higiene bucal que reduzem significativamente pneumonia nosocomial. Inclui limpeza regular da cavidade bucal, uso de antimicrobianos tópicos, e coordenação com equipes médicas. **Oncologia Preventiva:** Pacientes em quimioterapia ou radioterapia necessitam protocolos específicos para prevenção de mucosite, controle de xerostomia, prevenção de infecções oportunistas, e cuidados especiais com mucosas sensibilizadas.",
+          type: "default"
+        },
+        {
+          id: "consulta-preventiva-avancada",
+          title: "Protocolo Científico Avançado: Sua Consulta Preventiva Personalizada",
+          content: "A consulta preventiva na clínica da Dra. Carla Christoph segue protocolo científico rigoroso, desenvolvido ao longo de mais de 20 anos de experiência e constantemente atualizado conforme evidências mais recentes. **Anamnese Estruturada Detalhada:** Questionário padronizado incluindo histórico médico-odontológico completo, análise de medicamentos xerostômicos, identificação de fatores de risco sistêmicos (diabetes, cardiopatias, gestação), avaliação de hábitos alimentares e comportamentais, análise de sintomas específicos (mau hálito, sensibilidade, sangramento gengival), e investigação de fatores hereditários. **Exame Clínico Sistematizado:** Avaliação extraoral incluindo palpação ganglionar, análise da ATM e músculos mastigatórios, verificação de sinais de bruxismo. Exame intraoral com protocolo padronizado: avaliação de tecidos moles, análise da saburra lingual (principal causa de mau hálito), análise oclusal, teste de vitalidade quando indicado, sondagem periodontal computadorizada, e avaliação específica de sinais de retração gengival. **Check-up Digital Integrado:** Documentação fotográfica intraoral padronizada com câmeras de alta definição, análise com magnificação óptica de 50-100x, transiluminação para detecção de trincas invisíveis, aplicação de corantes para evidenciar biofilme quando indicado, e sistema de análise computadorizada para comparação longitudinal. **Análises Complementares Específicas:** Quando clinicamente indicadas: análise salivar completa (fluxo, pH, capacidade tampão), teste de atividade de cáries através de métodos microbiológicos, análise periodontal detalhada incluindo avaliação do fluido crevicular, teste de halimetria para quantificação objetiva do mau hálito, e radiografias digitais seletivas com redução de 80% na dose de radiação. **Limpeza Profissional com Ultrassom:** Utilização de tecnologia ultrassônica de 25.000-30.000 Hz para remoção eficaz de biofilme e cálculo, com conforto superior e acesso a áreas de difícil alcance. Aplicação de flúor profissional personalizada conforme análise de risco individual.",
           type: "default"
         }
       ]}
       faqs={faqs}
       whatsappMessage="Olá, gostaria de agendar um check-up dental e limpeza"
-      ctaHeading="Agende sua Consulta de Prevenção e Cuide da Sua Saúde Bucal em Ipanema!"
+      ctaHeading="Agende sua Consulta de Prevenção Científica e Cuide da Sua Saúde Bucal em Ipanema!"
     />
   );
 };
