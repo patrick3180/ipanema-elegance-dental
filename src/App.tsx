@@ -15,8 +15,6 @@ import RobotsResponse from "@/components/RobotsResponse";
 import { CrawlerOptimizer } from "@/components/performance/CrawlerOptimizer";
 import CoreWebVitalsOptimizer from "@/components/performance/CoreWebVitalsOptimizer";
 import PerformanceOptimizationSummary from "@/components/performance/PerformanceOptimizationSummary";
-import { Phase1Optimizer } from "@/components/performance/Phase1Optimizer";
-import { Phase1Dashboard } from "@/components/performance/Phase1Dashboard";
 import { SEOSitemapManager } from "@/components/SEOSitemapManager";
 import CriticalResourceLoader from "@/components/performance/CriticalResourceLoader";
 import AdvancedImageOptimizer from "@/components/performance/AdvancedImageOptimizer";
@@ -36,6 +34,8 @@ import { ImageOptimizationProvider } from "@/components/performance/ImageOptimiz
 // Performance components
 import ImagePreloader from "@/components/performance/ImagePreloader";
 import CriticalCSSLoader from "@/components/performance/CriticalCSSLoader";
+import PerformanceMetricsMonitor from "@/components/performance/PerformanceMetricsMonitor";
+import IntelligentPreloader from "@/components/performance/IntelligentPreloader";
 import LazyScriptLoader from "@/components/performance/LazyScriptLoader";
 
 // Lazy load components for better code splitting
@@ -114,12 +114,12 @@ const criticalImages = [
 function AppContent() {
   const location = useLocation();
   
-  // Initialize resource optimization (reduced settings)
+  // Initialize resource optimization
   useResourceOptimization({
     enableImageOptimization: true,
-    enableFontOptimization: false,
-    enableScriptOptimization: false,
-    enablePrefetching: false
+    enableFontOptimization: true,
+    enableScriptOptimization: true,
+    enablePrefetching: true
   });
   
   // Handle URL redirects and SEO monitoring
@@ -150,17 +150,14 @@ function AppContent() {
   return (
     <ErrorBoundary>
       <div className="App">
-        {/* Phase 1: CSS & JavaScript Optimizations - DISABLED */}
-        <Phase1Optimizer enabled={false} />
-        
-        {/* Enhanced Performance Components */}
-        <CriticalResourceLoader resources={criticalResources} enableServiceWorker={true} />
+        {/* Conservative performance optimization components - Phase 1: Disabled aggressive optimizers */}
+        <CriticalResourceLoader resources={criticalResources} enableServiceWorker={false} />
         <AdvancedImageOptimizer 
-          enableWebP={false} 
+          enableWebP={true} 
           enableAVIF={false}
-          lazyLoadThreshold={0.5}
+          lazyLoadThreshold={0.1}
           qualitySettings={{
-            mobile: 80,
+            mobile: 75,
             desktop: 85,
             retina: 90
           }}
@@ -175,11 +172,33 @@ function AppContent() {
           enableRequestBatching={false} 
           cacheStrategy="network-first" 
         />
+        {/* Temporarily disabled: <LCPOptimizer targetLCP={2500} enableEmergencyMode={true} /> */}
+        {/* Temporarily disabled: <ServerResponseOptimizer 
+          targetTTFB={200} 
+          enableRequestOptimization={true} 
+          enableConnectionOptimization={true} 
+        /> */}
         <BundleOptimizer 
-          enableCodeSplitting={false}
-          enableTreeShaking={false}
-          chunkStrategy="vendor"
+          enableCodeSplitting={true}
+          enableTreeShaking={true}
+          chunkStrategy="feature"
         />
+        <CriticalCSSExtractor 
+          enableInlineCSS={true}
+          enableAsyncCSS={true}
+          criticalViewportHeight={1080}
+        />
+        <LCPOptimizer targetLCP={2500} />
+        <CriticalCSSLoader />
+        <PerformanceMetricsMonitor enableLogging={true} />
+        <IntelligentPreloader 
+          enableHoverPreload={true}
+          enableViewportPreload={true}
+        />
+        {/* Temporarily disabled: <PerformanceManager enableCompleteOptimization={true} /> */}
+        {/* Critical images now handled by ImageOptimizationProvider */}
+        {/* <CriticalCSSLoader /> */}
+        {/* <LazyScriptLoader /> */}
         
         <Routes>
           <Route 
@@ -360,19 +379,12 @@ function AppContent() {
         
         <Toaster />
         <PerformanceMonitor />
-        {/* Enhanced monitoring for Phase 1 */}
-        {import.meta.env.DEV && (
-          <div>
-            {/* Performance monitoring only in development */}
-          </div>
-        )}
+        {/* <SEOHealthMonitor /> */}
         <SitemapUpdater />
         <SEOSitemapManager />
-        {/* Temporarily disabled performance components */}
-        {/* <CrawlerOptimizer /> */}
-        {/* <CoreWebVitalsOptimizer /> */}
-        {/* <PerformanceOptimizationSummary /> */}
-        {import.meta.env.DEV && <Phase1Dashboard showInProduction={false} />}
+        <CrawlerOptimizer />
+        <CoreWebVitalsOptimizer />
+        <PerformanceOptimizationSummary />
         {/* <SEOMonitoringDashboard /> */}
       </div>
     </ErrorBoundary>

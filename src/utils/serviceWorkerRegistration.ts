@@ -28,18 +28,10 @@ export function register() {
 }
 
 function registerValidSW(swUrl: string) {
-  // Try Phase 1 optimized service worker first
-  const phase1SwUrl = swUrl.replace('sw.js', 'sw-phase1.js');
-  
   navigator.serviceWorker
-    .register(phase1SwUrl)
+    .register(swUrl)
     .then(registration => {
-      console.log('✅ Phase 1 SW registered: ', registration);
-      
-      // Message the service worker to measure cache performance
-      if (registration.active) {
-        registration.active.postMessage({ type: 'CACHE_PERFORMANCE' });
-      }
+      console.log('SW registered: ', registration);
       
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
@@ -49,26 +41,16 @@ function registerValidSW(swUrl: string) {
         installingWorker.onstatechange = () => {
           if (installingWorker.state === 'installed') {
             if (navigator.serviceWorker.controller) {
-              console.log('🔄 New optimized content available; please refresh.');
+              console.log('New content available; please refresh.');
             } else {
-              console.log('✅ Optimized content cached for offline use.');
+              console.log('Content cached for offline use.');
             }
           }
         };
       };
     })
     .catch(error => {
-      console.log('⚠️ Phase 1 SW failed, falling back to basic SW:', error);
-      
-      // Fallback to basic service worker
-      navigator.serviceWorker
-        .register(swUrl)
-        .then(registration => {
-          console.log('✅ Fallback SW registered: ', registration);
-        })
-        .catch(fallbackError => {
-          console.error('❌ SW registration failed completely: ', fallbackError);
-        });
+      console.error('SW registration failed: ', error);
     });
 }
 

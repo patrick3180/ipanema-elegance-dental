@@ -88,9 +88,7 @@ const LCPOptimizer = ({
       if (!enableEmergencyMode || emergencyModeTriggered) return;
       
       emergencyModeTriggered = true;
-      if (import.meta.env.DEV) {
-        console.warn('🚨 Emergency LCP mode activated - optimizing critical path');
-      }
+      console.warn('🚨 Emergency LCP mode activated - optimizing critical path');
 
       // Remove non-critical stylesheets temporarily
       const nonCriticalStyles = document.querySelectorAll('link[rel="stylesheet"]:not([data-critical])');
@@ -128,9 +126,7 @@ const LCPOptimizer = ({
         };
 
         if (lastEntry && lastEntry.startTime > targetLCP) {
-          if (import.meta.env.DEV) {
-            console.warn(`LCP exceeded target: ${lastEntry.startTime}ms > ${targetLCP}ms`);
-          }
+          console.warn(`LCP exceeded target: ${lastEntry.startTime}ms > ${targetLCP}ms`);
           triggerEmergencyMode();
         }
       });

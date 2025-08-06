@@ -263,10 +263,7 @@
                 }
             }
             
-            // Only log in development and occasionally
-            if (window.location.hostname === 'localhost' && Math.random() < 0.1) {
-                console.log('Found WhatsApp links:', whatsappLinks.length);
-            }
+            console.log('Found WhatsApp links:', whatsappLinks.length);
             
             // Add click event listeners to WhatsApp links
             for (var i = 0; i < whatsappLinks.length; i++) {
@@ -294,8 +291,8 @@
             addWhatsAppListeners();
         }
         
-        // Also check periodically for dynamically added WhatsApp links (less frequently)
-        setInterval(addWhatsAppListeners, 10000);
+        // Also check periodically for dynamically added WhatsApp links
+        setInterval(addWhatsAppListeners, 2000);
         
         console.log('GCLID tracking script initialized - window.open intercepted');
     })();

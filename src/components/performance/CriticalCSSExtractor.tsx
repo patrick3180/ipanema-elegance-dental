@@ -7,8 +7,8 @@ interface CriticalCSSExtractorProps {
 }
 
 const CriticalCSSExtractor = ({
-  enableInlineCSS = false, // Changed default to false for safety
-  enableAsyncCSS = false,   // Changed default to false for safety
+  enableInlineCSS = true,  // Enabled for Phase 1 optimization
+  enableAsyncCSS = true,   // Enabled for Phase 1 optimization
   criticalViewportHeight = 1080
 }: CriticalCSSExtractorProps) => {
   useEffect(() => {
@@ -211,8 +211,8 @@ const CriticalCSSExtractor = ({
 
       let node: Element | null = walker.nextNode() as Element;
       while (node) {
-        if (node.classList && node.classList.length > 0) {
-          node.classList.forEach(cls => {
+        if (node.className) {
+          node.className.split(' ').forEach(cls => {
             if (cls.trim()) usedSelectors.add(`.${cls.trim()}`);
           });
         }
@@ -225,7 +225,7 @@ const CriticalCSSExtractor = ({
       }
 
       // Remove unused CSS rules (in development only)
-      if (import.meta.env.DEV && Math.random() < 0.1) {
+      if (process.env.NODE_ENV === 'development') {
         console.log('Used selectors:', usedSelectors.size);
         console.log('This information can be used to optimize CSS in production');
       }

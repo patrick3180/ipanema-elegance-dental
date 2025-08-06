@@ -26,9 +26,7 @@ const PerformanceManager = ({
           for (const entry of list.getEntries()) {
             // Track all performance metrics
             if (entry.entryType === 'largest-contentful-paint') {
-              if (import.meta.env.DEV && Math.random() < 0.1) {
-                console.log('LCP:', entry.startTime);
-              }
+              console.log('LCP:', entry.startTime);
               
               // If LCP is too high, implement emergency optimizations
               if (entry.startTime > 2500) {
@@ -38,15 +36,11 @@ const PerformanceManager = ({
             
             if (entry.entryType === 'first-input') {
               const fidEntry = entry as any;
-              if (import.meta.env.DEV && Math.random() < 0.1) {
-                console.log('FID:', fidEntry.processingStart - fidEntry.startTime);
-              }
+              console.log('FID:', fidEntry.processingStart - fidEntry.startTime);
             }
             
             if (entry.entryType === 'layout-shift') {
-              if (import.meta.env.DEV && Math.random() < 0.1) {
-                console.log('CLS:', (entry as any).value);
-              }
+              console.log('CLS:', (entry as any).value);
             }
           }
         });
@@ -122,9 +116,7 @@ const PerformanceManager = ({
           
           if (memoryUsageRatio > 0.8) {
             // Clear caches and reduce memory usage
-            if (import.meta.env.DEV) {
-              console.warn('High memory usage detected, clearing caches...');
-            }
+            console.warn('High memory usage detected, clearing caches...');
             
             // Clear image cache
             const imgCache = new Map();
@@ -147,9 +139,7 @@ const PerformanceManager = ({
     };
 
     const emergencyLCPOptimization = () => {
-      if (import.meta.env.DEV) {
-        console.warn('Emergency LCP optimization triggered');
-      }
+      console.warn('Emergency LCP optimization triggered');
       
       // 1. Preload LCP element immediately
       const lcpCandidates = document.querySelectorAll('img[data-hero], h1, .hero, [data-lcp]');
