@@ -81,6 +81,7 @@ const Hero = () => {
                 lazy={false} // Disable lazy loading for above-the-fold content
                 width={420}
                 height={600}
+                data-hero-image
               />
             </div>
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-dental-gold/20 rounded-full"></div>

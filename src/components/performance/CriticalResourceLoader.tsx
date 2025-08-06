@@ -24,7 +24,8 @@ const CriticalResourceLoader = ({
       navigator.serviceWorker.register('/sw.js').catch(console.error);
     }
 
-    // Process critical resources
+    // Process critical resources with immediate loading for above-fold content
+    const criticalLinks: HTMLLinkElement[] = [];
     resources.forEach((resource) => {
       const existingLink = document.querySelector(
         `link[href="${resource.href}"][rel="${resource.type}"]`
@@ -41,16 +42,38 @@ const CriticalResourceLoader = ({
       if (resource.media) link.media = resource.media;
       if (resource.priority) link.fetchPriority = resource.priority;
 
-      // Add to document head
-      document.head.appendChild(link);
+      // Prioritize critical resources
+      if (resource.priority === 'high') {
+        (link as any).importance = 'high';
+      }
 
-      // Clean up on unmount
-      return () => {
+      document.head.appendChild(link);
+      criticalLinks.push(link);
+    });
+
+    // Preconnect to critical domains
+    const criticalDomains = [
+      'https://images.ctfassets.net',
+      'https://cdn.contentful.com',
+      'https://fonts.googleapis.com',
+      'https://fonts.gstatic.com'
+    ];
+
+    criticalDomains.forEach(domain => {
+      const preconnectLink = document.createElement('link');
+      preconnectLink.rel = 'preconnect';
+      preconnectLink.href = domain;
+      preconnectLink.crossOrigin = 'anonymous';
+      document.head.appendChild(preconnectLink);
+    });
+
+    return () => {
+      criticalLinks.forEach(link => {
         if (link.parentNode) {
           link.parentNode.removeChild(link);
         }
-      };
-    });
+      });
+    };
   }, [resources, enableServiceWorker]);
 
   useEffect(() => {

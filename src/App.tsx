@@ -22,6 +22,9 @@ import BundleOptimizer from "@/components/performance/BundleOptimizer";
 import ContentfulOptimizer from "@/components/performance/ContentfulOptimizer";
 import CriticalCSSExtractor from "@/components/performance/CriticalCSSExtractor";
 import PerformanceManager from "@/components/performance/PerformanceManager";
+import ContentfulCacheOptimizer from "@/components/performance/ContentfulCacheOptimizer";
+import LCPOptimizer from "@/components/performance/LCPOptimizer";
+import ServerResponseOptimizer from "@/components/performance/ServerResponseOptimizer";
 import SEOMonitoringDashboard from "@/components/SEOMonitoringDashboard";
 import { handlePageRedirects } from "@/utils/urlRedirects";
 import { seoMonitor } from "@/utils/seoMonitoring";
@@ -142,7 +145,7 @@ function AppContent() {
   return (
     <ErrorBoundary>
       <div className="App">
-        {/* Performance optimization components */}
+        {/* Enhanced performance optimization components */}
         <CriticalResourceLoader resources={criticalResources} enableServiceWorker={true} />
         <AdvancedImageOptimizer 
           enableWebP={true} 
@@ -154,15 +157,26 @@ function AppContent() {
             retina: 90
           }}
         />
-        <BundleOptimizer 
-          enableCodeSplitting={true}
-          enableTreeShaking={true}
-          chunkStrategy="vendor"
-        />
         <ContentfulOptimizer 
           enablePrefetching={true}
           enableCaching={true}
           batchRequests={true}
+        />
+        <ContentfulCacheOptimizer 
+          enableAggressiveCaching={true} 
+          enableRequestBatching={true} 
+          cacheStrategy="stale-while-revalidate" 
+        />
+        <LCPOptimizer targetLCP={2500} enableEmergencyMode={true} />
+        <ServerResponseOptimizer 
+          targetTTFB={200} 
+          enableRequestOptimization={true} 
+          enableConnectionOptimization={true} 
+        />
+        <BundleOptimizer 
+          enableCodeSplitting={true}
+          enableTreeShaking={true}
+          chunkStrategy="vendor"
         />
         <CriticalCSSExtractor 
           enableInlineCSS={true}

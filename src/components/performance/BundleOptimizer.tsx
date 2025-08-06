@@ -33,10 +33,10 @@ const BundleOptimizer = ({
     };
 
     const preloadRouteChunk = (route: string) => {
-      // Map routes to their respective chunks
+      // Enhanced route prediction with intelligent preloading
       const routeChunkMap: Record<string, string> = {
         '/about': 'AboutPage',
-        '/services': 'ServicesPage',
+        '/services': 'ServicesPage', 
         '/blog': 'BlogPage',
         '/contact': 'ContactPage',
         '/clareamento-dental': 'ClareamentoDental',
@@ -50,12 +50,20 @@ const BundleOptimizer = ({
       };
 
       const chunkName = routeChunkMap[route];
-      if (chunkName) {
-        const link = document.createElement('link');
-        link.rel = 'prefetch';
-        link.as = 'script';
-        link.href = `/assets/${chunkName}-[hash].js`; // Vite chunk naming
-        document.head.appendChild(link);
+      if (chunkName && !document.querySelector(`link[href*="${chunkName}"]`)) {
+        // Preload JavaScript chunk
+        const jsLink = document.createElement('link');
+        jsLink.rel = 'prefetch';
+        jsLink.as = 'script';
+        jsLink.href = `/assets/${chunkName}.js`;
+        document.head.appendChild(jsLink);
+
+        // Preload associated CSS chunk
+        const cssLink = document.createElement('link');
+        cssLink.rel = 'prefetch';
+        cssLink.as = 'style';
+        cssLink.href = `/assets/${chunkName}.css`;
+        document.head.appendChild(cssLink);
       }
     };
 
