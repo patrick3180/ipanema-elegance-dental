@@ -2,44 +2,11 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/sonner";
-import { lazy, useEffect } from "react";
-import ErrorBoundary from "@/components/performance/ErrorBoundary";
-import ContentfulHealthChecker from "@/components/ContentfulHealthChecker";
-import PerformanceMonitor from "@/components/performance/PerformanceMonitor";
-import ResourcePreloader from "@/components/performance/ResourcePreloader";
-import LazyRouteWrapper from "@/components/performance/LazyRouteWrapper";
-import { useResourceOptimization } from "@/hooks/useResourceOptimization";
-import SitemapUpdater from "@/components/SitemapUpdater";
-import SEOHealthMonitor from "@/components/SEOHealthMonitor";
+import { lazy, useEffect, Suspense } from "react";
 import SitemapResponse from "@/components/SitemapResponse";
 import RobotsResponse from "@/components/RobotsResponse";
-import { CrawlerOptimizer } from "@/components/performance/CrawlerOptimizer";
-import CoreWebVitalsOptimizer from "@/components/performance/CoreWebVitalsOptimizer";
-import PerformanceOptimizationSummary from "@/components/performance/PerformanceOptimizationSummary";
-import { SEOSitemapManager } from "@/components/SEOSitemapManager";
-import CriticalResourceLoader from "@/components/performance/CriticalResourceLoader";
-import AdvancedImageOptimizer from "@/components/performance/AdvancedImageOptimizer";
-import BundleOptimizer from "@/components/performance/BundleOptimizer";
-import ContentfulOptimizer from "@/components/performance/ContentfulOptimizer";
-import CriticalCSSExtractor from "@/components/performance/CriticalCSSExtractor";
-import PerformanceManager from "@/components/performance/PerformanceManager";
-import ContentfulCacheOptimizer from "@/components/performance/ContentfulCacheOptimizer";
-import CoreWebVitalsRealtimeMonitor from "@/components/performance/CoreWebVitalsRealtimeMonitor";
-import WorkboxServiceWorker from "@/components/performance/WorkboxServiceWorker";
-import LCPOptimizer from "@/components/performance/LCPOptimizer";
-import ServerResponseOptimizer from "@/components/performance/ServerResponseOptimizer";
-import SEOMonitoringDashboard from "@/components/SEOMonitoringDashboard";
-import { handlePageRedirects } from "@/utils/urlRedirects";
-import { seoMonitor } from "@/utils/seoMonitoring";
-import "@/utils/404ErrorHandler"; // Initialize 404 error tracking
-import { ImageOptimizationProvider } from "@/components/performance/ImageOptimizationProvider";
 
-// Performance components
-import ImagePreloader from "@/components/performance/ImagePreloader";
-import CriticalCSSLoader from "@/components/performance/CriticalCSSLoader";
-import PerformanceMetricsMonitor from "@/components/performance/PerformanceMetricsMonitor";
-import IntelligentPreloader from "@/components/performance/IntelligentPreloader";
-import LazyScriptLoader from "@/components/performance/LazyScriptLoader";
+// Phase 1 Emergency Recovery: Minimal imports only
 
 // Lazy load components for better code splitting
 const Index = lazy(() => import("./pages/Index"));
@@ -67,316 +34,86 @@ const SaudeDaGengiva = lazy(() => import("./pages/SaudeDaGengiva"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfUse = lazy(() => import("./pages/TermsOfUse"));
 
-// Create a single QueryClient instance
+// Phase 1 Emergency Recovery: Minimal QueryClient
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      gcTime: 10 * 60 * 1000, // 10 minutes (formerly cacheTime)
-      retry: 1,
+      staleTime: 5 * 60 * 1000,
+      gcTime: 10 * 60 * 1000,
       refetchOnWindowFocus: false,
     },
   },
 });
 
-// Critical resources to preload
-const criticalResources = [
-  {
-    type: 'preconnect' as const,
-    href: 'https://fonts.googleapis.com',
-  },
-  {
-    type: 'preconnect' as const,
-    href: 'https://fonts.gstatic.com',
-    crossorigin: 'anonymous' as const,
-  },
-  {
-    type: 'preload' as const,
-    href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap',
-    as: 'style' as const,
-    crossorigin: 'anonymous' as const,
-  },
-  {
-    type: 'preconnect' as const,
-    href: 'https://images.ctfassets.net',
-  },
-  {
-    type: 'dns-prefetch' as const,
-    href: 'https://cdn.contentful.com',
-  },
-];
-
-// Critical images to preload with optimized dimensions
-const criticalImages = [
-  { src: '/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png', width: 420 }, // Hero image
-  { src: '/lovable-uploads/164bae76-428b-4fae-a600-ba61172b5dac.png', width: 600 }, // About section
-  { src: '/lovable-uploads/fef24f70-4659-453e-8fee-79dee34b6220.png', width: 600 }, // About page
-  { src: '/lovable-uploads/b1c1cbdb-bde0-4d9e-912e-74cf74cf716d.png', width: 600 }  // About page main
-];
-
 function AppContent() {
   const location = useLocation();
   
-  // Phase 1: Temporarily disable resource optimization
-  // useResourceOptimization({
-  //   enableImageOptimization: true,
-  //   enableFontOptimization: true,
-  //   enableScriptOptimization: true,
-  //   enablePrefetching: true
-  // });
-  
-  // Handle URL redirects and SEO monitoring
+  // Phase 1 Emergency Recovery: Minimal setup only
   useEffect(() => {
-    // Initialize middleware on route change
-    const initializeMiddleware = async () => {
-      try {
-        const { handleRequestMiddleware } = await import('@/middleware/redirectMiddleware');
-        handleRequestMiddleware();
-      } catch (error) {
-        console.error('Error initializing middleware:', error);
-      }
+    // Basic document title only
+    const titles: Record<string, string> = {
+      '/': 'Clinice Odontológica - Cuidado Dental de Excelência',
+      '/sobre': 'Sobre Nós - Clinice Odontológica',
+      '/servicos': 'Nossos Serviços - Clinice Odontológica',
+      '/contato': 'Contato - Clinice Odontológica',
+      '/blog': 'Blog - Clinice Odontológica'
     };
-
-    // Handle page redirects
-    const redirectResult = handlePageRedirects();
     
-    if (redirectResult.type === 'redirect') {
-      seoMonitor.logRedirect(location.pathname, window.location.pathname);
-    } else if (redirectResult.type === 'gone') {
-      seoMonitor.logGone(location.pathname);
-    }
-
-    // Initialize middleware after redirect handling
-    initializeMiddleware();
+    document.title = titles[location.pathname] || 'Clinice Odontológica';
   }, [location.pathname]);
 
   return (
-    <ErrorBoundary>
-      <div className="App">
-        {/* Phase 1 Critical Cleanup - Minimal components only */}
-        <CriticalResourceLoader resources={criticalResources} enableServiceWorker={false} />
-        {/* Temporarily disabled due to API errors */}
-        {/* <ContentfulOptimizer 
-          enablePrefetching={false}
-          enableCaching={true}
-          batchRequests={false}
-        /> */}
-        {/* Temporarily disabled due to API errors */}
-        {/* <ContentfulCacheOptimizer 
-          enableAggressiveCaching={false} 
-          enableRequestBatching={false} 
-          cacheStrategy="network-first" 
-        /> */}
-        {/* Temporarily disabled: <LCPOptimizer targetLCP={2500} enableEmergencyMode={true} /> */}
-        {/* Temporarily disabled: <ServerResponseOptimizer 
-          targetTTFB={200} 
-          enableRequestOptimization={true} 
-          enableConnectionOptimization={true} 
-        /> */}
-        {/* Phase 1: All performance optimizers temporarily disabled */}
-        {/* Temporarily disabled: <PerformanceManager enableCompleteOptimization={true} /> */}
-        {/* Critical images now handled by ImageOptimizationProvider */}
+    <div className="App">
+      {/* Phase 1 Emergency Recovery: No performance components */}
         
-        <Routes>
-          <Route 
-            path="/" 
-            element={
-              <LazyRouteWrapper minHeight="100vh">
-                <Index />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/sobre" 
-            element={
-              <LazyRouteWrapper>
-                <AboutPage />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/servicos" 
-            element={
-              <LazyRouteWrapper>
-                <ServicesPage />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/diferenciais" 
-            element={
-              <LazyRouteWrapper>
-                <DifferentialsPage />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/blog" 
-            element={
-              <LazyRouteWrapper>
-                <BlogPage />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/blog/:slug" 
-            element={
-              <LazyRouteWrapper>
-                <BlogPost />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/contato" 
-            element={
-              <LazyRouteWrapper>
-                <ContactPage />
-              </LazyRouteWrapper>
-            } 
-          />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/sobre" element={<AboutPage />} />
+            <Route path="/servicos" element={<ServicesPage />} />
+            <Route path="/diferenciais" element={<DifferentialsPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/contato" element={<ContactPage />} />
 
-          {/* Service Routes */}
-          <Route 
-            path="/lentes-de-contato-dental-e-facetas-de-porcelana" 
-            element={
-              <LazyRouteWrapper>
-                <LentesEFacetas />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/clareamento-dental" 
-            element={
-              <LazyRouteWrapper>
-                <ClareamentoDental />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/protese-dentaria" 
-            element={
-              <LazyRouteWrapper>
-                <ProteseDentaria />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/implantes-dentarios" 
-            element={
-              <LazyRouteWrapper>
-                <ImplantesDentarios />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/clinica-geral-e-prevencao" 
-            element={
-              <LazyRouteWrapper>
-                <ClinicaGeralPrevencao />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/restauracoes-esteticas" 
-            element={
-              <LazyRouteWrapper>
-                <RestaureacoesEsteticas />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/tratamento-de-canal" 
-            element={
-              <LazyRouteWrapper>
-                <TratamentoDeCanal />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/saude-da-gengiva" 
-            element={
-              <LazyRouteWrapper>
-                <SaudeDaGengiva />
-              </LazyRouteWrapper>
-            } 
-          />
+            {/* Service Routes */}
+            <Route path="/lentes-de-contato-dental-e-facetas-de-porcelana" element={<LentesEFacetas />} />
+            <Route path="/clareamento-dental" element={<ClareamentoDental />} />
+            <Route path="/protese-dentaria" element={<ProteseDentaria />} />
+            <Route path="/implantes-dentarios" element={<ImplantesDentarios />} />
+            <Route path="/clinica-geral-e-prevencao" element={<ClinicaGeralPrevencao />} />
+            <Route path="/restauracoes-esteticas" element={<RestaureacoesEsteticas />} />
+            <Route path="/tratamento-de-canal" element={<TratamentoDeCanal />} />
+            <Route path="/saude-da-gengiva" element={<SaudeDaGengiva />} />
 
-          {/* Legal Routes */}
-          <Route 
-            path="/politica-de-privacidade" 
-            element={
-              <LazyRouteWrapper>
-                <PrivacyPolicy />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/termos-de-uso" 
-            element={
-              <LazyRouteWrapper>
-                <TermsOfUse />
-              </LazyRouteWrapper>
-            } 
-          />
+            {/* Legal Routes */}
+            <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
+            <Route path="/termos-de-uso" element={<TermsOfUse />} />
 
-          {/* 410 Gone Route */}
-          <Route 
-            path="/gone" 
-            element={
-              <LazyRouteWrapper>
-                <GonePage />
-              </LazyRouteWrapper>
-          } 
-          />
+            {/* Special Routes */}
+            <Route path="/gone" element={<GonePage />} />
+            <Route path="/seo-dashboard" element={<SEODashboardPage />} />
 
-          {/* SEO Dashboard - Development/Admin Route */}
-          <Route 
-            path="/seo-dashboard" 
-            element={
-              <LazyRouteWrapper>
-                <SEODashboardPage />
-              </LazyRouteWrapper>
-            } 
-          />
+            {/* Static file routes */}
+            <Route path="/sitemap.xml" element={<SitemapResponse />} />
+            <Route path="/robots.txt" element={<RobotsResponse />} />
 
-          {/* Dynamic SEO Routes */}
-          <Route path="/sitemap.xml" element={<SitemapResponse />} />
-          <Route path="/robots.txt" element={<RobotsResponse />} />
-
-          {/* 404 Route */}
-          <Route 
-            path="*" 
-            element={
-              <LazyRouteWrapper>
-                <NotFound />
-              </LazyRouteWrapper>
-            } 
-          />
-        </Routes>
+            {/* 404 Route */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
         
         <Toaster />
-        {/* Phase 1: Temporarily disabled all monitoring components */}
       </div>
-    </ErrorBoundary>
   );
 }
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ImageOptimizationProvider
-        criticalImages={criticalImages}
-        config={{
-          enablePreloading: true,
-          quality: 85,
-          defaultWidth: 800,
-          defaultHeight: 600,
-        }}
-      >
-        <Router>
-          <AppContent />
-        </Router>
-      </ImageOptimizationProvider>
+      <Router>
+        <AppContent />
+      </Router>
     </QueryClientProvider>
   );
 }
