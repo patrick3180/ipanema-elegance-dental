@@ -74,11 +74,11 @@ const ContentfulOptimizer = ({
     const prefetchCriticalContent = async () => {
       const criticalContentQueries = [
         // Blog posts for homepage
-        'https://cdn.contentful.com/spaces/YOUR_SPACE_ID/entries?content_type=blogPost&limit=3&order=-sys.createdAt',
+        'https://cdn.contentful.com/spaces/g8ip8odd5vbl/entries?content_type=blogPost&limit=3&order=-sys.createdAt',
         // Services data
-        'https://cdn.contentful.com/spaces/YOUR_SPACE_ID/entries?content_type=service&limit=10',
+        'https://cdn.contentful.com/spaces/g8ip8odd5vbl/entries?content_type=service&limit=10',
         // Testimonials
-        'https://cdn.contentful.com/spaces/YOUR_SPACE_ID/entries?content_type=testimonial&limit=6'
+        'https://cdn.contentful.com/spaces/g8ip8odd5vbl/entries?content_type=testimonial&limit=6'
       ];
 
       // Prefetch in parallel but with delays to avoid overwhelming the API
@@ -219,14 +219,14 @@ const ContentfulOptimizer = ({
       const predictNextContent = (path: string): string[] => {
         const predictions: Record<string, string[]> = {
           '/': [
-            'https://cdn.contentful.com/spaces/YOUR_SPACE_ID/entries?content_type=service&limit=10',
-            'https://cdn.contentful.com/spaces/YOUR_SPACE_ID/entries?content_type=blogPost&limit=6'
+            'https://cdn.contentful.com/spaces/g8ip8odd5vbl/entries?content_type=service&limit=10',
+            'https://cdn.contentful.com/spaces/g8ip8odd5vbl/entries?content_type=blogPost&limit=6'
           ],
           '/blog': [
-            'https://cdn.contentful.com/spaces/YOUR_SPACE_ID/entries?content_type=blogPost&skip=6&limit=6'
+            'https://cdn.contentful.com/spaces/g8ip8odd5vbl/entries?content_type=blogPost&skip=6&limit=6'
           ],
           '/services': [
-            'https://cdn.contentful.com/spaces/YOUR_SPACE_ID/entries?content_type=testimonial&limit=6'
+            'https://cdn.contentful.com/spaces/g8ip8odd5vbl/entries?content_type=testimonial&limit=6'
           ]
         };
 

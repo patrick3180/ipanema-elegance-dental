@@ -72,6 +72,7 @@ const IntelligentPreloader = ({
 
     const handleLinkHover = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
+      if (!target || typeof target.closest !== 'function') return;
       const link = target.closest('a[href]') as HTMLAnchorElement;
       
       if (link && link.href && link.href.startsWith(window.location.origin)) {

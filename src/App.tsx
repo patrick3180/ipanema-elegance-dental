@@ -164,11 +164,12 @@ function AppContent() {
             retina: 90
           }}
         />
-        <ContentfulOptimizer 
+        {/* Temporarily disabled due to API errors */}
+        {/* <ContentfulOptimizer 
           enablePrefetching={false}
           enableCaching={true}
           batchRequests={false}
-        />
+        /> */}
         <ContentfulCacheOptimizer 
           enableAggressiveCaching={false} 
           enableRequestBatching={false} 
@@ -185,18 +186,19 @@ function AppContent() {
           enableTreeShaking={true}
           chunkStrategy="feature"
         />
-        <CriticalCSSExtractor 
+        {/* Temporarily disabled due to errors */}
+        {/* <CriticalCSSExtractor 
           enableInlineCSS={true}
           enableAsyncCSS={true}
           criticalViewportHeight={1080}
-        />
+        /> */}
         <LCPOptimizer targetLCP={2500} />
         <CriticalCSSLoader />
         <PerformanceMetricsMonitor enableLogging={true} />
-        <IntelligentPreloader 
+        {/* <IntelligentPreloader 
           enableHoverPreload={true}
           enableViewportPreload={true}
-        />
+        /> */}
         <CoreWebVitalsRealtimeMonitor 
           enableRegressionDetection={true}
           onRegressionDetected={(metric, value) => 
