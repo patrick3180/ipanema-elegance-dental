@@ -69,15 +69,17 @@ const OptimizedImage = ({
           width={width}
           height={height}
           loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : "low"}
           className={cn(
             "transition-opacity duration-300",
             isLoaded ? "opacity-100" : "opacity-0",
             className
           )}
-          style={{ objectFit }}
+          style={{ objectFit, aspectRatio: width && height ? `${width} / ${height}` : undefined }}
           onLoad={() => handleLoad(optimizedSrc, alt)}
           onError={handleError}
           decoding="async"
+          sizes={isMobile ? "(max-width: 768px) 100vw" : width ? `${width}px` : "100vw"}
         />
       )}
     </div>

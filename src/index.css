@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Fonts loaded via preload in HTML head - removed blocking @import */
+/* Fonts loaded asynchronously via HTML head - removed blocking @import for better performance */
 
 @layer base {
   :root {

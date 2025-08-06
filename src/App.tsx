@@ -21,6 +21,11 @@ import { handlePageRedirects } from "@/utils/urlRedirects";
 import { seoMonitor } from "@/utils/seoMonitoring";
 import "@/utils/404ErrorHandler"; // Initialize 404 error tracking
 
+// Performance components
+import ImagePreloader from "@/components/performance/ImagePreloader";
+import CriticalCSSLoader from "@/components/performance/CriticalCSSLoader";
+import LazyScriptLoader from "@/components/performance/LazyScriptLoader";
+
 // Lazy load components for better code splitting
 const Index = lazy(() => import("./pages/Index"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
@@ -62,13 +67,15 @@ const queryClient = new QueryClient({
 // Critical resources to preload
 const criticalResources = [
   {
-    href: '/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png',
-    as: 'image' as const
-  },
-  {
-    href: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap',
+    href: '/src/index.css',
     as: 'style' as const
   }
+];
+
+// Critical images to preload
+const criticalImages = [
+  '/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png',
+  '/lovable-uploads/164bae76-428b-4fae-a600-ba61172b5dac.png'
 ];
 
 function AppContent() {
@@ -110,7 +117,11 @@ function AppContent() {
   return (
     <ErrorBoundary>
       <div className="App">
+        {/* Performance optimization components */}
         <ResourcePreloader resources={criticalResources} />
+        <ImagePreloader images={criticalImages} priority={true} />
+        <CriticalCSSLoader />
+        <LazyScriptLoader />
         
         <Routes>
           <Route 
