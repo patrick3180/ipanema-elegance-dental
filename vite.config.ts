@@ -30,18 +30,24 @@ export default defineConfig(({ mode }) => ({
         },
       },
     },
-    // Enable compression
-    minify: 'terser',
-    terserOptions: {
+    // Conditional minification with fallback
+    minify: mode === 'production' ? 'terser' : false,
+    terserOptions: mode === 'production' ? {
       compress: {
-        drop_console: mode === 'production',
-        drop_debugger: mode === 'production',
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log'],
       },
-    },
+      mangle: {
+        safari10: true,
+      },
+    } : undefined,
     // Optimize CSS
     cssCodeSplit: true,
     // Set chunk size warning limit
     chunkSizeWarningLimit: 1000,
+    // Enable source maps for development
+    sourcemap: mode === 'development',
   },
   // Enable gzip compression
   preview: {
