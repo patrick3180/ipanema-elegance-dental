@@ -50,23 +50,19 @@ export const optimizeImageUrl = (src: string, width?: number, isMobile = false):
       url.searchParams.delete('fit');
       url.searchParams.delete('f');
       
-      // Apply WebP format for better compression
+      // Apply WebP format for better compression - standardized to 85% quality
       url.searchParams.set('fm', 'webp');
-      
-      // Adaptive quality based on connection and device
-      const connectionSpeed = getConnectionSpeed();
-      const quality = getOptimalQuality(connectionSpeed, isMobile);
-      url.searchParams.set('q', quality.toString());
+      url.searchParams.set('q', '85');
       
       // Add responsive width based on device and connection
       if (width) {
-        const responsiveWidth = getOptimalWidth(width, isMobile, connectionSpeed);
+        const responsiveWidth = getOptimalWidth(width, isMobile, getConnectionSpeed());
         url.searchParams.set('w', responsiveWidth.toString());
       }
       
       // Add density for retina displays (but cap it for performance)
       if (typeof window !== 'undefined' && window.devicePixelRatio > 1) {
-        const dpr = Math.min(window.devicePixelRatio, connectionSpeed === 'slow' ? 1.5 : 2);
+        const dpr = Math.min(window.devicePixelRatio, 2);
         url.searchParams.set('dpr', dpr.toString());
       }
       
@@ -78,8 +74,7 @@ export const optimizeImageUrl = (src: string, width?: number, isMobile = false):
       console.log('OptimizedImage: Contentful URL optimized:', {
         original: src,
         optimized: optimizedUrl,
-        quality,
-        connectionSpeed
+        quality: 85
       });
       
       return optimizedUrl;
@@ -115,11 +110,9 @@ const getConnectionSpeed = (): 'slow' | 'fast' | 'unknown' => {
   return 'unknown';
 };
 
-// Get optimal image quality based on conditions
-const getOptimalQuality = (connectionSpeed: string, isMobile: boolean): number => {
-  if (connectionSpeed === 'slow') return 65;
-  if (isMobile) return 75;
-  return 85;
+// Standard image quality - consistent 85% for WebP
+const getOptimalQuality = (): number => {
+  return 85; // Standardized quality for all images
 };
 
 // Get optimal image width based on conditions
@@ -145,7 +138,7 @@ export const preloadImage = (src: string): Promise<void> => {
   });
 };
 
-// Generate responsive image sources
+// Generate responsive image sources with srcset
 export const generateResponsiveSources = (
   baseSrc: string, 
   breakpoints: number[] = [320, 640, 768, 1024, 1280]
@@ -157,4 +150,41 @@ export const generateResponsiveSources = (
   return breakpoints.map(width => 
     optimizeImageUrl(baseSrc, width, width <= 768)
   );
+};
+
+// Generate srcset string for responsive images
+export const generateSrcSet = (baseSrc: string): string => {
+  const sources = generateResponsiveSources(baseSrc);
+  const breakpoints = [320, 640, 768, 1024, 1280];
+  
+  return sources.map((src, index) => `${src} ${breakpoints[index]}w`).join(', ');
+};
+
+// Generate sizes attribute for responsive images
+export const generateSizes = (isMobile: boolean): string => {
+  if (isMobile) {
+    return "(max-width: 640px) 100vw, (max-width: 768px) 90vw, 80vw";
+  }
+  return "(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 70vw";
+};
+
+// Preload critical images with optimized URLs
+export const preloadCriticalImages = (images: { src: string; width?: number }[]): void => {
+  images.forEach(({ src, width }) => {
+    const optimizedSrc = optimizeImageUrl(src, width);
+    
+    // Create preload link
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = optimizedSrc;
+    
+    // Add srcset for responsive preloading
+    if (src.includes('ctfassets.net')) {
+      link.setAttribute('imagesrcset', generateSrcSet(src));
+      link.setAttribute('imagesizes', generateSizes(false));
+    }
+    
+    document.head.appendChild(link);
+  });
 };

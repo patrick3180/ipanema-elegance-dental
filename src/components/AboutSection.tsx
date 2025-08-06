@@ -3,6 +3,7 @@ import React from "react";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
+import OptimizedImage from "@/components/OptimizedImage";
 
 const AboutSection = () => {
   const handleWhatsAppClick = () => {
@@ -50,10 +51,14 @@ const AboutSection = () => {
 
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="aspect-square rounded-2xl overflow-hidden">
-            <img 
+            <OptimizedImage 
               src="/lovable-uploads/fef24f70-4659-453e-8fee-79dee34b6220.png" 
               alt="Dra. Carla Christoph, dentista em Ipanema, sorrindo em seu consultório de odontologia estética." 
               className="w-full h-full object-cover"
+              width={600}
+              height={600}
+              priority={false}
+              responsive={true}
             />
           </div>
 

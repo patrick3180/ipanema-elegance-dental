@@ -39,6 +39,7 @@ const DefaultSection = ({ title, content, imageUrl }: DefaultSectionProps) => {
             height={400}
             className="w-full h-64 md:h-80 rounded-lg shadow-lg object-cover"
             priority={false}
+            responsive={true}
           />
         </div>
       )}

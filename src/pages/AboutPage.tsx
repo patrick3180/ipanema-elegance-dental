@@ -4,6 +4,7 @@ import SEOHead from "@/components/SEOHead";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
+import OptimizedImage from "@/components/OptimizedImage";
 
 const AboutPage = () => {
   const handleWhatsAppClick = () => {
@@ -104,7 +105,15 @@ const AboutPage = () => {
 
             <div className="grid md:grid-cols-2 gap-16 items-center mb-16">
               <div className="aspect-square rounded-2xl overflow-hidden">
-                <img src="/lovable-uploads/b1c1cbdb-bde0-4d9e-912e-74cf74cf716d.png" alt="Dra. Carla Christoph, dentista em Ipanema, sentada em seu consultório odontológico, especialista em odontologia estética e com ampla formação acadêmica." className="w-full h-full object-cover" />
+                <OptimizedImage 
+                  src="/lovable-uploads/b1c1cbdb-bde0-4d9e-912e-74cf74cf716d.png" 
+                  alt="Dra. Carla Christoph, dentista em Ipanema, sentada em seu consultório odontológico, especialista em odontologia estética e com ampla formação acadêmica." 
+                  className="w-full h-full object-cover"
+                  width={600}
+                  height={600}
+                  priority={true}
+                  responsive={true}
+                />
               </div>
 
               <div className="prose max-w-none">

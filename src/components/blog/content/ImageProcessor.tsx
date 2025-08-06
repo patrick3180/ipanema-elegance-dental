@@ -23,8 +23,8 @@ export const processImageUrl = ({ originalSrc, imageQuality, maxImageWidth }: Im
       url.searchParams.delete('dpr');
       url.searchParams.delete('fit');
       
-      // Apply new optimization settings
-      url.searchParams.set('q', imageQuality.toString());
+      // Apply new optimization settings - standardized to 85% quality
+      url.searchParams.set('q', '85');
       url.searchParams.set('w', maxImageWidth.toString());
       url.searchParams.set('fm', 'webp');
       url.searchParams.set('fit', 'scale'); // Changed from 'fill' to 'scale' to maintain aspect ratio

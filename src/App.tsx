@@ -29,6 +29,7 @@ import SEOMonitoringDashboard from "@/components/SEOMonitoringDashboard";
 import { handlePageRedirects } from "@/utils/urlRedirects";
 import { seoMonitor } from "@/utils/seoMonitoring";
 import "@/utils/404ErrorHandler"; // Initialize 404 error tracking
+import { ImageOptimizationProvider } from "@/components/performance/ImageOptimizationProvider";
 
 // Performance components
 import ImagePreloader from "@/components/performance/ImagePreloader";
@@ -100,10 +101,12 @@ const criticalResources = [
   },
 ];
 
-// Critical images to preload
+// Critical images to preload with optimized dimensions
 const criticalImages = [
-  '/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png',
-  '/lovable-uploads/164bae76-428b-4fae-a600-ba61172b5dac.png'
+  { src: '/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png', width: 420 }, // Hero image
+  { src: '/lovable-uploads/164bae76-428b-4fae-a600-ba61172b5dac.png', width: 600 }, // About section
+  { src: '/lovable-uploads/fef24f70-4659-453e-8fee-79dee34b6220.png', width: 600 }, // About page
+  { src: '/lovable-uploads/b1c1cbdb-bde0-4d9e-912e-74cf74cf716d.png', width: 600 }  // About page main
 ];
 
 function AppContent() {
@@ -184,7 +187,7 @@ function AppContent() {
           criticalViewportHeight={1080}
         /> */}
         {/* Temporarily disabled: <PerformanceManager enableCompleteOptimization={true} /> */}
-        <ImagePreloader images={criticalImages} priority={false} />
+        {/* Critical images now handled by ImageOptimizationProvider */}
         {/* <CriticalCSSLoader /> */}
         {/* <LazyScriptLoader /> */}
         
@@ -382,9 +385,19 @@ function AppContent() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Router>
-        <AppContent />
-      </Router>
+      <ImageOptimizationProvider
+        criticalImages={criticalImages}
+        config={{
+          enablePreloading: true,
+          quality: 85,
+          defaultWidth: 800,
+          defaultHeight: 600,
+        }}
+      >
+        <Router>
+          <AppContent />
+        </Router>
+      </ImageOptimizationProvider>
     </QueryClientProvider>
   );
 }

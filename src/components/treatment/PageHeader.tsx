@@ -20,7 +20,9 @@ const PageHeader = ({ title, introduction, imageUrl }: PageHeaderProps) => {
             alt={title}
             className="w-full h-auto" 
             width={1200}
+            height={400}
             priority={true}
+            responsive={true}
           />
         </div>
       )}

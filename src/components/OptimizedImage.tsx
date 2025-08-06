@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useImageIntersection } from "@/hooks/useImageIntersection";
 import { useImageLoading } from "@/hooks/useImageLoading";
-import { optimizeImageUrl } from "@/utils/imageOptimization";
+import { optimizeImageUrl, generateSrcSet, generateSizes } from "@/utils/imageOptimization";
 import ImageFallback from "@/components/image/ImageFallback";
 
 interface OptimizedImageProps {
@@ -17,18 +17,20 @@ interface OptimizedImageProps {
   objectFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
   lazy?: boolean;
   mobileSrc?: string;
+  responsive?: boolean;
 }
 
 const OptimizedImage = ({
   src,
   alt,
-  width,
-  height,
+  width = 800, // Default width to prevent layout shifts
+  height = 600, // Default height to prevent layout shifts
   className,
   priority = false,
   objectFit = "cover",
   lazy = true,
   mobileSrc,
+  responsive = true,
 }: OptimizedImageProps) => {
   const { isInView, imgRef } = useImageIntersection({ lazy, priority });
   const { isLoaded, hasError, handleLoad, handleError } = useImageLoading();
@@ -49,6 +51,21 @@ const OptimizedImage = ({
     return optimizeImageUrl(currentSrc, width, isMobile);
   }, [currentSrc, width, isInView, isMobile]);
 
+  // Generate responsive srcset for Contentful images
+  const srcSet = useMemo(() => {
+    if (!responsive || !currentSrc.includes('ctfassets.net')) {
+      return undefined;
+    }
+    return generateSrcSet(currentSrc);
+  }, [currentSrc, responsive]);
+
+  const sizes = useMemo(() => {
+    if (!responsive || !currentSrc.includes('ctfassets.net')) {
+      return undefined;
+    }
+    return generateSizes(isMobile);
+  }, [responsive, isMobile, currentSrc]);
+
   if (hasError) {
     return <ImageFallback className={className} width={width} height={height} alt={alt} />;
   }
@@ -65,6 +82,8 @@ const OptimizedImage = ({
       {isInView && (
         <img
           src={optimizedSrc}
+          srcSet={srcSet}
+          sizes={sizes || (isMobile ? "(max-width: 768px) 100vw" : width ? `${width}px` : "100vw")}
           alt={alt}
           width={width}
           height={height}
@@ -75,11 +94,13 @@ const OptimizedImage = ({
             isLoaded ? "opacity-100" : "opacity-0",
             className
           )}
-          style={{ objectFit, aspectRatio: width && height ? `${width} / ${height}` : undefined }}
+          style={{ 
+            objectFit, 
+            aspectRatio: width && height ? `${width} / ${height}` : undefined 
+          }}
           onLoad={() => handleLoad(optimizedSrc, alt)}
           onError={handleError}
           decoding="async"
-          sizes={isMobile ? "(max-width: 768px) 100vw" : width ? `${width}px` : "100vw"}
         />
       )}
     </div>

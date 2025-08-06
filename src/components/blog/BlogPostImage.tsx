@@ -18,6 +18,8 @@ const BlogPostImage = ({ imageUrl, title }: BlogPostImageProps) => {
           objectFit="contain"
           priority={true}
           width={1200}
+          height={400}
+          responsive={true}
         />
       </div>
     </div>
