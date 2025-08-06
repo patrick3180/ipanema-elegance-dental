@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
@@ -8,85 +7,26 @@
     <meta name="description" content="Procurando dentista em Ipanema? A Dra. Carla Christoph oferece odontologia estética e reabilitação oral com atendimento personalizado. Agende sua consulta!" />
     <meta name="author" content="Dra. Carla Christoph" />
 
-    <!-- DNS Prefetch for external domains -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="dns-prefetch" href="//images.ctfassets.net">
-    <link rel="dns-prefetch" href="//www.googletagmanager.com">
-    <link rel="dns-prefetch" href="//cdn.gpteng.co">
-    <link rel="dns-prefetch" href="//n8n.srv876901.hstgr.cloud">
-    
-    <!-- Preconnect to critical third-party origins -->
+    <!-- Basic font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://images.ctfassets.net" crossorigin>
-    
-    <!-- Critical Resource Preloads -->
-    <link rel="preload" href="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png" as="image" fetchpriority="high">
-    <link rel="preload" href="/lovable-uploads/164bae76-428b-4fae-a600-ba61172b5dac.png" as="image" fetchpriority="high">
-    <link rel="preload" href="/src/index.css" as="style">
-    
-    <!-- Font subset preloads for critical performance -->
-    <link rel="preload" href="https://fonts.gstatic.com/s/playfairdisplay/v36/nuFiD-vYSZviVYUb_rj3ij__anPXBYf9lWYe3bp_b-4.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Ew-.woff2" as="font" type="font/woff2" crossorigin>
-    
-    <!-- Modulepreload for critical JavaScript chunks -->
-    <link rel="modulepreload" href="/src/main.tsx">
-    <link rel="modulepreload" href="/src/App.tsx">
-    
-    <!-- Resource hints for better performance -->
-    <link rel="prefetch" href="/services" as="document">
-    <link rel="prefetch" href="/about" as="document">
-    <link rel="prefetch" href="/blog" as="document">
-    
-    <!-- Critical CSS Inlined -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Minimal critical CSS -->
     <style>
-      /* Critical above-the-fold styles */
       body { 
         font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
         background-color: hsl(45, 27%, 88%);
         color: hsl(270, 40%, 20%);
         margin: 0;
         padding: 0;
-        font-display: swap;
-      }
-      .hero-section { 
-        min-height: 100vh;
-        background-color: hsl(45, 27%, 88%);
-        contain: layout style paint;
       }
       h1, h2, h3, h4, h5, h6 { 
         font-family: 'Playfair Display', serif;
-        font-display: swap;
-      }
-      .loading-spinner {
-        animation: spin 1s linear infinite;
-      }
-      @keyframes spin {
-        to { transform: rotate(360deg); }
-      }
-      /* Prevent layout shift */
-      img {
-        max-width: 100%;
-        height: auto;
       }
     </style>
-    
-    <!-- Optimized font loading with subset for Latin characters -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap&subset=latin" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap&subset=latin"></noscript>
-    
-    <!-- Service Worker registration for advanced caching -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then(reg => console.log('SW registered'))
-            .catch(err => console.log('SW registration failed'));
-        });
-      }
-    </script>
 
+    <!-- Basic SEO meta tags -->
     <meta property="og:title" content="Dentista em Ipanema | Clínica Odontológica Dra. Carla Christoph" />
     <meta property="og:description" content="Procurando dentista em Ipanema? A Dra. Carla Christoph oferece odontologia estética e reabilitação oral com atendimento personalizado. Agende sua consulta!" />
     <meta property="og:type" content="website" />
@@ -95,235 +35,13 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@dracarlachristoph" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-    
-    <!-- Defer non-critical scripts -->
-    <script>
-      // Optimized GCLID tracking - non-blocking
-      (function() {
-        function getUrlParameter(name) {
-          name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-          var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-          var results = regex.exec(location.search);
-          return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-        }
-        
-        function setCookie(name, value, days) {
-          var expires = "";
-          if (days) {
-            var date = new Date();
-            date.setTime(date.getTime() + (days*24*60*60*1000));
-            expires = "; expires=" + date.toUTCString();
-          }
-          document.cookie = name + "=" + (value || "") + expires + "; path=/";
-        }
-        
-        var gclid = getUrlParameter('gclid');
-        if (gclid) {
-          setCookie('gclid', gclid, 90);
-          try {
-            localStorage.setItem('gclid', gclid);
-            localStorage.setItem('gclid_timestamp', new Date().toISOString());
-          } catch(e) {}
-        }
-      })();
-    </script>
   </head>
 
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZRDNBKQ"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    
     <div id="root"></div>
-    
-    <!-- Load analytics after main content with improved performance -->
-    <script>
-      // Enhanced lazy load analytics with better timing
-      function loadAnalytics() {
-        // Only load if not already loaded
-        if (window.gtag) return;
-        
-        // Google Ads (gtag.js) - defer by 3 seconds for better performance
-        var gtagScript = document.createElement('script');
-        gtagScript.async = true;
-        gtagScript.defer = true;
-        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16894364517';
-        document.head.appendChild(gtagScript);
-        
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        window.gtag = gtag;
-        gtag('js', new Date());
-        gtag('config', 'AW-16894364517', {
-          send_page_view: false // Prevent automatic page view to improve performance
-        });
-        
-        // Google Tag Manager - load after gtag
-        setTimeout(function() {
-          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.defer=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-WZRDNBKQ');
-        }, 500);
-      }
-      
-      // Load analytics based on user interaction or after delay
-      if (document.readyState === 'loading') {
-        window.addEventListener('load', function() {
-          setTimeout(loadAnalytics, 3000); // 3 second delay after page load
-        });
-      } else {
-        setTimeout(loadAnalytics, 3000);
-      }
-      
-      // Load on first user interaction for better perceived performance
-      ['click', 'scroll', 'touchstart', 'keydown'].forEach(function(event) {
-        document.addEventListener(event, function() {
-          loadAnalytics();
-        }, { once: true, passive: true });
-      });
-    </script>
     
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
-    
-    <!-- GCLID Tracking Footer Script -->
-    <script>
-    (function() {
-        // Function to get cookie by name
-        function getCookie(name) {
-            var nameEQ = name + "=";
-            var ca = document.cookie.split(';');
-            for(var i=0;i < ca.length;i++) {
-                var c = ca[i];
-                while (c.charAt(0)==' ') c = c.substring(1,c.length);
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-            }
-            return null;
-        }
-        
-        // Function to send GCLID data to webhook
-        function sendGclidData(gclid, source) {
-            var data = {
-                gclid: gclid,
-                page: window.location.href,
-                timestamp: new Date().toISOString(),
-                source: source || 'unknown'
-            };
-            
-            console.log('Sending GCLID data from ' + source + ':', data);
-            
-            // Send data to webhook with keepalive to ensure delivery even if page unloads
-            fetch('https://n8n.srv876901.hstgr.cloud/webhook/webhook/gclid', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-                keepalive: true // Ensures request completes even if page unloads
-            }).then(function() {
-                console.log('GCLID data sent successfully:', data);
-            }).catch(function(error) {
-                console.log('Error sending GCLID data:', error);
-            });
-        }
-        
-        // Function to check if URL contains WhatsApp
-        function isWhatsAppUrl(url) {
-            return url && (url.includes('wa.me') || url.includes('api.whatsapp.com'));
-        }
-        
-        // Function to get GCLID from storage
-        function getStoredGclid() {
-            var gclid = getCookie('gclid');
-            if (!gclid) {
-                try {
-                    gclid = localStorage.getItem('gclid');
-                } catch(e) {
-                    console.log('LocalStorage not available');
-                }
-            }
-            return gclid;
-        }
-        
-        // Intercept window.open calls for WhatsApp URLs
-        var originalWindowOpen = window.open;
-        window.open = function(url, target, features) {
-            console.log('window.open intercepted:', url);
-            
-            if (isWhatsAppUrl(url)) {
-                console.log('WhatsApp URL detected in window.open:', url);
-                var gclid = getStoredGclid();
-                if (gclid) {
-                    sendGclidData(gclid, 'window.open');
-                } else {
-                    console.log('No GCLID found for window.open WhatsApp call');
-                }
-            }
-            
-            // Call original window.open
-            return originalWindowOpen.call(this, url, target, features);
-        };
-        
-        // Wait for DOM to be ready before adding event listeners
-        function addWhatsAppListeners() {
-            // Find all WhatsApp links (wa.me and api.whatsapp.com)
-            var whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
-            
-            // Also find dynamically created links by checking all links
-            var allLinks = document.querySelectorAll('a');
-            for (var i = 0; i < allLinks.length; i++) {
-                var link = allLinks[i];
-                if (link.href && isWhatsAppUrl(link.href)) {
-                    if (Array.prototype.indexOf.call(whatsappLinks, link) === -1) {
-                        whatsappLinks = Array.prototype.slice.call(whatsappLinks);
-                        whatsappLinks.push(link);
-                    }
-                }
-            }
-            
-            // Only log when there are actual WhatsApp links found
-            if (whatsappLinks.length > 0) {
-                console.log('Found WhatsApp links:', whatsappLinks.length);
-            }
-            
-            // Add click event listeners to WhatsApp links
-            for (var i = 0; i < whatsappLinks.length; i++) {
-                whatsappLinks[i].addEventListener('click', function(event) {
-                    console.log('WhatsApp link clicked:', this.href);
-                    
-                    var gclid = getStoredGclid();
-                    
-                    // Send GCLID data if available
-                    if (gclid) {
-                        sendGclidData(gclid, 'direct-link');
-                    } else {
-                        console.log('No GCLID found for direct link click');
-                    }
-                    
-                    // Don't prevent default behavior - let WhatsApp link work normally
-                });
-            }
-        }
-        
-        // Run when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', addWhatsAppListeners);
-        } else {
-            addWhatsAppListeners();
-        }
-        
-        // Check for dynamically added WhatsApp links occasionally (reduced frequency)
-        setTimeout(function() {
-            setInterval(addWhatsAppListeners, 30000); // Reduced to every 30 seconds
-        }, 5000); // Start after 5 seconds
-        
-        console.log('GCLID tracking script initialized - window.open intercepted');
-    })();
-    </script>
-    <!-- End GCLID Tracking Footer Script -->
   </body>
 </html>
