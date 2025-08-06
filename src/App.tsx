@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/sonner";
 import { lazy, useEffect } from "react";
 import ErrorBoundary from "@/components/performance/ErrorBoundary";
+import ContentfulHealthChecker from "@/components/ContentfulHealthChecker";
 import PerformanceMonitor from "@/components/performance/PerformanceMonitor";
 import ResourcePreloader from "@/components/performance/ResourcePreloader";
 import LazyRouteWrapper from "@/components/performance/LazyRouteWrapper";
@@ -152,6 +153,7 @@ function AppContent() {
   return (
     <ErrorBoundary>
       <div className="App">
+        <ContentfulHealthChecker />
         {/* Conservative performance optimization components - Phase 1: Disabled aggressive optimizers */}
         <CriticalResourceLoader resources={criticalResources} enableServiceWorker={false} />
         <AdvancedImageOptimizer 
@@ -170,11 +172,12 @@ function AppContent() {
           enableCaching={true}
           batchRequests={false}
         /> */}
-        <ContentfulCacheOptimizer 
+        {/* Temporarily disabled due to API errors */}
+        {/* <ContentfulCacheOptimizer 
           enableAggressiveCaching={false} 
           enableRequestBatching={false} 
           cacheStrategy="network-first" 
-        />
+        /> */}
         {/* Temporarily disabled: <LCPOptimizer targetLCP={2500} enableEmergencyMode={true} /> */}
         {/* Temporarily disabled: <ServerResponseOptimizer 
           targetTTFB={200} 

@@ -21,8 +21,14 @@ const ContentfulOptimizer = ({
     window.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
       const url = typeof input === 'string' ? input : input.toString();
       
-      // Only cache Contentful API calls
+      // Only process Contentful API calls - but add proper auth if missing
       if (url.includes('cdn.contentful.com')) {
+        // Add access token if missing
+        if (!url.includes('access_token')) {
+          const separator = url.includes('?') ? '&' : '?';
+          const urlWithToken = `${url}${separator}access_token=cr6Ra2NQPO9jz2qTWmAK2ykLy0I_4bIqVCyepF8ix-k`;
+          input = urlWithToken;
+        }
         const cacheKey = `contentful_${url}`;
         
         // Check cache first
@@ -73,12 +79,8 @@ const ContentfulOptimizer = ({
     // Prefetch critical Contentful data
     const prefetchCriticalContent = async () => {
       const criticalContentQueries = [
-        // Blog posts for homepage
-        'https://cdn.contentful.com/spaces/g8ip8odd5vbl/entries?content_type=blogPost&limit=3&order=-sys.createdAt',
-        // Services data
-        'https://cdn.contentful.com/spaces/g8ip8odd5vbl/entries?content_type=service&limit=10',
-        // Testimonials
-        'https://cdn.contentful.com/spaces/g8ip8odd5vbl/entries?content_type=testimonial&limit=6'
+        // Blog posts for homepage - using correct content type
+        'https://cdn.contentful.com/spaces/g8ip8odd5vbl/entries?content_type=blogCarla&limit=3&order=-sys.createdAt&access_token=cr6Ra2NQPO9jz2qTWmAK2ykLy0I_4bIqVCyepF8ix-k',
       ];
 
       // Prefetch in parallel but with delays to avoid overwhelming the API
@@ -173,8 +175,14 @@ const ContentfulOptimizer = ({
       const url = typeof input === 'string' ? input : input.toString();
       
       if (url.includes('cdn.contentful.com') && batchRequests) {
+        // Add access token if missing
+        let processedUrl = url;
+        if (!processedUrl.includes('access_token')) {
+          const separator = processedUrl.includes('?') ? '&' : '?';
+          processedUrl = `${processedUrl}${separator}access_token=cr6Ra2NQPO9jz2qTWmAK2ykLy0I_4bIqVCyepF8ix-k`;
+        }
         return new Promise((resolve, reject) => {
-          pendingRequests.push({ url, resolve, reject });
+          pendingRequests.push({ url: processedUrl, resolve, reject });
           
           clearTimeout(batchTimeout);
           batchTimeout = setTimeout(batchContentfulRequests, 50); // 50ms batch window
@@ -219,14 +227,10 @@ const ContentfulOptimizer = ({
       const predictNextContent = (path: string): string[] => {
         const predictions: Record<string, string[]> = {
           '/': [
-            'https://cdn.contentful.com/spaces/g8ip8odd5vbl/entries?content_type=service&limit=10',
-            'https://cdn.contentful.com/spaces/g8ip8odd5vbl/entries?content_type=blogPost&limit=6'
+            'https://cdn.contentful.com/spaces/g8ip8odd5vbl/entries?content_type=blogCarla&limit=6&access_token=cr6Ra2NQPO9jz2qTWmAK2ykLy0I_4bIqVCyepF8ix-k'
           ],
           '/blog': [
-            'https://cdn.contentful.com/spaces/g8ip8odd5vbl/entries?content_type=blogPost&skip=6&limit=6'
-          ],
-          '/services': [
-            'https://cdn.contentful.com/spaces/g8ip8odd5vbl/entries?content_type=testimonial&limit=6'
+            'https://cdn.contentful.com/spaces/g8ip8odd5vbl/entries?content_type=blogCarla&skip=6&limit=6&access_token=cr6Ra2NQPO9jz2qTWmAK2ykLy0I_4bIqVCyepF8ix-k'
           ]
         };
 

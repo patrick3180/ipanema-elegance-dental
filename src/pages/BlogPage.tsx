@@ -9,7 +9,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { useNavigate } from "react-router-dom";
-import { getAllBlogPosts } from "@/services/contentful/queries";
+import { getEnhancedBlogPosts } from "@/utils/enhancedContentfulQueries";
 import { useQuery } from "@tanstack/react-query";
 import { BlogPost } from "@/types/BlogPost";
 import { Loader } from "lucide-react";
@@ -27,8 +27,12 @@ const BlogPage = () => {
     isLoading: isLoadingPosts,
     error: postsError
   } = useQuery({
-    queryKey: ['blogPosts'],
-    queryFn: getAllBlogPosts
+    queryKey: ['enhancedBlogPosts'],
+    queryFn: () => getEnhancedBlogPosts(3),
+    staleTime: 300000, // 5 minutes
+    gcTime: 600000, // 10 minutes
+    retry: 2,
+    retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000)
   });
 
   // Filter posts by category if a category is selected
