@@ -16,6 +16,12 @@ import { CrawlerOptimizer } from "@/components/performance/CrawlerOptimizer";
 import CoreWebVitalsOptimizer from "@/components/performance/CoreWebVitalsOptimizer";
 import PerformanceOptimizationSummary from "@/components/performance/PerformanceOptimizationSummary";
 import { SEOSitemapManager } from "@/components/SEOSitemapManager";
+import CriticalResourceLoader from "@/components/performance/CriticalResourceLoader";
+import AdvancedImageOptimizer from "@/components/performance/AdvancedImageOptimizer";
+import BundleOptimizer from "@/components/performance/BundleOptimizer";
+import ContentfulOptimizer from "@/components/performance/ContentfulOptimizer";
+import CriticalCSSExtractor from "@/components/performance/CriticalCSSExtractor";
+import PerformanceManager from "@/components/performance/PerformanceManager";
 import SEOMonitoringDashboard from "@/components/SEOMonitoringDashboard";
 import { handlePageRedirects } from "@/utils/urlRedirects";
 import { seoMonitor } from "@/utils/seoMonitoring";
@@ -67,9 +73,28 @@ const queryClient = new QueryClient({
 // Critical resources to preload
 const criticalResources = [
   {
-    href: '/src/index.css',
-    as: 'style' as const
-  }
+    type: 'preconnect' as const,
+    href: 'https://fonts.googleapis.com',
+  },
+  {
+    type: 'preconnect' as const,
+    href: 'https://fonts.gstatic.com',
+    crossorigin: 'anonymous' as const,
+  },
+  {
+    type: 'preload' as const,
+    href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap',
+    as: 'style' as const,
+    crossorigin: 'anonymous' as const,
+  },
+  {
+    type: 'preconnect' as const,
+    href: 'https://images.ctfassets.net',
+  },
+  {
+    type: 'dns-prefetch' as const,
+    href: 'https://cdn.contentful.com',
+  },
 ];
 
 // Critical images to preload
@@ -118,7 +143,33 @@ function AppContent() {
     <ErrorBoundary>
       <div className="App">
         {/* Performance optimization components */}
-        <ResourcePreloader resources={criticalResources} />
+        <CriticalResourceLoader resources={criticalResources} enableServiceWorker={true} />
+        <AdvancedImageOptimizer 
+          enableWebP={true} 
+          enableAVIF={false}
+          lazyLoadThreshold={0.1}
+          qualitySettings={{
+            mobile: 75,
+            desktop: 85,
+            retina: 90
+          }}
+        />
+        <BundleOptimizer 
+          enableCodeSplitting={true}
+          enableTreeShaking={true}
+          chunkStrategy="vendor"
+        />
+        <ContentfulOptimizer 
+          enablePrefetching={true}
+          enableCaching={true}
+          batchRequests={true}
+        />
+        <CriticalCSSExtractor 
+          enableInlineCSS={true}
+          enableAsyncCSS={true}
+          criticalViewportHeight={1080}
+        />
+        <PerformanceManager enableCompleteOptimization={true} />
         <ImagePreloader images={criticalImages} priority={true} />
         <CriticalCSSLoader />
         <LazyScriptLoader />
