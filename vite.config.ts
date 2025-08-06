@@ -32,7 +32,6 @@ export default defineConfig(({ mode }) => ({
           'charts': ['recharts'],
           'icons': ['lucide-react'],
           'utils': ['class-variance-authority', 'clsx', 'tailwind-merge'],
-          'performance': ['src/hooks/useResourceOptimization', 'src/hooks/useMobileOptimization'],
         },
         // Optimize chunk names for better caching
         chunkFileNames: 'assets/[name]-[hash].js',
