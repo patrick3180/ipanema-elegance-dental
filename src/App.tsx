@@ -34,6 +34,8 @@ import { ImageOptimizationProvider } from "@/components/performance/ImageOptimiz
 // Performance components
 import ImagePreloader from "@/components/performance/ImagePreloader";
 import CriticalCSSLoader from "@/components/performance/CriticalCSSLoader";
+import PerformanceMetricsMonitor from "@/components/performance/PerformanceMetricsMonitor";
+import IntelligentPreloader from "@/components/performance/IntelligentPreloader";
 import LazyScriptLoader from "@/components/performance/LazyScriptLoader";
 
 // Lazy load components for better code splitting
@@ -179,13 +181,20 @@ function AppContent() {
         <BundleOptimizer 
           enableCodeSplitting={true}
           enableTreeShaking={true}
-          chunkStrategy="vendor"
+          chunkStrategy="feature"
         />
-        {/* Temporarily disabled: <CriticalCSSExtractor 
+        <CriticalCSSExtractor 
           enableInlineCSS={true}
           enableAsyncCSS={true}
           criticalViewportHeight={1080}
-        /> */}
+        />
+        <LCPOptimizer targetLCP={2500} />
+        <CriticalCSSLoader />
+        <PerformanceMetricsMonitor enableLogging={true} />
+        <IntelligentPreloader 
+          enableHoverPreload={true}
+          enableViewportPreload={true}
+        />
         {/* Temporarily disabled: <PerformanceManager enableCompleteOptimization={true} /> */}
         {/* Critical images now handled by ImageOptimizationProvider */}
         {/* <CriticalCSSLoader /> */}
