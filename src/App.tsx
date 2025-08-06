@@ -145,8 +145,8 @@ function AppContent() {
   return (
     <ErrorBoundary>
       <div className="App">
-        {/* Enhanced performance optimization components */}
-        <CriticalResourceLoader resources={criticalResources} enableServiceWorker={true} />
+        {/* Conservative performance optimization components - Phase 1: Disabled aggressive optimizers */}
+        <CriticalResourceLoader resources={criticalResources} enableServiceWorker={false} />
         <AdvancedImageOptimizer 
           enableWebP={true} 
           enableAVIF={false}
@@ -158,35 +158,35 @@ function AppContent() {
           }}
         />
         <ContentfulOptimizer 
-          enablePrefetching={true}
+          enablePrefetching={false}
           enableCaching={true}
-          batchRequests={true}
+          batchRequests={false}
         />
         <ContentfulCacheOptimizer 
-          enableAggressiveCaching={true} 
-          enableRequestBatching={true} 
-          cacheStrategy="stale-while-revalidate" 
+          enableAggressiveCaching={false} 
+          enableRequestBatching={false} 
+          cacheStrategy="network-first" 
         />
-        <LCPOptimizer targetLCP={2500} enableEmergencyMode={true} />
-        <ServerResponseOptimizer 
+        {/* Temporarily disabled: <LCPOptimizer targetLCP={2500} enableEmergencyMode={true} /> */}
+        {/* Temporarily disabled: <ServerResponseOptimizer 
           targetTTFB={200} 
           enableRequestOptimization={true} 
           enableConnectionOptimization={true} 
-        />
+        /> */}
         <BundleOptimizer 
           enableCodeSplitting={true}
           enableTreeShaking={true}
           chunkStrategy="vendor"
         />
-        <CriticalCSSExtractor 
+        {/* Temporarily disabled: <CriticalCSSExtractor 
           enableInlineCSS={true}
           enableAsyncCSS={true}
           criticalViewportHeight={1080}
-        />
-        <PerformanceManager enableCompleteOptimization={true} />
-        <ImagePreloader images={criticalImages} priority={true} />
-        <CriticalCSSLoader />
-        <LazyScriptLoader />
+        /> */}
+        {/* Temporarily disabled: <PerformanceManager enableCompleteOptimization={true} /> */}
+        <ImagePreloader images={criticalImages} priority={false} />
+        {/* <CriticalCSSLoader /> */}
+        {/* <LazyScriptLoader /> */}
         
         <Routes>
           <Route 

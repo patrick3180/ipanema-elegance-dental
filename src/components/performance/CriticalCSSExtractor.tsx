@@ -7,8 +7,8 @@ interface CriticalCSSExtractorProps {
 }
 
 const CriticalCSSExtractor = ({
-  enableInlineCSS = true,
-  enableAsyncCSS = true,
+  enableInlineCSS = false, // Changed default to false for safety
+  enableAsyncCSS = false,   // Changed default to false for safety
   criticalViewportHeight = 1080
 }: CriticalCSSExtractorProps) => {
   useEffect(() => {

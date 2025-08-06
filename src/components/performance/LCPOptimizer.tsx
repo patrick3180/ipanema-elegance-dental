@@ -3,11 +3,13 @@ import { useEffect } from 'react';
 interface LCPOptimizerProps {
   targetLCP?: number; // Target LCP in milliseconds
   enableEmergencyMode?: boolean;
+  enableInlineCSS?: boolean; // New prop to control CSS inlining
 }
 
 const LCPOptimizer = ({ 
   targetLCP = 2500,
-  enableEmergencyMode = true 
+  enableEmergencyMode = false, // Changed default to false for safety
+  enableInlineCSS = false      // New prop, defaults to false for safety
 }: LCPOptimizerProps) => {
   useEffect(() => {
     let lcpObserver: PerformanceObserver | null = null;
@@ -48,36 +50,38 @@ const LCPOptimizer = ({
         document.head.appendChild(link);
       });
 
-      // Inline critical CSS for immediate rendering
-      const criticalCSS = `
-        .hero-section {
-          display: flex;
-          align-items: center;
-          min-height: 80vh;
-          background: hsl(var(--dental-beige));
-        }
-        .hero-content {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 1rem;
-        }
-        .hero-title {
-          font-size: clamp(2rem, 5vw, 3.5rem);
-          font-weight: 600;
-          line-height: 1.1;
-          color: hsl(var(--dental-primary));
-          margin-bottom: 1.5rem;
-        }
-        .hero-image {
-          max-width: 100%;
-          height: auto;
-          border-radius: 1rem;
-        }
-      `;
+      // Only inline critical CSS if explicitly enabled
+      if (enableInlineCSS) {
+        const criticalCSS = `
+          .hero-section {
+            display: flex;
+            align-items: center;
+            min-height: 80vh;
+            background: hsl(var(--dental-beige));
+          }
+          .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+          }
+          .hero-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 600;
+            line-height: 1.1;
+            color: hsl(var(--dental-primary));
+            margin-bottom: 1.5rem;
+          }
+          .hero-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 1rem;
+          }
+        `;
 
-      const styleElement = document.createElement('style');
-      styleElement.textContent = criticalCSS;
-      document.head.insertBefore(styleElement, document.head.firstChild);
+        const styleElement = document.createElement('style');
+        styleElement.textContent = criticalCSS;
+        document.head.insertBefore(styleElement, document.head.firstChild);
+      }
     };
 
     const triggerEmergencyMode = () => {
@@ -143,7 +147,7 @@ const LCPOptimizer = ({
       }
       document.removeEventListener('DOMContentLoaded', optimizeLCP);
     };
-  }, [targetLCP, enableEmergencyMode]);
+  }, [targetLCP, enableEmergencyMode, enableInlineCSS]);
 
   return null;
 };

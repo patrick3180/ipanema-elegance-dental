@@ -2,12 +2,20 @@ import { useEffect } from 'react';
 
 interface PerformanceManagerProps {
   enableCompleteOptimization?: boolean;
+  enablePassiveMode?: boolean; // New prop for passive monitoring only
 }
 
 const PerformanceManager = ({ 
-  enableCompleteOptimization = true 
+  enableCompleteOptimization = false, 
+  enablePassiveMode = true 
 }: PerformanceManagerProps) => {
   useEffect(() => {
+    // In passive mode, only monitor without making changes
+    if (enablePassiveMode && !enableCompleteOptimization) {
+      console.log('PerformanceManager: Running in passive monitoring mode');
+      return;
+    }
+    
     if (!enableCompleteOptimization) return;
 
     // Comprehensive performance monitoring and optimization
