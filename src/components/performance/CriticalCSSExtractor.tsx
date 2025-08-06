@@ -225,7 +225,7 @@ const CriticalCSSExtractor = ({
       }
 
       // Remove unused CSS rules (in development only)
-      if (process.env.NODE_ENV === 'development') {
+      if (import.meta.env.DEV && Math.random() < 0.1) {
         console.log('Used selectors:', usedSelectors.size);
         console.log('This information can be used to optimize CSS in production');
       }

@@ -18,33 +18,41 @@ export const useContentProcessor = ({
 }: UseContentProcessorProps) => {
   React.useEffect(() => {
     if (!content || content.length === 0) {
-      console.log('BlogContent: No content to process');
+      if (import.meta.env.DEV && Math.random() < 0.1) {
+        console.log('BlogContent: No content to process');
+      }
       return;
     }
 
-    console.log('BlogContent: Processing content with optimization settings:', {
-      imageQuality,
-      maxImageWidth, 
-      shouldPreloadImages,
-      contentLength: content.length,
-      hasImages: content.includes('<img')
-    });
+    if (import.meta.env.DEV && Math.random() < 0.1) {
+      console.log('BlogContent: Processing content with optimization settings:', {
+        imageQuality,
+        maxImageWidth, 
+        shouldPreloadImages,
+        contentLength: content.length,
+        hasImages: content.includes('<img')
+      });
+    }
 
     // Use a timeout to ensure DOM is ready
     const timer = setTimeout(() => {
       const images = document.querySelectorAll('.blog-content img');
-      console.log(`BlogContent: Found ${images.length} images to process`);
+      if (import.meta.env.DEV && Math.random() < 0.1) {
+        console.log(`BlogContent: Found ${images.length} images to process`);
+      }
       
       images.forEach((img, index) => {
         const imageElement = img as HTMLImageElement;
         const originalSrc = imageElement.src;
         
-        console.log(`BlogContent: Processing image ${index + 1}:`, {
-          src: originalSrc,
-          alt: imageElement.alt || 'No alt text',
-          className: imageElement.className,
-          hasParent: !!imageElement.parentElement
-        });
+        if (import.meta.env.DEV && Math.random() < 0.05) {
+          console.log(`BlogContent: Processing image ${index + 1}:`, {
+            src: originalSrc,
+            alt: imageElement.alt || 'No alt text',
+            className: imageElement.className,
+            hasParent: !!imageElement.parentElement
+          });
+        }
         
         // Setup error and load handlers
         imageElement.onerror = createImageErrorHandler({ imageElement, index });

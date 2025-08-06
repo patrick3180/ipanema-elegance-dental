@@ -117,7 +117,9 @@ export const JavaScriptOptimizer = ({
       
       entries.forEach((entry) => {
         if (entry.entryType === 'measure' && entry.duration > 50) {
-          console.warn(`🐌 Slow JS operation: ${entry.name} (${Math.round(entry.duration)}ms)`);
+          if (import.meta.env.DEV && Math.random() < 0.1) {
+            console.warn(`🐌 Slow JS operation: ${entry.name} (${Math.round(entry.duration)}ms)`);
+          }
         }
         
         if (entry.entryType === 'navigation') {
@@ -125,7 +127,9 @@ export const JavaScriptOptimizer = ({
           const scriptTime = navEntry.loadEventEnd - navEntry.domContentLoadedEventEnd;
           
           if (scriptTime > 1000) {
-            console.warn(`🐌 Slow script execution: ${Math.round(scriptTime)}ms`);
+            if (import.meta.env.DEV && Math.random() < 0.1) {
+              console.warn(`🐌 Slow script execution: ${Math.round(scriptTime)}ms`);
+            }
           }
         }
       });

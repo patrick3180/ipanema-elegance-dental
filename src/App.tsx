@@ -114,12 +114,12 @@ const criticalImages = [
 function AppContent() {
   const location = useLocation();
   
-  // Initialize resource optimization
+  // Initialize resource optimization (reduced settings)
   useResourceOptimization({
     enableImageOptimization: true,
-    enableFontOptimization: true,
-    enableScriptOptimization: true,
-    enablePrefetching: true
+    enableFontOptimization: false,
+    enableScriptOptimization: false,
+    enablePrefetching: false
   });
   
   // Handle URL redirects and SEO monitoring
@@ -150,34 +150,34 @@ function AppContent() {
   return (
     <ErrorBoundary>
       <div className="App">
-        {/* Phase 1: CSS & JavaScript Optimizations */}
-        <Phase1Optimizer enabled={true} />
+        {/* Phase 1: CSS & JavaScript Optimizations - DISABLED */}
+        <Phase1Optimizer enabled={false} />
         
         {/* Enhanced Performance Components */}
         <CriticalResourceLoader resources={criticalResources} enableServiceWorker={true} />
         <AdvancedImageOptimizer 
-          enableWebP={true} 
+          enableWebP={false} 
           enableAVIF={false}
-          lazyLoadThreshold={0.1}
+          lazyLoadThreshold={0.5}
           qualitySettings={{
-            mobile: 75,
+            mobile: 80,
             desktop: 85,
             retina: 90
           }}
         />
         <ContentfulOptimizer 
-          enablePrefetching={true}
+          enablePrefetching={false}
           enableCaching={true}
-          batchRequests={true}
+          batchRequests={false}
         />
         <ContentfulCacheOptimizer 
-          enableAggressiveCaching={true} 
-          enableRequestBatching={true} 
-          cacheStrategy="cache-first" 
+          enableAggressiveCaching={false} 
+          enableRequestBatching={false} 
+          cacheStrategy="network-first" 
         />
         <BundleOptimizer 
-          enableCodeSplitting={true}
-          enableTreeShaking={true}
+          enableCodeSplitting={false}
+          enableTreeShaking={false}
           chunkStrategy="vendor"
         />
         
@@ -368,10 +368,11 @@ function AppContent() {
         )}
         <SitemapUpdater />
         <SEOSitemapManager />
-        <CrawlerOptimizer />
-        <CoreWebVitalsOptimizer />
-        <PerformanceOptimizationSummary />
-        <Phase1Dashboard showInProduction={false} />
+        {/* Temporarily disabled performance components */}
+        {/* <CrawlerOptimizer /> */}
+        {/* <CoreWebVitalsOptimizer /> */}
+        {/* <PerformanceOptimizationSummary /> */}
+        {import.meta.env.DEV && <Phase1Dashboard showInProduction={false} />}
         {/* <SEOMonitoringDashboard /> */}
       </div>
     </ErrorBoundary>

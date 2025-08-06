@@ -85,9 +85,17 @@ export class PerformanceAnalyzer {
       }).observe({ entryTypes: ['paint'] });
     }
 
-    // TTFB from Navigation Timing
-    if (performance.timing) {
-      this.metrics.ttfb = performance.timing.responseStart - performance.timing.navigationStart;
+    // TTFB from Navigation Timing API (modern approach)
+    if ('getEntriesByType' in performance) {
+      const navEntries = performance.getEntriesByType('navigation') as PerformanceNavigationTiming[];
+      if (navEntries.length > 0) {
+        const navEntry = navEntries[0];
+        this.metrics.ttfb = navEntry.responseStart - navEntry.requestStart;
+      }
+    } else if ('timing' in performance && (performance as any).timing) {
+      // Fallback for older browsers
+      const timing = (performance as any).timing;
+      this.metrics.ttfb = timing.responseStart - timing.navigationStart;
     }
   }
 

@@ -134,7 +134,7 @@ export const CSSOptimizer = ({
         node = walker.nextNode();
       }
 
-      if (import.meta.env.DEV) {
+      if (import.meta.env.DEV && Math.random() < 0.1) {
         console.log(`🎨 CSS Analysis: ${usedSelectors.size} selectors in use`);
       }
     };
