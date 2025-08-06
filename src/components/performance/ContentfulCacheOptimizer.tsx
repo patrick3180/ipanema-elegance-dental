@@ -87,11 +87,16 @@ const ContentfulCacheOptimizer = ({
     // Prefetch critical Contentful data
     const prefetchCriticalData = () => {
       const criticalUrls = [
-        '/spaces/g8ip8odd5vbl/entries?content_type=blogCarla&limit=5&access_token=cr6Ra2NQPO9jz2qTWmAK2ykLy0I_4bIqVCyepF8ix-k'
+        '/spaces/your-space-id/entries?content_type=blogPost&limit=5',
+        '/spaces/your-space-id/entries?content_type=service&limit=10'
       ];
 
       criticalUrls.forEach(url => {
-        fetch(`https://cdn.contentful.com${url}`).catch(() => {});
+        fetch(`https://cdn.contentful.com${url}`, {
+          headers: {
+            'Authorization': `Bearer ${import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN}`
+          }
+        }).catch(() => {});
       });
     };
 

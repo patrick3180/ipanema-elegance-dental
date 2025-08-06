@@ -212,13 +212,7 @@ const CriticalCSSExtractor = ({
       let node: Element | null = walker.nextNode() as Element;
       while (node) {
         if (node.className) {
-          let className: string;
-          try {
-            className = node.className.toString();
-          } catch {
-            className = String(node.className);
-          }
-          className.split(' ').forEach(cls => {
+          node.className.split(' ').forEach(cls => {
             if (cls.trim()) usedSelectors.add(`.${cls.trim()}`);
           });
         }

@@ -67,7 +67,6 @@
     "terser": "^5.43.1",
     "uuid": "^11.1.0",
     "vaul": "^0.9.3",
-    "workbox-sw": "^7.3.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {

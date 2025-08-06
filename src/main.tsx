@@ -13,8 +13,13 @@ function gtag(...args: any[]) {
 // Make gtag globally available
 window.gtag = gtag;
 
-// Phase 1 Emergency Recovery: Disable all middleware and service workers
-// import('./middleware/redirectMiddleware');
+// Initialize enhanced redirect middleware
+import('./middleware/redirectMiddleware');
+
+// Initialize SEO monitoring
+console.log('🚀 SEO Monitoring Initialized');
+console.log('📊 Access SEO stats with: window.seoMonitor.getStats()');
+console.log('🔍 View redirect events with: window.seoMonitor.getEvents("redirect")');
 
 createRoot(document.getElementById("root")!).render(
   <HelmetProvider>
@@ -22,9 +27,9 @@ createRoot(document.getElementById("root")!).render(
   </HelmetProvider>
 );
 
-// Phase 1: Disable service worker registration
-// if (import.meta.env.PROD) {
-//   import('./utils/serviceWorkerRegistration').then(({ register }) => {
-//     register();
-//   });
-// }
+// Register service worker for performance optimization
+if (import.meta.env.PROD) {
+  import('./utils/serviceWorkerRegistration').then(({ register }) => {
+    register();
+  });
+}

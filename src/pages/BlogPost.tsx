@@ -3,8 +3,7 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
 import SEOHead from "@/components/SEOHead";
-import { getBlogPostBySlug } from "@/services/contentful/queries";
-import { getEnhancedBlogPosts } from "@/utils/enhancedContentfulQueries";
+import { getBlogPostBySlug, getAllBlogPosts } from "@/services/contentful/queries";
 import { useQuery } from "@tanstack/react-query";
 import BlogContent from "@/components/BlogContent";
 import BlogPostHeader from "@/components/blog/BlogPostHeader";
@@ -47,13 +46,12 @@ const BlogPost = () => {
 
   // Fetch all posts for related posts, but with lower priority
   const { data: allPosts = [] } = useQuery({
-    queryKey: ['enhancedBlogPosts'],
+    queryKey: ['blogPosts'],
     queryFn: () => {
       console.log('Fetching all blog posts for related posts');
-      return getEnhancedBlogPosts(2);
+      return getAllBlogPosts();
     },
-    staleTime: 300000, // 5 minutes
-    retry: 1
+    staleTime: 300000
   });
   
   // Enhanced error handling and navigation
