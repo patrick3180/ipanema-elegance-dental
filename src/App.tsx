@@ -23,6 +23,8 @@ import ContentfulOptimizer from "@/components/performance/ContentfulOptimizer";
 import CriticalCSSExtractor from "@/components/performance/CriticalCSSExtractor";
 import PerformanceManager from "@/components/performance/PerformanceManager";
 import ContentfulCacheOptimizer from "@/components/performance/ContentfulCacheOptimizer";
+import CoreWebVitalsRealtimeMonitor from "@/components/performance/CoreWebVitalsRealtimeMonitor";
+import WorkboxServiceWorker from "@/components/performance/WorkboxServiceWorker";
 import LCPOptimizer from "@/components/performance/LCPOptimizer";
 import ServerResponseOptimizer from "@/components/performance/ServerResponseOptimizer";
 import SEOMonitoringDashboard from "@/components/SEOMonitoringDashboard";
@@ -195,10 +197,19 @@ function AppContent() {
           enableHoverPreload={true}
           enableViewportPreload={true}
         />
+        <CoreWebVitalsRealtimeMonitor 
+          enableRegressionDetection={true}
+          onRegressionDetected={(metric, value) => 
+            console.warn(`Performance regression: ${metric} = ${value}`)
+          }
+        />
+        <WorkboxServiceWorker 
+          enableOfflineFirst={true}
+          enableBackgroundSync={true}
+          enableRuntimeCaching={true}
+        />
         {/* Temporarily disabled: <PerformanceManager enableCompleteOptimization={true} /> */}
         {/* Critical images now handled by ImageOptimizationProvider */}
-        {/* <CriticalCSSLoader /> */}
-        {/* <LazyScriptLoader /> */}
         
         <Routes>
           <Route 

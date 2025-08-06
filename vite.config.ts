@@ -24,47 +24,57 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // Vendor chunks for external libraries
+          // Enhanced vendor chunks for better caching
           if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom')) {
+            if (id.includes('react') && !id.includes('react-router')) {
               return 'vendor-react';
-            }
-            if (id.includes('@radix-ui')) {
-              return 'vendor-ui';
-            }
-            if (id.includes('contentful')) {
-              return 'vendor-contentful';
             }
             if (id.includes('react-router-dom')) {
               return 'vendor-router';
             }
+            if (id.includes('@radix-ui')) {
+              return 'vendor-radix';
+            }
+            if (id.includes('contentful')) {
+              return 'vendor-contentful';
+            }
             if (id.includes('@tanstack/react-query')) {
               return 'vendor-query';
             }
-            if (id.includes('recharts')) {
-              return 'vendor-charts';
+            if (id.includes('workbox')) {
+              return 'vendor-workbox';
             }
             if (id.includes('lucide-react')) {
               return 'vendor-icons';
             }
+            if (id.includes('recharts')) {
+              return 'vendor-charts';
+            }
             return 'vendor-misc';
           }
           
-          // Feature-based chunks for application code
+          // Granular feature-based chunks
           if (id.includes('/components/performance/')) {
             return 'features-performance';
           }
           if (id.includes('/components/blog/')) {
             return 'features-blog';
           }
-          if (id.includes('/components/treatment/')) {
+          if (id.includes('/pages/') && id.includes('Blog')) {
+            return 'features-blog';
+          }
+          if (id.includes('/components/treatment/') || id.includes('pages/') && 
+              (id.includes('Lentes') || id.includes('Clareamento') || id.includes('Implantes'))) {
             return 'features-treatment';
           }
-          if (id.includes('/components/seo/')) {
+          if (id.includes('/components/seo/') || id.includes('SEO')) {
             return 'features-seo';
           }
+          if (id.includes('/pages/Index') || id.includes('Hero') || id.includes('AboutSection')) {
+            return 'app-home';
+          }
           if (id.includes('/pages/')) {
-            return 'pages';
+            return 'app-pages';
           }
         },
       },
