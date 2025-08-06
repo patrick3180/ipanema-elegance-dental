@@ -126,19 +126,16 @@ export const CSSOptimizer = ({
       let node = walker.nextNode();
       while (node) {
         const element = node as Element;
-        if (element.className) {
-          element.className.split(/\s+/).forEach(className => {
+        if (element.classList && element.classList.length > 0) {
+          element.classList.forEach(className => {
             if (className) usedSelectors.add(`.${className}`);
           });
         }
         node = walker.nextNode();
       }
 
-      console.log(`🎨 CSS Analysis: ${usedSelectors.size} selectors in use`);
-      
-      // Log potential unused selectors
       if (import.meta.env.DEV) {
-        console.log('Used selectors sample:', Array.from(usedSelectors).slice(0, 20));
+        console.log(`🎨 CSS Analysis: ${usedSelectors.size} selectors in use`);
       }
     };
 
