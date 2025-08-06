@@ -117,13 +117,13 @@ const criticalImages = [
 function AppContent() {
   const location = useLocation();
   
-  // Initialize resource optimization
-  useResourceOptimization({
-    enableImageOptimization: true,
-    enableFontOptimization: true,
-    enableScriptOptimization: true,
-    enablePrefetching: true
-  });
+  // Phase 1: Temporarily disable resource optimization
+  // useResourceOptimization({
+  //   enableImageOptimization: true,
+  //   enableFontOptimization: true,
+  //   enableScriptOptimization: true,
+  //   enablePrefetching: true
+  // });
   
   // Handle URL redirects and SEO monitoring
   useEffect(() => {
@@ -153,19 +153,8 @@ function AppContent() {
   return (
     <ErrorBoundary>
       <div className="App">
-        <ContentfulHealthChecker />
-        {/* Conservative performance optimization components - Phase 1: Disabled aggressive optimizers */}
+        {/* Phase 1 Critical Cleanup - Minimal components only */}
         <CriticalResourceLoader resources={criticalResources} enableServiceWorker={false} />
-        <AdvancedImageOptimizer 
-          enableWebP={true} 
-          enableAVIF={false}
-          lazyLoadThreshold={0.1}
-          qualitySettings={{
-            mobile: 75,
-            desktop: 85,
-            retina: 90
-          }}
-        />
         {/* Temporarily disabled due to API errors */}
         {/* <ContentfulOptimizer 
           enablePrefetching={false}
@@ -184,35 +173,7 @@ function AppContent() {
           enableRequestOptimization={true} 
           enableConnectionOptimization={true} 
         /> */}
-        <BundleOptimizer 
-          enableCodeSplitting={true}
-          enableTreeShaking={true}
-          chunkStrategy="feature"
-        />
-        {/* Temporarily disabled due to errors */}
-        {/* <CriticalCSSExtractor 
-          enableInlineCSS={true}
-          enableAsyncCSS={true}
-          criticalViewportHeight={1080}
-        /> */}
-        <LCPOptimizer targetLCP={2500} />
-        <CriticalCSSLoader />
-        <PerformanceMetricsMonitor enableLogging={true} />
-        {/* <IntelligentPreloader 
-          enableHoverPreload={true}
-          enableViewportPreload={true}
-        /> */}
-        <CoreWebVitalsRealtimeMonitor 
-          enableRegressionDetection={true}
-          onRegressionDetected={(metric, value) => 
-            console.warn(`Performance regression: ${metric} = ${value}`)
-          }
-        />
-        <WorkboxServiceWorker 
-          enableOfflineFirst={true}
-          enableBackgroundSync={true}
-          enableRuntimeCaching={true}
-        />
+        {/* Phase 1: All performance optimizers temporarily disabled */}
         {/* Temporarily disabled: <PerformanceManager enableCompleteOptimization={true} /> */}
         {/* Critical images now handled by ImageOptimizationProvider */}
         
@@ -394,14 +355,7 @@ function AppContent() {
         </Routes>
         
         <Toaster />
-        <PerformanceMonitor />
-        {/* <SEOHealthMonitor /> */}
-        <SitemapUpdater />
-        <SEOSitemapManager />
-        <CrawlerOptimizer />
-        <CoreWebVitalsOptimizer />
-        <PerformanceOptimizationSummary />
-        {/* <SEOMonitoringDashboard /> */}
+        {/* Phase 1: Temporarily disabled all monitoring components */}
       </div>
     </ErrorBoundary>
   );

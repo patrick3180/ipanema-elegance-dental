@@ -285,7 +285,10 @@
                 }
             }
             
-            console.log('Found WhatsApp links:', whatsappLinks.length);
+            // Only log when there are actual WhatsApp links found
+            if (whatsappLinks.length > 0) {
+                console.log('Found WhatsApp links:', whatsappLinks.length);
+            }
             
             // Add click event listeners to WhatsApp links
             for (var i = 0; i < whatsappLinks.length; i++) {
@@ -313,8 +316,10 @@
             addWhatsAppListeners();
         }
         
-        // Also check periodically for dynamically added WhatsApp links
-        setInterval(addWhatsAppListeners, 2000);
+        // Check for dynamically added WhatsApp links occasionally (reduced frequency)
+        setTimeout(function() {
+            setInterval(addWhatsAppListeners, 30000); // Reduced to every 30 seconds
+        }, 5000); // Start after 5 seconds
         
         console.log('GCLID tracking script initialized - window.open intercepted');
     })();
