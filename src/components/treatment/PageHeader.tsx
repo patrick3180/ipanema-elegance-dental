@@ -2,6 +2,7 @@
 import React from "react";
 import { Separator } from "@/components/ui/separator";
 import OptimizedImage from "@/components/OptimizedImage";
+import { processMarkdown } from "@/utils/markdownProcessor";
 
 interface PageHeaderProps {
   title: string;
@@ -28,7 +29,7 @@ const PageHeader = ({ title, introduction, imageUrl }: PageHeaderProps) => {
       <Separator className="w-24 h-1 bg-dental-gold mb-6" />
       
       <div className="prose prose-lg max-w-3xl mx-auto">
-        <div className="lead" dangerouslySetInnerHTML={{ __html: introduction }} />
+        <div className="lead" dangerouslySetInnerHTML={{ __html: processMarkdown(introduction) }} />
       </div>
     </div>
   );
