@@ -15,6 +15,8 @@ import RobotsResponse from "@/components/RobotsResponse";
 import { CrawlerOptimizer } from "@/components/performance/CrawlerOptimizer";
 import CoreWebVitalsOptimizer from "@/components/performance/CoreWebVitalsOptimizer";
 import PerformanceOptimizationSummary from "@/components/performance/PerformanceOptimizationSummary";
+import { Phase1Optimizer } from "@/components/performance/Phase1Optimizer";
+import { Phase1Dashboard } from "@/components/performance/Phase1Dashboard";
 import { SEOSitemapManager } from "@/components/SEOSitemapManager";
 import CriticalResourceLoader from "@/components/performance/CriticalResourceLoader";
 import AdvancedImageOptimizer from "@/components/performance/AdvancedImageOptimizer";
@@ -148,8 +150,11 @@ function AppContent() {
   return (
     <ErrorBoundary>
       <div className="App">
-        {/* Conservative performance optimization components - Phase 1: Disabled aggressive optimizers */}
-        <CriticalResourceLoader resources={criticalResources} enableServiceWorker={false} />
+        {/* Phase 1: CSS & JavaScript Optimizations */}
+        <Phase1Optimizer enabled={true} />
+        
+        {/* Enhanced Performance Components */}
+        <CriticalResourceLoader resources={criticalResources} enableServiceWorker={true} />
         <AdvancedImageOptimizer 
           enableWebP={true} 
           enableAVIF={false}
@@ -161,35 +166,20 @@ function AppContent() {
           }}
         />
         <ContentfulOptimizer 
-          enablePrefetching={false}
+          enablePrefetching={true}
           enableCaching={true}
-          batchRequests={false}
+          batchRequests={true}
         />
         <ContentfulCacheOptimizer 
-          enableAggressiveCaching={false} 
-          enableRequestBatching={false} 
-          cacheStrategy="network-first" 
+          enableAggressiveCaching={true} 
+          enableRequestBatching={true} 
+          cacheStrategy="cache-first" 
         />
-        {/* Temporarily disabled: <LCPOptimizer targetLCP={2500} enableEmergencyMode={true} /> */}
-        {/* Temporarily disabled: <ServerResponseOptimizer 
-          targetTTFB={200} 
-          enableRequestOptimization={true} 
-          enableConnectionOptimization={true} 
-        /> */}
         <BundleOptimizer 
           enableCodeSplitting={true}
           enableTreeShaking={true}
           chunkStrategy="vendor"
         />
-        {/* Temporarily disabled: <CriticalCSSExtractor 
-          enableInlineCSS={true}
-          enableAsyncCSS={true}
-          criticalViewportHeight={1080}
-        /> */}
-        {/* Temporarily disabled: <PerformanceManager enableCompleteOptimization={true} /> */}
-        {/* Critical images now handled by ImageOptimizationProvider */}
-        {/* <CriticalCSSLoader /> */}
-        {/* <LazyScriptLoader /> */}
         
         <Routes>
           <Route 
@@ -370,12 +360,18 @@ function AppContent() {
         
         <Toaster />
         <PerformanceMonitor />
-        {/* <SEOHealthMonitor /> */}
+        {/* Enhanced monitoring for Phase 1 */}
+        {import.meta.env.DEV && (
+          <div>
+            {/* Performance monitoring only in development */}
+          </div>
+        )}
         <SitemapUpdater />
         <SEOSitemapManager />
         <CrawlerOptimizer />
         <CoreWebVitalsOptimizer />
         <PerformanceOptimizationSummary />
+        <Phase1Dashboard showInProduction={false} />
         {/* <SEOMonitoringDashboard /> */}
       </div>
     </ErrorBoundary>
