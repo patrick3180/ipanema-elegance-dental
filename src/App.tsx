@@ -23,6 +23,8 @@ import { handlePageRedirects } from "@/utils/urlRedirects";
 import { seoMonitor } from "@/utils/seoMonitoring";
 import "@/utils/404ErrorHandler"; // Initialize 404 error tracking
 import { ImageOptimizationProvider } from "@/components/performance/ImageOptimizationProvider";
+import { LocalFontLoader, OPTIMIZED_FONTS } from '@/components/performance/LocalFontLoader';
+import { AggressiveResourceHints, CRITICAL_RESOURCES, PREFETCH_RESOURCES } from '@/components/performance/AggressiveResourceHints';
 
 // Performance components
 import ImagePreloader from "@/components/performance/ImagePreloader";
@@ -147,6 +149,11 @@ function AppContent() {
           enableImageOptimization={true}
           enableJSOptimization={true}
           enableCaching={true}
+        />
+        <LocalFontLoader fonts={OPTIMIZED_FONTS} preload={true} />
+        <AggressiveResourceHints 
+          critical={CRITICAL_RESOURCES} 
+          prefetch={PREFETCH_RESOURCES} 
         />
         
         <Routes>
