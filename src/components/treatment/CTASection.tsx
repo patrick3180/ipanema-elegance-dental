@@ -2,6 +2,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { sendGCLIDToWebhook } from "@/utils/gclid";
 
 interface CTASectionProps {
   title: string;
@@ -10,7 +11,7 @@ interface CTASectionProps {
 }
 
 const CTASection = ({ title, whatsappMessage, heading }: CTASectionProps) => {
-  const handleWhatsAppClick = () => {
+  const handleWhatsAppClick = async () => {
     // Track event with Google Tag Manager
     if (window.dataLayer) {
       window.dataLayer.push({
@@ -30,6 +31,9 @@ const CTASection = ({ title, whatsappMessage, heading }: CTASectionProps) => {
         }
       });
     }
+
+    // Send GCLID to webhook
+    await sendGCLIDToWebhook('treatment_cta_button');
     
     // Open WhatsApp with pre-defined message
     window.open(`https://wa.me/5521993304045?text=${encodeURIComponent(whatsappMessage)}`, "_blank");
@@ -44,7 +48,7 @@ const CTASection = ({ title, whatsappMessage, heading }: CTASectionProps) => {
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <Button 
           id="btn-whatsapp-treatment-cta"
-          className="bg-dental-gold hover:bg-dental-gold/90 text-white rounded-md px-6 py-5" 
+          className="bg-dental-purple hover:bg-dental-purple/90 text-white rounded-md px-6 py-5" 
           onClick={handleWhatsAppClick}
         >
           Agendar Avaliação

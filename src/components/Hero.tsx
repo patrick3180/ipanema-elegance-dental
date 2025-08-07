@@ -1,15 +1,33 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { sendGCLIDToWebhook } from "@/utils/gclid";
 
 const Hero = () => {
 
-  const handleWhatsAppClick = () => {
-    if (window.gtag) {
-      window.gtag('event', 'conversion', {
-        'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9'
+  const handleWhatsAppClick = async () => {
+    // Track event with Google Tag Manager
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'whatsapp_click',
+        event_category: 'Contact',
+        event_action: 'Click',
+        event_label: 'Hero CTA Button'
       });
     }
+
+    // Google Ads conversion tracking
+    if (window.gtag) {
+      window.gtag('event', 'conversion', {
+        'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
+        'event_callback': function() {
+          console.log('Google Ads conversion tracked - Hero CTA button');
+        }
+      });
+    }
+
+    // Send GCLID to webhook
+    await sendGCLIDToWebhook('hero_button');
     
     const phoneNumber = "5521993304045";
     const message = "Olá! Gostaria de agendar uma consulta.";
@@ -34,7 +52,7 @@ const Hero = () => {
           <div className="flex flex-wrap gap-6">
             <Button
               onClick={handleWhatsAppClick}
-              className="bg-dental-gold hover:bg-dental-gold/90 text-white rounded-md px-8 py-6 text-base"
+              className="bg-dental-purple hover:bg-dental-purple/90 text-white rounded-md px-8 py-6 text-base"
             >
               Agende sua consulta <ArrowRight size={16} className="ml-2" />
             </Button>

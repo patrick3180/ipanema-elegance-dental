@@ -4,9 +4,10 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
 import OptimizedImage from "@/components/OptimizedImage";
+import { sendGCLIDToWebhook } from "@/utils/gclid";
 
 const AboutSection = () => {
-  const handleWhatsAppClick = () => {
+  const handleWhatsAppClick = async () => {
     // Track event with Google Tag Manager (if available)
     if (window.dataLayer) {
       window.dataLayer.push({
@@ -26,12 +27,12 @@ const AboutSection = () => {
         }
       });
     }
-    
-    // Log for development purposes
-    console.log("WhatsApp button clicked from About section - tracking event");
+
+    // Send GCLID to webhook
+    await sendGCLIDToWebhook('about_section_button');
     
     // Open WhatsApp with pre-defined message
-    const phoneNumber = "5521993304045"; // Correct phone number format with country code
+    const phoneNumber = "5521993304045";
     const message = "Olá! Gostaria de agendar uma consulta.";
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
@@ -78,7 +79,7 @@ const AboutSection = () => {
             <div className="pt-6 mt-auto">
               <Button
                 onClick={handleWhatsAppClick}
-                className="bg-dental-gold hover:bg-dental-gold/90 text-white rounded-md px-6 py-5 mt-4"
+                className="bg-dental-purple hover:bg-dental-purple/90 text-white rounded-md px-6 py-5 mt-4"
               >
                 <MessageCircle size={18} className="mr-2" /> Agende sua consulta
               </Button>

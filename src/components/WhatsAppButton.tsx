@@ -1,9 +1,10 @@
 
 import React from "react";
 import { MessageCircle } from "lucide-react";
+import { sendGCLIDToWebhook } from "@/utils/gclid";
 
 const WhatsAppButton = () => {
-  const handleWhatsAppClick = () => {
+  const handleWhatsAppClick = async () => {
     // Track event with Google Tag Manager (if available)
     if (window.dataLayer) {
       window.dataLayer.push({
@@ -23,12 +24,12 @@ const WhatsAppButton = () => {
         }
       });
     }
-    
-    // Log for development purposes
-    console.log("WhatsApp button clicked - tracking event");
+
+    // Send GCLID to webhook
+    await sendGCLIDToWebhook('floating_whatsapp_button');
     
     // Open WhatsApp with pre-defined message
-    const phoneNumber = "5521993304045"; // Correct phone number format with country code
+    const phoneNumber = "5521993304045";
     const message = "Olá! Gostaria de agendar uma consulta.";
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");

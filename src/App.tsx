@@ -7,6 +7,7 @@ import PerformanceMonitor from "@/components/performance/PerformanceMonitor";
 import { handlePageRedirects } from "@/utils/urlRedirects";
 import { seoMonitor } from "@/utils/seoMonitoring";
 import "@/utils/404ErrorHandler";
+import { captureGCLID } from "@/utils/gclid";
 
 // Lazy load TODAS as páginas exceto Index para melhor performance
 const Index = lazy(() => import("./pages/Index"));
@@ -55,6 +56,11 @@ const PageLoader = () => (
 
 function AppContent() {
   const location = useLocation();
+
+  useEffect(() => {
+    // Capture GCLID on initial load
+    captureGCLID();
+  }, []);
   
   useEffect(() => {
     // Handle redirects de forma simples
