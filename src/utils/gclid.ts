@@ -59,13 +59,9 @@ export const sendGCLIDToWebhook = async (source: string): Promise<void> => {
 
   const webhookData = {
     gclid,
-    timestamp: Date.now(),
-    source,
-    page_url: window.location.href,
-    user_agent: navigator.userAgent,
-    original_page: localStorage.getItem('gclid_page'),
-    gclid_age_hours: debugInfo.timestamp ? 
-      Math.round((Date.now() - debugInfo.timestamp.getTime()) / (1000 * 60 * 60)) : null
+    page: window.location.href,
+    timestamp: new Date().toISOString(),
+    source
   };
 
   try {
