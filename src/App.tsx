@@ -16,11 +16,8 @@ import { CrawlerOptimizer } from "@/components/performance/CrawlerOptimizer";
 import CoreWebVitalsOptimizer from "@/components/performance/CoreWebVitalsOptimizer";
 import PerformanceOptimizationSummary from "@/components/performance/PerformanceOptimizationSummary";
 import { SEOSitemapManager } from "@/components/SEOSitemapManager";
-import CriticalResourceLoader from "@/components/performance/CriticalResourceLoader";
-import AdvancedImageOptimizer from "@/components/performance/AdvancedImageOptimizer";
-import BundleOptimizer from "@/components/performance/BundleOptimizer";
-import ContentfulOptimizer from "@/components/performance/ContentfulOptimizer";
-// Removed conflicting performance components for LCP optimization
+import CriticalOptimizer from "@/components/performance/CriticalOptimizer";
+// Consolidated performance optimization
 import SEOMonitoringDashboard from "@/components/SEOMonitoringDashboard";
 import { handlePageRedirects } from "@/utils/urlRedirects";
 import { seoMonitor } from "@/utils/seoMonitoring";
@@ -144,24 +141,13 @@ function AppContent() {
   return (
     <ErrorBoundary>
       <div className="App">
-        {/* Simplified performance components for LCP optimization */}
-        <CriticalResourceLoader resources={criticalResources} enableServiceWorker={false} />
-        <AdvancedImageOptimizer 
-          enableWebP={true} 
-          enableAVIF={false}
-          lazyLoadThreshold={0.1}
-          qualitySettings={{
-            mobile: 75,
-            desktop: 85,
-            retina: 90
-          }}
-        />
-        <ContentfulOptimizer 
-          enablePrefetching={false}
+        {/* Consolidated performance optimization for maximum LCP improvement */}
+        <CriticalOptimizer
+          enableCriticalCSS={true}
+          enableImageOptimization={true}
+          enableJSOptimization={true}
           enableCaching={true}
-          batchRequests={false}
         />
-        <CoreWebVitalsOptimizer />
         
         <Routes>
           <Route 
