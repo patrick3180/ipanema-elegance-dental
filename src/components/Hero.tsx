@@ -50,26 +50,17 @@ const Hero = () => {
         <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
           <div className="relative">
             <div className="w-[320px] md:w-[420px] h-[500px] md:h-[600px] bg-dental-purple/10 rounded-2xl flex items-center justify-center overflow-hidden">
-              {/* Picture element com WebP e PNG fallback */}
-              <picture className="w-full h-full">
-                {/* WebP para navegadores modernos (95% dos usuários) */}
-                <source 
-                  srcSet="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp"
-                  type="image/webp"
-                />
-                
-                {/* PNG como fallback para navegadores antigos */}
-                <img 
-                  src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png"
-                  alt="Dra. Carla Christoph, dentista especialista em Ipanema"
-                  className="w-full h-full object-cover"
-                  width="420"
-                  height="600"
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                />
-              </picture>
+              {/* APENAS WebP - sem picture element que causa download duplo */}
+              <img 
+                src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp"
+                alt="Dra. Carla Christoph, dentista especialista em Ipanema"
+                className="w-full h-full object-cover"
+                width="420"
+                height="600"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
             </div>
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-dental-gold/20 rounded-full"></div>
             <div className="absolute -top-6 -right-6 w-24 h-24 bg-dental-gold/20 rounded-full"></div>
