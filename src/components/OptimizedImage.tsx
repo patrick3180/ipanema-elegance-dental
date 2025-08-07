@@ -44,7 +44,6 @@ const OptimizedImage = ({
   // Optimize image URL with better error handling
   const optimizedSrc = useMemo(() => {
     if (!currentSrc || !isInView) {
-      console.log('OptimizedImage: No src or not in view', { currentSrc, isInView });
       return "";
     }
     
@@ -100,7 +99,7 @@ const OptimizedImage = ({
           }}
           onLoad={() => handleLoad(optimizedSrc, alt)}
           onError={handleError}
-          decoding="async"
+          decoding={priority ? "sync" : "async"}
         />
       )}
     </div>

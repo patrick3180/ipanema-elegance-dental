@@ -22,15 +22,9 @@ const Hero = () => {
     // Google Ads conversion tracking
     if (window.gtag) {
       window.gtag('event', 'conversion', {
-        'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
-        'event_callback': function() {
-          console.log('Google Ads conversion tracked - Hero button');
-        }
+        'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9'
       });
     }
-    
-    // Log for development purposes
-    console.log("WhatsApp button clicked from Hero section - tracking event");
     
     // Open WhatsApp with pre-defined message
     const phoneNumber = "5521993304045"; // Correct phone number format with country code
@@ -77,12 +71,11 @@ const Hero = () => {
                 alt="Dra. Carla Christoph, dentista em Ipanema, sorrindo e de braços cruzados, especialista em odontologia estética e cuidados personalizados."
                 className="w-full h-full"
                 objectFit="cover"
-                priority={true} // Priority loading for hero image
-                lazy={false} // Disable lazy loading for above-the-fold content
+                priority={true}
+                lazy={false}
                 width={420}
                 height={600}
                 responsive={true}
-                data-hero-image
               />
             </div>
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-dental-gold/20 rounded-full"></div>

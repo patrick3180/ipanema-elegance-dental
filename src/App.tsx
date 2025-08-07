@@ -20,11 +20,7 @@ import CriticalResourceLoader from "@/components/performance/CriticalResourceLoa
 import AdvancedImageOptimizer from "@/components/performance/AdvancedImageOptimizer";
 import BundleOptimizer from "@/components/performance/BundleOptimizer";
 import ContentfulOptimizer from "@/components/performance/ContentfulOptimizer";
-import CriticalCSSExtractor from "@/components/performance/CriticalCSSExtractor";
-import PerformanceManager from "@/components/performance/PerformanceManager";
-import ContentfulCacheOptimizer from "@/components/performance/ContentfulCacheOptimizer";
-import LCPOptimizer from "@/components/performance/LCPOptimizer";
-import ServerResponseOptimizer from "@/components/performance/ServerResponseOptimizer";
+// Removed conflicting performance components for LCP optimization
 import SEOMonitoringDashboard from "@/components/SEOMonitoringDashboard";
 import { handlePageRedirects } from "@/utils/urlRedirects";
 import { seoMonitor } from "@/utils/seoMonitoring";
@@ -128,7 +124,7 @@ function AppContent() {
         const { handleRequestMiddleware } = await import('@/middleware/redirectMiddleware');
         handleRequestMiddleware();
       } catch (error) {
-        console.error('Error initializing middleware:', error);
+        // Error silenced in production for performance
       }
     };
 
@@ -148,7 +144,7 @@ function AppContent() {
   return (
     <ErrorBoundary>
       <div className="App">
-        {/* Conservative performance optimization components - Phase 1: Disabled aggressive optimizers */}
+        {/* Simplified performance components for LCP optimization */}
         <CriticalResourceLoader resources={criticalResources} enableServiceWorker={false} />
         <AdvancedImageOptimizer 
           enableWebP={true} 
@@ -165,31 +161,7 @@ function AppContent() {
           enableCaching={true}
           batchRequests={false}
         />
-        <ContentfulCacheOptimizer 
-          enableAggressiveCaching={false} 
-          enableRequestBatching={false} 
-          cacheStrategy="network-first" 
-        />
-        {/* Temporarily disabled: <LCPOptimizer targetLCP={2500} enableEmergencyMode={true} /> */}
-        {/* Temporarily disabled: <ServerResponseOptimizer 
-          targetTTFB={200} 
-          enableRequestOptimization={true} 
-          enableConnectionOptimization={true} 
-        /> */}
-        <BundleOptimizer 
-          enableCodeSplitting={true}
-          enableTreeShaking={true}
-          chunkStrategy="vendor"
-        />
-        {/* Temporarily disabled: <CriticalCSSExtractor 
-          enableInlineCSS={true}
-          enableAsyncCSS={true}
-          criticalViewportHeight={1080}
-        /> */}
-        {/* Temporarily disabled: <PerformanceManager enableCompleteOptimization={true} /> */}
-        {/* Critical images now handled by ImageOptimizationProvider */}
-        {/* <CriticalCSSLoader /> */}
-        {/* <LazyScriptLoader /> */}
+        <CoreWebVitalsOptimizer />
         
         <Routes>
           <Route 
@@ -374,9 +346,6 @@ function AppContent() {
         <SitemapUpdater />
         <SEOSitemapManager />
         <CrawlerOptimizer />
-        <CoreWebVitalsOptimizer />
-        <PerformanceOptimizationSummary />
-        {/* <SEOMonitoringDashboard /> */}
       </div>
     </ErrorBoundary>
   );

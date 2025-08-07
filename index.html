@@ -61,9 +61,8 @@
       }
     </style>
     
-    <!-- Load fonts with font-display: swap and async -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"></noscript>
+    <!-- Optimized font loading strategy -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap">
 
     <meta property="og:title" content="Dentista em Ipanema | Clínica Odontológica Dra. Carla Christoph" />
     <meta property="og:description" content="Procurando dentista em Ipanema? A Dra. Carla Christoph oferece odontologia estética e reabilitação oral com atendimento personalizado. Agende sua consulta!" />
@@ -192,7 +191,7 @@
                 source: source || 'unknown'
             };
             
-            console.log('Sending GCLID data from ' + source + ':', data);
+            // GCLID data tracking silenced for performance
             
             // Send data to webhook with keepalive to ensure delivery even if page unloads
             fetch('https://n8n.srv876901.hstgr.cloud/webhook/webhook/gclid', {
@@ -203,9 +202,9 @@
                 body: JSON.stringify(data),
                 keepalive: true // Ensures request completes even if page unloads
             }).then(function() {
-                console.log('GCLID data sent successfully:', data);
+                // Success silenced for performance
             }).catch(function(error) {
-                console.log('Error sending GCLID data:', error);
+                // Error silenced for performance
             });
         }
         
@@ -221,7 +220,7 @@
                 try {
                     gclid = localStorage.getItem('gclid');
                 } catch(e) {
-                    console.log('LocalStorage not available');
+                    // LocalStorage error silenced for performance
                 }
             }
             return gclid;
@@ -230,15 +229,12 @@
         // Intercept window.open calls for WhatsApp URLs
         var originalWindowOpen = window.open;
         window.open = function(url, target, features) {
-            console.log('window.open intercepted:', url);
+            // window.open logging silenced for performance
             
             if (isWhatsAppUrl(url)) {
-                console.log('WhatsApp URL detected in window.open:', url);
                 var gclid = getStoredGclid();
                 if (gclid) {
                     sendGclidData(gclid, 'window.open');
-                } else {
-                    console.log('No GCLID found for window.open WhatsApp call');
                 }
             }
             
@@ -263,23 +259,15 @@
                 }
             }
             
-            console.log('Found WhatsApp links:', whatsappLinks.length);
+            // WhatsApp links count silenced for performance
             
             // Add click event listeners to WhatsApp links
             for (var i = 0; i < whatsappLinks.length; i++) {
                 whatsappLinks[i].addEventListener('click', function(event) {
-                    console.log('WhatsApp link clicked:', this.href);
-                    
                     var gclid = getStoredGclid();
-                    
-                    // Send GCLID data if available
                     if (gclid) {
                         sendGclidData(gclid, 'direct-link');
-                    } else {
-                        console.log('No GCLID found for direct link click');
                     }
-                    
-                    // Don't prevent default behavior - let WhatsApp link work normally
                 });
             }
         }
@@ -294,7 +282,7 @@
         // Also check periodically for dynamically added WhatsApp links
         setInterval(addWhatsAppListeners, 2000);
         
-        console.log('GCLID tracking script initialized - window.open intercepted');
+        // GCLID tracking initialized silently for performance
     })();
     </script>
     <!-- End GCLID Tracking Footer Script -->
