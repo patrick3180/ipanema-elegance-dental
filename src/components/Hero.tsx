@@ -1,8 +1,15 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useHeroImagePreload } from "@/hooks/useHeroImagePreload";
 
 const Hero = () => {
+  // Preload hero image for better LCP
+  useHeroImagePreload({ 
+    imageSrc: "/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp",
+    isInViewport: true 
+  });
+
   const handleWhatsAppClick = () => {
     if (window.gtag) {
       window.gtag('event', 'conversion', {
@@ -50,17 +57,27 @@ const Hero = () => {
         <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
           <div className="relative">
             <div className="w-[320px] md:w-[420px] h-[500px] md:h-[600px] bg-dental-purple/10 rounded-2xl flex items-center justify-center overflow-hidden">
-              {/* APENAS WebP - sem picture element que causa download duplo */}
-              <img 
-                src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp"
-                alt="Dra. Carla Christoph, dentista especialista em Ipanema"
-                className="w-full h-full object-cover"
-                width="420"
-                height="600"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-              />
+              <picture>
+                <source 
+                  srcSet="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp" 
+                  type="image/webp"
+                />
+                <img 
+                  src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png"
+                  alt="Dra. Carla Christoph, dentista especialista em Ipanema"
+                  className="w-full h-full object-cover transition-all duration-500 blur-sm opacity-0"
+                  width="420"
+                  height="600"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="sync"
+                  onLoad={(e) => {
+                    const img = e.target as HTMLImageElement;
+                    img.classList.remove('blur-sm', 'opacity-0');
+                    img.classList.add('opacity-100');
+                  }}
+                />
+              </picture>
             </div>
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-dental-gold/20 rounded-full"></div>
             <div className="absolute -top-6 -right-6 w-24 h-24 bg-dental-gold/20 rounded-full"></div>

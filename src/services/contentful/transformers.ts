@@ -192,9 +192,9 @@ export const richTextToHtml = (content: any, entryResponse?: EntryCollection<any
             url.searchParams.delete('h');
             url.searchParams.delete('fit');
             
-            // Apply optimizations
+            // Apply optimizations with reduced quality for performance
             url.searchParams.set('fm', 'webp');
-            url.searchParams.set('q', '85');
+            url.searchParams.set('q', '75');
             url.searchParams.set('w', '800');
             url.searchParams.set('fit', 'fill');
             

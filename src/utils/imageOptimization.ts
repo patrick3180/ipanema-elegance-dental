@@ -50,9 +50,9 @@ export const optimizeImageUrl = (src: string, width?: number, isMobile = false):
       url.searchParams.delete('fit');
       url.searchParams.delete('f');
       
-      // Apply WebP format for better compression - standardized to 85% quality
+      // Apply WebP format for better compression - reduced to 75% quality for faster loading
       url.searchParams.set('fm', 'webp');
-      url.searchParams.set('q', '85');
+      url.searchParams.set('q', '75');
       
       // Add responsive width based on device and connection
       if (width) {
@@ -110,9 +110,9 @@ const getConnectionSpeed = (): 'slow' | 'fast' | 'unknown' => {
   return 'unknown';
 };
 
-// Standard image quality - consistent 85% for WebP
+// Standard image quality - reduced to 75% for faster loading
 const getOptimalQuality = (): number => {
-  return 85; // Standardized quality for all images
+  return 75; // Optimized quality for performance
 };
 
 // Get optimal image width based on conditions
