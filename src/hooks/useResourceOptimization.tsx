@@ -66,7 +66,7 @@ export const useResourceOptimization = (options: ResourceOptimizationOptions = {
     });
 
     // Preload hero image
-    const heroImage = '/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png';
+    const heroImage = '/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp';
     const img = new Image();
     img.src = heroImage;
 
