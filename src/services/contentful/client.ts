@@ -1,7 +1,7 @@
 
 import { createClient } from 'contentful';
 
-// Contentful credentials - using correct space ID to fix 404 errors
+// Contentful credentials
 const SPACE_ID = 'g8ip8odd5vbl';
 const ACCESS_TOKEN = 'cr6Ra2NQPO9jz2qTWmAK2ykLy0I_4bIqVCyepF8ix-k';
 

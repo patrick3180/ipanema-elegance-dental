@@ -17,8 +17,8 @@ export const isAlreadyOptimized = (url: string): boolean => {
   return hasOptimizationParams;
 };
 
-// Enhanced image optimization with performance considerations and AVIF support
-export const optimizeImageUrl = (src: string, width?: number, isMobile = false, format?: 'avif' | 'webp' | 'jpg'): string => {
+// Enhanced image optimization with performance considerations
+export const optimizeImageUrl = (src: string, width?: number, isMobile = false): string => {
   if (!src) {
     console.log('OptimizedImage: No src provided');
     return "";
@@ -50,13 +50,9 @@ export const optimizeImageUrl = (src: string, width?: number, isMobile = false, 
       url.searchParams.delete('fit');
       url.searchParams.delete('f');
       
-      // Apply format - prioritize AVIF > WebP > JPEG
-      const imageFormat = format || (supportsAVIF() ? 'avif' : 'webp');
-      url.searchParams.set('fm', imageFormat);
-      
-      // Set quality based on format (AVIF can use lower quality)
-      const quality = imageFormat === 'avif' ? '75' : '85';
-      url.searchParams.set('q', quality);
+      // Apply WebP format for better compression - standardized to 85% quality
+      url.searchParams.set('fm', 'webp');
+      url.searchParams.set('q', '85');
       
       // Add responsive width based on device and connection
       if (width) {
@@ -102,19 +98,6 @@ export const optimizeImageUrl = (src: string, width?: number, isMobile = false, 
   // Return as-is for other URLs
   console.log('OptimizedImage: Using URL as-is:', src);
   return src;
-};
-
-// Helper function to check AVIF support
-const supportsAVIF = (): boolean => {
-  if (typeof window === 'undefined') return false;
-  const canvas = document.createElement('canvas');
-  canvas.width = 1;
-  canvas.height = 1;
-  try {
-    return canvas.toDataURL('image/avif').startsWith('data:image/avif');
-  } catch {
-    return false;
-  }
 };
 
 // Get connection speed for optimization decisions
@@ -185,58 +168,23 @@ export const generateSizes = (isMobile: boolean): string => {
   return "(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 70vw";
 };
 
-// Generate blur placeholder data URL
-export const generateBlurDataUrl = (width = 10, height = 10): string => {
-  if (typeof window === 'undefined') return '';
-  
-  const canvas = document.createElement('canvas');
-  canvas.width = width;
-  canvas.height = height;
-  const ctx = canvas.getContext('2d');
-  
-  if (!ctx) return '';
-  
-  // Create simple gradient blur effect
-  const gradient = ctx.createLinearGradient(0, 0, width, height);
-  gradient.addColorStop(0, '#f3f4f6');
-  gradient.addColorStop(1, '#e5e7eb');
-  
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, width, height);
-  
-  return canvas.toDataURL('image/jpeg', 0.1);
-};
-
-// Preload critical images with AVIF support
+// Preload critical images with optimized URLs
 export const preloadCriticalImages = (images: { src: string; width?: number }[]): void => {
-  const supportsAvif = supportsAVIF();
-  
   images.forEach(({ src, width }) => {
-    // Preload AVIF version if supported
-    if (supportsAvif) {
-      const avifSrc = optimizeImageUrl(src, width, false, 'avif');
-      const avifLink = document.createElement('link');
-      avifLink.rel = 'preload';
-      avifLink.as = 'image';
-      avifLink.href = avifSrc;
-      avifLink.type = 'image/avif';
-      document.head.appendChild(avifLink);
-    }
+    const optimizedSrc = optimizeImageUrl(src, width);
     
-    // Preload WebP fallback
-    const webpSrc = optimizeImageUrl(src, width, false, 'webp');
-    const webpLink = document.createElement('link');
-    webpLink.rel = 'preload';
-    webpLink.as = 'image';
-    webpLink.href = webpSrc;
-    webpLink.type = 'image/webp';
+    // Create preload link
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = optimizedSrc;
     
     // Add srcset for responsive preloading
     if (src.includes('ctfassets.net')) {
-      webpLink.setAttribute('imagesrcset', generateSrcSet(src));
-      webpLink.setAttribute('imagesizes', generateSizes(false));
+      link.setAttribute('imagesrcset', generateSrcSet(src));
+      link.setAttribute('imagesizes', generateSizes(false));
     }
     
-    document.head.appendChild(webpLink);
+    document.head.appendChild(link);
   });
 };

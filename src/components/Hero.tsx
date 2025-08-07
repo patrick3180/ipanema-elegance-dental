@@ -3,6 +3,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import OptimizedImage from "@/components/OptimizedImage";
 
 const Hero = () => {
   const isMobile = useIsMobile();
@@ -35,28 +36,24 @@ const Hero = () => {
   return (
     <section 
       id="início" 
-      className="hero-section"
+      className="hero-section min-h-screen relative overflow-hidden section-spacing"
       style={{ paddingTop: isMobile ? "150px" : "112px" }}
     >
-      <div className="hero-container">
-        <div>
-          <h1 className="hero-heading">
+      <div className="container-custom grid lg:grid-cols-2 gap-16 items-center">
+        <div className="order-2 lg:order-1 animate-slide-up">
+          <h1 className="heading-xl mb-8">
             Dra. Carla Christoph: Dentista em Ipanema para um Sorriso Perfeito
           </h1>
-          <p className="hero-text">
+          <p className="body-lg mb-10 max-w-lg">
             Em nossa clínica odontológica em Ipanema, a Dra. Carla Christoph une a excelência da odontologia estética a um atendimento personalizado. Cuidamos do seu sorriso com a dedicação que ele merece.
           </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem' }}>
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                handleWhatsAppClick();
-              }}
-              className="hero-button"
+          <div className="flex flex-wrap gap-6">
+            <Button
+              onClick={handleWhatsAppClick}
+              className="bg-dental-gold hover:bg-dental-gold/90 text-white rounded-md px-8 py-6 text-base"
             >
-              Agende sua consulta <ArrowRight size={16} style={{ marginLeft: '0.5rem' }} />
-            </a>
+              Agende sua consulta <ArrowRight size={16} className="ml-2" />
+            </Button>
             <Button
               variant="outline"
               asChild
@@ -66,35 +63,27 @@ const Hero = () => {
             </Button>
           </div>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <div style={{ position: 'relative' }}>
-            <div style={{ 
-              width: '320px', 
-              height: '500px', 
-              backgroundColor: 'hsl(var(--background))',
-              borderRadius: '1rem',
-              overflow: 'hidden'
-            }}>
-              <img 
+        <div className="order-1 lg:order-2 flex justify-center lg:justify-end animate-fade-in">
+          <div className="relative">
+            <div className="w-[320px] md:w-[420px] h-[500px] md:h-[600px] bg-dental-purple/10 rounded-2xl flex items-center justify-center overflow-hidden">
+              <OptimizedImage 
                 src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png"
-                alt="Dra. Carla Christoph, dentista em Ipanema"
-                className="hero-image"
-                width="420"
-                height="600"
-                loading="eager"
-                fetchPriority="high"
-                data-hero-image="true"
-                data-priority="high"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover'
-                }}
+                alt="Dra. Carla Christoph, dentista em Ipanema, sorrindo e de braços cruzados, especialista em odontologia estética e cuidados personalizados."
+                className="w-full h-full"
+                objectFit="cover"
+                priority={true}
+                lazy={false}
+                width={420}
+                height={600}
+                responsive={true}
               />
             </div>
+            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-dental-gold/20 rounded-full"></div>
+            <div className="absolute -top-6 -right-6 w-24 h-24 bg-dental-gold/20 rounded-full"></div>
           </div>
         </div>
       </div>
+      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-dental-beige to-transparent"></div>
     </section>
   );
 };

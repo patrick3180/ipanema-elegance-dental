@@ -16,15 +16,16 @@ import { CrawlerOptimizer } from "@/components/performance/CrawlerOptimizer";
 import CoreWebVitalsOptimizer from "@/components/performance/CoreWebVitalsOptimizer";
 import PerformanceOptimizationSummary from "@/components/performance/PerformanceOptimizationSummary";
 import { SEOSitemapManager } from "@/components/SEOSitemapManager";
-import CriticalOptimizer from "@/components/performance/CriticalOptimizer";
-// Consolidated performance optimization
+import CriticalResourceLoader from "@/components/performance/CriticalResourceLoader";
+import AdvancedImageOptimizer from "@/components/performance/AdvancedImageOptimizer";
+import BundleOptimizer from "@/components/performance/BundleOptimizer";
+import ContentfulOptimizer from "@/components/performance/ContentfulOptimizer";
+// Removed conflicting performance components for LCP optimization
 import SEOMonitoringDashboard from "@/components/SEOMonitoringDashboard";
 import { handlePageRedirects } from "@/utils/urlRedirects";
 import { seoMonitor } from "@/utils/seoMonitoring";
 import "@/utils/404ErrorHandler"; // Initialize 404 error tracking
 import { ImageOptimizationProvider } from "@/components/performance/ImageOptimizationProvider";
-import { LocalFontLoader, OPTIMIZED_FONTS } from '@/components/performance/LocalFontLoader';
-import { AggressiveResourceHints, CRITICAL_RESOURCES, PREFETCH_RESOURCES } from '@/components/performance/AggressiveResourceHints';
 
 // Performance components
 import ImagePreloader from "@/components/performance/ImagePreloader";
@@ -143,18 +144,24 @@ function AppContent() {
   return (
     <ErrorBoundary>
       <div className="App">
-        {/* Consolidated performance optimization for maximum LCP improvement */}
-        <CriticalOptimizer
-          enableCriticalCSS={true}
-          enableImageOptimization={true}
-          enableJSOptimization={true}
+        {/* Simplified performance components for LCP optimization */}
+        <CriticalResourceLoader resources={criticalResources} enableServiceWorker={false} />
+        <AdvancedImageOptimizer 
+          enableWebP={true} 
+          enableAVIF={false}
+          lazyLoadThreshold={0.1}
+          qualitySettings={{
+            mobile: 75,
+            desktop: 85,
+            retina: 90
+          }}
+        />
+        <ContentfulOptimizer 
+          enablePrefetching={false}
           enableCaching={true}
+          batchRequests={false}
         />
-        <LocalFontLoader fonts={OPTIMIZED_FONTS} preload={true} />
-        <AggressiveResourceHints 
-          critical={CRITICAL_RESOURCES} 
-          prefetch={PREFETCH_RESOURCES} 
-        />
+        <CoreWebVitalsOptimizer />
         
         <Routes>
           <Route 

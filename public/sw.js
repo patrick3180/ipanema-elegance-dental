@@ -1,9 +1,9 @@
 // Enhanced Service Worker for aggressive performance optimization
-const CACHE_NAME = 'dental-clinic-v4';
-const STATIC_CACHE = 'static-v4';
-const DYNAMIC_CACHE = 'dynamic-v4';
-const IMAGE_CACHE = 'images-v4';
-const API_CACHE = 'api-v4';
+const CACHE_NAME = 'dental-clinic-v3';
+const STATIC_CACHE = 'static-v3';
+const DYNAMIC_CACHE = 'dynamic-v3';
+const IMAGE_CACHE = 'images-v3';
+const API_CACHE = 'api-v3';
 
 // Critical resources to cache immediately
 const STATIC_ASSETS = [
