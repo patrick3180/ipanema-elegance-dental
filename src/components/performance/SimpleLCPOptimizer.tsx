@@ -24,7 +24,7 @@ const SimpleLCPOptimizer = () => {
     const preloadLink = document.createElement('link');
     preloadLink.rel = 'preload';
     preloadLink.as = 'image';
-    preloadLink.href = '/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png';
+    preloadLink.href = '/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp';
     preloadLink.fetchPriority = 'high';
     document.head.appendChild(preloadLink);
 
