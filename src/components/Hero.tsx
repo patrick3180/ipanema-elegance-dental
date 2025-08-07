@@ -1,33 +1,17 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
-import OptimizedImage from "@/components/OptimizedImage";
 
 const Hero = () => {
-  const isMobile = useIsMobile();
-  
   const handleWhatsAppClick = () => {
-    // Track event with Google Tag Manager (if available)
-    if (window.dataLayer) {
-      window.dataLayer.push({
-        event: 'whatsapp_click',
-        event_category: 'Contact',
-        event_action: 'Click',
-        event_label: 'WhatsApp Hero Button'
-      });
-    }
-    
-    // Google Ads conversion tracking
+    // Track conversion
     if (window.gtag) {
       window.gtag('event', 'conversion', {
         'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9'
       });
     }
     
-    // Open WhatsApp with pre-defined message
-    const phoneNumber = "5521993304045"; // Correct phone number format with country code
+    const phoneNumber = "5521993304045";
     const message = "Olá! Gostaria de agendar uma consulta.";
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
@@ -37,10 +21,10 @@ const Hero = () => {
     <section 
       id="início" 
       className="hero-section min-h-screen relative overflow-hidden section-spacing"
-      style={{ paddingTop: isMobile ? "150px" : "112px" }}
+      style={{ paddingTop: "112px" }}
     >
       <div className="container-custom grid lg:grid-cols-2 gap-16 items-center">
-        <div className="order-2 lg:order-1 animate-slide-up">
+        <div className="order-2 lg:order-1">
           <h1 className="heading-xl mb-8">
             Dra. Carla Christoph: Dentista em Ipanema para um Sorriso Perfeito
           </h1>
@@ -63,27 +47,42 @@ const Hero = () => {
             </Button>
           </div>
         </div>
-        <div className="order-1 lg:order-2 flex justify-center lg:justify-end animate-fade-in">
+        
+        <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
           <div className="relative">
             <div className="w-[320px] md:w-[420px] h-[500px] md:h-[600px] bg-dental-purple/10 rounded-2xl flex items-center justify-center overflow-hidden">
-              <OptimizedImage 
-                src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png"
-                alt="Dra. Carla Christoph, dentista em Ipanema, sorrindo e de braços cruzados, especialista em odontologia estética e cuidados personalizados."
-                className="w-full h-full"
-                objectFit="cover"
-                priority={true}
-                lazy={false}
-                width={420}
-                height={600}
-                responsive={true}
-              />
+              {/* Imagem otimizada com carregamento prioritário */}
+              <picture>
+                <source 
+                  media="(max-width: 768px)"
+                  srcSet="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png?w=320 320w,
+                          /lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png?w=640 640w"
+                  sizes="320px"
+                />
+                <source 
+                  media="(min-width: 769px)"
+                  srcSet="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png?w=420 420w,
+                          /lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png?w=840 840w"
+                  sizes="420px"
+                />
+                <img 
+                  src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png"
+                  alt="Dra. Carla Christoph, dentista em Ipanema"
+                  className="w-full h-full object-cover"
+                  width="420"
+                  height="600"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  data-hero-image="true"
+                />
+              </picture>
             </div>
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-dental-gold/20 rounded-full"></div>
             <div className="absolute -top-6 -right-6 w-24 h-24 bg-dental-gold/20 rounded-full"></div>
           </div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-dental-beige to-transparent"></div>
     </section>
   );
 };
