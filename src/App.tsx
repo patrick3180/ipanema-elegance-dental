@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/sonner";
 import { lazy, Suspense, useEffect } from "react";
 import SimpleLCPOptimizer from "@/components/performance/SimpleLCPOptimizer";
+import PerformanceMonitor from "@/components/performance/PerformanceMonitor";
 import { handlePageRedirects } from "@/utils/urlRedirects";
 import { seoMonitor } from "@/utils/seoMonitoring";
 import "@/utils/404ErrorHandler";
@@ -65,8 +66,9 @@ function AppContent() {
 
   return (
     <div className="App">
-      {/* Único componente de otimização */}
+      {/* Performance optimization components */}
       <SimpleLCPOptimizer />
+      <PerformanceMonitor />
       
       <Suspense fallback={<PageLoader />}>
         <Routes>

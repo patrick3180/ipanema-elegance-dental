@@ -1,14 +1,8 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { useHeroImagePreload } from "@/hooks/useHeroImagePreload";
 
 const Hero = () => {
-  // Preload hero image for better LCP
-  useHeroImagePreload({ 
-    imageSrc: "/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp",
-    isInViewport: true 
-  });
 
   const handleWhatsAppClick = () => {
     if (window.gtag) {
@@ -65,17 +59,12 @@ const Hero = () => {
                 <img 
                   src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png"
                   alt="Dra. Carla Christoph, dentista especialista em Ipanema"
-                  className="w-full h-full object-cover transition-all duration-500 blur-sm opacity-0"
+                  className="w-full h-full object-cover"
                   width="420"
                   height="600"
                   loading="eager"
                   fetchPriority="high"
                   decoding="sync"
-                  onLoad={(e) => {
-                    const img = e.target as HTMLImageElement;
-                    img.classList.remove('blur-sm', 'opacity-0');
-                    img.classList.add('opacity-100');
-                  }}
                 />
               </picture>
             </div>
