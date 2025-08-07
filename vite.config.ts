@@ -3,7 +3,6 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
@@ -11,8 +10,7 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === 'development' &&
-    componentTagger(),
+    mode === 'development' && componentTagger(),
   ].filter(Boolean),
   resolve: {
     alias: {
@@ -20,72 +18,109 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    // Enable code splitting and tree shaking
+    target: 'es2015',
+    cssCodeSplit: true,
+    chunkSizeWarningLimit: 1500,
+    
     rollupOptions: {
       output: {
-        manualChunks: {
-          // Mantendo a estrutura original mas otimizada
-          'vendor': ['react', 'react-dom'],
-          'router': ['react-router-dom'],
-          'contentful': ['contentful'],
-          // Agrupando Radix UI para reduzir requests
-          'ui-core': [
-            '@radix-ui/react-dialog', 
-            '@radix-ui/react-dropdown-menu', 
-            '@radix-ui/react-toast',
-            '@radix-ui/react-slot',
-            '@radix-ui/react-label'
-          ],
-          // Outros componentes UI em chunk separado
-          'ui-extra': [
-            '@radix-ui/react-accordion',
-            '@radix-ui/react-alert-dialog',
-            '@radix-ui/react-avatar',
-            '@radix-ui/react-checkbox',
-            '@radix-ui/react-collapsible'
-          ],
-          'query': ['@tanstack/react-query'],
-          'charts': ['recharts'],
-          'icons': ['lucide-react'],
-          'utils': ['class-variance-authority', 'clsx', 'tailwind-merge'],
+        manualChunks: (id) => {
+          // Homepage crítico - bundle mínimo
+          if (id.includes('pages/Index') || 
+              id.includes('components/Hero') || 
+              id.includes('components/Header')) {
+            return 'critical';
+          }
+          
+          // React essencial
+          if (id.includes('react') && !id.includes('router')) {
+            return 'react-core';
+          }
+          
+          // Router separado (lazy load)
+          if (id.includes('react-router')) {
+            return 'router';
+          }
+          
+          // Radix UI em chunks menores
+          if (id.includes('@radix-ui/react-dialog') || 
+              id.includes('@radix-ui/react-toast')) {
+            return 'ui-essential';
+          }
+          
+          if (id.includes('@radix-ui')) {
+            return 'ui-extra';
+          }
+          
+          // Contentful apenas quando necessário
+          if (id.includes('contentful')) {
+            return 'contentful';
+          }
+          
+          // Charts e icons lazy
+          if (id.includes('recharts')) {
+            return 'charts';
+          }
+          
+          if (id.includes('lucide-react')) {
+            return 'icons';
+          }
+          
+          // Todo o resto
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
         },
       },
+      
+      // Remover código morto agressivamente
+      treeshake: {
+        preset: 'recommended',
+        moduleSideEffects: false,
+      },
     },
-    // Minificação mantida como estava
-    minify: mode === 'production' ? 'terser' : false,
-    terserOptions: mode === 'production' ? {
+    
+    // Minificação máxima
+    minify: 'terser',
+    terserOptions: {
       compress: {
         drop_console: true,
         drop_debugger: true,
-        pure_funcs: ['console.log'],
+        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.warn'],
+        passes: 3,
+        unsafe: true,
+        unsafe_comps: true,
+        unsafe_math: true,
+        unsafe_methods: true,
+        unsafe_proto: true,
+        unsafe_regexp: true,
       },
       mangle: {
         safari10: true,
+        properties: {
+          regex: /^_/,
+        },
       },
-    } : undefined,
-    // Optimize CSS
-    cssCodeSplit: true,
-    // Set chunk size warning limit
-    chunkSizeWarningLimit: 1000,
-    // Enable source maps for development
-    sourcemap: mode === 'development',
-    // Adicionar target para melhor compatibilidade
-    target: 'es2015',
-  },
-  // Enable gzip compression
-  preview: {
-    headers: {
-      'Cache-Control': 'public, max-age=31536000',
+      format: {
+        comments: false,
+        ascii_only: true,
+      },
     },
+    
+    // Desabilitar source maps em produção
+    sourcemap: false,
   },
+  
   // Otimização de dependências
   optimizeDeps: {
-    include: [
-      'react', 
-      'react-dom', 
-      'react-router-dom',
-      '@radix-ui/react-dialog',
-      '@radix-ui/react-dropdown-menu'
+    include: ['react', 'react-dom'],
+    exclude: [
+      '@radix-ui/react-accordion',
+      '@radix-ui/react-alert-dialog', 
+      '@radix-ui/react-checkbox',
+      '@radix-ui/react-collapsible',
+      'recharts',
+      'contentful'
     ],
   },
 }))
