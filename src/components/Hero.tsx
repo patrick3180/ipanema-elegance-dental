@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import WebPImage from "@/components/WebPImage"; // Importar o novo componente
 
 const Hero = () => {
   const handleWhatsAppClick = () => {
@@ -24,7 +25,7 @@ const Hero = () => {
       style={{ paddingTop: "112px" }}
     >
       <div className="container-custom grid lg:grid-cols-2 gap-16 items-center">
-        <div className="order-2 lg:order-1">
+        <div className="order-2 lg:order-1 animate-slide-up">
           <h1 className="heading-xl mb-8">
             Dra. Carla Christoph: Dentista em Ipanema para um Sorriso Perfeito
           </h1>
@@ -48,41 +49,25 @@ const Hero = () => {
           </div>
         </div>
         
-        <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
+        <div className="order-1 lg:order-2 flex justify-center lg:justify-end animate-fade-in">
           <div className="relative">
             <div className="w-[320px] md:w-[420px] h-[500px] md:h-[600px] bg-dental-purple/10 rounded-2xl flex items-center justify-center overflow-hidden">
-              {/* Imagem otimizada com carregamento prioritário */}
-              <picture>
-                <source 
-                  media="(max-width: 768px)"
-                  srcSet="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png?w=320 320w,
-                          /lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png?w=640 640w"
-                  sizes="320px"
-                />
-                <source 
-                  media="(min-width: 769px)"
-                  srcSet="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png?w=420 420w,
-                          /lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png?w=840 840w"
-                  sizes="420px"
-                />
-                <img 
-                  src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png"
-                  alt="Dra. Carla Christoph, dentista em Ipanema"
-                  className="w-full h-full object-cover"
-                  width="420"
-                  height="600"
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                  data-hero-image="true"
-                />
-              </picture>
+              {/* USANDO O COMPONENTE WebPImage AQUI */}
+              <WebPImage 
+                src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png"
+                alt="Dra. Carla Christoph, dentista em Ipanema, sorrindo e de braços cruzados"
+                className="w-full h-full object-cover"
+                width={420}
+                height={600}
+                priority={true} // Esta é a imagem mais importante!
+              />
             </div>
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-dental-gold/20 rounded-full"></div>
             <div className="absolute -top-6 -right-6 w-24 h-24 bg-dental-gold/20 rounded-full"></div>
           </div>
         </div>
       </div>
+      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-dental-beige to-transparent"></div>
     </section>
   );
 };
