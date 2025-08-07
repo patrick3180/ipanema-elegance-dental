@@ -1,11 +1,9 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import WebPImage from "@/components/WebPImage"; // Importar o novo componente
 
 const Hero = () => {
   const handleWhatsAppClick = () => {
-    // Track conversion
     if (window.gtag) {
       window.gtag('event', 'conversion', {
         'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9'
@@ -25,7 +23,7 @@ const Hero = () => {
       style={{ paddingTop: "112px" }}
     >
       <div className="container-custom grid lg:grid-cols-2 gap-16 items-center">
-        <div className="order-2 lg:order-1 animate-slide-up">
+        <div className="order-2 lg:order-1">
           <h1 className="heading-xl mb-8">
             Dra. Carla Christoph: Dentista em Ipanema para um Sorriso Perfeito
           </h1>
@@ -49,25 +47,35 @@ const Hero = () => {
           </div>
         </div>
         
-        <div className="order-1 lg:order-2 flex justify-center lg:justify-end animate-fade-in">
+        <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
           <div className="relative">
             <div className="w-[320px] md:w-[420px] h-[500px] md:h-[600px] bg-dental-purple/10 rounded-2xl flex items-center justify-center overflow-hidden">
-              {/* USANDO O COMPONENTE WebPImage AQUI */}
-              <WebPImage 
-                src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png"
-                alt="Dra. Carla Christoph, dentista em Ipanema, sorrindo e de braços cruzados"
-                className="w-full h-full object-cover"
-                width={420}
-                height={600}
-                priority={true} // Esta é a imagem mais importante!
-              />
+              {/* Picture element com WebP e PNG fallback */}
+              <picture className="w-full h-full">
+                {/* WebP para navegadores modernos (95% dos usuários) */}
+                <source 
+                  srcSet="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp"
+                  type="image/webp"
+                />
+                
+                {/* PNG como fallback para navegadores antigos */}
+                <img 
+                  src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png"
+                  alt="Dra. Carla Christoph, dentista especialista em Ipanema"
+                  className="w-full h-full object-cover"
+                  width="420"
+                  height="600"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                />
+              </picture>
             </div>
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-dental-gold/20 rounded-full"></div>
             <div className="absolute -top-6 -right-6 w-24 h-24 bg-dental-gold/20 rounded-full"></div>
           </div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-dental-beige to-transparent"></div>
     </section>
   );
 };
