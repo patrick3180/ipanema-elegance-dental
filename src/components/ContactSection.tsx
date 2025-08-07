@@ -7,8 +7,35 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Map, Clock, Phone, Mail } from "lucide-react";
+import { sendGCLIDToWebhook } from "@/utils/gclid";
+import { useToast } from "@/hooks/use-toast";
 
 const ContactSection = () => {
+  const { toast } = useToast();
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Track event with Google Tag Manager
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'contact_form_submit',
+        event_category: 'Contact',
+        event_action: 'Submit',
+        event_label: 'Contact Section Form'
+      });
+    }
+
+    // Send GCLID to webhook
+    await sendGCLIDToWebhook('contact_form_submit');
+    
+    // Show success message
+    toast({
+      title: "Mensagem enviada!",
+      description: "Entraremos em contato em breve.",
+    });
+  };
+
   return (
     <section id="contato" className="section-spacing bg-dental-beige">
       <div className="container-custom">
@@ -31,7 +58,7 @@ const ContactSection = () => {
           <div>
             <Card className="border-none shadow-sm">
               <CardContent className="p-6">
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleFormSubmit}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <Input
@@ -60,7 +87,7 @@ const ContactSection = () => {
                     />
                   </div>
                   <div>
-                    <Button className="w-full bg-dental-purple hover:bg-dental-purple/90">
+                    <Button type="submit" className="w-full bg-dental-purple hover:bg-dental-purple/90">
                       Enviar Mensagem
                     </Button>
                   </div>

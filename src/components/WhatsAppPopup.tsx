@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, X } from "lucide-react";
+import { sendGCLIDToWebhook } from "@/utils/gclid";
 
 const WhatsAppPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +22,7 @@ const WhatsAppPopup = () => {
     }
   }, []);
   
-  const handleWhatsAppClick = () => {
+  const handleWhatsAppClick = async () => {
     // Track event with Google Tag Manager (if available)
     if (window.dataLayer) {
       window.dataLayer.push({
@@ -31,6 +32,9 @@ const WhatsAppPopup = () => {
         event_label: 'WhatsApp Popup'
       });
     }
+    
+    // Send GCLID to webhook
+    await sendGCLIDToWebhook('whatsapp_popup_button');
     
     // Log for development purposes
     console.log("WhatsApp popup button clicked - tracking event");

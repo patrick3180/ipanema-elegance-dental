@@ -13,6 +13,15 @@ function gtag(...args: any[]) {
 // Make gtag globally available
 window.gtag = gtag;
 
+// Initialize GCLID capture on app start
+import { captureGCLID, getGCLIDDebugInfo } from './utils/gclid';
+import './utils/gclidDebug'; // Initialize debug system
+captureGCLID();
+
+// Log initial GCLID debug info
+console.log('🔍 GCLID Debug Info on app start:', getGCLIDDebugInfo());
+console.log('🛠️ GCLID Debug system loaded. Type "gclidDebug.help()" in console for help.');
+
 // Initialize enhanced redirect middleware
 import('./middleware/redirectMiddleware');
 

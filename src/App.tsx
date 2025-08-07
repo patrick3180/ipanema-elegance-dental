@@ -58,9 +58,9 @@ function AppContent() {
   const location = useLocation();
 
   useEffect(() => {
-    // Capture GCLID on initial load
+    // Capture GCLID on initial load and every location change
     captureGCLID();
-  }, []);
+  }, [location]);
   
   useEffect(() => {
     // Handle redirects de forma simples
@@ -68,6 +68,9 @@ function AppContent() {
     if (redirectResult.type === 'redirect') {
       seoMonitor.logRedirect(location.pathname, window.location.pathname);
     }
+    
+    // Log page navigation for debugging
+    console.log('🔄 Route changed to:', location.pathname, location.search);
   }, [location.pathname]);
 
   return (

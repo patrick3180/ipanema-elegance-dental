@@ -5,9 +5,10 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
 import OptimizedImage from "@/components/OptimizedImage";
+import { sendGCLIDToWebhook } from "@/utils/gclid";
 
 const AboutPage = () => {
-  const handleWhatsAppClick = () => {
+  const handleWhatsAppClick = async () => {
     // Track event with Google Tag Manager (if available)
     if (window.dataLayer) {
       window.dataLayer.push({
@@ -27,6 +28,9 @@ const AboutPage = () => {
         }
       });
     }
+
+    // Send GCLID to webhook
+    await sendGCLIDToWebhook('about_page_button');
 
     console.log("WhatsApp button clicked from About page - tracking event");
 
