@@ -21,7 +21,7 @@ const CoreWebVitalsOptimizer = () => {
 
       // 2. Preload critical resources
       const criticalResources = [
-        '/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png',
+        '/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp',
         '/lovable-uploads/164bae76-428b-4fae-a600-ba61172b5dac.png'
       ];
 
