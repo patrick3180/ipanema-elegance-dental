@@ -1,58 +1,184 @@
-import React from 'react';
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dentista em Ipanema | Clínica Odontológica Dra. Carla Christoph</title>
+    <meta name="description" content="Procurando dentista em Ipanema? A Dra. Carla Christoph oferece odontologia estética e reabilitação oral com atendimento personalizado. Agende sua consulta!" />
+    <meta name="author" content="Dra. Carla Christoph" />
 
-interface WebPImageProps {
-  src: string;
-  alt: string;
-  className?: string;
-  width?: number;
-  height?: number;
-  priority?: boolean;
-}
-
-const WebPImage: React.FC<WebPImageProps> = ({
-  src,
-  alt,
-  className = '',
-  width,
-  height,
-  priority = false
-}) => {
-  // Se for imagem do Contentful, adicionar parâmetros de otimização
-  const getOptimizedUrl = (url: string, format: 'webp' | 'jpg' = 'webp') => {
-    if (url.includes('ctfassets.net')) {
-      const baseUrl = url.split('?')[0];
-      return `${baseUrl}?fm=${format}&q=85${width ? `&w=${width}` : ''}`;
-    }
-    return url;
-  };
-
-  return (
-    <picture>
-      {/* WebP version */}
-      <source
-        type="image/webp"
-        srcSet={getOptimizedUrl(src, 'webp')}
-      />
+    <!-- DNS Prefetch para domínios externos -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//images.ctfassets.net">
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    
+    <!-- Preconnect para origens críticas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.ctfassets.net" crossorigin>
+    
+    <!-- Preload de imagem crítica -->
+    <link rel="preload" href="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png" as="image" fetchpriority="high">
+    
+    <!-- Critical CSS inline -->
+    <style>
+      /* Reset básico e estilos críticos */
+      * { margin: 0; padding: 0; box-sizing: border-box; }
       
-      {/* Fallback JPEG */}
-      <source
-        type="image/jpeg"
-        srcSet={getOptimizedUrl(src, 'jpg')}
-      />
+      body { 
+        font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+        background-color: hsl(45, 27%, 88%);
+        color: hsl(270, 40%, 20%);
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+      }
       
-      {/* Fallback img tag */}
-      <img
-        src={src}
-        alt={alt}
-        className={className}
-        width={width}
-        height={height}
-        loading={priority ? 'eager' : 'lazy'}
-        fetchPriority={priority ? 'high' : 'auto'}
-        decoding="async"
-      />
-    </picture>
-  );
-};
+      .hero-section { 
+        min-height: 100vh;
+        background-color: hsl(45, 27%, 88%);
+      }
+      
+      h1, h2, h3, h4, h5, h6 { 
+        font-family: 'Playfair Display', Georgia, serif;
+      }
+      
+      /* Prevent layout shift */
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+      
+      /* Loading state */
+      #root:empty::before {
+        content: "Carregando...";
+        display: block;
+        padding: 2rem;
+        text-align: center;
+        color: hsl(270, 40%, 20%);
+        opacity: 0.5;
+      }
+    </style>
+    
+    <!-- Fonts com display swap -->
+    <link rel="preload" 
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" 
+          as="style" 
+          onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap">
+    </noscript>
 
-export default WebPImage;
+    <!-- Meta tags Open Graph -->
+    <meta property="og:title" content="Dentista em Ipanema | Clínica Odontológica Dra. Carla Christoph" />
+    <meta property="og:description" content="Procurando dentista em Ipanema? A Dra. Carla Christoph oferece odontologia estética e reabilitação oral com atendimento personalizado." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:url" content="https://dracarlachristoph.com" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@dracarlachristoph" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    
+    <!-- Registrar Service Worker para cache -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js').catch(function(err) {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    
+    <!-- Scripts principais -->
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- GPTEngineer (importante manter) -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module" defer></script>
+    
+    <!-- Analytics com delay para não impactar LCP -->
+    <script>
+      // Delay de 5 segundos para carregar analytics
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          // Google Tag Manager
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-WZRDNBKQ');
+          
+          // Google Ads
+          var gtagScript = document.createElement('script');
+          gtagScript.async = true;
+          gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16894364517';
+          document.head.appendChild(gtagScript);
+          
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', 'AW-16894364517', {send_page_view: false});
+          
+          // GCLID tracking
+          function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+              var c = ca[i];
+              while (c.charAt(0)==' ') c = c.substring(1,c.length);
+              if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+          }
+          
+          var gclid = getCookie('gclid');
+          if (!gclid) {
+            try {
+              gclid = localStorage.getItem('gclid');
+            } catch(e) {}
+          }
+          
+          // WhatsApp tracking
+          document.addEventListener('click', function(e) {
+            var target = e.target;
+            while (target && target !== document) {
+              if (target.tagName === 'A' && target.href && 
+                  (target.href.includes('wa.me') || target.href.includes('api.whatsapp.com'))) {
+                if (gclid) {
+                  fetch('https://n8n.srv876901.hstgr.cloud/webhook/webhook/gclid', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                      gclid: gclid,
+                      page: window.location.href,
+                      timestamp: new Date().toISOString(),
+                      source: 'whatsapp-click'
+                    }),
+                    keepalive: true
+                  }).catch(function() {});
+                }
+                break;
+              }
+              target = target.parentNode;
+            }
+          });
+        }, 5000); // 5 segundos de delay
+      });
+    </script>
+    
+    <!-- Noscript fallback -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZRDNBKQ"
+              height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+  </body>
+</html>
