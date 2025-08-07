@@ -1,38 +1,13 @@
-
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/sonner";
-import { lazy, useEffect } from "react";
-import ErrorBoundary from "@/components/performance/ErrorBoundary";
-import PerformanceMonitor from "@/components/performance/PerformanceMonitor";
-import ResourcePreloader from "@/components/performance/ResourcePreloader";
-import LazyRouteWrapper from "@/components/performance/LazyRouteWrapper";
-import { useResourceOptimization } from "@/hooks/useResourceOptimization";
-import SitemapUpdater from "@/components/SitemapUpdater";
-import SEOHealthMonitor from "@/components/SEOHealthMonitor";
-import SitemapResponse from "@/components/SitemapResponse";
-import RobotsResponse from "@/components/RobotsResponse";
-import { CrawlerOptimizer } from "@/components/performance/CrawlerOptimizer";
-import CoreWebVitalsOptimizer from "@/components/performance/CoreWebVitalsOptimizer";
-import PerformanceOptimizationSummary from "@/components/performance/PerformanceOptimizationSummary";
-import { SEOSitemapManager } from "@/components/SEOSitemapManager";
-import CriticalResourceLoader from "@/components/performance/CriticalResourceLoader";
-import AdvancedImageOptimizer from "@/components/performance/AdvancedImageOptimizer";
-import BundleOptimizer from "@/components/performance/BundleOptimizer";
-import ContentfulOptimizer from "@/components/performance/ContentfulOptimizer";
-// Removed conflicting performance components for LCP optimization
-import SEOMonitoringDashboard from "@/components/SEOMonitoringDashboard";
+import { lazy, Suspense, useEffect } from "react";
+import SimpleLCPOptimizer from "@/components/performance/SimpleLCPOptimizer";
 import { handlePageRedirects } from "@/utils/urlRedirects";
 import { seoMonitor } from "@/utils/seoMonitoring";
-import "@/utils/404ErrorHandler"; // Initialize 404 error tracking
-import { ImageOptimizationProvider } from "@/components/performance/ImageOptimizationProvider";
+import "@/utils/404ErrorHandler";
 
-// Performance components
-import ImagePreloader from "@/components/performance/ImagePreloader";
-import CriticalCSSLoader from "@/components/performance/CriticalCSSLoader";
-import LazyScriptLoader from "@/components/performance/LazyScriptLoader";
-
-// Lazy load components for better code splitting
+// Lazy load TODAS as páginas exceto Index para melhor performance
 const Index = lazy(() => import("./pages/Index"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
@@ -44,7 +19,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const GonePage = lazy(() => import("./pages/GonePage"));
 const SEODashboardPage = lazy(() => import("./pages/SEODashboardPage"));
 
-// Service pages
+// Service pages - lazy load todas
 const LentesEFacetas = lazy(() => import("./pages/LentesEFacetas"));
 const ClareamentoDental = lazy(() => import("./pages/ClareamentoDental"));
 const ProteseDentaria = lazy(() => import("./pages/ProteseDentaria"));
@@ -58,315 +33,83 @@ const SaudeDaGengiva = lazy(() => import("./pages/SaudeDaGengiva"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfUse = lazy(() => import("./pages/TermsOfUse"));
 
-// Create a single QueryClient instance
+// QueryClient otimizado
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      gcTime: 10 * 60 * 1000, // 10 minutes (formerly cacheTime)
+      staleTime: 10 * 60 * 1000, // 10 minutes
+      gcTime: 15 * 60 * 1000, // 15 minutes
       retry: 1,
       refetchOnWindowFocus: false,
     },
   },
 });
 
-// Critical resources to preload
-const criticalResources = [
-  {
-    type: 'preconnect' as const,
-    href: 'https://fonts.googleapis.com',
-  },
-  {
-    type: 'preconnect' as const,
-    href: 'https://fonts.gstatic.com',
-    crossorigin: 'anonymous' as const,
-  },
-  {
-    type: 'preload' as const,
-    href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap',
-    as: 'style' as const,
-    crossorigin: 'anonymous' as const,
-  },
-  {
-    type: 'preconnect' as const,
-    href: 'https://images.ctfassets.net',
-  },
-  {
-    type: 'dns-prefetch' as const,
-    href: 'https://cdn.contentful.com',
-  },
-];
-
-// Critical images to preload with optimized dimensions
-const criticalImages = [
-  { src: '/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png', width: 420 }, // Hero image
-  { src: '/lovable-uploads/164bae76-428b-4fae-a600-ba61172b5dac.png', width: 600 }, // About section
-  { src: '/lovable-uploads/fef24f70-4659-453e-8fee-79dee34b6220.png', width: 600 }, // About page
-  { src: '/lovable-uploads/b1c1cbdb-bde0-4d9e-912e-74cf74cf716d.png', width: 600 }  // About page main
-];
+// Loading component simples
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="animate-pulse text-dental-purple">Carregando...</div>
+  </div>
+);
 
 function AppContent() {
   const location = useLocation();
   
-  // Initialize resource optimization
-  useResourceOptimization({
-    enableImageOptimization: true,
-    enableFontOptimization: true,
-    enableScriptOptimization: true,
-    enablePrefetching: true
-  });
-  
-  // Handle URL redirects and SEO monitoring
   useEffect(() => {
-    // Initialize middleware on route change
-    const initializeMiddleware = async () => {
-      try {
-        const { handleRequestMiddleware } = await import('@/middleware/redirectMiddleware');
-        handleRequestMiddleware();
-      } catch (error) {
-        // Error silenced in production for performance
-      }
-    };
-
-    // Handle page redirects
+    // Handle redirects de forma simples
     const redirectResult = handlePageRedirects();
-    
     if (redirectResult.type === 'redirect') {
       seoMonitor.logRedirect(location.pathname, window.location.pathname);
-    } else if (redirectResult.type === 'gone') {
-      seoMonitor.logGone(location.pathname);
     }
-
-    // Initialize middleware after redirect handling
-    initializeMiddleware();
   }, [location.pathname]);
 
   return (
-    <ErrorBoundary>
-      <div className="App">
-        {/* Simplified performance components for LCP optimization */}
-        <CriticalResourceLoader resources={criticalResources} enableServiceWorker={false} />
-        <AdvancedImageOptimizer 
-          enableWebP={true} 
-          enableAVIF={false}
-          lazyLoadThreshold={0.1}
-          qualitySettings={{
-            mobile: 75,
-            desktop: 85,
-            retina: 90
-          }}
-        />
-        <ContentfulOptimizer 
-          enablePrefetching={false}
-          enableCaching={true}
-          batchRequests={false}
-        />
-        <CoreWebVitalsOptimizer />
-        
+    <div className="App">
+      {/* Único componente de otimização */}
+      <SimpleLCPOptimizer />
+      
+      <Suspense fallback={<PageLoader />}>
         <Routes>
-          <Route 
-            path="/" 
-            element={
-              <LazyRouteWrapper minHeight="100vh">
-                <Index />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/sobre" 
-            element={
-              <LazyRouteWrapper>
-                <AboutPage />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/servicos" 
-            element={
-              <LazyRouteWrapper>
-                <ServicesPage />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/diferenciais" 
-            element={
-              <LazyRouteWrapper>
-                <DifferentialsPage />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/blog" 
-            element={
-              <LazyRouteWrapper>
-                <BlogPage />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/blog/:slug" 
-            element={
-              <LazyRouteWrapper>
-                <BlogPost />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/contato" 
-            element={
-              <LazyRouteWrapper>
-                <ContactPage />
-              </LazyRouteWrapper>
-            } 
-          />
+          <Route path="/" element={<Index />} />
+          <Route path="/sobre" element={<AboutPage />} />
+          <Route path="/servicos" element={<ServicesPage />} />
+          <Route path="/diferenciais" element={<DifferentialsPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/contato" element={<ContactPage />} />
 
           {/* Service Routes */}
-          <Route 
-            path="/lentes-de-contato-dental-e-facetas-de-porcelana" 
-            element={
-              <LazyRouteWrapper>
-                <LentesEFacetas />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/clareamento-dental" 
-            element={
-              <LazyRouteWrapper>
-                <ClareamentoDental />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/protese-dentaria" 
-            element={
-              <LazyRouteWrapper>
-                <ProteseDentaria />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/implantes-dentarios" 
-            element={
-              <LazyRouteWrapper>
-                <ImplantesDentarios />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/clinica-geral-e-prevencao" 
-            element={
-              <LazyRouteWrapper>
-                <ClinicaGeralPrevencao />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/restauracoes-esteticas" 
-            element={
-              <LazyRouteWrapper>
-                <RestaureacoesEsteticas />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/tratamento-de-canal" 
-            element={
-              <LazyRouteWrapper>
-                <TratamentoDeCanal />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/saude-da-gengiva" 
-            element={
-              <LazyRouteWrapper>
-                <SaudeDaGengiva />
-              </LazyRouteWrapper>
-            } 
-          />
+          <Route path="/lentes-de-contato-dental-e-facetas-de-porcelana" element={<LentesEFacetas />} />
+          <Route path="/clareamento-dental" element={<ClareamentoDental />} />
+          <Route path="/protese-dentaria" element={<ProteseDentaria />} />
+          <Route path="/implantes-dentarios" element={<ImplantesDentarios />} />
+          <Route path="/clinica-geral-e-prevencao" element={<ClinicaGeralPrevencao />} />
+          <Route path="/restauracoes-esteticas" element={<RestaureacoesEsteticas />} />
+          <Route path="/tratamento-de-canal" element={<TratamentoDeCanal />} />
+          <Route path="/saude-da-gengiva" element={<SaudeDaGengiva />} />
 
           {/* Legal Routes */}
-          <Route 
-            path="/politica-de-privacidade" 
-            element={
-              <LazyRouteWrapper>
-                <PrivacyPolicy />
-              </LazyRouteWrapper>
-            } 
-          />
-          <Route 
-            path="/termos-de-uso" 
-            element={
-              <LazyRouteWrapper>
-                <TermsOfUse />
-              </LazyRouteWrapper>
-            } 
-          />
-
-          {/* 410 Gone Route */}
-          <Route 
-            path="/gone" 
-            element={
-              <LazyRouteWrapper>
-                <GonePage />
-              </LazyRouteWrapper>
-          } 
-          />
-
-          {/* SEO Dashboard - Development/Admin Route */}
-          <Route 
-            path="/seo-dashboard" 
-            element={
-              <LazyRouteWrapper>
-                <SEODashboardPage />
-              </LazyRouteWrapper>
-            } 
-          />
-
-          {/* Dynamic SEO Routes */}
-          <Route path="/sitemap.xml" element={<SitemapResponse />} />
-          <Route path="/robots.txt" element={<RobotsResponse />} />
+          <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
+          <Route path="/termos-de-uso" element={<TermsOfUse />} />
+          <Route path="/gone" element={<GonePage />} />
+          <Route path="/seo-dashboard" element={<SEODashboardPage />} />
 
           {/* 404 Route */}
-          <Route 
-            path="*" 
-            element={
-              <LazyRouteWrapper>
-                <NotFound />
-              </LazyRouteWrapper>
-            } 
-          />
+          <Route path="*" element={<NotFound />} />
         </Routes>
-        
-        <Toaster />
-        <PerformanceMonitor />
-        {/* <SEOHealthMonitor /> */}
-        <SitemapUpdater />
-        <SEOSitemapManager />
-        <CrawlerOptimizer />
-      </div>
-    </ErrorBoundary>
+      </Suspense>
+      
+      <Toaster />
+    </div>
   );
 }
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ImageOptimizationProvider
-        criticalImages={criticalImages}
-        config={{
-          enablePreloading: true,
-          quality: 85,
-          defaultWidth: 800,
-          defaultHeight: 600,
-        }}
-      >
-        <Router>
-          <AppContent />
-        </Router>
-      </ImageOptimizationProvider>
+      <Router>
+        <AppContent />
+      </Router>
     </QueryClientProvider>
   );
 }
