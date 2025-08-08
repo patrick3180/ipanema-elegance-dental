@@ -196,7 +196,11 @@ const AboutPage = () => {
                 Descubra como nossa expertise em odontologia estética e reabilitação oral pode transformar seu sorriso.
               </p>
               <Button onClick={handleWhatsAppClick} className="bg-dental-gold hover:bg-dental-gold/90 text-white rounded-md px-8 py-6" size="lg">
-                <MessageCircle size={20} className="mr-2" /> Agendar Consulta
+                <MessageCircle size={20} className="mr-2" />
+                <div className="flex flex-col text-left leading-tight">
+                  <span className="font-medium">Agendar Consulta</span>
+                  <span className="text-xs text-white/80">WhatsApp 24h</span>
+                </div>
               </Button>
             </div>
           </div>

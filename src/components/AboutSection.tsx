@@ -81,7 +81,11 @@ const AboutSection = () => {
                 onClick={handleWhatsAppClick}
                 className="bg-dental-purple hover:bg-dental-purple/90 text-white rounded-md px-6 py-5 mt-4"
               >
-                <MessageCircle size={18} className="mr-2" /> Agende sua consulta
+                <MessageCircle size={18} className="mr-2" />
+                <div className="flex flex-col text-left leading-tight">
+                  <span className="font-medium">Agende sua consulta</span>
+                  <span className="text-xs text-white/80">WhatsApp 24h</span>
+                </div>
               </Button>
             </div>
           </div>

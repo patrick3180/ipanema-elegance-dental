@@ -51,7 +51,7 @@ const CTASection = ({ title, whatsappMessage, heading }: CTASectionProps) => {
           className="bg-dental-purple hover:bg-dental-purple/90 text-white rounded-md px-6 py-5" 
           onClick={handleWhatsAppClick}
         >
-          Agendar Avaliação
+          <div className="flex flex-col text-left leading-tight"><span className="font-medium">Agendar Avaliação</span><span className="text-xs text-white/80">WhatsApp 24h</span></div>
         </Button>
         <Button variant="outline" className="border-dental-gold text-dental-gold hover:bg-dental-gold/10" asChild>
           <Link to="/servicos">

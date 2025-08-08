@@ -99,7 +99,7 @@ const ServiceDetail = () => {
                     className="bg-dental-gold hover:bg-dental-gold/90 text-white rounded-md px-6 py-5"
                     onClick={() => window.open("https://wa.me/5521999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20" + encodeURIComponent(service.title), "_blank")}
                   >
-                    Agendar consulta
+                    <div className="flex flex-col text-left leading-tight"><span className="font-medium">Agendar consulta</span><span className="text-xs text-white/80">WhatsApp 24h</span></div>
                   </Button>
                   
                   {service.detailPageUrl && (

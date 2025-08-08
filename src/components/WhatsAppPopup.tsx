@@ -87,7 +87,10 @@ const WhatsAppPopup = () => {
               className="w-full bg-[#25D366] hover:bg-[#1ea952] text-white gap-2"
             >
               <MessageCircle size={18} />
-              Conversar pelo WhatsApp
+              <div className="flex flex-col text-left leading-tight">
+                <span>Conversar pelo WhatsApp</span>
+                <span className="text-xs text-white/80">WhatsApp 24h</span>
+              </div>
             </Button>
           </DialogFooter>
         </div>
