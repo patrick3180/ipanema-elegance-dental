@@ -65,7 +65,7 @@ const HeroSection = ({
 
   return (
     <section 
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-dental-beige"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#CFCBB4]"
       style={{
         backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
         backgroundSize: 'cover',
