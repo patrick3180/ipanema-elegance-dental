@@ -56,7 +56,7 @@ export default {
         // Custom dental practice colors with the new color scheme
         dental: {
           purple: "#381F47",      // Deep purple for titles, noble backgrounds, footer
-          beige: "#CFCBB4",       // Light beige as main background
+          beige: "hsl(var(--background))",  // Light beige as main background - use CSS variable
           gray: "#808080",        // Neutral gray for secondary text and borders
           gold: "#B3955F",        // Copper gold for refined details and icons
         },
