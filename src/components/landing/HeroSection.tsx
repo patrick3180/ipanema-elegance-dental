@@ -72,10 +72,6 @@ const HeroSection = ({
         backgroundPosition: 'center',
       }}
     >
-      {/* Overlay if background image */}
-      {backgroundImage && backgroundImage.trim() && (
-        <div className="absolute inset-0 bg-dental-purple/30"></div>
-      )}
       
       <div className="container-custom relative z-10">
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
