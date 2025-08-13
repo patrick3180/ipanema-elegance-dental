@@ -54,7 +54,7 @@ const Hero = () => {
               onClick={handleWhatsAppClick}
               className="bg-dental-purple hover:bg-dental-purple/90 text-white rounded-md px-8 py-6 text-base"
             >
-              <div className="flex flex-col text-left leading-tight"><span className="font-medium">Agende sua consulta</span><span className="text-xs text-white/80">WhatsApp 24h</span></div><ArrowRight size={16} className="ml-3" />
+              <div className="flex flex-col text-left leading-tight"><span className="font-medium">Agendar minha consulta</span><span className="text-xs text-white/80">WhatsApp 24h</span></div><ArrowRight size={16} className="ml-3" />
             </Button>
             <Button
               variant="outline"
