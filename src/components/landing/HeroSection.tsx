@@ -73,7 +73,7 @@ const HeroSection = ({
       }}
     >
       {/* Overlay if background image */}
-      {backgroundImage && (
+      {backgroundImage && backgroundImage.trim() && (
         <div className="absolute inset-0 bg-dental-purple/30"></div>
       )}
       
