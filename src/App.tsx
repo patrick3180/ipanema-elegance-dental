@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { lazy, Suspense, useEffect } from "react";
 import SimpleLCPOptimizer from "@/components/performance/SimpleLCPOptimizer";
 import PerformanceMonitor from "@/components/performance/PerformanceMonitor";
+import HotjarLoader from "@/components/performance/HotjarLoader";
 import { handlePageRedirects } from "@/utils/urlRedirects";
 import { seoMonitor } from "@/utils/seoMonitoring";
 import "@/utils/404ErrorHandler";
@@ -78,6 +79,7 @@ function AppContent() {
       {/* Performance optimization components */}
       <SimpleLCPOptimizer />
       <PerformanceMonitor />
+      <HotjarLoader />
       
       <Suspense fallback={<PageLoader />}>
         <Routes>
