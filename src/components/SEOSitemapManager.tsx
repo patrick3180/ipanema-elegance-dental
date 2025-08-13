@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { generateSitemap } from '@/utils/sitemapGenerator';
 import { searchEngineNotifier } from '@/utils/searchEngineNotifier';
 import { optimizeForSearchEngines } from '@/utils/searchEngineOptimizer';
-import { runSitemapDiagnostics, logDiagnosticSummary } from '@/utils/sitemapDiagnostics';
+import { runComprehensiveSitemapDiagnostics, logComprehensiveDiagnosticSummary } from '@/utils/sitemapDiagnosticsEnhanced';
 
 export const SEOSitemapManager: React.FC = () => {
   const [lastUpdate, setLastUpdate] = useState<string | null>(null);
@@ -19,9 +19,9 @@ export const SEOSitemapManager: React.FC = () => {
         
         // Run comprehensive diagnostics first
         if (!diagnosticsRun) {
-          console.log('🔍 Running initial diagnostics...');
-          const diagnostics = await runSitemapDiagnostics();
-          logDiagnosticSummary(diagnostics);
+          console.log('🔍 Running enhanced diagnostics...');
+          const diagnostics = await runComprehensiveSitemapDiagnostics();
+          logComprehensiveDiagnosticSummary(diagnostics);
           setDiagnosticsRun(true);
         }
         
@@ -50,10 +50,10 @@ export const SEOSitemapManager: React.FC = () => {
         
         // Run diagnostics on error to identify issues
         try {
-          const errorDiagnostics = await runSitemapDiagnostics();
-          logDiagnosticSummary(errorDiagnostics);
+          const errorDiagnostics = await runComprehensiveSitemapDiagnostics();
+          logComprehensiveDiagnosticSummary(errorDiagnostics);
         } catch (diagError) {
-          console.error('❌ Diagnostics also failed:', diagError);
+          console.error('❌ Enhanced diagnostics also failed:', diagError);
         }
       } finally {
         setIsUpdating(false);

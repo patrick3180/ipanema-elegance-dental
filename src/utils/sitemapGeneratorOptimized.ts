@@ -57,35 +57,66 @@ ${urlsXml}
 };
 
 export const generateOptimizedSitemap = async (): Promise<string> => {
+  const startTime = Date.now();
+  
   try {
     console.log('🗺️ Generating optimized sitemap...');
     
-    // Check cache first
+    // Check cache first (reduced cache time to 15 minutes)
     const cachedSitemap = contentfulCache.get<string>(CACHE_KEYS.SITEMAP_GENERATED);
     if (cachedSitemap) {
-      console.log('✅ Using cached sitemap');
+      const cacheAge = Date.now() - (contentfulCache.get<number>('sitemap_cache_timestamp') || 0);
+      console.log(`✅ Using cached sitemap (${Math.round(cacheAge / 1000 / 60)} minutes old)`);
       return cachedSitemap;
     }
 
-    // Collect sitemap data
-    const sitemapData = await collectSitemapData();
+    // Collect sitemap data with timeout
+    console.log('📊 Collecting sitemap data...');
+    const sitemapDataPromise = collectSitemapData();
+    const timeoutPromise = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('Sitemap generation timeout after 30s')), 30000)
+    );
+    
+    const sitemapData = await Promise.race([sitemapDataPromise, timeoutPromise]) as any;
     const urlCount = getTotalUrlCount(sitemapData);
     
-    console.log(`📊 Collected ${urlCount} URLs for sitemap`);
+    console.log(`📊 Collected ${urlCount} URLs for sitemap:`, {
+      static: sitemapData.staticPages.length,
+      services: sitemapData.servicePages.length,
+      legal: sitemapData.legalPages.length,
+      blogPosts: sitemapData.blogPosts.length,
+      categories: sitemapData.blogCategories.length,
+      tags: sitemapData.blogTags.length,
+      pagination: sitemapData.blogPagination.length
+    });
+    
+    // Validate minimum URL count
+    if (urlCount < 10) {
+      console.warn(`⚠️ Warning: Low URL count (${urlCount}), using fallback`);
+      return getBasicSitemapFallback();
+    }
     
     // Format sitemap XML with proper formatting
     const sitemap = formatSitemapXML(sitemapData);
     
-    // Cache the generated sitemap for 1 hour
-    contentfulCache.set(CACHE_KEYS.SITEMAP_GENERATED, sitemap, 60 * 60 * 1000);
-    contentfulCache.set(CACHE_KEYS.SITEMAP_URL_COUNT, urlCount, 60 * 60 * 1000);
+    // Cache the generated sitemap for 15 minutes (reduced from 1 hour)
+    const cacheTime = 15 * 60 * 1000; // 15 minutes
+    contentfulCache.set(CACHE_KEYS.SITEMAP_GENERATED, sitemap, cacheTime);
+    contentfulCache.set(CACHE_KEYS.SITEMAP_URL_COUNT, urlCount, cacheTime);
+    contentfulCache.set('sitemap_cache_timestamp', Date.now(), cacheTime);
     
-    console.log('✅ Sitemap generated and cached successfully');
+    const processingTime = Date.now() - startTime;
+    console.log(`✅ Sitemap generated and cached successfully (${processingTime}ms)`);
+    
     return sitemap;
     
   } catch (error) {
-    console.error('❌ Error generating optimized sitemap:', error);
-    throw error;
+    const processingTime = Date.now() - startTime;
+    console.error(`❌ Error generating optimized sitemap (${processingTime}ms):`, error);
+    
+    // Return fallback instead of throwing
+    console.log('🔄 Using fallback sitemap due to generation error');
+    return getBasicSitemapFallback();
   }
 };
 

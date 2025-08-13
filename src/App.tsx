@@ -5,6 +5,7 @@ import { lazy, Suspense, useEffect } from "react";
 import SimpleLCPOptimizer from "@/components/performance/SimpleLCPOptimizer";
 import PerformanceMonitor from "@/components/performance/PerformanceMonitor";
 import HotjarLoader from "@/components/performance/HotjarLoader";
+import SitemapHealthMonitor from "@/components/SitemapHealthMonitor";
 import { handlePageRedirects } from "@/utils/urlRedirects";
 import { seoMonitor } from "@/utils/seoMonitoring";
 import "@/utils/404ErrorHandler";
@@ -80,6 +81,7 @@ function AppContent() {
       <SimpleLCPOptimizer />
       <PerformanceMonitor />
       <HotjarLoader />
+      <SitemapHealthMonitor />
       
       <Suspense fallback={<PageLoader />}>
         <Routes>
