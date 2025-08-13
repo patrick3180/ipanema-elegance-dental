@@ -7,13 +7,13 @@
 
 @layer base {
   :root {
-    --background: 45 27% 88%; /* Based on beige color */
+    --background: 48 23% 76%; /* Correct HSL for dental-beige #CFCBB4 */
     --foreground: 270 40% 20%; /* Based on deep purple */
 
-    --card: 45 27% 88%;
+    --card: 48 23% 76%;
     --card-foreground: 270 40% 20%;
 
-    --popover: 45 27% 88%;
+    --popover: 48 23% 76%;
     --popover-foreground: 270 40% 20%;
 
     --primary: 43 33% 54%; /* Based on copper gold */
