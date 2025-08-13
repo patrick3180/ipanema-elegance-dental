@@ -1,5 +1,18 @@
 export interface LandingPageConfig {
   campaign: string;
+  urgency?: string; // texto opcional de urgência sutil global
+  
+  // Message Match for Google Ads
+  messageMatch: {
+    adGroup: string; // para tracking do match
+    keyword: string; // para Quality Score
+  };
+  
+  // WhatsApp Configuration
+  whatsapp: {
+    number: string;
+    message: string; // mensagem pré-formatada
+  };
   
   // Hero Section
   hero: {
@@ -75,7 +88,7 @@ export interface LandingPageConfig {
     urgency?: string;
   };
   
-  // Contact Info
+  // Contact Info (deprecated - use whatsapp instead)
   contact: {
     whatsappNumber: string;
     whatsappMessage: string;

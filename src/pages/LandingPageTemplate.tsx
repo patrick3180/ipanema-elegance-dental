@@ -118,8 +118,10 @@ const LandingPageTemplate = ({ config }: LandingPageTemplateProps) => {
           benefits={pageConfig.benefits}
           backgroundImage={pageConfig.hero.backgroundImage}
           campaign={pageConfig.campaign}
-          phoneNumber={pageConfig.contact.whatsappNumber}
-          whatsappMessage={pageConfig.contact.whatsappMessage}
+          phoneNumber={pageConfig.whatsapp.number}
+          whatsappMessage={pageConfig.whatsapp.message}
+          messageMatch={pageConfig.messageMatch}
+          urgency={pageConfig.urgency}
         />
 
         {/* Problem Section */}
@@ -163,8 +165,9 @@ const LandingPageTemplate = ({ config }: LandingPageTemplateProps) => {
           buttonText={pageConfig.cta.buttonText}
           urgency={pageConfig.cta.urgency}
           campaign={pageConfig.campaign}
-          phoneNumber={pageConfig.contact.whatsappNumber}
-          whatsappMessage={pageConfig.contact.whatsappMessage}
+          phoneNumber={pageConfig.whatsapp.number}
+          whatsappMessage={pageConfig.whatsapp.message}
+          messageMatch={pageConfig.messageMatch}
         />
 
         {/* Footer */}
@@ -176,9 +179,10 @@ const LandingPageTemplate = ({ config }: LandingPageTemplateProps) => {
 
         {/* Floating WhatsApp (Mobile only) */}
         <FloatingWhatsApp
-          phoneNumber={pageConfig.contact.whatsappNumber}
-          message={pageConfig.contact.whatsappMessage}
+          phoneNumber={pageConfig.whatsapp.number}
+          message={pageConfig.whatsapp.message}
           campaign={pageConfig.campaign}
+          messageMatch={pageConfig.messageMatch}
         />
       </div>
     </>

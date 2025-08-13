@@ -11,6 +11,11 @@ interface HeroSectionProps {
   campaign: string;
   phoneNumber: string;
   whatsappMessage: string;
+  messageMatch: {
+    adGroup: string;
+    keyword: string;
+  };
+  urgency?: string;
 }
 
 const HeroSection = ({ 
@@ -18,25 +23,42 @@ const HeroSection = ({
   subheadline, 
   ctaText, 
   benefits, 
-  backgroundImage,
-  campaign,
-  phoneNumber,
-  whatsappMessage 
+  backgroundImage, 
+  campaign, 
+  phoneNumber, 
+  whatsappMessage,
+  messageMatch,
+  urgency
 }: HeroSectionProps) => {
   const handleCTAClick = async () => {
-    // Track event
+    // Track event with Google Tag Manager (if available)
     if (window.dataLayer) {
       window.dataLayer.push({
-        event: 'cta_click',
-        event_category: 'CTA',
+        event: 'hero_cta_click',
+        event_category: 'Contact',
         event_action: 'Click',
         event_label: `Hero CTA - ${campaign}`,
-        campaign: campaign
+        campaign: campaign,
+        ad_group: messageMatch.adGroup,
+        keyword: messageMatch.keyword,
+        message_match: 'hero_cta'
+      });
+    }
+    
+    // Google Ads conversion tracking
+    if (window.gtag) {
+      window.gtag('event', 'conversion', {
+        'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
+        'event_callback': function() {
+          console.log(`Google Ads conversion tracked - Hero CTA ${campaign}`);
+        }
       });
     }
 
+    // Send GCLID to webhook
     await sendGCLIDToWebhook(`landing_page_hero_cta_${campaign}`);
     
+    // Open WhatsApp with pre-defined message
     const encodedMessage = encodeURIComponent(whatsappMessage);
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
   };
@@ -82,14 +104,24 @@ const HeroSection = ({
           {/* CTA Button */}
           <button
             onClick={handleCTAClick}
-            className="bg-dental-gold hover:bg-dental-gold/90 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2 mx-auto"
-            data-gtm-category="CTA"
+            className="bg-[#381F47] hover:bg-[#4a2759] text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2 mx-auto"
+            aria-label={ctaText}
+            data-gtm-category="Contact"
             data-gtm-action="Click"
             data-gtm-label={`hero-cta-${campaign}`}
+            data-gtm-ad-group={messageMatch.adGroup}
+            data-gtm-keyword={messageMatch.keyword}
+            data-gtm-message-match="hero_cta"
           >
             {ctaText}
-            <ArrowRight size={20} />
+            <ArrowRight className="w-5 h-5" />
           </button>
+          
+          {urgency && (
+            <p className="text-[#CFCBB4] text-sm font-medium animate-pulse mt-4">
+              {urgency}
+            </p>
+          )}
         </div>
       </div>
     </section>

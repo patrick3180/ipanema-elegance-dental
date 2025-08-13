@@ -2,105 +2,104 @@ import { LandingPageConfig } from "@/types/LandingPageConfig";
 
 export const lentesConfig: LandingPageConfig = {
   campaign: "lentes",
+  urgency: "Últimas vagas para este mês",
+  
+  messageMatch: {
+    adGroup: "lentes-contato-dental-ipanema",
+    keyword: "lentes de contato dental ipanema"
+  },
+  
+  whatsapp: {
+    number: "5521968476915",
+    message: "Olá! Vi sobre as lentes de contato dental em Ipanema. Gostaria de saber mais sobre o tratamento e agendar uma avaliação."
+  },
   
   hero: {
     headline: "Transforme Seu Sorriso em 7 Dias",
-    subheadline: "Lentes ultrafinas que revolucionam seu sorriso sem dor, de forma natural e duradoura. Resultado garantido ou seu dinheiro de volta.",
+    subheadline: "Lentes ultrafinas que parecem dentes naturais. Sem desgaste, sem dor, resultado imediato.",
     ctaText: "Quero Transformar Meu Sorriso",
+    backgroundImage: "url('/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp')"
   },
   
-  benefits: [
-    "100% Natural",
-    "Resultado em 7 dias", 
-    "Sem Dor",
-    "Garantia Vitalícia"
-  ],
+  benefits: ["Resultado Natural", "Sem Dor", "7 Dias", "Garantia"],
   
   problem: {
-    title: "Você Sofre com Estes Problemas no Seu Sorriso?",
-    description: "Milhares de pessoas vivem escondendo o sorriso por conta destes problemas comuns que podem ser resolvidos definitivamente.",
+    title: "Cansado de Esconder Seu Sorriso?",
+    description: "Problemas dentários afetam sua autoestima e confiança no dia a dia.",
     problems: [
-      "Dentes amarelados ou manchados que não clareiam",
-      "Dentes pequenos ou desalinhados",
-      "Espaços entre os dentes (diastemas)",
-      "Sorriso que envelhece o rosto",
-      "Baixa autoestima por causa dos dentes",
-      "Medo de sorrir em fotos e vídeos"
+      "Dentes manchados ou amarelados",
+      "Espaços entre os dentes", 
+      "Formato irregular dos dentes",
+      "Vergonha de sorrir em fotos"
     ]
   },
   
   guide: {
-    title: "Como Funciona o Tratamento com Lentes",
-    subtitle: "Um processo simples e indolor que transforma completamente seu sorriso",
+    title: "Como Funciona o Tratamento",
+    subtitle: "Processo simples e rápido para o sorriso dos seus sonhos",
     steps: [
       {
         number: "1",
         title: "Consulta e Planejamento",
-        description: "Avaliação completa do seu sorriso com tecnologia 3D. Definimos juntos o resultado ideal para o seu rosto e personalidade."
+        description: "Avaliação completa e simulação digital do seu novo sorriso",
+        icon: "Search"
       },
       {
         number: "2", 
-        title: "Preparação Mínima",
-        description: "Preparação suave dos dentes (quando necessária) preservando ao máximo a estrutura natural. Processo indolor e rápido."
+        title: "Moldagem Personalizada",
+        description: "Criação das lentes sob medida para o seu sorriso",
+        icon: "Palette"
       },
       {
         number: "3",
-        title: "Moldagem Digital",
-        description: "Moldagem precisa com scanner digital - sem aquela massa desconfortável. Criamos o projeto do seu novo sorriso."
-      },
-      {
-        number: "4",
-        title: "Confecção das Lentes",
-        description: "Suas lentes são confeccionadas sob medida em laboratório especializado com materiais premium importados."
-      },
-      {
-        number: "5",
-        title: "Aplicação Final",
-        description: "Aplicação cuidadosa das lentes e ajustes finais. Seu novo sorriso está pronto em uma única sessão!"
+        title: "Aplicação das Lentes",
+        description: "Procedimento indolor com resultado imediato",
+        icon: "Sparkles"
       }
     ]
   },
   
   socialProof: {
-    title: "O Que Nossos Pacientes Falam",
+    title: "O Que Nossos Pacientes Dizem",
     testimonials: [
       {
-        name: "Maria Silva",
-        text: "Nunca imaginei que meu sorriso pudesse ficar tão perfeito! As lentes ficaram completamente naturais e ninguém percebe que não são meus dentes originais. Mudou minha vida!",
+        name: "Marina Santos",
+        text: "Sempre sonhei com um sorriso perfeito. Em apenas 7 dias consegui o resultado que sempre quis!",
         rating: 5
       },
       {
-        name: "João Santos",
-        text: "Estava com vergonha de sorrir há anos. Depois das lentes, minha autoestima voltou totalmente. O resultado superou todas as minhas expectativas. Recomendo de olhos fechados!",
+        name: "Carlos Eduardo",
+        text: "Procedimento totalmente indolor. O resultado superou minhas expectativas!",
         rating: 5
       },
       {
-        name: "Ana Costa",
-        text: "O processo foi muito mais tranquilo do que eu imaginava. Sem dor, rápido e o resultado é incrível. Agora sorrio sem medo em todas as fotos!",
+        name: "Ana Paula",
+        text: "Minha autoestima mudou completamente. Agora sorrio sem medo em todas as fotos!",
         rating: 5
       }
+    ],
+    stats: [
+      { number: "500+", label: "Sorrisos Transformados" },
+      { number: "98%", label: "Satisfação dos Pacientes" },
+      { number: "7", label: "Dias para Resultado" }
     ]
   },
   
   process: {
-    title: "Seu Novo Sorriso Passo a Passo",
-    subtitle: "Todo o processo é acompanhado de perto para garantir o melhor resultado",
+    title: "Nosso Processo Exclusivo",
+    subtitle: "Tecnologia de ponta para resultados perfeitos",
     steps: [
       {
-        title: "Primeira Consulta Gratuita",
-        description: "Avaliação completa, simulação 3D do resultado e esclarecimento de todas as suas dúvidas. Sem compromisso."
+        title: "Análise Digital",
+        description: "Usamos tecnologia 3D para planejar seu sorriso perfeito antes mesmo de começar"
       },
       {
-        title: "Planejamento Personalizado", 
-        description: "Criamos um plano de tratamento único para você, considerando formato do rosto, personalidade e expectativas."
+        title: "Lentes Personalizadas", 
+        description: "Cada lente é única, criada especialmente para harmonizar com seu rosto"
       },
       {
-        title: "Aplicação das Lentes",
-        description: "Processo indolor realizado em ambiente confortável e esterilizado. Você acompanha cada etapa do processo."
-      },
-      {
-        title: "Acompanhamento Pós-Tratamento",
-        description: "Revisões periódicas e orientações para manter seu sorriso perfeito para sempre. Suporte vitalício incluído."
+        title: "Aplicação Precisa",
+        description: "Técnica minimamente invasiva que preserva seus dentes naturais"
       }
     ]
   },
@@ -110,43 +109,39 @@ export const lentesConfig: LandingPageConfig = {
     questions: [
       {
         question: "As lentes de contato dental doem?",
-        answer: "Não! O processo é totalmente indolor. Utilizamos técnicas modernas que preservam ao máximo a estrutura natural dos dentes. A maioria dos pacientes não sente nenhum desconforto."
+        answer: "Não! O procedimento é totalmente indolor. Em alguns casos pode haver sensibilidade leve que desaparece em 24-48h."
       },
       {
-        question: "Quanto tempo dura o tratamento?",
-        answer: "O tratamento completo leva aproximadamente 7 dias. Na primeira consulta fazemos o planejamento, na segunda a preparação e moldagem, e na terceira a aplicação final das lentes."
+        question: "Quanto tempo duram as lentes?",
+        answer: "Com os cuidados adequados, as lentes podem durar entre 15 a 20 anos, sendo um investimento duradouro no seu sorriso."
       },
       {
-        question: "As lentes ficam naturais?",
-        answer: "Sim! Nossas lentes são confeccionadas com materiais premium e técnicas avançadas que garantem um resultado completamente natural. Ninguém perceberá que você está usando lentes."
+        question: "Preciso desgastar meus dentes?",
+        answer: "Mínimo ou nenhum desgaste! Nossa técnica preserva ao máximo a estrutura dental natural."
       },
       {
-        question: "Posso comer normalmente com as lentes?",
-        answer: "Sim! Após o período de adaptação inicial (48h), você pode comer normalmente. As lentes são muito resistentes e duradouras quando bem cuidadas."
+        question: "Posso comer normalmente?",
+        answer: "Sim! Após o período de adaptação, você pode comer todos os alimentos normalmente."
       },
       {
-        question: "Qual a durabilidade das lentes?",
-        answer: "Com os cuidados adequados, as lentes podem durar mais de 15 anos. Oferecemos garantia vitalícia contra defeitos de fabricação e acompanhamento periódico."
-      },
-      {
-        question: "Vocês oferecem parcelamento?",
-        answer: "Sim! Trabalhamos com diversas opções de parcelamento sem juros e também aceitamos cartões de crédito. Consulte nossas condições especiais."
+        question: "O resultado fica natural?",
+        answer: "Absolutamente! As lentes são personalizadas para harmonizar perfeitamente com seu rosto e características únicas."
       }
     ]
   },
   
   cta: {
-    title: "Comece Sua Transformação Hoje Mesmo",
-    subtitle: "Agende sua consulta gratuita e descubra como ter o sorriso dos seus sonhos em apenas 7 dias",
-    buttonText: "Agendar Consulta Gratuita",
-    urgency: "🔥 Vagas Limitadas - Apenas 5 consultas por dia"
+    title: "Transforme Seu Sorriso Agora",
+    subtitle: "Aproveite nossa consulta gratuita por tempo limitado",
+    buttonText: "Quero Minha Consulta Gratuita",
+    urgency: "Últimas vagas disponíveis para este mês"
   },
   
   contact: {
-    whatsappNumber: "5521993304045",
-    whatsappMessage: "Olá! Vi a página das lentes de contato dental e gostaria de agendar minha consulta gratuita. Quando posso ir?",
+    whatsappNumber: "5521968476915",
+    whatsappMessage: "Olá! Gostaria de agendar minha consulta gratuita para lentes de contato dental.",
     doctorName: "Dra. Carla Christoph",
-    clinicName: "Clínica Dra. Carla Christoph"
+    clinicName: "Clínica Carla Christoph"
   },
   
   seo: {
@@ -160,14 +155,142 @@ export const lentesConfig: LandingPageConfig = {
   }
 };
 
-// Adicione outros configs aqui (implantes, clareamento, etc.)
 export const implantesConfig: LandingPageConfig = {
-  // ... config para implantes
   campaign: "implantes",
+  urgency: "Consulta gratuita por tempo limitado",
+  
+  messageMatch: {
+    adGroup: "implantes-dentarios-rio-janeiro",
+    keyword: "implantes dentários rio de janeiro"
+  },
+  
+  whatsapp: {
+    number: "5521968476915",
+    message: "Olá! Vi sobre os implantes dentários no Rio de Janeiro. Gostaria de saber mais sobre o procedimento e agendar uma consulta."
+  },
+  
   hero: {
     headline: "Implantes Dentários que Parecem Dentes Naturais",
     subheadline: "Recupere sua mastigação, fala e autoestima com implantes de última geração. Sem dor, com garantia vitalícia.",
     ctaText: "Quero Meus Implantes"
   },
-  // ... resto da configuração
-} as any;
+  
+  benefits: ["100% Fixo", "Mastigação Natural", "Sem Dor", "Garantia Vitalícia"],
+  
+  problem: {
+    title: "Problemas com Dentadura ou Dentes Perdidos?",
+    description: "Não deixe a falta de dentes afetar sua qualidade de vida.",
+    problems: [
+      "Dificuldade para mastigar alimentos",
+      "Dentadura que solta ou machuca",
+      "Vergonha ao sorrir ou falar",
+      "Digestão prejudicada"
+    ]
+  },
+  
+  guide: {
+    title: "Como Funciona o Implante",
+    subtitle: "Processo seguro e definitivo para recuperar seus dentes",
+    steps: [
+      {
+        number: "1",
+        title: "Avaliação Completa",
+        description: "Exame detalhado e planejamento digital do seu tratamento"
+      },
+      {
+        number: "2",
+        title: "Cirurgia Guiada",
+        description: "Implante colocado de forma precisa e indolor"
+      },
+      {
+        number: "3",
+        title: "Prótese Definitiva",
+        description: "Dentes fixos que parecem e funcionam como naturais"
+      }
+    ]
+  },
+  
+  socialProof: {
+    title: "Depoimentos de Quem Recuperou o Sorriso",
+    testimonials: [
+      {
+        name: "Carlos Alberto",
+        text: "Depois dos implantes, voltei a comer de tudo! Minha qualidade de vida mudou completamente.",
+        rating: 5
+      },
+      {
+        name: "Maria José",
+        text: "Não sinto mais vergonha de sorrir. Os implantes são perfeitos, ninguém nota a diferença!",
+        rating: 5
+      }
+    ],
+    stats: [
+      { number: "300+", label: "Implantes Realizados" },
+      { number: "99%", label: "Taxa de Sucesso" },
+      { number: "25", label: "Anos de Garantia" }
+    ]
+  },
+  
+  process: {
+    title: "Nosso Protocolo de Excelência",
+    subtitle: "Tecnologia avançada para resultados seguros",
+    steps: [
+      {
+        title: "Planejamento 3D",
+        description: "Cirurgia guiada por computador para máxima precisão"
+      },
+      {
+        title: "Implantes Premium",
+        description: "Utilizamos apenas implantes de marcas mundialmente reconhecidas"
+      },
+      {
+        title: "Acompanhamento Vitalício",
+        description: "Cuidamos do seu sorriso para toda a vida"
+      }
+    ]
+  },
+  
+  faq: {
+    title: "Suas Dúvidas Sobre Implantes",
+    questions: [
+      {
+        question: "O implante dói?",
+        answer: "Não! O procedimento é feito com anestesia e sedação se necessário. O pós-operatório é tranquilo com medicação adequada."
+      },
+      {
+        question: "Quanto tempo demora para ficar pronto?",
+        answer: "O tempo varia entre 3-6 meses para osseointegração completa, mas em muitos casos colocamos dentes provisórios no mesmo dia."
+      },
+      {
+        question: "Implante tem garantia?",
+        answer: "Sim! Oferecemos garantia vitalícia do implante e 5 anos da prótese, além de acompanhamento contínuo."
+      },
+      {
+        question: "Qualquer pessoa pode fazer implante?",
+        answer: "A maioria das pessoas pode, mas é necessária avaliação médica. Mesmo casos complexos têm soluções modernas."
+      }
+    ]
+  },
+  
+  cta: {
+    title: "Recupere Seus Dentes Definitivamente",
+    subtitle: "Agende sua consulta gratuita e mude sua vida",
+    buttonText: "Quero Minha Consulta Gratuita"
+  },
+  
+  contact: {
+    whatsappNumber: "5521968476915",
+    whatsappMessage: "Olá! Gostaria de agendar uma consulta para implantes dentários.",
+    doctorName: "Dra. Carla Christoph",
+    clinicName: "Clínica Carla Christoph"
+  },
+  
+  seo: {
+    title: "Implantes Dentários Rio de Janeiro | Sem Dor com Garantia Vitalícia",
+    description: "Implantes dentários no Rio de Janeiro com a Dra. Carla Christoph. Cirurgia guiada, sem dor, garantia vitalícia. Consulta gratuita!"
+  },
+  
+  tracking: {
+    gtmId: "GTM-WZRDNBKQ"
+  }
+};

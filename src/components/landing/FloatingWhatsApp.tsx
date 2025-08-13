@@ -6,9 +6,13 @@ interface FloatingWhatsAppProps {
   phoneNumber: string;
   message: string;
   campaign: string;
+  messageMatch: {
+    adGroup: string;
+    keyword: string;
+  };
 }
 
-const FloatingWhatsApp = ({ phoneNumber, message, campaign }: FloatingWhatsAppProps) => {
+const FloatingWhatsApp = ({ phoneNumber, message, campaign, messageMatch }: FloatingWhatsAppProps) => {
   const handleWhatsAppClick = async () => {
     // Track event with Google Tag Manager (if available)
     if (window.dataLayer) {
@@ -17,7 +21,10 @@ const FloatingWhatsApp = ({ phoneNumber, message, campaign }: FloatingWhatsAppPr
         event_category: 'Contact',
         event_action: 'Click',
         event_label: `WhatsApp Landing Page - ${campaign}`,
-        campaign: campaign
+        campaign: campaign,
+        ad_group: messageMatch.adGroup,
+        keyword: messageMatch.keyword,
+        message_match: 'floating_whatsapp'
       });
     }
     
@@ -47,6 +54,9 @@ const FloatingWhatsApp = ({ phoneNumber, message, campaign }: FloatingWhatsAppPr
       data-gtm-category="Contact"
       data-gtm-action="Click"
       data-gtm-label={`floating-whatsapp-${campaign}`}
+      data-gtm-ad-group={messageMatch.adGroup}
+      data-gtm-keyword={messageMatch.keyword}
+      data-gtm-message-match="floating_whatsapp"
     >
       <MessageCircle size={20} className="animate-pulse" />
     </button>
