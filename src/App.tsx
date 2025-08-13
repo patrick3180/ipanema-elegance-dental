@@ -37,6 +37,9 @@ const SaudeDaGengiva = lazy(() => import("./pages/SaudeDaGengiva"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfUse = lazy(() => import("./pages/TermsOfUse"));
 
+// Landing Page Template
+const LandingPageTemplate = lazy(() => import("./pages/LandingPageTemplate"));
+
 // QueryClient otimizado
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -108,6 +111,10 @@ function AppContent() {
           <Route path="/termos-de-uso" element={<TermsOfUse />} />
           <Route path="/gone" element={<GonePage />} />
           <Route path="/seo-dashboard" element={<SEODashboardPage />} />
+
+          {/* Landing Page Template - Isolated routes */}
+          <Route path="/lp/template" element={<LandingPageTemplate />} />
+          <Route path="/lp/:template" element={<LandingPageTemplate />} />
 
           {/* 404 Route */}
           <Route path="*" element={<NotFound />} />
