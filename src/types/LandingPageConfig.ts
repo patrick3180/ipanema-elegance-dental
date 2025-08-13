@@ -60,16 +60,6 @@ export interface LandingPageConfig {
     }>;
   };
   
-  // Process Section
-  process: {
-    title: string;
-    subtitle: string;
-    steps: Array<{
-      title: string;
-      description: string;
-      image?: string;
-    }>;
-  };
   
   // FAQ
   faq: {

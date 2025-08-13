@@ -85,24 +85,6 @@ export const lentesConfig: LandingPageConfig = {
     ]
   },
   
-  process: {
-    title: "Nosso Processo Exclusivo",
-    subtitle: "Tecnologia de ponta para resultados perfeitos",
-    steps: [
-      {
-        title: "Análise Digital",
-        description: "Usamos tecnologia 3D para planejar seu sorriso perfeito antes mesmo de começar"
-      },
-      {
-        title: "Lentes Personalizadas", 
-        description: "Cada lente é única, criada especialmente para harmonizar com seu rosto"
-      },
-      {
-        title: "Aplicação Precisa",
-        description: "Técnica minimamente invasiva que preserva seus dentes naturais"
-      }
-    ]
-  },
   
   faq: {
     title: "Perguntas Frequentes",
@@ -231,24 +213,6 @@ export const implantesConfig: LandingPageConfig = {
     ]
   },
   
-  process: {
-    title: "Nosso Protocolo de Excelência",
-    subtitle: "Tecnologia avançada para resultados seguros",
-    steps: [
-      {
-        title: "Planejamento 3D",
-        description: "Cirurgia guiada por computador para máxima precisão"
-      },
-      {
-        title: "Implantes Premium",
-        description: "Utilizamos apenas implantes de marcas mundialmente reconhecidas"
-      },
-      {
-        title: "Acompanhamento Vitalício",
-        description: "Cuidamos do seu sorriso para toda a vida"
-      }
-    ]
-  },
   
   faq: {
     title: "Suas Dúvidas Sobre Implantes",

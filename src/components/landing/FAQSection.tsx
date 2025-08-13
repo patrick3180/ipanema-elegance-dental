@@ -13,7 +13,7 @@ interface FAQSectionProps {
 
 const FAQSection = ({ title, questions }: FAQSectionProps) => {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-dental-beige/30">
       <div className="container-custom">
         <div className="max-w-4xl mx-auto">
           {/* Title */}

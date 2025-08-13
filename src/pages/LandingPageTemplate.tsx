@@ -8,7 +8,7 @@ import HeroSection from "@/components/landing/HeroSection";
 import ProblemSection from "@/components/landing/ProblemSection";
 import GuideSection from "@/components/landing/GuideSection";
 import SocialProofSection from "@/components/landing/SocialProofSection";
-import ProcessSection from "@/components/landing/ProcessSection";
+
 import FAQSection from "@/components/landing/FAQSection";
 import CTASection from "@/components/landing/CTASection";
 import LandingFooter from "@/components/landing/LandingFooter";
@@ -145,12 +145,6 @@ const LandingPageTemplate = ({ config }: LandingPageTemplateProps) => {
           stats={pageConfig.socialProof.stats}
         />
 
-        {/* Process Section */}
-        <ProcessSection
-          title={pageConfig.process.title}
-          subtitle={pageConfig.process.subtitle}
-          steps={pageConfig.process.steps}
-        />
 
         {/* FAQ Section */}
         <FAQSection
