@@ -8,6 +8,7 @@ import useScrollTracking from '@/hooks/useScrollTracking';
 // Performance Components (critical path)
 import CriticalCSSInline from '@/components/performance/CriticalCSSInline';
 import LazySection from '@/components/performance/LazySection';
+import ContentfulBlocker from '@/components/performance/ContentfulBlocker';
 
 // Critical above-the-fold components (eager loading)
 import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
@@ -144,8 +145,9 @@ const ConsultaInicialLandingPage = () => {
         </script>
       </Helmet>
 
-      {/* Critical CSS Inlining */}
+      {/* EMERGENCY PERFORMANCE OPTIMIZATIONS */}
       <CriticalCSSInline />
+      <ContentfulBlocker />
 
       {/* Page Content */}
       <main className="min-h-screen bg-white">

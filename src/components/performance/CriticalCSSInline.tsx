@@ -4,14 +4,18 @@ const CriticalCSSInline = () => {
   useEffect(() => {
     // Inject critical CSS directly into <head> for above-the-fold content
     const criticalCSS = `
-      /* Critical above-the-fold styles only */
+      /* Critical above-the-fold styles - LCP optimized */
       * { box-sizing: border-box; }
-      body { margin: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; line-height: 1.6; }
+      body { margin: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; line-height: 1.6; contain: layout style paint; }
       
-      /* Layout containers */
-      .min-h-screen { min-height: 100vh; }
-      .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+      /* Layout containers - performance optimized */
+      .min-h-screen { min-height: 100vh; contain: layout; }
+      .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; contain: layout style; }
       @media (min-width: 1024px) { .container { padding: 0 2rem; } }
+      
+      /* Preconnect fonts - critical render path */
+      @font-face { font-family: 'Inter'; font-display: swap; }
+      @font-face { font-family: 'Playfair Display'; font-display: swap; }
       
       /* Critical colors - using semantic tokens */
       .bg-white { background-color: #ffffff; }

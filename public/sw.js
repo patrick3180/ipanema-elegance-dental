@@ -1,6 +1,7 @@
-// Service Worker v3 - Landing Page Optimizado
-const CACHE_NAME = 'dra-carla-landing-v3';
-const LANDING_CACHE = 'landing-assets-v1';
+// EMERGENCY SERVICE WORKER v4 - Ultra Aggressive Caching
+const CACHE_NAME = 'emergency-cache-v4';
+const LANDING_CACHE = 'emergency-landing-v4';
+const STATIC_CACHE = 'emergency-static-v4';
 
 // Critical landing page resources
 const landingResources = [
@@ -142,22 +143,37 @@ self.addEventListener('fetch', event => {
     return;
   }
   
-  // CSS/JS - Stale While Revalidate
-  if (staticAssets.some(asset => url.includes(asset))) {
+  // CSS/JS Assets - EMERGENCY Cache First Strategy
+  if (url.includes('/assets/') || staticAssets.some(asset => url.includes(asset))) {
     event.respondWith(
       caches.match(request)
         .then(response => {
-          const fetchPromise = fetch(request).then(fetchResponse => {
+          if (response) {
+            return response;
+          }
+          
+          return fetch(request).then(fetchResponse => {
             if (fetchResponse.status === 200) {
-              caches.open(CACHE_NAME).then(cache => {
-                cache.put(request, fetchResponse.clone());
+              // Add aggressive cache headers
+              const headers = new Headers(fetchResponse.headers);
+              headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+              
+              const optimizedResponse = new Response(fetchResponse.body, {
+                status: fetchResponse.status,
+                statusText: fetchResponse.statusText,
+                headers: headers
               });
+              
+              caches.open(STATIC_CACHE).then(cache => {
+                cache.put(request, optimizedResponse.clone());
+              });
+              
+              return optimizedResponse;
             }
             return fetchResponse;
           });
-          
-          return response || fetchPromise;
         })
+        .catch(() => caches.match(request))
     );
     return;
   }
