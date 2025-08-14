@@ -91,12 +91,8 @@ const ClareamentoCTA: React.FC<ClareamentoCTAProps> = ({
               <div className="text-white/80 text-sm">Pacientes Satisfeitos</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-white">98%</div>
-              <div className="text-white/80 text-sm">Satisfação</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-white">12x</div>
-              <div className="text-white/80 text-sm">Sem Juros</div>
+              <div className="text-2xl font-bold text-white">8</div>
+              <div className="text-white/80 text-sm">Anos dentista militar</div>
             </div>
           </div>
         </div>
