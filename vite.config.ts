@@ -17,6 +17,10 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      // Fix lodash default export issues for Contentful SDK
+      'lodash/isString': 'lodash/isString.js',
+      'lodash/isPlainObject': 'lodash/isPlainObject.js',
+      'lodash/throttle': 'lodash/throttle.js',
     },
   },
   define: {
