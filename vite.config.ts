@@ -112,7 +112,13 @@ export default defineConfig(({ mode }) => ({
     include: [
       'react',
       'react-dom',
-      'process'
+      'process',
+      // Include lodash modules to fix Contentful SDK imports
+      'lodash/isString',
+      'lodash/isPlainObject', 
+      'lodash/throttle',
+      'lodash/isFunction',
+      'lodash/isNumber'
     ],
     exclude: [
       'contentful',
