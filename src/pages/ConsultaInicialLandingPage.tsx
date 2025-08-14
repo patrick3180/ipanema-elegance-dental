@@ -5,30 +5,22 @@ import { consultaInicialConfig } from '@/config/consultaInicialConfig';
 import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
 import useScrollTracking from '@/hooks/useScrollTracking';
 
-// Performance Components (eager loading for critical path)
-import UltraFastServerOptimizer from '@/components/performance/UltraFastServerOptimizer';
-import CriticalCSSOptimizer from '@/components/performance/CriticalCSSOptimizer';
-import NonCriticalCSSLoader from '@/components/performance/NonCriticalCSSLoader';
-import AsyncScriptManager from '@/components/performance/AsyncScriptManager';
+// Performance Components (critical path)
+import CriticalCSSInline from '@/components/performance/CriticalCSSInline';
+import LazySection from '@/components/performance/LazySection';
 
 // Critical above-the-fold components (eager loading)
 import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
 import ConsultaInicialHero from '@/components/landing/consulta/ConsultaInicialHero';
-import ConsultaInicialProblem from '@/components/landing/consulta/ConsultaInicialProblem';
-import ConsultaInicialGuide from '@/components/landing/consulta/ConsultaInicialGuide';
 
 // Lazy-loaded components for below-the-fold content
+const ConsultaInicialProblem = lazy(() => import('@/components/landing/consulta/ConsultaInicialProblem'));
+const ConsultaInicialGuide = lazy(() => import('@/components/landing/consulta/ConsultaInicialGuide'));
 const ConsultaInicialSocialProof = lazy(() => import('@/components/landing/consulta/ConsultaInicialSocialProof'));
 const ConsultaInicialFAQ = lazy(() => import('@/components/landing/consulta/ConsultaInicialFAQ'));
 const ConsultaInicialCTA = lazy(() => import('@/components/landing/consulta/ConsultaInicialCTA'));
 const ClareamentoFooter = lazy(() => import('@/components/landing/clareamento/ClareamentoFooter'));
 const FloatingWhatsApp = lazy(() => import('@/components/landing/FloatingWhatsApp'));
-
-// Skeleton Components for lazy loading
-import SocialProofSkeleton from '@/components/skeleton/SocialProofSkeleton';
-import FAQSkeleton from '@/components/skeleton/FAQSkeleton';
-import FooterSkeleton from '@/components/skeleton/FooterSkeleton';
-import WhatsAppSkeleton from '@/components/skeleton/WhatsAppSkeleton';
 
 const ConsultaInicialLandingPage = () => {
   // Critical image preloading for LCP optimization
@@ -43,18 +35,47 @@ const ConsultaInicialLandingPage = () => {
     // Capture GCLID for conversion tracking
     captureGCLID();
     
-    // Push page_view event to dataLayer for GTM
-    if (window.dataLayer) {
-      window.dataLayer.push({
-        event: 'page_view',
-        page_title: consultaInicialConfig.seo.title,
-        page_location: window.location.href,
-        page_path: '/lp/consulta-inicial',
-        campaign: consultaInicialConfig.campaign,
-        ad_group: consultaInicialConfig.messageMatch.adGroup,
-        keyword: consultaInicialConfig.messageMatch.keyword
-      });
-    }
+    // Minimal GTM loading - defer to avoid blocking
+    const loadGTM = () => {
+      if (typeof window !== 'undefined' && !window.dataLayer) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(...args: any[]) {
+          window.dataLayer.push(arguments);
+        }
+        window.gtag = gtag;
+        
+        gtag('js', new Date());
+        gtag('config', consultaInicialConfig.tracking.gtagId, {
+          send_page_view: false
+        });
+
+        // Push page_view event
+        window.dataLayer.push({
+          event: 'page_view',
+          page_title: consultaInicialConfig.seo.title,
+          page_location: window.location.href,
+          page_path: '/lp/consulta-inicial',
+          campaign: consultaInicialConfig.campaign,
+          ad_group: consultaInicialConfig.messageMatch.adGroup,
+          keyword: consultaInicialConfig.messageMatch.keyword
+        });
+      }
+    };
+
+    // Load GTM after interaction or 3 seconds
+    const events = ['scroll', 'click', 'touchstart'];
+    const loadOnEvent = () => {
+      loadGTM();
+      events.forEach(event => document.removeEventListener(event, loadOnEvent));
+    };
+    
+    events.forEach(event => document.addEventListener(event, loadOnEvent, { once: true }));
+    const timer = setTimeout(loadGTM, 3000);
+    
+    return () => {
+      clearTimeout(timer);
+      events.forEach(event => document.removeEventListener(event, loadOnEvent));
+    };
   }, []);
 
   // Production scroll tracking
@@ -65,36 +86,29 @@ const ConsultaInicialLandingPage = () => {
 
   return (
     <>
-      {/* Critical SEO and Performance Head Tags */}
+      {/* Optimized SEO Head Tags */}
       <Helmet>
         {/* Primary Meta Tags */}
         <title>{consultaInicialConfig.seo.title}</title>
-        <meta name="title" content={consultaInicialConfig.seo.title} />
         <meta name="description" content={consultaInicialConfig.seo.description} />
         <meta name="keywords" content={consultaInicialConfig.seo.keywords?.join(', ')} />
         <meta name="robots" content="index, follow" />
-        <meta name="language" content="Portuguese" />
-        <meta name="author" content="Dra. Carla Christoph" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-        {/* Critical CSS - Only above-the-fold styles */}
-        <style type="text/css">{`
-          body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
-          .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
-          @media (min-width: 1024px) { .container { padding: 0 2rem; } }
-        `}</style>
+        {/* Critical Resource Preloads - Only essentials */}
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="//api.whatsapp.com" />
 
-        {/* Critical Resource Preloads */}
-        <link rel="preload" href="/lovable-uploads/RIT08058-vertical-doutora-site.webp" as="image" type="image/webp" fetchPriority="high" />
-        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://api.whatsapp.com" />
-        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-
-        {/* Deferred CSS Loading */}
-        <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        
-        {/* Deferred Scripts */}
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${consultaInicialConfig.tracking.gtagId}`}></script>
+        {/* Deferred font loading to avoid blocking */}
+        <link 
+          rel="preload" 
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" 
+          as="style" 
+          onLoad={(e: any) => { e.target.onload = null; e.target.rel = 'stylesheet'; }}
+        />
+        <noscript>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+        </noscript>
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
@@ -133,19 +147,8 @@ const ConsultaInicialLandingPage = () => {
         </script>
       </Helmet>
 
-      {/* Performance Optimization Components */}
-      <UltraFastServerOptimizer 
-        targetTTFB={200}
-        enableEdgeOptimization={true}
-      />
-      <CriticalCSSOptimizer 
-        inlineStyles={`
-          .hero-section { contain: layout style paint; }
-          .hero-image-container { aspect-ratio: 1024/1365; will-change: transform; }
-          .benefits-grid { contain: layout; }
-        `} 
-      />
-      <AsyncScriptManager gtmId={consultaInicialConfig.tracking.gtmId} />
+      {/* Critical CSS Inlining */}
+      <CriticalCSSInline />
 
       {/* Page Content */}
       <main className="min-h-screen bg-white">
@@ -167,64 +170,106 @@ const ConsultaInicialLandingPage = () => {
           whatsappMessage={consultaInicialConfig.whatsapp.message}
         />
 
-        <ConsultaInicialProblem
-          title={consultaInicialConfig.problem.title}
-          description={consultaInicialConfig.problem.description}
-          problems={consultaInicialConfig.problem.problems}
-        />
+        {/* Lazy-loaded Below-the-fold Content with Intersection Observer */}
+        <LazySection 
+          fallback={<div className="h-96 bg-gray-50 animate-pulse" />}
+          threshold={0.1}
+          rootMargin="100px"
+        >
+          <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+            <ConsultaInicialProblem
+              title={consultaInicialConfig.problem.title}
+              description={consultaInicialConfig.problem.description}
+              problems={consultaInicialConfig.problem.problems}
+            />
+          </Suspense>
+        </LazySection>
 
-        <ConsultaInicialGuide
-          title={consultaInicialConfig.guide.title}
-          subtitle={consultaInicialConfig.guide.subtitle}
-          steps={consultaInicialConfig.guide.steps}
-        />
+        <LazySection 
+          fallback={<div className="h-96 bg-white animate-pulse" />}
+          threshold={0.1}
+          rootMargin="100px"
+        >
+          <Suspense fallback={<div className="h-96 bg-white" />}>
+            <ConsultaInicialGuide
+              title={consultaInicialConfig.guide.title}
+              subtitle={consultaInicialConfig.guide.subtitle}
+              steps={consultaInicialConfig.guide.steps}
+            />
+          </Suspense>
+        </LazySection>
 
-        {/* Lazy-loaded Below-the-fold Content */}
-        <Suspense fallback={<SocialProofSkeleton />}>
-          <ConsultaInicialSocialProof
-            title={consultaInicialConfig.socialProof.title}
-            testimonials={consultaInicialConfig.socialProof.testimonials}
-            stats={consultaInicialConfig.socialProof.stats}
-          />
-        </Suspense>
+        <LazySection 
+          fallback={<div className="h-96 bg-gray-50 animate-pulse" />}
+          threshold={0.1}
+          rootMargin="50px"
+        >
+          <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+            <ConsultaInicialSocialProof
+              title={consultaInicialConfig.socialProof.title}
+              testimonials={consultaInicialConfig.socialProof.testimonials}
+              stats={consultaInicialConfig.socialProof.stats}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<FAQSkeleton />}>
-          <ConsultaInicialFAQ
-            title={consultaInicialConfig.faq.title}
-            questions={consultaInicialConfig.faq.questions}
-          />
-        </Suspense>
+        <LazySection 
+          fallback={<div className="h-96 bg-white animate-pulse" />}
+          threshold={0.1}
+          rootMargin="50px"
+        >
+          <Suspense fallback={<div className="h-96 bg-white" />}>
+            <ConsultaInicialFAQ
+              title={consultaInicialConfig.faq.title}
+              questions={consultaInicialConfig.faq.questions}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<div className="min-h-[200px] bg-[#381F47]" />}>
-          <ConsultaInicialCTA
-            title={consultaInicialConfig.cta.title}
-            subtitle={consultaInicialConfig.cta.subtitle}
-            buttonText={consultaInicialConfig.cta.buttonText}
-            urgency={consultaInicialConfig.cta.urgency}
-            whatsappNumber={consultaInicialConfig.whatsapp.number}
-            whatsappMessage={consultaInicialConfig.whatsapp.message}
-            campaign={consultaInicialConfig.campaign}
-            messageMatch={consultaInicialConfig.messageMatch}
-          />
-        </Suspense>
+        <LazySection 
+          fallback={<div className="h-32 bg-[#381F47] animate-pulse" />}
+          threshold={0.1}
+        >
+          <Suspense fallback={<div className="h-32 bg-[#381F47]" />}>
+            <ConsultaInicialCTA
+              title={consultaInicialConfig.cta.title}
+              subtitle={consultaInicialConfig.cta.subtitle}
+              buttonText={consultaInicialConfig.cta.buttonText}
+              urgency={consultaInicialConfig.cta.urgency}
+              whatsappNumber={consultaInicialConfig.whatsapp.number}
+              whatsappMessage={consultaInicialConfig.whatsapp.message}
+              campaign={consultaInicialConfig.campaign}
+              messageMatch={consultaInicialConfig.messageMatch}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<FooterSkeleton />}>
-          <ClareamentoFooter />
-        </Suspense>
+        <LazySection 
+          fallback={<div className="h-64 bg-[#381F47] animate-pulse" />}
+          threshold={0.1}
+        >
+          <Suspense fallback={<div className="h-64 bg-[#381F47]" />}>
+            <ClareamentoFooter />
+          </Suspense>
+        </LazySection>
 
-        {/* Mobile Floating WhatsApp */}
-        <Suspense fallback={<WhatsAppSkeleton />}>
-          <FloatingWhatsApp
-            phoneNumber={consultaInicialConfig.whatsapp.number}
-            message={consultaInicialConfig.whatsapp.message}
-            campaign={consultaInicialConfig.campaign}
-            messageMatch={consultaInicialConfig.messageMatch}
-          />
-        </Suspense>
+        {/* Mobile Floating WhatsApp - Load after user interaction */}
+        <LazySection 
+          fallback={null}
+          threshold={0}
+          rootMargin="0px"
+        >
+          <Suspense fallback={null}>
+            <FloatingWhatsApp
+              phoneNumber={consultaInicialConfig.whatsapp.number}
+              message={consultaInicialConfig.whatsapp.message}
+              campaign={consultaInicialConfig.campaign}
+              messageMatch={consultaInicialConfig.messageMatch}
+            />
+          </Suspense>
+        </LazySection>
       </main>
 
-      {/* Non-critical CSS loading after main content */}
-      <NonCriticalCSSLoader delay={100} />
     </>
   );
 };

@@ -15,10 +15,11 @@
 [[headers]]
   for = "/lp/consulta-inicial"
   [headers.values]
-    Link = '''</lovable-uploads/RIT08058-vertical-doutora-site.webp>; rel=preload; as=image; type=image/webp; fetchpriority=high, </assets/consulta-inicial-hero-1024.avif>; rel=preload; as=image; type=image/avif; fetchpriority=high, <https://fonts.gstatic.com>; rel=preconnect; crossorigin, <https://api.whatsapp.com>; rel=dns-prefetch, <https://web.whatsapp.com>; rel=dns-prefetch'''
-    Cache-Control = "public, max-age=300, stale-while-revalidate=86400"
+    Link = '''</lovable-uploads/RIT08058-vertical-doutora-site.webp>; rel=preload; as=image; type=image/webp; fetchpriority=high, <https://fonts.gstatic.com>; rel=preconnect; crossorigin, <https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap>; rel=preload; as=style'''
+    Cache-Control = "public, max-age=600, stale-while-revalidate=86400"
     Content-Encoding = "br, gzip"
-    Server-Timing = "cache;desc=MISS"
+    Server-Timing = "cache;desc=HIT"
+    Vary = "Accept-Encoding"
 
 [[headers]]
   for = "/*.webp"

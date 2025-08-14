@@ -6,8 +6,10 @@ const LANDING_CACHE = 'landing-assets-v1';
 const landingResources = [
   '/',
   '/lp/clareamento-dental',
+  '/lp/consulta-inicial',
   '/src/index.css',
-  '/lovable-uploads/a1389f08-ef82-4c41-abe2-f8ed05848f80.png', // Hero image
+  '/lovable-uploads/RIT08058-vertical-doutora-site.webp', // Consulta inicial hero
+  '/lovable-uploads/a1389f08-ef82-4c41-abe2-f8ed05848f80.png', // Clareamento hero
   '/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp',
   '/lovable-uploads/164bae76-428b-4fae-a600-ba61172b5dac.png',
   '/lovable-uploads/fef24f70-4659-453e-8fee-79dee34b6220.png'
@@ -82,11 +84,23 @@ self.addEventListener('fetch', event => {
     return;
   }
   
-  // Landing page - Cache First
-  if (url.includes('/lp/clareamento-dental')) {
+  // Landing pages - Cache First
+  if (url.includes('/lp/clareamento-dental') || url.includes('/lp/consulta-inicial')) {
     event.respondWith(
       caches.match(request, { cacheName: LANDING_CACHE })
-        .then(response => response || fetch(request))
+        .then(response => {
+          if (response) {
+            return response;
+          }
+          return fetch(request).then(fetchResponse => {
+            if (fetchResponse.status === 200) {
+              caches.open(LANDING_CACHE).then(cache => {
+                cache.put(request, fetchResponse.clone());
+              });
+            }
+            return fetchResponse;
+          });
+        })
         .catch(() => caches.match(request))
     );
     return;
