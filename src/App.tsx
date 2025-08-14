@@ -39,6 +39,7 @@ const TermsOfUse = lazy(() => import("./pages/TermsOfUse"));
 
 // Landing Page Template
 const LandingPageTemplate = lazy(() => import("./pages/LandingPageTemplate"));
+const ClareamentoLandingPage = lazy(() => import("./pages/ClareamentoLandingPage"));
 
 // QueryClient otimizado
 const queryClient = new QueryClient({
@@ -113,11 +114,12 @@ function AppContent() {
           <Route path="/seo-dashboard" element={<SEODashboardPage />} />
 
           {/* Landing Page Template - Isolated routes */}
-          <Route path="/lp/template" element={<LandingPageTemplate />} />
-          <Route path="/lp/:template" element={<LandingPageTemplate />} />
+            <Route path="/lp/template" element={<LandingPageTemplate />} />
+            <Route path="/lp/clareamento-dental" element={<ClareamentoLandingPage />} />
+            <Route path="/lp/:template" element={<LandingPageTemplate />} />
 
-          {/* 404 Route */}
-          <Route path="*" element={<NotFound />} />
+            {/* 404 Route */}
+            <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
       
