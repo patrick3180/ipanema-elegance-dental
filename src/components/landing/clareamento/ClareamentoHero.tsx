@@ -27,16 +27,16 @@ const ClareamentoHero: React.FC<ClareamentoHeroProps> = ({
     const avifLink = document.createElement('link');
     avifLink.rel = 'preload';
     avifLink.as = 'image';
-    avifLink.href = backgroundImage.replace('.png', '.avif');
+    avifLink.href = backgroundImage.replace('.webp', '.avif');
     avifLink.type = 'image/avif';
     avifLink.fetchPriority = 'high';
     document.head.appendChild(avifLink);
 
-    // Preload WebP fallback
+    // Preload WebP original (already optimized)
     const webpLink = document.createElement('link');
     webpLink.rel = 'preload';
     webpLink.as = 'image';
-    webpLink.href = backgroundImage.replace('.png', '.webp');
+    webpLink.href = backgroundImage;
     webpLink.type = 'image/webp';
     webpLink.fetchPriority = 'high';
     document.head.appendChild(webpLink);
@@ -45,7 +45,7 @@ const ClareamentoHero: React.FC<ClareamentoHeroProps> = ({
     const pngLink = document.createElement('link');
     pngLink.rel = 'preload';
     pngLink.as = 'image';
-    pngLink.href = backgroundImage;
+    pngLink.href = backgroundImage.replace('.webp', '.png');
     pngLink.type = 'image/png';
     pngLink.fetchPriority = 'high';
     document.head.appendChild(pngLink);
@@ -130,15 +130,15 @@ const ClareamentoHero: React.FC<ClareamentoHeroProps> = ({
             <div className="relative">
               <picture>
                 <source 
-                  srcSet={backgroundImage.replace('.png', '.avif')} 
+                  srcSet={backgroundImage.replace('.webp', '.avif')} 
                   type="image/avif"
                 />
                 <source 
-                  srcSet={backgroundImage.replace('.png', '.webp')} 
+                  srcSet={backgroundImage} 
                   type="image/webp"
                 />
                 <img
-                  src={backgroundImage}
+                  src={backgroundImage.replace('.webp', '.png')}
                   alt="Dra. Carla Christoph - Especialista em Clareamento Dental"
                   loading="eager"
                   fetchPriority="high"
