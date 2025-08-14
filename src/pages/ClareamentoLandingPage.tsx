@@ -13,6 +13,7 @@ import useScrollTracking from '@/hooks/useScrollTracking';
 import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
 import CriticalCSSOptimizer from '@/components/performance/CriticalCSSOptimizer';
 import AsyncScriptManager from '@/components/performance/AsyncScriptManager';
+import FastServerResponseOptimizer from '@/components/performance/FastServerResponseOptimizer';
 
 // Aggressive lazy loading for better LCP performance
 const ClareamentoSocialProof = React.lazy(() => 
@@ -46,9 +47,9 @@ const ClareamentoLandingPage: React.FC = () => {
   // Preload critical images with AVIF priority
   useCriticalImagePreload({
     images: [
-      { src: '/src/assets/hero-clareamento-1024.avif', width: 1024 },
-      { src: '/src/assets/hero-clareamento-768.avif', width: 768 },
-      { src: '/src/assets/hero-clareamento-512.avif', width: 512 }
+      { src: '/lovable-uploads/vertical-de-jaleco-1024.avif', width: 1024 },
+      { src: '/lovable-uploads/vertical-de-jaleco-768.avif', width: 768 },
+      { src: '/lovable-uploads/vertical-de-jaleco-480.avif', width: 480 }
     ],
     enabled: true
   });
@@ -84,7 +85,7 @@ const ClareamentoLandingPage: React.FC = () => {
         <meta name="keywords" content={clareamentoConfig.seo.keywords?.join(', ')} />
         <meta name="robots" content="index, follow" />
         
-        {/* Preload critical fonts */}
+        {/* Single critical font preload */}
         <link
           rel="preload"
           href="https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDXbtM.woff2"
@@ -92,61 +93,26 @@ const ClareamentoLandingPage: React.FC = () => {
           type="font/woff2"
           crossOrigin="anonymous"
         />
-        <link
-          rel="preload"
-          href="https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Uw-.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
 
-        {/* Inline critical CSS for LCP optimization */}
+        {/* Minimal critical CSS for LCP optimization */}
         <style>{`
-          /* Critical above-the-fold styles */
+          /* Essential above-the-fold styles only */
           .bg-\\[\\#CFCBB4\\]{background-color:#CFCBB4}
           .text-\\[\\#381F47\\]{color:#381F47}
-          .text-\\[\\#333333\\]{color:#333333}
-          .text-\\[\\#B3955F\\]{color:#B3955F}
           .bg-\\[\\#381F47\\]{background-color:#381F47}
           .hover\\:bg-\\[\\#2d1738\\]:hover{background-color:#2d1738}
-          .bg-white\\/50{background-color:rgba(255,255,255,0.5)}
           .pt-\\[90px\\]{padding-top:90px}
           .font-serif{font-family:'Playfair Display',Georgia,serif}
           .font-sans{font-family:'Montserrat',system-ui,sans-serif}
-          
-          /* Critical layout */
           .critical-hero{min-height:100vh;display:flex;align-items:center}
-          .critical-text{font-display:swap}
           .critical-image{aspect-ratio:400/600;object-fit:cover}
-          
-          /* Performance optimizations */
-          img[loading="eager"]{font-display:swap}
-          .shadow-xl{box-shadow:0 20px 25px -5px rgba(0,0,0,0.1)}
+          .flex{display:flex}.items-center{align-items:center}
+          .text-white{color:#fff}.w-full{width:100%}
           .transition-all{transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
-          .container{width:100%;max-width:1200px;margin:0 auto;padding:0 1rem}
-          .grid{display:grid}.flex{display:flex}.items-center{align-items:center}
-          .justify-center{justify-content:center}.text-white{color:#fff}
-          .rounded-lg{border-radius:0.5rem}.px-4{padding:0 1rem}
-          .py-4{padding:1rem 0}.text-lg{font-size:1.125rem}
-          .text-3xl{font-size:1.875rem}.font-bold{font-weight:700}
-          .w-full{width:100%}.h-auto{height:auto}.space-y-4>*+*{margin-top:1rem}
-          .gap-4{gap:1rem}
-          
-          @media(min-width:768px){
-            .md\\:text-4xl{font-size:2.25rem}
-            .md\\:text-xl{font-size:1.25rem}
-            .md\\:grid-cols-2{grid-template-columns:repeat(2,1fr)}
-          }
-          @media(min-width:1024px){
-            .lg\\:text-5xl{font-size:3rem}
-            .lg\\:w-3\\/5{width:60%}
-            .lg\\:w-2\\/5{width:40%}
-            .lg\\:flex-row{flex-direction:row}
-          }
         `}</style>
         
         {/* Preload critical AVIF hero image with highest priority */}
-        <link rel="preload" as="image" href="/src/assets/hero-clareamento-1024.avif" type="image/avif" fetchPriority="high" />
+        <link rel="preload" as="image" href="/lovable-uploads/vertical-de-jaleco-1024.avif" type="image/avif" fetchPriority="high" />
         
         {/* DNS prefetch and preconnect for external resources */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -155,21 +121,6 @@ const ClareamentoLandingPage: React.FC = () => {
         <link rel="dns-prefetch" href="//web.whatsapp.com" />
         <link rel="dns-prefetch" href="//www.googletagmanager.com" />
         
-        {/* Preload critical fonts */}
-        <link 
-          rel="preload" 
-          as="font" 
-          href="https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDXbtM.woff2" 
-          type="font/woff2" 
-          crossOrigin="anonymous"
-        />
-        <link 
-          rel="preload" 
-          as="font" 
-          href="https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Uw-.woff2" 
-          type="font/woff2" 
-          crossOrigin="anonymous"
-        />
         
         {/* Font CSS with font-display: swap */}
         <style dangerouslySetInnerHTML={{ __html: `
@@ -238,6 +189,7 @@ const ClareamentoLandingPage: React.FC = () => {
       </Helmet>
 
       {/* Performance optimization components */}
+      <FastServerResponseOptimizer />
       <CriticalCSSOptimizer 
         inlineStyles=""
         nonCriticalStylesheets={['/src/index.css']}
