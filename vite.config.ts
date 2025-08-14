@@ -19,6 +19,10 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  define: {
+    global: 'globalThis',
+    'process.env': 'import.meta.env'
+  },
   build: {
     // Configurações otimizadas para produção
     target: 'es2020',
@@ -43,9 +47,8 @@ export default defineConfig(({ mode }) => ({
           'tracking': ['@/utils/gclid'],
           'performance': ['@/hooks/useCriticalImagePreload'],
           
-          // Chunks para outras páginas
+          // Chunks para outras páginas (contentful só carrega quando necessário)
           'vendor': ['react-router-dom'],
-          'contentful': ['contentful'],
           'ui-core': [
             '@radix-ui/react-dialog', 
             '@radix-ui/react-dropdown-menu', 
@@ -101,9 +104,7 @@ export default defineConfig(({ mode }) => ({
       'lucide-react'
     ],
     exclude: [
-      '@tanstack/react-query',
-      'contentful',
-      'recharts'
+      // Contentful will be loaded dynamically when needed
     ]
   },
 }))
