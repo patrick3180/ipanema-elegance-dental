@@ -20,17 +20,31 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    // Configurações seguras e otimizadas
-    target: 'es2015',
-    cssCodeSplit: true,
-    chunkSizeWarningLimit: 1500,
+    // Configurações otimizadas para produção
+    target: 'es2020',
+    cssCodeSplit: false, // CSS inline para landing page
+    chunkSizeWarningLimit: 800,
+    assetsInlineLimit: 8192,
     
     rollupOptions: {
       output: {
-        // Manter a estrutura que funcionou antes
+        // Bundle splitting específico para landing page
         manualChunks: {
-          'vendor': ['react', 'react-dom'],
-          'router': ['react-router-dom'],
+          // Core chunks otimizados
+          'landing-vendor': ['react', 'react-dom'],
+          'landing-icons': ['lucide-react'],
+          'landing-core': [
+            'react-helmet-async'
+          ],
+          'landing-lazy': [
+            '@radix-ui/react-accordion',
+            '@radix-ui/react-collapsible'
+          ],
+          'tracking': ['@/utils/gclid'],
+          'performance': ['@/hooks/useCriticalImagePreload'],
+          
+          // Chunks para outras páginas
+          'vendor': ['react-router-dom'],
           'contentful': ['contentful'],
           'ui-core': [
             '@radix-ui/react-dialog', 
@@ -40,34 +54,37 @@ export default defineConfig(({ mode }) => ({
             '@radix-ui/react-label'
           ],
           'ui-extra': [
-            '@radix-ui/react-accordion',
             '@radix-ui/react-alert-dialog',
             '@radix-ui/react-avatar',
-            '@radix-ui/react-checkbox',
-            '@radix-ui/react-collapsible'
+            '@radix-ui/react-checkbox'
           ],
           'query': ['@tanstack/react-query'],
           'charts': ['recharts'],
-          'icons': ['lucide-react'],
           'utils': ['class-variance-authority', 'clsx', 'tailwind-merge'],
         },
+        
+        // Nomes determinísticos para melhor cache
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
       },
     },
     
-    // Minificação segura
+    // Minificação agressiva
     minify: mode === 'production' ? 'terser' : false,
     terserOptions: mode === 'production' ? {
       compress: {
         drop_console: true,
         drop_debugger: true,
-        pure_funcs: ['console.log'],
+        pure_funcs: ['console.log', 'console.info', 'console.warn'],
+        unsafe_proto: true,
       },
       mangle: {
         safari10: true,
       },
     } : undefined,
     
-    sourcemap: mode === 'development',
+    sourcemap: false,
   },
   
   preview: {
@@ -78,11 +95,15 @@ export default defineConfig(({ mode }) => ({
   
   optimizeDeps: {
     include: [
-      'react', 
-      'react-dom', 
-      'react-router-dom',
-      '@radix-ui/react-dialog',
-      '@radix-ui/react-dropdown-menu'
+      'react/jsx-runtime',
+      'react-dom/client',
+      'react-helmet-async',
+      'lucide-react'
     ],
+    exclude: [
+      '@tanstack/react-query',
+      'contentful',
+      'recharts'
+    ]
   },
 }))

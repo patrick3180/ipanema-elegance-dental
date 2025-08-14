@@ -27,7 +27,9 @@ const ClareamentoHeader: React.FC<ClareamentoHeaderProps> = ({
       window.gtag('event', 'conversion', {
         'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
         'event_callback': function() {
-          console.log('Google Ads conversion tracked - Header WhatsApp');
+          if (process.env.NODE_ENV === 'development') {
+            console.log('Google Ads conversion tracked - Header WhatsApp');
+          }
         }
       });
     }

@@ -35,7 +35,9 @@ const ClareamentoCTA: React.FC<ClareamentoCTAProps> = ({
       window.gtag('event', 'conversion', {
         'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
         'event_callback': function() {
-          console.log('Google Ads conversion tracked - Final CTA');
+          if (process.env.NODE_ENV === 'development') {
+            console.log('Google Ads conversion tracked - Final CTA');
+          }
         }
       });
     }
