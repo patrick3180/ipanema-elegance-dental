@@ -8,9 +8,7 @@
 [[headers]]
   for = "/lp/clareamento-dental"
   [headers.values]
-    Link = '''</lovable-uploads/Vertical de jaleco.avif>; rel=preload; as=image; type=image/avif,
-             </lovable-uploads/Vertical de jaleco.webp>; rel=preload; as=image; type=image/webp,
-             </lovable-uploads/Vertical de jaleco.png>; rel=preload; as=image; type=image/png'''
+    Link = '''</lovable-uploads/Vertical de jaleco.webp>; rel=preload; as=image; type=image/webp; fetchpriority=high'''
 
 [[headers]]
   for = "/*.webp"
