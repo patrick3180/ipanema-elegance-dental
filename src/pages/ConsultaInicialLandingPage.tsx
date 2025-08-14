@@ -99,16 +99,13 @@ const ConsultaInicialLandingPage = () => {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="dns-prefetch" href="//api.whatsapp.com" />
 
-        {/* Deferred font loading to avoid blocking */}
+        {/* Optimized font loading - load asynchronously */}
         <link 
-          rel="preload" 
+          rel="stylesheet" 
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" 
-          as="style" 
-          onLoad={(e: any) => { e.target.onload = null; e.target.rel = 'stylesheet'; }}
+          media="print"
+          onLoad={(e: any) => { e.target.media = 'all'; }}
         />
-        <noscript>
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
-        </noscript>
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
