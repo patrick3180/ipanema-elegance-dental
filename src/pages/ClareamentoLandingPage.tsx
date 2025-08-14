@@ -1,22 +1,38 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import ClareamentoHeader from '@/components/landing/clareamento/ClareamentoHeader';
 import ClareamentoHero from '@/components/landing/clareamento/ClareamentoHero';
 import ClareamentoProblem from '@/components/landing/clareamento/ClareamentoProblem';
 import ClareamentoGuide from '@/components/landing/clareamento/ClareamentoGuide';
 import ClareamentoCTA from '@/components/landing/clareamento/ClareamentoCTA';
-import { MobileOptimizer } from '@/components/performance/MobileOptimizer';
+import CriticalCSSInliner from '@/components/performance/CriticalCSSInliner';
 import NonCriticalCSSLoader from '@/components/performance/NonCriticalCSSLoader';
 import { clareamentoConfig } from '@/config/clareamentoConfig';
 import { captureGCLID } from '@/utils/gclid';
 import useScrollTracking from '@/hooks/useScrollTracking';
 import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
 
-// Direct imports for debugging publication issue
-import ClareamentoSocialProof from '@/components/landing/clareamento/ClareamentoSocialProof';
-import ClareamentoFAQ from '@/components/landing/clareamento/ClareamentoFAQ';
-import ClareamentoFooter from '@/components/landing/clareamento/ClareamentoFooter';
-import FloatingWhatsApp from '@/components/landing/FloatingWhatsApp';
+// Aggressive lazy loading for better LCP performance
+const ClareamentoSocialProof = React.lazy(() => 
+  import('@/components/landing/clareamento/ClareamentoSocialProof').then(module => ({ 
+    default: module.default 
+  }))
+);
+const ClareamentoFAQ = React.lazy(() => 
+  import('@/components/landing/clareamento/ClareamentoFAQ').then(module => ({ 
+    default: module.default 
+  }))
+);
+const ClareamentoFooter = React.lazy(() => 
+  import('@/components/landing/clareamento/ClareamentoFooter').then(module => ({ 
+    default: module.default 
+  }))
+);
+const FloatingWhatsApp = React.lazy(() => 
+  import('@/components/landing/FloatingWhatsApp').then(module => ({ 
+    default: module.default 
+  }))
+);
 
 // Import skeletons
 import SocialProofSkeleton from '@/components/skeleton/SocialProofSkeleton';
@@ -25,10 +41,10 @@ import FooterSkeleton from '@/components/skeleton/FooterSkeleton';
 import WhatsAppSkeleton from '@/components/skeleton/WhatsAppSkeleton';
 
 const ClareamentoLandingPage: React.FC = () => {
-  // Mobile-first critical image preloading
+  // Preload critical images
   useCriticalImagePreload({
     images: [
-      { src: clareamentoConfig.hero.backgroundImage!, width: 400 } // Mobile-first sizing
+      { src: clareamentoConfig.hero.backgroundImage!, width: 400 }
     ],
     enabled: true
   });
@@ -80,55 +96,59 @@ const ClareamentoLandingPage: React.FC = () => {
           crossOrigin="anonymous"
         />
 
-        {/* Mobile-first critical CSS */}
-        <style dangerouslySetInnerHTML={{
-          __html: `
-            /* Mobile-first critical CSS */
-            *{box-sizing:border-box}
-            body{margin:0;padding:0;font-family:system-ui,sans-serif}
-            .hero-section{min-height:100vh;display:flex;align-items:center;background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%)}
-            @media(max-width:767px){
-              .hero-section{min-height:100vh;padding:1rem}
-              .hero-text{font-size:1.5rem;line-height:1.3}
-            }
-            .hero-loading{background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%)}
-            
-            /* Critical performance styles */
-            .bg-\\[\\#CFCBB4\\]{background-color:#CFCBB4}
-            .text-\\[\\#381F47\\]{color:#381F47}
-            .bg-\\[\\#381F47\\]{background-color:#381F47}
-            .text-white{color:#fff}
-            .pt-\\[90px\\]{padding-top:90px}
-            .container{width:100%;max-width:1200px;margin:0 auto;padding:0 1rem}
-            .flex{display:flex}.items-center{align-items:center}
-            .w-full{width:100%}.h-auto{height:auto}
-            .rounded-lg{border-radius:0.5rem}
-            .text-3xl{font-size:1.875rem}.font-bold{font-weight:700}
-            .shadow-xl{box-shadow:0 20px 25px -5px rgba(0,0,0,0.1)}
-            .transition-all{transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
-            
-            @media(min-width:768px){
-              .lg\\:flex-row{flex-direction:row}
-              .lg\\:w-3\\/5{width:60%}
-              .lg\\:w-2\\/5{width:40%}
-            }
-          `
-        }} />
+        {/* Inline critical CSS for LCP optimization */}
+        <style>{`
+          /* Critical above-the-fold styles */
+          .bg-\\[\\#CFCBB4\\]{background-color:#CFCBB4}
+          .text-\\[\\#381F47\\]{color:#381F47}
+          .text-\\[\\#333333\\]{color:#333333}
+          .text-\\[\\#B3955F\\]{color:#B3955F}
+          .bg-\\[\\#381F47\\]{background-color:#381F47}
+          .hover\\:bg-\\[\\#2d1738\\]:hover{background-color:#2d1738}
+          .bg-white\\/50{background-color:rgba(255,255,255,0.5)}
+          .pt-\\[90px\\]{padding-top:90px}
+          .font-serif{font-family:'Playfair Display',Georgia,serif}
+          .font-sans{font-family:'Montserrat',system-ui,sans-serif}
+          
+          /* Critical layout */
+          .critical-hero{min-height:100vh;display:flex;align-items:center}
+          .critical-text{font-display:swap}
+          .critical-image{aspect-ratio:400/600;object-fit:cover}
+          
+          /* Performance optimizations */
+          img[loading="eager"]{font-display:swap}
+          .shadow-xl{box-shadow:0 20px 25px -5px rgba(0,0,0,0.1)}
+          .transition-all{transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+          .container{width:100%;max-width:1200px;margin:0 auto;padding:0 1rem}
+          .grid{display:grid}.flex{display:flex}.items-center{align-items:center}
+          .justify-center{justify-content:center}.text-white{color:#fff}
+          .rounded-lg{border-radius:0.5rem}.px-4{padding:0 1rem}
+          .py-4{padding:1rem 0}.text-lg{font-size:1.125rem}
+          .text-3xl{font-size:1.875rem}.font-bold{font-weight:700}
+          .w-full{width:100%}.h-auto{height:auto}.space-y-4>*+*{margin-top:1rem}
+          .gap-4{gap:1rem}
+          
+          @media(min-width:768px){
+            .md\\:text-4xl{font-size:2.25rem}
+            .md\\:text-xl{font-size:1.25rem}
+            .md\\:grid-cols-2{grid-template-columns:repeat(2,1fr)}
+          }
+          @media(min-width:1024px){
+            .lg\\:text-5xl{font-size:3rem}
+            .lg\\:w-3\\/5{width:60%}
+            .lg\\:w-2\\/5{width:40%}
+            .lg\\:flex-row{flex-direction:row}
+          }
+        `}</style>
         
         {/* Preload critical hero image with highest priority */}
         <link rel="preload" as="image" href="/lovable-uploads/Vertical de jaleco.avif" type="image/avif" fetchPriority="high" />
         <link rel="preload" as="image" href="/lovable-uploads/Vertical de jaleco.webp" type="image/webp" />
         
-        {/* Critical resource hints for mobile performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* DNS prefetch for external resources */}
         <link rel="dns-prefetch" href="//api.whatsapp.com" />
         <link rel="dns-prefetch" href="//web.whatsapp.com" />
-        
-        {/* Service Worker Registration */}
-        <script dangerouslySetInnerHTML={{
-          __html: `if('serviceWorker'in navigator){navigator.serviceWorker.register('/sw.js')}`
-        }} />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
         
         {/* Font CSS with font-display: swap */}
         <style dangerouslySetInnerHTML={{ __html: `
@@ -194,8 +214,6 @@ const ClareamentoLandingPage: React.FC = () => {
         )}
       </Helmet>
 
-      <MobileOptimizer heroImage={clareamentoConfig.hero.backgroundImage!} />
-      
       <div className="min-h-screen">
         {/* Header */}
         <ClareamentoHeader 
@@ -229,18 +247,22 @@ const ClareamentoLandingPage: React.FC = () => {
             subtitle={clareamentoConfig.guide.subtitle}
           />
 
-          {/* Social Proof Section */}
-          <ClareamentoSocialProof
-            title={clareamentoConfig.socialProof.title}
-            testimonials={clareamentoConfig.socialProof.testimonials}
-            stats={clareamentoConfig.socialProof.stats!}
-          />
+          {/* Social Proof Section - Lazy Loaded */}
+          <Suspense fallback={<SocialProofSkeleton />}>
+            <ClareamentoSocialProof
+              title={clareamentoConfig.socialProof.title}
+              testimonials={clareamentoConfig.socialProof.testimonials}
+              stats={clareamentoConfig.socialProof.stats!}
+            />
+          </Suspense>
 
-          {/* FAQ Section */}
-          <ClareamentoFAQ
-            title={clareamentoConfig.faq.title}
-            questions={clareamentoConfig.faq.questions}
-          />
+          {/* FAQ Section - Lazy Loaded */}
+          <Suspense fallback={<FAQSkeleton />}>
+            <ClareamentoFAQ
+              title={clareamentoConfig.faq.title}
+              questions={clareamentoConfig.faq.questions}
+            />
+          </Suspense>
 
           {/* CTA Section */}
           <ClareamentoCTA
@@ -253,16 +275,20 @@ const ClareamentoLandingPage: React.FC = () => {
           />
         </main>
 
-        {/* Footer */}
-        <ClareamentoFooter />
+        {/* Footer - Lazy Loaded */}
+        <Suspense fallback={<FooterSkeleton />}>
+          <ClareamentoFooter />
+        </Suspense>
 
-        {/* Floating WhatsApp */}
-        <FloatingWhatsApp
-          phoneNumber={clareamentoConfig.whatsapp.number}
-          message={clareamentoConfig.whatsapp.message}
-          campaign={clareamentoConfig.campaign}
-          messageMatch={clareamentoConfig.messageMatch}
-        />
+        {/* Floating WhatsApp - Lazy Loaded */}
+        <Suspense fallback={<WhatsAppSkeleton />}>
+          <FloatingWhatsApp
+            phoneNumber={clareamentoConfig.whatsapp.number}
+            message={clareamentoConfig.whatsapp.message}
+            campaign={clareamentoConfig.campaign}
+            messageMatch={clareamentoConfig.messageMatch}
+          />
+        </Suspense>
 
         {/* Load non-critical CSS after initial render */}
         <NonCriticalCSSLoader 
