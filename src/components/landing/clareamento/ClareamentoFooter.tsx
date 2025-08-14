@@ -15,7 +15,7 @@ const ClareamentoFooter: React.FC = () => {
                 <p className="font-semibold text-lg">Dra. Carla Christoph</p>
                 <p className="text-white/80">CRO-RJ 27509</p>
                 <p className="text-white/80">Especialista em Prótese e Implantodontia</p>
-                <p className="text-white/80">Especialista em Clareamento Dental</p>
+                
               </div>
             </div>
 
@@ -62,10 +62,6 @@ const ClareamentoFooter: React.FC = () => {
                   <span>Atendimento Particular</span>
                 </div>
                 
-                <div className="flex items-center gap-3">
-                  <CreditCard size={18} className="text-[#B3955F]" />
-                  <span>Parcelamento em até 12x</span>
-                </div>
                 
                 <div className="flex items-center gap-3">
                   <CheckCircle size={18} className="text-[#B3955F]" />
@@ -79,7 +75,7 @@ const ClareamentoFooter: React.FC = () => {
                 
                 <div className="flex items-center gap-3">
                   <CheckCircle size={18} className="text-[#B3955F]" />
-                  <span>Resultado Natural Garantido</span>
+                  <span>Resultado Natural</span>
                 </div>
                 
                 <div className="flex items-center gap-3">
@@ -94,31 +90,10 @@ const ClareamentoFooter: React.FC = () => {
           <div className="border-t border-white/20 pt-8">
             {/* Copyright */}
             <div className="text-center text-white/60">
-              <p>&copy; 2024 Dra. Carla Christoph - Todos os direitos reservados</p>
+              <p>&copy; 2025 Dra. Carla Christoph - Todos os direitos reservados</p>
             </div>
           </div>
 
-          {/* Additional Trust Elements */}
-          <div className="mt-8 pt-8 border-t border-white/20">
-            <div className="flex flex-wrap justify-center gap-8 text-center">
-              <div>
-                <div className="text-[#B3955F] font-bold text-lg">CRO-RJ</div>
-                <div className="text-white/80 text-sm">Conselho Regional</div>
-              </div>
-              <div>
-                <div className="text-[#B3955F] font-bold text-lg">ISO 9001</div>
-                <div className="text-white/80 text-sm">Qualidade Certificada</div>
-              </div>
-              <div>
-                <div className="text-[#B3955F] font-bold text-lg">SSL</div>
-                <div className="text-white/80 text-sm">Site Seguro</div>
-              </div>
-              <div>
-                <div className="text-[#B3955F] font-bold text-lg">LGPD</div>
-                <div className="text-white/80 text-sm">Dados Protegidos</div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </footer>
