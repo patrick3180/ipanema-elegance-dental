@@ -1,105 +1,165 @@
-// Service Worker v2 - Cache otimizado
-const CACHE_NAME = 'dra-carla-v2'; // Incrementar versão para forçar update
-const urlsToCache = [
+// Service Worker v3 - Landing Page Optimizado
+const CACHE_NAME = 'dra-carla-landing-v3';
+const LANDING_CACHE = 'landing-assets-v1';
+
+// Critical landing page resources
+const landingResources = [
   '/',
+  '/lp/clareamento-dental',
   '/src/index.css',
-  // APENAS WebP - remover PNG antigo do cache
+  '/lovable-uploads/a1389f08-ef82-4c41-abe2-f8ed05848f80.png', // Hero image
   '/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp',
   '/lovable-uploads/164bae76-428b-4fae-a600-ba61172b5dac.png',
   '/lovable-uploads/fef24f70-4659-453e-8fee-79dee34b6220.png'
 ];
 
-// Lista de arquivos para NÃO cachear (PNG antigo)
+// Assets to cache with different strategies
+const staticAssets = ['/src/index.css'];
+const imageAssets = ['.webp', '.jpg', '.png'];
+
+// Deprecated assets to remove
 const doNotCache = [
   '/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png'
 ];
 
-// Install - cache recursos críticos
+// Install - cache critical landing page resources
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Cache opened v2');
-        return cache.addAll(urlsToCache);
+    Promise.all([
+      caches.open(CACHE_NAME).then(cache => {
+        console.log('Main cache opened v3');
+        return cache.addAll(['/']);
+      }),
+      caches.open(LANDING_CACHE).then(cache => {
+        console.log('Landing cache opened');
+        return cache.addAll(landingResources);
       })
-      .then(() => self.skipWaiting())
+    ]).then(() => self.skipWaiting())
   );
 });
 
-// Activate - limpar caches antigos incluindo PNG
+// Activate - clean old caches and deprecated assets
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
+          if (cacheName !== CACHE_NAME && cacheName !== LANDING_CACHE) {
             console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
       );
     }).then(() => {
-      // Limpar especificamente o PNG antigo de todos os caches
-      return caches.open(CACHE_NAME).then(cache => {
-        return cache.delete('/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png');
+      // Remove deprecated assets from all caches
+      return Promise.all([
+        caches.open(CACHE_NAME),
+        caches.open(LANDING_CACHE)
+      ]).then(([mainCache, landingCache]) => {
+        return Promise.all(
+          doNotCache.map(asset => {
+            return Promise.all([
+              mainCache.delete(asset),
+              landingCache.delete(asset)
+            ]);
+          })
+        );
       });
     }).then(() => self.clients.claim())
   );
 });
 
-// Fetch - servir do cache, mas bloquear PNG antigo
+// Fetch - optimized caching strategies
 self.addEventListener('fetch', event => {
   const url = event.request.url;
+  const request = event.request;
   
-  // Bloquear completamente o PNG antigo
+  // Block deprecated assets
   if (doNotCache.some(blocked => url.includes(blocked))) {
     event.respondWith(
-      new Response('', { status: 404, statusText: 'Not Found' })
+      new Response('', { status: 410, statusText: 'Gone' })
     );
     return;
   }
   
-  // Cache-first para imagens WebP
-  if (url.includes('.webp') || url.includes('.jpg')) {
+  // Landing page - Cache First
+  if (url.includes('/lp/clareamento-dental')) {
     event.respondWith(
-      caches.match(event.request)
+      caches.match(request, { cacheName: LANDING_CACHE })
+        .then(response => response || fetch(request))
+        .catch(() => caches.match(request))
+    );
+    return;
+  }
+  
+  // Images - Cache First with performance headers
+  if (imageAssets.some(ext => url.includes(ext))) {
+    event.respondWith(
+      caches.match(request)
         .then(response => {
           if (response) {
             return response;
           }
-          return fetch(event.request).then(response => {
-            if (!response || response.status !== 200) {
-              return response;
+          
+          return fetch(request).then(fetchResponse => {
+            if (!fetchResponse || fetchResponse.status !== 200) {
+              return fetchResponse;
             }
             
-            const responseToCache = response.clone();
-            caches.open(CACHE_NAME)
-              .then(cache => {
-                cache.put(event.request, responseToCache);
-              });
+            // Clone and cache with performance headers
+            const responseToCache = fetchResponse.clone();
+            const headers = new Headers(responseToCache.headers);
+            headers.set('Cache-Control', 'public, max-age=31536000, immutable');
             
-            return response;
+            const optimizedResponse = new Response(responseToCache.body, {
+              status: responseToCache.status,
+              statusText: responseToCache.statusText,
+              headers: headers
+            });
+            
+            caches.open(LANDING_CACHE).then(cache => {
+              cache.put(request, optimizedResponse.clone());
+            });
+            
+            return optimizedResponse;
           });
         })
     );
     return;
   }
   
-  // Network-first para outros recursos
+  // CSS/JS - Stale While Revalidate
+  if (staticAssets.some(asset => url.includes(asset))) {
+    event.respondWith(
+      caches.match(request)
+        .then(response => {
+          const fetchPromise = fetch(request).then(fetchResponse => {
+            if (fetchResponse.status === 200) {
+              caches.open(CACHE_NAME).then(cache => {
+                cache.put(request, fetchResponse.clone());
+              });
+            }
+            return fetchResponse;
+          });
+          
+          return response || fetchPromise;
+        })
+    );
+    return;
+  }
+  
+  // Default - Network First
   event.respondWith(
-    fetch(event.request)
+    fetch(request)
       .then(response => {
-        if (event.request.url.includes('.css') || event.request.url.includes('.js')) {
+        if (response.status === 200 && request.method === 'GET') {
           const responseToCache = response.clone();
-          caches.open(CACHE_NAME)
-            .then(cache => {
-              cache.put(event.request, responseToCache);
-            });
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(request, responseToCache);
+          });
         }
         return response;
       })
-      .catch(() => {
-        return caches.match(event.request);
-      })
+      .catch(() => caches.match(request))
   );
 });

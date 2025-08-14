@@ -1,18 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import ClareamentoHeader from '@/components/landing/clareamento/ClareamentoHeader';
 import ClareamentoHero from '@/components/landing/clareamento/ClareamentoHero';
 import ClareamentoProblem from '@/components/landing/clareamento/ClareamentoProblem';
 import ClareamentoGuide from '@/components/landing/clareamento/ClareamentoGuide';
-import ClareamentoSocialProof from '@/components/landing/clareamento/ClareamentoSocialProof';
-import ClareamentoFAQ from '@/components/landing/clareamento/ClareamentoFAQ';
 import ClareamentoCTA from '@/components/landing/clareamento/ClareamentoCTA';
-import ClareamentoFooter from '@/components/landing/clareamento/ClareamentoFooter';
-import FloatingWhatsApp from '@/components/landing/FloatingWhatsApp';
 import { clareamentoConfig } from '@/config/clareamentoConfig';
 import { captureGCLID } from '@/utils/gclid';
+import useScrollTracking from '@/hooks/useScrollTracking';
+import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
+
+// Lazy load non-critical components
+const ClareamentoSocialProof = React.lazy(() => import('@/components/landing/clareamento/ClareamentoSocialProof'));
+const ClareamentoFAQ = React.lazy(() => import('@/components/landing/clareamento/ClareamentoFAQ'));
+const ClareamentoFooter = React.lazy(() => import('@/components/landing/clareamento/ClareamentoFooter'));
+const FloatingWhatsApp = React.lazy(() => import('@/components/landing/FloatingWhatsApp'));
+
+// Import skeletons
+import SocialProofSkeleton from '@/components/skeleton/SocialProofSkeleton';
+import FAQSkeleton from '@/components/skeleton/FAQSkeleton';
+import FooterSkeleton from '@/components/skeleton/FooterSkeleton';
+import WhatsAppSkeleton from '@/components/skeleton/WhatsAppSkeleton';
 
 const ClareamentoLandingPage: React.FC = () => {
+  // Preload critical images
+  useCriticalImagePreload({
+    images: [
+      { src: clareamentoConfig.hero.backgroundImage!, width: 400 }
+    ],
+    enabled: true
+  });
+
   // Track page view and capture GCLID
   useEffect(() => {
     // Capture GCLID if present
@@ -30,31 +48,11 @@ const ClareamentoLandingPage: React.FC = () => {
     }
   }, []);
 
-  // Track scroll depth
-  useEffect(() => {
-    const trackScrollDepth = () => {
-      const scrollPercentage = Math.round(
-        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
-      );
-      
-      const milestones = [25, 50, 75, 100];
-      const milestone = milestones.find(m => scrollPercentage >= m && !sessionStorage.getItem(`scroll_${m}`));
-      
-      if (milestone) {
-        sessionStorage.setItem(`scroll_${milestone}`, 'true');
-        if (window.dataLayer) {
-          window.dataLayer.push({
-            event: 'scroll_depth',
-            scroll_percentage: milestone,
-            page_path: '/lp/clareamento-dental'
-          });
-        }
-      }
-    };
-
-    window.addEventListener('scroll', trackScrollDepth);
-    return () => window.removeEventListener('scroll', trackScrollDepth);
-  }, []);
+  // Use optimized scroll tracking
+  useScrollTracking({ 
+    pagePath: '/lp/clareamento-dental',
+    enabled: process.env.NODE_ENV === 'production'
+  });
 
   return (
     <>
@@ -64,6 +62,15 @@ const ClareamentoLandingPage: React.FC = () => {
         <meta name="keywords" content={clareamentoConfig.seo.keywords?.join(', ')} />
         <meta name="robots" content="index, follow" />
         
+        {/* Preload critical resources */}
+        <link
+          rel="preload"
+          as="image"
+          href={clareamentoConfig.hero.backgroundImage}
+          imageSrcSet={`${clareamentoConfig.hero.backgroundImage}?w=400&f=webp 400w, ${clareamentoConfig.hero.backgroundImage}?w=800&f=webp 800w`}
+          imageSizes="(max-width: 768px) 100vw, 400px"
+        />
+        
         {/* Open Graph */}
         <meta property="og:title" content={clareamentoConfig.seo.title} />
         <meta property="og:description" content={clareamentoConfig.seo.description} />
@@ -72,15 +79,17 @@ const ClareamentoLandingPage: React.FC = () => {
         
         {/* Google Tag Manager */}
         {clareamentoConfig.tracking.gtmId && (
-          <script>
-            {`
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','${clareamentoConfig.tracking.gtmId}');
-            `}
-          </script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','${clareamentoConfig.tracking.gtmId}');
+              `
+            }}
+          />
         )}
       </Helmet>
 
@@ -117,18 +126,22 @@ const ClareamentoLandingPage: React.FC = () => {
             subtitle={clareamentoConfig.guide.subtitle}
           />
 
-          {/* Social Proof Section */}
-          <ClareamentoSocialProof
-            title={clareamentoConfig.socialProof.title}
-            testimonials={clareamentoConfig.socialProof.testimonials}
-            stats={clareamentoConfig.socialProof.stats!}
-          />
+          {/* Social Proof Section - Lazy Loaded */}
+          <Suspense fallback={<SocialProofSkeleton />}>
+            <ClareamentoSocialProof
+              title={clareamentoConfig.socialProof.title}
+              testimonials={clareamentoConfig.socialProof.testimonials}
+              stats={clareamentoConfig.socialProof.stats!}
+            />
+          </Suspense>
 
-          {/* FAQ Section */}
-          <ClareamentoFAQ
-            title={clareamentoConfig.faq.title}
-            questions={clareamentoConfig.faq.questions}
-          />
+          {/* FAQ Section - Lazy Loaded */}
+          <Suspense fallback={<FAQSkeleton />}>
+            <ClareamentoFAQ
+              title={clareamentoConfig.faq.title}
+              questions={clareamentoConfig.faq.questions}
+            />
+          </Suspense>
 
           {/* CTA Section */}
           <ClareamentoCTA
@@ -141,16 +154,20 @@ const ClareamentoLandingPage: React.FC = () => {
           />
         </main>
 
-        {/* Footer */}
-        <ClareamentoFooter />
+        {/* Footer - Lazy Loaded */}
+        <Suspense fallback={<FooterSkeleton />}>
+          <ClareamentoFooter />
+        </Suspense>
 
-        {/* Floating WhatsApp */}
-        <FloatingWhatsApp
-          phoneNumber={clareamentoConfig.whatsapp.number}
-          message={clareamentoConfig.whatsapp.message}
-          campaign={clareamentoConfig.campaign}
-          messageMatch={clareamentoConfig.messageMatch}
-        />
+        {/* Floating WhatsApp - Lazy Loaded */}
+        <Suspense fallback={<WhatsAppSkeleton />}>
+          <FloatingWhatsApp
+            phoneNumber={clareamentoConfig.whatsapp.number}
+            message={clareamentoConfig.whatsapp.message}
+            campaign={clareamentoConfig.campaign}
+            messageMatch={clareamentoConfig.messageMatch}
+          />
+        </Suspense>
       </div>
     </>
   );

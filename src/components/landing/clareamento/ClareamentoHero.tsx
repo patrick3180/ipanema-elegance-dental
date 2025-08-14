@@ -1,6 +1,7 @@
 import React from 'react';
 import { MessageCircle, Check } from 'lucide-react';
 import { sendGCLIDToWebhook } from "@/utils/gclid";
+import OptimizedImage from "@/components/OptimizedImage";
 
 interface ClareamentoHeroProps {
   headline: string;
@@ -37,7 +38,9 @@ const ClareamentoHero: React.FC<ClareamentoHeroProps> = ({
       window.gtag('event', 'conversion', {
         'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
         'event_callback': function() {
-          console.log('Google Ads conversion tracked - Hero CTA');
+          if (process.env.NODE_ENV === 'development') {
+            console.log('Google Ads conversion tracked - Hero CTA');
+          }
         }
       });
     }
@@ -89,13 +92,18 @@ const ClareamentoHero: React.FC<ClareamentoHeroProps> = ({
           {/* Image - 40% on desktop */}
           <div className="w-full lg:w-2/5">
             <div className="relative">
-              <img
+              <OptimizedImage
                 src={backgroundImage}
                 alt="Dra. Carla Christoph - Especialista em Clareamento Dental"
+                width={400}
+                height={500}
+                priority={true}
                 className="w-full h-auto rounded-lg shadow-xl"
-                loading="eager"
+                objectFit="cover"
+                lazy={false}
+                responsive={true}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#381F47]/20 to-transparent rounded-lg"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#381F47]/20 to-transparent rounded-lg pointer-events-none"></div>
             </div>
           </div>
         </div>
