@@ -114,6 +114,8 @@ export default defineConfig(({ mode }) => ({
       'react-dom',
       'process',
       'contentful',
+      'react-helmet-async',
+      'react-fast-compare',
       // Include lodash modules to fix Contentful SDK imports
       'lodash/isString',
       'lodash/isPlainObject', 
@@ -124,7 +126,6 @@ export default defineConfig(({ mode }) => ({
     exclude: [
       'react-router-dom',
       '@tanstack/react-query',
-      'react-helmet-async',
       'sonner',
       '@radix-ui/react-accordion',
       '@radix-ui/react-tabs',
