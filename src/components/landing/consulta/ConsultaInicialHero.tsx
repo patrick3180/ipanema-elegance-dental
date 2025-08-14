@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { MessageCircle, Check } from 'lucide-react';
 import { sendGCLIDToWebhook } from "@/utils/gclid";
-import OptimizedPictureElement from "@/components/performance/OptimizedPictureElement";
+
 
 interface ConsultaInicialHeroProps {
   headline: string;
@@ -22,14 +22,12 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
   whatsappNumber,
   whatsappMessage
 }) => {
-  // Prevent forced reflow and optimize LCP
+  // Preload hero image for LCP optimization
   useEffect(() => {
-    // Use requestIdleCallback to avoid blocking main thread
     const preloadImage = () => {
       const img = new Image();
       img.fetchPriority = 'high';
       img.src = "/lovable-uploads/RIT08058-vertical-doutora-site.webp";
-      img.srcset = "/assets/consulta-inicial-hero-480.avif 480w, /assets/consulta-inicial-hero-768.avif 768w, /assets/consulta-inicial-hero-1024.avif 1024w";
     };
     
     if (window.requestIdleCallback) {
@@ -106,36 +104,18 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
             </button>
           </div>
 
-          {/* Optimized Image - 40% on desktop, prevent reflow */}
+          {/* Hero Image - 40% on desktop */}
           <div className="w-full lg:w-2/5">
-            <div className="relative" style={{ aspectRatio: '1024/1365', contain: 'layout style paint' }}>
-              <OptimizedPictureElement
+            <div className="relative" style={{ aspectRatio: '1024/1365' }}>
+              <img
                 src={backgroundImage || "/lovable-uploads/RIT08058-vertical-doutora-site.webp"}
                 alt="Dra. Carla Christoph - Consulta Odontológica Personalizada em Ipanema"
-                priority={true}
+                loading="eager"
+                fetchPriority="high"
+                decoding="sync"
                 width={1024}
                 height={1365}
                 className="w-full h-full object-cover rounded-lg shadow-xl"
-                avifSources={[
-                  {
-                    src: "/assets/consulta-inicial-hero-480.avif",
-                    sizes: "(max-width: 768px) 320px"
-                  },
-                  {
-                    src: "/assets/consulta-inicial-hero-768.avif", 
-                    sizes: "(max-width: 1024px) 384px"
-                  },
-                  {
-                    src: "/assets/consulta-inicial-hero-1024.avif",
-                    sizes: "(min-width: 1024px) 512px"
-                  }
-                ]}
-                webpSources={[
-                  {
-                    src: "/lovable-uploads/RIT08058-vertical-doutora-site.webp",
-                    sizes: "(min-width: 1024px) 512px, (min-width: 768px) 384px, 320px"
-                  }
-                ]}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#381F47]/20 to-transparent rounded-lg pointer-events-none"></div>
             </div>
