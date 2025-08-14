@@ -196,9 +196,7 @@ const ClareamentoLandingPage: React.FC = () => {
             target.rel = 'stylesheet';
           }}
         />
-        <noscript>
-          <link rel="stylesheet" href="/src/index.css" />
-        </noscript>
+        <noscript>{`<link rel="stylesheet" href="/src/index.css" />`}</noscript>
         
         {/* Open Graph */}
         <meta property="og:title" content={clareamentoConfig.seo.title} />
