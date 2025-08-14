@@ -23,7 +23,7 @@ export const clareamentoConfig: LandingPageConfig = {
 
   benefits: [
     "Resultado natural e harmônico",
-    "Consulta sem pressa", 
+    "WhatsApp 24 horas", 
     "Atendimento particular exclusivo",
     "20+ anos de experiência"
   ],
@@ -133,6 +133,10 @@ export const clareamentoConfig: LandingPageConfig = {
       {
         question: "Vocês atendem convênios odontológicos?",
         answer: "Oferecemos atendimento exclusivamente particular, o que nos permite dedicar tempo adequado a cada paciente, utilizar os melhores materiais disponíveis e personalizar completamente seu tratamento. Facilitamos o pagamento com parcelamento facilitado."
+      },
+      {
+        question: "Como funciona o atendimento por WhatsApp?",
+        answer: "Nosso WhatsApp funciona 24 horas por dia, 7 dias por semana. Você pode enviar mensagem a qualquer hora para agendar sua consulta, tirar dúvidas sobre tratamentos ou solicitar informações. Respondemos rapidamente, inclusive fins de semana e feriados. É a forma mais rápida e conveniente de entrar em contato conosco."
       }
     ]
   },

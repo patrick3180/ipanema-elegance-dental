@@ -49,7 +49,7 @@ const FloatingWhatsApp = ({ phoneNumber, message, campaign, messageMatch }: Floa
   return (
     <button
       onClick={handleWhatsAppClick}
-      className="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#1ea952] text-white rounded-full p-4 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center gap-2 md:hidden"
+      className="fixed bottom-6 right-6 z-50 relative bg-[#25D366] hover:bg-[#1ea952] text-white rounded-full p-4 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center gap-2 md:hidden"
       aria-label="Converse pelo WhatsApp"
       data-gtm-category="Contact"
       data-gtm-action="Click"
@@ -59,6 +59,9 @@ const FloatingWhatsApp = ({ phoneNumber, message, campaign, messageMatch }: Floa
       data-gtm-message-match="floating_whatsapp"
     >
       <MessageCircle size={20} className="animate-pulse" />
+      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full border-2 border-white">
+        24h
+      </span>
     </button>
   );
 };

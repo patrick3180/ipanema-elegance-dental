@@ -62,7 +62,7 @@ const ClareamentoHeader: React.FC<ClareamentoHeaderProps> = ({
           aria-label="Contato via WhatsApp"
         >
           <MessageCircle size={18} />
-          <span className="hidden sm:inline font-medium">WhatsApp</span>
+          <span className="hidden sm:inline font-medium">WhatsApp 24h</span>
         </button>
       </div>
     </header>

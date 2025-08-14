@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Phone, Smartphone, Mail, Clock, CheckCircle, CreditCard } from 'lucide-react';
+import { MapPin, Phone, Smartphone, Mail, Clock, CheckCircle, MessageCircle } from 'lucide-react';
 
 const ClareamentoFooter: React.FC = () => {
   return (
@@ -38,7 +38,7 @@ const ClareamentoFooter: React.FC = () => {
                 
                 <div className="flex items-center gap-3">
                   <Smartphone size={18} className="text-[#B3955F]" />
-                  <span>(21) 99330-4045</span>
+                  <span>(21) 99330-4045 - WhatsApp 24h</span>
                 </div>
                 
                 <div className="flex items-center gap-3">
@@ -48,7 +48,12 @@ const ClareamentoFooter: React.FC = () => {
                 
                 <div className="flex items-center gap-3">
                   <Clock size={18} className="text-[#B3955F]" />
-                  <span>Seg-Sex: 9h às 19h</span>
+                  <span>Consultório: Seg-Sex 9h-19h</span>
+                </div>
+                
+                <div className="flex items-center gap-3">
+                  <MessageCircle size={18} className="text-[#B3955F]" />
+                  <span>WhatsApp: Atendimento 24 horas</span>
                 </div>
               </div>
             </div>
