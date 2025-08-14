@@ -6,7 +6,19 @@
     X-Content-Type-Options = "nosniff"
 
 [[headers]]
+  for = "/lp/clareamento-dental"
+  [headers.values]
+    Link = '''</lovable-uploads/a1389f08-ef82-4c41-abe2-f8ed05848f80.avif>; rel=preload; as=image; type=image/avif,
+             </lovable-uploads/a1389f08-ef82-4c41-abe2-f8ed05848f80.webp>; rel=preload; as=image; type=image/webp,
+             </lovable-uploads/a1389f08-ef82-4c41-abe2-f8ed05848f80.png>; rel=preload; as=image; type=image/png'''
+
+[[headers]]
   for = "/*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.avif"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 

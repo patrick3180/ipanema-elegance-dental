@@ -8,11 +8,13 @@ export const isAlreadyOptimized = (url: string): boolean => {
                                urlObj.searchParams.has('w') || 
                                urlObj.searchParams.has('fm');
   
-  console.log('OptimizedImage: Checking if already optimized:', {
-    url,
-    hasOptimizationParams,
-    searchParams: Object.fromEntries(urlObj.searchParams)
-  });
+  if (process.env.NODE_ENV === 'development') {
+    console.log('OptimizedImage: Checking if already optimized:', {
+      url,
+      hasOptimizationParams,
+      searchParams: Object.fromEntries(urlObj.searchParams)
+    });
+  }
   
   return hasOptimizationParams;
 };
@@ -20,22 +22,28 @@ export const isAlreadyOptimized = (url: string): boolean => {
 // Enhanced image optimization with performance considerations
 export const optimizeImageUrl = (src: string, width?: number, isMobile = false): string => {
   if (!src) {
-    console.log('OptimizedImage: No src provided');
+    if (process.env.NODE_ENV === 'development') {
+      console.log('OptimizedImage: No src provided');
+    }
     return "";
   }
   
-  console.log('OptimizedImage: Processing image:', {
-    src,
-    width,
-    isMobile
-  });
+  if (process.env.NODE_ENV === 'development') {
+    console.log('OptimizedImage: Processing image:', {
+      src,
+      width,
+      isMobile
+    });
+  }
   
   // Handle Contentful images with enhanced optimization
   if (src.includes("ctfassets.net")) {
     try {
       // Check if already optimized to prevent double-optimization
       if (isAlreadyOptimized(src)) {
-        console.log('OptimizedImage: URL already optimized, using as-is:', src);
+        if (process.env.NODE_ENV === 'development') {
+          console.log('OptimizedImage: URL already optimized, using as-is:', src);
+        }
         return src;
       }
       
@@ -71,11 +79,13 @@ export const optimizeImageUrl = (src: string, width?: number, isMobile = false):
       url.searchParams.set('f', 'face'); // Focus on faces when cropping
       
       const optimizedUrl = url.toString();
-      console.log('OptimizedImage: Contentful URL optimized:', {
-        original: src,
-        optimized: optimizedUrl,
-        quality: 85
-      });
+      if (process.env.NODE_ENV === 'development') {
+        console.log('OptimizedImage: Contentful URL optimized:', {
+          original: src,
+          optimized: optimizedUrl,
+          quality: 75
+        });
+      }
       
       return optimizedUrl;
     } catch (error) {
@@ -88,15 +98,19 @@ export const optimizeImageUrl = (src: string, width?: number, isMobile = false):
   // Handle local images
   if (src.startsWith('/')) {
     const fullUrl = window.location.origin + src;
-    console.log('OptimizedImage: Converting relative path:', {
-      original: src,
-      fullUrl
-    });
+    if (process.env.NODE_ENV === 'development') {
+      console.log('OptimizedImage: Converting relative path:', {
+        original: src,
+        fullUrl
+      });
+    }
     return fullUrl;
   }
   
   // Return as-is for other URLs
-  console.log('OptimizedImage: Using URL as-is:', src);
+  if (process.env.NODE_ENV === 'development') {
+    console.log('OptimizedImage: Using URL as-is:', src);
+  }
   return src;
 };
 

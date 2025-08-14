@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MessageCircle, Check } from 'lucide-react';
 import { sendGCLIDToWebhook } from "@/utils/gclid";
-import OptimizedImage from "@/components/OptimizedImage";
 
 interface ClareamentoHeroProps {
   headline: string;
@@ -22,6 +21,43 @@ const ClareamentoHero: React.FC<ClareamentoHeroProps> = ({
   whatsappNumber,
   whatsappMessage
 }) => {
+  // Preload hero image in multiple formats for maximum performance
+  useEffect(() => {
+    // Preload AVIF version (best compression)
+    const avifLink = document.createElement('link');
+    avifLink.rel = 'preload';
+    avifLink.as = 'image';
+    avifLink.href = backgroundImage.replace('.png', '.avif');
+    avifLink.type = 'image/avif';
+    avifLink.fetchPriority = 'high';
+    document.head.appendChild(avifLink);
+
+    // Preload WebP fallback
+    const webpLink = document.createElement('link');
+    webpLink.rel = 'preload';
+    webpLink.as = 'image';
+    webpLink.href = backgroundImage.replace('.png', '.webp');
+    webpLink.type = 'image/webp';
+    webpLink.fetchPriority = 'high';
+    document.head.appendChild(webpLink);
+
+    // Preload PNG fallback
+    const pngLink = document.createElement('link');
+    pngLink.rel = 'preload';
+    pngLink.as = 'image';
+    pngLink.href = backgroundImage;
+    pngLink.type = 'image/png';
+    pngLink.fetchPriority = 'high';
+    document.head.appendChild(pngLink);
+
+    return () => {
+      // Cleanup on unmount
+      document.head.removeChild(avifLink);
+      document.head.removeChild(webpLink);
+      document.head.removeChild(pngLink);
+    };
+  }, [backgroundImage]);
+
   const handleWhatsAppClick = async () => {
     // Track event with Google Tag Manager
     if (window.dataLayer) {
@@ -92,17 +128,27 @@ const ClareamentoHero: React.FC<ClareamentoHeroProps> = ({
           {/* Image - 40% on desktop */}
           <div className="w-full lg:w-2/5">
             <div className="relative">
-              <OptimizedImage
-                src={backgroundImage}
-                alt="Dra. Carla Christoph - Especialista em Clareamento Dental"
-                width={400}
-                height={500}
-                priority={true}
-                className="w-full h-auto rounded-lg shadow-xl"
-                objectFit="cover"
-                lazy={false}
-                responsive={true}
-              />
+              <picture>
+                <source 
+                  srcSet={backgroundImage.replace('.png', '.avif')} 
+                  type="image/avif"
+                />
+                <source 
+                  srcSet={backgroundImage.replace('.png', '.webp')} 
+                  type="image/webp"
+                />
+                <img
+                  src={backgroundImage}
+                  alt="Dra. Carla Christoph - Especialista em Clareamento Dental"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="w-full h-auto rounded-lg shadow-xl"
+                  width="800"
+                  height="600"
+                  style={{ objectFit: 'cover' }}
+                />
+              </picture>
               <div className="absolute inset-0 bg-gradient-to-t from-[#381F47]/20 to-transparent rounded-lg pointer-events-none"></div>
             </div>
           </div>
