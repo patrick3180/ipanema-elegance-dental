@@ -113,6 +113,7 @@ export default defineConfig(({ mode }) => ({
       'react',
       'react-dom',
       'process',
+      'contentful',
       // Include lodash modules to fix Contentful SDK imports
       'lodash/isString',
       'lodash/isPlainObject', 
@@ -121,7 +122,6 @@ export default defineConfig(({ mode }) => ({
       'lodash/isNumber'
     ],
     exclude: [
-      'contentful',
       'react-router-dom',
       '@tanstack/react-query',
       'react-helmet-async',
