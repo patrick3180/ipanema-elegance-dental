@@ -26,9 +26,9 @@ export default defineConfig(({ mode }) => ({
   build: {
     // Configurações otimizadas para produção
     target: 'es2020',
-    cssCodeSplit: false, // CSS inline para landing page
-    chunkSizeWarningLimit: 800,
-    assetsInlineLimit: 8192,
+    cssCodeSplit: true, // Split CSS para melhor cache
+    chunkSizeWarningLimit: 600,
+    assetsInlineLimit: 4096, // Inline apenas assets pequenos
     
     rollupOptions: {
       output: {

@@ -11,6 +11,8 @@ import { clareamentoConfig } from '@/config/clareamentoConfig';
 import { captureGCLID } from '@/utils/gclid';
 import useScrollTracking from '@/hooks/useScrollTracking';
 import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
+import CriticalCSSOptimizer from '@/components/performance/CriticalCSSOptimizer';
+import AsyncScriptManager from '@/components/performance/AsyncScriptManager';
 
 // Aggressive lazy loading for better LCP performance
 const ClareamentoSocialProof = React.lazy(() => 
@@ -41,10 +43,12 @@ import FooterSkeleton from '@/components/skeleton/FooterSkeleton';
 import WhatsAppSkeleton from '@/components/skeleton/WhatsAppSkeleton';
 
 const ClareamentoLandingPage: React.FC = () => {
-  // Preload critical images
+  // Preload critical images with AVIF priority
   useCriticalImagePreload({
     images: [
-      { src: clareamentoConfig.hero.backgroundImage!, width: 400 }
+      { src: '/src/assets/hero-clareamento-1024.avif', width: 1024 },
+      { src: '/src/assets/hero-clareamento-768.avif', width: 768 },
+      { src: '/src/assets/hero-clareamento-512.avif', width: 512 }
     ],
     enabled: true
   });
@@ -141,13 +145,31 @@ const ClareamentoLandingPage: React.FC = () => {
           }
         `}</style>
         
-        {/* Preload critical hero image with highest priority */}
-        <link rel="preload" as="image" href="/lovable-uploads/vertical-de-jaleco.webp" type="image/webp" fetchPriority="high" />
+        {/* Preload critical AVIF hero image with highest priority */}
+        <link rel="preload" as="image" href="/src/assets/hero-clareamento-1024.avif" type="image/avif" fetchPriority="high" />
         
-        {/* DNS prefetch for external resources */}
+        {/* DNS prefetch and preconnect for external resources */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="dns-prefetch" href="//api.whatsapp.com" />
         <link rel="dns-prefetch" href="//web.whatsapp.com" />
-        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+        
+        {/* Preload critical fonts */}
+        <link 
+          rel="preload" 
+          as="font" 
+          href="https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDXbtM.woff2" 
+          type="font/woff2" 
+          crossOrigin="anonymous"
+        />
+        <link 
+          rel="preload" 
+          as="font" 
+          href="https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Uw-.woff2" 
+          type="font/woff2" 
+          crossOrigin="anonymous"
+        />
         
         {/* Font CSS with font-display: swap */}
         <style dangerouslySetInnerHTML={{ __html: `
@@ -196,23 +218,36 @@ const ClareamentoLandingPage: React.FC = () => {
         <meta property="og:type" content="website" />
         <meta property="og:image" content={clareamentoConfig.hero.backgroundImage} />
         
-        {/* Google Tag Manager - Async */}
+        {/* Google Tag Manager - Deferred Loading */}
         {clareamentoConfig.tracking.gtmId && (
-          <script
-            async
-            dangerouslySetInnerHTML={{
-              __html: `
-                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                })(window,document,'script','dataLayer','${clareamentoConfig.tracking.gtmId}');
-              `
-            }}
-          />
+          <script dangerouslySetInnerHTML={{
+            __html: `
+              // Defer GTM loading to improve initial page performance
+              window.addEventListener('load', function() {
+                setTimeout(function() {
+                  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.defer=true;j.src=
+                  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                  })(window,document,'script','dataLayer','${clareamentoConfig.tracking.gtmId}');
+                }, 1500);
+              });
+            `
+          }} />
         )}
       </Helmet>
 
+      {/* Performance optimization components */}
+      <CriticalCSSOptimizer 
+        inlineStyles=""
+        nonCriticalStylesheets={['/src/index.css']}
+      />
+      <AsyncScriptManager 
+        gtmId={clareamentoConfig.tracking.gtmId}
+        enableTracking={true}
+        loadDelay={2000}
+      />
+      
       <div className="min-h-screen">
         {/* Header */}
         <ClareamentoHeader 

@@ -8,17 +8,26 @@
 [[headers]]
   for = "/lp/clareamento-dental"
   [headers.values]
-    Link = '''</lovable-uploads/vertical-de-jaleco.webp>; rel=preload; as=image; type=image/webp; fetchpriority=high'''
+    Link = '''</src/assets/hero-clareamento-1024.avif>; rel=preload; as=image; type=image/avif; fetchpriority=high, <https://fonts.gstatic.com>; rel=preconnect, <https://fonts.gstatic.com/s/playfairdisplay/v37/nuFiD-vYSZviVYUb_rj3ij__anPXBYf9lWce7IwZ.woff2>; rel=preload; as=font; type=font/woff2; crossorigin'''
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
   for = "/*.webp"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+    Vary = "Accept"
 
 [[headers]]
   for = "/*.avif"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+    Vary = "Accept"
+
+[[headers]]
+  for = "/src/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Vary = "Accept"
 
 [[headers]]
   for = "/*.png"
@@ -38,12 +47,20 @@
 [[headers]]
   for = "/*.js"
   [headers.values]
-    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Encoding = "br, gzip"
 
 [[headers]]
   for = "/*.css"
   [headers.values]
-    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Encoding = "br, gzip"
+
+[[headers]]
+  for = "/*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin = "*"
 
 [[redirects]]
   from = "/sitemap.xml"

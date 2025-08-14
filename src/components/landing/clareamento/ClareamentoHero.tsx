@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
 import { MessageCircle, Check } from 'lucide-react';
 import { sendGCLIDToWebhook } from "@/utils/gclid";
+import OptimizedPictureElement from "@/components/performance/OptimizedPictureElement";
+import heroImage512 from "@/assets/hero-clareamento-512.avif";
+import heroImage768 from "@/assets/hero-clareamento-768.avif";
+import heroImage1024 from "@/assets/hero-clareamento-1024.avif";
 
 interface ClareamentoHeroProps {
   headline: string;
@@ -21,20 +25,17 @@ const ClareamentoHero: React.FC<ClareamentoHeroProps> = ({
   whatsappNumber,
   whatsappMessage
 }) => {
-  // Critical LCP optimization - WebP image preloading
+  // Critical LCP optimization - AVIF image preloading
   useEffect(() => {
-    // Only preload if not already preloaded to avoid duplication
-    if (!document.querySelector(`link[href="${backgroundImage}"]`)) {
-      // Preload WebP image with highest priority for LCP
-      const webpLink = document.createElement('link');
-      webpLink.rel = 'preload';
-      webpLink.as = 'image';
-      webpLink.href = backgroundImage;
-      webpLink.type = 'image/webp';
-      webpLink.setAttribute('fetchpriority', 'high');
-      document.head.appendChild(webpLink);
-    }
-  }, [backgroundImage]);
+    // Preload hero image AVIF with highest priority for LCP optimization
+    const preloadLink = document.createElement('link');
+    preloadLink.rel = 'preload';
+    preloadLink.as = 'image';
+    preloadLink.href = heroImage1024;
+    preloadLink.type = 'image/avif';
+    preloadLink.fetchPriority = 'high';
+    document.head.appendChild(preloadLink);
+  }, []);
 
   const handleWhatsAppClick = async () => {
     // Track event with Google Tag Manager
@@ -103,19 +104,39 @@ const ClareamentoHero: React.FC<ClareamentoHeroProps> = ({
             </button>
           </div>
 
-          {/* Image - 40% on desktop */}
+          {/* Optimized Image - 40% on desktop */}
           <div className="w-full lg:w-2/5">
             <div className="relative">
-              <img
-                src={backgroundImage}
-                alt="Dra. Carla Christoph - Especialista em Clareamento Dental"
-                loading="eager"
-                fetchPriority="high"
-                decoding="sync"
+              <OptimizedPictureElement
+                src={backgroundImage || "/lovable-uploads/vertical-de-jaleco.webp"}
+                alt="Dra. Carla Christoph - Especialista em Clareamento Dental em Ipanema"
+                priority={true}
+                width={1024}
+                height={1365}
                 className="w-full h-auto rounded-lg shadow-xl"
-                width="400"
-                height="600"
-                style={{ aspectRatio: '400/600', objectFit: 'cover' }}
+                avifSources={[
+                  {
+                    src: heroImage1024,
+                    media: "(min-width: 1024px)",
+                    sizes: "512px"
+                  },
+                  {
+                    src: heroImage768,
+                    media: "(min-width: 768px)",
+                    sizes: "384px"
+                  },
+                  {
+                    src: heroImage512,
+                    media: "(max-width: 767px)",
+                    sizes: "320px"
+                  }
+                ]}
+                webpSources={[
+                  {
+                    src: "/lovable-uploads/vertical-de-jaleco.webp",
+                    sizes: "(min-width: 1024px) 512px, (min-width: 768px) 384px, 320px"
+                  }
+                ]}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#381F47]/20 to-transparent rounded-lg pointer-events-none"></div>
             </div>
