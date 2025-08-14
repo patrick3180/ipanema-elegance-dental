@@ -2,9 +2,6 @@ import React, { useEffect } from 'react';
 import { MessageCircle, Check } from 'lucide-react';
 import { sendGCLIDToWebhook } from "@/utils/gclid";
 import OptimizedPictureElement from "@/components/performance/OptimizedPictureElement";
-import heroImage512 from "@/assets/hero-clareamento-512.avif";
-import heroImage768 from "@/assets/hero-clareamento-768.avif";
-import heroImage1024 from "@/assets/hero-clareamento-1024.avif";
 
 interface ClareamentoHeroProps {
   headline: string;
@@ -31,7 +28,7 @@ const ClareamentoHero: React.FC<ClareamentoHeroProps> = ({
     const preloadLink = document.createElement('link');
     preloadLink.rel = 'preload';
     preloadLink.as = 'image';
-    preloadLink.href = heroImage1024;
+    preloadLink.href = "/lovable-uploads/vertical-de-jaleco-1024.avif";
     preloadLink.type = 'image/avif';
     preloadLink.fetchPriority = 'high';
     document.head.appendChild(preloadLink);
@@ -116,17 +113,17 @@ const ClareamentoHero: React.FC<ClareamentoHeroProps> = ({
                 className="w-full h-auto rounded-lg shadow-xl"
                 avifSources={[
                   {
-                    src: heroImage1024,
+                    src: "/lovable-uploads/vertical-de-jaleco-1024.avif",
                     media: "(min-width: 1024px)",
                     sizes: "512px"
                   },
                   {
-                    src: heroImage768,
+                    src: "/lovable-uploads/vertical-de-jaleco-768.avif",
                     media: "(min-width: 768px)",
                     sizes: "384px"
                   },
                   {
-                    src: heroImage512,
+                    src: "/lovable-uploads/vertical-de-jaleco-480.avif",
                     media: "(max-width: 767px)",
                     sizes: "320px"
                   }
