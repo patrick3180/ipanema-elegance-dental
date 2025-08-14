@@ -32,43 +32,45 @@ export default defineConfig(({ mode }) => ({
     
     rollupOptions: {
       output: {
-        // Bundle splitting otimizado para landing page - LCP crítico
-        manualChunks: {
-          // Critical chunks para LCP
-          'landing-critical': ['react', 'react-dom', 'react-helmet-async'],
-          'landing-hero': ['@/components/landing/clareamento/ClareamentoHero'],
-          'landing-header': ['@/components/landing/clareamento/ClareamentoHeader'],
+        // Micro-chunking function for emergency mobile optimization
+        manualChunks(id: string) {
+          // Essential React core only (highest priority)
+          if (id.includes('react') || id.includes('react-dom')) {
+            return 'react-core';
+          }
           
-          // Lazy chunks para componentes below-the-fold  
-          'landing-lazy-social': ['@/components/landing/clareamento/ClareamentoSocialProof'],
-          'landing-lazy-faq': ['@/components/landing/clareamento/ClareamentoFAQ'],
-          'landing-lazy-footer': ['@/components/landing/clareamento/ClareamentoFooter'],
+          // Critical landing components (load immediately)
+          if (id.includes('react-helmet-async')) {
+            return 'landing-critical';
+          }
           
-          // UI chunks otimizados
-          'landing-icons': ['lucide-react'],
-          'landing-ui': ['@radix-ui/react-accordion', '@radix-ui/react-collapsible'],
+          // Defer everything else into micro-chunks
+          if (id.includes('react-router-dom')) {
+            return 'router';
+          }
+          if (id.includes('@radix-ui/react-accordion')) {
+            return 'ui-minimal';
+          }
+          if (id.includes('@radix-ui/react-collapsible') || id.includes('@radix-ui/react-dialog')) {
+            return 'ui-extended';
+          }
+          if (id.includes('lucide-react')) {
+            return 'icons';
+          }
+          if (id.includes('@/utils/gclid')) {
+            return 'tracking';
+          }
+          if (id.includes('@tanstack/react-query')) {
+            return 'query';
+          }
+          if (id.includes('class-variance-authority') || id.includes('clsx') || id.includes('tailwind-merge')) {
+            return 'utils';
+          }
           
-          // Tracking e performance separados
-          'tracking': ['@/utils/gclid'],
-          'performance': ['@/hooks/useCriticalImagePreload', '@/components/performance/CriticalResourcePreloader'],
-          
-          // Chunks para outras páginas (contentful só carrega quando necessário)
-          'vendor': ['react-router-dom'],
-          'ui-core': [
-            '@radix-ui/react-dialog', 
-            '@radix-ui/react-dropdown-menu', 
-            '@radix-ui/react-toast',
-            '@radix-ui/react-slot',
-            '@radix-ui/react-label'
-          ],
-          'ui-extra': [
-            '@radix-ui/react-alert-dialog',
-            '@radix-ui/react-avatar',
-            '@radix-ui/react-checkbox'
-          ],
-          'query': ['@tanstack/react-query'],
-          'charts': ['recharts'],
-          'utils': ['class-variance-authority', 'clsx', 'tailwind-merge'],
+          // Everything else goes to vendor
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
         },
         
         // Nomes determinísticos para melhor cache
@@ -103,13 +105,18 @@ export default defineConfig(({ mode }) => ({
   
   optimizeDeps: {
     include: [
-      'react/jsx-runtime',
-      'react-dom/client',
-      'react-helmet-async',
-      'lucide-react'
+      'react',
+      'react-dom'
     ],
     exclude: [
-      // Contentful will be loaded dynamically when needed
+      'contentful',
+      'react-router-dom',
+      '@tanstack/react-query',
+      'react-helmet-async',
+      'sonner',
+      '@radix-ui/react-accordion',
+      '@radix-ui/react-tabs',
+      'lucide-react'
     ]
   },
 }))

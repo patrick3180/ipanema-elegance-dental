@@ -21,28 +21,44 @@ const ClareamentoHero: React.FC<ClareamentoHeroProps> = ({
   whatsappNumber,
   whatsappMessage
 }) => {
-  // Critical LCP optimization - aggressive hero image preloading
+  // Mobile-first hero image preloading for optimal LCP
   useEffect(() => {
-    // Only preload if not already preloaded to avoid duplication
-    if (!document.querySelector(`link[href="${backgroundImage.replace('.webp', '.avif')}"]`)) {
-      // Preload AVIF version with highest priority for LCP
-      const avifLink = document.createElement('link');
-      avifLink.rel = 'preload';
-      avifLink.as = 'image';
-      avifLink.href = backgroundImage.replace('.webp', '.avif');
-      avifLink.type = 'image/avif';
-      avifLink.setAttribute('fetchpriority', 'high');
-      document.head.appendChild(avifLink);
+    const preloadHeroImage = () => {
+      const isMobile = window.innerWidth < 768;
+      
+      // Mobile-optimized preloading (300x400)
+      if (isMobile) {
+        const mobileAvif = document.createElement('link');
+        mobileAvif.rel = 'preload';
+        mobileAvif.as = 'image';
+        mobileAvif.href = backgroundImage.replace('.webp', '.avif');
+        mobileAvif.type = 'image/avif';
+        mobileAvif.setAttribute('fetchpriority', 'high');
+        mobileAvif.media = '(max-width: 767px)';
+        document.head.appendChild(mobileAvif);
+      } else {
+        // Desktop-optimized preloading (800x600)
+        const desktopAvif = document.createElement('link');
+        desktopAvif.rel = 'preload';
+        desktopAvif.as = 'image';
+        desktopAvif.href = backgroundImage.replace('.webp', '.avif');
+        desktopAvif.type = 'image/avif';
+        desktopAvif.setAttribute('fetchpriority', 'high');
+        desktopAvif.media = '(min-width: 768px)';
+        document.head.appendChild(desktopAvif);
+      }
 
-      // Preload WebP fallback with high priority
+      // Single WebP fallback with media query
       const webpLink = document.createElement('link');
       webpLink.rel = 'preload';
       webpLink.as = 'image';
-      webpLink.href = backgroundImage;
+      webpLink.href = backgroundImage.replace('.webp', '.webp');
       webpLink.type = 'image/webp';
       webpLink.setAttribute('fetchpriority', 'high');
       document.head.appendChild(webpLink);
-    }
+    };
+
+    preloadHeroImage();
   }, [backgroundImage]);
 
   const handleWhatsAppClick = async () => {

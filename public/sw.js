@@ -1,165 +1,77 @@
-// Service Worker v3 - Landing Page Optimizado
-const CACHE_NAME = 'dra-carla-landing-v3';
-const LANDING_CACHE = 'landing-assets-v1';
-
-// Critical landing page resources
-const landingResources = [
+const CACHE_NAME = 'clareamento-mobile-v1';
+const CRITICAL_RESOURCES = [
   '/',
   '/lp/clareamento-dental',
-  '/src/index.css',
-  '/lovable-uploads/a1389f08-ef82-4c41-abe2-f8ed05848f80.png', // Hero image
-  '/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp',
-  '/lovable-uploads/164bae76-428b-4fae-a600-ba61172b5dac.png',
-  '/lovable-uploads/fef24f70-4659-453e-8fee-79dee34b6220.png'
+  '/lovable-uploads/Vertical de jaleco.avif',
+  '/lovable-uploads/Vertical de jaleco.webp',
+  '/lovable-uploads/Vertical de jaleco.png'
 ];
 
-// Assets to cache with different strategies
-const staticAssets = ['/src/index.css'];
-const imageAssets = ['.webp', '.jpg', '.png'];
-
-// Deprecated assets to remove
-const doNotCache = [
-  '/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png'
-];
-
-// Install - cache critical landing page resources
-self.addEventListener('install', event => {
+// Install service worker and cache critical resources
+self.addEventListener('install', (event) => {
   event.waitUntil(
-    Promise.all([
-      caches.open(CACHE_NAME).then(cache => {
-        console.log('Main cache opened v3');
-        return cache.addAll(['/']);
-      }),
-      caches.open(LANDING_CACHE).then(cache => {
-        console.log('Landing cache opened');
-        return cache.addAll(landingResources);
+    caches.open(CACHE_NAME)
+      .then((cache) => {
+        return cache.addAll(CRITICAL_RESOURCES);
       })
-    ]).then(() => self.skipWaiting())
   );
+  self.skipWaiting();
 });
 
-// Activate - clean old caches and deprecated assets
-self.addEventListener('activate', event => {
+// Activate service worker and clean old caches
+self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then(cacheNames => {
+    caches.keys().then((cacheNames) => {
       return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME && cacheName !== LANDING_CACHE) {
-            console.log('Deleting old cache:', cacheName);
+        cacheNames.map((cacheName) => {
+          if (cacheName !== CACHE_NAME) {
             return caches.delete(cacheName);
           }
         })
       );
-    }).then(() => {
-      // Remove deprecated assets from all caches
-      return Promise.all([
-        caches.open(CACHE_NAME),
-        caches.open(LANDING_CACHE)
-      ]).then(([mainCache, landingCache]) => {
-        return Promise.all(
-          doNotCache.map(asset => {
-            return Promise.all([
-              mainCache.delete(asset),
-              landingCache.delete(asset)
-            ]);
-          })
-        );
-      });
-    }).then(() => self.clients.claim())
+    })
   );
+  self.clients.claim();
 });
 
-// Fetch - optimized caching strategies
-self.addEventListener('fetch', event => {
-  const url = event.request.url;
-  const request = event.request;
+// Cache-first strategy for static assets, network-first for HTML
+self.addEventListener('fetch', (event) => {
+  const url = new URL(event.request.url);
   
-  // Block deprecated assets
-  if (doNotCache.some(blocked => url.includes(blocked))) {
+  // Cache-first for images and static assets
+  if (event.request.destination === 'image' || 
+      url.pathname.includes('/assets/') ||
+      url.pathname.includes('/lovable-uploads/')) {
     event.respondWith(
-      new Response('', { status: 410, statusText: 'Gone' })
-    );
-    return;
-  }
-  
-  // Landing page - Cache First
-  if (url.includes('/lp/clareamento-dental')) {
-    event.respondWith(
-      caches.match(request, { cacheName: LANDING_CACHE })
-        .then(response => response || fetch(request))
-        .catch(() => caches.match(request))
-    );
-    return;
-  }
-  
-  // Images - Cache First with performance headers
-  if (imageAssets.some(ext => url.includes(ext))) {
-    event.respondWith(
-      caches.match(request)
-        .then(response => {
+      caches.match(event.request)
+        .then((response) => {
           if (response) {
             return response;
           }
-          
-          return fetch(request).then(fetchResponse => {
-            if (!fetchResponse || fetchResponse.status !== 200) {
-              return fetchResponse;
-            }
-            
-            // Clone and cache with performance headers
-            const responseToCache = fetchResponse.clone();
-            const headers = new Headers(responseToCache.headers);
-            headers.set('Cache-Control', 'public, max-age=31536000, immutable');
-            
-            const optimizedResponse = new Response(responseToCache.body, {
-              status: responseToCache.status,
-              statusText: responseToCache.statusText,
-              headers: headers
+          return fetch(event.request).then((response) => {
+            const responseClone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, responseClone);
             });
-            
-            caches.open(LANDING_CACHE).then(cache => {
-              cache.put(request, optimizedResponse.clone());
-            });
-            
-            return optimizedResponse;
+            return response;
           });
         })
     );
-    return;
   }
-  
-  // CSS/JS - Stale While Revalidate
-  if (staticAssets.some(asset => url.includes(asset))) {
+  // Network-first for HTML pages
+  else if (event.request.mode === 'navigate') {
     event.respondWith(
-      caches.match(request)
-        .then(response => {
-          const fetchPromise = fetch(request).then(fetchResponse => {
-            if (fetchResponse.status === 200) {
-              caches.open(CACHE_NAME).then(cache => {
-                cache.put(request, fetchResponse.clone());
-              });
-            }
-            return fetchResponse;
+      fetch(event.request)
+        .then((response) => {
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseClone);
           });
-          
-          return response || fetchPromise;
+          return response;
+        })
+        .catch(() => {
+          return caches.match(event.request);
         })
     );
-    return;
   }
-  
-  // Default - Network First
-  event.respondWith(
-    fetch(request)
-      .then(response => {
-        if (response.status === 200 && request.method === 'GET') {
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME).then(cache => {
-            cache.put(request, responseToCache);
-          });
-        }
-        return response;
-      })
-      .catch(() => caches.match(request))
-  );
 });
