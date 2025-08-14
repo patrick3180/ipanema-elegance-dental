@@ -81,7 +81,7 @@ const ClareamentoCTA: React.FC<ClareamentoCTAProps> = ({
           </div>
 
           {/* Trust Elements */}
-          <div className="flex flex-wrap justify-center gap-8 pt-8 border-t border-white/20">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8 border-t border-white/20 max-w-2xl mx-auto">
             <div className="text-center">
               <div className="text-2xl font-bold text-white">20+</div>
               <div className="text-white/80 text-sm">Anos de Experiência</div>
