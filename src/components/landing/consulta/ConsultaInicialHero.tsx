@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { MessageCircle, Check } from 'lucide-react';
 import { sendGCLIDToWebhook } from "@/utils/gclid";
 import UltraOptimizedPicture from "@/components/performance/UltraOptimizedPicture";
-import optimizedHeroMobile from "@/assets/consulta-hero-optimized-512x672.avif";
-import optimizedHeroDesktop from "@/assets/consulta-hero-optimized-760x996.avif";
+import optimizedHeroMobile from "@/assets/consulta-hero-dra-carla-512x672.avif";
+import optimizedHeroDesktop from "@/assets/consulta-hero-dra-carla-760x996.avif";
 
 
 interface ConsultaInicialHeroProps {
