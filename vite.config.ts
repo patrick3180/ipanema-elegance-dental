@@ -21,7 +21,8 @@ export default defineConfig(({ mode }) => ({
   },
   define: {
     global: 'globalThis',
-    'process.env': 'import.meta.env'
+    'process.env': 'import.meta.env',
+    'process': 'globalThis.process'
   },
   build: {
     // Configurações otimizadas para produção
@@ -106,7 +107,8 @@ export default defineConfig(({ mode }) => ({
   optimizeDeps: {
     include: [
       'react',
-      'react-dom'
+      'react-dom',
+      'process'
     ],
     exclude: [
       'contentful',
