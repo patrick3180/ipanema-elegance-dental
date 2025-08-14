@@ -39,9 +39,14 @@ export default defineConfig(({ mode }) => ({
           'landing-hero': ['@/components/landing/clareamento/ClareamentoHero'],
           'landing-header': ['@/components/landing/clareamento/ClareamentoHeader'],
           
+          // Consulta inicial critical chunks
+          'consulta-critical': ['@/components/landing/consulta/ConsultaInicialHero', '@/components/landing/consulta/ConsultaInicialHeader'],
+          'consulta-problem': ['@/components/landing/consulta/ConsultaInicialProblem'],
+          'consulta-guide': ['@/components/landing/consulta/ConsultaInicialGuide'],
+          
           // Lazy chunks para componentes below-the-fold  
-          'landing-lazy-social': ['@/components/landing/clareamento/ClareamentoSocialProof'],
-          'landing-lazy-faq': ['@/components/landing/clareamento/ClareamentoFAQ'],
+          'landing-lazy-social': ['@/components/landing/clareamento/ClareamentoSocialProof', '@/components/landing/consulta/ConsultaInicialSocialProof'],
+          'landing-lazy-faq': ['@/components/landing/clareamento/ClareamentoFAQ', '@/components/landing/consulta/ConsultaInicialFAQ'],
           'landing-lazy-footer': ['@/components/landing/clareamento/ClareamentoFooter'],
           
           // UI chunks otimizados

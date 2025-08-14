@@ -13,6 +13,14 @@
     Content-Encoding = "br, gzip"
 
 [[headers]]
+  for = "/lp/consulta-inicial"
+  [headers.values]
+    Link = '''</lovable-uploads/RIT08058-vertical-doutora-site.webp>; rel=preload; as=image; type=image/webp; fetchpriority=high, </assets/consulta-inicial-hero-1024.avif>; rel=preload; as=image; type=image/avif; fetchpriority=high, <https://fonts.gstatic.com>; rel=preconnect; crossorigin, <https://api.whatsapp.com>; rel=dns-prefetch, <https://web.whatsapp.com>; rel=dns-prefetch'''
+    Cache-Control = "public, max-age=300, stale-while-revalidate=86400"
+    Content-Encoding = "br, gzip"
+    Server-Timing = "cache;desc=MISS"
+
+[[headers]]
   for = "/*.webp"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"

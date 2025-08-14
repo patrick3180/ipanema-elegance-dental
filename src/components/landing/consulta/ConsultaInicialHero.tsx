@@ -22,16 +22,21 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
   whatsappNumber,
   whatsappMessage
 }) => {
-  // Critical LCP optimization - AVIF image preloading
+  // Prevent forced reflow and optimize LCP
   useEffect(() => {
-    // Preload hero image AVIF with highest priority for LCP optimization
-    const preloadLink = document.createElement('link');
-    preloadLink.rel = 'preload';
-    preloadLink.as = 'image';
-    preloadLink.href = "/lovable-uploads/RIT08058-vertical-doutora-site.webp";
-    preloadLink.type = 'image/webp';
-    preloadLink.fetchPriority = 'high';
-    document.head.appendChild(preloadLink);
+    // Use requestIdleCallback to avoid blocking main thread
+    const preloadImage = () => {
+      const img = new Image();
+      img.fetchPriority = 'high';
+      img.src = "/lovable-uploads/RIT08058-vertical-doutora-site.webp";
+      img.srcset = "/assets/consulta-inicial-hero-480.avif 480w, /assets/consulta-inicial-hero-768.avif 768w, /assets/consulta-inicial-hero-1024.avif 1024w";
+    };
+    
+    if (window.requestIdleCallback) {
+      window.requestIdleCallback(preloadImage, { timeout: 100 });
+    } else {
+      setTimeout(preloadImage, 0);
+    }
   }, []);
 
   const handleWhatsAppClick = async () => {
@@ -101,17 +106,30 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
             </button>
           </div>
 
-          {/* Optimized Image - 40% on desktop */}
+          {/* Optimized Image - 40% on desktop, prevent reflow */}
           <div className="w-full lg:w-2/5">
-            <div className="relative">
+            <div className="relative" style={{ aspectRatio: '1024/1365', contain: 'layout style paint' }}>
               <OptimizedPictureElement
                 src={backgroundImage || "/lovable-uploads/RIT08058-vertical-doutora-site.webp"}
                 alt="Dra. Carla Christoph - Consulta Odontológica Personalizada em Ipanema"
                 priority={true}
                 width={1024}
                 height={1365}
-                className="w-full h-auto rounded-lg shadow-xl"
-                avifSources={[]}
+                className="w-full h-full object-cover rounded-lg shadow-xl"
+                avifSources={[
+                  {
+                    src: "/assets/consulta-inicial-hero-480.avif",
+                    sizes: "(max-width: 768px) 320px"
+                  },
+                  {
+                    src: "/assets/consulta-inicial-hero-768.avif", 
+                    sizes: "(max-width: 1024px) 384px"
+                  },
+                  {
+                    src: "/assets/consulta-inicial-hero-1024.avif",
+                    sizes: "(min-width: 1024px) 512px"
+                  }
+                ]}
                 webpSources={[
                   {
                     src: "/lovable-uploads/RIT08058-vertical-doutora-site.webp",

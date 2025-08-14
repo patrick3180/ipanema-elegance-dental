@@ -6,7 +6,7 @@ import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
 import useScrollTracking from '@/hooks/useScrollTracking';
 
 // Performance Components (eager loading for critical path)
-import FastServerResponseOptimizer from '@/components/performance/FastServerResponseOptimizer';
+import UltraFastServerOptimizer from '@/components/performance/UltraFastServerOptimizer';
 import CriticalCSSOptimizer from '@/components/performance/CriticalCSSOptimizer';
 import NonCriticalCSSLoader from '@/components/performance/NonCriticalCSSLoader';
 import AsyncScriptManager from '@/components/performance/AsyncScriptManager';
@@ -134,8 +134,17 @@ const ConsultaInicialLandingPage = () => {
       </Helmet>
 
       {/* Performance Optimization Components */}
-      <FastServerResponseOptimizer />
-      <CriticalCSSOptimizer inlineStyles="" />
+      <UltraFastServerOptimizer 
+        targetTTFB={200}
+        enableEdgeOptimization={true}
+      />
+      <CriticalCSSOptimizer 
+        inlineStyles={`
+          .hero-section { contain: layout style paint; }
+          .hero-image-container { aspect-ratio: 1024/1365; will-change: transform; }
+          .benefits-grid { contain: layout; }
+        `} 
+      />
       <AsyncScriptManager gtmId={consultaInicialConfig.tracking.gtmId} />
 
       {/* Page Content */}
