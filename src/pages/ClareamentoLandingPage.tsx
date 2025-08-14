@@ -5,6 +5,8 @@ import ClareamentoHero from '@/components/landing/clareamento/ClareamentoHero';
 import ClareamentoProblem from '@/components/landing/clareamento/ClareamentoProblem';
 import ClareamentoGuide from '@/components/landing/clareamento/ClareamentoGuide';
 import ClareamentoCTA from '@/components/landing/clareamento/ClareamentoCTA';
+import CriticalCSSInliner from '@/components/performance/CriticalCSSInliner';
+import NonCriticalCSSLoader from '@/components/performance/NonCriticalCSSLoader';
 import { clareamentoConfig } from '@/config/clareamentoConfig';
 import { captureGCLID } from '@/utils/gclid';
 import useScrollTracking from '@/hooks/useScrollTracking';
@@ -62,6 +64,9 @@ const ClareamentoLandingPage: React.FC = () => {
         <meta name="keywords" content={clareamentoConfig.seo.keywords?.join(', ')} />
         <meta name="robots" content="index, follow" />
         
+        {/* Critical CSS and Fonts Optimization */}
+        <CriticalCSSInliner pageName="clareamento" />
+        
         {/* Preload critical resources */}
         <link
           rel="preload"
@@ -71,15 +76,31 @@ const ClareamentoLandingPage: React.FC = () => {
           imageSizes="(max-width: 768px) 100vw, 400px"
         />
         
+        {/* Defer non-critical CSS */}
+        <link
+          rel="preload"
+          href="/src/index.css"
+          as="style"
+          onLoad={(e) => {
+            const target = e.target as HTMLLinkElement;
+            target.onload = null;
+            target.rel = 'stylesheet';
+          }}
+        />
+        <noscript>
+          <link rel="stylesheet" href="/src/index.css" />
+        </noscript>
+        
         {/* Open Graph */}
         <meta property="og:title" content={clareamentoConfig.seo.title} />
         <meta property="og:description" content={clareamentoConfig.seo.description} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={clareamentoConfig.hero.backgroundImage} />
         
-        {/* Google Tag Manager */}
+        {/* Google Tag Manager - Async */}
         {clareamentoConfig.tracking.gtmId && (
           <script
+            async
             dangerouslySetInnerHTML={{
               __html: `
                 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -168,6 +189,12 @@ const ClareamentoLandingPage: React.FC = () => {
             messageMatch={clareamentoConfig.messageMatch}
           />
         </Suspense>
+
+        {/* Load non-critical CSS after initial render */}
+        <NonCriticalCSSLoader 
+          delay={500} 
+          enabled={process.env.NODE_ENV === 'production'} 
+        />
       </div>
     </>
   );
