@@ -142,8 +142,7 @@ const ClareamentoLandingPage: React.FC = () => {
         `}</style>
         
         {/* Preload critical hero image with highest priority */}
-        <link rel="preload" as="image" href="/lovable-uploads/Vertical de jaleco.avif" type="image/avif" fetchPriority="high" />
-        <link rel="preload" as="image" href="/lovable-uploads/Vertical de jaleco.webp" type="image/webp" />
+        <link rel="preload" as="image" href="/lovable-uploads/Vertical de jaleco.webp" type="image/webp" fetchPriority="high" />
         
         {/* DNS prefetch for external resources */}
         <link rel="dns-prefetch" href="//api.whatsapp.com" />

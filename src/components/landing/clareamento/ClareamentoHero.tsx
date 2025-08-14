@@ -21,20 +21,11 @@ const ClareamentoHero: React.FC<ClareamentoHeroProps> = ({
   whatsappNumber,
   whatsappMessage
 }) => {
-  // Critical LCP optimization - aggressive hero image preloading
+  // Critical LCP optimization - WebP image preloading
   useEffect(() => {
     // Only preload if not already preloaded to avoid duplication
-    if (!document.querySelector(`link[href="${backgroundImage.replace('.webp', '.avif')}"]`)) {
-      // Preload AVIF version with highest priority for LCP
-      const avifLink = document.createElement('link');
-      avifLink.rel = 'preload';
-      avifLink.as = 'image';
-      avifLink.href = backgroundImage.replace('.webp', '.avif');
-      avifLink.type = 'image/avif';
-      avifLink.setAttribute('fetchpriority', 'high');
-      document.head.appendChild(avifLink);
-
-      // Preload WebP fallback with high priority
+    if (!document.querySelector(`link[href="${backgroundImage}"]`)) {
+      // Preload WebP image with highest priority for LCP
       const webpLink = document.createElement('link');
       webpLink.rel = 'preload';
       webpLink.as = 'image';
@@ -115,28 +106,17 @@ const ClareamentoHero: React.FC<ClareamentoHeroProps> = ({
           {/* Image - 40% on desktop */}
           <div className="w-full lg:w-2/5">
             <div className="relative">
-              <picture>
-                <source 
-                  srcSet={backgroundImage.replace('.webp', '.avif')} 
-                  type="image/avif"
-                  media="(min-width: 768px)"
-                />
-                <source 
-                  srcSet={backgroundImage} 
-                  type="image/webp"
-                />
-                <img
-                  src={backgroundImage}
-                  alt="Dra. Carla Christoph - Especialista em Clareamento Dental"
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="sync"
-                  className="w-full h-auto rounded-lg shadow-xl"
-                  width="400"
-                  height="600"
-                  style={{ aspectRatio: '400/600', objectFit: 'cover' }}
-                />
-              </picture>
+              <img
+                src={backgroundImage}
+                alt="Dra. Carla Christoph - Especialista em Clareamento Dental"
+                loading="eager"
+                fetchPriority="high"
+                decoding="sync"
+                className="w-full h-auto rounded-lg shadow-xl"
+                width="400"
+                height="600"
+                style={{ aspectRatio: '400/600', objectFit: 'cover' }}
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-[#381F47]/20 to-transparent rounded-lg pointer-events-none"></div>
             </div>
           </div>
