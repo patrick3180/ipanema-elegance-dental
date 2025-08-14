@@ -32,20 +32,25 @@ export default defineConfig(({ mode }) => ({
     
     rollupOptions: {
       output: {
-        // Bundle splitting específico para landing page
+        // Bundle splitting otimizado para landing page - LCP crítico
         manualChunks: {
-          // Core chunks otimizados
-          'landing-vendor': ['react', 'react-dom'],
+          // Critical chunks para LCP
+          'landing-critical': ['react', 'react-dom', 'react-helmet-async'],
+          'landing-hero': ['@/components/landing/clareamento/ClareamentoHero'],
+          'landing-header': ['@/components/landing/clareamento/ClareamentoHeader'],
+          
+          // Lazy chunks para componentes below-the-fold  
+          'landing-lazy-social': ['@/components/landing/clareamento/ClareamentoSocialProof'],
+          'landing-lazy-faq': ['@/components/landing/clareamento/ClareamentoFAQ'],
+          'landing-lazy-footer': ['@/components/landing/clareamento/ClareamentoFooter'],
+          
+          // UI chunks otimizados
           'landing-icons': ['lucide-react'],
-          'landing-core': [
-            'react-helmet-async'
-          ],
-          'landing-lazy': [
-            '@radix-ui/react-accordion',
-            '@radix-ui/react-collapsible'
-          ],
+          'landing-ui': ['@radix-ui/react-accordion', '@radix-ui/react-collapsible'],
+          
+          // Tracking e performance separados
           'tracking': ['@/utils/gclid'],
-          'performance': ['@/hooks/useCriticalImagePreload'],
+          'performance': ['@/hooks/useCriticalImagePreload', '@/components/performance/CriticalResourcePreloader'],
           
           // Chunks para outras páginas (contentful só carrega quando necessário)
           'vendor': ['react-router-dom'],

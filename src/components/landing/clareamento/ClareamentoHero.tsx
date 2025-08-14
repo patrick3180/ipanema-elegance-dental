@@ -21,41 +21,28 @@ const ClareamentoHero: React.FC<ClareamentoHeroProps> = ({
   whatsappNumber,
   whatsappMessage
 }) => {
-  // Preload hero image in multiple formats for maximum performance
+  // Critical LCP optimization - aggressive hero image preloading
   useEffect(() => {
-    // Preload AVIF version (best compression)
-    const avifLink = document.createElement('link');
-    avifLink.rel = 'preload';
-    avifLink.as = 'image';
-    avifLink.href = backgroundImage.replace('.webp', '.avif');
-    avifLink.type = 'image/avif';
-    avifLink.fetchPriority = 'high';
-    document.head.appendChild(avifLink);
+    // Only preload if not already preloaded to avoid duplication
+    if (!document.querySelector(`link[href="${backgroundImage.replace('.webp', '.avif')}"]`)) {
+      // Preload AVIF version with highest priority for LCP
+      const avifLink = document.createElement('link');
+      avifLink.rel = 'preload';
+      avifLink.as = 'image';
+      avifLink.href = backgroundImage.replace('.webp', '.avif');
+      avifLink.type = 'image/avif';
+      avifLink.setAttribute('fetchpriority', 'high');
+      document.head.appendChild(avifLink);
 
-    // Preload WebP original (already optimized)
-    const webpLink = document.createElement('link');
-    webpLink.rel = 'preload';
-    webpLink.as = 'image';
-    webpLink.href = backgroundImage;
-    webpLink.type = 'image/webp';
-    webpLink.fetchPriority = 'high';
-    document.head.appendChild(webpLink);
-
-    // Preload PNG fallback
-    const pngLink = document.createElement('link');
-    pngLink.rel = 'preload';
-    pngLink.as = 'image';
-    pngLink.href = backgroundImage.replace('.webp', '.png');
-    pngLink.type = 'image/png';
-    pngLink.fetchPriority = 'high';
-    document.head.appendChild(pngLink);
-
-    return () => {
-      // Cleanup on unmount
-      document.head.removeChild(avifLink);
-      document.head.removeChild(webpLink);
-      document.head.removeChild(pngLink);
-    };
+      // Preload WebP fallback with high priority
+      const webpLink = document.createElement('link');
+      webpLink.rel = 'preload';
+      webpLink.as = 'image';
+      webpLink.href = backgroundImage;
+      webpLink.type = 'image/webp';
+      webpLink.setAttribute('fetchpriority', 'high');
+      document.head.appendChild(webpLink);
+    }
   }, [backgroundImage]);
 
   const handleWhatsAppClick = async () => {
@@ -132,21 +119,22 @@ const ClareamentoHero: React.FC<ClareamentoHeroProps> = ({
                 <source 
                   srcSet={backgroundImage.replace('.webp', '.avif')} 
                   type="image/avif"
+                  media="(min-width: 768px)"
                 />
                 <source 
                   srcSet={backgroundImage} 
                   type="image/webp"
                 />
                 <img
-                  src={backgroundImage.replace('.webp', '.png')}
+                  src={backgroundImage}
                   alt="Dra. Carla Christoph - Especialista em Clareamento Dental"
                   loading="eager"
                   fetchPriority="high"
-                  decoding="async"
+                  decoding="sync"
                   className="w-full h-auto rounded-lg shadow-xl"
-                  width="800"
+                  width="400"
                   height="600"
-                  style={{ objectFit: 'cover' }}
+                  style={{ aspectRatio: '400/600', objectFit: 'cover' }}
                 />
               </picture>
               <div className="absolute inset-0 bg-gradient-to-t from-[#381F47]/20 to-transparent rounded-lg pointer-events-none"></div>

@@ -12,11 +12,27 @@ import { captureGCLID } from '@/utils/gclid';
 import useScrollTracking from '@/hooks/useScrollTracking';
 import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
 
-// Lazy load non-critical components
-const ClareamentoSocialProof = React.lazy(() => import('@/components/landing/clareamento/ClareamentoSocialProof'));
-const ClareamentoFAQ = React.lazy(() => import('@/components/landing/clareamento/ClareamentoFAQ'));
-const ClareamentoFooter = React.lazy(() => import('@/components/landing/clareamento/ClareamentoFooter'));
-const FloatingWhatsApp = React.lazy(() => import('@/components/landing/FloatingWhatsApp'));
+// Aggressive lazy loading for better LCP performance
+const ClareamentoSocialProof = React.lazy(() => 
+  import('@/components/landing/clareamento/ClareamentoSocialProof').then(module => ({ 
+    default: module.default 
+  }))
+);
+const ClareamentoFAQ = React.lazy(() => 
+  import('@/components/landing/clareamento/ClareamentoFAQ').then(module => ({ 
+    default: module.default 
+  }))
+);
+const ClareamentoFooter = React.lazy(() => 
+  import('@/components/landing/clareamento/ClareamentoFooter').then(module => ({ 
+    default: module.default 
+  }))
+);
+const FloatingWhatsApp = React.lazy(() => 
+  import('@/components/landing/FloatingWhatsApp').then(module => ({ 
+    default: module.default 
+  }))
+);
 
 // Import skeletons
 import SocialProofSkeleton from '@/components/skeleton/SocialProofSkeleton';
@@ -80,9 +96,9 @@ const ClareamentoLandingPage: React.FC = () => {
           crossOrigin="anonymous"
         />
 
-        {/* Critical CSS inline */}
-        <style dangerouslySetInnerHTML={{ __html: `
-          /* Critical CSS for Clareamento Landing Page */
+        {/* Inline critical CSS for LCP optimization */}
+        <style>{`
+          /* Critical above-the-fold styles */
           .bg-\\[\\#CFCBB4\\]{background-color:#CFCBB4}
           .text-\\[\\#381F47\\]{color:#381F47}
           .text-\\[\\#333333\\]{color:#333333}
@@ -93,70 +109,46 @@ const ClareamentoLandingPage: React.FC = () => {
           .pt-\\[90px\\]{padding-top:90px}
           .font-serif{font-family:'Playfair Display',Georgia,serif}
           .font-sans{font-family:'Montserrat',system-ui,sans-serif}
-          .leading-tight{line-height:1.25}
-          .leading-relaxed{line-height:1.625}
-          .shadow-lg{box-shadow:0 10px 15px -3px rgba(0,0,0,0.1)}
+          
+          /* Critical layout */
+          .critical-hero{min-height:100vh;display:flex;align-items:center}
+          .critical-text{font-display:swap}
+          .critical-image{aspect-ratio:400/600;object-fit:cover}
+          
+          /* Performance optimizations */
+          img[loading="eager"]{font-display:swap}
           .shadow-xl{box-shadow:0 20px 25px -5px rgba(0,0,0,0.1)}
-          .transform{transform:translate(0,0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1)}
-          .hover\\:scale-105:hover{transform:scale(1.05)}
-          .transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms}
-          .duration-300{transition-duration:300ms}
+          .transition-all{transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
           .container{width:100%;max-width:1200px;margin:0 auto;padding:0 1rem}
-          .grid{display:grid}
-          .flex{display:flex}
-          .items-center{align-items:center}
-          .justify-center{justify-content:center}
-          .text-center{text-align:center}
-          .text-left{text-align:left}
-          .text-white{color:#ffffff}
-          .bg-white{background-color:#ffffff}
-          .rounded-lg{border-radius:0.5rem}
-          .rounded-full{border-radius:9999px}
-          .px-6{padding-left:1.5rem;padding-right:1.5rem}
-          .py-3{padding-top:0.75rem;padding-bottom:0.75rem}
-          .py-4{padding-top:1rem;padding-bottom:1rem}
-          .py-8{padding-top:2rem;padding-bottom:2rem}
-          .py-12{padding-top:3rem;padding-bottom:3rem}
-          .px-4{padding-left:1rem;padding-right:1rem}
-          .text-sm{font-size:0.875rem}
-          .text-base{font-size:1rem}
-          .text-lg{font-size:1.125rem}
-          .text-xl{font-size:1.25rem}
-          .text-2xl{font-size:1.5rem}
-          .text-3xl{font-size:1.875rem}
-          .text-4xl{font-size:2.25rem}
-          .font-bold{font-weight:700}
-          .font-semibold{font-weight:600}
-          .mb-2{margin-bottom:0.5rem}
-          .mb-4{margin-bottom:1rem}
-          .mb-6{margin-bottom:1.5rem}
-          .mb-8{margin-bottom:2rem}
-          .mt-8{margin-top:2rem}
-          .w-full{width:100%}
-          .h-auto{height:auto}
-          .min-h-screen{min-height:100vh}
-          .relative{position:relative}
-          .absolute{position:absolute}
-          .inset-0{top:0;right:0;bottom:0;left:0}
-          .z-10{z-index:10}
-          .z-20{z-index:20}
-          .space-y-4>:not([hidden])~:not([hidden]){margin-top:1rem}
-          .space-y-6>:not([hidden])~:not([hidden]){margin-top:1.5rem}
+          .grid{display:grid}.flex{display:flex}.items-center{align-items:center}
+          .justify-center{justify-content:center}.text-white{color:#fff}
+          .rounded-lg{border-radius:0.5rem}.px-4{padding:0 1rem}
+          .py-4{padding:1rem 0}.text-lg{font-size:1.125rem}
+          .text-3xl{font-size:1.875rem}.font-bold{font-weight:700}
+          .w-full{width:100%}.h-auto{height:auto}.space-y-4>*+*{margin-top:1rem}
           .gap-4{gap:1rem}
-          .gap-6{gap:1.5rem}
+          
           @media(min-width:768px){
-            .md\\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-            .md\\:text-5xl{font-size:3rem}
+            .md\\:text-4xl{font-size:2.25rem}
             .md\\:text-xl{font-size:1.25rem}
-            .md\\:py-16{padding-top:4rem;padding-bottom:4rem}
-            .md\\:px-8{padding-left:2rem;padding-right:2rem}
+            .md\\:grid-cols-2{grid-template-columns:repeat(2,1fr)}
           }
           @media(min-width:1024px){
-            .lg\\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-            .lg\\:text-6xl{font-size:3.75rem}
-            .lg\\:py-20{padding-top:5rem;padding-bottom:5rem}
+            .lg\\:text-5xl{font-size:3rem}
+            .lg\\:w-3\\/5{width:60%}
+            .lg\\:w-2\\/5{width:40%}
+            .lg\\:flex-row{flex-direction:row}
           }
-        ` }} />
+        `}</style>
+        
+        {/* Preload critical hero image with highest priority */}
+        <link rel="preload" as="image" href="/lovable-uploads/Vertical de jaleco.avif" type="image/avif" fetchPriority="high" />
+        <link rel="preload" as="image" href="/lovable-uploads/Vertical de jaleco.webp" type="image/webp" />
+        
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="//api.whatsapp.com" />
+        <link rel="dns-prefetch" href="//web.whatsapp.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
         
         {/* Font CSS with font-display: swap */}
         <style dangerouslySetInnerHTML={{ __html: `
@@ -176,27 +168,28 @@ const ClareamentoLandingPage: React.FC = () => {
           }
         ` }} />
         
-        {/* Preload critical resources */}
-        <link
-          rel="preload"
-          as="image"
-          href={clareamentoConfig.hero.backgroundImage}
-          imageSrcSet={`${clareamentoConfig.hero.backgroundImage}?w=400&f=webp 400w, ${clareamentoConfig.hero.backgroundImage}?w=800&f=webp 800w`}
-          imageSizes="(max-width: 768px) 100vw, 400px"
-        />
-        
-        {/* Defer non-critical CSS */}
-        <link
-          rel="preload"
-          href="/src/index.css"
-          as="style"
-          onLoad={(e) => {
-            const target = e.target as HTMLLinkElement;
-            target.onload = null;
-            target.rel = 'stylesheet';
-          }}
-        />
-        <noscript>{`<link rel="stylesheet" href="/src/index.css" />`}</noscript>
+        {/* Defer loading of non-critical resources */}
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            // Defer non-critical CSS
+            setTimeout(() => {
+              const link = document.createElement('link');
+              link.rel = 'stylesheet';
+              link.href = '/src/index.css';
+              document.head.appendChild(link);
+            }, 1000);
+            
+            // Prefetch next likely pages after critical path is complete
+            setTimeout(() => {
+              ['/', '/contato', '/servicos'].forEach(href => {
+                const link = document.createElement('link');
+                link.rel = 'prefetch';
+                link.href = href;
+                document.head.appendChild(link);
+              });
+            }, 2000);
+          `
+        }} />
         
         {/* Open Graph */}
         <meta property="og:title" content={clareamentoConfig.seo.title} />
