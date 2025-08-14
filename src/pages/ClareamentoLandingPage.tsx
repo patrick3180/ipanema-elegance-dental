@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense } from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import ClareamentoHeader from '@/components/landing/clareamento/ClareamentoHeader';
 import ClareamentoHero from '@/components/landing/clareamento/ClareamentoHero';
@@ -12,27 +12,11 @@ import { captureGCLID } from '@/utils/gclid';
 import useScrollTracking from '@/hooks/useScrollTracking';
 import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
 
-// Aggressive lazy loading for better LCP performance
-const ClareamentoSocialProof = React.lazy(() => 
-  import('@/components/landing/clareamento/ClareamentoSocialProof').then(module => ({ 
-    default: module.default 
-  }))
-);
-const ClareamentoFAQ = React.lazy(() => 
-  import('@/components/landing/clareamento/ClareamentoFAQ').then(module => ({ 
-    default: module.default 
-  }))
-);
-const ClareamentoFooter = React.lazy(() => 
-  import('@/components/landing/clareamento/ClareamentoFooter').then(module => ({ 
-    default: module.default 
-  }))
-);
-const FloatingWhatsApp = React.lazy(() => 
-  import('@/components/landing/FloatingWhatsApp').then(module => ({ 
-    default: module.default 
-  }))
-);
+// Direct imports for debugging publication issue
+import ClareamentoSocialProof from '@/components/landing/clareamento/ClareamentoSocialProof';
+import ClareamentoFAQ from '@/components/landing/clareamento/ClareamentoFAQ';
+import ClareamentoFooter from '@/components/landing/clareamento/ClareamentoFooter';
+import FloatingWhatsApp from '@/components/landing/FloatingWhatsApp';
 
 // Import skeletons
 import SocialProofSkeleton from '@/components/skeleton/SocialProofSkeleton';
@@ -245,22 +229,18 @@ const ClareamentoLandingPage: React.FC = () => {
             subtitle={clareamentoConfig.guide.subtitle}
           />
 
-          {/* Social Proof Section - Lazy Loaded */}
-          <Suspense fallback={<SocialProofSkeleton />}>
-            <ClareamentoSocialProof
-              title={clareamentoConfig.socialProof.title}
-              testimonials={clareamentoConfig.socialProof.testimonials}
-              stats={clareamentoConfig.socialProof.stats!}
-            />
-          </Suspense>
+          {/* Social Proof Section */}
+          <ClareamentoSocialProof
+            title={clareamentoConfig.socialProof.title}
+            testimonials={clareamentoConfig.socialProof.testimonials}
+            stats={clareamentoConfig.socialProof.stats!}
+          />
 
-          {/* FAQ Section - Lazy Loaded */}
-          <Suspense fallback={<FAQSkeleton />}>
-            <ClareamentoFAQ
-              title={clareamentoConfig.faq.title}
-              questions={clareamentoConfig.faq.questions}
-            />
-          </Suspense>
+          {/* FAQ Section */}
+          <ClareamentoFAQ
+            title={clareamentoConfig.faq.title}
+            questions={clareamentoConfig.faq.questions}
+          />
 
           {/* CTA Section */}
           <ClareamentoCTA
@@ -273,20 +253,16 @@ const ClareamentoLandingPage: React.FC = () => {
           />
         </main>
 
-        {/* Footer - Lazy Loaded */}
-        <Suspense fallback={<FooterSkeleton />}>
-          <ClareamentoFooter />
-        </Suspense>
+        {/* Footer */}
+        <ClareamentoFooter />
 
-        {/* Floating WhatsApp - Lazy Loaded */}
-        <Suspense fallback={<WhatsAppSkeleton />}>
-          <FloatingWhatsApp
-            phoneNumber={clareamentoConfig.whatsapp.number}
-            message={clareamentoConfig.whatsapp.message}
-            campaign={clareamentoConfig.campaign}
-            messageMatch={clareamentoConfig.messageMatch}
-          />
-        </Suspense>
+        {/* Floating WhatsApp */}
+        <FloatingWhatsApp
+          phoneNumber={clareamentoConfig.whatsapp.number}
+          message={clareamentoConfig.whatsapp.message}
+          campaign={clareamentoConfig.campaign}
+          messageMatch={clareamentoConfig.messageMatch}
+        />
 
         {/* Load non-critical CSS after initial render */}
         <NonCriticalCSSLoader 
