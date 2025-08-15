@@ -1,7 +1,7 @@
 import { handlePageRedirects, isGoneUrl, getRedirectDestination } from '@/utils/urlRedirects';
 import { getRedirectInfo } from '@/utils/urlPatternMatcher';
-import { handleSitemapRequest } from '@/api/sitemap';
-import { handleRobotsRequest } from '@/api/robots';
+//import { handleSitemapRequest } from '@/api/sitemap';
+//import { handleRobotsRequest } from '@/api/robots';
 import { seoMonitor } from '@/utils/seoMonitoring';
 
 // Enhanced middleware to handle redirects, 410 responses, and static files
