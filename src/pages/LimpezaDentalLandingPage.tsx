@@ -4,6 +4,8 @@ import { limpezaDentalConfig } from '@/config/limpezaDentalConfig';
 import { captureGCLID } from '@/utils/gclid';
 import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
 import { useScrollTracking } from '@/hooks/useScrollTracking';
+import CriticalCSSInliner from '@/components/performance/CriticalCSSInliner';
+import HeroImagePreloader from '@/components/performance/HeroImagePreloader';
 
 // Critical components (loaded immediately) - REUTILIZANDO COMPONENTES DA CONSULTA INICIAL
 import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
@@ -19,7 +21,34 @@ const ClareamentoFooter = React.lazy(() => import('@/components/landing/clareame
 const FloatingWhatsApp = React.lazy(() => import('@/components/landing/FloatingWhatsApp'));
 
 const LimpezaDentalLandingPage: React.FC = () => {
-  // Preload critical images for LCP optimization
+  // Critical images for LCP optimization with fetchpriority="high"
+  const criticalImages = [
+    {
+      src: '/lovable-uploads/vertical-de-jaleco-480.avif',
+      type: 'avif' as const,
+      media: '(max-width: 767px)',
+      priority: true
+    },
+    {
+      src: '/lovable-uploads/vertical-de-jaleco-768.avif', 
+      type: 'avif' as const,
+      media: '(min-width: 768px) and (max-width: 1023px)',
+      priority: true
+    },
+    {
+      src: '/lovable-uploads/vertical-de-jaleco-1024.avif',
+      type: 'avif' as const, 
+      media: '(min-width: 1024px)',
+      priority: true
+    },
+    {
+      src: '/lovable-uploads/vertical-de-jaleco.webp',
+      type: 'webp' as const,
+      priority: true
+    }
+  ];
+
+  // Fallback preload for LCP
   useCriticalImagePreload({ images: [{ src: limpezaDentalConfig.hero.backgroundImage }] });
 
   useEffect(() => {
@@ -79,6 +108,10 @@ const LimpezaDentalLandingPage: React.FC = () => {
 
   return (
     <>
+      {/* Critical performance optimizations */}
+      <CriticalCSSInliner />
+      <HeroImagePreloader images={criticalImages} />
+      
       <Helmet>
         <title>{limpezaDentalConfig.seo.title}</title>
         <meta name="description" content={limpezaDentalConfig.seo.description} />
@@ -98,19 +131,32 @@ const LimpezaDentalLandingPage: React.FC = () => {
         <meta name="twitter:description" content={limpezaDentalConfig.seo.description} />
         <meta name="twitter:image" content={`https://dracarlachristoph.com.br${limpezaDentalConfig.hero.backgroundImage}`} />
 
-        {/* Preload critical fonts */}
+        {/* Preload critical fonts com display=swap */}
         <link 
           rel="preload" 
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" 
           as="style" 
-          onLoad={() => {}}
+          onLoad={(e: any) => { 
+            e.target.rel = 'stylesheet'; 
+            e.target.onload = null; 
+          }}
         />
 
-        {/* Preload critical images */}
+        {/* Preload critical hero images com fetchpriority="high" */}
         <link 
           rel="preload" 
-          href={limpezaDentalConfig.hero.backgroundImage} 
+          href="/lovable-uploads/vertical-de-jaleco-1024.avif"
           as="image" 
+          type="image/avif"
+          media="(min-width: 1024px)"
+          fetchPriority="high"
+        />
+        <link 
+          rel="preload" 
+          href="/lovable-uploads/vertical-de-jaleco.webp"
+          as="image" 
+          type="image/webp"
+          fetchPriority="high"
         />
 
         {/* DNS Prefetch */}

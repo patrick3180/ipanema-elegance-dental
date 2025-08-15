@@ -1,144 +1,101 @@
-import React from 'react';
+import { useEffect } from 'react';
 
-interface CriticalCSSInlinerProps {
-  pageName?: string;
+const criticalCSS = `
+/* Reset e base críticos */
+*,::after,::before{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;line-height:1.5;tab-size:4;font-family:system-ui,-apple-system,sans-serif}
+body{margin:0;line-height:inherit;font-family:Inter,system-ui,sans-serif;background:hsl(51 22% 76%);color:hsl(252 42% 20%)}
+
+/* Typography crítica */
+h1,h2,h3,h4,h5,h6{font-family:'Playfair Display',Georgia,serif;font-weight:500;line-height:1.2}
+.heading-xl{font-size:clamp(2rem,5vw,3.5rem);line-height:1.2;margin-bottom:2rem}
+.body-lg{font-size:1.125rem;line-height:1.7;color:hsl(252 42% 20% / 0.9);margin-bottom:2.5rem}
+
+/* Layout crítico above-the-fold */
+.hero-section{min-height:100vh;padding-top:112px;background:hsl(51 22% 76%);position:relative;overflow:hidden}
+.section-spacing{padding:4rem 1.5rem}
+.container-custom{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+.grid{display:grid;gap:4rem}
+@media(min-width:1024px){.lg\\:grid-cols-2{grid-template-columns:repeat(2,1fr)}}
+
+/* Components críticos */
+.bg-dental-purple\\/10{background:hsl(252 42% 20% / 0.1)}
+.bg-dental-gold\\/20{background:hsl(43 33% 54% / 0.2)}
+.rounded-2xl{border-radius:1rem}
+.rounded-full{border-radius:9999px}
+.overflow-hidden{overflow:hidden}
+.relative{position:relative}
+.absolute{position:absolute}
+.flex{display:flex}
+.items-center{align-items:center}
+.justify-center{justify-content:center}
+.justify-end{justify-content:flex-end}
+
+/* Images críticas */
+img{max-width:100%;height:auto;display:block}
+.w-full{width:100%}
+.h-full{height:100%}
+.object-cover{object-fit:cover}
+
+/* Buttons críticos */
+button{font-family:inherit;font-size:100%;line-height:1.15;margin:0;text-transform:none;-webkit-appearance:button}
+.bg-dental-gold{background:hsl(43 33% 54%)}
+.hover\\:bg-dental-gold\\/90:hover{background:hsl(43 33% 54% / 0.9)}
+.text-white{color:#fff}
+.rounded-md{border-radius:0.375rem}
+.px-8{padding-left:2rem;padding-right:2rem}
+.py-6{padding-top:1.5rem;padding-bottom:1.5rem}
+
+/* Responsive crítico */
+@media(max-width:767px){
+  .order-1{order:1}
+  .order-2{order:2}
+  .w-\\[320px\\]{width:320px}
+  .h-\\[500px\\]{height:500px}
+}
+@media(min-width:768px){
+  .md\\:w-\\[420px\\]{width:420px}
+  .md\\:h-\\[600px\\]{height:600px}
+}
+@media(min-width:1024px){
+  .lg\\:order-1{order:1}
+  .lg\\:order-2{order:2}
+  .lg\\:justify-end{justify-content:flex-end}
 }
 
-const CriticalCSSInliner: React.FC<CriticalCSSInlinerProps> = ({ pageName = 'default' }) => {
-  const getCriticalCSS = () => {
-    if (pageName === 'clareamento') {
-      return `
-        /* Critical CSS for Clareamento Landing Page */
-        .bg-\\[\\#CFCBB4\\]{background-color:#CFCBB4}
-        .text-\\[\\#381F47\\]{color:#381F47}
-        .text-\\[\\#333333\\]{color:#333333}
-        .text-\\[\\#B3955F\\]{color:#B3955F}
-        .bg-\\[\\#381F47\\]{background-color:#381F47}
-        .hover\\:bg-\\[\\#2d1738\\]:hover{background-color:#2d1738}
-        .bg-white\\/50{background-color:rgba(255,255,255,0.5)}
-        .pt-\\[90px\\]{padding-top:90px}
-        .font-serif{font-family:'Playfair Display',Georgia,serif}
-        .font-sans{font-family:'Montserrat',system-ui,sans-serif}
-        .leading-tight{line-height:1.25}
-        .leading-relaxed{line-height:1.625}
-        .shadow-lg{box-shadow:0 10px 15px -3px rgba(0,0,0,0.1)}
-        .shadow-xl{box-shadow:0 20px 25px -5px rgba(0,0,0,0.1)}
-        .transform{transform:translate(0,0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1)}
-        .hover\\:scale-105:hover{transform:scale(1.05)}
-        .transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms}
-        .duration-300{transition-duration:300ms}
-        .container{width:100%;max-width:1200px;margin:0 auto;padding:0 1rem}
-        .grid{display:grid}
-        .flex{display:flex}
-        .items-center{align-items:center}
-        .justify-center{justify-content:center}
-        .text-center{text-align:center}
-        .text-left{text-align:left}
-        .text-white{color:#ffffff}
-        .bg-white{background-color:#ffffff}
-        .rounded-lg{border-radius:0.5rem}
-        .rounded-full{border-radius:9999px}
-        .px-6{padding-left:1.5rem;padding-right:1.5rem}
-        .py-3{padding-top:0.75rem;padding-bottom:0.75rem}
-        .py-4{padding-top:1rem;padding-bottom:1rem}
-        .py-8{padding-top:2rem;padding-bottom:2rem}
-        .py-12{padding-top:3rem;padding-bottom:3rem}
-        .px-4{padding-left:1rem;padding-right:1rem}
-        .text-sm{font-size:0.875rem}
-        .text-base{font-size:1rem}
-        .text-lg{font-size:1.125rem}
-        .text-xl{font-size:1.25rem}
-        .text-2xl{font-size:1.5rem}
-        .text-3xl{font-size:1.875rem}
-        .text-4xl{font-size:2.25rem}
-        .font-bold{font-weight:700}
-        .font-semibold{font-weight:600}
-        .mb-2{margin-bottom:0.5rem}
-        .mb-4{margin-bottom:1rem}
-        .mb-6{margin-bottom:1.5rem}
-        .mb-8{margin-bottom:2rem}
-        .mt-8{margin-top:2rem}
-        .w-full{width:100%}
-        .h-auto{height:auto}
-        .min-h-screen{min-height:100vh}
-        .relative{position:relative}
-        .absolute{position:absolute}
-        .inset-0{top:0;right:0;bottom:0;left:0}
-        .z-10{z-index:10}
-        .z-20{z-index:20}
-        .space-y-4>:not([hidden])~:not([hidden]){margin-top:1rem}
-        .space-y-6>:not([hidden])~:not([hidden]){margin-top:1.5rem}
-        .gap-4{gap:1rem}
-        .gap-6{gap:1.5rem}
-        @media(min-width:768px){
-          .md\\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-          .md\\:text-5xl{font-size:3rem}
-          .md\\:text-xl{font-size:1.25rem}
-          .md\\:py-16{padding-top:4rem;padding-bottom:4rem}
-          .md\\:px-8{padding-left:2rem;padding-right:2rem}
-        }
-        @media(min-width:1024px){
-          .lg\\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-          .lg\\:text-6xl{font-size:3.75rem}
-          .lg\\:py-20{padding-top:5rem;padding-bottom:5rem}
-        }
-      `;
+/* Performance crítico */
+.hero-section img{contain:layout style paint}
+.font-display{font-family:'Playfair Display',Georgia,serif}
+.font-sans{font-family:Inter,system-ui,sans-serif}
+`;
+
+const CriticalCSSInliner = () => {
+  useEffect(() => {
+    // Inject critical CSS if not already present
+    if (!document.querySelector('[data-critical-css]')) {
+      const styleElement = document.createElement('style');
+      styleElement.textContent = criticalCSS;
+      styleElement.setAttribute('data-critical-css', 'true');
+      document.head.insertBefore(styleElement, document.head.firstChild);
     }
-    
-    return `
-      /* Default critical CSS */
-      .container{width:100%;max-width:1200px;margin:0 auto;padding:0 1rem}
-      .flex{display:flex}
-      .items-center{align-items:center}
-      .justify-center{justify-content:center}
-      .text-center{text-align:center}
-    `;
-  };
 
-  const getFontCSS = () => {
-    return `
-      @font-face {
-        font-family: 'Playfair Display';
-        font-display: swap;
-        font-weight: 400 700;
-        src: url('https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDXbtM.woff2') format('woff2');
-        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-      }
-      @font-face {
-        font-family: 'Montserrat';
-        font-display: swap;
-        font-weight: 300 700;
-        src: url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Uw-.woff2') format('woff2');
-        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-      }
-    `;
-  };
+    // Load non-critical CSS after critical path
+    const loadNonCriticalCSS = () => {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/src/index.css';
+      link.media = 'print';
+      link.onload = () => {
+        link.media = 'all';
+      };
+      document.head.appendChild(link);
+    };
 
-  return (
-    <>
-      {/* Preload critical fonts */}
-      <link
-        rel="preload"
-        href="https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDXbtM.woff2"
-        as="font"
-        type="font/woff2"
-        crossOrigin="anonymous"
-      />
-      <link
-        rel="preload"
-        href="https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Uw-.woff2"
-        as="font"
-        type="font/woff2"
-        crossOrigin="anonymous"
-      />
+    // Defer non-critical CSS loading
+    requestIdleCallback(loadNonCriticalCSS, { timeout: 1000 });
+  }, []);
 
-      {/* Critical CSS inline */}
-      <style dangerouslySetInnerHTML={{ __html: getCriticalCSS() }} />
-      
-      {/* Font CSS with font-display: swap */}
-      <style dangerouslySetInnerHTML={{ __html: getFontCSS() }} />
-    </>
-  );
+  return null;
 };
 
 export default CriticalCSSInliner;

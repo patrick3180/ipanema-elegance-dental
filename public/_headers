@@ -1,39 +1,60 @@
-# Cache para assets estáticos (1 ano imutável)
+# Otimização TTFB - Cache para assets estáticos (1 ano imutável)
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+  X-Content-Type-Options: nosniff
 
 # Cache para JavaScript (1 ano imutável)
 /*.js
   Cache-Control: public, max-age=31536000, immutable
+  X-Content-Type-Options: nosniff
 
 # Cache para CSS (1 ano imutável)  
 /*.css
   Cache-Control: public, max-age=31536000, immutable
+  X-Content-Type-Options: nosniff
 
 # Cache para fontes (1 ano imutável)
 /*.woff2
   Cache-Control: public, max-age=31536000, immutable
+  X-Content-Type-Options: nosniff
 /*.woff
   Cache-Control: public, max-age=31536000, immutable
+  X-Content-Type-Options: nosniff
 
-# Cache para imagens (24h browser + 1 ano CDN)
+# Cache otimizado para imagens (7 dias browser + 1 ano CDN)
 /images/*
-  Cache-Control: public, max-age=86400, s-maxage=31536000
+  Cache-Control: public, max-age=604800, s-maxage=31536000
+  X-Content-Type-Options: nosniff
 *.webp
-  Cache-Control: public, max-age=86400, s-maxage=31536000
+  Cache-Control: public, max-age=604800, s-maxage=31536000
+  X-Content-Type-Options: nosniff
 *.avif
-  Cache-Control: public, max-age=86400, s-maxage=31536000
+  Cache-Control: public, max-age=604800, s-maxage=31536000
+  X-Content-Type-Options: nosniff
 *.jpg
-  Cache-Control: public, max-age=86400, s-maxage=31536000
+  Cache-Control: public, max-age=604800, s-maxage=31536000
+  X-Content-Type-Options: nosniff
 *.png
-  Cache-Control: public, max-age=86400, s-maxage=31536000
+  Cache-Control: public, max-age=604800, s-maxage=31536000
+  X-Content-Type-Options: nosniff
+
+# Lovable uploads com cache otimizado
+/lovable-uploads/*
+  Cache-Control: public, max-age=604800, s-maxage=31536000
+  X-Content-Type-Options: nosniff
 
 # HTML sem cache (sempre fresh)
 /*.html
   Cache-Control: no-cache, no-store, must-revalidate
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
 /
   Cache-Control: no-cache, no-store, must-revalidate
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
 
-# Landing pages (1 hora)
+# Landing pages com cache otimizado para TTFB (30min browser + 2h CDN)
 /lp/*
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=1800, s-maxage=7200
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
