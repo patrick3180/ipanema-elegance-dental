@@ -1,7 +1,55 @@
-# This file is generated dynamically
-# For the live robots.txt content, visit /robots.txt
+# Robots.txt para dracarlachristoph.com
+# Gerado em 2025-08-15
 
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /gone
+Disallow: /seo-dashboard
+Disallow: /_next/
+Disallow: /assets/*.map
 
-Sitemap: https://dracarlachristoph.com/sitemap.xml
+# Sitemap principal
+Sitemap: https://www.dracarlachristoph.com/sitemap.xml
+
+# Googlebot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Bingbot  
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Crawl-delay para bots específicos
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: DotBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+# Bloquear bots indesejados
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: ia_archiver
+Disallow: /
+
+User-agent: Yandex
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
