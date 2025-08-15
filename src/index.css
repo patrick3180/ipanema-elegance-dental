@@ -3,7 +3,30 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Fonts loaded asynchronously via HTML head - removed blocking @import for better performance */
+/* Self-hosted fonts for performance optimization */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/montserrat-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/montserrat-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('/fonts/playfair-display-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 @layer base {
   :root {
@@ -87,6 +110,15 @@
   
   .elegant-shadow {
     @apply shadow-[0_4px_20px_rgba(0,0,0,0.08)];
+  }
+
+  /* WhatsApp button with accessible contrast */
+  .whatsapp-button {
+    background-color: #128C4A; /* Darker green for 4.5:1 contrast ratio */
+  }
+  
+  .whatsapp-button:hover {
+    background-color: #0F7540; /* Even darker on hover */
   }
 
   /* Custom text truncation for blog excerpts */

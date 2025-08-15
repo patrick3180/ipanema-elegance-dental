@@ -83,18 +83,29 @@ export default defineConfig(({ mode }) => ({
       },
     },
     
-    // Minificação agressiva
+    // Minificação ultra agressiva para PageSpeed 90+
     minify: mode === 'production' ? 'terser' : false,
     terserOptions: mode === 'production' ? {
       compress: {
         drop_console: true,
         drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.warn'],
+        pure_funcs: ['console.log', 'console.info', 'console.warn', 'console.debug'],
         unsafe_proto: true,
+        unsafe_math: true,
+        unsafe_methods: true,
+        passes: 3, // Multiple passes for better compression
+        toplevel: true,
+        pure_getters: true,
+        unsafe_comps: true,
       },
       mangle: {
         safari10: true,
+        toplevel: true,
+        properties: false, // Don't mangle properties to avoid breaking
       },
+      format: {
+        comments: false, // Remove all comments
+      }
     } : undefined,
     
     sourcemap: false,

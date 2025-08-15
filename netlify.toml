@@ -4,18 +4,29 @@
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
+    # Enable Brotli and GZIP compression
+    Content-Encoding = "br, gzip"
+    Vary = "Accept-Encoding"
 
 [[headers]]
   for = "/lp/clareamento-dental"
   [headers.values]
-    Link = '''</lovable-uploads/vertical-de-jaleco-1024.avif>; rel=preload; as=image; type=image/avif; fetchpriority=high, <https://fonts.gstatic.com>; rel=preconnect, <https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDXbtM.woff2>; rel=preload; as=font; type=font/woff2; crossorigin'''
-    Cache-Control = "public, max-age=300, stale-while-revalidate=86400"
+    Link = '''</lovable-uploads/vertical-de-jaleco-1024.avif>; rel=preload; as=image; type=image/avif; fetchpriority=high, </fonts/montserrat-400.woff2>; rel=preload; as=font; type=font/woff2; crossorigin, </fonts/playfair-display-400.woff2>; rel=preload; as=font; type=font/woff2; crossorigin'''
+    Cache-Control = "public, max-age=600, stale-while-revalidate=86400"
     Content-Encoding = "br, gzip"
+
+[[headers]]
+  for = "/lp/limpeza-dental-ipanema"
+  [headers.values]
+    Link = '''</assets/consulta-inicial-hero-760x996-optimized.avif>; rel=preload; as=image; type=image/avif; fetchpriority=high, </fonts/montserrat-400.woff2>; rel=preload; as=font; type=font/woff2; crossorigin, </fonts/playfair-display-400.woff2>; rel=preload; as=font; type=font/woff2; crossorigin'''
+    Cache-Control = "public, max-age=600, stale-while-revalidate=86400"
+    Content-Encoding = "br, gzip"
+    Vary = "Accept-Encoding"
 
 [[headers]]
   for = "/lp/consulta-inicial"
   [headers.values]
-    Link = '''</lovable-uploads/RIT08058-vertical-doutora-site.webp>; rel=preload; as=image; type=image/webp; fetchpriority=high, <https://fonts.gstatic.com>; rel=preconnect; crossorigin, <https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap>; rel=preload; as=style'''
+    Link = '''</lovable-uploads/RIT08058-vertical-doutora-site.webp>; rel=preload; as=image; type=image/webp; fetchpriority=high, </fonts/montserrat-400.woff2>; rel=preload; as=font; type=font/woff2; crossorigin, </fonts/playfair-display-400.woff2>; rel=preload; as=font; type=font/woff2; crossorigin'''
     Cache-Control = "public, max-age=600, stale-while-revalidate=86400"
     Content-Encoding = "br, gzip"
     Server-Timing = "cache;desc=HIT"

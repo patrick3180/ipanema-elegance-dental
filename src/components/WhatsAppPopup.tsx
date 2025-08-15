@@ -84,7 +84,7 @@ const WhatsAppPopup = () => {
           <DialogFooter>
             <Button 
               onClick={handleWhatsAppClick}
-              className="w-full bg-[#25D366] hover:bg-[#1ea952] text-white gap-2"
+              className="w-full whatsapp-button hover:whatsapp-button text-white gap-2"
             >
               <MessageCircle size={18} />
               <div className="flex flex-col text-left leading-tight">
