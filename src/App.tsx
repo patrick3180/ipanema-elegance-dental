@@ -10,6 +10,7 @@ import { handlePageRedirects } from "@/utils/urlRedirects";
 import { seoMonitor } from "@/utils/seoMonitoring";
 import "@/utils/404ErrorHandler";
 import { captureGCLID } from "@/utils/gclid";
+import { Analytics } from '@vercel/analytics/react';
 
 // Lazy load TODAS as páginas exceto Index para melhor performance
 const Index = lazy(() => import("./pages/Index"));
@@ -138,6 +139,7 @@ function App() {
       <Router>
         <AppContent />
       </Router>
+       <Analytics />
     </QueryClientProvider>
   );
 }
