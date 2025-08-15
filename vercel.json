@@ -5,16 +5,36 @@
   "regions": ["gru1"],
   "rewrites": [
     {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
       "source": "/sitemap.xml",
-      "destination": "/api/sitemap"
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
     },
     {
       "source": "/robots.txt",
-      "destination": "/api/robots"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
     }
   ]
 }
