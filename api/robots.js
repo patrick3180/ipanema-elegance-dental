@@ -1,19 +1,32 @@
 // api/robots.js
-// IMPORTANTE: Use .js ao invés de .ts para evitar problemas
+// Gera o robots.txt dinamicamente
 
 export default function handler(req, res) {
-  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-  res.setHeader('Cache-Control', 'public, s-maxage=86400');
+  console.log('Robots.txt API called!');
   
   const robotsTxt = `# Robots.txt para dracarlachristoph.com
+# Gerado dinamicamente pela Vercel
+
 User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /gone
 Disallow: /seo-dashboard
+Disallow: /_next/
+Disallow: /assets/*.map
 
-# Sitemap
+# Sitemap principal
 Sitemap: https://dracarlachristoph.com/sitemap.xml
+
+# Googlebot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Bingbot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
 
 # Crawl-delay para bots específicos
 User-agent: AhrefsBot
@@ -29,6 +42,15 @@ User-agent: MJ12bot
 Crawl-delay: 10
 
 # Bloquear bots indesejados
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
 User-agent: ia_archiver
 Disallow: /
 
@@ -38,15 +60,12 @@ Disallow: /
 User-agent: Baiduspider
 Disallow: /
 
-# Google
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 1
-
-# Bing
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 1`;
+# Última atualização: ${new Date().toISOString().split('T')[0]}`;
   
+  // Configurar headers
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  res.setHeader('Cache-Control', 'public, max-age=86400'); // Cache por 24 horas
+  
+  // Enviar resposta
   res.status(200).send(robotsTxt);
 }
