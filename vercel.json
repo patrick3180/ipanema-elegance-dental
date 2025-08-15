@@ -5,8 +5,7 @@
   "regions": ["gru1"],
   "functions": {
     "api/*.js": {
-      "maxDuration": 10,
-      "runtime": "nodejs18.x"
+      "maxDuration": 10
     }
   },
   "rewrites": [
