@@ -34,7 +34,7 @@ const WhatsAppSkeleton = lazy(() => import('@/components/skeleton/WhatsAppSkelet
 
 const LimpezaDentalLandingPage: React.FC = () => {
   // Preload critical images for LCP optimization
-  useCriticalImagePreload({ images: ['/lovable-uploads/vertical-de-jaleco.webp'] });
+  useCriticalImagePreload({ images: [{ src: '/lovable-uploads/vertical-de-jaleco.webp' }] });
 
   useEffect(() => {
     // Capture GCLID immediately
@@ -53,12 +53,12 @@ const LimpezaDentalLandingPage: React.FC = () => {
 
     // Deferred GTM loading - only after user interaction or 3s delay
     const loadGTM = () => {
-      if (typeof window !== 'undefined' && !window.gtmLoaded && limpezaDentalConfig.tracking.gtmId) {
+      if (typeof window !== 'undefined' && !(window as any).gtmLoaded && limpezaDentalConfig.tracking.gtmId) {
         const script = document.createElement('script');
         script.src = `https://www.googletagmanager.com/gtm.js?id=${limpezaDentalConfig.tracking.gtmId}`;
         script.async = true;
         document.head.appendChild(script);
-        window.gtmLoaded = true;
+        (window as any).gtmLoaded = true;
       }
     };
 
@@ -86,7 +86,10 @@ const LimpezaDentalLandingPage: React.FC = () => {
   }, []);
 
   // Scroll tracking for production analytics
-  useScrollTracking({ enabled: process.env.NODE_ENV === 'production' });
+  useScrollTracking({ 
+    pagePath: '/lp/limpeza-dental-ipanema', 
+    enabled: process.env.NODE_ENV === 'production' 
+  });
 
   return (
     <>
@@ -117,7 +120,7 @@ const LimpezaDentalLandingPage: React.FC = () => {
           rel="preload" 
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" 
           as="style" 
-          onload="this.onload=null;this.rel='stylesheet'"
+          onLoad={() => {}}
         />
 
         {/* Preload critical images */}
@@ -137,7 +140,7 @@ const LimpezaDentalLandingPage: React.FC = () => {
           rel="preload" 
           href="/css/non-critical.css" 
           as="style" 
-          onload="this.onload=null;this.rel='stylesheet'"
+          onLoad={() => {}}
         />
 
         {/* Deferred Google Tag Manager */}
@@ -213,7 +216,7 @@ const LimpezaDentalLandingPage: React.FC = () => {
 
       {/* Performance optimization components */}
       <FastServerResponseOptimizer />
-      <CriticalCSSOptimizer />
+      <CriticalCSSOptimizer inlineStyles=".hero-critical { min-height: 100vh; }" />
       <AsyncScriptManager />
 
       {/* Critical above-the-fold content */}
@@ -289,11 +292,7 @@ const LimpezaDentalLandingPage: React.FC = () => {
 
       <LazySection>
         <Suspense fallback={<FooterSkeleton />}>
-          <ClareamentoFooter
-            doctorName={limpezaDentalConfig.contact.doctorName}
-            clinicName={limpezaDentalConfig.contact.clinicName}
-            phoneNumber={limpezaDentalConfig.whatsapp.number}
-          />
+          <ClareamentoFooter />
         </Suspense>
       </LazySection>
 
