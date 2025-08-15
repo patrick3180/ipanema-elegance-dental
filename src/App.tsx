@@ -139,7 +139,7 @@ function App() {
       <Router>
         <AppContent />
       </Router>
-       <Analytics />
+      <Analytics />
     </QueryClientProvider>
   );
 }
