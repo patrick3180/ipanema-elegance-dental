@@ -11,11 +11,11 @@
   "rewrites": [
     {
       "source": "/sitemap.xml",
-      "destination": "/api/sitemap-edge"
+      "destination": "/api/sitemap-fixed"
     },
     {
       "source": "/robots.txt",
-      "destination": "/api/robots-edge"
+      "destination": "/api/robots"
     },
     {
       "source": "/api/(.*)",
