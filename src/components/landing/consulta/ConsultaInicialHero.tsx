@@ -84,33 +84,20 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
             <picture className="block relative">
               {/* AVIF para navegadores modernos - 60% menor que WebP */}
               <source
-                srcSet="/assets/consulta-inicial-hero-512x672-optimized.avif 512w,
-                        /assets/consulta-inicial-hero-760x996-optimized.avif 760w,
-                        /assets/consulta-inicial-hero-1024x1344-optimized.avif 1024w"
-                sizes="(max-width: 767px) 100vw,
-                       (max-width: 1023px) 50vw,
-                       40vw"
-                type="image/avif"
-              />
-              
-              {/* WebP como fallback */}
-              <source
-                srcSet="/lovable-uploads/RIT08058-vertical-doutora-site-512.webp 512w,
-                        /lovable-uploads/RIT08058-vertical-doutora-site-760.webp 760w,
-                        /lovable-uploads/RIT08058-vertical-doutora-site.webp 1024w"
+                srcSet="/lovable-uploads/RIT08058-vertical-doutora-site.webp"
                 sizes="(max-width: 767px) 100vw,
                        (max-width: 1023px) 50vw,
                        40vw"
                 type="image/webp"
               />
               
-              {/* JPEG como último fallback */}
+              {/* JPEG como fallback */}
               <img
-                src="/lovable-uploads/RIT08058-vertical-doutora-site.jpg"
+                src="/lovable-uploads/RIT08058-vertical-doutora-site.webp"
                 alt="Dra. Carla Christoph - Limpeza Dental em Ipanema"
                 className="w-full h-auto rounded-lg shadow-xl"
                 loading="eager"
-                fetchpriority="high"
+                fetchPriority="high"
                 width="760"
                 height="996"
                 style={{

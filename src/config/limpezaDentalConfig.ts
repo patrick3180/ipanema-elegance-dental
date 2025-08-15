@@ -25,7 +25,7 @@ export const limpezaDentalConfig: LandingPageConfig = {
     "Tecnologia ultrassônica confortável - sensação suave, sem pressão dolorosa",
     "Remove até 95% do biofilme causador de cáries e mau hálito",
     "Previne problemas que custariam 8-50x mais para tratar",
-    "Consulta sem pressa em ambiente acolhedor de Ipanema"
+    "Agendamento 24h via WhatsApp"
   ],
 
   problem: {
