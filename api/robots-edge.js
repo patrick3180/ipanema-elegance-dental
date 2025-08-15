@@ -20,7 +20,7 @@ Disallow: /_next/
 Disallow: /assets/*.map
 
 # Sitemap principal
-Sitemap: https://dracarlachristoph.com/sitemap.xml
+Sitemap: https://www.dracarlachristoph.com/sitemap.xml
 
 # Googlebot
 User-agent: Googlebot
