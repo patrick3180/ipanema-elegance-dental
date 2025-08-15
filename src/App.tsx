@@ -41,6 +41,7 @@ const TermsOfUse = lazy(() => import("./pages/TermsOfUse"));
 const LandingPageTemplate = lazy(() => import("./pages/LandingPageTemplate"));
 const ClareamentoLandingPage = lazy(() => import("./pages/ClareamentoLandingPage"));
 const ConsultaInicialLandingPage = lazy(() => import("./pages/ConsultaInicialLandingPage"));
+const LimpezaDentalLandingPage = lazy(() => import("./pages/LimpezaDentalLandingPage"));
 
 // QueryClient otimizado
 const queryClient = new QueryClient({
@@ -118,6 +119,7 @@ function AppContent() {
             <Route path="/lp/template" element={<LandingPageTemplate />} />
             <Route path="/lp/clareamento-dental" element={<ClareamentoLandingPage />} />
             <Route path="/lp/consulta-inicial" element={<ConsultaInicialLandingPage />} />
+            <Route path="/lp/limpeza-dental-ipanema" element={<LimpezaDentalLandingPage />} />
             <Route path="/lp/:template" element={<LandingPageTemplate />} />
 
             {/* 404 Route */}
