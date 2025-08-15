@@ -9,7 +9,7 @@ export default function handler(request) {
   console.log('Edge Robots.txt API called!');
   
   const robotsTxt = `# Robots.txt para dracarlachristoph.com
-# Gerado dinamicamente pela Vercel Edge Function
+# Gerado dinamicamente pela Vercel
 
 User-agent: *
 Allow: /
