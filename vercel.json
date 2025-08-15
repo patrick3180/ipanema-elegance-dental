@@ -11,7 +11,7 @@
   "rewrites": [
     {
       "source": "/sitemap.xml",
-      "destination": "/api/sitemap-fixed"
+      "destination": "/api/sitemap-final"
     },
     {
       "source": "/robots.txt",
