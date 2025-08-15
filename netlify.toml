@@ -1,130 +1,115 @@
-# netlify.toml - CONFIGURAÇÃO OTIMIZADA PARA PERFORMANCE
-
-# Headers para melhor cache e compressão
 [[headers]]
   for = "/*"
   [headers.values]
-    # Segurança
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
-    
-    # Performance - Habilitando Brotli
+    # Enable Brotli and GZIP compression
     Content-Encoding = "br, gzip"
     Vary = "Accept-Encoding"
 
-# LANDING PAGE LIMPEZA DENTAL - Configuração específica
+[[headers]]
+  for = "/lp/clareamento-dental"
+  [headers.values]
+    Link = '''</lovable-uploads/vertical-de-jaleco-1024.avif>; rel=preload; as=image; type=image/avif; fetchpriority=high, </fonts/montserrat-400.woff2>; rel=preload; as=font; type=font/woff2; crossorigin, </fonts/playfair-display-400.woff2>; rel=preload; as=font; type=font/woff2; crossorigin'''
+    Cache-Control = "public, max-age=600, stale-while-revalidate=86400"
+    Content-Encoding = "br, gzip"
+
 [[headers]]
   for = "/lp/limpeza-dental-ipanema"
   [headers.values]
-    # Preload crítico de imagens AVIF otimizadas
-    Link = '''
-      </assets/consulta-inicial-hero-760x996-optimized.avif>; rel=preload; as=image; type=image/avif; fetchpriority=high; media="(min-width: 768px)",
-      </assets/consulta-inicial-hero-512x672-optimized.avif>; rel=preload; as=image; type=image/avif; fetchpriority=high; media="(max-width: 767px)",
-      </fonts/montserrat-400.woff2>; rel=preload; as=font; type=font/woff2; crossorigin
-    '''
-    # Cache agressivo com stale-while-revalidate
-    Cache-Control = "public, max-age=3600, stale-while-revalidate=86400"
-    # Habilitando compressão máxima
+    Link = '''</assets/consulta-inicial-hero-760x996-optimized.avif>; rel=preload; as=image; type=image/avif; fetchpriority=high, </fonts/montserrat-400.woff2>; rel=preload; as=font; type=font/woff2; crossorigin, </fonts/playfair-display-400.woff2>; rel=preload; as=font; type=font/woff2; crossorigin'''
+    Cache-Control = "public, max-age=600, stale-while-revalidate=86400"
     Content-Encoding = "br, gzip"
-    # Early Hints para recursos críticos
-    103-Early-Hints = '''
-      Link: </assets/consulta-inicial-hero-760x996-optimized.avif>; rel=preload; as=image; type=image/avif
-      Link: </fonts/montserrat-400.woff2>; rel=preload; as=font; type=font/woff2; crossorigin
-    '''
+    Vary = "Accept-Encoding"
 
-# Imagens AVIF - Cache permanente
 [[headers]]
-  for = "/*.avif"
+  for = "/lp/consulta-inicial"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-    Vary = "Accept"
-    Content-Type = "image/avif"
+    Link = '''</lovable-uploads/RIT08058-vertical-doutora-site.webp>; rel=preload; as=image; type=image/webp; fetchpriority=high, </fonts/montserrat-400.woff2>; rel=preload; as=font; type=font/woff2; crossorigin, </fonts/playfair-display-400.woff2>; rel=preload; as=font; type=font/woff2; crossorigin'''
+    Cache-Control = "public, max-age=600, stale-while-revalidate=86400"
+    Content-Encoding = "br, gzip"
+    Server-Timing = "cache;desc=HIT"
+    Vary = "Accept-Encoding"
 
-# Imagens WebP - Cache permanente
 [[headers]]
   for = "/*.webp"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
     Vary = "Accept"
-    Content-Type = "image/webp"
 
-# Assets otimizados - Cache permanente
+[[headers]]
+  for = "/*.avif"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Vary = "Accept"
+
+[[headers]]
+  for = "/src/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Vary = "Accept"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 [[headers]]
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
-    Content-Encoding = "br, gzip"
 
-# JavaScript - Cache permanente com Brotli
+[[headers]]
+  for = "/assets/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Encoding = "br, gzip"
+    Vary = "Accept-Encoding"
+
+[[headers]]
+  for = "/assets/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Encoding = "br, gzip"
+    Vary = "Accept-Encoding"
+
 [[headers]]
   for = "/*.js"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
     Content-Encoding = "br, gzip"
-    Content-Type = "application/javascript; charset=utf-8"
 
-# CSS - Cache permanente com Brotli
 [[headers]]
   for = "/*.css"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
     Content-Encoding = "br, gzip"
-    Content-Type = "text/css; charset=utf-8"
 
-# Fontes WOFF2 - Cache permanente
 [[headers]]
   for = "/*.woff2"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
     Access-Control-Allow-Origin = "*"
-    Content-Type = "font/woff2"
 
-# Edge Functions para performance
-[[edge_functions]]
-  path = "/lp/limpeza-dental-ipanema"
-  function = "optimize-images"
-
-# Redirects para CDN de imagens
 [[redirects]]
-  from = "/assets/consulta-inicial-hero-*.avif"
-  to = "https://d1234567890.cloudfront.net/assets/:splat.avif"
+  from = "/sitemap.xml"
+  to = "/.netlify/functions/sitemap"
   status = 200
-  force = false
-  headers = {Cache-Control = "public, max-age=31536000, immutable"}
+  force = true
 
-# Configuração de Build
-[build]
-  # Comando de build otimizado
-  command = "npm run build"
-  publish = "dist"
+[[redirects]]
+  from = "/robots.txt"
+  to = "/.netlify/functions/robots"
+  status = 200
+  force = true
 
-[build.environment]
-  # Variáveis de ambiente para build otimizado
-  NODE_ENV = "production"
-  GENERATE_SOURCEMAP = "false"
-
-# Plugins Netlify para performance
-[[plugins]]
-  package = "@netlify/plugin-lighthouse"
-  [plugins.inputs]
-    thresholds = {performance = 90, accessibility = 90, "best-practices" = 90, seo = 90}
-
-[[plugins]]
-  package = "netlify-plugin-image-optim"
-  [plugins.inputs]
-    quality = 85
-    formats = ["avif", "webp"]
-
-[[plugins]]
-  package = "netlify-plugin-inline-critical-css"
-  [plugins.inputs]
-    extract = true
-    dimensions = [
-      {width = 414, height = 896},
-      {width = 1920, height = 1080}
-    ]
-
-# Função para otimização de imagens em tempo real
-[functions]
-  directory = "netlify/functions"
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

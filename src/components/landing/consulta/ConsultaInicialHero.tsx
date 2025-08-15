@@ -1,8 +1,10 @@
-// src/components/landing/consulta/ConsultaInicialHero.tsx - VERSÃO ULTRA OTIMIZADA
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MessageCircle, Check } from 'lucide-react';
 import { sendGCLIDToWebhook } from "@/utils/gclid";
+import UltraOptimizedPicture from "@/components/performance/UltraOptimizedPicture";
+import optimizedHeroMobile from "@/assets/consulta-hero-dra-carla-512x672.avif";
+import optimizedHeroDesktop from "@/assets/consulta-hero-dra-carla-760x996.avif";
+
 
 interface ConsultaInicialHeroProps {
   headline: string;
@@ -23,19 +25,51 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
   whatsappNumber,
   whatsappMessage
 }) => {
+  // EMERGENCY LCP OPTIMIZATION: Preload optimized images immediately
+  useEffect(() => {
+    const preloadCriticalImages = () => {
+      // Preload mobile image for phones
+      const mobileImg = new Image();
+      mobileImg.fetchPriority = 'high';
+      mobileImg.src = optimizedHeroMobile;
+      
+      // Preload desktop image for larger screens
+      if (window.innerWidth >= 768) {
+        const desktopImg = new Image();
+        desktopImg.fetchPriority = 'high';
+        desktopImg.src = optimizedHeroDesktop;
+      }
+    };
+    
+    // Immediate preload - critical for LCP
+    preloadCriticalImages();
+  }, []);
+
   const handleWhatsAppClick = async () => {
-    // Track conversion
+    // Track event with Google Tag Manager
     if (window.dataLayer) {
       window.dataLayer.push({
         event: 'whatsapp_click',
         event_category: 'Contact',
         event_action: 'Click',
-        event_label: 'Hero CTA Button - Limpeza Dental'
+        event_label: 'Hero CTA Button - Consulta Inicial'
       });
     }
     
-    // Send GCLID
-    await sendGCLIDToWebhook('hero_cta_limpeza_dental');
+    // Google Ads conversion tracking
+    if (window.gtag) {
+      window.gtag('event', 'conversion', {
+        'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
+        'event_callback': function() {
+          if (process.env.NODE_ENV === 'development') {
+            console.log('Google Ads conversion tracked - Hero CTA Consulta');
+          }
+        }
+      });
+    }
+
+    // Send GCLID to webhook
+    await sendGCLIDToWebhook('hero_cta_button_consulta');
     
     // Open WhatsApp
     const encodedMessage = encodeURIComponent(whatsappMessage);
@@ -48,7 +82,7 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Content - 60% on desktop */}
           <div className="w-full lg:w-3/5 space-y-8">
-            {/* Headlines - Renderização imediata */}
+            {/* Headlines */}
             <div className="space-y-4">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#381F47] leading-tight font-serif">
                 {headline}
@@ -58,57 +92,41 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
               </p>
             </div>
 
-            {/* Benefits Grid - Simplificado para performance */}
+            {/* Benefits Grid - 2x2 */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {benefits.slice(0, 4).map((benefit, index) => (
+              {benefits.map((benefit, index) => (
                 <div key={index} className="flex items-center gap-3 bg-white/50 rounded-lg p-4">
-                  <Check className="text-[#B3955F] flex-shrink-0" size={20} />
+                  <Check size={20} className="text-[#B3955F] flex-shrink-0" />
                   <span className="text-[#381F47] font-medium">{benefit}</span>
                 </div>
               ))}
             </div>
 
-            {/* CTA Button - Prioridade máxima */}
+            {/* CTA Button */}
             <button
               onClick={handleWhatsAppClick}
               className="bg-[#381F47] hover:bg-[#2d1738] text-white rounded-lg px-8 py-4 flex items-center gap-3 text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-              aria-label={ctaText}
             >
               <MessageCircle size={20} />
               {ctaText}
             </button>
           </div>
 
-          {/* OTIMIZAÇÃO CRÍTICA: Picture element com AVIF responsivo */}
+          {/* Hero Image - 40% on desktop - ULTRA OPTIMIZED */}
           <div className="w-full lg:w-2/5">
-            <picture className="block relative">
-              {/* AVIF para navegadores modernos - 60% menor que WebP */}
-              <source
-                srcSet="/lovable-uploads/RIT08058-vertical-doutora-site.webp"
-                sizes="(max-width: 767px) 100vw,
-                       (max-width: 1023px) 50vw,
-                       40vw"
-                type="image/webp"
+            <div className="relative" style={{ aspectRatio: '760/996' }}>
+              <UltraOptimizedPicture
+                src={backgroundImage || "/lovable-uploads/RIT08058-vertical-doutora-site.webp"}
+                alt="Dra. Carla Christoph - Consulta Odontológica Personalizada em Ipanema"
+                priority={true}
+                width={760}
+                height={996}
+                mobileSrc={optimizedHeroMobile}
+                desktopSrc={optimizedHeroDesktop}
+                className="w-full h-full object-cover rounded-lg shadow-xl"
               />
-              
-              {/* JPEG como fallback */}
-              <img
-                src="/lovable-uploads/RIT08058-vertical-doutora-site.webp"
-                alt="Dra. Carla Christoph - Limpeza Dental em Ipanema"
-                className="w-full h-auto rounded-lg shadow-xl"
-                loading="eager"
-                fetchPriority="high"
-                width="760"
-                height="996"
-                style={{
-                  aspectRatio: '760/996',
-                  objectFit: 'cover'
-                }}
-              />
-            </picture>
-            
-            {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#381F47]/20 to-transparent rounded-lg pointer-events-none"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#381F47]/20 to-transparent rounded-lg pointer-events-none"></div>
+            </div>
           </div>
         </div>
       </div>

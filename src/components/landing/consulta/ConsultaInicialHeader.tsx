@@ -75,8 +75,10 @@ const ConsultaInicialHeader: React.FC<ConsultaInicialHeaderProps> = ({
             data-gtm-message-match="header_whatsapp"
           >
             <MessageCircle size={18} />
-            <span className="hidden sm:inline">WhatsApp 24h</span>
-            <span className="sm:hidden">24h</span>
+            <span className="hidden sm:inline">WhatsApp</span>
+            <span className="sm:hidden">
+              <Phone size={16} />
+            </span>
           </button>
         </div>
       </div>
