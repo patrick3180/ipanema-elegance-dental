@@ -12,27 +12,27 @@ export const handleRequestMiddleware = () => {
   const currentPath = window.location.pathname;
   
   // Handle sitemap.xml requests
-  if (currentPath === '/sitemap.xml') {
-    handleSitemapRequest().then(response => {
-      response.text().then(sitemapContent => {
-        if (import.meta.env.DEV) {
-          console.log('📋 Sitemap content generated:', sitemapContent);
-        }
-      });
-    });
-    return;
-  }
+ // if (currentPath === '/sitemap.xml') {
+  //  handleSitemapRequest().then(response => {
+  //    response.text().then(sitemapContent => {
+   //     if (import.meta.env.DEV) {
+   //       console.log('📋 Sitemap content generated:', sitemapContent);
+    //    }
+   //   });
+  //  });
+   // return;
+ // }
 
   // Handle robots.txt requests
-  if (currentPath === '/robots.txt') {
-    const response = handleRobotsRequest();
-    response.text().then(robotsContent => {
-      if (import.meta.env.DEV) {
-        console.log('🤖 Robots.txt content generated:', robotsContent);
-      }
-    });
-    return;
-  }
+ // if (currentPath === '/robots.txt') {
+ //   const response = handleRobotsRequest();
+ //   response.text().then(robotsContent => {
+ //     if (import.meta.env.DEV) {
+ //       console.log('🤖 Robots.txt content generated:', robotsContent);
+ //     }
+ //   });
+//    return;
+//  }
 
   // Get comprehensive redirect information
   const redirectInfo = getRedirectInfo(currentPath);
