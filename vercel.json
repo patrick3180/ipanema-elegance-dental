@@ -5,6 +5,7 @@
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
   ],
+  "regions": ["gru1"],
   "headers": [
     {
       "source": "/assets/(.*)",
@@ -46,14 +47,5 @@
         }
       ]
     }
-  ],
-  "regions": ["gru1"],
-  "functions": {
-    "api/sitemap.ts": {
-      "maxDuration": 10
-    },
-    "api/robots.ts": {
-      "maxDuration": 10
-    }
-  }
+  ]
 }
