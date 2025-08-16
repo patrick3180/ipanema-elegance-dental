@@ -14,6 +14,7 @@ import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
 import CriticalCSSOptimizer from '@/components/performance/CriticalCSSOptimizer';
 import AsyncScriptManager from '@/components/performance/AsyncScriptManager';
 import FastServerResponseOptimizer from '@/components/performance/FastServerResponseOptimizer';
+import ErrorBoundary from '@/components/performance/ErrorBoundary';
 
 // Aggressive lazy loading for better LCP performance
 const ClareamentoSocialProof = React.lazy(() => 
@@ -56,6 +57,7 @@ const ClareamentoLandingPage: React.FC = () => {
 
   // Track page view and capture GCLID
   useEffect(() => {
+    console.debug('[LP Clareamento] Mounted at', new Date().toISOString());
     // Capture GCLID if present
     captureGCLID();
     
@@ -140,28 +142,7 @@ const ClareamentoLandingPage: React.FC = () => {
           }
         ` }} />
         
-        {/* Defer loading of non-critical resources */}
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            // Defer non-critical CSS
-            setTimeout(() => {
-              const link = document.createElement('link');
-              link.rel = 'stylesheet';
-              link.href = '/src/index.css';
-              document.head.appendChild(link);
-            }, 1000);
-            
-            // Prefetch next likely pages after critical path is complete
-            setTimeout(() => {
-              ['/', '/contato', '/servicos'].forEach(href => {
-                const link = document.createElement('link');
-                link.rel = 'prefetch';
-                link.href = href;
-                document.head.appendChild(link);
-              });
-            }, 2000);
-          `
-        }} />
+        {/* Non-critical resources loading is handled globally */}
         
         {/* Open Graph */}
         <meta property="og:title" content={clareamentoConfig.seo.title} />
@@ -192,7 +173,6 @@ const ClareamentoLandingPage: React.FC = () => {
       <FastServerResponseOptimizer />
       <CriticalCSSOptimizer 
         inlineStyles=""
-        nonCriticalStylesheets={['/src/index.css']}
       />
       <AsyncScriptManager 
         gtmId={clareamentoConfig.tracking.gtmId}
@@ -200,7 +180,7 @@ const ClareamentoLandingPage: React.FC = () => {
         loadDelay={2000}
       />
       
-      <div className="min-h-screen">
+      <ErrorBoundary><div className="min-h-screen">
         {/* Header */}
         <ClareamentoHeader 
           whatsappNumber={clareamentoConfig.whatsapp.number}
@@ -279,9 +259,9 @@ const ClareamentoLandingPage: React.FC = () => {
         {/* Load non-critical CSS after initial render */}
         <NonCriticalCSSLoader 
           delay={500} 
-          enabled={process.env.NODE_ENV === 'production'} 
+          enabled={false} 
         />
-      </div>
+      </div></ErrorBoundary>
     </>
   );
 };

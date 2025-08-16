@@ -14,6 +14,7 @@ import FastServerResponseOptimizer from "@/components/performance/FastServerResp
 import CriticalCSSOptimizer from "@/components/performance/CriticalCSSOptimizer";
 import AsyncScriptManager from "@/components/performance/AsyncScriptManager";
 import NonCriticalCSSLoader from "@/components/performance/NonCriticalCSSLoader";
+import ErrorBoundary from "@/components/performance/ErrorBoundary";
 
 // Lazy Components for better performance
 const ConsultaInicialProblem = React.lazy(() => import("@/components/landing/consulta/ConsultaInicialProblem"));
@@ -45,6 +46,8 @@ const ProfilaxiaLandingPage: React.FC = () => {
   useScrollTracking({ pagePath: '/lp/profilaxia-dental-ipanema' });
 
   useEffect(() => {
+    // Debug mount
+    console.debug('[LP Profilaxia] Mounted at', new Date().toISOString());
     // Capture GCLID on page load
     captureGCLID();
 
@@ -202,17 +205,9 @@ const ProfilaxiaLandingPage: React.FC = () => {
         </script>
       </Helmet>
 
-      {/* Google Tag Manager (noscript) */}
-      <noscript>
-        <iframe 
-          src={`https://www.googletagmanager.com/ns.html?id=${profilaxiaConfig.tracking.gtmId}`}
-          height="0" 
-          width="0" 
-          style={{ display: 'none', visibility: 'hidden' }}
-        />
-      </noscript>
+      <div dangerouslySetInnerHTML={{ __html: `<noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=${profilaxiaConfig.tracking.gtmId}\" height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>` }} />
 
-      <div className="min-h-screen bg-white">
+      <ErrorBoundary><div className="min-h-screen bg-white">
         {/* Critical Above-the-fold Content */}
         <ConsultaInicialHeader 
           whatsappNumber={profilaxiaConfig.whatsapp.number}
@@ -290,8 +285,8 @@ const ProfilaxiaLandingPage: React.FC = () => {
         </Suspense>
 
         {/* Load non-critical CSS after a delay */}
-        <NonCriticalCSSLoader delay={2000} />
-      </div>
+        <NonCriticalCSSLoader delay={2000} enabled={false} />
+      </div></ErrorBoundary>
     </>
   );
 };

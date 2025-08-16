@@ -6,6 +6,7 @@ import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
 import { useScrollTracking } from '@/hooks/useScrollTracking';
 import CriticalCSSInliner from '@/components/performance/CriticalCSSInliner';
 import HeroImagePreloader from '@/components/performance/HeroImagePreloader';
+import ErrorBoundary from '@/components/performance/ErrorBoundary';
 
 // Critical components (loaded immediately) - REUTILIZANDO COMPONENTES DA CONSULTA INICIAL
 import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
@@ -52,6 +53,8 @@ const LimpezaDentalLandingPage: React.FC = () => {
   useCriticalImagePreload({ images: [{ src: limpezaDentalConfig.hero.backgroundImage }] });
 
   useEffect(() => {
+    // Debug mount
+    console.debug('[LP Limpeza] Mounted at', new Date().toISOString());
     // Capture GCLID immediately
     captureGCLID();
 
@@ -247,6 +250,7 @@ const LimpezaDentalLandingPage: React.FC = () => {
 
       {/* Critical above-the-fold content - HEADER E HERO IGUAIS À CONSULTA INICIAL */}
 
+      <ErrorBoundary>
       <ConsultaInicialHeader
         whatsappNumber={limpezaDentalConfig.whatsapp.number}
         whatsappMessage={limpezaDentalConfig.whatsapp.message}
@@ -338,6 +342,7 @@ const LimpezaDentalLandingPage: React.FC = () => {
           />
         </Suspense>
       </div>
+      </ErrorBoundary>
     </>
   );
 };
