@@ -74,7 +74,7 @@ export const profilaxiaConfig: LandingPageConfig = {
   },
 
   socialProof: {
-    title: "O Que Nossos Pacientes Dizem",
+    title: "O Que Nossos Pacientes Dizem Sobre a Profilaxia",
     testimonials: [
       {
         name: "Juliana Costa",
@@ -93,9 +93,10 @@ export const profilaxiaConfig: LandingPageConfig = {
       }
     ],
     stats: [
-      { number: "4.000+", label: "Profilaxias Realizadas" },
-      { number: "20+", label: "Anos de Experiência" },
-      { number: "95%", label: "Pacientes Satisfeitos" }
+      { number: "95%", label: "Biofilme Removido" },
+      { number: "30%", label: "Mais Eficaz que Métodos Tradicionais" },
+      { number: "60%", label: "Redução de Doenças Gengivais" },
+      { number: "4.000+", label: "Pacientes Atendidos" }
     ]
   },
 
