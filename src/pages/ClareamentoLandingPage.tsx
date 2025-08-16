@@ -9,7 +9,7 @@ import CriticalCSSInliner from '@/components/performance/CriticalCSSInliner';
 import NonCriticalCSSLoader from '@/components/performance/NonCriticalCSSLoader';
 import { clareamentoConfig } from '@/config/clareamentoConfig';
 import { captureGCLID } from '@/utils/gclid';
-import useScrollTracking from '@/hooks/useScrollTracking';
+import { useScrollTracking } from '@/hooks/useScrollTracking';
 import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
 import CriticalCSSOptimizer from '@/components/performance/CriticalCSSOptimizer';
 import AsyncScriptManager from '@/components/performance/AsyncScriptManager';

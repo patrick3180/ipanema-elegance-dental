@@ -120,7 +120,7 @@ function AppContent() {
           {/* Landing Page Template - Isolated routes */}
             <Route path="/lp/template" element={<LandingPageTemplate />} />
             <Route path="/lp/clareamento-dental" element={<ClareamentoLandingPage />} />
-            <Route path="/lp/consulta-inicial" element={<ConsultaInicialLandingPage />} />
+          <Route path="/lp/consulta-inicial" element={<ConsultaInicialLandingPage />} />
             <Route path="/lp/limpeza-dental-ipanema" element={<LimpezaDentalLandingPage />} />
             <Route path="/lp/profilaxia-dental-ipanema" element={<ProfilaxiaLandingPage />} />
             <Route path="/lp/:template" element={<LandingPageTemplate />} />
