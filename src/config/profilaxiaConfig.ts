@@ -162,7 +162,7 @@ export const profilaxiaConfig: LandingPageConfig = {
   },
 
   tracking: {
-    gtmId: "GTM-XXXXXX",
+    gtmId: "GTM-WZRDNBKQ",
     gtagId: "AW-16894364517"
   }
 };
