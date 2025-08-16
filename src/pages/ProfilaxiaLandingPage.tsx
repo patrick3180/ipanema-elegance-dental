@@ -142,7 +142,7 @@ const ProfilaxiaLandingPage: React.FC = () => {
             document.head.appendChild(link);
           }}
         />
-        <noscript><link rel="stylesheet" href="/css/non-critical.css" /></noscript>
+        <noscript>{`<link rel="stylesheet" href="/css/non-critical.css" />`}</noscript>
 
         {/* Open Graph meta tags */}
         <meta property="og:title" content={profilaxiaConfig.seo.title} />
