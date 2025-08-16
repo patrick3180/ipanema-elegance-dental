@@ -62,7 +62,7 @@ const OptimizedPictureElement = ({
         decoding={priority ? 'sync' : 'async'}
         width={width}
         height={height}
-        className="w-full h-full object-cover"
+        className="w-4/5 h-4/5 object-contain mx-auto"
       />
     </picture>
   );
