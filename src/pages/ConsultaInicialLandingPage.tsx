@@ -2,6 +2,7 @@ import React, { lazy, Suspense, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { captureGCLID } from '@/utils/gclid';
 import { consultaInicialConfig } from '@/config/consultaInicialConfig';
+import { GTMManager } from '@/components/performance/GTMManager';
 import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
 import useScrollTracking from '@/hooks/useScrollTracking';
 
@@ -87,6 +88,7 @@ const ConsultaInicialLandingPage = () => {
 
   return (
     <>
+      <GTMManager gtmId={consultaInicialConfig.tracking.gtmId} />
       {/* Optimized SEO Head Tags */}
       <Helmet>
         {/* Primary Meta Tags */}

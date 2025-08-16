@@ -7,6 +7,7 @@ import ClareamentoGuide from '@/components/landing/clareamento/ClareamentoGuide'
 import ClareamentoCTA from '@/components/landing/clareamento/ClareamentoCTA';
 import CriticalCSSInliner from '@/components/performance/CriticalCSSInliner';
 import NonCriticalCSSLoader from '@/components/performance/NonCriticalCSSLoader';
+import { GTMManager } from '@/components/performance/GTMManager';
 import { clareamentoConfig } from '@/config/clareamentoConfig';
 import { captureGCLID } from '@/utils/gclid';
 import { useScrollTracking } from '@/hooks/useScrollTracking';
@@ -81,6 +82,7 @@ const ClareamentoLandingPage: React.FC = () => {
 
   return (
     <>
+      <GTMManager gtmId={clareamentoConfig.tracking.gtmId} />
       <Helmet>
         <title>{clareamentoConfig.seo.title}</title>
         <meta name="description" content={clareamentoConfig.seo.description} />
@@ -150,23 +152,6 @@ const ClareamentoLandingPage: React.FC = () => {
         <meta property="og:type" content="website" />
         <meta property="og:image" content={clareamentoConfig.hero.backgroundImage} />
         
-        {/* Google Tag Manager - Deferred Loading */}
-        {clareamentoConfig.tracking.gtmId && (
-          <script dangerouslySetInnerHTML={{
-            __html: `
-              // Defer GTM loading to improve initial page performance
-              window.addEventListener('load', function() {
-                setTimeout(function() {
-                  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.defer=true;j.src=
-                  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                  })(window,document,'script','dataLayer','${clareamentoConfig.tracking.gtmId}');
-                }, 1500);
-              });
-            `
-          }} />
-        )}
       </Helmet>
 
       {/* Performance optimization components */}
