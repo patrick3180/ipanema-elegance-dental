@@ -44,6 +44,7 @@ const ClareamentoLandingPage = lazy(() => import("./pages/ClareamentoLandingPage
 const ConsultaInicialLandingPage = lazy(() => import("./pages/ConsultaInicialLandingPage"));
 const LimpezaDentalLandingPage = lazy(() => import("./pages/LimpezaDentalLandingPage"));
 const ProfilaxiaLandingPage = lazy(() => import("./pages/ProfilaxiaLandingPage"));
+const DenteQuebradoLandingPage = lazy(() => import("./pages/DenteQuebradoLandingPage"));
 
 // QueryClient otimizado
 const queryClient = new QueryClient({
@@ -118,11 +119,12 @@ function AppContent() {
           <Route path="/seo-dashboard" element={<SEODashboardPage />} />
 
           {/* Landing Page Template - Isolated routes */}
-            <Route path="/lp/template" element={<LandingPageTemplate />} />
+          <Route path="/lp/template" element={<LandingPageTemplate />} />
             <Route path="/lp/clareamento-dental" element={<ClareamentoLandingPage />} />
           <Route path="/lp/consulta-inicial" element={<ConsultaInicialLandingPage />} />
             <Route path="/lp/limpeza-dental-ipanema" element={<LimpezaDentalLandingPage />} />
             <Route path="/lp/profilaxia-dental-ipanema" element={<ProfilaxiaLandingPage />} />
+            <Route path="/lp/dente-quebrado-urgencia-ipanema" element={<DenteQuebradoLandingPage />} />
             <Route path="/lp/:template" element={<LandingPageTemplate />} />
 
             {/* 404 Route */}
