@@ -73,7 +73,7 @@ export const denteQuebradoConfig: LandingPageConfig = {
   },
   
   socialProof: {
-    title: 'Urgências Resolvidas com Excelência',
+    title: 'O Que Nossos Pacientes Dizem Sobre o Atendimento Personalizado',
     testimonials: [
       {
         name: 'Rafael T., Executivo de Marketing',
@@ -92,9 +92,10 @@ export const denteQuebradoConfig: LandingPageConfig = {
       }
     ],
     stats: [
-      { number: '1000+', label: 'Urgências Atendidas' },
-      { number: '24h', label: 'WhatsApp Disponível' },
-      { number: '95%', label: 'Resolvido no Mesmo Dia' }
+      { number: '20+', label: 'Anos de Experiência' },
+      { number: '4.000+', label: 'Pacientes Atendidos' },
+      { number: '1 hora', label: 'Mínimo por Agendamento' },
+      { number: '24h', label: 'Atendimento WhatsApp' }
     ]
   },
   
