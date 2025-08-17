@@ -21,10 +21,10 @@ export const denteQuebradoConfig: LandingPageConfig = {
   },
   
   benefits: [
-    '✓ Atendimento prioritário - nos esforçamos para resolver no mesmo dia',
-    '✓ Recupere seu sorriso imediatamente com resultado natural',
-    '✓ Solução estética e funcional para você voltar a sorrir',
-    '✓ WhatsApp 24h para agendamentos e orientações urgentes'
+    'Atendimento prioritário - nos esforçamos para resolver no mesmo dia',
+    'Recupere seu sorriso imediatamente com resultado natural',
+    'Solução estética e funcional para você voltar a sorrir',
+    'WhatsApp 24h para agendamentos e orientações urgentes'
   ],
   
   problem: {
