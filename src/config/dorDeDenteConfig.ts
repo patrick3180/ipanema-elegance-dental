@@ -55,9 +55,9 @@ export const dorDeDenteConfig: LandingPageConfig = {
   socialProof: {
     title: 'O Que Nossos Pacientes Dizem Sobre o Atendimento de Urgência',
     testimonials: [
-      { name: 'Rafael T., Executivo de Marketing', text: 'Acordei com uma dor de dente terrível no domingo. Mandei um WhatsApp e consegui um encaixe para segunda de manhã. A Dra. Carla foi incrível, diagnosticou o problema e o alívio foi imediato. Salvo pela agilidade e competência!', rating: 5 },
-      { name: 'Fernanda L., Professora', text: 'Meu dente começou a doer de forma insuportável. A Dra. Carla me encaixou no mesmo dia. Foi extremamente cuidadosa, me explicou tudo sobre o tratamento de canal que eu precisava. O atendimento humanizado fez toda a diferença.', rating: 5 },
-      { name: 'Carlos Eduardo S., Advogado', text: 'Estava com uma dor que irradiava para o rosto todo. O atendimento foi focado em resolver a dor primeiro. Saí de lá muito melhor e com o tratamento já encaminhado. Recomendo pela seriedade e eficiência.', rating: 5 }
+      { name: 'Marcelo C.., Jornalista', text: 'Acordei com uma dor de dente terrível no domingo. Mandei um WhatsApp e consegui um encaixe para segunda de manhã. A Dra. Carla foi incrível, diagnosticou o problema e o alívio foi imediato. Salvo pela agilidade e competência!', rating: 5 },
+      { name: 'Maria L., Aposentada', text: 'Meu dente começou a doer de forma insuportável. A Dra. Carla me encaixou no mesmo dia. Foi extremamente cuidadosa, me explicou tudo sobre o tratamento de canal que eu precisava. O atendimento humanizado fez toda a diferença.', rating: 5 },
+      { name: 'Roberto P., Contador', text: 'Estava com uma dor que irradiava para o rosto todo. O atendimento foi focado em resolver a dor primeiro. Saí de lá muito melhor e com o tratamento já encaminhado. Recomendo pela seriedade e eficiência.', rating: 5 }
     ],
     stats: [
       { number: '20+', label: 'Anos de Experiência' },
