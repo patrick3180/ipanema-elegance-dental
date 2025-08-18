@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { MessageCircle, Check } from 'lucide-react';
 import { sendGCLIDToWebhook } from "@/utils/gclid";
 import UltraOptimizedPicture from "@/components/performance/UltraOptimizedPicture";
-import optimizedHeroMobile from "@/assets/consulta-hero-dra-carla-512x672.avif";
-import optimizedHeroDesktop from "@/assets/consulta-hero-dra-carla-760x996.avif";
 
 
 interface ConsultaInicialHeroProps {
@@ -25,26 +23,6 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
   whatsappNumber,
   whatsappMessage
 }) => {
-  // EMERGENCY LCP OPTIMIZATION: Preload optimized images immediately
-  useEffect(() => {
-    const preloadCriticalImages = () => {
-      // Preload mobile image for phones
-      const mobileImg = new Image();
-      mobileImg.fetchPriority = 'high';
-      mobileImg.src = optimizedHeroMobile;
-      
-      // Preload desktop image for larger screens
-      if (window.innerWidth >= 768) {
-        const desktopImg = new Image();
-        desktopImg.fetchPriority = 'high';
-        desktopImg.src = optimizedHeroDesktop;
-      }
-    };
-    
-    // Immediate preload - critical for LCP
-    preloadCriticalImages();
-  }, []);
-
   const handleWhatsAppClick = async () => {
     // Track event with Google Tag Manager
     if (window.dataLayer) {
@@ -121,8 +99,6 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
                 priority={true}
                 width={760}
                 height={996}
-                mobileSrc={optimizedHeroMobile}
-                desktopSrc={optimizedHeroDesktop}
                 className="w-full h-full object-cover rounded-lg shadow-xl"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#381F47]/20 to-transparent rounded-lg pointer-events-none"></div>
