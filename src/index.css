@@ -89,7 +89,7 @@
   }
   
   .heading-xl {
-    @apply text-4xl md:text-5xl xl:text-6xl font-display font-medium leading-tight;
+    @apply text-4xl md:text-4xl xl:text-5xl font-display font-medium leading-tight;
   }
   
   .heading-lg {
