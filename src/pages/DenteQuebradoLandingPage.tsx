@@ -4,12 +4,11 @@ import { denteQuebradoConfig } from '@/config/denteQuebradoConfig';
 import { captureGCLID } from '@/utils/gclid';
 import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
 import { useScrollTracking } from '@/hooks/useScrollTracking';
-import CriticalCSSInliner from '@/components/performance/CriticalCSSInliner';
 import CriticalCSSInline from '@/components/performance/CriticalCSSInline';
 import ResourceHintsOptimizer from '@/components/performance/ResourceHintsOptimizer';
-import AsyncNonCriticalLoader from '@/components/performance/AsyncNonCriticalLoader';
+import NonCriticalCSSLoader from '@/components/performance/NonCriticalCSSLoader';
 import SmartContentfulCache from '@/components/performance/SmartContentfulCache';
-import CoreWebVitalsOptimizer from '@/components/performance/CoreWebVitalsOptimizer';
+import CoreWebVitalsMonitor from '@/components/performance/CoreWebVitalsMonitor';
 import HeroImagePreloader from '@/components/performance/HeroImagePreloader';
 import ErrorBoundary from '@/components/performance/ErrorBoundary';
 import { GTMManager } from '@/components/performance/GTMManager';
@@ -103,9 +102,9 @@ const DenteQuebradoLandingPage: React.FC = () => {
       {/* Critical performance optimizations */}
       <CriticalCSSInline />
       <ResourceHintsOptimizer />
-      <AsyncNonCriticalLoader />
+      <NonCriticalCSSLoader delay={800} enabled={true} />
       <SmartContentfulCache enableBlocking={true} />
-      <CoreWebVitalsOptimizer />
+      <CoreWebVitalsMonitor enabled={true} />
       <HeroImagePreloader images={criticalImages} />
       
       <Helmet>
@@ -170,12 +169,16 @@ const DenteQuebradoLandingPage: React.FC = () => {
           crossOrigin="anonymous" 
         />
 
-        {/* DNS Prefetch */}
+        {/* DNS Prefetch and Preconnect optimizations */}
         <link rel="dns-prefetch" href="//www.googletagmanager.com" />
         <link rel="dns-prefetch" href="//wa.me" />
+        <link rel="dns-prefetch" href="//www.bing.com" />
+        <link rel="dns-prefetch" href="//cdn.contentful.com" />
 
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.bing.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdn.contentful.com" crossOrigin="anonymous" />
 
         {/* Structured Data - Local Business */}
         <script type="application/ld+json">
