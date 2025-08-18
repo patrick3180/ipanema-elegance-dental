@@ -149,6 +149,9 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="language" content="pt-BR" />
       <meta name="revisit-after" content="7 days" />
       
+      {/* Google Search Console Verification */}
+      <meta name="google-site-verification" content="0k2ILA3P_ahn1P6bl8bGpiSLJBcIYTaia47XPl0c3AQ" />
+      
       {/* Canonical URL - Always use normalized .com URL */}
       <link rel="canonical" href={currentUrl} />
       
