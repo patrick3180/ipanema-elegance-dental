@@ -98,11 +98,9 @@ const DenteQuebradoLandingPage: React.FC = () => {
 
   return (
     <>
-      <GTMManager gtmId={denteQuebradoConfig.tracking.gtmId} />
       {/* Critical performance optimizations */}
       <CriticalCSSInline />
       <ResourceHintsOptimizer />
-      <NonCriticalCSSLoader delay={800} enabled={true} />
       <SmartContentfulCache enableBlocking={true} />
       <CoreWebVitalsMonitor enabled={true} />
       <HeroImagePreloader images={criticalImages} />

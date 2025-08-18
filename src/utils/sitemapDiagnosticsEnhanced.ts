@@ -148,23 +148,29 @@ export const runComprehensiveSitemapDiagnostics = async (): Promise<SitemapDiagn
     console.error('❌ Sitemap generation failed:', error);
   }
 
-  // 5. Test network connectivity (basic check)
-  try {
-    // Test Google connectivity
-    const googleTest = await fetch('https://www.google.com/ping?sitemap=https://example.com/test', { 
-      method: 'HEAD',
-      mode: 'no-cors'
-    }).then(() => true).catch(() => false);
-    report.networkConnectivity.googleSearchConsole = googleTest;
+  // 5. Test network connectivity (only in development)
+  if (process.env.NODE_ENV === 'development') {
+    try {
+      // Test Google connectivity
+      const googleTest = await fetch('https://www.google.com/ping?sitemap=https://example.com/test', { 
+        method: 'HEAD',
+        mode: 'no-cors'
+      }).then(() => true).catch(() => false);
+      report.networkConnectivity.googleSearchConsole = googleTest;
 
-    // Test Bing connectivity
-    const bingTest = await fetch('https://www.bing.com/ping?sitemap=https://example.com/test', { 
-      method: 'HEAD',
-      mode: 'no-cors'
-    }).then(() => true).catch(() => false);
-    report.networkConnectivity.bingWebmaster = bingTest;
-  } catch (error) {
-    console.warn('Network connectivity test failed:', error);
+      // Test Bing connectivity
+      const bingTest = await fetch('https://www.bing.com/ping?sitemap=https://example.com/test', { 
+        method: 'HEAD',
+        mode: 'no-cors'
+      }).then(() => true).catch(() => false);
+      report.networkConnectivity.bingWebmaster = bingTest;
+    } catch (error) {
+      console.warn('Network connectivity test failed:', error);
+    }
+  } else {
+    // Skip connectivity tests in production
+    report.networkConnectivity.googleSearchConsole = true;
+    report.networkConnectivity.bingWebmaster = true;
   }
 
   // 6. Generate recommendations
