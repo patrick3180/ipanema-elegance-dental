@@ -12,6 +12,9 @@ import CoreWebVitalsMonitor from '@/components/performance/CoreWebVitalsMonitor'
 import HeroImagePreloader from '@/components/performance/HeroImagePreloader';
 import ErrorBoundary from '@/components/performance/ErrorBoundary';
 import { GTMManager } from '@/components/performance/GTMManager';
+import AggressiveLCPOptimizer from '@/components/performance/AggressiveLCPOptimizer';
+import LCPOptimizer from '@/components/performance/LCPOptimizer';
+import CriticalResourcePreloader from '@/components/performance/CriticalResourcePreloader';
 
 // Critical components (loaded immediately)
 import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
@@ -98,7 +101,21 @@ const DorDeDenteLandingPage: React.FC = () => {
 
   return (
     <>
-      {/* Critical performance optimizations */}
+      {/* EMERGENCY LCP Performance Optimizations */}
+      <CriticalResourcePreloader
+        heroImageUrl="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp"
+        enableFontPreload={true}
+        enableImagePreload={true}
+      />
+      <AggressiveLCPOptimizer 
+        heroImageSrc="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp"
+        heroImageAlt="Dra. Carla Hadid - Dentista Emergência Ipanema"
+      />
+      <LCPOptimizer 
+        targetLCP={2500}
+        enableEmergencyMode={true}
+        enableInlineCSS={true}
+      />
       <CriticalCSSInline />
       <ResourceHintsOptimizer />
       <SmartContentfulCache enableBlocking={true} />

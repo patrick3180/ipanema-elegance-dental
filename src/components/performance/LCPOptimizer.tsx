@@ -8,8 +8,8 @@ interface LCPOptimizerProps {
 
 const LCPOptimizer = ({ 
   targetLCP = 2500,
-  enableEmergencyMode = false, // Changed default to false for safety
-  enableInlineCSS = false      // New prop, defaults to false for safety
+  enableEmergencyMode = true,  // Enable emergency mode by default for aggressive optimization
+  enableInlineCSS = true       // Enable CSS inlining for critical path optimization
 }: LCPOptimizerProps) => {
   useEffect(() => {
     let lcpObserver: PerformanceObserver | null = null;
@@ -34,10 +34,11 @@ const LCPOptimizer = ({
         }
       }
 
-      // Optimize critical fonts for LCP
+      // Optimize critical fonts for LCP (using actual project fonts)
       const criticalFontFaces = [
-        '/fonts/inter-regular.woff2',
-        '/fonts/inter-medium.woff2'
+        '/fonts/montserrat-400.woff2',
+        '/fonts/montserrat-500.woff2',
+        '/fonts/playfair-display-400.woff2'
       ];
 
       criticalFontFaces.forEach(fontUrl => {
@@ -50,14 +51,16 @@ const LCPOptimizer = ({
         document.head.appendChild(link);
       });
 
-      // Only inline critical CSS if explicitly enabled
+      // Inline critical CSS for above-the-fold content
       if (enableInlineCSS) {
         const criticalCSS = `
+          /* Critical above-the-fold styles */
           .hero-section {
             display: flex;
             align-items: center;
             min-height: 80vh;
-            background: hsl(var(--dental-beige));
+            background: hsl(var(--background));
+            contain: layout style paint;
           }
           .hero-content {
             max-width: 1200px;
@@ -68,13 +71,36 @@ const LCPOptimizer = ({
             font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 600;
             line-height: 1.1;
-            color: hsl(var(--dental-primary));
+            color: hsl(var(--foreground));
             margin-bottom: 1.5rem;
+            font-display: swap;
           }
           .hero-image {
             max-width: 100%;
             height: auto;
             border-radius: 1rem;
+            aspect-ratio: 400/500;
+          }
+          /* Font optimization */
+          @font-face {
+            font-display: swap;
+          }
+          /* Prevent layout shift */
+          img {
+            max-width: 100%;
+            height: auto;
+          }
+          /* Critical button styles */
+          .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            background: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+            border-radius: 0.5rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
           }
         `;
 
