@@ -5,6 +5,11 @@ import { captureGCLID } from '@/utils/gclid';
 import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
 import { useScrollTracking } from '@/hooks/useScrollTracking';
 import CriticalCSSInliner from '@/components/performance/CriticalCSSInliner';
+import CriticalCSSInline from '@/components/performance/CriticalCSSInline';
+import ResourceHintsOptimizer from '@/components/performance/ResourceHintsOptimizer';
+import AsyncNonCriticalLoader from '@/components/performance/AsyncNonCriticalLoader';
+import SmartContentfulCache from '@/components/performance/SmartContentfulCache';
+import CoreWebVitalsOptimizer from '@/components/performance/CoreWebVitalsOptimizer';
 import HeroImagePreloader from '@/components/performance/HeroImagePreloader';
 import ErrorBoundary from '@/components/performance/ErrorBoundary';
 import { GTMManager } from '@/components/performance/GTMManager';
@@ -96,7 +101,11 @@ const DenteQuebradoLandingPage: React.FC = () => {
     <>
       <GTMManager gtmId={denteQuebradoConfig.tracking.gtmId} />
       {/* Critical performance optimizations */}
-      <CriticalCSSInliner />
+      <CriticalCSSInline />
+      <ResourceHintsOptimizer />
+      <AsyncNonCriticalLoader />
+      <SmartContentfulCache enableBlocking={true} />
+      <CoreWebVitalsOptimizer />
       <HeroImagePreloader images={criticalImages} />
       
       <Helmet>
