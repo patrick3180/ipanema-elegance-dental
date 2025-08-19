@@ -52,6 +52,7 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = lazy(() => import("./p
 const LentesDeContatoPorcelanaLandingPage = lazy(() => import("./pages/LentesDeContatoPorcelanaLandingPage"));
 const FacetasResinaDiretaLandingPage = lazy(() => import("./pages/FacetasResinaDiretaLandingPage"));
 const EsteticaSorrisoLandingPage = lazy(() => import("./pages/EsteticaSorrisoLandingPage"));
+const SaudeGengivalLandingPage = lazy(() => import("./pages/SaudeGengivalLandingPage"));
 
 // QueryClient otimizado
 const queryClient = new QueryClient({
@@ -139,6 +140,7 @@ function AppContent() {
             <Route path="/lp/lentes-porcelana-ipanema" element={<LentesDeContatoPorcelanaLandingPage />} />
             <Route path="/lp/facetas-resina-ipanema" element={<FacetasResinaDiretaLandingPage />} />
             <Route path="/lp/estetica-dental-ipanema" element={<EsteticaSorrisoLandingPage />} />
+            <Route path="/lp/saude-gengival-ipanema" element={<SaudeGengivalLandingPage />} />
             <Route path="/lp/:template" element={<LandingPageTemplate />} />
 
             {/* 404 Route */}
