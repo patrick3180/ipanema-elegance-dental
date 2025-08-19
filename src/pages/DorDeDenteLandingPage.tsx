@@ -12,9 +12,6 @@ import CoreWebVitalsMonitor from '@/components/performance/CoreWebVitalsMonitor'
 import HeroImagePreloader from '@/components/performance/HeroImagePreloader';
 import ErrorBoundary from '@/components/performance/ErrorBoundary';
 import { GTMManager } from '@/components/performance/GTMManager';
-import AggressiveLCPOptimizer from '@/components/performance/AggressiveLCPOptimizer';
-import LCPOptimizer from '@/components/performance/LCPOptimizer';
-import CriticalResourcePreloader from '@/components/performance/CriticalResourcePreloader';
 
 // Critical components (loaded immediately)
 import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
@@ -101,25 +98,11 @@ const DorDeDenteLandingPage: React.FC = () => {
 
   return (
     <>
-      {/* EMERGENCY LCP Performance Optimizations */}
-      <CriticalResourcePreloader
-        heroImageUrl="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp"
-        enableFontPreload={true}
-        enableImagePreload={true}
-      />
-      <AggressiveLCPOptimizer 
-        heroImageSrc="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp"
-        heroImageAlt="Dra. Carla Hadid - Dentista Emergência Ipanema"
-      />
-      <LCPOptimizer 
-        targetLCP={2500}
-        enableEmergencyMode={true}
-        enableInlineCSS={true}
-      />
       <CriticalCSSInline />
       <ResourceHintsOptimizer />
-      <SmartContentfulCache enableBlocking={true} />
-      <CoreWebVitalsMonitor enabled={true} />
+      <NonCriticalCSSLoader />
+      <SmartContentfulCache />
+      <CoreWebVitalsMonitor />
       <HeroImagePreloader images={criticalImages} />
       
       <Helmet>
@@ -228,99 +211,99 @@ const DorDeDenteLandingPage: React.FC = () => {
         </script>
       </Helmet>
 
-      {/* Critical above-the-fold content */}
       <ErrorBoundary>
-      <ConsultaInicialHeader
+        {/* Critical above-the-fold content */}
+        <ConsultaInicialHeader
         whatsappNumber={dorDeDenteConfig.whatsapp.number}
         whatsappMessage={dorDeDenteConfig.whatsapp.message}
         campaign={dorDeDenteConfig.campaign}
         messageMatch={dorDeDenteConfig.messageMatch}
       />
 
-      <ConsultaInicialHero
-        headline={dorDeDenteConfig.hero.headline}
-        subheadline={dorDeDenteConfig.hero.subheadline}
-        ctaText={dorDeDenteConfig.hero.ctaText}
-        benefits={dorDeDenteConfig.benefits}
-        backgroundImage={dorDeDenteConfig.hero.backgroundImage}
-        whatsappNumber={dorDeDenteConfig.whatsapp.number}
-        whatsappMessage={dorDeDenteConfig.whatsapp.message}
-      />
+        <ConsultaInicialHero
+          headline={dorDeDenteConfig.hero.headline}
+          subheadline={dorDeDenteConfig.hero.subheadline}
+          ctaText={dorDeDenteConfig.hero.ctaText}
+          benefits={dorDeDenteConfig.benefits}
+          backgroundImage={dorDeDenteConfig.hero.backgroundImage}
+          whatsappNumber={dorDeDenteConfig.whatsapp.number}
+          whatsappMessage={dorDeDenteConfig.whatsapp.message}
+        />
 
-      {/* Problem section */}
-      <div className="min-h-screen">
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialProblem
-            title={dorDeDenteConfig.problem.title}
-            description={dorDeDenteConfig.problem.description}
-            problems={dorDeDenteConfig.problem.problems}
-          />
-        </Suspense>
-      </div>
+        {/* Problem section */}
+        <div className="min-h-screen">
+          <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+            <ConsultaInicialProblem
+              title={dorDeDenteConfig.problem.title}
+              description={dorDeDenteConfig.problem.description}
+              problems={dorDeDenteConfig.problem.problems}
+            />
+          </Suspense>
+        </div>
 
-      {/* Guide section */}
-      <div className="min-h-screen">
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialGuide
-            title={dorDeDenteConfig.guide.title}
-            subtitle={dorDeDenteConfig.guide.subtitle}
-            steps={dorDeDenteConfig.guide.steps}
-          />
-        </Suspense>
-      </div>
+        {/* Guide section */}
+        <div className="min-h-screen">
+          <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+            <ConsultaInicialGuide
+              title={dorDeDenteConfig.guide.title}
+              subtitle={dorDeDenteConfig.guide.subtitle}
+              steps={dorDeDenteConfig.guide.steps}
+            />
+          </Suspense>
+        </div>
 
-      {/* Social Proof section */}
-      <div className="min-h-screen">
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialSocialProof
-            title={dorDeDenteConfig.socialProof.title}
-            testimonials={dorDeDenteConfig.socialProof.testimonials}
-            stats={dorDeDenteConfig.socialProof.stats}
-          />
-        </Suspense>
-      </div>
+        {/* Social Proof section */}
+        <div className="min-h-screen">
+          <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+            <ConsultaInicialSocialProof
+              title={dorDeDenteConfig.socialProof.title}
+              testimonials={dorDeDenteConfig.socialProof.testimonials}
+              stats={dorDeDenteConfig.socialProof.stats}
+            />
+          </Suspense>
+        </div>
 
-      {/* FAQ section */}
-      <div className="min-h-screen">
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialFAQ
-            title={dorDeDenteConfig.faq.title}
-            questions={dorDeDenteConfig.faq.questions}
-          />
-        </Suspense>
-      </div>
+        {/* FAQ section */}
+        <div className="min-h-screen">
+          <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+            <ConsultaInicialFAQ
+              title={dorDeDenteConfig.faq.title}
+              questions={dorDeDenteConfig.faq.questions}
+            />
+          </Suspense>
+        </div>
 
-      {/* CTA section */}
-      <div className="min-h-screen">
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialCTA
-            title={dorDeDenteConfig.cta.title}
-            subtitle={dorDeDenteConfig.cta.subtitle}
-            buttonText={dorDeDenteConfig.cta.buttonText}
-            whatsappNumber={dorDeDenteConfig.whatsapp.number}
-            whatsappMessage={dorDeDenteConfig.whatsapp.message}
-            campaign={dorDeDenteConfig.campaign}
-            messageMatch={dorDeDenteConfig.messageMatch}
-          />
-        </Suspense>
-      </div>
+        {/* CTA section */}
+        <div className="min-h-screen">
+          <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+            <ConsultaInicialCTA
+              title={dorDeDenteConfig.cta.title}
+              subtitle={dorDeDenteConfig.cta.subtitle}
+              buttonText={dorDeDenteConfig.cta.buttonText}
+              whatsappNumber={dorDeDenteConfig.whatsapp.number}
+              whatsappMessage={dorDeDenteConfig.whatsapp.message}
+              campaign={dorDeDenteConfig.campaign}
+              messageMatch={dorDeDenteConfig.messageMatch}
+            />
+          </Suspense>
+        </div>
 
-      <div>
-        <Suspense fallback={<div className="h-32 bg-gray-100 animate-pulse" />}>
-          <ClareamentoFooter />
-        </Suspense>
-      </div>
+        <div>
+          <Suspense fallback={<div className="h-32 bg-gray-100 animate-pulse" />}>
+            <ClareamentoFooter />
+          </Suspense>
+        </div>
 
-      <div>
-        <Suspense fallback={<div className="h-16 bg-gray-100 animate-pulse" />}>
-          <FloatingWhatsApp
-            phoneNumber={dorDeDenteConfig.whatsapp.number}
-            message={dorDeDenteConfig.whatsapp.message}
-            campaign={dorDeDenteConfig.campaign}
-            messageMatch={dorDeDenteConfig.messageMatch}
-          />
-        </Suspense>
-      </div>
+        <div>
+          <Suspense fallback={<div className="h-16 bg-gray-100 animate-pulse" />}>
+            <FloatingWhatsApp
+              phoneNumber={dorDeDenteConfig.whatsapp.number}
+              message={dorDeDenteConfig.whatsapp.message}
+              campaign={dorDeDenteConfig.campaign}
+              messageMatch={dorDeDenteConfig.messageMatch}
+            />
+          </Suspense>
+        </div>
       </ErrorBoundary>
     </>
   );
