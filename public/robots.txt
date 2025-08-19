@@ -1,5 +1,5 @@
 # Robots.txt para dracarlachristoph.com
-# Gerado em 2025-08-15
+# Atualizado em 2025-01-19
 
 User-agent: *
 Allow: /
@@ -8,34 +8,49 @@ Disallow: /gone
 Disallow: /seo-dashboard
 Disallow: /_next/
 Disallow: /assets/*.map
+Disallow: /netlify/
+Disallow: /.netlify/
+Disallow: /admin/
+Disallow: /wp-admin/
 
 # Sitemap principal
 Sitemap: https://www.dracarlachristoph.com/sitemap.xml
 
-# Googlebot
+# Googlebot - Máxima prioridade para o mecanismo principal
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
 
-# Bingbot  
+# Bingbot - Segunda prioridade
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
 
-# Crawl-delay para bots específicos
+# Yahoo/DuckDuckGo
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Crawl-delay para bots de SEO específicos
 User-agent: AhrefsBot
 Crawl-delay: 10
 
 User-agent: SemrushBot
 Crawl-delay: 10
 
-User-agent: DotBot
-Crawl-delay: 10
-
 User-agent: MJ12bot
 Crawl-delay: 10
 
-# Bloquear bots indesejados
+User-agent: DotBot
+Crawl-delay: 10
+
+User-agent: SiteAuditBot
+Crawl-delay: 10
+
+User-agent: MajesticSEO
+Crawl-delay: 10
+
+# Bloquear bots de IA para proteger conteúdo original
 User-agent: GPTBot
 Disallow: /
 
@@ -45,11 +60,144 @@ Disallow: /
 User-agent: CCBot
 Disallow: /
 
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
 User-agent: ia_archiver
 Disallow: /
 
+# Bloquear bots problemáticos ou irrelevantes
 User-agent: Yandex
 Disallow: /
 
 User-agent: Baiduspider
 Disallow: /
+
+User-agent: SeznamBot
+Disallow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+# Bots de arquivamento
+User-agent: archive.org_bot
+Allow: /
+
+User-agent: wayback
+Allow: /
+
+# Bloquear bots de scraping agressivo
+User-agent: SemrushBot-SA
+Disallow: /
+
+User-agent: SemrushBot-BA
+Disallow: /
+
+User-agent: SemrushBot-SI
+Disallow: /
+
+User-agent: AhrefsBot-News
+Disallow: /
+
+User-agent: spbot
+Disallow: /
+
+User-agent: MegaIndex
+Disallow: /
+
+User-agent: ltx71
+Disallow: /
+
+User-agent: nerdybot
+Disallow: /
+
+User-agent: xovi
+Disallow: /
+
+User-agent: XoviBot
+Disallow: /
+
+User-agent: sistrix
+Disallow: /
+
+User-agent: SistrixCrawler
+Disallow: /
+
+User-agent: SearchmetricsBot
+Disallow: /
+
+User-agent: LinkpadBot
+Disallow: /
+
+User-agent: GrapeshotCrawler
+Disallow: /
+
+User-agent: CareerBot
+Disallow: /
+
+User-agent: JobboerseBot
+Disallow: /
+
+# Bots maliciosos comuns
+User-agent: SiteSnagger
+Disallow: /
+
+User-agent: WebStripper
+Disallow: /
+
+User-agent: WebCopier
+Disallow: /
+
+User-agent: Fetch
+Disallow: /
+
+User-agent: Offline Explorer
+Disallow: /
+
+User-agent: Teleport
+Disallow: /
+
+User-agent: TeleportPro
+Disallow: /
+
+User-agent: WebZIP
+Disallow: /
+
+User-agent: linko
+Disallow: /
+
+User-agent: HTTrack
+Disallow: /
+
+User-agent: Microsoft.URL.Control
+Disallow: /
+
+User-agent: Xenu
+Disallow: /
+
+User-agent: larbin
+Disallow: /
+
+User-agent: libwww
+Disallow: /
+
+User-agent: ZyBORG
+Disallow: /
+
+User-agent: Download Ninja
+Disallow: /
+
+# Clean-param para URLs dinâmicas (se aplicável)
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&gclid&fbclid
