@@ -49,6 +49,7 @@ const DorDeDenteLandingPage = lazy(() => import("./pages/DorDeDenteLandingPage")
 const EmergenciaOdontologicaLandingPage = lazy(() => import("./pages/EmergenciaOdontologicaLandingPage"));
 const EspecialistaProteseLandingPage = lazy(() => import("./pages/EspecialistaProteseLandingPage"));
 const LentesDeContatoEmPorcelanaProfissionalLandingPage = lazy(() => import("./pages/LentesDeContatoEmPorcelanaProfissionalLandingPage"));
+const LentesDeContatoPorcelanaLandingPage = lazy(() => import("./pages/LentesDeContatoPorcelanaLandingPage"));
 
 // QueryClient otimizado
 const queryClient = new QueryClient({
@@ -133,6 +134,7 @@ function AppContent() {
             <Route path="/lp/emergencia-odontologica-ipanema" element={<EmergenciaOdontologicaLandingPage />} />
             <Route path="/lp/especialista-protese-ipanema" element={<EspecialistaProteseLandingPage />} />
             <Route path="/lp/lentes-porcelana-profissional-ipanema" element={<LentesDeContatoEmPorcelanaProfissionalLandingPage />} />
+            <Route path="/lp/lentes-porcelana-ipanema" element={<LentesDeContatoPorcelanaLandingPage />} />
             <Route path="/lp/:template" element={<LandingPageTemplate />} />
 
             {/* 404 Route */}
