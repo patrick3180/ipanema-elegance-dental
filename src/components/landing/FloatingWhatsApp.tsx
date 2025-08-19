@@ -13,7 +13,8 @@ interface FloatingWhatsAppProps {
 }
 
 const FloatingWhatsApp = ({ phoneNumber, message, campaign, messageMatch }: FloatingWhatsAppProps) => {
-  const handleWhatsAppClick = async () => {
+  const handleWhatsAppClick = async (event: React.MouseEvent) => {
+    event.stopPropagation();
     // Track event with Google Tag Manager (if available)
     if (window.dataLayer) {
       window.dataLayer.push({

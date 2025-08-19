@@ -18,12 +18,15 @@ const PageLayout = ({ children, className = "" }: PageLayoutProps) => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
+  // Don't render WhatsAppButton on landing pages (they have their own)
+  const isLandingPage = location.pathname.startsWith('/lp/');
+
   return (
     <div className="bg-dental-beige min-h-screen">
       <Header />
       <main className={`pt-0 ${className}`}>{children}</main>
       <Footer />
-      <WhatsAppButton />
+      {!isLandingPage && <WhatsAppButton />}
     </div>
   );
 };

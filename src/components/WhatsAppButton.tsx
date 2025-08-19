@@ -4,7 +4,8 @@ import { MessageCircle } from "lucide-react";
 import { sendGCLIDToWebhook } from "@/utils/gclid";
 
 const WhatsAppButton = () => {
-  const handleWhatsAppClick = async () => {
+  const handleWhatsAppClick = async (event: React.MouseEvent) => {
+    event.stopPropagation();
     // Track event with Google Tag Manager (if available)
     if (window.dataLayer) {
       window.dataLayer.push({

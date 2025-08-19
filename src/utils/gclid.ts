@@ -45,10 +45,20 @@ export const getGCLIDDebugInfo = () => {
   };
 };
 
+// Debounce mechanism to prevent multiple webhook calls
+let lastWebhookCall = 0;
+const WEBHOOK_DEBOUNCE_MS = 2000; // 2 seconds debounce
+
 /**
  * Sends GCLID data to the webhook
  */
 export const sendGCLIDToWebhook = async (source: string): Promise<void> => {
+  const now = Date.now();
+  if (now - lastWebhookCall < WEBHOOK_DEBOUNCE_MS) {
+    console.log('🚫 Webhook call debounced - too soon after last call');
+    return;
+  }
+  lastWebhookCall = now;
   const gclid = getStoredGCLID();
   const debugInfo = getGCLIDDebugInfo();
   
