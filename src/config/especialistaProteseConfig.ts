@@ -21,10 +21,10 @@ export const especialistaProteseConfig: LandingPageConfig = {
   },
   
   benefits: [
-    'Planejamento detalhado e mock-up do resultado final',
-    'Materiais de alta estética e longevidade',
-    'Abordagem especializada para casos complexos',
-    'Acompanhamento completo até o resultado perfeito'
+    'Atendimento personalizado com foco na qualidade',
+    'Somente os melhores materiais',
+    'Prósteses com ajuste perfeito para estética e função',
+    'Mais de 20 anos de experiência'
   ],
   
   problem: {
@@ -45,7 +45,7 @@ export const especialistaProteseConfig: LandingPageConfig = {
     subtitle: 'Um tratamento de alto nível começa com um planejamento impecável. Cada passo é pensado para garantir o melhor resultado.',
     steps: [
       { number: '1', title: 'Consulta de Planejamento Detalhado', description: 'Análise facial, fotografias, exames digitais. Entendemos seus desejos para criar um plano personalizado.' },
-      { number: '2', title: 'Mock-up e Teste do Sorriso', description: 'Você visualiza e "testa" o resultado final em sua própria boca antes mesmo de começarmos o tratamento.' },
+      { number: '2', title: 'Moldagem / scaneamento', description: 'Fazemos a moldagem ou scaneamento da boca para garantirmos o ajuste perfeito do elemento de prótese.' },
       { number: '3', title: 'Execução Precisa e Estética', description: 'Utilizamos porcelana de alta estética e os materiais mais nobres da odontologia para um resultado perfeito.' },
       { number: '4', title: 'Acompanhamento e Longevidade', description: 'Garantimos o ajuste fino e o suporte para que seu novo sorriso dure por muitos e muitos anos.' }
     ]
