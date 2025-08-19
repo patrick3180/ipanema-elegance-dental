@@ -16,7 +16,7 @@ export const esteticaSorrisoGenericaConfig: LandingPageConfig = {
   hero: {
     headline: 'A Conquista do Sorriso que Você Sempre Sonhou',
     subheadline: 'Seja através da arte da resina ou da excelência da porcelana, a Dra. Carla desenha a solução ideal para você. Descubra o caminho para um sorriso mais harmônico, confiante e natural.',
-    ctaText: 'Descubra o Melhor Caminho para o Seu Sorriso',
+    ctaText: 'Quero agendar uma consulta',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
   
