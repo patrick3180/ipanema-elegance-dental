@@ -13,14 +13,14 @@ import ErrorBoundary from "@/components/performance/ErrorBoundary";
 import ContentfulBlockerForLandingPages from '@/components/performance/ContentfulBlockerForLandingPages';
 import SimpleLCPOptimizer from '@/components/performance/SimpleLCPOptimizer';
 
-// Lazy load ALL route components
+// Lazy load ALL route components - USANDO OS ARQUIVOS QUE EXISTEM
 const Index = lazy(() => import("./pages/Index"));
-const Sobre = lazy(() => import("./pages/Sobre"));
+const About = lazy(() => import("./pages/About"));
 const Services = lazy(() => import("./pages/Services"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const Blog = lazy(() => import("./pages/Blog"));
-const Contato = lazy(() => import("./pages/Contato"));
-const Diferenciais = lazy(() => import("./pages/Diferenciais"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Differentials = lazy(() => import("./pages/Differentials"));
 const ServicesRoute = lazy(() => import("./pages/ServicesRoute"));
 const Gone = lazy(() => import("./pages/Gone"));
 const SeoDashboard = lazy(() => import("./pages/SeoDashboard"));
@@ -115,12 +115,12 @@ const App = () => {
                   <Routes>
                     {/* Main routes */}
                     <Route path="/" element={<Index />} />
-                    <Route path="/sobre" element={<Sobre />} />
+                    <Route path="/sobre" element={<About />} />
                     <Route path="/servicos" element={<Services />} />
-                    <Route path="/diferenciais" element={<Diferenciais />} />
+                    <Route path="/diferenciais" element={<Differentials />} />
                     <Route path="/blog" element={<Blog />} />
                     <Route path="/blog/:slug" element={<BlogPost />} />
-                    <Route path="/contato" element={<Contato />} />
+                    <Route path="/contato" element={<Contact />} />
                     <Route path="/gone" element={<Gone />} />
                     <Route path="/seo-dashboard" element={<SeoDashboard />} />
                     
