@@ -35,6 +35,7 @@ Crawl-delay: 2`;
 export const formatSitemapXML = (data: SitemapData): string => {
   const allUrls = [
     ...data.staticPages,
+    ...data.landingPages,
     ...data.servicePages,
     ...data.legalPages,
     ...data.blogPosts,
@@ -82,6 +83,7 @@ export const generateOptimizedSitemap = async (): Promise<string> => {
     
     console.log(`📊 Collected ${urlCount} URLs for sitemap:`, {
       static: sitemapData.staticPages.length,
+      landing: sitemapData.landingPages.length,
       services: sitemapData.servicePages.length,
       legal: sitemapData.legalPages.length,
       blogPosts: sitemapData.blogPosts.length,

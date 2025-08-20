@@ -11,21 +11,33 @@ import { Skeleton } from "@/components/ui/skeleton";
 import ContentfulBlockerForNonBlogPages from '@/components/performance/ContentfulBlockerForNonBlogPages';
 import SimpleLCPOptimizer from '@/components/performance/SimpleLCPOptimizer';
 
-// Páginas principais - apenas as que EXISTEM
+// Páginas principais
 const Index = lazy(() => import("./pages/Index"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 
-// Landing pages - EXISTEM
+// Landing pages - TODAS ATIVAS
 const LimpezaDentalLandingPage = lazy(() => import("./pages/LimpezaDentalLandingPage"));
 const ProfilaxiaLandingPage = lazy(() => import("./pages/ProfilaxiaLandingPage"));
 const EsteticaSorrisoLandingPage = lazy(() => import("./pages/EsteticaSorrisoLandingPage"));
 const SaudeGengivalLandingPage = lazy(() => import("./pages/SaudeGengivalLandingPage"));
 const ClareamentoLandingPage = lazy(() => import("./pages/ClareamentoLandingPage"));
+const ConsultaInicialLandingPage = lazy(() => import("./pages/ConsultaInicialLandingPage"));
+const DorDeDenteLandingPage = lazy(() => import("./pages/DorDeDenteLandingPage"));
+const DenteQuebradoLandingPage = lazy(() => import("./pages/DenteQuebradoLandingPage"));
+const EmergenciaOdontologicaLandingPage = lazy(() => import("./pages/EmergenciaOdontologicaLandingPage"));
+const EspecialistaProteseLandingPage = lazy(() => import("./pages/EspecialistaProteseLandingPage"));
 
-// Service pages - EXISTEM
+// Service pages - TODAS AS PÁGINAS DE TRATAMENTO
 const SaudeDaGengiva = lazy(() => import("./pages/SaudeDaGengiva"));
+const ClareamentoDental = lazy(() => import("./pages/ClareamentoDental"));
+const ImplantesDentarios = lazy(() => import("./pages/ImplantesDentarios"));
+const LentesEFacetas = lazy(() => import("./pages/LentesEFacetas"));
+const ProteseDentaria = lazy(() => import("./pages/ProteseDentaria"));
+const RestaureacoesEsteticas = lazy(() => import("./pages/RestaureacoesEsteticas"));
+const TratamentoDeCanal = lazy(() => import("./pages/TratamentoDeCanal"));
+const ClinicaGeralPrevencao = lazy(() => import("./pages/ClinicaGeralPrevencao"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -92,33 +104,32 @@ const App = () => {
                 <Route path="/blog" element={<BlogPage />} />
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 
-                {/* Landing pages */}
+                {/* Landing pages - TODAS ATIVAS */}
                 <Route path="/lp/limpeza-dental-ipanema" element={<LimpezaDentalLandingPage />} />
                 <Route path="/lp/profilaxia-dental-ipanema" element={<ProfilaxiaLandingPage />} />
                 <Route path="/lp/estetica-dental-ipanema" element={<EsteticaSorrisoLandingPage />} />
                 <Route path="/lp/saude-gengival-ipanema" element={<SaudeGengivalLandingPage />} />
                 <Route path="/lp/clareamento-dental" element={<ClareamentoLandingPage />} />
+                <Route path="/lp/consulta-inicial" element={<ConsultaInicialLandingPage />} />
+                <Route path="/lp/dor-de-dente-urgencia-ipanema" element={<DorDeDenteLandingPage />} />
+                <Route path="/lp/dente-quebrado-urgencia-ipanema" element={<DenteQuebradoLandingPage />} />
+                <Route path="/lp/emergencia-odontologica-ipanema" element={<EmergenciaOdontologicaLandingPage />} />
+                <Route path="/lp/especialista-protese-ipanema" element={<EspecialistaProteseLandingPage />} />
                 
-                {/* Service pages */}
+                {/* Service pages - TODAS AS PÁGINAS DE TRATAMENTO */}
                 <Route path="/saude-da-gengiva" element={<SaudeDaGengiva />} />
+                <Route path="/clareamento-dental" element={<ClareamentoDental />} />
+                <Route path="/implantes-dentarios" element={<ImplantesDentarios />} />
+                <Route path="/lentes-de-contato-dental-e-facetas-de-porcelana" element={<LentesEFacetas />} />
+                <Route path="/protese-dentaria" element={<ProteseDentaria />} />
+                <Route path="/restauracoes-esteticas" element={<RestaureacoesEsteticas />} />
+                <Route path="/tratamento-de-canal" element={<TratamentoDeCanal />} />
+                <Route path="/clinica-geral-e-prevencao" element={<ClinicaGeralPrevencao />} />
                 
                 {/* Rotas temporárias - redirecionam para home */}
                 <Route path="/sobre" element={<Navigate to="/" replace />} />
                 <Route path="/contato" element={<Navigate to="/" replace />} />
                 <Route path="/diferenciais" element={<Navigate to="/" replace />} />
-                
-                <Route path="/lp/consulta-inicial" element={<Navigate to="/" replace />} />
-                <Route path="/lp/dor-de-dente-urgencia-ipanema" element={<Navigate to="/" replace />} />
-                <Route path="/lp/dente-quebrado-urgencia-ipanema" element={<Navigate to="/" replace />} />
-                <Route path="/lp/emergencia-odontologica-ipanema" element={<Navigate to="/" replace />} />
-                <Route path="/lp/especialista-protese-ipanema" element={<Navigate to="/" replace />} />
-                <Route path="/clareamento-dental" element={<Navigate to="/" replace />} />
-                <Route path="/implantes-dentarios" element={<Navigate to="/" replace />} />
-                <Route path="/lentes-de-contato-dental-e-facetas-de-porcelana" element={<Navigate to="/" replace />} />
-                <Route path="/protese-dentaria" element={<Navigate to="/" replace />} />
-                <Route path="/restauracoes-esteticas" element={<Navigate to="/" replace />} />
-                <Route path="/tratamento-de-canal" element={<Navigate to="/" replace />} />
-                <Route path="/clinica-geral-e-prevencao" element={<Navigate to="/" replace />} />
                 
                 {/* Catch all - redirect to home */}
                 <Route path="*" element={<Navigate to="/" replace />} />

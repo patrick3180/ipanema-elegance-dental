@@ -12,6 +12,7 @@ export interface SitemapUrl {
 
 export interface SitemapData {
   staticPages: SitemapUrl[];
+  landingPages: SitemapUrl[];
   servicePages: SitemapUrl[];
   legalPages: SitemapUrl[];
   blogPosts: SitemapUrl[];
@@ -34,53 +35,89 @@ export const collectSitemapData = async (): Promise<SitemapData> => {
       priority: 1.0
     },
     {
-      loc: `${baseUrl}/sobre`,
-      lastmod: today,
-      changefreq: 'monthly',
-      priority: 0.9
-    },
-    {
       loc: `${baseUrl}/servicos`,
       lastmod: today,
       changefreq: 'monthly',
       priority: 0.9
     },
     {
-      loc: `${baseUrl}/diferenciais`,
-      lastmod: today,
-      changefreq: 'monthly',
-      priority: 0.8
-    },
-    {
       loc: `${baseUrl}/blog`,
       lastmod: today,
       changefreq: 'daily',
       priority: 0.8
-    },
-    {
-      loc: `${baseUrl}/contato`,
-      lastmod: today,
-      changefreq: 'monthly',
-      priority: 0.8
     }
   ];
 
-  // Service pages
+  // Landing pages - Alta prioridade para conversão
+  const landingPages: SitemapUrl[] = [
+    // Landing pages já ativas
+    {
+      loc: `${baseUrl}/lp/limpeza-dental-ipanema`,
+      lastmod: today,
+      changefreq: 'monthly',
+      priority: 0.9
+    },
+    {
+      loc: `${baseUrl}/lp/profilaxia-dental-ipanema`,
+      lastmod: today,
+      changefreq: 'monthly',
+      priority: 0.9
+    },
+    {
+      loc: `${baseUrl}/lp/estetica-dental-ipanema`,
+      lastmod: today,
+      changefreq: 'monthly',
+      priority: 0.9
+    },
+    {
+      loc: `${baseUrl}/lp/saude-gengival-ipanema`,
+      lastmod: today,
+      changefreq: 'monthly',
+      priority: 0.9
+    },
+    {
+      loc: `${baseUrl}/lp/clareamento-dental`,
+      lastmod: today,
+      changefreq: 'monthly',
+      priority: 0.9
+    },
+    // Landing pages com campanhas ativas
+    {
+      loc: `${baseUrl}/lp/consulta-inicial`,
+      lastmod: today,
+      changefreq: 'monthly',
+      priority: 0.9
+    },
+    {
+      loc: `${baseUrl}/lp/dor-de-dente-urgencia-ipanema`,
+      lastmod: today,
+      changefreq: 'monthly',
+      priority: 0.9
+    },
+    {
+      loc: `${baseUrl}/lp/dente-quebrado-urgencia-ipanema`,
+      lastmod: today,
+      changefreq: 'monthly',
+      priority: 0.9
+    },
+    {
+      loc: `${baseUrl}/lp/emergencia-odontologica-ipanema`,
+      lastmod: today,
+      changefreq: 'monthly',
+      priority: 0.9
+    },
+    {
+      loc: `${baseUrl}/lp/especialista-protese-ipanema`,
+      lastmod: today,
+      changefreq: 'monthly',
+      priority: 0.9
+    }
+  ];
+
+  // Service pages - Páginas de tratamento
   const servicePages: SitemapUrl[] = [
     {
-      loc: `${baseUrl}/lentes-de-contato-dental-e-facetas-de-porcelana`,
-      lastmod: today,
-      changefreq: 'monthly',
-      priority: 0.8
-    },
-    {
       loc: `${baseUrl}/clareamento-dental`,
-      lastmod: today,
-      changefreq: 'monthly',
-      priority: 0.8
-    },
-    {
-      loc: `${baseUrl}/protese-dentaria`,
       lastmod: today,
       changefreq: 'monthly',
       priority: 0.8
@@ -92,28 +129,40 @@ export const collectSitemapData = async (): Promise<SitemapData> => {
       priority: 0.8
     },
     {
-      loc: `${baseUrl}/clinica-geral-e-prevencao`,
+      loc: `${baseUrl}/lentes-de-contato-dental-e-facetas-de-porcelana`,
       lastmod: today,
       changefreq: 'monthly',
-      priority: 0.7
+      priority: 0.8
+    },
+    {
+      loc: `${baseUrl}/protese-dentaria`,
+      lastmod: today,
+      changefreq: 'monthly',
+      priority: 0.8
     },
     {
       loc: `${baseUrl}/restauracoes-esteticas`,
       lastmod: today,
       changefreq: 'monthly',
-      priority: 0.7
+      priority: 0.8
     },
     {
       loc: `${baseUrl}/tratamento-de-canal`,
       lastmod: today,
       changefreq: 'monthly',
-      priority: 0.7
+      priority: 0.8
+    },
+    {
+      loc: `${baseUrl}/clinica-geral-e-prevencao`,
+      lastmod: today,
+      changefreq: 'monthly',
+      priority: 0.8
     },
     {
       loc: `${baseUrl}/saude-da-gengiva`,
       lastmod: today,
       changefreq: 'monthly',
-      priority: 0.7
+      priority: 0.8
     }
   ];
 
@@ -281,6 +330,7 @@ export const collectSitemapData = async (): Promise<SitemapData> => {
 
   return {
     staticPages,
+    landingPages,
     servicePages,
     legalPages,
     blogPosts: blogPostUrls,
@@ -292,6 +342,7 @@ export const collectSitemapData = async (): Promise<SitemapData> => {
 
 export const getTotalUrlCount = (data: SitemapData): number => {
   return data.staticPages.length +
+         data.landingPages.length +
          data.servicePages.length +
          data.legalPages.length +
          data.blogPosts.length +
