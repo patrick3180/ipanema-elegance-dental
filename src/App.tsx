@@ -22,6 +22,7 @@ const LimpezaDentalLandingPage = lazy(() => import("./pages/LimpezaDentalLanding
 const ProfilaxiaLandingPage = lazy(() => import("./pages/ProfilaxiaLandingPage"));
 const EsteticaSorrisoLandingPage = lazy(() => import("./pages/EsteticaSorrisoLandingPage"));
 const SaudeGengivalLandingPage = lazy(() => import("./pages/SaudeGengivalLandingPage"));
+const ClareamentoLandingPage = lazy(() => import("./pages/ClareamentoLandingPage"));
 
 // Service pages - EXISTEM
 const SaudeDaGengiva = lazy(() => import("./pages/SaudeDaGengiva"));
@@ -96,6 +97,7 @@ const App = () => {
                 <Route path="/lp/profilaxia-dental-ipanema" element={<ProfilaxiaLandingPage />} />
                 <Route path="/lp/estetica-dental-ipanema" element={<EsteticaSorrisoLandingPage />} />
                 <Route path="/lp/saude-gengival-ipanema" element={<SaudeGengivalLandingPage />} />
+                <Route path="/lp/clareamento-dental" element={<ClareamentoLandingPage />} />
                 
                 {/* Service pages */}
                 <Route path="/saude-da-gengiva" element={<SaudeDaGengiva />} />
@@ -104,7 +106,7 @@ const App = () => {
                 <Route path="/sobre" element={<Navigate to="/" replace />} />
                 <Route path="/contato" element={<Navigate to="/" replace />} />
                 <Route path="/diferenciais" element={<Navigate to="/" replace />} />
-                <Route path="/lp/clareamento-dental" element={<Navigate to="/" replace />} />
+                
                 <Route path="/lp/consulta-inicial" element={<Navigate to="/" replace />} />
                 <Route path="/lp/dor-de-dente-urgencia-ipanema" element={<Navigate to="/" replace />} />
                 <Route path="/lp/dente-quebrado-urgencia-ipanema" element={<Navigate to="/" replace />} />
