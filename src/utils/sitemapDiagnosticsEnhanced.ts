@@ -73,11 +73,18 @@ export const runComprehensiveSitemapDiagnostics = async (): Promise<SitemapDiagn
     if (report.contentfulConnection) {
       console.log('✅ Contentful connectivity: OK');
       
-      // Get Contentful blog posts count
+      // Get Contentful blog posts count - APENAS EM DESENVOLVIMENTO
       try {
-        const contentfulPosts = await getAllBlogPosts();
-        report.blogPostCounts.contentful = contentfulPosts.length;
-        console.log(`📊 Contentful posts: ${contentfulPosts.length}`);
+        // Evita 60+ chamadas desnecessárias em produção
+        if (import.meta.env.DEV) {
+          const contentfulPosts = await getAllBlogPosts();
+          report.blogPostCounts.contentful = contentfulPosts.length;
+          console.log(`📊 Contentful posts: ${contentfulPosts.length}`);
+        } else {
+          // Em produção, usa valor estimado baseado no cache
+          report.blogPostCounts.contentful = report.blogPostCounts.cached || report.blogPostCounts.local;
+          console.log(`📊 Contentful posts (estimado): ${report.blogPostCounts.contentful}`);
+        }
       } catch (error) {
         report.contentfulErrors.push(`Failed to fetch posts: ${error}`);
       }

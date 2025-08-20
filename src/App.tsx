@@ -8,7 +8,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { Skeleton } from "@/components/ui/skeleton";
 
 // COMPONENTES DE PERFORMANCE - CRÍTICOS
-import ContentfulBlockerForLandingPages from '@/components/performance/ContentfulBlockerForLandingPages';
+import ContentfulBlockerForNonBlogPages from '@/components/performance/ContentfulBlockerForNonBlogPages';
 import SimpleLCPOptimizer from '@/components/performance/SimpleLCPOptimizer';
 
 // Páginas principais - apenas as que EXISTEM
@@ -77,7 +77,7 @@ const App = () => {
         <TooltipProvider>
           <BrowserRouter>
             {/* BLOQUEADORES DE PERFORMANCE - ORDEM IMPORTA! */}
-            <ContentfulBlockerForLandingPages />
+            <ContentfulBlockerForNonBlogPages />
             <SimpleLCPOptimizer />
             
             <Toaster />

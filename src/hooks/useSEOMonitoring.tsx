@@ -125,9 +125,18 @@ export const useSEOMonitoring = () => {
     }
   };
 
-  // Analyze SEO when location changes
+  // Analyze SEO when location changes - APENAS EM DESENVOLVIMENTO
   useEffect(() => {
+    // Só executa em desenvolvimento ou se explicitamente habilitado
+    const isEnabled = import.meta.env.DEV || localStorage.getItem('enableSEOMonitoring') === 'true';
+    
+    if (!isEnabled) {
+      console.log('🔇 SEO Monitoring desabilitado em produção');
+      return;
+    }
+
     const timer = setTimeout(() => {
+      console.log('🔍 Executando análise SEO para:', location.pathname);
       analyzePageSEO();
     }, 1000); // Wait for page to fully load
 
