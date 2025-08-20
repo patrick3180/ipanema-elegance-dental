@@ -13,13 +13,15 @@ import SimpleLCPOptimizer from '@/components/performance/SimpleLCPOptimizer';
 
 // Páginas principais - apenas as que EXISTEM
 const Index = lazy(() => import("./pages/Index"));
-const Services = lazy(() => import("./pages/Services"));
-const Blog = lazy(() => import("./pages/Blog"));
+const ServicesPage = lazy(() => import("./pages/ServicesPage"));
+const BlogPage = lazy(() => import("./pages/BlogPage"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 
 // Landing pages - EXISTEM
 const LimpezaDentalLandingPage = lazy(() => import("./pages/LimpezaDentalLandingPage"));
 const ProfilaxiaLandingPage = lazy(() => import("./pages/ProfilaxiaLandingPage"));
+const EsteticaSorrisoLandingPage = lazy(() => import("./pages/EsteticaSorrisoLandingPage"));
+const SaudeGengivalLandingPage = lazy(() => import("./pages/SaudeGengivalLandingPage"));
 
 // Service pages - EXISTEM
 const SaudeDaGengiva = lazy(() => import("./pages/SaudeDaGengiva"));
@@ -85,13 +87,15 @@ const App = () => {
               <Routes>
                 {/* Rotas principais */}
                 <Route path="/" element={<Index />} />
-                <Route path="/servicos" element={<Services />} />
-                <Route path="/blog" element={<Blog />} />
+                <Route path="/servicos" element={<ServicesPage />} />
+                <Route path="/blog" element={<BlogPage />} />
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 
                 {/* Landing pages */}
                 <Route path="/lp/limpeza-dental-ipanema" element={<LimpezaDentalLandingPage />} />
                 <Route path="/lp/profilaxia-dental-ipanema" element={<ProfilaxiaLandingPage />} />
+                <Route path="/lp/estetica-dental-ipanema" element={<EsteticaSorrisoLandingPage />} />
+                <Route path="/lp/saude-gengival-ipanema" element={<SaudeGengivalLandingPage />} />
                 
                 {/* Service pages */}
                 <Route path="/saude-da-gengiva" element={<SaudeDaGengiva />} />
@@ -106,7 +110,6 @@ const App = () => {
                 <Route path="/lp/dente-quebrado-urgencia-ipanema" element={<Navigate to="/" replace />} />
                 <Route path="/lp/emergencia-odontologica-ipanema" element={<Navigate to="/" replace />} />
                 <Route path="/lp/especialista-protese-ipanema" element={<Navigate to="/" replace />} />
-                <Route path="/lp/saude-gengival-ipanema" element={<Navigate to="/" replace />} />
                 <Route path="/clareamento-dental" element={<Navigate to="/" replace />} />
                 <Route path="/implantes-dentarios" element={<Navigate to="/" replace />} />
                 <Route path="/lentes-de-contato-dental-e-facetas-de-porcelana" element={<Navigate to="/" replace />} />
