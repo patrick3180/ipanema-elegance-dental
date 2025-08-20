@@ -1,167 +1,164 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/sonner";
 import { lazy, Suspense, useEffect } from "react";
-import SimpleLCPOptimizer from "@/components/performance/SimpleLCPOptimizer";
-import PerformanceMonitor from "@/components/performance/PerformanceMonitor";
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
+import { ImageOptimizationProvider } from "@/components/performance/ImageOptimizationProvider";
+import { Skeleton } from "@/components/ui/skeleton";
+import ErrorBoundary from "@/components/performance/ErrorBoundary";
 
-import SitemapHealthMonitor from "@/components/SitemapHealthMonitor";
-import { handlePageRedirects } from "@/utils/urlRedirects";
-import { seoMonitor } from "@/utils/seoMonitoring";
-import "@/utils/404ErrorHandler";
-import { captureGCLID } from "@/utils/gclid";
-import { Analytics } from '@vercel/analytics/react';
+// COMPONENTES DE PERFORMANCE - CRÍTICOS
+import ContentfulBlockerForLandingPages from '@/components/performance/ContentfulBlockerForLandingPages';
+import SimpleLCPOptimizer from '@/components/performance/SimpleLCPOptimizer';
 
-// Lazy load TODAS as páginas exceto Index para melhor performance
+// Lazy load ALL route components
 const Index = lazy(() => import("./pages/Index"));
-const AboutPage = lazy(() => import("./pages/AboutPage"));
-const ServicesPage = lazy(() => import("./pages/ServicesPage"));
-const DifferentialsPage = lazy(() => import("./pages/DifferentialsPage"));
-const BlogPage = lazy(() => import("./pages/BlogPage"));
+const Sobre = lazy(() => import("./pages/Sobre"));
+const Services = lazy(() => import("./pages/Services"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
-const ContactPage = lazy(() => import("./pages/ContactPage"));
-const NotFound = lazy(() => import("./pages/NotFound"));
-const GonePage = lazy(() => import("./pages/GonePage"));
-const SEODashboardPage = lazy(() => import("./pages/SEODashboardPage"));
+const Blog = lazy(() => import("./pages/Blog"));
+const Contato = lazy(() => import("./pages/Contato"));
+const Diferenciais = lazy(() => import("./pages/Diferenciais"));
+const ServicesRoute = lazy(() => import("./pages/ServicesRoute"));
+const Gone = lazy(() => import("./pages/Gone"));
+const SeoDashboard = lazy(() => import("./pages/SeoDashboard"));
 
-// Service pages - lazy load todas
-const LentesEFacetas = lazy(() => import("./pages/LentesEFacetas"));
+// Landing pages - lazy load
 const ClareamentoDental = lazy(() => import("./pages/ClareamentoDental"));
-const ProteseDentaria = lazy(() => import("./pages/ProteseDentaria"));
-const ImplantesDentarios = lazy(() => import("./pages/ImplantesDentarios"));
-const ClinicaGeralPrevencao = lazy(() => import("./pages/ClinicaGeralPrevencao"));
-const RestaureacoesEsteticas = lazy(() => import("./pages/RestaureacoesEsteticas"));
-const TratamentoDeCanal = lazy(() => import("./pages/TratamentoDeCanal"));
-const SaudeDaGengiva = lazy(() => import("./pages/SaudeDaGengiva"));
-
-// Legal pages
-const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
-const TermsOfUse = lazy(() => import("./pages/TermsOfUse"));
-
-// Landing Page Template
-const LandingPageTemplate = lazy(() => import("./pages/LandingPageTemplate"));
-const ClareamentoLandingPage = lazy(() => import("./pages/ClareamentoLandingPage"));
-const ConsultaInicialLandingPage = lazy(() => import("./pages/ConsultaInicialLandingPage"));
+const ConsultaInicial = lazy(() => import("./pages/ConsultaInicial"));
 const LimpezaDentalLandingPage = lazy(() => import("./pages/LimpezaDentalLandingPage"));
 const ProfilaxiaLandingPage = lazy(() => import("./pages/ProfilaxiaLandingPage"));
-const DenteQuebradoLandingPage = lazy(() => import("./pages/DenteQuebradoLandingPage"));
-const DorDeDenteLandingPage = lazy(() => import("./pages/DorDeDenteLandingPage"));
-const EmergenciaOdontologicaLandingPage = lazy(() => import("./pages/EmergenciaOdontologicaLandingPage"));
-const EspecialistaProteseLandingPage = lazy(() => import("./pages/EspecialistaProteseLandingPage"));
-const LentesDeContatoEmPorcelanaProfissionalLandingPage = lazy(() => import("./pages/LentesDeContatoEmPorcelanaProfissionalLandingPage"));
-const LentesDeContatoPorcelanaLandingPage = lazy(() => import("./pages/LentesDeContatoPorcelanaLandingPage"));
-const FacetasResinaDiretaLandingPage = lazy(() => import("./pages/FacetasResinaDiretaLandingPage"));
-const EsteticaSorrisoLandingPage = lazy(() => import("./pages/EsteticaSorrisoLandingPage"));
+const DorDeDenteUrgencia = lazy(() => import("./pages/DorDeDenteUrgencia"));
+const DenteQuebradoUrgencia = lazy(() => import("./pages/DenteQuebradoUrgencia"));
+const EmergenciaOdontologica = lazy(() => import("./pages/EmergenciaOdontologica"));
+const EspecialistaProtese = lazy(() => import("./pages/EspecialistaProtese"));
 const SaudeGengivalLandingPage = lazy(() => import("./pages/SaudeGengivalLandingPage"));
 
-// QueryClient otimizado
+// Service pages - lazy load
+const ClareamentoDentalService = lazy(() => import("./pages/ClareamentoDentalService"));
+const ImplantesDentarios = lazy(() => import("./pages/ImplantesDentarios"));
+const LentesEFacetas = lazy(() => import("./pages/LentesEFacetas"));
+const ProteseDentaria = lazy(() => import("./pages/ProteseDentaria"));
+const RestaureacoesEsteticas = lazy(() => import("./pages/RestaureacoesEsteticas"));
+const SaudeDaGengiva = lazy(() => import("./pages/SaudeDaGengiva"));
+const TratamentoDeCanal = lazy(() => import("./pages/TratamentoDeCanal"));
+const ClinicaGeralPrevencao = lazy(() => import("./pages/ClinicaGeralPrevencao"));
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 10 * 60 * 1000, // 10 minutes
-      gcTime: 15 * 60 * 1000, // 15 minutes
-      retry: 1,
+      staleTime: 5 * 60 * 1000,
       refetchOnWindowFocus: false,
+      retry: 1,
     },
   },
 });
 
-// Loading component simples
-const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center">
-    <div className="animate-pulse text-dental-purple">Carregando...</div>
+// Loading fallback component
+const PageLoadingFallback = () => (
+  <div className="min-h-screen flex items-center justify-center bg-dental-beige">
+    <div className="text-center space-y-4">
+      <Skeleton className="h-8 w-48 mx-auto" />
+      <Skeleton className="h-4 w-32 mx-auto" />
+    </div>
   </div>
 );
 
-function AppContent() {
-  const location = useLocation();
+// Critical images for preloading
+const criticalImages = [
+  { src: '/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp', width: 600 },
+  { src: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp', width: 400 }
+];
 
+const App = () => {
+  // BLOQUEIO DO CONTENTFUL EM LANDING PAGES
   useEffect(() => {
-    // Capture GCLID on initial load and every location change
-    captureGCLID();
-  }, [location]);
-  
-  useEffect(() => {
-    // Handle redirects de forma simples
-    const redirectResult = handlePageRedirects();
-    if (redirectResult.type === 'redirect') {
-      seoMonitor.logRedirect(location.pathname, window.location.pathname);
-    }
+    const currentPath = window.location.pathname;
+    console.log('🚀 App initialized at path:', currentPath);
     
-    // Log page navigation for debugging
-    console.log('🔄 Route changed to:', location.pathname, location.search);
-  }, [location.pathname]);
+    // Debug para encontrar chamadas do Contentful
+    if (process.env.NODE_ENV === 'development') {
+      const originalFetch = window.fetch;
+      window.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
+        const url = typeof input === 'string' ? input : input.toString();
+        
+        if (url.includes('contentful')) {
+          console.warn('📍 Contentful call detected:', {
+            url: url.substring(0, 100),
+            path: window.location.pathname,
+            stack: new Error().stack?.split('\n').slice(2, 5)
+          });
+        }
+        
+        return originalFetch(input, init);
+      };
+    }
+  }, []);
 
   return (
-    <div className="App">
-      {/* Performance optimization components */}
-      <SimpleLCPOptimizer />
-      <PerformanceMonitor />
-      
-      <SitemapHealthMonitor />
-      
-      <Suspense fallback={<PageLoader />}>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/sobre" element={<AboutPage />} />
-          <Route path="/servicos" element={<ServicesPage />} />
-          <Route path="/diferenciais" element={<DifferentialsPage />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/contato" element={<ContactPage />} />
-
-          {/* Service Routes */}
-          <Route path="/lentes-de-contato-dental-e-facetas-de-porcelana" element={<LentesEFacetas />} />
-          <Route path="/clareamento-dental" element={<ClareamentoDental />} />
-          <Route path="/protese-dentaria" element={<ProteseDentaria />} />
-          <Route path="/implantes-dentarios" element={<ImplantesDentarios />} />
-          <Route path="/clinica-geral-e-prevencao" element={<ClinicaGeralPrevencao />} />
-          <Route path="/restauracoes-esteticas" element={<RestaureacoesEsteticas />} />
-          <Route path="/tratamento-de-canal" element={<TratamentoDeCanal />} />
-          <Route path="/saude-da-gengiva" element={<SaudeDaGengiva />} />
-
-          {/* Legal Routes */}
-          <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
-          <Route path="/termos-de-uso" element={<TermsOfUse />} />
-          <Route path="/gone" element={<GonePage />} />
-          <Route path="/seo-dashboard" element={<SEODashboardPage />} />
-
-          {/* Landing Page Template - Isolated routes */}
-          <Route path="/lp/template" element={<LandingPageTemplate />} />
-            <Route path="/lp/clareamento-dental" element={<ClareamentoLandingPage />} />
-          <Route path="/lp/consulta-inicial" element={<ConsultaInicialLandingPage />} />
-            <Route path="/lp/limpeza-dental-ipanema" element={<LimpezaDentalLandingPage />} />
-            <Route path="/lp/profilaxia-dental-ipanema" element={<ProfilaxiaLandingPage />} />
-            <Route path="/lp/dente-quebrado-urgencia-ipanema" element={<DenteQuebradoLandingPage />} />
-            <Route path="/lp/dor-de-dente-urgencia-ipanema" element={<DorDeDenteLandingPage />} />
-            <Route path="/lp/emergencia-odontologica-ipanema" element={<EmergenciaOdontologicaLandingPage />} />
-            <Route path="/lp/especialista-protese-ipanema" element={<EspecialistaProteseLandingPage />} />
-            <Route path="/lp/lentes-porcelana-profissional-ipanema" element={<LentesDeContatoEmPorcelanaProfissionalLandingPage />} />
-            <Route path="/lp/lentes-porcelana-ipanema" element={<LentesDeContatoPorcelanaLandingPage />} />
-            <Route path="/lp/facetas-resina-ipanema" element={<FacetasResinaDiretaLandingPage />} />
-            <Route path="/lp/estetica-dental-ipanema" element={<EsteticaSorrisoLandingPage />} />
-            <Route path="/lp/saude-gengival-ipanema" element={<SaudeGengivalLandingPage />} />
-            <Route path="/lp/:template" element={<LandingPageTemplate />} />
-
-            {/* 404 Route */}
-            <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
-      
-      <Toaster />
-    </div>
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <ImageOptimizationProvider criticalImages={criticalImages}>
+            <ErrorBoundary>
+              <BrowserRouter>
+                {/* BLOQUEADORES DE PERFORMANCE - ORDEM IMPORTA! */}
+                <ContentfulBlockerForLandingPages />
+                <SimpleLCPOptimizer />
+                
+                <Toaster />
+                <Sonner />
+                
+                <Suspense fallback={<PageLoadingFallback />}>
+                  <Routes>
+                    {/* Main routes */}
+                    <Route path="/" element={<Index />} />
+                    <Route path="/sobre" element={<Sobre />} />
+                    <Route path="/servicos" element={<Services />} />
+                    <Route path="/diferenciais" element={<Diferenciais />} />
+                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/blog/:slug" element={<BlogPost />} />
+                    <Route path="/contato" element={<Contato />} />
+                    <Route path="/gone" element={<Gone />} />
+                    <Route path="/seo-dashboard" element={<SeoDashboard />} />
+                    
+                    {/* Landing pages - CRITICAL FOR PERFORMANCE */}
+                    <Route path="/lp/clareamento-dental" element={<ClareamentoDental />} />
+                    <Route path="/lp/consulta-inicial" element={<ConsultaInicial />} />
+                    <Route path="/lp/limpeza-dental-ipanema" element={<LimpezaDentalLandingPage />} />
+                    <Route path="/lp/profilaxia-dental-ipanema" element={<ProfilaxiaLandingPage />} />
+                    <Route path="/lp/dor-de-dente-urgencia-ipanema" element={<DorDeDenteUrgencia />} />
+                    <Route path="/lp/dente-quebrado-urgencia-ipanema" element={<DenteQuebradoUrgencia />} />
+                    <Route path="/lp/emergencia-odontologica-ipanema" element={<EmergenciaOdontologica />} />
+                    <Route path="/lp/especialista-protese-ipanema" element={<EspecialistaProtese />} />
+                    <Route path="/lp/saude-gengival-ipanema" element={<SaudeGengivalLandingPage />} />
+                    
+                    {/* Service pages */}
+                    <Route path="/clareamento-dental" element={<ClareamentoDentalService />} />
+                    <Route path="/implantes-dentarios" element={<ImplantesDentarios />} />
+                    <Route path="/lentes-de-contato-dental-e-facetas-de-porcelana" element={<LentesEFacetas />} />
+                    <Route path="/protese-dentaria" element={<ProteseDentaria />} />
+                    <Route path="/restauracoes-esteticas" element={<RestaureacoesEsteticas />} />
+                    <Route path="/saude-da-gengiva" element={<SaudeDaGengiva />} />
+                    <Route path="/tratamento-de-canal" element={<TratamentoDeCanal />} />
+                    <Route path="/clinica-geral-e-prevencao" element={<ClinicaGeralPrevencao />} />
+                    
+                    {/* Legacy routes - redirects */}
+                    <Route path="/services/:slug" element={<ServicesRoute />} />
+                    
+                    {/* Catch all - redirect to home */}
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                  </Routes>
+                </Suspense>
+              </BrowserRouter>
+            </ErrorBoundary>
+          </ImageOptimizationProvider>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </HelmetProvider>
   );
-}
-
-function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <Router>
-        <AppContent />
-      </Router>
-      <Analytics />
-    </QueryClientProvider>
-  );
-}
+};
 
 export default App;
