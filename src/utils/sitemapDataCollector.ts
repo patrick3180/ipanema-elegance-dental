@@ -111,6 +111,12 @@ export const collectSitemapData = async (): Promise<SitemapData> => {
       lastmod: today,
       changefreq: 'monthly',
       priority: 0.9
+    },
+    {
+      loc: `${baseUrl}/lp/implantes-dentarios-ipanema`,
+      lastmod: today,
+      changefreq: 'monthly',
+      priority: 0.9
     }
   ];
 
