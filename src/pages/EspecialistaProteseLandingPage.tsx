@@ -91,14 +91,14 @@ const EspecialistaProteseLandingPage = () => {
         <meta name="title" content={especialistaProteseConfig.seo.title} />
         <meta name="description" content={especialistaProteseConfig.seo.description} />
         <meta name="keywords" content={especialistaProteseConfig.seo.keywords?.join(', ')} />
-        <link rel="canonical" href="https://dracarlachristoph.com.br/lp/especialista-protese-ipanema" />
+        <link rel="canonical" href="https://dracarlachristoph.com/lp/especialista-protese-ipanema" />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dracarlachristoph.com.br/lp/especialista-protese-ipanema" />
+        <meta property="og:url" content="https://dracarlachristoph.com/lp/especialista-protese-ipanema" />
         <meta property="og:title" content={especialistaProteseConfig.seo.title} />
         <meta property="og:description" content={especialistaProteseConfig.seo.description} />
-        <meta property="og:image" content="https://dracarlachristoph.com.br/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
+        <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:locale" content="pt_BR" />
@@ -106,10 +106,10 @@ const EspecialistaProteseLandingPage = () => {
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://dracarlachristoph.com.br/lp/especialista-protese-ipanema" />
+        <meta property="twitter:url" content="https://dracarlachristoph.com/lp/especialista-protese-ipanema" />
         <meta property="twitter:title" content={especialistaProteseConfig.seo.title} />
         <meta property="twitter:description" content={especialistaProteseConfig.seo.description} />
-        <meta property="twitter:image" content="https://dracarlachristoph.com.br/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
+        <meta property="twitter:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
 
         {/* Performance and Resource Hints */}
         <link rel="preload" href="/fonts/montserrat-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
@@ -147,9 +147,9 @@ const EspecialistaProteseLandingPage = () => {
             "@context": "https://schema.org",
             "@type": "Dentist",
             "name": "Dra. Carla Christoph",
-            "image": "https://dracarlachristoph.com.br/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp",
+            "image": "https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp",
             "description": "Reabilitação oral para casos complexos em Ipanema. Especialista em prótese dentária com planejamento detalhado.",
-            "url": "https://dracarlachristoph.com.br/lp/especialista-protese-ipanema",
+            "url": "https://dracarlachristoph.com/lp/especialista-protese-ipanema",
             "telephone": "+55 21 99330-4045",
             "address": {
               "@type": "PostalAddress",

@@ -109,20 +109,20 @@ const DenteQuebradoLandingPage: React.FC = () => {
         <title>{denteQuebradoConfig.seo.title}</title>
         <meta name="description" content={denteQuebradoConfig.seo.description} />
         <meta name="keywords" content={denteQuebradoConfig.seo.keywords.join(', ')} />
-        <link rel="canonical" href="https://dracarlachristoph.com.br/lp/dente-quebrado-urgencia-ipanema" />
+        <link rel="canonical" href="https://dracarlachristoph.com/lp/dente-quebrado-urgencia-ipanema" />
 
         {/* Open Graph tags */}
         <meta property="og:title" content={denteQuebradoConfig.seo.title} />
         <meta property="og:description" content={denteQuebradoConfig.seo.description} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dracarlachristoph.com.br/lp/dente-quebrado-urgencia-ipanema" />
-        <meta property="og:image" content={`https://dracarlachristoph.com.br${denteQuebradoConfig.hero.backgroundImage}`} />
+        <meta property="og:url" content="https://dracarlachristoph.com/lp/dente-quebrado-urgencia-ipanema" />
+        <meta property="og:image" content={`https://dracarlachristoph.com${denteQuebradoConfig.hero.backgroundImage}`} />
 
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={denteQuebradoConfig.seo.title} />
         <meta name="twitter:description" content={denteQuebradoConfig.seo.description} />
-        <meta name="twitter:image" content={`https://dracarlachristoph.com.br${denteQuebradoConfig.hero.backgroundImage}`} />
+        <meta name="twitter:image" content={`https://dracarlachristoph.com${denteQuebradoConfig.hero.backgroundImage}`} />
 
         {/* Preload critical fonts com display=swap */}
         <link 
@@ -185,7 +185,7 @@ const DenteQuebradoLandingPage: React.FC = () => {
             "@type": "Dentist",
             "name": "Dra. Carla Christoph",
             "description": denteQuebradoConfig.seo.description,
-            "url": "https://dracarlachristoph.com.br/lp/dente-quebrado-urgencia-ipanema",
+            "url": "https://dracarlachristoph.com/lp/dente-quebrado-urgencia-ipanema",
             "address": {
               "@type": "PostalAddress",
               "addressLocality": "Ipanema",

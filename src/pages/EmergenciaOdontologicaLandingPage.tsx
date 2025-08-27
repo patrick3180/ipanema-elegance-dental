@@ -109,20 +109,20 @@ const EmergenciaOdontologicaLandingPage: React.FC = () => {
         <title>{emergenciaOdontologicaConfig.seo.title}</title>
         <meta name="description" content={emergenciaOdontologicaConfig.seo.description} />
         <meta name="keywords" content={emergenciaOdontologicaConfig.seo.keywords.join(', ')} />
-        <link rel="canonical" href="https://dracarlachristoph.com.br/lp/emergencia-odontologica-ipanema" />
+        <link rel="canonical" href="https://dracarlachristoph.com/lp/emergencia-odontologica-ipanema" />
 
         {/* Open Graph tags */}
         <meta property="og:title" content={emergenciaOdontologicaConfig.seo.title} />
         <meta property="og:description" content={emergenciaOdontologicaConfig.seo.description} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dracarlachristoph.com.br/lp/emergencia-odontologica-ipanema" />
-        <meta property="og:image" content={`https://dracarlachristoph.com.br${emergenciaOdontologicaConfig.hero.backgroundImage}`} />
+        <meta property="og:url" content="https://dracarlachristoph.com/lp/emergencia-odontologica-ipanema" />
+        <meta property="og:image" content={`https://dracarlachristoph.com${emergenciaOdontologicaConfig.hero.backgroundImage}`} />
 
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={emergenciaOdontologicaConfig.seo.title} />
         <meta name="twitter:description" content={emergenciaOdontologicaConfig.seo.description} />
-        <meta name="twitter:image" content={`https://dracarlachristoph.com.br${emergenciaOdontologicaConfig.hero.backgroundImage}`} />
+        <meta name="twitter:image" content={`https://dracarlachristoph.com${emergenciaOdontologicaConfig.hero.backgroundImage}`} />
 
         {/* Preload critical fonts com display=swap */}
         <link 
@@ -185,7 +185,7 @@ const EmergenciaOdontologicaLandingPage: React.FC = () => {
             "@type": "Dentist",
             "name": "Dra. Carla Christoph",
             "description": emergenciaOdontologicaConfig.seo.description,
-            "url": "https://dracarlachristoph.com.br/lp/emergencia-odontologica-ipanema",
+            "url": "https://dracarlachristoph.com/lp/emergencia-odontologica-ipanema",
             "address": {
               "@type": "PostalAddress",
               "addressLocality": "Ipanema",

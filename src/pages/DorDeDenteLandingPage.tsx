@@ -109,20 +109,20 @@ const DorDeDenteLandingPage: React.FC = () => {
         <title>{dorDeDenteConfig.seo.title}</title>
         <meta name="description" content={dorDeDenteConfig.seo.description} />
         <meta name="keywords" content={dorDeDenteConfig.seo.keywords.join(', ')} />
-        <link rel="canonical" href="https://dracarlachristoph.com.br/lp/dor-de-dente-urgencia-ipanema" />
+        <link rel="canonical" href="https://dracarlachristoph.com/lp/dor-de-dente-urgencia-ipanema" />
 
         {/* Open Graph tags */}
         <meta property="og:title" content={dorDeDenteConfig.seo.title} />
         <meta property="og:description" content={dorDeDenteConfig.seo.description} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dracarlachristoph.com.br/lp/dor-de-dente-urgencia-ipanema" />
-        <meta property="og:image" content={`https://dracarlachristoph.com.br${dorDeDenteConfig.hero.backgroundImage}`} />
+        <meta property="og:url" content="https://dracarlachristoph.com/lp/dor-de-dente-urgencia-ipanema" />
+        <meta property="og:image" content={`https://dracarlachristoph.com${dorDeDenteConfig.hero.backgroundImage}`} />
 
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={dorDeDenteConfig.seo.title} />
         <meta name="twitter:description" content={dorDeDenteConfig.seo.description} />
-        <meta name="twitter:image" content={`https://dracarlachristoph.com.br${dorDeDenteConfig.hero.backgroundImage}`} />
+        <meta name="twitter:image" content={`https://dracarlachristoph.com${dorDeDenteConfig.hero.backgroundImage}`} />
 
         {/* Preload critical fonts com display=swap */}
         <link 
@@ -185,7 +185,7 @@ const DorDeDenteLandingPage: React.FC = () => {
             "@type": "Dentist",
             "name": "Dra. Carla Christoph",
             "description": dorDeDenteConfig.seo.description,
-            "url": "https://dracarlachristoph.com.br/lp/dor-de-dente-urgencia-ipanema",
+            "url": "https://dracarlachristoph.com/lp/dor-de-dente-urgencia-ipanema",
             "address": {
               "@type": "PostalAddress",
               "addressLocality": "Ipanema",

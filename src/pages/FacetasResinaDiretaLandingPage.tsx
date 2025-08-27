@@ -70,7 +70,7 @@ const FacetasResinaDiretaLandingPage = () => {
     "@type": "MedicalBusiness",
     "name": "Consultório Odontológico Dra. Carla Christoph",
     "description": pageConfig.seo.description,
-    "url": `https://dracarla.com.br/lp/facetas-resina-ipanema`,
+    "url": `https://dracarlachristoph.com/lp/facetas-resina-ipanema`,
     "telephone": "+55-21-99330-4045",
     "address": {
       "@type": "PostalAddress",
@@ -98,18 +98,18 @@ const FacetasResinaDiretaLandingPage = () => {
         {/* Open Graph Tags */}
         <meta property="og:title" content={pageConfig.seo.title} />
         <meta property="og:description" content={pageConfig.seo.description} />
-        <meta property="og:url" content="https://dracarla.com.br/lp/facetas-resina-ipanema" />
+        <meta property="og:url" content="https://dracarlachristoph.com/lp/facetas-resina-ipanema" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
+        <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
         
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageConfig.seo.title} />
         <meta name="twitter:description" content={pageConfig.seo.description} />
-        <meta name="twitter:image" content="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
+        <meta name="twitter:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
         
         {/* Canonical URL */}
-        <link rel="canonical" href="https://dracarla.com.br/lp/facetas-resina-ipanema" />
+        <link rel="canonical" href="https://dracarlachristoph.com/lp/facetas-resina-ipanema" />
         
         {/* Structured Data */}
         <script type="application/ld+json">

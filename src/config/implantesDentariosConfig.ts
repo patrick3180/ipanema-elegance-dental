@@ -14,10 +14,10 @@ export const implantesDentariosConfig: LandingPageConfig = {
   },
   
   hero: {
-    headline: 'Recupere a Confiança de Sorrir e o Prazer de Comer sem Preocupações',
-    subheadline: 'Com os implantes dentários, oferecemos uma solução segura e definitiva para a perda de dentes. Volte a viver com a segurança de um sorriso fixo, funcional e de aparência natural.',
-    ctaText: 'Agendar Minha Consulta de Planejamento',
-    backgroundImage: '/lovable-uploads/vertical-de-jaleco.webp'
+    headline: "Recupere a Confiança de Sorrir e o Prazer de Comer sem Preocupações",
+    subheadline: "Com os implantes dentários, oferecemos uma solução segura e definitiva para a perda de dentes. Volte a viver com a segurança de um sorriso fixo, funcional e de aparência natural.",
+    ctaText: "Agendar Minha Consulta de Planejamento",
+    backgroundImage: "/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
   },
   
   benefits: [

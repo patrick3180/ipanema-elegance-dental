@@ -121,20 +121,20 @@ const LimpezaDentalLandingPage: React.FC = () => {
         <title>{limpezaDentalConfig.seo.title}</title>
         <meta name="description" content={limpezaDentalConfig.seo.description} />
         <meta name="keywords" content={limpezaDentalConfig.seo.keywords.join(', ')} />
-        <link rel="canonical" href="https://dracarlachristoph.com.br/lp/limpeza-dental-ipanema" />
+        <link rel="canonical" href="https://dracarlachristoph.com/lp/limpeza-dental-ipanema" />
 
         {/* Open Graph tags */}
         <meta property="og:title" content={limpezaDentalConfig.seo.title} />
         <meta property="og:description" content={limpezaDentalConfig.seo.description} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dracarlachristoph.com.br/lp/limpeza-dental-ipanema" />
-        <meta property="og:image" content={`https://dracarlachristoph.com.br${limpezaDentalConfig.hero.backgroundImage}`} />
+        <meta property="og:url" content="https://dracarlachristoph.com/lp/limpeza-dental-ipanema" />
+        <meta property="og:image" content={`https://dracarlachristoph.com${limpezaDentalConfig.hero.backgroundImage}`} />
 
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={limpezaDentalConfig.seo.title} />
         <meta name="twitter:description" content={limpezaDentalConfig.seo.description} />
-        <meta name="twitter:image" content={`https://dracarlachristoph.com.br${limpezaDentalConfig.hero.backgroundImage}`} />
+        <meta name="twitter:image" content={`https://dracarlachristoph.com${limpezaDentalConfig.hero.backgroundImage}`} />
 
         {/* Preload critical fonts com display=swap */}
         <link 
@@ -210,7 +210,7 @@ const LimpezaDentalLandingPage: React.FC = () => {
             "@type": "Dentist",
             "name": "Dra. Carla Christoph",
             "description": limpezaDentalConfig.seo.description,
-            "url": "https://dracarlachristoph.com.br/lp/limpeza-dental-ipanema",
+            "url": "https://dracarlachristoph.com/lp/limpeza-dental-ipanema",
             "address": {
               "@type": "PostalAddress",
               "addressLocality": "Ipanema",

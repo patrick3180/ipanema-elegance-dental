@@ -91,8 +91,8 @@ const LentesDeContatoPorcelanaLandingPage = () => {
     };
   }, []);
 
-  const canonicalUrl = "https://dracarlaodonto.com.br/lp/lentes-porcelana-ipanema";
-  const ogImage = "https://dracarlaodonto.com.br/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp";
+  const canonicalUrl = "https://dracarlachristoph.com/lp/lentes-porcelana-ipanema";
+  const ogImage = "https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp";
 
   return (
     <>

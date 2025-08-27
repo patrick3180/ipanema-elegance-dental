@@ -98,10 +98,10 @@ const SaudeGengivalLandingPage = () => {
     "@graph": [
       {
         "@type": "LocalBusiness",
-        "@id": "https://consultorioodontologico.com.br/#business",
+        "@id": "https://dracarlachristoph.com/#business",
         "name": "Consultório Odontológico - Dra. Carla Christoph",
         "description": "Especialista em saúde gengival em Ipanema. Tratamento para sangramento, sensibilidade e prevenção.",
-        "url": "https://consultorioodontologico.com.br/lp/saude-gengival-ipanema",
+        "url": "https://dracarlachristoph.com/lp/saude-gengival-ipanema",
         "telephone": "+55 21 99330-4045",
         "address": {
           "@type": "PostalAddress",
@@ -116,7 +116,7 @@ const SaudeGengivalLandingPage = () => {
         },
         "openingHours": "Mo-Fr 08:00-18:00",
         "priceRange": "$$",
-        "image": "https://consultorioodontologico.com.br/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+        "image": "https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
       },
       {
         "@type": "MedicalProcedure",
@@ -138,17 +138,17 @@ const SaudeGengivalLandingPage = () => {
         <meta property="og:title" content={config.seo.title} />
         <meta property="og:description" content={config.seo.description} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://consultorioodontologico.com.br/lp/saude-gengival-ipanema" />
-        <meta property="og:image" content="https://consultorioodontologico.com.br/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
+        <meta property="og:url" content="https://dracarlachristoph.com/lp/saude-gengival-ipanema" />
+        <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
         
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={config.seo.title} />
         <meta name="twitter:description" content={config.seo.description} />
-        <meta name="twitter:image" content="https://consultorioodontologico.com.br/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
+        <meta name="twitter:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
         
         {/* Canonical URL */}
-        <link rel="canonical" href="https://consultorioodontologico.com.br/lp/saude-gengival-ipanema" />
+        <link rel="canonical" href="https://dracarlachristoph.com/lp/saude-gengival-ipanema" />
         
         {/* Preload critical image */}
         <link 
