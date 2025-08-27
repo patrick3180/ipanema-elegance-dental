@@ -17,7 +17,7 @@ const ConsultaInicialGuide = lazy(() => import('@/components/landing/consulta/Co
 const ConsultaInicialSocialProof = lazy(() => import('@/components/landing/consulta/ConsultaInicialSocialProof'));
 const ConsultaInicialFAQ = lazy(() => import('@/components/landing/consulta/ConsultaInicialFAQ'));
 const ConsultaInicialCTA = lazy(() => import('@/components/landing/consulta/ConsultaInicialCTA'));
-const LandingFooter = lazy(() => import('@/components/landing/LandingFooter'));
+const ClareamentoFooter = React.lazy(() => import('@/components/landing/clareamento/ClareamentoFooter'));
 const FloatingWhatsApp = lazy(() => import('@/components/landing/FloatingWhatsApp'));
 
 // Skeleton components for loading states
@@ -242,11 +242,7 @@ const EsteticaSorrisoLandingPage = () => {
           
           {/* Footer */}
           <Suspense fallback={<FooterSkeleton />}>
-            <LandingFooter 
-              doctorName={config.contact.doctorName}
-              clinicName={config.contact.clinicName}
-              phoneNumber={config.whatsapp.number}
-            />
+            <ClareamentoFooter />
           </Suspense>
           
           {/* Floating WhatsApp */}

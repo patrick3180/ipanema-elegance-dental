@@ -12,7 +12,7 @@ const GuideSection = lazy(() => import("@/components/landing/GuideSection"));
 const SocialProofSection = lazy(() => import("@/components/landing/SocialProofSection"));
 const FAQSection = lazy(() => import("@/components/landing/FAQSection"));
 const CTASection = lazy(() => import("@/components/landing/CTASection"));
-const LandingFooter = lazy(() => import("@/components/landing/LandingFooter"));
+const ClareamentoFooter = React.lazy(() => import('@/components/landing/clareamento/ClareamentoFooter'));
 const FloatingWhatsApp = lazy(() => import("@/components/landing/FloatingWhatsApp"));
 
 // Performance optimizers
@@ -251,11 +251,7 @@ const SaudeGengivalLandingPage = () => {
           
           {/* Footer */}
           <Suspense fallback={<FooterSkeleton />}>
-            <LandingFooter 
-              doctorName={config.contact.doctorName}
-              clinicName={config.contact.clinicName}
-              phoneNumber={config.contact.whatsappNumber}
-            />
+            <ClareamentoFooter />
           </Suspense>
           
           {/* Floating WhatsApp */}

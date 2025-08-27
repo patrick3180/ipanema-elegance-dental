@@ -12,7 +12,7 @@ const GuideSection = React.lazy(() => import("@/components/landing/GuideSection"
 const SocialProofSection = React.lazy(() => import("@/components/landing/SocialProofSection"));
 const FAQSection = React.lazy(() => import("@/components/landing/FAQSection"));
 const CTASection = React.lazy(() => import("@/components/landing/CTASection"));
-const LandingFooter = React.lazy(() => import("@/components/landing/LandingFooter"));
+const ClareamentoFooter = React.lazy(() => import('@/components/landing/clareamento/ClareamentoFooter'));
 const FloatingWhatsApp = React.lazy(() => import("@/components/landing/FloatingWhatsApp"));
 
 // Lazy import performance components
@@ -200,11 +200,7 @@ const FacetasResinaDiretaLandingPage = () => {
       />
 
       <Suspense fallback={<FooterSkeleton />}>
-        <LandingFooter 
-          doctorName={pageConfig.contact.doctorName}
-          clinicName={pageConfig.contact.clinicName}
-          phoneNumber={pageConfig.whatsapp.number}
-        />
+        <ClareamentoFooter />
       </Suspense>
 
       <Suspense fallback={<WhatsAppSkeleton />}>

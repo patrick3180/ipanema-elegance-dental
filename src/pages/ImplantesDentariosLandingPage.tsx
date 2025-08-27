@@ -28,11 +28,7 @@ const ConsultaInicialFAQ = React.lazy(() =>
     default: module.default 
   }))
 );
-const LandingFooter = React.lazy(() => 
-  import('@/components/landing/LandingFooter').then(module => ({ 
-    default: module.default 
-  }))
-);
+const ClareamentoFooter = React.lazy(() => import('@/components/landing/clareamento/ClareamentoFooter'));
 const FloatingWhatsApp = React.lazy(() => 
   import('@/components/landing/FloatingWhatsApp').then(module => ({ 
     default: module.default 
@@ -253,11 +249,7 @@ const ImplantesDentariosLandingPage: React.FC = () => {
 
         {/* Footer - Lazy Loaded */}
         <Suspense fallback={<FooterSkeleton />}>
-          <LandingFooter 
-            doctorName={implantesDentariosConfig.contact.doctorName}
-            clinicName={implantesDentariosConfig.contact.clinicName}
-            phoneNumber={implantesDentariosConfig.whatsapp.number}
-          />
+          <ClareamentoFooter />
         </Suspense>
 
         {/* Floating WhatsApp - Lazy Loaded */}
