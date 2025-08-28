@@ -1,261 +1,523 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- ========== PÁGINAS PRINCIPAIS (3) ========== -->
   <url>
     <loc>https://dracarlachristoph.com/</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+  
   <url>
     <loc>https://dracarlachristoph.com/servicos</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  
   <url>
     <loc>https://dracarlachristoph.com/blog</loc>
-    <lastmod>2025-01-20</lastmod>
+    <lastmod>2025-01-28</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/consulta-inicial</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  
+  <!-- ========== PÁGINAS DE SERVIÇOS (8) ========== -->
+  <url>
+    <loc>https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-porcelana</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
   <url>
     <loc>https://dracarlachristoph.com/clareamento-dental</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/limpeza-dental</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/dor-de-dente</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/dente-quebrado</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/emergencia-odontologica</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/especialista-protese</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/lentes-de-contato-porcelana</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/lentes-de-contato-em-porcelana-profissional</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/saude-gengival</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/profilaxia</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/implantes-dentarios</loc>
-    <lastmod>2025-01-20</lastmod>
+    <lastmod>2025-01-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
-  <url>
-    <loc>https://dracarlachristoph.com/lentes-e-facetas</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url>
     <loc>https://dracarlachristoph.com/protese-dentaria</loc>
-    <lastmod>2025-01-20</lastmod>
+    <lastmod>2025-01-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/implantes-dentarios</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/clinica-geral-e-prevencao</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
   <url>
     <loc>https://dracarlachristoph.com/restauracoes-esteticas</loc>
-    <lastmod>2025-01-20</lastmod>
+    <lastmod>2025-01-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
+  
   <url>
     <loc>https://dracarlachristoph.com/tratamento-de-canal</loc>
-    <lastmod>2025-01-20</lastmod>
+    <lastmod>2025-01-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
+  
   <url>
     <loc>https://dracarlachristoph.com/saude-da-gengiva</loc>
-    <lastmod>2025-01-20</lastmod>
+    <lastmod>2025-01-28</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- ========== LANDING PAGES ATIVAS (11) ========== -->
+  <url>
+    <loc>https://dracarlachristoph.com/lp/limpeza-dental-ipanema</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  
   <url>
-    <loc>https://dracarlachristoph.com/clinica-geral-prevencao</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://dracarlachristoph.com/lp/profilaxia-dental-ipanema</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  
   <url>
-    <loc>https://dracarlachristoph.com/facetas-resina-direta</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://dracarlachristoph.com/lp/estetica-dental-ipanema</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  
   <url>
-    <loc>https://dracarlachristoph.com/blog/como-cuidar-dos-dentes</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/blog/clareamento-dental-tudo-que-voce-precisa-saber</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/blog/implantes-dentarios-guia-completo</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/blog/lentes-de-contato-dental</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/blog/ortodontia-quando-procurar</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/blog/saude-bucal-na-terceira-idade</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/blog/tratamento-de-canal-mitos-e-verdades</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/blog/facetas-de-porcelana-vs-resina</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/blog/prevencao-caries-dicas-essenciais</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/blog/periodontia-saude-das-gengivas</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dracarlachristoph.com/blog/categoria/clareamento</loc>
-    <lastmod>2025-01-20</lastmod>
+    <loc>https://dracarlachristoph.com/lp/saude-gengival-ipanema</loc>
+    <lastmod>2025-01-28</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/lp/clareamento-dental</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/lp/consulta-inicial</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/lp/dor-de-dente-urgencia-ipanema</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/lp/dente-quebrado-urgencia-ipanema</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/lp/emergencia-odontologica-ipanema</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/lp/especialista-protese-ipanema</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/lp/implantes-dentarios-ipanema</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- ========== POSTS DO BLOG REAIS DO CONTENTFUL (36 posts publicados) ========== -->
+  <url>
+    <loc>https://dracarlachristoph.com/blog/implantes-dentarios-saude-sistematica</loc>
+    <lastmod>2025-01-26</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
+  
   <url>
-    <loc>https://dracarlachristoph.com/blog/categoria/implantes</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-jejum-intermitente</loc>
+    <lastmod>2025-08-21</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
+  
   <url>
-    <loc>https://dracarlachristoph.com/blog/categoria/estetica</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-higiene-praticas</loc>
+    <lastmod>2025-08-18</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
+  
   <url>
-    <loc>https://dracarlachristoph.com/blog/categoria/ortodontia</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://dracarlachristoph.com/blog/estetica-facetas-odontologicas</loc>
+    <lastmod>2025-08-17</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
+  
   <url>
-    <loc>https://dracarlachristoph.com/blog/categoria/prevencao</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-limpeza-dentaria</loc>
+    <lastmod>2025-08-14</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
+  
   <url>
-    <loc>https://dracarlachristoph.com/blog/tag/dentes</loc>
-    <lastmod>2025-01-20</lastmod>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-carie-dentista</loc>
+    <lastmod>2025-08-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-escova-de-dentes-contaminada</loc>
+    <lastmod>2025-08-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/odontologia-estetica-sorriso-natural</loc>
+    <lastmod>2025-08-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/estetica-dental-clareamento-facetas</loc>
+    <lastmod>2025-08-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-probioticos</loc>
+    <lastmod>2025-07-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/implante-dentario-beneficios-e-recuperacao</loc>
+    <lastmod>2025-07-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/odontologia-estetica-clareamento-dental-caseiro</loc>
+    <lastmod>2025-07-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-bebidas-que-mancham-os-dentes</loc>
+    <lastmod>2025-07-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-higiene-antiga-romana</loc>
+    <lastmod>2025-07-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-tendencias-perigosas-dentes</loc>
+    <lastmod>2025-07-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-carie-dental-prevencao</loc>
+    <lastmod>2025-07-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-dentista-sem-dor</loc>
+    <lastmod>2025-07-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/odontologia-estetica-design-digital-do-sorriso</loc>
+    <lastmod>2025-07-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-funcao-da-saliva</loc>
+    <lastmod>2025-06-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-ultrassom-odontologico</loc>
+    <lastmod>2025-06-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-dente-trincado</loc>
+    <lastmod>2025-06-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-dentes-amarelos</loc>
+    <lastmod>2025-06-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-diabetes-obesidade</loc>
+    <lastmod>2025-06-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-retracao-gengival</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-bruxismo-e-estresse</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-dente-do-siso</loc>
+    <lastmod>2025-06-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-fio-dental</loc>
+    <lastmod>2025-06-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-mau-halito</loc>
+    <lastmod>2025-06-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-alimentos-com-amido-causam-caries</loc>
+    <lastmod>2025-05-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-historia-da-odontologia-vikings</loc>
+    <lastmod>2025-05-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-periodontite-causas-tratamento</loc>
+    <lastmod>2025-05-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-dentes-sensiveis</loc>
+    <lastmod>2025-05-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/implante-dentario-beneficios-durabilidade</loc>
+    <lastmod>2025-05-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/saude-bucal-carie-dentaria-interna</loc>
+    <lastmod>2025-05-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/odontologia-egito-antigo</loc>
+    <lastmod>2025-05-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- ========== CATEGORIAS DO BLOG (10 categorias únicas) ========== -->
+  <url>
+    <loc>https://dracarlachristoph.com/blog/categoria/implantes-dentarios</loc>
+    <lastmod>2025-01-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
+  
   <url>
-    <loc>https://dracarlachristoph.com/blog/tag/saude-bucal</loc>
-    <lastmod>2025-01-20</lastmod>
+    <loc>https://dracarlachristoph.com/blog/categoria/alimentacao-e-sorriso</loc>
+    <lastmod>2025-01-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
+  
   <url>
-    <loc>https://dracarlachristoph.com/blog/tag/tratamento</loc>
-    <lastmod>2025-01-20</lastmod>
+    <loc>https://dracarlachristoph.com/blog/categoria/prevencao-e-cuidados</loc>
+    <lastmod>2025-01-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
+  
   <url>
-    <loc>https://dracarlachristoph.com/blog?page=2</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://dracarlachristoph.com/blog/categoria/casos-clinicos</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/categoria/curiosidades</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/categoria/clareamento-dental</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/categoria/estetica-dental</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/categoria/dicas-de-saude-bucal</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/categoria/perguntas-frequentes-faq</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- ========== PAGINAÇÃO DO BLOG (6 posts por página) ========== -->
+  <url>
+    <loc>https://dracarlachristoph.com/blog/page/2</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
+  
   <url>
-    <loc>https://dracarlachristoph.com/politica-privacidade</loc>
-    <lastmod>2025-01-20</lastmod>
+    <loc>https://dracarlachristoph.com/blog/page/3</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/page/4</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/page/5</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://dracarlachristoph.com/blog/page/6</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <!-- ========== PÁGINAS LEGAIS (2) ========== -->
+  <url>
+    <loc>https://dracarlachristoph.com/politica-de-privacidade</loc>
+    <lastmod>2025-01-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  
   <url>
-    <loc>https://dracarlachristoph.com/termos-uso</loc>
-    <lastmod>2025-01-20</lastmod>
+    <loc>https://dracarlachristoph.com/termos-de-uso</loc>
+    <lastmod>2025-01-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  
 </urlset>
