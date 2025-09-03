@@ -14,7 +14,7 @@ export const ortodontiaConfig: LandingPageConfig = {
   },
   
   hero: {
-    headline: 'O Caminho para o Sorriso Alinhado que Transforma sua Confiança',
+    headline: 'Seu Sorriso Perfeito com a Tecnologia Mais Avançada em Ortodontia',
     subheadline: 'No consultório da Dra. Carla Christoph, nosso especialista Dr. Bruno Neves, Mestre e Doutor em Ortodontia, utiliza a mais alta tecnologia para planejar e executar seu tratamento. Conquiste a harmonia e a saúde do seu sorriso.',
     ctaText: 'Agendar meu Planejamento Ortodôntico Digital',
     backgroundImage: '/lovable-uploads/DrBruno_site.webp' 
