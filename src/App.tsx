@@ -24,6 +24,7 @@ const EsteticaSorrisoLandingPage = lazy(() => import("./pages/EsteticaSorrisoLan
 const SaudeGengivalLandingPage = lazy(() => import("./pages/SaudeGengivalLandingPage"));
 const ClareamentoLandingPage = lazy(() => import("./pages/ClareamentoLandingPage"));
 const ConsultaInicialLandingPage = lazy(() => import("./pages/ConsultaInicialLandingPage"));
+const OrtodontiaLandingPage = lazy(() => import("./pages/OrtodontiaLandingPage"));
 const DorDeDenteLandingPage = lazy(() => import("./pages/DorDeDenteLandingPage"));
 const DenteQuebradoLandingPage = lazy(() => import("./pages/DenteQuebradoLandingPage"));
 const EmergenciaOdontologicaLandingPage = lazy(() => import("./pages/EmergenciaOdontologicaLandingPage"));
@@ -112,6 +113,7 @@ const App = () => {
                 <Route path="/lp/saude-gengival-ipanema" element={<SaudeGengivalLandingPage />} />
                 <Route path="/lp/clareamento-dental" element={<ClareamentoLandingPage />} />
                 <Route path="/lp/consulta-inicial" element={<ConsultaInicialLandingPage />} />
+                <Route path="/lp/ortodontia-ipanema" element={<OrtodontiaLandingPage />} />
                 <Route path="/lp/dor-de-dente-urgencia-ipanema" element={<DorDeDenteLandingPage />} />
                 <Route path="/lp/dente-quebrado-urgencia-ipanema" element={<DenteQuebradoLandingPage />} />
                 <Route path="/lp/emergencia-odontologica-ipanema" element={<EmergenciaOdontologicaLandingPage />} />
