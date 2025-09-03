@@ -1,7 +1,7 @@
 import { LandingPageConfig } from "@/types/LandingPageConfig";
 
 export const ortodontiaConfig: LandingPageConfig = {
-  campaign: 'ortodontia-ipanema',
+  campaign: 'Pesquisa - Ortodontia',
   
   messageMatch: {
     adGroup: 'Ortodontia - Aparelhos',
