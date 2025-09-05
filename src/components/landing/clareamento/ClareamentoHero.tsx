@@ -22,14 +22,14 @@ const ClareamentoHero: React.FC<ClareamentoHeroProps> = ({
   whatsappNumber,
   whatsappMessage
 }) => {
-  // Critical LCP optimization - AVIF image preloading
+  // Critical LCP optimization - WebP image preloading
   useEffect(() => {
-    // Preload hero image AVIF with highest priority for LCP optimization
+    // Preload hero image WebP with highest priority for LCP optimization
     const preloadLink = document.createElement('link');
     preloadLink.rel = 'preload';
     preloadLink.as = 'image';
-    preloadLink.href = "/lovable-uploads/vertical-de-jaleco-1024.avif";
-    preloadLink.type = 'image/avif';
+    preloadLink.href = "/lovable-uploads/doutora-em-pe-jaleco.webp";
+    preloadLink.type = 'image/webp';
     preloadLink.fetchPriority = 'high';
     document.head.appendChild(preloadLink);
   }, []);
@@ -105,32 +105,16 @@ const ClareamentoHero: React.FC<ClareamentoHeroProps> = ({
           <div className="w-full lg:w-2/5">
             <div className="relative">
               <OptimizedPictureElement
-                src={backgroundImage || "/lovable-uploads/vertical-de-jaleco.webp"}
+                src={backgroundImage || "/lovable-uploads/doutora-em-pe-jaleco.webp"}
                 alt="Dra. Carla Christoph - Especialista em Clareamento Dental em Ipanema"
                 priority={true}
                 width={1024}
                 height={1365}
                 className="w-full h-auto rounded-lg shadow-xl"
-                avifSources={[
-                  {
-                    src: "/lovable-uploads/vertical-de-jaleco-1024.avif",
-                    media: "(min-width: 1024px)",
-                    sizes: "512px"
-                  },
-                  {
-                    src: "/lovable-uploads/vertical-de-jaleco-768.avif",
-                    media: "(min-width: 768px)",
-                    sizes: "384px"
-                  },
-                  {
-                    src: "/lovable-uploads/vertical-de-jaleco-480.avif",
-                    media: "(max-width: 767px)",
-                    sizes: "320px"
-                  }
-                ]}
+                avifSources={[]}
                 webpSources={[
                   {
-                    src: "/lovable-uploads/vertical-de-jaleco.webp",
+                    src: "/lovable-uploads/doutora-em-pe-jaleco.webp",
                     sizes: "(min-width: 1024px) 512px, (min-width: 768px) 384px, 320px"
                   }
                 ]}

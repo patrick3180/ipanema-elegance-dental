@@ -18,7 +18,7 @@ export const clareamentoConfig: LandingPageConfig = {
     headline: "Clareamento Dental Profissional para um Sorriso Naturalmente Mais Branco em Ipanema",
     subheadline: "Resultados visíveis e duradouros com técnicas seguras de consultório ou caseiras supervisionadas, personalizadas para seu caso",
     ctaText: "Quero Meu Sorriso Mais Branco",
-    backgroundImage: "/lovable-uploads/vertical-de-jaleco.webp"
+    backgroundImage: "/lovable-uploads/doutora-em-pe-jaleco.webp"
   },
 
   benefits: [
