@@ -1,7 +1,7 @@
 import React, { useEffect, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
-import ClareamentoHeader from '@/components/landing/clareamento/ClareamentoHeader';
-import ClareamentoHero from '@/components/landing/clareamento/ClareamentoHero';
+import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
+import ConsultaInicialHero from '@/components/landing/consulta/ConsultaInicialHero';
 import ClareamentoProblem from '@/components/landing/clareamento/ClareamentoProblem';
 import ClareamentoGuide from '@/components/landing/clareamento/ClareamentoGuide';
 import ClareamentoCTA from '@/components/landing/clareamento/ClareamentoCTA';
@@ -96,22 +96,6 @@ const ClareamentoLandingPage: React.FC = () => {
           crossOrigin="anonymous"
         />
 
-        {/* Minimal critical CSS for LCP optimization */}
-        <style>{`
-          /* Essential above-the-fold styles only */
-          .bg-\\[\\#CFCBB4\\]{background-color:#CFCBB4}
-          .text-\\[\\#381F47\\]{color:#381F47}
-          .bg-\\[\\#381F47\\]{background-color:#381F47}
-          .hover\\:bg-\\[\\#2d1738\\]:hover{background-color:#2d1738}
-          .pt-\\[90px\\]{padding-top:90px}
-          .font-serif{font-family:'Playfair Display',Georgia,serif}
-          .font-sans{font-family:'Montserrat',system-ui,sans-serif}
-          .critical-hero{min-height:100vh;display:flex;align-items:center}
-          .critical-image{aspect-ratio:760/996;object-fit:cover}
-          .flex{display:flex}.items-center{align-items:center}
-          .text-white{color:#fff}.w-full{width:100%}
-          .transition-all{transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
-        `}</style>
         
         {/* Preload critical WebP hero image with highest priority */}
         <link rel="preload" as="image" href="/lovable-uploads/doutora-em-pe-jaleco.webp" type="image/webp" fetchPriority="high" />
@@ -165,15 +149,17 @@ const ClareamentoLandingPage: React.FC = () => {
       
       <ErrorBoundary><div className="min-h-screen">
         {/* Header */}
-        <ClareamentoHeader 
+        <ConsultaInicialHeader 
           whatsappNumber={clareamentoConfig.whatsapp.number}
           whatsappMessage={clareamentoConfig.whatsapp.message}
+          campaign={clareamentoConfig.campaign}
+          messageMatch={clareamentoConfig.messageMatch}
         />
 
         {/* Main Content */}
         <main>
           {/* Hero Section */}
-          <ClareamentoHero
+          <ConsultaInicialHero
             headline={clareamentoConfig.hero.headline}
             subheadline={clareamentoConfig.hero.subheadline}
             ctaText={clareamentoConfig.hero.ctaText}
