@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { MessageCircle, Check } from 'lucide-react';
 import { sendGCLIDToWebhook } from "@/utils/gclid";
-import OptimizedPictureElement from "@/components/performance/OptimizedPictureElement";
+import UltraOptimizedPicture from "@/components/performance/UltraOptimizedPicture";
 
 interface ClareamentoHeroProps {
   headline: string;
@@ -101,23 +101,16 @@ const ClareamentoHero: React.FC<ClareamentoHeroProps> = ({
             </button>
           </div>
 
-          {/* Optimized Image - 40% on desktop */}
+          {/* Hero Image - 40% on desktop - ULTRA OPTIMIZED */}
           <div className="w-full lg:w-2/5">
-            <div className="relative">
-              <OptimizedPictureElement
+            <div className="relative" style={{ aspectRatio: '760/996' }}>
+              <UltraOptimizedPicture
                 src={backgroundImage || "/lovable-uploads/doutora-em-pe-jaleco.webp"}
                 alt="Dra. Carla Christoph - Especialista em Clareamento Dental em Ipanema"
                 priority={true}
-                width={1024}
-                height={1365}
-                className="w-full h-auto rounded-lg shadow-xl"
-                avifSources={[]}
-                webpSources={[
-                  {
-                    src: "/lovable-uploads/doutora-em-pe-jaleco.webp",
-                    sizes: "(min-width: 1024px) 512px, (min-width: 768px) 384px, 320px"
-                  }
-                ]}
+                width={760}
+                height={996}
+                className="w-full h-full object-cover rounded-lg shadow-xl"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#381F47]/20 to-transparent rounded-lg pointer-events-none"></div>
             </div>

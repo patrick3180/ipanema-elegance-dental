@@ -46,12 +46,10 @@ import FooterSkeleton from '@/components/skeleton/FooterSkeleton';
 import WhatsAppSkeleton from '@/components/skeleton/WhatsAppSkeleton';
 
 const ClareamentoLandingPage: React.FC = () => {
-  // Preload critical images with AVIF priority
+  // Preload critical images optimized for the new image
   useCriticalImagePreload({
     images: [
-      { src: '/lovable-uploads/vertical-de-jaleco-1024.avif', width: 1024 },
-      { src: '/lovable-uploads/vertical-de-jaleco-768.avif', width: 768 },
-      { src: '/lovable-uploads/vertical-de-jaleco-480.avif', width: 480 }
+      { src: '/lovable-uploads/doutora-em-pe-jaleco.webp', width: 760 }
     ],
     enabled: true
   });
@@ -109,14 +107,14 @@ const ClareamentoLandingPage: React.FC = () => {
           .font-serif{font-family:'Playfair Display',Georgia,serif}
           .font-sans{font-family:'Montserrat',system-ui,sans-serif}
           .critical-hero{min-height:100vh;display:flex;align-items:center}
-          .critical-image{aspect-ratio:400/600;object-fit:cover}
+          .critical-image{aspect-ratio:760/996;object-fit:cover}
           .flex{display:flex}.items-center{align-items:center}
           .text-white{color:#fff}.w-full{width:100%}
           .transition-all{transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
         `}</style>
         
-        {/* Preload critical AVIF hero image with highest priority */}
-        <link rel="preload" as="image" href="/lovable-uploads/vertical-de-jaleco-1024.avif" type="image/avif" fetchPriority="high" />
+        {/* Preload critical WebP hero image with highest priority */}
+        <link rel="preload" as="image" href="/lovable-uploads/doutora-em-pe-jaleco.webp" type="image/webp" fetchPriority="high" />
         
         {/* DNS prefetch and preconnect for external resources */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
