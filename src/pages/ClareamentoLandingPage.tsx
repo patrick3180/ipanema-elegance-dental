@@ -7,18 +7,15 @@ import ClareamentoGuide from '@/components/landing/clareamento/ClareamentoGuide'
 import ClareamentoCTA from '@/components/landing/clareamento/ClareamentoCTA';
 import CriticalCSSInliner from '@/components/performance/CriticalCSSInliner';
 import NonCriticalCSSLoader from '@/components/performance/NonCriticalCSSLoader';
-import { MobileGTMOptimizer } from '@/components/performance/MobileGTMOptimizer';
+import { GTMManager } from '@/components/performance/GTMManager';
 import { clareamentoConfig } from '@/config/clareamentoConfig';
 import { captureGCLID } from '@/utils/gclid';
 import { useScrollTracking } from '@/hooks/useScrollTracking';
 import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
-import { useMobilePerformanceOptimization } from '@/hooks/useMobilePerformanceOptimization';
 import CriticalCSSOptimizer from '@/components/performance/CriticalCSSOptimizer';
 import AsyncScriptManager from '@/components/performance/AsyncScriptManager';
 import FastServerResponseOptimizer from '@/components/performance/FastServerResponseOptimizer';
 import ErrorBoundary from '@/components/performance/ErrorBoundary';
-import MobileCriticalCSS from '@/components/performance/MobileCriticalCSS';
-import MobileImageOptimizer from '@/components/performance/MobileImageOptimizer';
 
 // Aggressive lazy loading for better LCP performance
 const ClareamentoSocialProof = React.lazy(() => 
@@ -49,18 +46,10 @@ import FooterSkeleton from '@/components/skeleton/FooterSkeleton';
 import WhatsAppSkeleton from '@/components/skeleton/WhatsAppSkeleton';
 
 const ClareamentoLandingPage: React.FC = () => {
-  // Mobile performance optimizations hook
-  const { isMobile, optimizationsApplied } = useMobilePerformanceOptimization({
-    enableAggressiveOptimization: true,
-    deferGTM: true,
-    optimizeImages: true,
-    reduceAnimations: true
-  });
-
-  // Preload critical images optimized for mobile
+  // Preload critical images optimized for the new image
   useCriticalImagePreload({
     images: [
-      { src: '/lovable-uploads/doutora-em-pe-jaleco.webp', width: isMobile ? 480 : 760 }
+      { src: '/lovable-uploads/doutora-em-pe-jaleco.webp', width: 760 }
     ],
     enabled: true
   });
@@ -91,50 +80,53 @@ const ClareamentoLandingPage: React.FC = () => {
 
   return (
     <>
-      {/* Mobile-optimized GTM loading */}
-      <MobileGTMOptimizer 
-        gtmId={clareamentoConfig.tracking.gtmId} 
-        isMobile={isMobile} 
-        delay={isMobile ? 3000 : 1000} 
-      />
-      
+      <GTMManager gtmId={clareamentoConfig.tracking.gtmId} />
       <Helmet>
         <title>{clareamentoConfig.seo.title}</title>
         <meta name="description" content={clareamentoConfig.seo.description} />
         <meta name="keywords" content={clareamentoConfig.seo.keywords?.join(', ')} />
         <meta name="robots" content="index, follow" />
         
-        {/* Mobile-optimized font preloading */}
+        {/* Single critical font preload */}
         <link
           rel="preload"
-          href="/fonts/montserrat-400.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/playfair-display-400.woff2"
+          href="https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDXbtM.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
         />
 
-        {/* Responsive image preloading for mobile */}
-        <link 
-          rel="preload" 
-          as="image" 
-          href="/lovable-uploads/doutora-em-pe-jaleco.webp" 
-          type="image/webp" 
-          fetchPriority="high"
-          media={isMobile ? "(max-width: 768px)" : "(min-width: 769px)"}
-        />
         
-        {/* Optimized resource hints */}
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Preload critical WebP hero image with highest priority */}
+        <link rel="preload" as="image" href="/lovable-uploads/doutora-em-pe-jaleco.webp" type="image/webp" fetchPriority="high" />
+        
+        {/* DNS prefetch and preconnect for external resources */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="dns-prefetch" href="//api.whatsapp.com" />
         <link rel="dns-prefetch" href="//web.whatsapp.com" />
         <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+        
+        
+        {/* Font CSS with font-display: swap */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          @font-face {
+            font-family: 'Playfair Display';
+            font-display: swap;
+            font-weight: 400 700;
+            src: url('https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDXbtM.woff2') format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+          }
+          @font-face {
+            font-family: 'Montserrat';
+            font-display: swap;
+            font-weight: 300 700;
+            src: url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Uw-.woff2') format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+          }
+        ` }} />
+        
+        {/* Non-critical resources loading is handled globally */}
         
         {/* Open Graph */}
         <meta property="og:title" content={clareamentoConfig.seo.title} />
@@ -144,14 +136,7 @@ const ClareamentoLandingPage: React.FC = () => {
         
       </Helmet>
 
-      {/* Mobile-first performance optimization components */}
-      <MobileCriticalCSS isMobile={isMobile} />
-      <MobileImageOptimizer 
-        isMobile={isMobile}
-        enableLazyLoading={true}
-        enableWebPConversion={true}
-        enableResponsiveSizes={true}
-      />
+      {/* Performance optimization components */}
       <FastServerResponseOptimizer />
       <CriticalCSSOptimizer 
         inlineStyles=""
@@ -159,7 +144,7 @@ const ClareamentoLandingPage: React.FC = () => {
       <AsyncScriptManager 
         gtmId={clareamentoConfig.tracking.gtmId}
         enableTracking={true}
-        loadDelay={isMobile ? 3000 : 2000}
+        loadDelay={2000}
       />
       
       <ErrorBoundary><div className="min-h-screen">
@@ -240,10 +225,10 @@ const ClareamentoLandingPage: React.FC = () => {
           />
         </Suspense>
 
-        {/* Load non-critical CSS after initial render - disabled for mobile optimization */}
+        {/* Load non-critical CSS after initial render */}
         <NonCriticalCSSLoader 
-          delay={isMobile ? 1000 : 500} 
-          enabled={!isMobile} 
+          delay={500} 
+          enabled={false} 
         />
       </div></ErrorBoundary>
     </>
