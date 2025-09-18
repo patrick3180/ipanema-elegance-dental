@@ -80,9 +80,9 @@ const ServicesSection = () => {
   };
 
   return (
-    <section id="tratamentos" className="section-spacing bg-dental-beige">
+    <section id="tratamentos" className="bg-dental-beige">
       <div className="container-custom">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div className="max-w-3xl mx-auto text-center mb-8">
           <h2 className="heading-lg mb-4">
             Nossos Tratamentos Odontológicos para seu Sorriso em Ipanema
           </h2>
