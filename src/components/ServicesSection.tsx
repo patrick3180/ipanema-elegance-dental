@@ -1,6 +1,5 @@
 
 import React from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { ArrowRight } from "lucide-react";
 
@@ -8,49 +7,55 @@ const services = [
   {
     title: "Lentes de Contato Dental e Facetas de Porcelana",
     description: "Transforme seu sorriso com finas lâminas de porcelana, corrigindo cor, forma e imperfeições com naturalidade e precisão estética.",
-    icon: "💎",
+    image: "/Lentes.webp",
     slug: "lentes-de-contato-dental-e-facetas-de-porcelana"
   },
   {
     title: "Clareamento Dental Profissional",
     description: "Conquiste dentes visivelmente mais brancos e um sorriso radiante com nossas técnicas de clareamento seguras e eficazes, realizadas em consultório ou supervisionadas em casa.",
-    icon: "✨",
+    image: "/Clareamento.webp",
     slug: "clareamento-dental"
   },
   {
     title: "Próteses Dentárias",
     description: "Recupere a função mastigatória e a estética do seu sorriso com próteses dentárias personalizadas, desenvolvidas pela especialista Dra. Carla Christoph.",
-    icon: "👄",
+    image: "/Protese.webp",
     slug: "protese-dentaria"
   },
   {
     title: "Implantes Dentários",
     description: "A solução definitiva para a perda de dentes. Implantes seguros e duradouros para restaurar seu sorriso e qualidade de vida em Ipanema.",
-    icon: "🦷",
+    image: "/Implante.webp",
     slug: "implantes-dentarios"
+  },
+  {
+    title: "Ortodontia",
+    description: "Correção de problemas de alinhamento dental e mordida com aparelhos modernos e discretos, proporcionando um sorriso harmônico e funcional.",
+    image: "/Ortodontia.webp",
+    slug: "ortodontia"
   },
   {
     title: "Clínica Geral e Prevenção",
     description: "Cuide da sua saúde bucal com nossos check-ups digitais, profilaxia (limpeza) profissional e planos de prevenção personalizados.",
-    icon: "🔍",
+    image: "/Profilaxia.webp",
     slug: "clinica-geral-e-prevencao"
   },
   {
     title: "Restaurações Estéticas",
     description: "Tratamento de cáries e reconstrução de dentes fraturados ou trincados com materiais modernos que imitam a cor natural dos seus dentes.",
-    icon: "🔧",
+    image: "/Restarações.webp",
     slug: "restauracoes-esteticas"
   },
   {
     title: "Tratamento de Canal (Endodontia)",
     description: "Alivie a dor e preserve seu dente natural com nosso tratamento de canal realizado com técnicas avançadas e foco no seu conforto.",
-    icon: "🌱",
+    image: "/Endodontia.webp",
     slug: "tratamento-de-canal"
   },
   {
     title: "Saúde da Gengiva (Periodontia)",
     description: "Tratamento especializado para gengivite e periodontite, cuidando da base do seu sorriso e prevenindo problemas futuros.",
-    icon: "❤️",
+    image: "/Periodontia.webp",
     slug: "saude-da-gengiva"
   }
 ];
@@ -64,6 +69,7 @@ const ServicesSection = () => {
       "clareamento-dental",
       "protese-dentaria",
       "implantes-dentarios",
+      "ortodontia",
       "clinica-geral-e-prevencao",
       "restauracoes-esteticas",
       "tratamento-de-canal",
@@ -86,25 +92,33 @@ const ServicesSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
           {services.map((service, index) => (
-            <Card key={index} className="bg-white border-none shadow-sm hover:shadow-md transition-shadow duration-300 elegant-shadow">
-              <CardHeader className="pb-4">
-                <div className="text-3xl mb-3">{service.icon}</div>
-                <CardTitle className="text-xl font-display">{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-dental-purple/80 text-base mb-4">
+            <div
+              key={index}
+              className="relative rounded-xl overflow-hidden shadow-lg group h-80 transition-all duration-500 ease-in-out transform hover:scale-105"
+              aria-label={service.title}
+            >
+              <img
+                src={service.image}
+                alt={service.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/90 group-hover:via-black/60 transition-all duration-300"></div>
+              <div className="relative h-full flex flex-col justify-end p-6 text-white">
+                <h3 className="text-2xl font-bold font-display mb-2 tracking-wide">{service.title}</h3>
+                <p className="opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-40 transition-all duration-500 ease-in-out text-sm mb-4 overflow-hidden">
                   {service.description}
-                </CardDescription>
+                </p>
                 <a 
                   href={getServiceUrl(service.slug)}
-                  className="inline-flex items-center text-dental-gold hover:text-dental-gold/80 font-medium text-sm"
+                  className="inline-flex items-center text-dental-gold hover:text-white font-medium text-sm transition-colors duration-300"
                 >
                   Saiba mais <ArrowRight size={16} className="ml-1" />
                 </a>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
       </div>
