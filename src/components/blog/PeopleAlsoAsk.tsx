@@ -19,6 +19,33 @@ const PeopleAlsoAsk: React.FC<PeopleAlsoAskProps> = ({
 
   const handleQuestionClick = (question: string, index: number) => {
     setExpandedQuestion(expandedQuestion === index ? null : index);
+    
+    // Buscar no conteúdo por palavras-chave da pergunta
+    const keywords = question.toLowerCase()
+      .split(' ')
+      .filter(word => word.length > 3); // apenas palavras relevantes
+    
+    // Tentar encontrar e destacar seção relevante
+    const contentSections = document.querySelectorAll('.blog-content h2, .blog-content h3, .blog-content p');
+    
+    for (const section of contentSections) {
+      const text = section.textContent?.toLowerCase() || '';
+      if (keywords.some(keyword => text.includes(keyword))) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Adicionar destaque temporário
+        section.classList.add('bg-dental-gold/10');
+        section.classList.add('transition-all');
+        section.classList.add('duration-500');
+        
+        setTimeout(() => {
+          section.classList.remove('bg-dental-gold/10');
+        }, 3000);
+        
+        break;
+      }
+    }
+    
     if (onQuestionClick) {
       onQuestionClick(question);
     }

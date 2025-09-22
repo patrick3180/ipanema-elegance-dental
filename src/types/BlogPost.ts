@@ -17,6 +17,7 @@ export interface BlogPost {
   
   // NOVOS CAMPOS
   quickAnswer?: string;
+  keyTakeaways?: string[]; // Pontos-chave do artigo para AI Overview
   comparisonTable?: ComparisonTableItem[];
   faqStructured?: FAQItem[];
   peopleAlsoAsk?: PeopleAlsoAskSection;

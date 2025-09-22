@@ -214,3 +214,18 @@
 .blog-content td {
   @apply p-2 border border-dental-gray/20;
 }
+
+/* Destaque temporário para seções */
+.highlight-section {
+  @apply bg-dental-gold/10 rounded-lg px-4 py-2 transition-all duration-500;
+}
+
+/* Animação suave para highlights */
+@keyframes highlightFade {
+  0% { background-color: rgb(245 158 11 / 0.1); }
+  100% { background-color: transparent; }
+}
+
+.highlight-fade {
+  animation: highlightFade 3s ease-in-out;
+}

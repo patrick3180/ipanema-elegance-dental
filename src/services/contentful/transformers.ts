@@ -28,6 +28,7 @@ export const transformBlogPostEntry = (entry: Entry<BlogPostSkeleton>): BlogPost
     
     // NOVOS CAMPOS
     quickAnswer: getLocalizedValue(fields.quickAnswerBoquickAnswerBoxx) || '',
+    keyTakeaways: Array.isArray(getLocalizedValue(fields.keyTakeaways)) ? getLocalizedValue(fields.keyTakeaways) : undefined,
     comparisonTable: transformComparisonTable(getLocalizedValue(fields.comparisonTable)),
     faqStructured: transformFAQStructured(getLocalizedValue(fields.faqStructured)),
     peopleAlsoAsk: transformPeopleAlsoAsk(getLocalizedValue(fields.peopleAlsoAsk)),
