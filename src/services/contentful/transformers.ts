@@ -1,5 +1,5 @@
 
-import { BlogPost } from '@/types/BlogPost';
+import { BlogPost, ComparisonTableItem, FAQItem, PeopleAlsoAskSection } from '@/types/BlogPost';
 import { getLocalizedValue } from './types';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { Document, BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
@@ -19,12 +19,21 @@ export const transformBlogPostEntry = (entry: Entry<BlogPostSkeleton>): BlogPost
     title: getLocalizedValue(fields.title) || '',
     excerpt: getLocalizedValue(fields.excerpt) || '',
     content: '', // Will be populated with HTML content later
-    author: getLocalizedValue(fields.author) || 'Admin',
+    author: getLocalizedValue(fields.author) || getLocalizedValue(fields.autor) || 'Admin',
     date: fields.publishDate ? new Date(getLocalizedValue(fields.publishDate) || '').toLocaleDateString('pt-BR') : '',
     imageUrl: '', // Will be populated with image URL later
     category: '', // Will be populated with category name later
     metaDescription: getLocalizedValue(fields.metaDescription) || '',
     tags: Array.isArray(getLocalizedValue(fields.tags)) ? getLocalizedValue(fields.tags) : [],
+    
+    // NOVOS CAMPOS
+    quickAnswer: getLocalizedValue(fields.quickAnswerBoquickAnswerBoxx) || '',
+    comparisonTable: transformComparisonTable(getLocalizedValue(fields.comparisonTable)),
+    faqStructured: transformFAQStructured(getLocalizedValue(fields.faqStructured)),
+    peopleAlsoAsk: transformPeopleAlsoAsk(getLocalizedValue(fields.peopleAlsoAsk)),
+    schemaType: getLocalizedValue(fields.schemaType) || 'Article',
+    authorBio: getLocalizedValue(fields.authorBio) || '',
+    publishDate: getLocalizedValue(fields.publishDate) || getLocalizedValue(fields.dataDePublicacao) || '',
   };
 };
 
@@ -283,4 +292,44 @@ export const richTextToHtml = (content: any, entryResponse?: EntryCollection<any
       <p class="text-red-500 text-sm mt-2">Por favor, tente novamente mais tarde.</p>
     </div>`;
   }
+};
+
+// Transform comparison table data
+const transformComparisonTable = (data: any): ComparisonTableItem[] | undefined => {
+  if (!data || !Array.isArray(data)) return undefined;
+  
+  return data.map(item => ({
+    Criterio: item.Criterio || '',
+    Opcao_A: item.Opcao_A || '',
+    Opcao_B: item.Opcao_B || ''
+  }));
+};
+
+// Transform FAQ structured data
+const transformFAQStructured = (data: any): FAQItem[] | undefined => {
+  if (!data || !Array.isArray(data)) return undefined;
+  
+  return data.map(item => ({
+    "@type": "Question",
+    name: item.name || '',
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.acceptedAnswer?.text || ''
+    }
+  }));
+};
+
+// Transform People Also Ask data
+const transformPeopleAlsoAsk = (data: any): PeopleAlsoAskSection | undefined => {
+  if (!data) return undefined;
+  
+  if (data.questions && Array.isArray(data.questions)) {
+    return { questions: data.questions };
+  }
+  
+  if (Array.isArray(data)) {
+    return { questions: data };
+  }
+  
+  return undefined;
 };

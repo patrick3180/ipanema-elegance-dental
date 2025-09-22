@@ -14,4 +14,33 @@ export interface BlogPost {
   categorySlug?: string;
   metaDescription?: string;
   tags: string[];
+  
+  // NOVOS CAMPOS
+  quickAnswer?: string;
+  comparisonTable?: ComparisonTableItem[];
+  faqStructured?: FAQItem[];
+  peopleAlsoAsk?: PeopleAlsoAskSection;
+  schemaType?: string;
+  authorBio?: string;
+  publishDate?: string;
+}
+
+// NOVAS INTERFACES
+export interface ComparisonTableItem {
+  Criterio: string;
+  Opcao_A: string;
+  Opcao_B: string;
+}
+
+export interface FAQItem {
+  "@type": "Question";
+  name: string;
+  acceptedAnswer: {
+    "@type": "Answer";
+    text: string;
+  };
+}
+
+export interface PeopleAlsoAskSection {
+  questions: string[];
 }

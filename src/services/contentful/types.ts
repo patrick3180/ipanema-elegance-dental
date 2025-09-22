@@ -17,6 +17,18 @@ export interface BlogPostSkeleton extends EntrySkeletonType {
     publishDate?: EntryFieldTypes.Date;
     metaDescription?: EntryFieldTypes.Text;
     tags?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
+    
+    // NOVOS CAMPOS
+    resumo?: EntryFieldTypes.Text;
+    conteudo?: EntryFieldTypes.RichText;
+    quickAnswerBoquickAnswerBoxx?: EntryFieldTypes.Text;
+    comparisonTable?: EntryFieldTypes.Object;
+    faqStructured?: EntryFieldTypes.Object;
+    peopleAlsoAsk?: EntryFieldTypes.Object;
+    schemaType?: EntryFieldTypes.Text;
+    authorBio?: EntryFieldTypes.Text;
+    autor?: EntryFieldTypes.Text;
+    dataDePublicacao?: EntryFieldTypes.Date;
   };
 }
 

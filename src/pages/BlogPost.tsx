@@ -13,6 +13,11 @@ import BlogPostShare from "@/components/blog/BlogPostShare";
 import BlogPostRelated from "@/components/blog/BlogPostRelated";
 import BlogPostLoading from "@/components/blog/BlogPostLoading";
 import BlogPostError from "@/components/blog/BlogPostError";
+import QuickAnswerBox from '@/components/blog/QuickAnswerBox';
+import ComparisonTable from '@/components/blog/ComparisonTable';
+import FAQSectionBlog from '@/components/blog/FAQSectionBlog';
+import PeopleAlsoAsk from '@/components/blog/PeopleAlsoAsk';
+import AuthorBio from '@/components/blog/AuthorBio';
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>(); // Fixed: changed from postSlug to slug
@@ -188,6 +193,13 @@ const BlogPost = () => {
             
             <BlogPostImage imageUrl={post.imageUrl} title={post.title} />
 
+            {/* Quick Answer Box */}
+            {post.quickAnswer && (
+              <div className="max-w-4xl mx-auto">
+                <QuickAnswerBox answer={post.quickAnswer} />
+              </div>
+            )}
+
             <BlogPostTags tags={post.tags} />
 
             {/* Content */}
@@ -209,6 +221,45 @@ const BlogPost = () => {
                 </div>
               )}
             </div>
+
+            {/* Comparison Table */}
+            {post.comparisonTable && post.comparisonTable.length > 0 && (
+              <div className="max-w-4xl mx-auto">
+                <ComparisonTable data={post.comparisonTable} />
+              </div>
+            )}
+
+            {/* People Also Ask */}
+            {post.peopleAlsoAsk?.questions && post.peopleAlsoAsk.questions.length > 0 && (
+              <div className="max-w-4xl mx-auto">
+                <PeopleAlsoAsk 
+                  questions={post.peopleAlsoAsk.questions}
+                  onQuestionClick={(question) => {
+                    const contentElement = document.querySelector('.blog-content');
+                    if (contentElement) {
+                      contentElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                />
+              </div>
+            )}
+
+            {/* FAQ Section */}
+            {post.faqStructured && post.faqStructured.length > 0 && (
+              <div className="max-w-4xl mx-auto">
+                <FAQSectionBlog faqs={post.faqStructured} />
+              </div>
+            )}
+
+            {/* Author Bio */}
+            {post.authorBio && (
+              <div className="max-w-4xl mx-auto">
+                <AuthorBio 
+                  bio={post.authorBio}
+                  author={post.author}
+                />
+              </div>
+            )}
 
             <BlogPostShare post={post} />
 
