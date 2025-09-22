@@ -41,8 +41,18 @@ const AuthorBio: React.FC<AuthorBioProps> = ({ bio, author, className = '' }) =>
         <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
           <div className="flex-shrink-0">
             <div className="w-24 h-24 rounded-full bg-gradient-to-br from-dental-purple to-dental-gold p-0.5">
-              <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                <User className="w-12 h-12 text-dental-purple" />
+              <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
+                <img 
+                  src="/lovable-uploads/dra-carla-avatar.jpg"
+                  alt={`Foto de ${author}`}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    target.nextElementSibling?.classList.remove('hidden');
+                  }}
+                />
+                <User className="w-12 h-12 text-dental-purple hidden" />
               </div>
             </div>
           </div>
