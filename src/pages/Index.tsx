@@ -36,8 +36,7 @@ const Index = () => {
     "paymentAccepted": "Cash, Credit Card, Bank Transfer",
     "currenciesAccepted": "BRL",
     "openingHours": [
-      "Mo-Fr 08:00-18:00",
-      "Sa 08:00-14:00"
+      "Mo-Fr 09:00-19:00"
     ],
     "areaServed": {
       "@type": "City",
@@ -62,7 +61,7 @@ const Index = () => {
       "ratingValue": "4.9",
       "reviewCount": "127",
       "bestRating": "5",
-      "worstRating": "1"
+      "worstRating": "4"
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
