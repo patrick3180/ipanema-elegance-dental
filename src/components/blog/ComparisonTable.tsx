@@ -19,7 +19,12 @@ const ComparisonTable: React.FC<ComparisonTableProps> = ({
   const optionALabel = columnKeys[0] || 'Opção A';
   const optionBLabel = columnKeys[1] || 'Opção B';
 
-  const renderCellContent = (value: string) => {
+  const renderCellContent = (value: string | undefined | null) => {
+    // Handle undefined, null, or empty values
+    if (!value || value.trim() === '') {
+      return <Minus className="w-5 h-5 text-gray-400 mx-auto" />;
+    }
+    
     const lowerValue = value.toLowerCase();
     
     if (lowerValue === 'sim' || lowerValue === 'yes' || lowerValue.includes('✓')) {
