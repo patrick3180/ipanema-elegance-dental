@@ -68,13 +68,13 @@ const ComparisonTable: React.FC<ComparisonTableProps> = ({
             {dataRows.map((row, index) => (
               <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
                 <td className="px-4 py-3 text-dental-purple font-medium text-sm">
-                  {row.Criterio}
+                  {row.Criterio || row["Critério"] || row["Rótulo coluna critério"]}
                 </td>
                 <td className="px-4 py-3 text-center">
-                  {renderCellContent(row[optionALabel])}
+                  {renderCellContent(row["Rótulo coluna A"] || row[optionALabel])}
                 </td>
                 <td className="px-4 py-3 text-center">
-                  {renderCellContent(row[optionBLabel])}
+                  {renderCellContent(row["Rótulo coluna B"] || row[optionBLabel])}
                 </td>
               </tr>
             ))}
