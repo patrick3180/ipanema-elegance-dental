@@ -71,10 +71,10 @@ const ComparisonTable: React.FC<ComparisonTableProps> = ({
                   {row.Criterio}
                 </td>
                 <td className="px-4 py-3 text-center">
-                  {renderCellContent(row["Rótulo coluna A"])}
+                  {renderCellContent(row[optionALabel])}
                 </td>
                 <td className="px-4 py-3 text-center">
-                  {renderCellContent(row["Rótulo coluna B"])}
+                  {renderCellContent(row[optionBLabel])}
                 </td>
               </tr>
             ))}
