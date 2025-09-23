@@ -13,11 +13,13 @@ const ComparisonTable: React.FC<ComparisonTableProps> = ({
 }) => {
   if (!data || data.length === 0) return null;
 
-  // Extract column names dynamically from the first item (excluding 'Criterio')
-  const firstItem = data[0];
-  const columnKeys = Object.keys(firstItem).filter(key => key !== 'Criterio');
-  const optionALabel = columnKeys[0] || 'Opção A';
-  const optionBLabel = columnKeys[1] || 'Opção B';
+  // Extract header from first object and data from remaining objects
+  const headerRow = data[0];
+  const dataRows = data.slice(1);
+  
+  // Extract dynamic column names from header row
+  const optionALabel = headerRow["Rótulo coluna A"] || 'Opção A';
+  const optionBLabel = headerRow["Rótulo coluna B"] || 'Opção B';
 
   const renderCellContent = (value: string | undefined | null) => {
     // Handle undefined, null, or empty values
@@ -53,16 +55,16 @@ const ComparisonTable: React.FC<ComparisonTableProps> = ({
             </tr>
           </thead>
           <tbody>
-            {data.map((row, index) => (
+            {dataRows.map((row, index) => (
               <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
                 <td className="px-4 py-3 text-dental-purple font-medium text-sm">
                   {row.Criterio}
                 </td>
                 <td className="px-4 py-3 text-center">
-                  {renderCellContent(row[optionALabel])}
+                  {renderCellContent(row["Rótulo coluna A"])}
                 </td>
                 <td className="px-4 py-3 text-center">
-                  {renderCellContent(row[optionBLabel])}
+                  {renderCellContent(row["Rótulo coluna B"])}
                 </td>
               </tr>
             ))}
