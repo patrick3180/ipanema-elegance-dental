@@ -1,5 +1,6 @@
 import React from "react";
 import TreatmentPageTemplate from "@/components/TreatmentPageTemplate";
+import OptimizedImage from "@/components/OptimizedImage";
 import { FAQ, TreatmentSection } from "@/components/treatment/types";
 
 const OrtodontiaPage = () => {
@@ -32,10 +33,44 @@ const OrtodontiaPage = () => {
       content: (
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="relative">
-            <img 
-              src="/lovable-uploads/DrBruno_site.webp" 
-              alt="Dr. Bruno Moreira das Neves - Ortodontista especialista em Invisalign" 
+            <OptimizedImage
+              src="/lovable-uploads/DrBruno_site.webp"
+              alt="Dr. Bruno Moreira das Neves - Ortodontista especialista em Invisalign e doutor pela UERJ"
+              width={400}
+              height={500}
+              priority={true}
               className="rounded-lg shadow-lg w-full aspect-[4/5] object-cover"
+            />
+            
+            {/* Structured Data for Doctor */}
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "Person",
+                  "name": "Dr. Bruno Moreira das Neves",
+                  "jobTitle": "Ortodontista",
+                  "description": "Ortodontista especialista em Invisalign com doutorado pela UERJ",
+                  "image": "/lovable-uploads/DrBruno_site.webp",
+                  "worksFor": {
+                    "@type": "DentalClinic",
+                    "name": "Consultório da Dra. Carla Christoph",
+                    "address": {
+                      "@type": "PostalAddress",
+                      "addressLocality": "Ipanema",
+                      "addressRegion": "RJ"
+                    }
+                  },
+                  "hasCredential": [
+                    "Graduação em Odontologia - UFF",
+                    "Mestrado em Clínica Odontológica - UFF", 
+                    "Especialista e Doutor em Ortodontia - UERJ",
+                    "Professor de Ortodontia - IOPUC-Rio"
+                  ],
+                  "knowsAbout": ["Invisalign", "Ortodontia", "Alinhadores Invisíveis", "Scanner iTero Element 5D"]
+                })
+              }}
             />
           </div>
           
