@@ -4,18 +4,20 @@ import { ComparisonTableItem } from '@/types/BlogPost';
 
 interface ComparisonTableProps {
   data: ComparisonTableItem[];
-  optionALabel?: string;
-  optionBLabel?: string;
   className?: string;
 }
 
 const ComparisonTable: React.FC<ComparisonTableProps> = ({ 
   data, 
-  optionALabel = 'Com Álcool',
-  optionBLabel = 'Sem Álcool',
   className = '' 
 }) => {
   if (!data || data.length === 0) return null;
+
+  // Extract column names dynamically from the first item (excluding 'Criterio')
+  const firstItem = data[0];
+  const columnKeys = Object.keys(firstItem).filter(key => key !== 'Criterio');
+  const optionALabel = columnKeys[0] || 'Opção A';
+  const optionBLabel = columnKeys[1] || 'Opção B';
 
   const renderCellContent = (value: string) => {
     const lowerValue = value.toLowerCase();
@@ -52,10 +54,10 @@ const ComparisonTable: React.FC<ComparisonTableProps> = ({
                   {row.Criterio}
                 </td>
                 <td className="px-4 py-3 text-center">
-                  {renderCellContent(row.Opcao_A)}
+                  {renderCellContent(row[optionALabel])}
                 </td>
                 <td className="px-4 py-3 text-center">
-                  {renderCellContent(row.Opcao_B)}
+                  {renderCellContent(row[optionBLabel])}
                 </td>
               </tr>
             ))}

@@ -30,8 +30,6 @@ export const transformBlogPostEntry = (entry: Entry<BlogPostSkeleton>): BlogPost
     quickAnswer: getLocalizedValue(fields.quickAnswerBoquickAnswerBoxx) || '',
     keyTakeaways: Array.isArray(getLocalizedValue(fields.keyTakeaways)) ? getLocalizedValue(fields.keyTakeaways) : undefined,
     comparisonTable: transformComparisonTable(getLocalizedValue(fields.comparisonTable)),
-    comparisonTableOptionALabel: getLocalizedValue(fields.comparisonTableOptionALabel) || '',
-    comparisonTableOptionBLabel: getLocalizedValue(fields.comparisonTableOptionBLabel) || '',
     faqStructured: transformFAQStructured(getLocalizedValue(fields.faqStructured)),
     peopleAlsoAsk: transformPeopleAlsoAsk(getLocalizedValue(fields.peopleAlsoAsk)),
     schemaType: getLocalizedValue(fields.schemaType) || 'Article',

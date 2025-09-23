@@ -24,8 +24,6 @@ export interface BlogPostSkeleton extends EntrySkeletonType {
     quickAnswerBoquickAnswerBoxx?: EntryFieldTypes.Text;
     keyTakeaways?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
     comparisonTable?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
-    comparisonTableOptionALabel?: EntryFieldTypes.Text;
-    comparisonTableOptionBLabel?: EntryFieldTypes.Text;
     faqStructured?: EntryFieldTypes.Object;
     peopleAlsoAsk?: EntryFieldTypes.Object;
     schemaType?: EntryFieldTypes.Text;

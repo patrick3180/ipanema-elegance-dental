@@ -19,8 +19,6 @@ export interface BlogPost {
   quickAnswer?: string;
   keyTakeaways?: string[]; // Pontos-chave do artigo para AI Overview
   comparisonTable?: ComparisonTableItem[];
-  comparisonTableOptionALabel?: string;
-  comparisonTableOptionBLabel?: string;
   faqStructured?: FAQItem[];
   peopleAlsoAsk?: PeopleAlsoAskSection;
   schemaType?: string;
@@ -31,8 +29,7 @@ export interface BlogPost {
 // NOVAS INTERFACES
 export interface ComparisonTableItem {
   Criterio: string;
-  Opcao_A: string;
-  Opcao_B: string;
+  [key: string]: string; // Allow dynamic keys for flexible column names
 }
 
 export interface FAQItem {
