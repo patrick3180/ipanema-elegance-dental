@@ -41,7 +41,7 @@ const BundleOptimizer = ({
         '/contact': 'ContactPage',
         '/clareamento-dental': 'ClareamentoDental',
         '/implantes-dentarios': 'ImplantesDentarios',
-        '/lentes-e-facetas': 'LentesEFacetas',
+        '/lentes-de-contato-dental-e-facetas-de-resina': 'LentesEFacetas',
         '/protese-dentaria': 'ProteseDentaria',
         '/restauracoes-esteticas': 'RestaureacoesEsteticas',
         '/saude-da-gengiva': 'SaudeDaGengiva',

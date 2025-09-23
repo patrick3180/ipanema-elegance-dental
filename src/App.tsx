@@ -125,7 +125,9 @@ const App = () => {
                 <Route path="/saude-da-gengiva" element={<SaudeDaGengiva />} />
                 <Route path="/clareamento-dental" element={<ClareamentoDental />} />
                 <Route path="/implantes-dentarios" element={<ImplantesDentarios />} />
-                <Route path="/lentes-de-contato-dental-e-facetas-de-porcelana" element={<LentesEFacetas />} />
+                <Route path="/lentes-de-contato-dental-e-facetas-de-resina" element={<LentesEFacetas />} />
+                {/* Redirect from old URL to new one */}
+                <Route path="/lentes-de-contato-dental-e-facetas-de-porcelana" element={<Navigate to="/lentes-de-contato-dental-e-facetas-de-resina" replace />} />
                 <Route path="/protese-dentaria" element={<ProteseDentaria />} />
                 <Route path="/restauracoes-esteticas" element={<RestaureacoesEsteticas />} />
                 <Route path="/tratamento-de-canal" element={<TratamentoDeCanal />} />

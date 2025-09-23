@@ -1,147 +1,796 @@
 import React from "react";
-import TreatmentPageTemplate from "@/components/TreatmentPageTemplate";
-import { FAQ, TreatmentSection } from "@/components/treatment/types";
+import { Helmet } from "react-helmet-async";
+import PageLayout from "@/components/PageLayout";
+import ServiceBreadcrumb from "@/components/ServiceBreadcrumb";
+import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
+import ComparisonTable from "@/components/blog/ComparisonTable";
+import { ComparisonTableItem } from "@/types/BlogPost";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { CheckCircle, Star, ArrowRight, Play, Sparkles, Shield, Heart, Award } from "lucide-react";
 
 const LentesEFacetas = () => {
-  // Define the page sections according to the content structure
-  const sections: TreatmentSection[] = [
+  // Dados para tabela de comparação
+  const comparisonData: ComparisonTableItem[] = [
     {
-      id: "o-que-sao",
-      title: "Ciência e Arte: O Que São Lentes de Contato Dental e Facetas de Porcelana?",
-      content: "As lentes de contato dental e facetas de porcelana representam o ápice da odontologia estética minimamente invasiva. São peças ultrafinas de cerâmica pura de última geração, moldadas individualmente e cimentadas sobre a superfície dos dentes com precisão artística. A principal diferença técnica está na espessura: as lentes de contato dental possuem entre 0,2mm a 0,5mm - similar à espessura de uma lente de contato ocular - enquanto as facetas de porcelana variam entre 0,7mm a 1,2mm. Esta diferença determina o grau de invasividade do procedimento: as lentes de contato exigem desgaste mínimo ou inexistente da estrutura dental, sendo ideais para correções sutis, enquanto as facetas permitem correções mais significativas. As cerâmicas modernas utilizadas possuem características ópticas extraordinárias, com translucidez e resistência que mimetizam perfeitamente o esmalte dental natural, criando resultados indistinguíveis dos dentes originais. O objetivo é sempre alcançar resultados naturais que respeitem a individualidade de cada pessoa, harmonizando-se perfeitamente com as características faciais.",
-      type: "default",
+      "Criterio": "Critério",
+      "Critério": "Critério", 
+      "Rótulo coluna A": "Lentes de Contato Dental",
+      "Rótulo coluna B": "Facetas de Resina"
     },
     {
-      id: "como-funciona",
-      title: "Como Funciona a Tecnologia das Lentes de Contato Dental",
-      content: "O processo científico por trás das lentes de contato dental envolve uma engenharia de precisão que combina materiais de excelência com técnicas de cimentação avançadas. As cerâmicas de última geração utilizadas possuem propriedades biomecânicas similares ao esmalte dental, incluindo coeficiente de expansão térmica compatível e resistência à fadiga. O sistema de adesão utiliza primers e adesivos de alta performance que criam uma união química e micromecânica entre a cerâmica e o dente, garantindo uma integração que pode durar décadas. A biocompatibilidade dos materiais elimina riscos de rejeição ou irritação gengival, enquanto a lisura da superfície cerâmica facilita a higienização e reduz o acúmulo de placa bacteriana. Esta tecnologia permite que as lentes se comportem como parte integrante do dente, respondendo naturalmente às forças mastigatórias e mantendo a funcionalidade completa.",
-      type: "default",
+      "Criterio": "Espessura",
+      "Rótulo coluna A": "0,2 a 0,5mm",
+      "Rótulo coluna B": "0,7 a 1,5mm"
     },
     {
-      id: "indicacoes",
-      title: "Indicações Técnicas: Quando Optar por Lentes de Contato Dental ou Facetas?",
-      content: "A escolha entre lentes de contato dental e facetas de porcelana baseia-se em critérios técnicos precisos estabelecidos através de uma <a href=\"/blog/odontologia-estetica-sorriso-natural\"><strong>avaliação facial e dental integrada</strong></a>. As lentes de contato dental são idealmente indicadas para: correção de diastemas (espaços entre dentes) até 2mm, alterações leves de cor que não respondem ao clareamento profissional, pequenas correções de formato e contorno, dentes com desgastes mínimos, e casos onde a preservação máxima da estrutura dental é prioritária. As facetas de porcelana são recomendadas para: correções mais extensas de cor e formato, dentes com fraturas ou desgastes mais significativos, necessidade de alteração da dimensão vertical dos dentes, casos de fluorose severa ou manchas por tetraciclina, e situações que requerem mudanças mais dramáticas na forma dental. A análise inclui fatores como espessura do esmalte disponível, padrão oclusal, características periodontais e expectativas estéticas do paciente. Uma avaliação criteriosa com a Dra. Carla Christoph, considerando fotografias, modelos de estudo e análise facial, definirá a abordagem mais adequada para cada caso específico.",
-      type: "default",
+      "Criterio": "Desgaste Dental",
+      "Rótulo coluna A": "Mínimo ou Zero",
+      "Rótulo coluna B": "Moderado"
     },
     {
-      id: "beneficios",
-      title: "Benefícios Científicos e Estéticos: Além da Aparência",
-      content: [
-        "<strong>Biomimetismo Excepcional:</strong> As cerâmicas modernas possuem índice de refração similar ao esmalte dental (1,62), conferindo translucidez e fluorescência naturais que se integram perfeitamente à dentição.",
-        "<strong>Durabilidade Comprovada:</strong> Estudos clínicos demonstram longevidade superior a 15 anos com taxa de sucesso acima de 95% quando realizadas com técnica adequada e materiais de excelência.",
-        "<strong>Preservação Estrutural Máxima:</strong> As lentes de contato dental preservam até 95% da estrutura dental original, seguindo os princípios da odontologia minimamente invasiva.",
-        "<strong>Biocompatibilidade Superior:</strong> Material inerte que não causa reações alérgicas, mantém a saúde gengival e facilita a higienização pela lisura superficial.",
-        "<strong>Estabilidade de Cor:</strong> Resistência total a pigmentação por alimentos, bebidas ou tabaco, mantendo a cor original por décadas.",
-        "<strong>Melhora Funcional:</strong> Dentes com formato adequado otimizam a mastigação, facilitam a fonética e reduzem o acúmulo de placa bacteriana.",
-        "<strong>Impacto Psicológico Positivo:</strong> Estudos demonstram melhora significativa na autoestima, confiança social e oportunidades profissionais.",
-        "<strong>Planejamento Digital Avançado:</strong> Tecnologia DSD permite previsibilidade total dos resultados, aumentando a satisfação do paciente."
-      ],
-      type: "benefits",
+      "Criterio": "Material",
+      "Rótulo coluna A": "Porcelana/Cerâmica",
+      "Rótulo coluna B": "Resina Composta"
     },
     {
-      id: "como-e-feito",
-      title: "Protocolo Técnico: Seu Tratamento Passo a Passo",
-      content: [
-        {
-          title: "Diagnóstico e Planejamento Integrado",
-          description: "Consulta inicial com análise facial completa, avaliação da harmonia entre dentes, lábios e face. Exames complementares incluem fotografias padronizadas, radiografias, modelos de estudo e análise oclusal. Consideramos aspectos como linha do sorriso, proporção áurea, fonética e características periodontais."
-        },
-        {
-          title: "Design Digital do Sorriso (DSD)",
-          description: "Utilização de tecnologia de ponta para simulação digital dos resultados. O DSD permite visualizar o resultado final, fazer ajustes conforme suas preferências e garantir aprovação antes de qualquer intervenção irreversível. Esta ferramenta aumenta significativamente a previsibilidade e satisfação do tratamento."
-        },
-        {
-          title: "Preparo Dental Conservador",
-          description: "Para lentes de contato: desgaste mínimo (0,1-0,3mm) ou inexistente, preservando totalmente a estrutura dental. Para facetas: preparo conservador limitado ao esmalte (0,5-0,8mm). Utilizamos guias de redução para garantir uniformidade e preservação máxima da estrutura."
-        },
-        {
-          title: "Moldagem de Precisão ou Escaneamento Digital",
-          description: "Moldagem com materiais de alta precisão ou escaneamento intraoral digital para captura exata da geometria dental. A precisão desta etapa é fundamental para o encaixe perfeito e longevidade das peças."
-        },
-        {
-          title: "Confecção Laboratorial Artística",
-          description: "As lentes são confeccionadas em laboratório especializado utilizando cerâmicas de última geração. Cada peça é individualizada considerando cor, translucidez, textura superficial e características anatômicas específicas do paciente."
-        },
-        {
-          title: "Prova e Cimentação Definitiva",
-          description: "Prova das peças com aprovação estética e funcional. Cimentação com adesivos de alta performance após tratamento de superfície específico, garantindo união química duradoura. Ajustes oclusais finais e polimento para integração funcional perfeita."
-        }
-      ],
-      type: "steps",
+      "Criterio": "Durabilidade",
+      "Rótulo coluna A": "15-20 anos",
+      "Rótulo coluna B": "5-8 anos"
     },
     {
-      id: "seguranca-cuidados",
-      title: "Segurança e Protocolos: Prevenção de Complicações",
-      content: "A segurança nos procedimentos com lentes de contato dental baseia-se em protocolos rigorosos desenvolvidos ao longo de mais de 20 anos de experiência clínica. A seleção criteriosa dos casos é fundamental: pacientes com bruxismo severo não controlado, expectativas irreais ou saúde periodontal comprometida não são candidatos ideais. O protocolo de cimentação segue normas internacionais, incluindo isolamento absoluto, tratamento de superfície padronizado e controle rigoroso da umidade. O acompanhamento pós-operatório inclui avaliações em 48 horas, 1 semana, 1 mês e semestralmente. Possíveis intercorrências como sensibilidade transitória (menos de 5% dos casos) ou pequenos ajustes oclusais são rapidamente resolvidas. A experiência militar da Dra. Carla Christoph na Odontoclínica Central da Marinha consolidou uma visão preventiva e protocolos de segurança que garantem resultados previsíveis e duradouros.",
-      type: "default",
+      "Criterio": "Resistência a Manchas",
+      "Rótulo coluna A": "Total",
+      "Rótulo coluna B": "Moderada"
     },
     {
-      id: "casos-especiais",
-      title: "Casos Especiais: Lentes de Contato Dental em Situações Complexas",
-      content: "Algumas situações requerem expertise técnica avançada e planejamento multidisciplinar. Em pacientes com dentes desgastados, danificados ou com restaurações antigas, as lentes podem ser integradas a um planejamento que inclui <a href=\"/tratamentos/restauracoes-esteticas\"><strong>restaurações dentárias estéticas</strong></a> para uma reabilitação completa, considerando proporções dentárias, suporte labial e harmonia geral. Para casos de bruxismo controlado - condição cada vez mais comum devido ao <a href=\"/blog/saude-bucal-bruxismo-e-estresse\"><strong>estresse e seus impactos na saúde bucal</strong></a> - utilizamos cerâmicas de maior resistência à flexão e planejamento oclusal específico, sempre com proteção noturna obrigatória. Em situações de dentes muito pequenos (microdoncia) ou com desgastes significativos, adaptamos a técnica de preparo e utilizamos sistemas adesivos específicos para garantir retenção adequada. Pacientes que necessitam reabilitação ampla podem se beneficiar da combinação entre lentes de contato dental e <a href=\"/tratamentos/implantes-dentarios\"><strong>implantes dentários</strong></a>, criando uma integração estética perfeita entre dentes naturais e implantados. A experiência de mais de 20 anos permite o manejo seguro dessas situações complexas, sempre priorizando resultados naturais, funcionais e duradouros.",
-      type: "default",
+      "Criterio": "Tempo de Tratamento",
+      "Rótulo coluna A": "2-3 consultas",
+      "Rótulo coluna B": "1-2 consultas"
     },
     {
-      id: "fatores-individuais",
-      title: "Personalização Total: Fatores Individuais na Escolha do Tratamento",
-      content: "Cada sorriso é único, e a personalização é fundamental para resultados excepcionais. A análise individual considera fatores biológicos como idade, sexo, características étnicas e perfil facial. Aspectos funcionais incluem padrão mastigatório, hábitos parafuncionais, histórico de sensibilidade e expectativas de longevidade. Fatores estéticos envolvem preferências pessoais de cor, formato, textura e grau de naturalidade desejado. Em alguns casos, pode ser necessário combinar lentes com <a href=\"/tratamentos/restauracoes-esteticas\"><strong>restaurações estéticas em outros dentes</strong></a> para garantir harmonia total do sorriso. A personalidade do paciente também influencia: pessoas mais conservadoras tendem a preferir mudanças sutis, enquanto outras desejam transformações mais dramáticas. Consideramos ainda aspectos profissionais - profissionais da mídia podem ter necessidades diferentes de executivos ou professores. A idade influencia as escolhas: jovens podem priorizar formato e alinhamento, enquanto adultos maduros podem focar no rejuvenescimento. Esta análise multifatorial garante que cada tratamento seja verdadeiramente individualizado, resultando em sorrisos autenticamente pessoais que se integram naturalmente à personalidade e estilo de vida de cada paciente.",
-      type: "default",
+      "Criterio": "Investimento",
+      "Rótulo coluna A": "R$ 2.500-3.500/dente",
+      "Rótulo coluna B": "R$ 800-1.200/dente"
     },
     {
-      id: "cuidados",
-      title: "Manutenção e Longevidade: Cuidados para Resultados Duradouros",
-      content: "A longevidade das lentes de contato dental e facetas de porcelana depende fundamentalmente dos cuidados pós-tratamento e manutenção adequada. A higienização deve ser rigorosa mas cuidadosa: escovação com cerdas macias, uso obrigatório de fio dental e enxaguante bucal sem álcool. Visitas regulares a cada 6 meses à Dra. Carla Christoph em Ipanema são essenciais para acompanhamento, profilaxia profissional e detecção precoce de qualquer alteração. Hábitos alimentares devem ser moderados: evitar morder objetos duros, abrir embalagens com os dentes ou roer unhas. Para pacientes com bruxismo, o uso de placa miorrelaxante noturna é obrigatório para proteger as peças e a dentição natural. O <a href=\"/tratamentos/clareamento-dental\"><strong>clareamento dental supervisionado</strong></a> pode ser realizado previamente ao tratamento para otimizar a cor de base. Com cuidados adequados, as lentes e facetas podem manter sua beleza e funcionalidade por 15-20 anos ou mais, representando um investimento duradouro na sua saúde e autoestima.",
-      type: "default",
+      "Criterio": "Indicação Principal",
+      "Rótulo coluna A": "Transformação completa e duradoura",
+      "Rótulo coluna B": "Correções estéticas acessíveis"
     }
   ];
 
-  // Define FAQs
-  const faqs: FAQ[] = [
+  // FAQs otimizadas para IA
+  const faqs = [
     {
-      question: "Qual a diferença técnica entre lentes de contato dental e facetas de porcelana?",
-      answer: "As diferenças principais estão na espessura e invasividade. Lentes de contato dental possuem 0,2mm a 0,5mm de espessura, requerendo desgaste mínimo (0,1-0,3mm) ou inexistente da estrutura dental. Facetas de porcelana têm 0,7mm a 1,2mm, necessitando preparo de 0,5-0,8mm. As lentes são ideais para correções sutis preservando máximo de estrutura dental, enquanto facetas permitem correções mais significativas. A Dra. Carla Christoph avaliará qual técnica oferece melhor resultado para seu caso específico."
-    },
-    {
-      question: "Qual a durabilidade real das lentes de contato dental com base em estudos?",
-      answer: "Estudos clínicos longitudinais demonstram longevidade superior a 15 anos com taxa de sucesso acima de 95% quando realizadas com técnica adequada e materiais de excelência. Fatores que influenciam a durabilidade incluem: qualidade da cimentação, cuidados de higiene, hábitos parafuncionais e acompanhamento profissional regular. Com os protocolos da Dra. Carla Christoph e manutenção adequada, podem durar 20 anos ou mais."
+      question: "Qual a diferença entre lente de contato dental e faceta de resina?",
+      answer: "Lentes de contato dental são lâminas ultrafinas de porcelana (0,2-0,5mm) que preservam a estrutura dental, criando sorrisos naturais sem aspecto artificial. Facetas de resina são restaurações estéticas diretas que corrigem forma e cor. A Dra. Carla Christoph, especialista em Prótese Dental, oferece o exclusivo 'Test Drive do Sorriso' - você experimenta seu novo sorriso na própria boca antes de aprovar o tratamento definitivo."
     },
     {
       question: "As lentes de contato dental realmente não desgastam os dentes?",
-      answer: "As lentes de contato dental preservam até 95% da estrutura dental original. O desgaste necessário é mínimo (0,1-0,3mm) e limitado ao esmalte superficial, ou em muitos casos inexistente. Esta abordagem segue os princípios da odontologia minimamente invasiva, contrastando com procedimentos mais antigos que requeriam desgastes significativos. A Dra. Carla utiliza guias de redução para garantir precisão e preservação máxima."
+      answer: "Na maioria dos casos, o desgaste é mínimo (0,1-0,3mm) ou inexistente. O preparo, quando necessário, é limitado ao esmalte superficial, preservando até 95% da estrutura dental original. Isso contrasta com tratamentos mais antigos que exigiam desgastes significativos. A Dra. Carla utiliza técnicas minimamente invasivas para máxima preservação dental."
     },
     {
-      question: "Como funciona tecnicamente o Design Digital do Sorriso (DSD)?",
-      answer: "O DSD utiliza fotografias e vídeos padronizados do paciente para criar um projeto digital tridimensional do novo sorriso. Software especializado analisa proporções faciais, linha do sorriso, características labiais e permite simulação de diferentes opções de formato, tamanho e cor dos dentes. Esta tecnologia oferece previsibilidade de 95% dos resultados, permitindo ajustes antes do tratamento e garantindo maior satisfação do paciente."
+      question: "Quanto custa colocar lentes de contato dental em Ipanema?",
+      answer: "O investimento varia conforme o número de dentes e complexidade do caso. Lentes de contato dental custam entre R$ 2.500 a 3.500 por dente. Facetas de resina são mais acessíveis, entre R$ 800 a 1.200 por dente. A Dra. Carla oferece planos de pagamento flexíveis. O valor reflete não apenas o procedimento, mas toda a experiência, tecnologia e acompanhamento de uma especialista com 20+ anos de experiência."
     },
     {
-      question: "Quais cuidados específicos são necessários após o tratamento?",
-      answer: "Cuidados essenciais incluem: higiene rigorosa com escova de cerdas macias e fio dental, visitas semestrais para manutenção, evitar morder objetos duros ou usar dentes como ferramenta, uso de placa noturna se houver bruxismo. Alimentos muito duros devem ser consumidos com cuidado. Enxaguantes com álcool devem ser evitados. Com estes cuidados, a durabilidade é maximizada significativamente."
+      question: "Quanto tempo dura o tratamento completo?",
+      answer: "Para lentes de contato dental: 2-3 consultas em 15-20 dias. Primeira consulta para planejamento e moldagem, segunda para aprovação do mock-up, terceira para cimentação. Facetas de resina podem ser feitas em 1-2 consultas, pois são confeccionadas diretamente no consultório. A Dra. Carla trabalha com agenda espaçada para garantir tempo adequado em cada sessão."
     },
     {
-      question: "Lentes de resina versus porcelana: qual a diferença na durabilidade e estética?",
-      answer: "Diferenças significativas em longevidade e estética: Porcelana oferece 15-20 anos de durabilidade versus 3-5 anos da resina. Esteticamente, a porcelana possui translucidez natural, resistência total a manchas e características ópticas similares ao esmalte. Resina pode amarelar com o tempo e manchar com café, vinho e tabaco. Apesar do investimento inicial maior, a porcelana oferece melhor custo-benefício a longo prazo e resultados estéticos superiores."
+      question: "Lentes de contato dental doem para colocar?",
+      answer: "O procedimento é indolor. Quando necessário algum preparo mínimo, é feito com anestesia local. A cimentação das lentes é um processo delicado que não causa dor. Pode haver sensibilidade leve nos primeiros dias, facilmente controlada com analgésicos simples se necessário."
     },
     {
-      question: "É possível fazer lentes em apenas alguns dentes mantendo harmonia?",
-      answer: "Sim, mas requer planejamento cuidadoso para manter harmonia estética. Para resultados ideais, recomenda-se tratar pelo menos os 4-6 dentes anteriores superiores em conjunto. Tratamentos isolados podem criar discrepâncias de cor e formato. A Dra. Carla utiliza análise facial detalhada e simulação digital para determinar quantos dentes devem ser incluídos para garantir naturalidade e harmonia do conjunto."
-    },
-    {
-      question: "Quais as contraindicações para lentes de contato dental?",
-      answer: "Contraindicações incluem: bruxismo severo não controlado, má oclusão severa não tratada, falta de esmalte dental suficiente, expectativas irreais, higiene bucal deficiente persistente, doença periodontal ativa não tratada, e pacientes muito jovens com dentição ainda em desenvolvimento. Uma avaliação detalhada com a Dra. Carla Christoph determinará se você é candidato ideal para o tratamento."
+      question: "O que é o 'Test Drive do Sorriso' (mock-up)?",
+      answer: "É o grande diferencial da Dra. Carla! Ela cria seu novo sorriso com resina provisória não adesiva diretamente na sua boca, sem desgastar os dentes. Em 30 minutos você está vendo o resultado real - pode se olhar no espelho, tirar fotos, vídeos, falar, sorrir. É uma experiência emocionante e transformadora! Ajustamos juntos até ficar perfeito. Só depois de você aprovar 100% é que partimos para o tratamento definitivo."
     }
   ];
 
+  const handleWhatsAppClick = (message: string) => {
+    // GCLID tracking preservado
+    const gclid = new URLSearchParams(window.location.search).get('gclid');
+    if (gclid) {
+      localStorage.setItem('gclid', gclid);
+    }
+    
+    // Analytics tracking
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'conversion', {
+        'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL',
+        'value': 1.0,
+        'currency': 'BRL'
+      });
+    }
+    
+    window.open(`https://wa.me/5521999999999?text=${encodeURIComponent(message)}`);
+  };
+
   return (
-    <TreatmentPageTemplate
-      slug="lentes-e-facetas"
-      title="Lentes de Contato Dental e Facetas de Porcelana em Ipanema"
-      metaDescription="Lentes de contato dental em Ipanema com Dra. Carla Christoph. Ultrafinas (0,2-0,5mm), desgaste mínimo, resultados naturais. Mais de 20 anos de experiência. Facetas de porcelana para transformação completa do sorriso."
-      introduction="Descubra a arte de um sorriso naturalmente deslumbrante com as lentes de contato dental e facetas de porcelana oferecidas pela Dra. Carla Christoph em nossa clínica em Ipanema. Essas ultrafinas lâminas de cerâmica de última geração representam o que há de mais moderno em preservação da estrutura dentária, permitindo transformações estéticas significativas com mínimo ou nenhum desgaste do dente natural. Com mais de 20 anos de experiência e formação como especialista em Prótese Dental e Implantodontia, a odontologia estética moderna da Dra. Carla combina ciência, arte e tecnologia para criar sorrisos que parecem ter nascido assim, priorizando sempre a individualidade e as características únicas de cada paciente."
-      sections={sections}
-      faqs={faqs}
-      whatsappMessage="Olá, gostaria de agendar uma avaliação para lentes de contato dental"
-      ctaHeading="Transforme seu Sorriso com Lentes de Contato Dental em Ipanema!"
-    />
+    <>
+      <Helmet>
+        <title>Lentes de Contato Dental e Facetas de Resina em Ipanema | Dra. Carla</title>
+        <meta 
+          name="description" 
+          content="Lentes de contato dental ultrafinas (0,2mm) e facetas de resina em Ipanema com Dra. Carla Christoph. 20+ anos de experiência. Test Drive do Sorriso exclusivo." 
+        />
+        <meta name="keywords" content="lentes de contato dental, facetas de resina, ipanema, dra carla christoph, test drive sorriso, porcelana, especialista protese" />
+        <link rel="canonical" href="https://dracarlachristoph.com.br/lentes-de-contato-dental-e-facetas-de-resina" />
+        
+        {/* Schema.org estruturado */}
+        <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          "name": "Lentes de Contato Dental e Facetas de Resina em Ipanema",
+          "description": "Lentes de contato dental ultrafinas e facetas de resina com Dra. Carla Christoph, especialista em Prótese. 20+ anos de experiência em Ipanema.",
+          "url": "https://dracarlachristoph.com.br/lentes-de-contato-dental-e-facetas-de-resina",
+          "medicalSpecialty": "Cosmetic Dentistry",
+          "author": {
+            "@type": "Dentist",
+            "name": "Dra. Carla Christoph",
+            "qualification": "Especialista em Prótese Dental",
+            "experienceYears": 20,
+            "areaServed": {
+              "@type": "City",
+              "name": "Ipanema, Rio de Janeiro"
+            }
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "BRL",
+            "lowPrice": "800",
+            "highPrice": "3500",
+            "offerCount": "2"
+          }
+        })}
+        </script>
+      </Helmet>
+      
+      <PageLayout>
+        <ServiceBreadcrumb 
+          serviceName="Lentes de Contato Dental e Facetas de Resina"
+        />
+        
+        {/* Hero Section */}
+        <section className="py-12 md:py-20">
+          <div className="container-custom">
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="heading-xl mb-6 text-dental-purple">
+                Lentes de Contato Dental e Facetas de Resina em Ipanema
+              </h1>
+              <p className="text-xl text-dental-gray mb-8 leading-relaxed">
+                Transforme seu sorriso com lâminas ultrafinas de 0,2mm. Especialista em Prótese com 20+ anos de experiência. Resultado natural e duradouro.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                <button 
+                  onClick={() => handleWhatsAppClick("Olá! Gostaria de agendar uma avaliação para lentes de contato dental com a Dra. Carla.")}
+                  className="btn btn-primary px-8 py-4 text-lg inline-flex items-center gap-2"
+                >
+                  <ArrowRight className="w-5 h-5" />
+                  Agende sua Avaliação Estética
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Quick Answer Box - ESSENCIAL PARA IA */}
+        <section className="py-12 bg-dental-beige/30">
+          <div className="container-custom">
+            <QuickAnswerBox 
+              answer="Lentes de contato dental são lâminas ultrafinas de porcelana (0,2-0,5mm) que preservam a estrutura dental, criando sorrisos naturais sem aspecto artificial. Facetas de resina são restaurações estéticas diretas que corrigem forma e cor. A Dra. Carla Christoph, especialista em Prótese Dental, oferece o exclusivo 'Test Drive do Sorriso' - você experimenta seu novo sorriso na própria boca antes de aprovar o tratamento definitivo."
+            />
+          </div>
+        </section>
+
+        {/* Seção da Especialista - Dra. Carla */}
+        <section className="py-12 bg-white">
+          <div className="container-custom">
+            <h2 className="heading-lg mb-12 text-center text-dental-purple">Sua Especialista em Estética Dental</h2>
+            
+            <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+              {/* Placeholder para foto */}
+              <div className="relative">
+                <div className="bg-gradient-to-br from-dental-gold/20 to-dental-purple/10 rounded-2xl aspect-[4/5] flex items-center justify-center">
+                  <div className="text-center text-dental-gray">
+                    <span className="text-6xl mb-4 block">👩‍⚕️</span>
+                    <p>Foto da Dra. Carla Christoph</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-2xl font-semibold text-dental-purple mb-2">Dra. Carla Christoph</h3>
+                  <p className="text-dental-gold font-medium mb-4">CRO-RJ: XXXXX | Especialista em Prótese Dental</p>
+                </div>
+                
+                <div className="space-y-3">
+                  {[
+                    "Mais de 20 anos de experiência em odontologia estética",
+                    "Especialista em Prótese Dental e Implantodontia", 
+                    "Centenas de casos de lentes e facetas realizados",
+                    "Formação contínua em estética dental avançada"
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-dental-gold mt-1 flex-shrink-0" />
+                      <span className="text-dental-gray">{item}</span>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="bg-dental-beige/30 p-6 rounded-xl">
+                  <p className="text-dental-gray leading-relaxed italic">
+                    "Minha filosofia é criar sorrisos naturais que parecem ter nascido assim. O grande diferencial 
+                    do meu trabalho é o 'Test Drive do Sorriso' - uso resina provisória não adesiva para criar 
+                    seu novo sorriso diretamente na sua boca. Você se vê no espelho, tira fotos, fala, sorri... 
+                    é uma experiência transformadora ver o resultado real antes de começar. Nenhuma simulação 
+                    computacional se compara a experimentar o novo sorriso de verdade."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Comparação: Lentes vs Facetas de Resina */}
+        <section className="py-12 bg-dental-beige/20">
+          <div className="container-custom">
+            <h2 className="heading-lg mb-8 text-center text-dental-purple">
+              Lentes de Contato Dental ou Facetas de Resina: Qual Escolher?
+            </h2>
+            
+            <div className="max-w-5xl mx-auto">
+              <ComparisonTable data={comparisonData} />
+              
+              <p className="text-center mt-6 text-dental-gray">
+                A escolha ideal depende do seu caso específico. A Dra. Carla fará uma avaliação 
+                completa para recomendar a melhor opção para você.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* "Test Drive do Sorriso": Experimente Antes de Decidir */}
+        <section className="py-12 bg-white">
+          <div className="container-custom">
+            <h2 className="heading-lg mb-8 text-center text-dental-purple">
+              O Diferencial Exclusivo: Veja Seu Novo Sorriso Antes de Começar
+            </h2>
+            
+            <div className="bg-gradient-to-r from-dental-gold/10 to-dental-purple/10 p-8 rounded-2xl max-w-6xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3">
+                    <Sparkles className="w-8 h-8 text-dental-gold" />
+                    <h3 className="text-2xl font-semibold text-dental-purple">
+                      Mock-up: Seu Novo Sorriso em Minutos
+                    </h3>
+                  </div>
+                  
+                  <p className="text-dental-gray font-medium">
+                    Imagine poder "experimentar" seu novo sorriso antes de fazer qualquer procedimento definitivo. 
+                    Com a técnica exclusiva da Dra. Carla, isso é possível!
+                  </p>
+                  
+                  <div className="space-y-4">
+                    {[
+                      {
+                        icon: "✨",
+                        title: "Resina Provisória Não Adesiva",
+                        description: "Aplicada diretamente sobre seus dentes, sem desgaste algum"
+                      },
+                      {
+                        icon: "👀",
+                        title: "Veja-se no Espelho", 
+                        description: "Observe de todos os ângulos, em luz natural e artificial"
+                      },
+                      {
+                        icon: "📸",
+                        title: "Tire Fotos e Vídeos",
+                        description: "Registre, fale, sorria - veja como fica em movimento"
+                      },
+                      {
+                        icon: "🎨",
+                        title: "Ajustes em Tempo Real",
+                        description: "Modificamos juntos até ficar perfeito para você"
+                      }
+                    ].map((item, index) => (
+                      <div key={index} className="flex items-start gap-4">
+                        <span className="text-2xl">{item.icon}</span>
+                        <div>
+                          <strong className="block text-dental-purple">{item.title}</strong>
+                          <span className="text-dental-gray text-sm">{item.description}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="bg-white p-6 rounded-xl shadow-lg">
+                  <h4 className="font-bold text-lg mb-4 text-center text-dental-purple">
+                    A Experiência do Test Drive
+                  </h4>
+                  
+                  <div className="space-y-4">
+                    <div className="border-l-4 border-dental-gold pl-4">
+                      <p className="text-sm text-dental-gray italic">
+                        "É impressionante! Você senta na cadeira e em 30 minutos está vendo 
+                        exatamente como vai ficar seu novo sorriso. Não é uma simulação no 
+                        computador - é REAL, na sua boca!"
+                      </p>
+                      <p className="text-xs text-dental-gray/70 mt-1">- Relato comum dos pacientes</p>
+                    </div>
+                    
+                    <div className="bg-dental-beige/40 p-4 rounded-lg">
+                      <h5 className="font-semibold text-sm mb-2">Por que é revolucionário?</h5>
+                      <ul className="text-sm space-y-1 text-dental-gray">
+                        <li>• <strong>Decisão segura:</strong> Você aprova antes de começar</li>
+                        <li>• <strong>Sem surpresas:</strong> O resultado final será igual ao mock-up</li>
+                        <li>• <strong>Personalização total:</strong> Ajustamos até ficar perfeito</li>
+                        <li>• <strong>Experiência real:</strong> Melhor que qualquer simulação digital</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="mt-8 text-center">
+                <p className="text-lg text-dental-gray font-medium">
+                  "Nenhuma tecnologia digital substitui a emoção de ver seu novo sorriso 
+                  pela primeira vez. É um momento transformador que compartilho com cada paciente."
+                </p>
+                <p className="text-sm text-dental-gray/70 mt-2">- Dra. Carla Christoph</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Tecnologia Digital Complementar: Scanner iTero */}
+        <section className="py-12 bg-dental-beige/20">
+          <div className="container-custom">
+            <h2 className="heading-lg mb-8 text-center text-dental-purple">
+              Tecnologia Digital Complementar
+            </h2>
+            
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-white p-8 rounded-xl shadow-lg">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="bg-dental-gold/20 p-3 rounded-full">
+                    <span className="text-3xl">🖥️</span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-dental-purple">Scanner iTero Element 5D</h3>
+                </div>
+                
+                <p className="text-dental-gray mb-6">
+                  Além do mock-up físico, utilizamos o scanner iTero Element 5D como ferramenta 
+                  complementar para precisão técnica no planejamento:
+                </p>
+                
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-3">
+                    {[
+                      "Escaneamento digital sem moldagens com massa",
+                      "Modelo 3D preciso para o laboratório"
+                    ].map((item, index) => (
+                      <div key={index} className="flex items-start gap-3">
+                        <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
+                        <span className="text-dental-gray text-sm">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="space-y-3">
+                    {[
+                      "Comunicação digital com técnicos",
+                      "Arquivo digital do seu tratamento"
+                    ].map((item, index) => (
+                      <div key={index} className="flex items-start gap-3">
+                        <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
+                        <span className="text-dental-gray text-sm">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <p className="text-sm text-dental-gray/70 mt-6 text-center italic">
+                  O iTero é uma excelente ferramenta técnica, mas nada substitui a experiência 
+                  do mock-up real na sua boca.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Estética e Saúde: Nossa Abordagem Integrada */}
+        <section className="py-12 bg-white">
+          <div className="container-custom">
+            <h2 className="heading-lg mb-8 text-center text-dental-purple">
+              Além da Estética: Saúde Como Prioridade
+            </h2>
+            
+            <div className="max-w-6xl mx-auto">
+              <div className="bg-red-50 border-l-4 border-red-400 p-6 rounded-lg mb-8">
+                <div className="flex items-start gap-3 mb-4">
+                  <Shield className="w-6 h-6 text-red-500 mt-1" />
+                  <h3 className="font-semibold text-lg text-red-900">
+                    Problemas Comuns em Tratamentos Mal Executados
+                  </h3>
+                </div>
+                <p className="text-dental-gray mb-4">
+                  A Dra. Carla frequentemente recebe pacientes com problemas decorrentes de 
+                  tratamentos realizados sem os devidos cuidados:
+                </p>
+                <ul className="space-y-2 text-dental-gray">
+                  {[
+                    "Facetas sem adaptação adequada: Dificultam a higienização, causando inflamação gengival e mau hálito",
+                    "Preparo excessivo ou inadequado: Enfraquece o dente e pode causar sensibilidade permanente",
+                    "Sobrecontorno: Acúmulo de placa bacteriana e desenvolvimento de gengivite",
+                    "Aspecto artificial: 'Dentes de chiclete' que denunciam o procedimento",
+                    "Oclusão inadequada: Dores na ATM e desgaste prematuro"
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <span className="text-red-500 mt-1">•</span>
+                      <span><strong>{item.split(':')[0]}:</strong> {item.split(':')[1]}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="bg-green-50 p-6 rounded-lg">
+                  <div className="flex items-start gap-3 mb-4">
+                    <Heart className="w-6 h-6 text-green-600 mt-1" />
+                    <h3 className="font-semibold text-lg text-green-900">
+                      Nossa Abordagem: Saúde em Primeiro Lugar
+                    </h3>
+                  </div>
+                  <ul className="space-y-3 text-dental-gray">
+                    {[
+                      "Avaliação periodontal completa antes de qualquer procedimento estético",
+                      "Mock-up físico obrigatório para você aprovar o resultado antes de começar",
+                      "Perfil de emergência natural que facilita a higienização diária",
+                      "Ajuste oclusal minucioso para prevenir fraturas e problemas na ATM",
+                      "Acompanhamento periódico para manutenção da saúde bucal"
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="text-green-600 text-sm mt-1">▸</span>
+                        <span className="text-sm"><strong>{item.split(' ')[0]} {item.split(' ')[1]}</strong> {item.split(' ').slice(2).join(' ')}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div className="bg-blue-50 p-6 rounded-lg">
+                  <div className="flex items-start gap-3 mb-4">
+                    <Star className="w-6 h-6 text-blue-600 mt-1" />
+                    <h3 className="font-semibold text-lg text-blue-900">
+                      Busca Pela Naturalidade Absoluta
+                    </h3>
+                  </div>
+                  <ul className="space-y-3 text-dental-gray">
+                    {[
+                      "Análise facial detalhada para harmonia com suas características",
+                      "Estratificação de cor que imita a translucidez natural do esmalte", 
+                      "Textura superficial que reflete a luz como dentes naturais",
+                      "Proporções individualizadas respeitando sua idade e personalidade",
+                      "Evitamos o 'efeito Hollywood' artificial e padronizado"
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="text-blue-600 text-sm mt-1">▸</span>
+                        <span className="text-sm"><strong>{item.split(' ')[0]} {item.split(' ')[1]}</strong> {item.split(' ').slice(2).join(' ')}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="mt-8 bg-dental-beige/30 p-6 rounded-lg text-center">
+                <p className="text-lg text-dental-gray italic">
+                  "Um sorriso verdadeiramente bonito é aquele que ninguém percebe que foi tratado. 
+                  Nosso objetivo é que as pessoas admirem seu sorriso, não questionem o que você fez."
+                </p>
+                <p className="text-sm text-dental-gray/70 mt-2">- Dra. Carla Christoph</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Indicações e Casos Tratados */}
+        <section className="py-12 bg-dental-beige/20">
+          <div className="container-custom">
+            <h2 className="heading-lg mb-8 text-center text-dental-purple">
+              Quando as Lentes e Facetas São Indicadas?
+            </h2>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {[
+                {
+                  icon: "🦷",
+                  title: "Dentes Manchados",
+                  description: "Manchas resistentes ao clareamento, por tetraciclina ou fluorose"
+                },
+                {
+                  icon: "🔄",
+                  title: "Espaços entre Dentes",
+                  description: "Diastemas que comprometem a harmonia do sorriso"
+                },
+                {
+                  icon: "📐",
+                  title: "Formato Irregular",
+                  description: "Dentes pequenos, desgastados ou com forma inadequada"
+                },
+                {
+                  icon: "🎨",
+                  title: "Cor Inadequada",
+                  description: "Dentes escurecidos ou com tonalidade desigual"
+                },
+                {
+                  icon: "💔",
+                  title: "Fraturas e Lascas",
+                  description: "Pequenos defeitos que afetam a estética"
+                },
+                {
+                  icon: "😊",
+                  title: "Renovação do Sorriso",
+                  description: "Desejo de um sorriso mais harmônico e jovem"
+                }
+              ].map((item, index) => (
+                <div key={index} className="bg-white p-6 rounded-lg hover:shadow-lg transition-shadow">
+                  <div className="text-4xl mb-4 text-center">{item.icon}</div>
+                  <h3 className="font-semibold mb-3 text-dental-purple text-center">{item.title}</h3>
+                  <p className="text-dental-gray text-sm text-center">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Processo de Tratamento Digital */}
+        <section className="py-12 bg-white">
+          <div className="container-custom">
+            <h2 className="heading-lg mb-8 text-center text-dental-purple">
+              Seu Tratamento com Tecnologia Digital
+            </h2>
+            
+            <div className="max-w-4xl mx-auto">
+              <div className="space-y-6">
+                {[
+                  {
+                    number: "1",
+                    title: "Análise Digital do Sorriso",
+                    description: "Fotografias profissionais e análise facial computadorizada. Estudo das proporções ideais para seu rosto. Planejamento digital do novo sorriso.",
+                    duration: "60 min",
+                    icon: "📸"
+                  },
+                  {
+                    number: "2", 
+                    title: "Mock-up: Test Drive do Seu Novo Sorriso",
+                    description: "O GRANDE DIFERENCIAL! Criação do seu novo sorriso com resina provisória não adesiva diretamente na sua boca. Você se vê no espelho, tira fotos, fala, sorri. Ajustamos juntos até ficar perfeito. É emocionante ver o resultado real!",
+                    duration: "90 min",
+                    icon: "✨"
+                  },
+                  {
+                    number: "3",
+                    title: "Preparo Minimamente Invasivo", 
+                    description: "Com o mock-up aprovado, fazemos o preparo conservador. Para lentes: desgaste mínimo ou zero. Para facetas: preparo preciso. Utilizamos o scanner iTero para moldagem digital sem massa.",
+                    duration: "120 min",
+                    icon: "🔬"
+                  },
+                  {
+                    number: "4",
+                    title: "Confecção Artesanal",
+                    description: "Lentes: laboratório especializado em cerâmica. Facetas de resina: esculpidas diretamente pela Dra. Carla. Personalização total de cor e forma.",
+                    duration: "7-10 dias (lentes)",
+                    icon: "🎨"
+                  },
+                  {
+                    number: "5",
+                    title: "Cimentação e Finalização",
+                    description: "Prova final e ajustes necessários. Cimentação adesiva de alta precisão. Polimento e acabamento impecável.",
+                    duration: "90-120 min", 
+                    icon: "✅"
+                  }
+                ].map((step, index) => (
+                  <div key={index} className="flex gap-6 bg-dental-beige/30 p-6 rounded-lg">
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 bg-dental-gold text-white rounded-full flex items-center justify-center font-bold text-lg">
+                        {step.number}
+                      </div>
+                    </div>
+                    <div className="flex-grow">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="text-2xl">{step.icon}</span>
+                        <h3 className="font-semibold text-lg text-dental-purple">{step.title}</h3>
+                      </div>
+                      <p className="text-dental-gray mb-3">{step.description}</p>
+                      <span className="text-sm text-dental-gold font-medium">⏱ {step.duration}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Cuidados e Durabilidade */}
+        <section className="py-12 bg-dental-beige/20">
+          <div className="container-custom">
+            <h2 className="heading-lg mb-8 text-center text-dental-purple">
+              Cuidados para Manter seu Novo Sorriso
+            </h2>
+            
+            <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+              <div className="bg-white p-6 rounded-lg shadow-md">
+                <h3 className="font-semibold text-lg mb-4 text-dental-purple flex items-center gap-2">
+                  <span className="text-2xl">🪥</span>
+                  Higiene Diária
+                </h3>
+                <ul className="space-y-2 text-dental-gray">
+                  {[
+                    "Escovação com cerdas macias 3x ao dia",
+                    "Uso obrigatório de fio dental",
+                    "Enxaguante bucal sem álcool", 
+                    "Pasta dental não abrasiva",
+                    "Escova interdental para áreas específicas"
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <span className="text-dental-gold mt-1">•</span>
+                      <span className="text-sm">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div className="bg-white p-6 rounded-lg shadow-md">
+                <h3 className="font-semibold text-lg mb-4 text-dental-purple flex items-center gap-2">
+                  <span className="text-2xl">🛡️</span>
+                  Proteção e Prevenção
+                </h3>
+                <ul className="space-y-2 text-dental-gray">
+                  {[
+                    "Evitar morder objetos duros",
+                    "Não usar dentes como ferramentas",
+                    "Placa de bruxismo se necessário",
+                    "Evitar alimentos muito pigmentados (resina)",
+                    "Protetor bucal para esportes"
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <span className="text-dental-gold mt-1">•</span>
+                      <span className="text-sm">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div className="bg-white p-6 rounded-lg shadow-md">
+                <h3 className="font-semibold text-lg mb-4 text-dental-purple flex items-center gap-2">
+                  <span className="text-2xl">📅</span>
+                  Manutenção Profissional
+                </h3>
+                <ul className="space-y-2 text-dental-gray">
+                  {[
+                    "Check-up a cada 6 meses",
+                    "Profilaxia profissional regular",
+                    "Polimento das restaurações",
+                    "Avaliação da integridade",
+                    "Ajustes quando necessário"
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <span className="text-dental-gold mt-1">•</span>
+                      <span className="text-sm">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div className="bg-white p-6 rounded-lg shadow-md">
+                <h3 className="font-semibold text-lg mb-4 text-dental-purple flex items-center gap-2">
+                  <span className="text-2xl">⏰</span>
+                  Durabilidade Esperada
+                </h3>
+                <div className="space-y-4 text-dental-gray">
+                  <div>
+                    <strong className="text-dental-purple">Lentes de Contato:</strong>
+                    <p className="text-sm">15-20 anos com cuidados adequados</p>
+                  </div>
+                  <div>
+                    <strong className="text-dental-purple">Facetas de Resina:</strong>
+                    <p className="text-sm">5-8 anos, com possibilidade de reparos</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Casos Antes e Depois (Placeholders) */}
+        <section className="py-12 bg-white">
+          <div className="container-custom">
+            <h2 className="heading-lg mb-8 text-center text-dental-purple">
+              Transformações Reais de Nossos Pacientes
+            </h2>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {[1, 2, 3, 4, 5, 6].map((num) => (
+                <div key={num} className="relative group">
+                  <div className="bg-gradient-to-br from-dental-gold/10 to-dental-purple/10 rounded-lg aspect-video flex items-center justify-center hover:shadow-lg transition-shadow">
+                    <div className="text-center text-dental-gray">
+                      <Play className="w-12 h-12 mx-auto mb-2 opacity-70" />
+                      <span className="text-sm">Caso {num} - Antes e Depois</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <p className="text-center mt-6 text-dental-gray">
+              Deslize sobre as imagens para ver o antes e depois. 
+              Todos os casos foram tratados pela Dra. Carla Christoph.
+            </p>
+          </div>
+        </section>
+
+        {/* FAQs Otimizadas para IA e Voice Search */}
+        <section className="py-12 bg-dental-beige/20">
+          <div className="container-custom">
+            <h2 className="heading-lg mb-8 text-center text-dental-purple">
+              Perguntas Frequentes sobre Lentes e Facetas
+            </h2>
+            
+            <div className="max-w-4xl mx-auto">
+              <Accordion type="single" collapsible className="w-full space-y-4">
+                {faqs.map((faq, index) => (
+                  <AccordionItem 
+                    value={`item-${index + 1}`} 
+                    key={index}
+                    className="bg-white rounded-lg border border-dental-purple/20 px-6"
+                  >
+                    <AccordionTrigger className="text-left text-base font-semibold text-dental-purple hover:text-dental-gold transition-colors py-6">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-dental-gray leading-relaxed pb-6">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Final */}
+        <section className="py-16 bg-dental-purple text-white">
+          <div className="container-custom text-center">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Award className="w-8 h-8 text-dental-gold" />
+              <h2 className="heading-lg">
+                Transforme Seu Sorriso com a Dra. Carla Christoph
+              </h2>
+            </div>
+            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+              Especialista em Prótese Dental com mais de 20 anos criando sorrisos 
+              naturais e duradouros em Ipanema
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <button 
+                onClick={() => handleWhatsAppClick('Olá! Gostaria de agendar uma avaliação para lentes de contato dental com a Dra. Carla.')}
+                className="bg-dental-gold text-dental-purple px-8 py-4 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-all inline-flex items-center gap-2"
+              >
+                <ArrowRight className="w-5 h-5" />
+                Agendar Avaliação pelo WhatsApp
+              </button>
+            </div>
+            
+            <p className="mt-6 text-sm opacity-75">
+              Atendimento sem pressa • Consultas com hora marcada • Ipanema, Rio de Janeiro
+            </p>
+          </div>
+        </section>
+      </PageLayout>
+    </>
   );
 };
 
