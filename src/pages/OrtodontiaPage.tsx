@@ -32,9 +32,11 @@ const OrtodontiaPage = () => {
       content: (
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="relative">
-            <div className="bg-gray-100 rounded-lg aspect-[4/5] flex items-center justify-center">
-              <span className="text-gray-400">Foto do Dr. Bruno</span>
-            </div>
+            <img 
+              src="/lovable-uploads/DrBruno_site.webp" 
+              alt="Dr. Bruno Moreira das Neves - Ortodontista especialista em Invisalign" 
+              className="rounded-lg shadow-lg w-full aspect-[4/5] object-cover"
+            />
           </div>
           
           <div className="space-y-4">
