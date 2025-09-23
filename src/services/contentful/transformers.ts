@@ -297,13 +297,30 @@ export const richTextToHtml = (content: any, entryResponse?: EntryCollection<any
 
 // Transform comparison table data
 const transformComparisonTable = (data: any): ComparisonTableItem[] | undefined => {
-  if (!data || !Array.isArray(data)) return undefined;
+  console.log('🔍 transformComparisonTable - received data:', data);
   
-  return data.map(item => ({
-    Criterio: item.Criterio || '',
-    Opcao_A: item.Opcao_A || '',
-    Opcao_B: item.Opcao_B || ''
+  if (!data) {
+    console.log('❌ transformComparisonTable - no data provided');
+    return undefined;
+  }
+  
+  // Handle localized data
+  const localizedData = getLocalizedValue(data);
+  console.log('🌐 transformComparisonTable - localized data:', localizedData);
+  
+  if (!Array.isArray(localizedData)) {
+    console.log('❌ transformComparisonTable - data is not an array:', typeof localizedData);
+    return undefined;
+  }
+  
+  const result = localizedData.map((item, index) => ({
+    Criterio: item.Criterio || item.criterio || '',
+    Opcao_A: item.Opcao_A || item.opcaoA || item.opcao_a || '',
+    Opcao_B: item.Opcao_B || item.opcaoB || item.opcao_b || ''
   }));
+  
+  console.log('✅ transformComparisonTable - transformed result:', result);
+  return result;
 };
 
 // Transform FAQ structured data

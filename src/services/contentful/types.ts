@@ -23,7 +23,7 @@ export interface BlogPostSkeleton extends EntrySkeletonType {
     conteudo?: EntryFieldTypes.RichText;
     quickAnswerBoquickAnswerBoxx?: EntryFieldTypes.Text;
     keyTakeaways?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
-    comparisonTable?: EntryFieldTypes.Object;
+    comparisonTable?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
     faqStructured?: EntryFieldTypes.Object;
     peopleAlsoAsk?: EntryFieldTypes.Object;
     schemaType?: EntryFieldTypes.Text;
