@@ -233,7 +233,11 @@ const BlogPost = () => {
             {/* Comparison Table */}
             {post.comparisonTable && post.comparisonTable.length > 0 && (
               <div className="max-w-4xl mx-auto">
-                <ComparisonTable data={post.comparisonTable} />
+                <ComparisonTable 
+                  data={post.comparisonTable}
+                  optionALabel={post.comparisonTableOptionALabel || "Com Álcool"}
+                  optionBLabel={post.comparisonTableOptionBLabel || "Sem Álcool"}
+                />
               </div>
             )}
 
