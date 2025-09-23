@@ -14,6 +14,14 @@ const PageNavigation = ({
     // Safety checks to prevent errors
     if (!id || !title) return "Seção";
     
+    // Handle specific sections for Ortodontia
+    if (id === "quick-answer") return "Resposta";
+    if (id === "especialista") return "Ortodontista";
+    if (id === "invisalign-scanner") return "Invisalign®";
+    if (id === "tipos-tratamento") return "Opções";
+    if (id === "processo") return "Processo";
+    if (id === "contencao") return "Contenção";
+    
     // Handle specific sections for Implantes Dentários
     if (id === "o-que-sao-implantes") return "O Que São?";
     if (id === "indicacoes-implantes") return "Indicações";
@@ -95,11 +103,11 @@ const PageNavigation = ({
     // Default: return first word of the title if available
     return title.split(" ")[0] || "Seção";
   };
-  return <div className="max-w-3xl mx-auto mb-12 bg-dental-beige/70 p-5 rounded-lg border border-dental-gold/20">
+  return <div className="max-w-4xl mx-auto mb-8 bg-dental-beige/70 p-3 rounded-lg border border-dental-gold/20">
       <nav aria-label="Navegação interna da página">
-        <ul className="flex flex-wrap justify-center gap-3 md:gap-6">
+        <ul className="flex flex-wrap justify-center gap-1.5 md:gap-2">
           {navigationItems.filter(item => item.id && item.title).map(item => <li key={item.id}>
-              <a href={`#${item.id}`} className="text-dental-purple font-medium px-3 py-2 rounded-md hover:bg-dental-beige hover:text-dental-gold transition-colors">
+              <a href={`#${item.id}`} className="text-dental-purple text-sm font-medium px-2.5 py-1.5 rounded-md hover:bg-dental-beige hover:text-dental-gold transition-colors whitespace-nowrap">
                 {getDisplayName(item.title, item.id)}
               </a>
             </li>)}
