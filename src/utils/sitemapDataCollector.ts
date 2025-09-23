@@ -175,6 +175,12 @@ export const collectSitemapData = async (): Promise<SitemapData> => {
       lastmod: today,
       changefreq: 'monthly',
       priority: 0.8
+    },
+    {
+      loc: `${baseUrl}/ortodontia`,
+      lastmod: today,
+      changefreq: 'monthly',
+      priority: 0.8
     }
   ];
 
