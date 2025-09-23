@@ -10,7 +10,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 // COMPONENTES DE PERFORMANCE - CRÍTICOS
 import ContentfulBlockerForNonBlogPages from '@/components/performance/ContentfulBlockerForNonBlogPages';
 import SimpleLCPOptimizer from '@/components/performance/SimpleLCPOptimizer';
-import SitemapTester from '@/components/SitemapTester';
 
 // Páginas principais
 const Index = lazy(() => import("./pages/Index"));
@@ -99,7 +98,6 @@ const App = () => {
             
             <Toaster />
             <Sonner />
-            <SitemapTester />
             
             <Suspense fallback={<PageLoadingFallback />}>
               <Routes>
