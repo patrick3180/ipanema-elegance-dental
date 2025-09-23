@@ -314,9 +314,8 @@ const transformComparisonTable = (data: any): ComparisonTableItem[] | undefined 
   }
   
   const result = localizedData.map((item, index) => ({
-    Criterio: item.Criterio || item.criterio || '',
-    Opcao_A: item.Opcao_A || item.opcaoA || item.opcao_a || '',
-    Opcao_B: item.Opcao_B || item.opcaoB || item.opcao_b || ''
+    ...item, // Preserve all original keys from Contentful JSON
+    Criterio: item.Criterio || item.criterio || '' // Only normalize the Criterio field
   }));
   
   console.log('✅ transformComparisonTable - transformed result:', result);
