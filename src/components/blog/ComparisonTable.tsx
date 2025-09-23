@@ -13,13 +13,23 @@ const ComparisonTable: React.FC<ComparisonTableProps> = ({
 }) => {
   if (!data || data.length === 0) return null;
 
+  // Debug logging
+  console.log('📊 ComparisonTable - Raw data:', data);
+  console.log('📊 ComparisonTable - Data length:', data.length);
+
   // Extract header from first object and data from remaining objects
   const headerRow = data[0];
   const dataRows = data.slice(1);
   
+  console.log('📊 ComparisonTable - Header row:', headerRow);
+  console.log('📊 ComparisonTable - Data rows:', dataRows);
+  
   // Extract dynamic column names from header row
   const optionALabel = headerRow["Rótulo coluna A"] || 'Opção A';
   const optionBLabel = headerRow["Rótulo coluna B"] || 'Opção B';
+  
+  console.log('📊 ComparisonTable - Column A label:', optionALabel);
+  console.log('📊 ComparisonTable - Column B label:', optionBLabel);
 
   const renderCellContent = (value: string | undefined | null) => {
     // Handle undefined, null, or empty values
