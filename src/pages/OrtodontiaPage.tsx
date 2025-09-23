@@ -162,11 +162,11 @@ const OrtodontiaPage = () => {
             <p className="text-gray-700 mb-4">
               Alinhadores transparentes removíveis, ideais para quem busca discrição e conforto no tratamento.
             </p>
-            <ul className="space-y-2 text-sm text-gray-600">
-              <li>• Invisível no dia a dia</li>
-              <li>• Remove para comer</li>
-              <li>• Resultado em 6-18 meses</li>
-              <li>• Planejamento digital 3D</li>
+            <ul className="space-y-2 text-sm text-gray-600 list-disc list-inside marker:text-dental-purple">
+              <li>Invisível no dia a dia</li>
+              <li>Remove para comer</li>
+              <li>Resultado em 6-18 meses</li>
+              <li>Planejamento digital 3D</li>
             </ul>
           </div>
           
@@ -175,11 +175,11 @@ const OrtodontiaPage = () => {
             <p className="text-gray-700 mb-4">
               Bráquetes de safira ou porcelana que se camuflam com a cor dos dentes.
             </p>
-            <ul className="space-y-2 text-sm text-gray-600">
-              <li>• Discreto e elegante</li>
-              <li>• Não mancha</li>
-              <li>• Eficiente</li>
-              <li>• Ótimo custo-benefício</li>
+            <ul className="space-y-2 text-sm text-gray-600 list-disc list-inside marker:text-dental-purple">
+              <li>Discreto e elegante</li>
+              <li>Não mancha</li>
+              <li>Eficiente</li>
+              <li>Ótimo custo-benefício</li>
             </ul>
           </div>
           
@@ -188,11 +188,11 @@ const OrtodontiaPage = () => {
             <p className="text-gray-700 mb-4">
               Opção clássica e eficiente para todos os tipos de correção ortodôntica.
             </p>
-            <ul className="space-y-2 text-sm text-gray-600">
-              <li>• Mais acessível</li>
-              <li>• Muito resistente</li>
-              <li>• Resultado eficaz</li>
-              <li>• Manutenção mensal</li>
+            <ul className="space-y-2 text-sm text-gray-600 list-disc list-inside marker:text-dental-purple">
+              <li>Mais acessível</li>
+              <li>Muito resistente</li>
+              <li>Resultado eficaz</li>
+              <li>Manutenção mensal</li>
             </ul>
           </div>
         </div>

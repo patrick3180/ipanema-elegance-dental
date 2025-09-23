@@ -109,7 +109,24 @@ const TratamentoDeCanal = () => {
         {
           id: "cuidados-pos-canal",
           title: "Cuidados Importantes Após o Tratamento de Canal",
-          content: "Após o tratamento de canal realizado em nossa clínica em Ipanema, alguns cuidados são essenciais para uma boa recuperação e sucesso a longo prazo: <br/><br/>• Siga a medicação prescrita pela Dra. Carla Christoph, se houver. <br/>• Evite mastigar com o dente tratado até que ele seja devidamente restaurado. <br/>• Mantenha uma excelente higiene bucal. <br/>• Retorne para a consulta de acompanhamento e para a realização da restauração definitiva do dente. <br/><br/>Um leve desconforto pode ser normal nos primeiros dias, mas se a dor persistir ou for intensa, entre em contato conosco.",
+          content: (
+            <div>
+              <p className="body-md mb-4">
+                Após o tratamento de canal realizado em nossa clínica em Ipanema, alguns cuidados são essenciais para uma boa recuperação e sucesso a longo prazo:
+              </p>
+              
+              <ul className="space-y-2 text-gray-700 list-disc list-inside marker:text-dental-purple mb-4">
+                <li>Siga a medicação prescrita pela Dra. Carla Christoph, se houver.</li>
+                <li>Evite mastigar com o dente tratado até que ele seja devidamente restaurado.</li>
+                <li>Mantenha uma excelente higiene bucal.</li>
+                <li>Retorne para a consulta de acompanhamento e para a realização da restauração definitiva do dente.</li>
+              </ul>
+              
+              <p className="body-md text-gray-600">
+                Um leve desconforto pode ser normal nos primeiros dias, mas se a dor persistir ou for intensa, entre em contato conosco.
+              </p>
+            </div>
+          ),
           type: "default"
         }
       ]}
