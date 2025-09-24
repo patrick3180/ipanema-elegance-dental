@@ -213,7 +213,7 @@ const ClareamentoDental = () => {
                   className="bg-dental-purple hover:bg-dental-purple/90 text-white px-8 py-4 text-lg rounded-lg font-semibold inline-flex items-center gap-2 transition-colors"
                 >
                   <ArrowRight className="w-5 h-5" />
-                  Agendar Avaliação Gratuita
+                  Agendar Avaliação
                 </button>
               </div>
             </div>
