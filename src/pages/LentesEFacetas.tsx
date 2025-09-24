@@ -165,13 +165,13 @@ const LentesEFacetas = () => {
               </h1>
               <p className="text-xl text-dental-gray mb-8 leading-relaxed">
                 Transforme seu sorriso preservando seus dentes. Especialista em Prótese Dental 
-                com mais de 20 anos criando sorrisos naturais e harmoniosos.
+                com mais de 20 anos criando sorrisos naturais e harmônicos.
               </p>
               
               <div className="flex justify-center">
                 <button 
                   onClick={() => handleWhatsAppClick("Olá! Gostaria de agendar uma avaliação para lentes de contato dental com a Dra. Carla.")}
-                  className="btn btn-primary px-8 py-4 text-lg inline-flex items-center gap-2"
+                  className="bg-dental-purple hover:bg-dental-purple/90 text-white px-8 py-4 text-lg rounded-lg font-semibold inline-flex items-center gap-2 transition-colors"
                 >
                   <ArrowRight className="w-5 h-5" />
                   Agendar Avaliação Estética
@@ -182,7 +182,7 @@ const LentesEFacetas = () => {
         </section>
 
         {/* Quick Answer Box - ESSENCIAL PARA IA */}
-        <section className="py-8 bg-white">
+        <section className="py-4 bg-white">
           <div className="container-custom">
             <QuickAnswerBox 
               answer="Lentes de contato dental são lâminas ultrafinas de porcelana (0,2-0,5mm) que preservam a estrutura dental, criando sorrisos naturais sem aspecto artificial. Facetas de resina são restaurações estéticas diretas que corrigem forma e cor com investimento mais acessível. A Dra. Carla Christoph oferece o 'Test Drive do Sorriso' - você experimenta seu novo sorriso na própria boca antes de aprovar o tratamento definitivo."
@@ -191,7 +191,7 @@ const LentesEFacetas = () => {
         </section>
 
         {/* Comparação: Lentes vs Facetas de Resina */}
-        <section className="py-12 bg-gray-50">
+        <section className="py-8 bg-gray-50">
           <div className="container-custom">
             <h2 className="heading-lg mb-8 text-center text-dental-purple">
               Qual a Melhor Opção para Você?
@@ -297,7 +297,7 @@ const LentesEFacetas = () => {
             <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
               <div className="relative">
                 <OptimizedImage
-                  src="public/lovable-uploads/doutora-em-pe-jaleco.webp"
+                  src="public/lovable-uploads/dra-carla-christoph-dentista-ipanema-consultorio webp.webp"
                   alt="Dra. Carla Christoph - Especialista em Prótese Dental"
                   className="rounded-2xl aspect-[4/5] object-cover shadow-lg"
                   priority={true}
