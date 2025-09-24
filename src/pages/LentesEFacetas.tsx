@@ -152,9 +152,13 @@ const LentesEFacetas = () => {
       </Helmet>
       
       <PageLayout>
-        <ServiceBreadcrumb 
-          serviceName="Lentes de Contato Dental e Facetas de Resina"
-        />
+        <section className="pt-20">
+          <div className="container-custom">
+            <ServiceBreadcrumb 
+              serviceName="Lentes de Contato Dental e Facetas de Resina"
+            />
+          </div>
+        </section>
         
         {/* Hero Section */}
         <section className="py-8 md:py-12 bg-dental-beige/20">
