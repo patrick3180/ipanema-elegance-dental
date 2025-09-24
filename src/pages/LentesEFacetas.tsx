@@ -4,6 +4,7 @@ import PageLayout from "@/components/PageLayout";
 import ServiceBreadcrumb from "@/components/ServiceBreadcrumb";
 import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import ComparisonTable from "@/components/blog/ComparisonTable";
+import OptimizedImage from "@/components/OptimizedImage";
 import { ComparisonTableItem } from "@/types/BlogPost";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CheckCircle, Star, ArrowRight, Play, Sparkles, Shield, Heart, Award } from "lucide-react";
@@ -294,20 +295,19 @@ const LentesEFacetas = () => {
             <h2 className="heading-lg mb-12 text-center text-dental-purple">Sua Especialista em Estética Dental</h2>
             
             <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-              {/* Placeholder para foto */}
               <div className="relative">
-                <div className="bg-gradient-to-br from-dental-gold/20 to-dental-purple/10 rounded-2xl aspect-[4/5] flex items-center justify-center">
-                  <div className="text-center text-dental-gray">
-                    <span className="text-6xl mb-4 block">👩‍⚕️</span>
-                    <p>Foto da Dra. Carla Christoph</p>
-                  </div>
-                </div>
+                <OptimizedImage
+                  src="public/lovable-uploads/doutora-em-pe-jaleco.webp"
+                  alt="Dra. Carla Christoph - Especialista em Prótese Dental"
+                  className="rounded-2xl aspect-[4/5] object-cover shadow-lg"
+                  priority={true}
+                />
               </div>
               
               <div className="space-y-6">
                 <div>
                   <h3 className="text-2xl font-semibold text-dental-purple mb-2">Dra. Carla Christoph</h3>
-                  <p className="text-dental-gold font-medium mb-4">CRO-RJ: XXXXX | Especialista em Prótese Dental</p>
+                  <p className="text-dental-gold font-medium mb-4">CRO-RJ 27.509 | Especialista em Prótese Dental</p>
                 </div>
                 
                 <div className="space-y-3">
@@ -629,37 +629,27 @@ const LentesEFacetas = () => {
                   {
                     number: "1",
                     title: "Análise Digital do Sorriso",
-                    description: "Fotografias profissionais e análise facial computadorizada. Estudo das proporções ideais para seu rosto. Planejamento digital do novo sorriso.",
-                    duration: "60 min",
-                    icon: "📸"
+                    description: "Fotografias profissionais e análise facial computadorizada. Estudo das proporções ideais para seu rosto. Planejamento digital do novo sorriso."
                   },
                   {
                     number: "2", 
                     title: "Mock-up: Test Drive do Seu Novo Sorriso",
-                    description: "O GRANDE DIFERENCIAL! Criação do seu novo sorriso com resina provisória não adesiva diretamente na sua boca. Você se vê no espelho, tira fotos, fala, sorri. Ajustamos juntos até ficar perfeito. É emocionante ver o resultado real!",
-                    duration: "90 min",
-                    icon: "✨"
+                    description: "O GRANDE DIFERENCIAL! Criação do seu novo sorriso com resina provisória não adesiva diretamente na sua boca. Você se vê no espelho, tira fotos, fala, sorri. Ajustamos juntos até ficar perfeito. É emocionante ver o resultado real!"
                   },
                   {
                     number: "3",
                     title: "Preparo Minimamente Invasivo", 
-                    description: "Com o mock-up aprovado, fazemos o preparo conservador. Para lentes: desgaste mínimo ou zero. Para facetas: preparo preciso. Utilizamos o scanner iTero para moldagem digital sem massa.",
-                    duration: "120 min",
-                    icon: "🔬"
+                    description: "Com o mock-up aprovado, fazemos o preparo conservador. Para lentes: desgaste mínimo ou zero. Para facetas: preparo preciso. Utilizamos o scanner iTero para moldagem digital sem massa."
                   },
                   {
                     number: "4",
                     title: "Confecção Artesanal",
-                    description: "Lentes: laboratório especializado em cerâmica. Facetas de resina: esculpidas diretamente pela Dra. Carla. Personalização total de cor e forma.",
-                    duration: "7-10 dias (lentes)",
-                    icon: "🎨"
+                    description: "Lentes: laboratório especializado em cerâmica. Facetas de resina: esculpidas diretamente pela Dra. Carla. Personalização total de cor e forma."
                   },
                   {
                     number: "5",
                     title: "Cimentação e Finalização",
-                    description: "Prova final e ajustes necessários. Cimentação adesiva de alta precisão. Polimento e acabamento impecável.",
-                    duration: "90-120 min", 
-                    icon: "✅"
+                    description: "Prova final e ajustes necessários. Cimentação adesiva de alta precisão. Polimento e acabamento impecável."
                   }
                 ].map((step, index) => (
                   <div key={index} className="flex gap-6 bg-dental-beige/30 p-6 rounded-lg">
@@ -669,12 +659,8 @@ const LentesEFacetas = () => {
                       </div>
                     </div>
                     <div className="flex-grow">
-                      <div className="flex items-center gap-3 mb-3">
-                        <span className="text-2xl">{step.icon}</span>
-                        <h3 className="font-semibold text-lg text-dental-purple">{step.title}</h3>
-                      </div>
-                      <p className="text-dental-gray mb-3">{step.description}</p>
-                      <span className="text-sm text-dental-gold font-medium">⏱ {step.duration}</span>
+                      <h3 className="font-semibold text-lg text-dental-purple mb-3">{step.title}</h3>
+                      <p className="text-dental-gray">{step.description}</p>
                     </div>
                   </div>
                 ))}
