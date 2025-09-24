@@ -352,7 +352,7 @@ const ClareamentoDental = () => {
             <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
               <div className="relative">
                 <OptimizedImage
-                  src="public/lovable-uploads/dra-carla-christoph-dentista-ipanema-consultorio webp.webp"
+                  src="/lovable-uploads/dra-carla-christoph-dentista-ipanema-consultorio webp.webp"
                   alt="Dra. Carla Christoph - Especialista em Clareamento Dental"
                   className="rounded-2xl aspect-[4/5] object-cover shadow-lg"
                   priority={true}
