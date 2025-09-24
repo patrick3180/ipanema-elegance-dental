@@ -9,6 +9,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { CheckCircle, Star, ArrowRight, Play, Sparkles, Shield, Heart, Award } from "lucide-react";
 
 const LentesEFacetas = () => {
+  // Placeholder para controlar exibição de casos
+  const caseImages = null; // Substituir por array de imagens reais quando disponível
+  
   // Dados para tabela de comparação
   const comparisonData: ComparisonTableItem[] = [
     {
@@ -63,7 +66,7 @@ const LentesEFacetas = () => {
   const faqs = [
     {
       question: "Qual a diferença entre lente de contato dental e faceta de resina?",
-      answer: "Lentes de contato dental são lâminas ultrafinas de porcelana (0,2-0,5mm) que preservam a estrutura dental, criando sorrisos naturais sem aspecto artificial. Facetas de resina são restaurações estéticas diretas que corrigem forma e cor. A Dra. Carla Christoph, especialista em Prótese Dental, oferece o exclusivo 'Test Drive do Sorriso' - você experimenta seu novo sorriso na própria boca antes de aprovar o tratamento definitivo."
+      answer: "Lentes de contato dental são lâminas ultrafinas de porcelana (0,2-0,5mm) que exigem desgaste mínimo ou zero do dente, ideais para correções sutis com máxima durabilidade. Facetas de resina são restaurações mais espessas (0,7-1,5mm) feitas diretamente no consultório, com custo mais acessível. Lentes duram 15-20 anos e não mancham, enquanto facetas de resina duram 5-8 anos e podem necessitar polimento periódico."
     },
     {
       question: "As lentes de contato dental realmente não desgastam os dentes?",
@@ -83,7 +86,7 @@ const LentesEFacetas = () => {
     },
     {
       question: "O que é o 'Test Drive do Sorriso' (mock-up)?",
-      answer: "É o grande diferencial da Dra. Carla! Ela cria seu novo sorriso com resina provisória não adesiva diretamente na sua boca, sem desgastar os dentes. Em 30 minutos você está vendo o resultado real - pode se olhar no espelho, tirar fotos, vídeos, falar, sorrir. É uma experiência emocionante e transformadora! Ajustamos juntos até ficar perfeito. Só depois de você aprovar 100% é que partimos para o tratamento definitivo."
+      answer: "É uma técnica valiosa onde a Dra. Carla cria seu novo sorriso com resina provisória não adesiva diretamente na sua boca, sem desgastar os dentes. Você pode se olhar no espelho, tirar fotos, vídeos, falar, sorrir. É uma experiência transformadora! Ajustamos juntos até ficar perfeito. Só depois de você aprovar 100% é que partimos para o tratamento definitivo."
     }
   ];
 
@@ -153,23 +156,24 @@ const LentesEFacetas = () => {
         />
         
         {/* Hero Section */}
-        <section className="py-12 md:py-20">
+        <section className="py-8 md:py-12 bg-dental-beige/20">
           <div className="container-custom">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="heading-xl mb-6 text-dental-purple">
                 Lentes de Contato Dental e Facetas de Resina em Ipanema
               </h1>
               <p className="text-xl text-dental-gray mb-8 leading-relaxed">
-                Transforme seu sorriso com lâminas ultrafinas de 0,2mm. Especialista em Prótese com 20+ anos de experiência. Resultado natural e duradouro.
+                Transforme seu sorriso preservando seus dentes. Especialista em Prótese Dental 
+                com mais de 20 anos criando sorrisos naturais e harmoniosos.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <div className="flex justify-center">
                 <button 
                   onClick={() => handleWhatsAppClick("Olá! Gostaria de agendar uma avaliação para lentes de contato dental com a Dra. Carla.")}
                   className="btn btn-primary px-8 py-4 text-lg inline-flex items-center gap-2"
                 >
                   <ArrowRight className="w-5 h-5" />
-                  Agende sua Avaliação Estética
+                  Agendar Avaliação Estética
                 </button>
               </div>
             </div>
@@ -177,11 +181,110 @@ const LentesEFacetas = () => {
         </section>
 
         {/* Quick Answer Box - ESSENCIAL PARA IA */}
-        <section className="py-12 bg-dental-beige/30">
+        <section className="py-8 bg-white">
           <div className="container-custom">
             <QuickAnswerBox 
-              answer="Lentes de contato dental são lâminas ultrafinas de porcelana (0,2-0,5mm) que preservam a estrutura dental, criando sorrisos naturais sem aspecto artificial. Facetas de resina são restaurações estéticas diretas que corrigem forma e cor. A Dra. Carla Christoph, especialista em Prótese Dental, oferece o exclusivo 'Test Drive do Sorriso' - você experimenta seu novo sorriso na própria boca antes de aprovar o tratamento definitivo."
+              answer="Lentes de contato dental são lâminas ultrafinas de porcelana (0,2-0,5mm) que preservam a estrutura dental, criando sorrisos naturais sem aspecto artificial. Facetas de resina são restaurações estéticas diretas que corrigem forma e cor com investimento mais acessível. A Dra. Carla Christoph oferece o 'Test Drive do Sorriso' - você experimenta seu novo sorriso na própria boca antes de aprovar o tratamento definitivo."
             />
+          </div>
+        </section>
+
+        {/* Comparação: Lentes vs Facetas de Resina */}
+        <section className="py-12 bg-gray-50">
+          <div className="container-custom">
+            <h2 className="heading-lg mb-8 text-center text-dental-purple">
+              Qual a Melhor Opção para Você?
+            </h2>
+            
+            <div className="max-w-5xl mx-auto">
+              <ComparisonTable data={comparisonData} />
+              
+              {/* NOVO: Prós e Contras detalhados */}
+              <div className="grid md:grid-cols-2 gap-8 mt-12">
+                {/* Lentes de Contato Dental */}
+                <div className="bg-white p-6 rounded-lg shadow-md">
+                  <h3 className="text-xl font-semibold mb-4 text-dental-purple">
+                    Lentes de Contato Dental
+                  </h3>
+                  
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-green-600 mb-2">✓ Vantagens</h4>
+                      <ul className="space-y-2 text-sm text-dental-gray">
+                        <li>• Durabilidade excepcional (15-20 anos)</li>
+                        <li>• Zero manchamento - mantém cor original</li>
+                        <li>• Preservação máxima do dente (desgaste mínimo)</li>
+                        <li>• Resultado extremamente natural</li>
+                        <li>• Biocompatibilidade superior</li>
+                        <li>• Resistência a fraturas</li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold text-red-600 mb-2">✗ Considerações</h4>
+                      <ul className="space-y-2 text-sm text-dental-gray">
+                        <li>• Investimento inicial maior</li>
+                        <li>• Processo irreversível (mesmo com desgaste mínimo)</li>
+                        <li>• Necessita laboratório especializado</li>
+                        <li>• 2-3 consultas necessárias</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-blue-50 p-3 rounded">
+                      <p className="text-sm font-medium">Ideal para:</p>
+                      <p className="text-sm text-dental-gray">
+                        Quem busca solução definitiva e duradoura, valoriza resultado 
+                        natural superior e pode fazer o investimento.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Facetas de Resina */}
+                <div className="bg-white p-6 rounded-lg shadow-md">
+                  <h3 className="text-xl font-semibold mb-4 text-dental-purple">
+                    Facetas de Resina
+                  </h3>
+                  
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-green-600 mb-2">✓ Vantagens</h4>
+                      <ul className="space-y-2 text-sm text-dental-gray">
+                        <li>• Investimento mais acessível</li>
+                        <li>• Pode ser feita em 1-2 consultas</li>
+                        <li>• Reversível em alguns casos</li>
+                        <li>• Reparos possíveis se necessário</li>
+                        <li>• Resultado imediato</li>
+                        <li>• Ótima relação custo-benefício</li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold text-red-600 mb-2">✗ Considerações</h4>
+                      <ul className="space-y-2 text-sm text-dental-gray">
+                        <li>• Durabilidade menor (5-8 anos)</li>
+                        <li>• Pode manchar com o tempo</li>
+                        <li>• Necessita polimentos periódicos</li>
+                        <li>• Menos resistente a fraturas</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-blue-50 p-3 rounded">
+                      <p className="text-sm font-medium">Ideal para:</p>
+                      <p className="text-sm text-dental-gray">
+                        Quem deseja melhorar o sorriso com investimento menor, 
+                        casos menos complexos ou como transição para lentes.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <p className="text-center mt-6 text-dental-gray">
+                A escolha ideal depende do seu caso específico. A Dra. Carla fará uma avaliação 
+                completa para recomendar a melhor opção para você.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -223,11 +326,10 @@ const LentesEFacetas = () => {
                 
                 <div className="bg-dental-beige/30 p-6 rounded-xl">
                   <p className="text-dental-gray leading-relaxed italic">
-                    "Minha filosofia é criar sorrisos naturais que parecem ter nascido assim. O grande diferencial 
-                    do meu trabalho é o 'Test Drive do Sorriso' - uso resina provisória não adesiva para criar 
+                    "Minha filosofia é criar sorrisos naturais que parecem ter nascido assim. Uma das técnicas 
+                    mais valiosas que utilizo é o 'Test Drive do Sorriso' - uso resina provisória não adesiva para criar 
                     seu novo sorriso diretamente na sua boca. Você se vê no espelho, tira fotos, fala, sorri... 
-                    é uma experiência transformadora ver o resultado real antes de começar. Nenhuma simulação 
-                    computacional se compara a experimentar o novo sorriso de verdade."
+                    é uma experiência transformadora ver o resultado real antes de começar."
                   </p>
                 </div>
               </div>
@@ -235,44 +337,23 @@ const LentesEFacetas = () => {
           </div>
         </section>
 
-        {/* Comparação: Lentes vs Facetas de Resina */}
+        {/* Test Drive do Sorriso: Experimente Antes de Decidir */}
         <section className="py-12 bg-dental-beige/20">
           <div className="container-custom">
             <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              Lentes de Contato Dental ou Facetas de Resina: Qual Escolher?
-            </h2>
-            
-            <div className="max-w-5xl mx-auto">
-              <ComparisonTable data={comparisonData} />
-              
-              <p className="text-center mt-6 text-dental-gray">
-                A escolha ideal depende do seu caso específico. A Dra. Carla fará uma avaliação 
-                completa para recomendar a melhor opção para você.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* "Test Drive do Sorriso": Experimente Antes de Decidir */}
-        <section className="py-12 bg-white">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              O Diferencial Exclusivo: Veja Seu Novo Sorriso Antes de Começar
+              Test Drive do Sorriso: Experimente Antes de Decidir
             </h2>
             
             <div className="bg-gradient-to-r from-dental-gold/10 to-dental-purple/10 p-8 rounded-2xl max-w-6xl mx-auto">
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div className="space-y-6">
-                  <div className="flex items-center gap-3">
-                    <Sparkles className="w-8 h-8 text-dental-gold" />
-                    <h3 className="text-2xl font-semibold text-dental-purple">
-                      Mock-up: Seu Novo Sorriso em Minutos
-                    </h3>
-                  </div>
+                  <h3 className="text-2xl font-semibold text-dental-purple">
+                    Mock-up: Veja Seu Novo Sorriso Antes
+                  </h3>
                   
                   <p className="text-dental-gray font-medium">
-                    Imagine poder "experimentar" seu novo sorriso antes de fazer qualquer procedimento definitivo. 
-                    Com a técnica exclusiva da Dra. Carla, isso é possível!
+                    Uma das técnicas mais valiosas da odontologia estética moderna. 
+                    Você experimenta seu novo sorriso antes de qualquer procedimento definitivo!
                   </p>
                   
                   <div className="space-y-4">
@@ -317,20 +398,20 @@ const LentesEFacetas = () => {
                   <div className="space-y-4">
                     <div className="border-l-4 border-dental-gold pl-4">
                       <p className="text-sm text-dental-gray italic">
-                        "É impressionante! Você senta na cadeira e em 30 minutos está vendo 
-                        exatamente como vai ficar seu novo sorriso. Não é uma simulação no 
+                        "É impressionante! Ver exatamente como vai ficar seu novo sorriso 
+                        antes de fazer qualquer coisa. Não é uma simulação no 
                         computador - é REAL, na sua boca!"
                       </p>
                       <p className="text-xs text-dental-gray/70 mt-1">- Relato comum dos pacientes</p>
                     </div>
                     
                     <div className="bg-dental-beige/40 p-4 rounded-lg">
-                      <h5 className="font-semibold text-sm mb-2">Por que é revolucionário?</h5>
+                      <h5 className="font-semibold text-sm mb-2">Por que o Mock-up é Tão Importante?</h5>
                       <ul className="text-sm space-y-1 text-dental-gray">
-                        <li>• <strong>Decisão segura:</strong> Você aprova antes de começar</li>
-                        <li>• <strong>Sem surpresas:</strong> O resultado final será igual ao mock-up</li>
-                        <li>• <strong>Personalização total:</strong> Ajustamos até ficar perfeito</li>
-                        <li>• <strong>Experiência real:</strong> Melhor que qualquer simulação digital</li>
+                        <li>• <strong>Decisão segura:</strong> Você prova antes de fazer o trabalho definitivo</li>
+                        <li>• <strong>Sem surpresas:</strong> O resultado final será igual ao mock-up aprovado</li>
+                        <li>• <strong>Personalização total:</strong> Ajustamos até você amar o resultado</li>
+                        <li>• <strong>Experiência real:</strong> Ver na própria boca é incomparável</li>
                       </ul>
                     </div>
                   </div>
@@ -339,8 +420,9 @@ const LentesEFacetas = () => {
               
               <div className="mt-8 text-center">
                 <p className="text-lg text-dental-gray font-medium">
-                  "Nenhuma tecnologia digital substitui a emoção de ver seu novo sorriso 
-                  pela primeira vez. É um momento transformador que compartilho com cada paciente."
+                  "É emocionante ver a transformação instantânea! 
+                  Os pacientes ficam impressionados ao ver como ficará 
+                  o sorriso definitivo."
                 </p>
                 <p className="text-sm text-dental-gray/70 mt-2">- Dra. Carla Christoph</p>
               </div>
@@ -348,29 +430,21 @@ const LentesEFacetas = () => {
           </div>
         </section>
 
-        {/* Tecnologia Digital Complementar: Scanner iTero */}
-        <section className="py-12 bg-dental-beige/20">
+        {/* Tecnologia Digital: Scanner iTero Element 5D */}
+        <section className="py-12 bg-white">
           <div className="container-custom">
             <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              Tecnologia Digital Complementar
+              Tecnologia Digital: Scanner iTero Element 5D
             </h2>
             
             <div className="max-w-4xl mx-auto">
-              <div className="bg-white p-8 rounded-xl shadow-lg">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="bg-dental-gold/20 p-3 rounded-full">
-                    <span className="text-3xl">🖥️</span>
-                  </div>
-                  <h3 className="text-xl font-semibold text-dental-purple">Scanner iTero Element 5D</h3>
-                </div>
-                
-                <p className="text-dental-gray mb-6">
-                  Além do mock-up físico, utilizamos o scanner iTero Element 5D como ferramenta 
-                  complementar para precisão técnica no planejamento:
+              <div className="bg-white p-6 rounded-lg shadow-md">
+                <p className="text-dental-gray mb-4">
+                  Utilizamos o scanner iTero Element 5D para planejamento técnico preciso:
                 </p>
                 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-3">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
                     {[
                       "Escaneamento digital sem moldagens com massa",
                       "Modelo 3D preciso para o laboratório"
@@ -381,7 +455,7 @@ const LentesEFacetas = () => {
                       </div>
                     ))}
                   </div>
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     {[
                       "Comunicação digital com técnicos",
                       "Arquivo digital do seu tratamento"
@@ -393,11 +467,6 @@ const LentesEFacetas = () => {
                     ))}
                   </div>
                 </div>
-                
-                <p className="text-sm text-dental-gray/70 mt-6 text-center italic">
-                  O iTero é uma excelente ferramenta técnica, mas nada substitui a experiência 
-                  do mock-up real na sua boca.
-                </p>
               </div>
             </div>
           </div>
@@ -419,7 +488,7 @@ const LentesEFacetas = () => {
                   </h3>
                 </div>
                 <p className="text-dental-gray mb-4">
-                  A Dra. Carla frequentemente recebe pacientes com problemas decorrentes de 
+                  Muitos pacientes chegam com problemas decorrentes de 
                   tratamentos realizados sem os devidos cuidados:
                 </p>
                 <ul className="space-y-2 text-dental-gray">
@@ -705,32 +774,34 @@ const LentesEFacetas = () => {
           </div>
         </section>
 
-        {/* Casos Antes e Depois (Placeholders) */}
-        <section className="py-12 bg-white">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              Transformações Reais de Nossos Pacientes
-            </h2>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {[1, 2, 3, 4, 5, 6].map((num) => (
-                <div key={num} className="relative group">
-                  <div className="bg-gradient-to-br from-dental-gold/10 to-dental-purple/10 rounded-lg aspect-video flex items-center justify-center hover:shadow-lg transition-shadow">
-                    <div className="text-center text-dental-gray">
-                      <Play className="w-12 h-12 mx-auto mb-2 opacity-70" />
-                      <span className="text-sm">Caso {num} - Antes e Depois</span>
+        {/* Casos Antes e Depois (Condicional) */}
+        {caseImages && caseImages.length > 0 && (
+          <section className="py-12 bg-white">
+            <div className="container-custom">
+              <h2 className="heading-lg mb-8 text-center text-dental-purple">
+                Transformações Reais de Nossos Pacientes
+              </h2>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                {caseImages.map((caseImg, index) => (
+                  <div key={index} className="relative group">
+                    <div className="bg-gradient-to-br from-dental-gold/10 to-dental-purple/10 rounded-lg aspect-video flex items-center justify-center hover:shadow-lg transition-shadow">
+                      <div className="text-center text-dental-gray">
+                        <Play className="w-12 h-12 mx-auto mb-2 opacity-70" />
+                        <span className="text-sm">Caso {index + 1} - Antes e Depois</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+              
+              <p className="text-center mt-6 text-dental-gray">
+                Deslize sobre as imagens para ver o antes e depois. 
+                Todos os casos foram tratados pela Dra. Carla Christoph.
+              </p>
             </div>
-            
-            <p className="text-center mt-6 text-dental-gray">
-              Deslize sobre as imagens para ver o antes e depois. 
-              Todos os casos foram tratados pela Dra. Carla Christoph.
-            </p>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* FAQs Otimizadas para IA e Voice Search */}
         <section className="py-12 bg-dental-beige/20">
