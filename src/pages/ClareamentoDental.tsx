@@ -147,14 +147,14 @@ const ClareamentoDental = () => {
           name="keywords" 
           content="clareamento dental ipanema, clareamento dental profissional, branqueamento dental, clareamento consultório, clareamento caseiro supervisionado, dentes brancos ipanema, clareamento dental preço, quanto custa clareamento dental, clareamento dental seguro, dra carla christoph"
         />
-        <link rel="canonical" href="https://dracarlachristoph.com.br/clareamento-dental" />
+        <link rel="canonical" href="https://dracarlachristoph.com/clareamento-dental" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Clareamento Dental Profissional em Ipanema | Dra. Carla Christoph" />
         <meta property="og:description" content="Conquiste dentes mais brancos com segurança. Clareamento dental profissional com resultados de 2-9 tons. Técnicas modernas e +20 anos de experiência." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dracarlachristoph.com.br/clareamento-dental" />
-        <meta property="og:image" content="https://dracarlachristoph.com.br/og-clareamento.jpg" />
+        <meta property="og:url" content="https://dracarlachristoph.com/clareamento-dental" />
+        <meta property="og:image" content="https://dracarlachristoph.com/og-clareamento.jpg" />
         
         {/* Schema.org estruturado */}
         <script type="application/ld+json">
@@ -179,6 +179,22 @@ const ClareamentoDental = () => {
                 "addressCountry": "BR"
               }
             }
+          })}
+        </script>
+        
+        {/* FAQ Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faqs.map(faq => ({
+              "@type": "Question",
+              "name": faq.question,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+              }
+            }))
           })}
         </script>
       </Helmet>

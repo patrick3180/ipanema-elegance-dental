@@ -107,7 +107,7 @@ const LentesEFacetas = () => {
       });
     }
     
-    window.open(`https://wa.me/5521999999999?text=${encodeURIComponent(message)}`);
+    window.open(`https://wa.me/5521993304045?text=${encodeURIComponent(message)}`);
   };
 
   return (
@@ -119,7 +119,7 @@ const LentesEFacetas = () => {
           content="Lentes de contato dental ultrafinas (0,2mm) e facetas de resina em Ipanema com Dra. Carla Christoph. 20+ anos de experiência. Test Drive do Sorriso exclusivo." 
         />
         <meta name="keywords" content="lentes de contato dental, facetas de resina, ipanema, dra carla christoph, test drive sorriso, porcelana, especialista protese" />
-        <link rel="canonical" href="https://dracarlachristoph.com.br/lentes-de-contato-dental-e-facetas-de-resina" />
+        <link rel="canonical" href="https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina" />
         
         {/* Schema.org estruturado */}
         <script type="application/ld+json">
@@ -128,7 +128,7 @@ const LentesEFacetas = () => {
           "@type": "MedicalWebPage",
           "name": "Lentes de Contato Dental e Facetas de Resina em Ipanema",
           "description": "Lentes de contato dental ultrafinas e facetas de resina com Dra. Carla Christoph, especialista em Prótese. 20+ anos de experiência em Ipanema.",
-          "url": "https://dracarlachristoph.com.br/lentes-de-contato-dental-e-facetas-de-resina",
+          "url": "https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina",
           "medicalSpecialty": "Cosmetic Dentistry",
           "author": {
             "@type": "Dentist",
@@ -148,6 +148,22 @@ const LentesEFacetas = () => {
             "offerCount": "2"
           }
         })}
+        </script>
+        
+        {/* FAQ Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faqs.map(faq => ({
+              "@type": "Question",
+              "name": faq.question,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+              }
+            }))
+          })}
         </script>
       </Helmet>
       

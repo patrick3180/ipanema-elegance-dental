@@ -40,7 +40,7 @@ const ProteseDentaria = lazy(() => import("./pages/ProteseDentaria"));
 const RestaureacoesEsteticas = lazy(() => import("./pages/RestaureacoesEsteticas"));
 const TratamentoDeCanal = lazy(() => import("./pages/TratamentoDeCanal"));
 const ClinicaGeralPrevencao = lazy(() => import("./pages/ClinicaGeralPrevencao"));
-const OrtodontiaPage = lazy(() => import("./pages/OrtodontiaPage"));
+const Ortodontia = lazy(() => import("./pages/Ortodontia"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -132,7 +132,7 @@ const App = () => {
                 <Route path="/restauracoes-esteticas" element={<RestaureacoesEsteticas />} />
                 <Route path="/tratamento-de-canal" element={<TratamentoDeCanal />} />
                 <Route path="/clinica-geral-e-prevencao" element={<ClinicaGeralPrevencao />} />
-                <Route path="/ortodontia" element={<OrtodontiaPage />} />
+                <Route path="/ortodontia" element={<Ortodontia />} />
                 
                 {/* Rotas temporárias - redirecionam para home */}
                 <Route path="/sobre" element={<Navigate to="/" replace />} />
