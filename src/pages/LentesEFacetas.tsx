@@ -53,8 +53,8 @@ const LentesEFacetas = () => {
     },
     {
       "Criterio": "Investimento",
-      "Rótulo coluna A": "R$ 2.500-3.500/dente",
-      "Rótulo coluna B": "R$ 800-1.200/dente"
+      "Rótulo coluna A": "Consulte valores na avaliação",
+      "Rótulo coluna B": "Consulte valores na avaliação"
     },
     {
       "Criterio": "Indicação Principal",
@@ -74,8 +74,8 @@ const LentesEFacetas = () => {
       answer: "Na maioria dos casos, o desgaste é mínimo (0,1-0,3mm) ou inexistente. O preparo, quando necessário, é limitado ao esmalte superficial, preservando até 95% da estrutura dental original. Isso contrasta com tratamentos mais antigos que exigiam desgastes significativos. A Dra. Carla utiliza técnicas minimamente invasivas para máxima preservação dental."
     },
     {
-      question: "Quanto custa colocar lentes de contato dental em Ipanema?",
-      answer: "O investimento varia conforme o número de dentes e complexidade do caso. Lentes de contato dental custam entre R$ 2.500 a 3.500 por dente. Facetas de resina são mais acessíveis, entre R$ 800 a 1.200 por dente. A Dra. Carla oferece planos de pagamento flexíveis. O valor reflete não apenas o procedimento, mas toda a experiência, tecnologia e acompanhamento de uma especialista com 20+ anos de experiência."
+      question: "Qual o investimento para lentes de contato dental e facetas em Ipanema?",
+      answer: "O investimento varia conforme o número de dentes tratados, complexidade do caso e tipo de material escolhido. Lentes de contato dental requerem maior investimento devido ao material cerâmico premium e durabilidade superior. Facetas de resina oferecem excelente custo-benefício. A Dra. Carla oferece planos de pagamento facilitados e condições especiais. O valor reflete toda a experiência, tecnologia avançada e acompanhamento personalizado de uma especialista com 20+ anos de experiência. Consulte valores detalhados na avaliação."
     },
     {
       question: "Quanto tempo dura o tratamento completo?",
@@ -141,11 +141,10 @@ const LentesEFacetas = () => {
             }
           },
           "offers": {
-            "@type": "AggregateOffer",
+            "@type": "Offer",
             "priceCurrency": "BRL",
-            "lowPrice": "800",
-            "highPrice": "3500",
-            "offerCount": "2"
+            "availability": "https://schema.org/InStock",
+            "description": "Consulte valores personalizados na avaliação"
           }
         })}
         </script>
@@ -317,7 +316,7 @@ const LentesEFacetas = () => {
             <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
               <div className="relative">
                 <OptimizedImage
-                  src="public/lovable-uploads/dra-carla-christoph-dentista-ipanema-consultorio webp.webp"
+                  src="/lovable-uploads/dra-carla-christoph-dentista-ipanema-consultorio.webp"
                   alt="Dra. Carla Christoph - Especialista em Prótese Dental"
                   className="rounded-2xl aspect-[4/5] object-cover shadow-lg"
                   priority={true}

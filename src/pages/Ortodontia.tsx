@@ -60,9 +60,9 @@ const Ortodontia = () => {
     },
     {
       "Criterio": "Investimento",
-      "Rótulo coluna A": "R$ 12.000-18.000",
-      "Rótulo coluna B": "R$ 6.000-9.000",
-      "Rótulo coluna C": "R$ 3.500-6.000"
+      "Rótulo coluna A": "Consulte valores na avaliação",
+      "Rótulo coluna B": "Consulte valores na avaliação",
+      "Rótulo coluna C": "Consulte valores na avaliação"
     },
     {
       "Criterio": "Indicação Principal",
@@ -116,7 +116,7 @@ const Ortodontia = () => {
     },
     {
       question: "Qual o investimento para o tratamento ortodôntico?",
-      answer: "O investimento varia conforme o tipo de aparelho e complexidade do caso. Invisalign®: R$ 12.000-18.000. Aparelho estético: R$ 6.000-9.000. Aparelho tradicional: R$ 3.500-6.000. Oferecemos parcelamento e condições facilitadas. O valor inclui todo o tratamento, contenção e acompanhamento. Fazemos orçamento personalizado na consulta."
+      answer: "O investimento varia conforme o tipo de aparelho e complexidade do caso. Cada tratamento tem características únicas que influenciam o valor, como duração, tecnologia utilizada e acompanhamento necessário. Oferecemos planos de pagamento facilitados e condições especiais. O valor inclui todo o tratamento, contenção e acompanhamento integral. Fazemos orçamento personalizado durante a consulta de avaliação."
     },
     {
       question: "Posso trocar de aparelho fixo para Invisalign® durante o tratamento?",
@@ -514,7 +514,7 @@ const Ortodontia = () => {
                   <OptimizedImage
                     src="/lovable-uploads/DrBruno_site.webp"
                     alt="Dr. Bruno Moreira das Neves - Ortodontista Especialista em Ipanema"
-                    className="rounded-lg shadow-lg"
+                    className="rounded-lg shadow-lg aspect-[3/4] object-cover object-top"
                   />
                   <div className="absolute -bottom-6 -right-6 bg-dental-purple p-4 rounded-lg shadow-lg">
                     <p className="text-white font-bold text-lg">Doutor UERJ</p>

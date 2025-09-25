@@ -60,9 +60,9 @@ const ClareamentoDental = () => {
     },
     {
       "Criterio": "Investimento",
-      "Rótulo coluna A": "R$ 1.800-2.500",
-      "Rótulo coluna B": "R$ 1.200-1.800",
-      "Rótulo coluna C": "R$ 2.500-3.500"
+      "Rótulo coluna A": "Consulte valores na avaliação",
+      "Rótulo coluna B": "Consulte valores na avaliação",
+      "Rótulo coluna C": "Consulte valores na avaliação"
     },
     {
       "Criterio": "Indicação Principal",
@@ -368,7 +368,7 @@ const ClareamentoDental = () => {
             <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
               <div className="relative">
                 <OptimizedImage
-                  src="/lovable-uploads/dra-carla-christoph-dentista-ipanema-consultorio webp.webp"
+                  src="/lovable-uploads/dra-carla-christoph-dentista-ipanema-consultorio.webp"
                   alt="Dra. Carla Christoph - Especialista em Clareamento Dental"
                   className="rounded-2xl aspect-[4/5] object-cover shadow-lg"
                   priority={true}
