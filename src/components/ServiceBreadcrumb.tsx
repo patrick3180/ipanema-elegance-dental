@@ -11,40 +11,30 @@ import {
 } from "@/components/ui/breadcrumb";
 
 interface ServiceBreadcrumbProps {
-  items?: Array<{
-    label: string;
-    href?: string;
-  }>;
-  serviceName?: string;
+  serviceName: string;
   serviceSlug?: string;
 }
 
-const ServiceBreadcrumb = ({ items, serviceName, serviceSlug }: ServiceBreadcrumbProps) => {
-  // Support both old and new interfaces
-  const breadcrumbItems = items || [
-    { label: "Início", href: "/" },
-    { label: "Tratamentos", href: "/servicos" },
-    { label: serviceName || "" }
-  ];
-
+const ServiceBreadcrumb = ({ serviceName, serviceSlug }: ServiceBreadcrumbProps) => {
   return (
     <div className="mb-6">
       <Breadcrumb>
         <BreadcrumbList>
-          {breadcrumbItems.map((item, index) => (
-            <React.Fragment key={index}>
-              <BreadcrumbItem>
-                {item.href ? (
-                  <BreadcrumbLink asChild>
-                    <Link to={item.href}>{item.label}</Link>
-                  </BreadcrumbLink>
-                ) : (
-                  <BreadcrumbPage>{item.label}</BreadcrumbPage>
-                )}
-              </BreadcrumbItem>
-              {index < breadcrumbItems.length - 1 && <BreadcrumbSeparator />}
-            </React.Fragment>
-          ))}
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link to="/">Início</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link to="/servicos">Tratamentos</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>{serviceName}</BreadcrumbPage>
+          </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
     </div>
