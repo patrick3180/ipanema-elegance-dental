@@ -362,14 +362,10 @@ const ClareamentoDental = () => {
             <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
               <div className="relative">
                 <img
-                  src="/lovable-uploads/dra-carla-christoph-dentista-ipanema-consultorio%20webp.webp"
+                  src="/lovable-uploads/doutora-em-pe-jaleco.webp"
                   alt="Dra. Carla Christoph - Especialista em Clareamento Dental"
                   className="rounded-2xl aspect-[4/5] object-cover object-top shadow-lg w-full h-auto"
                   loading="eager"
-                  onError={(e) => {
-                    e.currentTarget.onerror = null;
-                    e.currentTarget.src = '/lovable-uploads/doutora-em-pe-jaleco.webp';
-                  }}
                 />
                 <div className="absolute -bottom-6 -right-6 bg-dental-gold p-4 rounded-lg shadow-lg">
                   <p className="text-white font-bold text-lg">20+ Anos</p>
