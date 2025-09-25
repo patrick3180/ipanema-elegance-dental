@@ -59,7 +59,7 @@ const UltraOptimizedPicture = ({
         decoding={priority ? 'sync' : 'async'}
         width={width}
         height={height}
-        className="w-[90%] h-[90%] object-cover"
+        className="w-full h-full object-cover"
         style={{ aspectRatio: width && height ? `${width}/${height}` : undefined }}
       />
     </picture>
