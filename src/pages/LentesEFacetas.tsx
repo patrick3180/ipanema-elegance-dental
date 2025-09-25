@@ -52,11 +52,6 @@ const LentesEFacetas = () => {
       "Rótulo coluna B": "1-2 consultas"
     },
     {
-      "Criterio": "Investimento",
-      "Rótulo coluna A": "Consulte valores na avaliação",
-      "Rótulo coluna B": "Consulte valores na avaliação"
-    },
-    {
       "Criterio": "Indicação Principal",
       "Rótulo coluna A": "Transformação completa e duradoura",
       "Rótulo coluna B": "Correções estéticas acessíveis"
@@ -315,11 +310,11 @@ const LentesEFacetas = () => {
             
             <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
               <div className="relative">
-                <OptimizedImage
-                  src="/lovable-uploads/dra-carla-christoph-dentista-ipanema-consultorio.webp"
+                <img
+                  src="/lovable-uploads/dra-carla-christoph-dentista-ipanema-consultorio webp.webp"
                   alt="Dra. Carla Christoph - Especialista em Prótese Dental"
-                  className="rounded-2xl aspect-[4/5] object-cover shadow-lg"
-                  priority={true}
+                  className="rounded-2xl aspect-[4/5] object-cover shadow-lg w-full h-auto"
+                  loading="eager"
                 />
               </div>
               
