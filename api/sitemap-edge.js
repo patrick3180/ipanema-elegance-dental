@@ -49,10 +49,11 @@ export default async function handler(request) {
       { url: '/contato', priority: '0.8', changefreq: 'monthly' },
       
       // Páginas de serviços
-      { url: '/lentes-de-contato-dental-e-facetas-de-porcelana', priority: '0.9', changefreq: 'monthly' },
+      { url: '/lentes-de-contato-dental-e-facetas-de-resina', priority: '0.9', changefreq: 'monthly' },
       { url: '/clareamento-dental', priority: '0.9', changefreq: 'monthly' },
       { url: '/protese-dentaria', priority: '0.9', changefreq: 'monthly' },
       { url: '/implantes-dentarios', priority: '0.9', changefreq: 'monthly' },
+      { url: '/ortodontia', priority: '0.9', changefreq: 'monthly' },
       { url: '/clinica-geral-e-prevencao', priority: '0.8', changefreq: 'monthly' },
       { url: '/restauracoes-esteticas', priority: '0.8', changefreq: 'monthly' },
       { url: '/tratamento-de-canal', priority: '0.8', changefreq: 'monthly' },
@@ -62,6 +63,15 @@ export default async function handler(request) {
       { url: '/lp/clareamento-dental', priority: '0.9', changefreq: 'weekly' },
       { url: '/lp/consulta-inicial', priority: '0.9', changefreq: 'weekly' },
       { url: '/lp/limpeza-dental-ipanema', priority: '0.9', changefreq: 'weekly' },
+      { url: '/lp/profilaxia-dental-ipanema', priority: '0.9', changefreq: 'weekly' },
+      { url: '/lp/estetica-dental-ipanema', priority: '0.9', changefreq: 'weekly' },
+      { url: '/lp/saude-gengival-ipanema', priority: '0.9', changefreq: 'weekly' },
+      { url: '/lp/ortodontia-ipanema', priority: '0.9', changefreq: 'weekly' },
+      { url: '/lp/dor-de-dente-urgencia-ipanema', priority: '0.9', changefreq: 'weekly' },
+      { url: '/lp/dente-quebrado-urgencia-ipanema', priority: '0.9', changefreq: 'weekly' },
+      { url: '/lp/emergencia-odontologica-ipanema', priority: '0.9', changefreq: 'weekly' },
+      { url: '/lp/especialista-protese-ipanema', priority: '0.9', changefreq: 'weekly' },
+      { url: '/lp/implantes-dentarios-ipanema', priority: '0.9', changefreq: 'weekly' },
       
       // Páginas legais
       { url: '/politica-de-privacidade', priority: '0.3', changefreq: 'yearly' },

@@ -12,6 +12,9 @@
 /about                  /sobre              301
 /services               /servicos           301
 
+# Old lentes page redirect for SEO
+/lentes-de-contato-dental-e-facetas-de-porcelana  /lentes-de-contato-dental-e-facetas-de-resina  301
+
 # Prevent indexing of development/admin routes
 /seo-dashboard          /seo-dashboard      200  X-Robots-Tag: noindex
 
