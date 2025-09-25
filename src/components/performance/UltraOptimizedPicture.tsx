@@ -22,7 +22,7 @@ const UltraOptimizedPicture = ({
   desktopSrc
 }: UltraOptimizedPictureProps) => {
   return (
-    <picture className={className}>
+    <picture className={`bg-transparent block ${className}`}>
       {/* Desktop AVIF - optimized for large screens */}
       {desktopSrc && (
         <source
@@ -59,7 +59,7 @@ const UltraOptimizedPicture = ({
         decoding={priority ? 'sync' : 'async'}
         width={width}
         height={height}
-        className="w-[90%] h-[90%] object-cover"
+        className="w-full h-full object-cover"
         style={{ aspectRatio: width && height ? `${width}/${height}` : undefined }}
       />
     </picture>
