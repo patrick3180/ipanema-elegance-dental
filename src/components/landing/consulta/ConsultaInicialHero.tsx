@@ -90,7 +90,7 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
             </button>
           </div>
 
-          {/* Hero Image - 36% on desktop - ULTRA OPTIMIZED */}
+          {/* Hero Image - 36% on desktop (90% of 40%) - ULTRA OPTIMIZED */}
           <div className="w-[90%] lg:w-[36%] mx-auto">
             <div className="relative" style={{ aspectRatio: '760/996' }}>
               <UltraOptimizedPicture
