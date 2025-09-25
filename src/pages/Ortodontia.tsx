@@ -586,7 +586,7 @@ const Ortodontia = () => {
                   <img
                     src="/lovable-uploads/doutora-em-pe-jaleco.webp"
                     alt="Dra. Carla Christoph - Responsável pelo Consultório em Ipanema"
-                    className="rounded-lg shadow-lg w-full h-auto object-cover object-top"
+                    className="rounded-lg shadow-lg w-full h-96 object-cover object-top"
                   />
                   <div className="absolute -bottom-6 -left-6 bg-dental-gold p-4 rounded-lg shadow-lg">
                     <p className="text-white font-bold text-lg">20+ Anos</p>
