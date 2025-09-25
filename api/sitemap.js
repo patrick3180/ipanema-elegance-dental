@@ -22,7 +22,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const baseUrl = 'https://www.dracarlachristoph.com';
+    const baseUrl = 'https://dracarlachristoph.com';
     const today = new Date().toISOString().split('T')[0];
     
     // Páginas estáticas
@@ -118,13 +118,13 @@ ${allUrls.map(page => `  <url>
     const fallback = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.dracarlachristoph.com/</loc>
+    <loc>https://dracarlachristoph.com/</loc>
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.dracarlachristoph.com/blog</loc>
+    <loc>https://dracarlachristoph.com/blog</loc>
     <lastmod>${today}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
