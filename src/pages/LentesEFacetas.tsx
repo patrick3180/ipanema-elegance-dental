@@ -313,7 +313,7 @@ const LentesEFacetas = () => {
                 <img
                   src="/lovable-uploads/doutora-em-pe-jaleco.webp"
                   alt="Dra. Carla Christoph - Especialista em Prótese Dental"
-                  className="rounded-2xl aspect-[4/5] object-cover shadow-lg w-full h-auto"
+                  className="rounded-2xl aspect-[4/5] object-cover object-top shadow-lg w-full h-auto"
                   loading="eager"
                 />
               </div>
