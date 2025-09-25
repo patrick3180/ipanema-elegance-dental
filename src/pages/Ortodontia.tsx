@@ -59,12 +59,6 @@ const Ortodontia = () => {
       "Rótulo coluna C": "Mensal"
     },
     {
-      "Criterio": "Investimento",
-      "Rótulo coluna A": "Consulte valores na avaliação",
-      "Rótulo coluna B": "Consulte valores na avaliação",
-      "Rótulo coluna C": "Consulte valores na avaliação"
-    },
-    {
       "Criterio": "Indicação Principal",
       "Rótulo coluna A": "Adultos, casos estéticos",
       "Rótulo coluna B": "Jovens e adultos",
@@ -116,7 +110,7 @@ const Ortodontia = () => {
     },
     {
       question: "Qual o investimento para o tratamento ortodôntico?",
-      answer: "O investimento varia conforme o tipo de aparelho e complexidade do caso. Cada tratamento tem características únicas que influenciam o valor, como duração, tecnologia utilizada e acompanhamento necessário. Oferecemos planos de pagamento facilitados e condições especiais. O valor inclui todo o tratamento, contenção e acompanhamento integral. Fazemos orçamento personalizado durante a consulta de avaliação."
+      answer: "O investimento varia conforme o tipo de aparelho e complexidade do caso. Cada tratamento tem características únicas que influenciam o valor, como duração, tecnologia utilizada e acompanhamento necessário. Oferecemos planos de pagamento facilitados e condições especiais. Fazemos orçamento personalizado durante a consulta de avaliação."
     },
     {
       question: "Posso trocar de aparelho fixo para Invisalign® durante o tratamento?",
@@ -423,8 +417,8 @@ const Ortodontia = () => {
               
               <div className="bg-gradient-to-br from-dental-purple/10 to-dental-gold/10 p-8 rounded-lg">
                 <div className="text-center">
-                  <div className="w-24 h-24 bg-dental-purple/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-4xl">🦷</span>
+                  <div className="w-24 h-24 bg-dental-purple/20 rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden">
+                    <img src="/lovable-uploads/Itero_tela.webp" alt="Scanner iTero Element 5D" className="w-16 h-16 object-contain" />
                   </div>
                   <h4 className="text-lg font-semibold mb-2 text-dental-purple">
                     Simulação em Tempo Real
@@ -589,10 +583,10 @@ const Ortodontia = () => {
                 </div>
                 
                 <div className="relative order-1 md:order-2">
-                  <OptimizedImage
-                    src="/lovable-uploads/dra-carla-christoph-dentista-ipanema-consultorio.webp"
+                  <img
+                    src="/lovable-uploads/doutora-em-pe-jaleco.webp"
                     alt="Dra. Carla Christoph - Responsável pelo Consultório em Ipanema"
-                    className="rounded-lg shadow-lg"
+                    className="rounded-lg shadow-lg w-full h-auto object-cover object-top"
                   />
                   <div className="absolute -bottom-6 -left-6 bg-dental-gold p-4 rounded-lg shadow-lg">
                     <p className="text-white font-bold text-lg">20+ Anos</p>
@@ -672,12 +666,6 @@ const Ortodontia = () => {
                   Agendar pelo WhatsApp
                 </a>
                 
-                <a
-                  href="/contato"
-                  className="inline-flex items-center justify-center px-6 py-3 border-2 border-dental-purple text-dental-purple hover:bg-dental-purple hover:text-white font-semibold rounded-lg transition-colors"
-                >
-                  Entrar em Contato
-                </a>
               </div>
             </div>
           </div>
