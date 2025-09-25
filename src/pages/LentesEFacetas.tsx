@@ -311,7 +311,7 @@ const LentesEFacetas = () => {
             <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
               <div className="relative">
                 <img
-                  src="/lovable-uploads/dra-carla-christoph-dentista-ipanema-consultorio webp.webp"
+                  src="/lovable-uploads/doutora-em-pe-jaleco.webp"
                   alt="Dra. Carla Christoph - Especialista em Prótese Dental"
                   className="rounded-2xl aspect-[4/5] object-cover shadow-lg w-full h-auto"
                   loading="eager"
