@@ -4,7 +4,7 @@ import PageLayout from "@/components/PageLayout";
 import ServiceBreadcrumb from "@/components/ServiceBreadcrumb";
 import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import ComparisonTable from "@/components/blog/ComparisonTable";
-import OptimizedImage from "@/components/OptimizedImage";
+
 import { ComparisonTableItem } from "@/types/BlogPost";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CheckCircle, Star, ArrowRight, Clock, Sparkles, Shield, Heart, Award, Zap, Calendar } from "lucide-react";
@@ -362,10 +362,14 @@ const ClareamentoDental = () => {
             <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
               <div className="relative">
                 <img
-                  src="/lovable-uploads/dra-carla-christoph-dentista-ipanema-consultorio.webp"
+                  src="/lovable-uploads/dra-carla-christoph-dentista-ipanema-consultorio%20webp.webp"
                   alt="Dra. Carla Christoph - Especialista em Clareamento Dental"
-                  className="rounded-2xl aspect-[4/5] object-cover shadow-lg w-full h-auto"
+                  className="rounded-2xl aspect-[4/5] object-cover object-top shadow-lg w-full h-auto"
                   loading="eager"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = '/lovable-uploads/doutora-em-pe-jaleco.webp';
+                  }}
                 />
                 <div className="absolute -bottom-6 -right-6 bg-dental-gold p-4 rounded-lg shadow-lg">
                   <p className="text-white font-bold text-lg">20+ Anos</p>
