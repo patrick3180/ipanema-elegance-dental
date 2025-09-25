@@ -92,7 +92,7 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
 
           {/* Hero Image - 40% on desktop - ULTRA OPTIMIZED */}
           <div className="w-full lg:w-2/5">
-            <div className="relative" style={{ aspectRatio: '760/996' }}>
+            <div className="relative w-[95%] h-[95%] mx-auto" style={{ aspectRatio: '760/996' }}>
               <UltraOptimizedPicture
                 src={backgroundImage || "/lovable-uploads/RIT08058-vertical-doutora-site.webp"}
                 alt="Dra. Carla Christoph - Consulta Odontológica Personalizada em Ipanema"
