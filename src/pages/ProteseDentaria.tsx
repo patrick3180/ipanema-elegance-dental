@@ -1,124 +1,644 @@
-
-import React from "react";
-import TreatmentPageTemplate from "@/components/TreatmentPageTemplate";
+import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
+import PageLayout from "@/components/PageLayout";
+import ServiceBreadcrumb from "@/components/ServiceBreadcrumb";
+import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
+import ComparisonTable from "@/components/blog/ComparisonTable";
+import { ComparisonTableItem } from "@/types/BlogPost";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { CheckCircle, Star, ArrowRight, Clock, Sparkles, Shield, Heart, Award, AlertCircle, Calendar } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 const ProteseDentaria = () => {
-  const treatmentData = {
-    slug: "protese-dentaria",
-    title: "Prótese Dentária em Ipanema: Recupere seu Sorriso com Confiança",
-    metaDescription: "Soluções em prótese dentária em Ipanema com a Dra. Carla Christoph. Devolva função e estética ao seu sorriso com tratamentos de reabilitação oral.",
-    introduction: "Perdeu um ou mais dentes ou está com sua prótese atual desconfortável? A Dra. Carla Christoph, especialista em Prótese Dentária em Ipanema, oferece soluções personalizadas para devolver a função mastigatória, a estética do seu sorriso e sua qualidade de vida.",
-    
-    sections: [
-      {
-        id: "o-que-e-protese",
-        title: "O Que é Prótese Dentária? Entenda a Solução",
-        content: "A Prótese Dentária é a especialidade da odontologia dedicada a restaurar e substituir dentes ausentes ou danificados, visando a reabilitação oral completa do paciente. Seja através de coroas unitárias, pontes fixas, próteses removíveis ou próteses sobre implantes, o objetivo é devolver a capacidade de mastigação, a fala correta e, fundamentalmente, a estética natural do sorriso. Em nossa clínica em Ipanema, a Dra. Carla Christoph planeja cada caso individualmente, utilizando materiais de alta qualidade para resultados duradouros.",
-        type: "default" as const
-      },
-      {
-        id: "tipos-de-protese",
-        title: "Tipos de Prótese Dentária Oferecidos em Ipanema",
-        content: [
-          "**Coroas Dentárias:** Capas protetoras que reconstroem a forma, função e estética de um dente danificado ou após um tratamento de canal.",
-          "**Pontes Fixas:** Substituem um ou mais dentes ausentes, apoiando-se nos dentes vizinhos ou em implantes.",
-          "**Próteses Parciais Removíveis (PPR):** Substituem alguns dentes ausentes e podem ser removidas pelo paciente para higienização.",
-          "**Próteses Totais (Dentaduras):** Substituem todos os dentes de uma arcada, devolvendo o sorriso completo.",
-          "**Prótese Sobre Implante:** Próteses fixas ou removíveis que se conectam a implantes dentários, oferecendo excelente estabilidade e retenção. Esta é uma área de grande expertise da Dra. Carla Christoph para reabilitação oral em Ipanema."
-        ],
-        type: "benefits" as const
-      },
-      {
-        id: "beneficios-protese",
-        title: "Benefícios da Reabilitação Oral com Prótese Dentária",
-        content: [
-          "**Restauração da Função Mastigatória:** Volte a comer seus alimentos preferidos com conforto e segurança.",
-          "**Melhoria na Dicção:** A ausência de dentes pode afetar a fala, e as próteses ajudam a corrigi-la.",
-          "**Recuperação da Estética do Sorriso:** Próteses modernas são confeccionadas para parecerem naturais, devolvendo a beleza do seu sorriso.",
-          "**Aumento da Autoestima e Confiança:** Um sorriso completo e funcional impacta positivamente sua vida social e profissional.",
-          "**Prevenção de Problemas Futuros:** A substituição de dentes ausentes evita a movimentação dos dentes remanescentes e problemas na articulação."
-        ],
-        type: "benefits" as const
-      },
-      {
-        id: "como-e-feito-protese",
-        title: "Seu Tratamento com Prótese Dentária em Ipanema: O Processo",
-        content: [
-          {
-            title: "Consulta de Avaliação Detalhada",
-            description: "Compreensão das suas necessidades, exame clínico, radiografias e, se necessário, escaneamento intraoral para um diagnóstico preciso."
-          },
-          {
-            title: "Planejamento Individualizado",
-            description: "Definição do tipo de prótese mais adequado, discussão sobre materiais e etapas do tratamento. O planejamento pode envolver o Design Digital do Sorriso (DSD) para visualização prévia dos resultados estéticos."
-          },
-          {
-            title: "Preparo dos Dentes (se aplicável)",
-            description: "Para coroas ou pontes fixas, pode ser necessário um preparo dos dentes de suporte."
-          },
-          {
-            title: "Moldagem/Escaneamento",
-            description: "Obtenção de um modelo preciso da sua boca para a confecção da prótese."
-          },
-          {
-            title: "Provas e Ajustes",
-            description: "Antes da finalização, são realizadas provas para garantir o encaixe perfeito, conforto e estética da prótese."
-          },
-          {
-            title: "Instalação/Cimentação",
-            description: "A prótese é finalmente instalada, e você recebe todas as orientações sobre cuidados e manutenção."
-          }
-        ],
-        type: "steps" as const
-      },
-      {
-        id: "cuidados-com-protese",
-        title: "Cuidados Essenciais com sua Prótese Dentária",
-        content: "Para garantir a longevidade e o bom funcionamento da sua prótese dentária, alguns cuidados são fundamentais:\n\nHigienize sua prótese e seus dentes naturais rigorosamente conforme as orientações da Dra. Carla Christoph.\n\nVisite regularmente seu dentista em Ipanema para avaliações e manutenção profissional da prótese.\n\nEvite morder alimentos excessivamente duros com próteses, especialmente as removíveis.\n\nSe sua prótese for removível, manuseie-a com cuidado para evitar quedas e fraturas.\n\nSiga todas as recomendações específicas para o seu tipo de prótese.",
-        type: "default" as const
-      }
-    ],
-    
-    faqs: [
-      {
-        question: "Quais são os tipos de prótese dentária disponíveis na clínica em Ipanema?",
-        answer: "Oferecemos uma variedade de soluções, incluindo coroas, pontes fixas, próteses parciais removíveis, próteses totais (dentaduras) e próteses sobre implantes, todas personalizadas pela Dra. Carla Christoph."
-      },
-      {
-        question: "Como saber se preciso de uma prótese dentária?",
-        answer: "Se você tem dentes ausentes, dentes muito danificados, dificuldade para mastigar ou está insatisfeito com próteses antigas, uma avaliação com nossa especialista em Prótese Dentária em Ipanema é o primeiro passo."
-      },
-      {
-        question: "Prótese dentária sobre implante é necessária? (E quando ela é a melhor indicação?)",
-        answer: "A necessidade é avaliada caso a caso. Próteses sobre implantes são uma excelente indicação para quem busca máxima estabilidade, conforto e preservação óssea, especialmente em casos de múltiplas perdas dentárias ou dentaduras que não se adaptam bem."
-      },
-      {
-        question: "Quanto tempo dura uma prótese dentária?",
-        answer: "A durabilidade varia conforme o tipo de prótese, os materiais utilizados e os cuidados do paciente, mas próteses bem confeccionadas e cuidadas podem durar muitos anos."
-      },
-      {
-        question: "Como devo cuidar da minha prótese dentária?",
-        answer: "A higienização correta e as visitas regulares ao dentista são cruciais. A Dra. Carla fornecerá instruções detalhadas para o seu tipo de prótese."
-      },
-      {
-        question: "A colocação de uma prótese dentária dói?",
-        answer: "Os procedimentos são realizados com anestesia e técnicas que visam o máximo conforto do paciente. Um leve desconforto pode ocorrer após alguns procedimentos, mas é gerenciável."
-      },
-      {
-        question: "O que influencia o valor de um tratamento com prótese dentária?",
-        answer: "O tipo de prótese, os materiais escolhidos (como porcelana pura ou zircônia), a complexidade do caso e o número de dentes envolvidos são fatores que influenciam o investimento. Discutiremos todas as opções e valores na sua consulta em Ipanema."
-      },
-      {
-        question: "Minha prótese antiga pode ser substituída ou ajustada?",
-        answer: "Sim, muitas vezes próteses antigas podem ser substituídas por soluções mais modernas e confortáveis, ou ajustadas para melhorar sua adaptação. Uma avaliação é necessária."
-      }
-    ],
-    
-    whatsappMessage: "Olá, gostaria de agendar uma avaliação para prótese dentária",
-    ctaHeading: "Pronto para Restaurar seu Sorriso e Qualidade de Vida em Ipanema?"
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+
+  const handleWhatsAppClick = (message: string) => {
+    const phone = "5521993304045";
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
   };
 
-  return <TreatmentPageTemplate {...treatmentData} />;
+  // Dados das FAQs
+  const faqs = [
+    {
+      question: "Qual tipo de prótese é melhor para meu caso?",
+      answer: "Cada caso é único e requer avaliação individualizada. A escolha depende de fatores como quantidade de dentes perdidos, condição óssea, saúde gengival, expectativas estéticas e estilo de vida. Durante a consulta de planejamento, analisamos todos esses aspectos para indicar a solução ideal para você."
+    },
+    {
+      question: "Quanto tempo dura uma prótese bem feita?",
+      answer: "Com materiais de qualidade e cuidados adequados, uma coroa ou ponte pode durar de 15 a 20 anos. Próteses sobre implante tendem a durar ainda mais, podendo ultrapassar 20 anos. A longevidade depende da higiene oral, visitas regulares ao dentista e cuidados diários."
+    },
+    {
+      question: "Prótese sobre implante vale o investimento?",
+      answer: "Para muitos pacientes, sim. A prótese sobre implante oferece vantagens únicas: preservação óssea total, não desgasta dentes vizinhos, maior durabilidade e sensação natural. Considerando a longevidade e qualidade de vida proporcionada, representa excelente custo-benefício a longo prazo."
+    },
+    {
+      question: "Como é a manutenção das próteses?",
+      answer: "Próteses fixas (coroas, pontes, sobre implante) são higienizadas como dentes naturais, com escovação e fio dental. Próteses removíveis devem ser retiradas para limpeza com produtos específicos. Visitas semestrais ao dentista são essenciais para manutenção profissional e ajustes quando necessário."
+    },
+    {
+      question: "Vou ficar sem dentes durante o tratamento?",
+      answer: "Nunca! Sempre providenciamos uma prótese provisória para que você mantenha estética e função durante todo o tratamento. Nosso compromisso é com seu conforto e vida social. Você não passará nenhum momento sem dentes."
+    },
+    {
+      question: "Prótese pode parecer natural?",
+      answer: "Absolutamente! Utilizamos técnicas como estratificação de cerâmica, caracterização individualizada e ajuste de cor personalizado. O resultado são dentes que imitam perfeitamente a natureza, com translucidez, textura e aparência indistinguíveis dos dentes naturais."
+    },
+    {
+      question: "Qual a diferença entre porcelana e resina?",
+      answer: "A porcelana (cerâmica) oferece superior estética, durabilidade e resistência a manchas. É nossa escolha para casos definitivos. A resina pode ser usada em provisórios ou situações específicas. Utilizamos apenas materiais premium importados para garantir o melhor resultado."
+    },
+    {
+      question: "É possível fazer prótese com pouco osso?",
+      answer: "Sim! Para próteses convencionais (não sobre implante), a quantidade óssea não é limitante. Para próteses sobre implante, técnicas como enxerto ósseo ou implantes zigomáticos podem viabilizar o tratamento mesmo com pouco osso. Uma avaliação tomográfica determina as possibilidades."
+    },
+    {
+      question: "Quando trocar uma prótese antiga?",
+      answer: "Sinais de que é hora de trocar: desgaste visível, mudança de cor, infiltrações, desadaptação, desconforto ao mastigar ou problemas gengivais ao redor da prótese. Uma avaliação profissional pode determinar o momento ideal para substituição."
+    },
+    {
+      question: "O procedimento é doloroso?",
+      answer: "Os procedimentos são realizados com anestesia local eficaz e técnicas que priorizam o conforto. A maioria dos pacientes relata menos desconforto do que esperavam. Providenciamos medicação adequada e acompanhamento próximo quando necessário."
+    },
+    {
+      question: "Qual a vantagem de um especialista?",
+      answer: "O especialista tem formação específica de 2-3 anos em prótese, domina técnicas avançadas, trabalha com os melhores laboratórios e tem experiência em casos complexos. Isso se traduz em próteses com melhor adaptação, estética superior e maior durabilidade."
+    },
+    {
+      question: "Prótese fixa ou removível: como escolher?",
+      answer: "A prótese fixa oferece maior conforto, segurança e sensação natural, mas requer condições específicas (dentes pilares saudáveis ou possibilidade de implantes). A removível é uma opção quando não há suporte para fixa. Avaliamos todos os fatores para indicar a melhor solução."
+    }
+  ];
+
+  // Dados da tabela comparativa
+  const comparisonData: ComparisonTableItem[] = [
+    {
+      "Criterio": "",
+      "Rótulo coluna A": "Coroa/Ponte", 
+      "Rótulo coluna B": "Removível",
+      "Sobre Implante": "Sobre Implante"
+    },
+    {
+      "Criterio": "Indicação",
+      "Rótulo coluna A": "1-3 dentes",
+      "Rótulo coluna B": "Múltiplos/todos",
+      "Sobre Implante": "Qualquer quantidade"
+    },
+    {
+      "Criterio": "Fixação", 
+      "Rótulo coluna A": "Dente preparado",
+      "Rótulo coluna B": "Grampos/mucosa",
+      "Sobre Implante": "Implante ósseo"
+    },
+    {
+      "Criterio": "Durabilidade",
+      "Rótulo coluna A": "10-15 anos", 
+      "Rótulo coluna B": "5-7 anos",
+      "Sobre Implante": "20+ anos"
+    },
+    {
+      "Criterio": "Preserva osso",
+      "Rótulo coluna A": "Parcial",
+      "Rótulo coluna B": "Não", 
+      "Sobre Implante": "Total"
+    },
+    {
+      "Criterio": "Sensação",
+      "Rótulo coluna A": "Natural",
+      "Rótulo coluna B": "Adaptação",
+      "Sobre Implante": "Como dente próprio"
+    },
+    {
+      "Criterio": "Manutenção", 
+      "Rótulo coluna A": "Como dente",
+      "Rótulo coluna B": "Remove p/ limpar",
+      "Sobre Implante": "Como dente"
+    },
+    {
+      "Criterio": "Investimento",
+      "Rótulo coluna A": "Moderado",
+      "Rótulo coluna B": "Inicial menor", 
+      "Sobre Implante": "Maior (melhor custo-benefício)"
+    }
+  ];
+
+  return (
+    <>
+      <Helmet>
+        <title>Prótese Dentária em Ipanema: Recupere Função e Estética do Sorriso</title>
+        <meta name="description" content="Prótese dentária em Ipanema com especialista. Coroas, pontes e próteses sobre implante. Reabilitação oral completa com 20+ anos de experiência." />
+        <link rel="canonical" href="https://www.dracarlachristoph.com/protese-dentaria" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Prótese Dentária em Ipanema | Reabilitação Oral" />
+        <meta property="og:description" content="Recupere função e estética do sorriso com prótese dentária de alta qualidade em Ipanema." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.dracarlachristoph.com/protese-dentaria" />
+        <meta property="og:image" content="https://www.dracarlachristoph.com/dra-carla-protese.jpg" />
+        
+        {/* Schema Markup */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "MedicalProcedure",
+            "name": "Prótese Dentária",
+            "description": "Reabilitação oral com próteses dentárias fixas e removíveis",
+            "procedureType": "Dental",
+            "provider": {
+              "@type": "Dentist",
+              "name": "Dra. Carla Christoph",
+              "telephone": "+55-21-99330-4045",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Ipanema",
+                "addressRegion": "RJ",
+                "addressCountry": "BR"
+              }
+            }
+          })}
+        </script>
+      </Helmet>
+
+      <PageLayout>
+        {/* Hero Section */}
+        <section className="relative py-16 bg-gradient-to-br from-dental-purple/10 to-dental-gold/5">
+          <div className="container-custom">
+            <ServiceBreadcrumb
+              serviceName="Prótese Dentária"
+            />
+            
+            <div className="mt-8 max-w-4xl">
+              <h1 className="heading-xl mb-4 text-dental-purple">
+                Prótese Dentária em Ipanema: Recupere Função e Estética do Sorriso
+              </h1>
+              <p className="text-xl text-dental-gray mb-8">
+                Recupere a confiança, função mastigatória e qualidade de vida
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Quick Answer Box */}
+        <section className="py-8 bg-white">
+          <div className="container-custom">
+            <QuickAnswerBox
+              answer="Prótese dentária é a especialidade odontológica que restaura e substitui dentes ausentes ou danificados através de coroas, pontes, próteses removíveis ou sobre implantes. O tratamento devolve função mastigatória, estética natural e qualidade de vida, com planejamento individualizado e materiais de alta qualidade."
+            />
+          </div>
+        </section>
+
+        {/* Introdução Empática */}
+        <section className="py-12 bg-white">
+          <div className="container-custom">
+            <div className="max-w-4xl mx-auto">
+              <p className="text-lg leading-relaxed text-dental-gray mb-6">
+                Sabemos como a perda dentária impacta profundamente sua vida. Não é apenas sobre 
+                estética - é sobre o constrangimento em reuniões sociais, a dificuldade para 
+                saborear seus pratos favoritos, as mudanças na fala que afetam sua comunicação. 
+                Compreendemos essas dificuldades e, mais importante, temos as soluções para 
+                transformar essa realidade.
+              </p>
+              <p className="text-lg leading-relaxed text-dental-gray">
+                Com mais de 20 anos dedicados à reabilitação oral, desenvolvemos em nossa clínica 
+                em Ipanema um protocolo que une tecnologia de ponta - como scanner intraoral iTero 
+                e planejamento digital - com um cuidado verdadeiramente personalizado. Cada prótese 
+                é planejada considerando não apenas a função, mas a harmonia com seu rosto e seu 
+                estilo de vida.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Cards de Modalidades */}
+        <section className="py-12 bg-dental-beige/20">
+          <div className="container-custom">
+            <h2 className="heading-lg mb-8 text-center text-dental-purple">
+              Modalidades de Prótese Dentária Disponíveis
+            </h2>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {/* Coroas Dentárias */}
+              <Card className="hover:shadow-lg transition-all">
+                <CardContent className="p-6">
+                  <div className="text-dental-gold mb-4">
+                    <Sparkles size={32} />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3 text-dental-purple">
+                    Coroas Dentárias
+                  </h3>
+                  <p className="text-dental-gray mb-4">
+                    Capas protetoras em cerâmica pura ou zircônia que recobrem e protegem 
+                    dentes danificados, devolvendo forma, função e estética impecável.
+                  </p>
+                  <ul className="space-y-2 text-sm text-dental-gray">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
+                      <span>Proteção completa do dente</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
+                      <span>Estética indistinguível do natural</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
+                      <span>Durabilidade superior a 15 anos</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              {/* Pontes Fixas */}
+              <Card className="hover:shadow-lg transition-all">
+                <CardContent className="p-6">
+                  <div className="text-dental-purple mb-4">
+                    <Shield size={32} />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3 text-dental-purple">
+                    Pontes Fixas
+                  </h3>
+                  <p className="text-dental-gray mb-4">
+                    Substituem um ou mais dentes ausentes através de uma estrutura fixa 
+                    apoiada em dentes vizinhos ou implantes.
+                  </p>
+                  <ul className="space-y-2 text-sm text-dental-gray">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
+                      <span>Solução fixa e confortável</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
+                      <span>Mastigação segura</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
+                      <span>Sem metal aparente</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              {/* Prótese Sobre Implante */}
+              <Card className="hover:shadow-lg transition-all">
+                <CardContent className="p-6">
+                  <div className="text-dental-gold mb-4">
+                    <Award size={32} />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3 text-dental-purple">
+                    Prótese Sobre Implante
+                  </h3>
+                  <p className="text-dental-gray mb-4">
+                    A solução mais avançada: próteses fixas ou removíveis ancoradas em 
+                    implantes, oferecendo máxima estabilidade.
+                  </p>
+                  <ul className="space-y-2 text-sm text-dental-gray">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
+                      <span>Preservação óssea total</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
+                      <span>Sensação natural</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
+                      <span>Maior longevidade</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              {/* Próteses Removíveis */}
+              <Card className="hover:shadow-lg transition-all">
+                <CardContent className="p-6">
+                  <div className="text-dental-purple mb-4">
+                    <Heart size={32} />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3 text-dental-purple">
+                    Próteses Removíveis
+                  </h3>
+                  <p className="text-dental-gray mb-4">
+                    Parciais (PPR) ou totais (dentaduras) modernas, com melhor adaptação 
+                    e estética superior.
+                  </p>
+                  <ul className="space-y-2 text-sm text-dental-gray">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
+                      <span>Solução acessível</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
+                      <span>Fácil manutenção</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
+                      <span>Rápida adaptação</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              {/* Protocolo All-on-4/6 */}
+              <Card className="hover:shadow-lg transition-all">
+                <CardContent className="p-6">
+                  <div className="text-dental-gold mb-4">
+                    <Star size={32} />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3 text-dental-purple">
+                    Protocolo All-on-4/6
+                  </h3>
+                  <p className="text-dental-gray mb-4">
+                    Reabilitação total da arcada sobre 4 ou 6 implantes, com prótese fixa 
+                    para transformação completa do sorriso.
+                  </p>
+                  <ul className="space-y-2 text-sm text-dental-gray">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
+                      <span>Dentes fixos definitivos</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
+                      <span>Sem enxerto ósseo</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
+                      <span>Transformação completa</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Tabela Comparativa */}
+        <section className="py-12 bg-white">
+          <div className="container-custom">
+            <ComparisonTable
+              data={comparisonData}
+            />
+          </div>
+        </section>
+
+        {/* Processo Detalhado */}
+        <section className="py-12 bg-dental-beige/20">
+          <div className="container-custom">
+            <h2 className="heading-lg mb-4 text-center text-dental-purple">
+              Sua Jornada para um Novo Sorriso
+            </h2>
+            <p className="text-center text-dental-gray mb-12 max-w-2xl mx-auto">
+              Cada etapa é cuidadosamente planejada para garantir conforto, precisão e resultados excepcionais
+            </p>
+            
+            <div className="max-w-4xl mx-auto">
+              <div className="space-y-6">
+                {[
+                  {
+                    number: "1",
+                    title: "Consulta de Diagnóstico Completo",
+                    description: "Análise facial, exame clínico, radiografias digitais e escaneamento intraoral para diagnóstico preciso e planejamento personalizado.",
+                    icon: Clock
+                  },
+                  {
+                    number: "2",
+                    title: "Preparo Minimamente Invasivo",
+                    description: "Quando necessário, preparamos os dentes com máxima preservação de estrutura saudável, sempre priorizando técnicas conservadoras.",
+                    icon: Shield
+                  },
+                  {
+                    number: "3",
+                    title: "Moldagem Digital de Precisão",
+                    description: "Scanner intraoral elimina desconforto de moldeiras, garantindo precisão milimétrica. O arquivo 3D é enviado diretamente ao laboratório parceiro para confecção da prótese.",
+                    icon: Sparkles
+                  },
+                  {
+                    number: "4",
+                    title: "Prova e Ajustes Estéticos",
+                    description: "Antes da finalização, realizamos provas para garantir encaixe perfeito, conforto ideal e estética natural que harmonize com seu sorriso.",
+                    icon: CheckCircle
+                  },
+                  {
+                    number: "5",
+                    title: "Instalação Definitiva",
+                    description: "Cimentação com materiais de última geração, garantindo longevidade e naturalidade. Você sai com seu novo sorriso e todas as orientações de cuidados.",
+                    icon: Star
+                  },
+                  {
+                    number: "6",
+                    title: "Acompanhamento Continuado",
+                    description: "Consultas de manutenção para preservar seu investimento e garantir a saúde do seu sorriso por muitos anos.",
+                    icon: Heart
+                  }
+                ].map((step, index) => (
+                  <div key={index} className="flex gap-4 items-start">
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 rounded-full bg-dental-gold/10 flex items-center justify-center">
+                        <span className="text-dental-gold font-semibold">{step.number}</span>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold mb-2 text-dental-purple">
+                        {step.title}
+                      </h3>
+                      <p className="text-dental-gray">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Casos Especiais */}
+        <section className="py-12 bg-white">
+          <div className="container-custom">
+            <h2 className="heading-lg mb-8 text-center text-dental-purple">
+              Soluções para Casos Complexos
+            </h2>
+            
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <Card>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold mb-3 text-dental-purple">
+                    Reabilitação Oral Completa
+                  </h3>
+                  <p className="text-dental-gray mb-4">
+                    Para casos de múltiplas perdas, desgaste severo ou problemas de mordida, 
+                    desenvolvemos um protocolo completo que restabelece função, estética e 
+                    dimensão vertical, com rejuvenescimento facial natural.
+                  </p>
+                  <ul className="space-y-2 text-sm text-dental-gray">
+                    <li className="flex items-start gap-2">
+                      <ArrowRight className="text-dental-gold mt-0.5" size={16} />
+                      <span>Análise oclusal completa</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <ArrowRight className="text-dental-gold mt-0.5" size={16} />
+                      <span>Restabelecimento da mordida</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <ArrowRight className="text-dental-gold mt-0.5" size={16} />
+                      <span>Rejuvenescimento facial</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold mb-3 text-dental-purple">
+                    Próteses Estéticas de Alta Performance
+                  </h3>
+                  <p className="text-dental-gray mb-4">
+                    Utilizamos cerâmicas de última geração (E-max, Zircônia) com estratificação 
+                    artesanal, reproduzindo translucidez, textura e caracterização individual 
+                    dos dentes naturais.
+                  </p>
+                  <ul className="space-y-2 text-sm text-dental-gray">
+                    <li className="flex items-start gap-2">
+                      <ArrowRight className="text-dental-gold mt-0.5" size={16} />
+                      <span>Cerâmicas premium importadas</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <ArrowRight className="text-dental-gold mt-0.5" size={16} />
+                      <span>Estratificação artesanal</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <ArrowRight className="text-dental-gold mt-0.5" size={16} />
+                      <span>Resultado indistinguível</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Seção da Especialista */}
+        <section className="py-12 bg-gradient-to-br from-dental-purple/5 to-dental-gold/5">
+          <div className="container-custom">
+            <h2 className="heading-lg mb-8 text-center text-dental-purple">
+              Expertise e Experiência em Reabilitação Oral
+            </h2>
+            
+            <div className="max-w-4xl mx-auto">
+              <Card className="shadow-lg">
+                <CardContent className="p-8">
+                  <div className="grid md:grid-cols-[200px,1fr] gap-8 items-center">
+                    <div className="mx-auto md:mx-0">
+                      <img
+                        src="/lovable-uploads/dra-carla-avatar.jpg"
+                        alt="Dra. Carla Christoph - Especialista em Prótese Dentária"
+                        className="w-48 h-48 rounded-full object-cover"
+                      />
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-2xl font-semibold mb-2 text-dental-purple">
+                        Dra. Carla Christoph
+                      </h3>
+                      <p className="text-dental-gold font-medium mb-4">
+                        Especialista em Prótese Dentária e Implantes | CRO-RJ 27.509
+                      </p>
+                      
+                      <div className="space-y-3 text-dental-gray">
+                        <p className="flex items-start gap-2">
+                          <CheckCircle className="text-dental-gold mt-0.5 flex-shrink-0" size={16} />
+                          <span>Mais de 20 anos dedicados à reabilitação oral</span>
+                        </p>
+                        <p className="flex items-start gap-2">
+                          <CheckCircle className="text-dental-gold mt-0.5 flex-shrink-0" size={16} />
+                          <span>8 anos como dentista militar na Marinha do Brasil nas clínicas de prótese e odontogeriatria</span>
+                        </p>
+                        <p className="flex items-start gap-2">
+                          <CheckCircle className="text-dental-gold mt-0.5 flex-shrink-0" size={16} />
+                          <span>Atualização contínua em técnicas e materiais</span>
+                        </p>
+                      </div>
+                      
+                      <p className="mt-4 text-dental-gray italic">
+                        "Cada sorriso conta uma história única. Nossa missão é reconstruir 
+                        não apenas dentes, mas devolver a confiança para viver plenamente, 
+                        sem limitações."
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <div className="mt-8 text-center text-dental-gray">
+                <p>
+                  Trabalhamos em conjunto com especialistas em Periodontia quando o caso 
+                  requer abordagem multidisciplinar, sempre coordenados pela Dra. Carla 
+                  para garantir o melhor resultado.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQs */}
+        <section className="py-12 bg-dental-beige/20">
+          <div className="container-custom">
+            <h2 className="heading-lg mb-8 text-center text-dental-purple">
+              Perguntas Frequentes sobre Prótese Dentária
+            </h2>
+            
+            <div className="max-w-4xl mx-auto">
+              <Accordion type="single" collapsible className="w-full space-y-4">
+                {faqs.map((faq, index) => (
+                  <AccordionItem 
+                    value={`item-${index + 1}`} 
+                    key={index}
+                    className="bg-white rounded-lg border border-dental-purple/20 px-6"
+                  >
+                    <AccordionTrigger className="text-left text-base font-semibold text-dental-purple hover:text-dental-gold transition-colors py-6">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-dental-gray leading-relaxed pb-6">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Final */}
+        <section className="py-16 bg-dental-purple text-white">
+          <div className="container-custom text-center">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Award className="w-8 h-8 text-dental-gold" />
+              <h2 className="heading-lg">
+                Pronto para Reconstruir seu Sorriso?
+              </h2>
+            </div>
+            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+              Agende sua consulta de planejamento e descubra como a prótese dentária 
+              pode transformar sua qualidade de vida. Tecnologia, experiência e 
+              cuidado personalizado aguardam você em Ipanema.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <button 
+                onClick={() => handleWhatsAppClick('Olá! Vi a página sobre prótese dentária e gostaria de agendar uma avaliação com a Dra. Carla Christoph')}
+                className="bg-dental-gold text-dental-purple px-8 py-4 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-all inline-flex items-center gap-2"
+              >
+                <ArrowRight className="w-5 h-5" />
+                Agendar Avaliação pelo WhatsApp
+              </button>
+            </div>
+            
+            <p className="mt-6 text-sm opacity-75">
+              Atendimento de segunda a sexta, das 9h às 18h
+            </p>
+          </div>
+        </section>
+      </PageLayout>
+    </>
+  );
 };
 
 export default ProteseDentaria;
