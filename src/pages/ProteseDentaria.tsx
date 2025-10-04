@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
-import ServiceBreadcrumb from "@/components/ServiceBreadcrumb";
+import TreatmentHero from "@/components/treatment/TreatmentHero";
+import SectionDivider from "@/components/treatment/SectionDivider";
 import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import ComparisonTable from "@/components/blog/ComparisonTable";
 import { ComparisonTableItem } from "@/types/BlogPost";
@@ -12,10 +13,11 @@ import { Card, CardContent } from "@/components/ui/card";
 const ProteseDentaria = () => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
-  const handleWhatsAppClick = (message: string) => {
+  const handleWhatsAppClick = (message?: string) => {
     const phone = "5521993304045";
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
+    const defaultMessage = "Olá! Gostaria de agendar uma consulta de avaliação para prótese dentária com a Dra. Carla Christoph.";
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message || defaultMessage)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   // Dados das FAQs
@@ -161,22 +163,21 @@ const ProteseDentaria = () => {
 
       <PageLayout>
         {/* Hero Section */}
-        <section className="relative py-16 bg-gradient-to-br from-dental-purple/10 to-dental-gold/5">
-          <div className="container-custom">
-            <ServiceBreadcrumb
-              serviceName="Prótese Dentária"
-            />
-            
-            <div className="mt-8 max-w-4xl">
-              <h1 className="heading-xl mb-4 text-dental-purple">
-                Prótese Dentária em Ipanema: Recupere Função e Estética do Sorriso
-              </h1>
-              <p className="text-xl text-dental-gray mb-8">
-                Recupere a confiança, função mastigatória e qualidade de vida
-              </p>
-            </div>
-          </div>
-        </section>
+        <TreatmentHero
+          title="Prótese Dentária e Reabilitação Oral"
+          subtitle="Especialidade da Dra. Carla Christoph"
+          description="Reconstrução completa do sorriso com planejamento personalizado e materiais de excelência. Especialista com mais de 20 anos de experiência em casos de alta complexidade."
+          badges={["20+ anos de experiência", "CRO-RJ 27.509", "Casos Complexos"]}
+          doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+          breadcrumbs={[
+            { label: "Início", href: "/" },
+            { label: "Tratamentos", href: "/servicos" },
+            { label: "Prótese Dentária" }
+          ]}
+        />
+
+        {/* Section Divider */}
+        <SectionDivider variant="with-icon" icon={<Award size={20} />} />
 
         {/* Quick Answer Box */}
         <section className="py-8 bg-white">
