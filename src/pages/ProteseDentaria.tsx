@@ -7,8 +7,9 @@ import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import ComparisonTable from "@/components/blog/ComparisonTable";
 import { ComparisonTableItem } from "@/types/BlogPost";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Search, Scan, Star, ArrowRight, Sparkles, Shield, Heart, Award, AlertCircle, Calendar, CheckCircle, Package } from "lucide-react";
+import { Search, Scan, Star, ArrowRight, Sparkles, Shield, Heart, Award, AlertCircle, Calendar, CheckCircle, Package, Zap } from "lucide-react";
 import ProcessTimeline from '@/components/treatment/ProcessTimeline';
+import InfoCard from '@/components/treatment/InfoCard';
 import { Card, CardContent } from "@/components/ui/card";
 
 const ProteseDentaria = () => {
@@ -212,6 +213,8 @@ const ProteseDentaria = () => {
         </section>
 
         {/* Cards de Modalidades */}
+        <SectionDivider variant="with-icon" icon={<Sparkles size={20} />} />
+        
         <section className="py-12 bg-dental-beige/20">
           <div className="container-custom">
             <h2 className="heading-lg mb-8 text-center text-dental-purple">
@@ -219,155 +222,47 @@ const ProteseDentaria = () => {
             </h2>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {/* Coroas Dentárias */}
-              <Card className="hover:shadow-lg transition-all">
-                <CardContent className="p-6">
-                  <div className="text-dental-gold mb-4">
-                    <Sparkles size={32} />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3 text-dental-purple">
-                    Coroas Dentárias
-                  </h3>
-                  <p className="text-dental-gray mb-4">
-                    Capas protetoras em cerâmica pura ou zircônia que recobrem e protegem 
-                    dentes danificados, devolvendo forma, função e estética impecável.
-                  </p>
-                  <ul className="space-y-2 text-sm text-dental-gray">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
-                      <span>Proteção completa do dente</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
-                      <span>Estética indistinguível do natural</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
-                      <span>Durabilidade superior a 15 anos</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
+              <InfoCard
+                icon={<Sparkles size={24} />}
+                title="Coroas Dentárias"
+                description="Capas protetoras em cerâmica pura ou zircônia que recobrem e protegem dentes danificados, devolvendo forma, função e estética impecável."
+                variant="default"
+              />
 
-              {/* Pontes Fixas */}
-              <Card className="hover:shadow-lg transition-all">
-                <CardContent className="p-6">
-                  <div className="text-dental-purple mb-4">
-                    <Shield size={32} />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3 text-dental-purple">
-                    Pontes Fixas
-                  </h3>
-                  <p className="text-dental-gray mb-4">
-                    Substituem um ou mais dentes ausentes através de uma estrutura fixa 
-                    apoiada em dentes vizinhos ou implantes.
-                  </p>
-                  <ul className="space-y-2 text-sm text-dental-gray">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
-                      <span>Solução fixa e confortável</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
-                      <span>Mastigação segura</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
-                      <span>Sem metal aparente</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
+              <InfoCard
+                icon={<Zap size={24} />}
+                title="Pontes Fixas"
+                description="Prótese fixa que substitui um ou mais dentes perdidos, ancorada em dentes vizinhos ou implantes, restaurando função e estética."
+                variant="default"
+              />
 
-              {/* Prótese Sobre Implante */}
-              <Card className="hover:shadow-lg transition-all">
-                <CardContent className="p-6">
-                  <div className="text-dental-gold mb-4">
-                    <Award size={32} />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3 text-dental-purple">
-                    Prótese Sobre Implante
-                  </h3>
-                  <p className="text-dental-gray mb-4">
-                    A solução mais avançada: próteses fixas ou removíveis ancoradas em 
-                    implantes, oferecendo máxima estabilidade.
-                  </p>
-                  <ul className="space-y-2 text-sm text-dental-gray">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
-                      <span>Preservação óssea total</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
-                      <span>Sensação natural</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
-                      <span>Maior longevidade</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
+              <InfoCard
+                icon={<Shield size={24} />}
+                title="Prótese sobre Implante"
+                description="A combinação ideal de estabilidade e naturalidade. Prótese fixada em implantes dentários para máximo conforto e durabilidade."
+                variant="highlighted"
+              />
 
-              {/* Próteses Removíveis */}
-              <Card className="hover:shadow-lg transition-all">
-                <CardContent className="p-6">
-                  <div className="text-dental-purple mb-4">
-                    <Heart size={32} />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3 text-dental-purple">
-                    Próteses Removíveis
-                  </h3>
-                  <p className="text-dental-gray mb-4">
-                    Parciais (PPR) ou totais (dentaduras) modernas, com melhor adaptação 
-                    e estética superior.
-                  </p>
-                  <ul className="space-y-2 text-sm text-dental-gray">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
-                      <span>Solução acessível</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
-                      <span>Fácil manutenção</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
-                      <span>Rápida adaptação</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
+              <InfoCard
+                icon={<Heart size={24} />}
+                title="Próteses Removíveis"
+                description="Parciais (PPR) ou totais (dentaduras) modernas, com melhor adaptação e estética superior."
+                variant="default"
+              />
 
-              {/* Protocolo All-on-4/6 */}
-              <Card className="hover:shadow-lg transition-all">
-                <CardContent className="p-6">
-                  <div className="text-dental-gold mb-4">
-                    <Star size={32} />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3 text-dental-purple">
-                    Protocolo All-on-4/6
-                  </h3>
-                  <p className="text-dental-gray mb-4">
-                    Reabilitação total da arcada sobre 4 ou 6 implantes, com prótese fixa 
-                    para transformação completa do sorriso.
-                  </p>
-                  <ul className="space-y-2 text-sm text-dental-gray">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
-                      <span>Dentes fixos definitivos</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
-                      <span>Sem enxerto ósseo</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="text-dental-gold mt-0.5" size={16} />
-                      <span>Transformação completa</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
+              <InfoCard
+                icon={<Star size={24} />}
+                title="Protocolo All-on-4/6"
+                description="Reabilitação total da arcada sobre 4 ou 6 implantes, com prótese fixa para transformação completa do sorriso."
+                variant="premium"
+              />
+
+              <InfoCard
+                icon={<Award size={24} />}
+                title="Prótese Overdenture"
+                description="Prótese removível estabilizada por implantes, unindo praticidade de remoção com firmeza e conforto ao mastigar."
+                variant="default"
+              />
             </div>
           </div>
         </section>
