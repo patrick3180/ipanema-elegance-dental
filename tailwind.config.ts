@@ -59,6 +59,20 @@ export default {
           beige: "hsl(var(--background))",  // Light beige as main background - use CSS variable
           gray: "#808080",        // Neutral gray for secondary text and borders
           gold: "#B3955F",        // Copper gold for refined details and icons
+          
+          // Purple variations
+          'purple-light': "#4a2759",
+          'purple-dark': "#2a1735",
+          'purple-soft': "#5a3f69",
+          
+          // Gold variations
+          'gold-light': "#c5a66f",
+          'gold-dark': "#9d7f4f",
+          'gold-accent': "#d4b57e",
+          
+          // Beige variations
+          'beige-dark': "#bfb7a4",
+          'beige-light': "#e5e1d4",
         },
       },
       borderRadius: {

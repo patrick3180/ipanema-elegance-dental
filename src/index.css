@@ -80,14 +80,28 @@
     text-wrap: balance;
   }
   
+  /* Premium spacing utilities */
   .section-spacing {
-    @apply py-16 md:py-24 lg:py-32;
+    @apply py-16 md:py-20 lg:py-24;
+  }
+  
+  .section-spacing-sm {
+    @apply py-12 md:py-16;
   }
   
   .container-custom {
     @apply container mx-auto px-6 lg:px-8;
   }
   
+  .content-container {
+    @apply max-w-7xl mx-auto px-6 lg:px-8;
+  }
+  
+  .prose-container {
+    @apply max-w-4xl mx-auto px-6 lg:px-8;
+  }
+  
+  /* Typography utilities */
   .heading-xl {
     @apply text-4xl md:text-4xl xl:text-5xl font-display font-medium leading-tight;
   }
@@ -106,6 +120,40 @@
   
   .body-md {
     @apply text-base md:text-lg text-dental-purple/80;
+  }
+  
+  /* Sophisticated gradient utilities */
+  .bg-gradient-purple-gold {
+    background: linear-gradient(135deg, #381F47 0%, #B3955F 100%);
+  }
+
+  .bg-gradient-purple-soft {
+    background: linear-gradient(135deg, rgba(56, 31, 71, 0.03) 0%, rgba(56, 31, 71, 0.08) 100%);
+  }
+
+  .bg-gradient-gold-subtle {
+    background: linear-gradient(135deg, rgba(179, 149, 95, 0.10) 0%, rgba(179, 149, 95, 0.05) 100%);
+  }
+
+  .overlay-dark {
+    background: linear-gradient(135deg, rgba(56, 31, 71, 0.60) 0%, rgba(56, 31, 71, 0.30) 100%);
+  }
+  
+  /* Elegant shadow system */
+  .shadow-soft {
+    box-shadow: 0 4px 16px rgba(56, 31, 71, 0.08), 0 2px 8px rgba(56, 31, 71, 0.04);
+  }
+
+  .shadow-elegant {
+    box-shadow: 0 8px 24px rgba(56, 31, 71, 0.12), 0 4px 12px rgba(56, 31, 71, 0.06);
+  }
+
+  .shadow-gold {
+    box-shadow: 0 6px 20px rgba(179, 149, 95, 0.15), 0 3px 10px rgba(179, 149, 95, 0.08);
+  }
+
+  .shadow-hover {
+    box-shadow: 0 12px 32px rgba(56, 31, 71, 0.16), 0 6px 16px rgba(56, 31, 71, 0.10);
   }
   
   .elegant-shadow {
