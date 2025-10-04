@@ -7,7 +7,8 @@ import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import ComparisonTable from "@/components/blog/ComparisonTable";
 import { ComparisonTableItem } from "@/types/BlogPost";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { CheckCircle, Star, ArrowRight, Clock, Sparkles, Shield, Heart, Award, AlertCircle, Calendar } from "lucide-react";
+import { Search, Cpu, Scan, Star, ArrowRight, Sparkles, Shield, Heart, Award, AlertCircle, Calendar, CheckCircle } from "lucide-react";
+import ProcessTimeline from '@/components/treatment/ProcessTimeline';
 import { Card, CardContent } from "@/components/ui/card";
 
 const ProteseDentaria = () => {
@@ -380,7 +381,10 @@ const ProteseDentaria = () => {
           </div>
         </section>
 
-        {/* Processo Detalhado */}
+        {/* Section Divider */}
+        <SectionDivider variant="simple" />
+
+        {/* Processo Detalhado com ProcessTimeline */}
         <section className="py-12 bg-dental-beige/20">
           <div className="container-custom">
             <h2 className="heading-lg mb-4 text-center text-dental-purple">
@@ -390,64 +394,59 @@ const ProteseDentaria = () => {
               Cada etapa é cuidadosamente planejada para garantir conforto, precisão e resultados excepcionais
             </p>
             
-            <div className="max-w-4xl mx-auto">
-              <div className="space-y-6">
-                {[
-                  {
-                    number: "1",
-                    title: "Consulta de Diagnóstico Completo",
-                    description: "Análise facial, exame clínico, radiografias digitais e escaneamento intraoral para diagnóstico preciso e planejamento personalizado.",
-                    icon: Clock
-                  },
-                  {
-                    number: "2",
-                    title: "Preparo Minimamente Invasivo",
-                    description: "Quando necessário, preparamos os dentes com máxima preservação de estrutura saudável, sempre priorizando técnicas conservadoras.",
-                    icon: Shield
-                  },
-                  {
-                    number: "3",
-                    title: "Moldagem Digital de Precisão",
-                    description: "Scanner intraoral elimina desconforto de moldeiras, garantindo precisão milimétrica. O arquivo 3D é enviado diretamente ao laboratório parceiro para confecção da prótese.",
-                    icon: Sparkles
-                  },
-                  {
-                    number: "4",
-                    title: "Prova e Ajustes Estéticos",
-                    description: "Antes da finalização, realizamos provas para garantir encaixe perfeito, conforto ideal e estética natural que harmonize com seu sorriso.",
-                    icon: CheckCircle
-                  },
-                  {
-                    number: "5",
-                    title: "Instalação Definitiva",
-                    description: "Cimentação com materiais de última geração, garantindo longevidade e naturalidade. Você sai com seu novo sorriso e todas as orientações de cuidados.",
-                    icon: Star
-                  },
-                  {
-                    number: "6",
-                    title: "Acompanhamento Continuado",
-                    description: "Consultas de manutenção para preservar seu investimento e garantir a saúde do seu sorriso por muitos anos.",
-                    icon: Heart
-                  }
-                ].map((step, index) => (
-                  <div key={index} className="flex gap-4 items-start">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-dental-gold/10 flex items-center justify-center">
-                        <span className="text-dental-gold font-semibold">{step.number}</span>
-                      </div>
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-lg font-semibold mb-2 text-dental-purple">
-                        {step.title}
-                      </h3>
-                      <p className="text-dental-gray">
-                        {step.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <ProcessTimeline
+              steps={[
+                {
+                  number: 1,
+                  title: "Consulta de Diagnóstico Completo",
+                  description: "Análise facial, exame clínico, radiografias digitais e escaneamento intraoral para diagnóstico preciso e planejamento personalizado.",
+                  icon: <Search size={24} />,
+                  duration: "1a Consulta"
+                },
+                {
+                  number: 2,
+                  title: "Preparo Minimamente Invasivo",
+                  description: "Quando necessário, preparamos os dentes com máxima preservação de estrutura saudável, sempre priorizando técnicas conservadoras.",
+                  icon: <Shield size={24} />,
+                  duration: "1a Consulta"
+                },
+                {
+                  number: 3,
+                  title: "Moldagem Digital de Precisão",
+                  description: "Scanner intraoral elimina desconforto de moldeiras, garantindo precisão milimétrica. O arquivo 3D é enviado diretamente ao laboratório parceiro.",
+                  icon: <Scan size={24} />,
+                  duration: "1a Consulta"
+                },
+                {
+                  number: 4,
+                  title: "Confecção e aplicação de dente provisório",
+                  description: "Confecção e colocação do dente provisório para garantir a estética e função até a colocação da prótese definitiva.",
+                  icon: <Scan size={24} />,
+                  duration: "1a Consulta"
+                },
+                {
+                  number: 5,
+                  title: "Confecção Artesanal",
+                  description: "Nosso laboratório parceiro cria sua prótese com cerâmicas premium, estratificando cores e texturas para um resultado indistinguível de dentes naturais.",
+                  icon: <Sparkles size={24} />,
+                  duration: "1-2 semanas"
+                },
+                {
+                  number: 6,
+                  title: "Instalação e Ajuste Final",
+                  description: "Cimentação ou fixação da prótese com ajustes minuciosos de oclusão. Você sai com seu novo sorriro e todas as orientações de cuidados.",
+                  icon: <Star size={24} />,
+                  duration: "1a Consulta"
+                },
+                {
+                  number: 7,
+                  title: "Acompanhamento Continuado",
+                  description: "Consultas de manutenção para preservar seu investimento e garantir a saúde do seu sorriso por muitos anos.",
+                  icon: <Heart size={24} />,
+                  duration: "Periódico"
+                }
+              ]}
+            />
           </div>
         </section>
 
