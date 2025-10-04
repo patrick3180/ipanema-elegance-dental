@@ -7,13 +7,17 @@ import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import ComparisonTable from "@/components/blog/ComparisonTable";
 import { ComparisonTableItem } from "@/types/BlogPost";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Search, Scan, Star, ArrowRight, Sparkles, Shield, Heart, Award, AlertCircle, Calendar, CheckCircle, Package, Zap } from "lucide-react";
+import { Search, Scan, Star, ArrowRight, Sparkles, Shield, Heart, Award, AlertCircle, Calendar, CheckCircle, Package, Zap, PlayCircle } from "lucide-react";
 import ProcessTimeline from '@/components/treatment/ProcessTimeline';
 import InfoCard from '@/components/treatment/InfoCard';
 import { Card, CardContent } from "@/components/ui/card";
 
 const ProteseDentaria = () => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  
+  // Controla exibição da seção de vídeo
+  const hasVideo = false; // Mudar para true quando tiver o vídeo
+  const videoUrl = ""; // Adicionar URL do YouTube/Vimeo quando disponível
 
   const handleWhatsAppClick = (message?: string) => {
     const phone = "5521993304045";
@@ -503,6 +507,53 @@ const ProteseDentaria = () => {
             </div>
           </div>
         </section>
+
+        {/* Seção de Vídeo - Condicional */}
+        {hasVideo && (
+          <section className="py-16 bg-white">
+            <div className="container-custom">
+              <SectionDivider variant="with-icon" icon={<PlayCircle size={20} />} />
+              
+              <h2 className="heading-lg mb-4 text-center text-dental-purple">
+                Conheça a Dra. Carla Christoph
+              </h2>
+              <p className="text-center text-dental-gray mb-12 max-w-2xl mx-auto">
+                Assista e entenda como trabalhamos em casos de reabilitação oral complexa
+              </p>
+              
+              <div className="max-w-4xl mx-auto">
+                <div className="relative aspect-video rounded-2xl overflow-hidden shadow-elegant">
+                  {videoUrl ? (
+                    <iframe
+                      src={videoUrl}
+                      title="Vídeo da Dra. Carla Christoph sobre Prótese Dentária"
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-purple-soft flex items-center justify-center">
+                      <div className="text-center">
+                        <PlayCircle className="w-20 h-20 text-dental-gold mx-auto mb-4" />
+                        <p className="text-dental-purple font-semibold">
+                          Vídeo em breve
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
+                <div className="mt-6 bg-dental-beige/20 p-6 rounded-xl">
+                  <p className="text-dental-gray">
+                    <strong className="text-dental-purple">Neste vídeo:</strong> A Dra. Carla 
+                    explica sua abordagem em casos de reabilitação oral, mostra o consultório 
+                    e os equipamentos utilizados, e compartilha sua filosofia de trabalho.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* FAQs */}
         <section className="py-12 bg-dental-beige/20">
