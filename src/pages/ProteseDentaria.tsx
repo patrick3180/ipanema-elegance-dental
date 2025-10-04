@@ -411,63 +411,94 @@ const ProteseDentaria = () => {
         </section>
 
         {/* Seção da Especialista */}
-        <section className="py-12 bg-gradient-to-br from-dental-purple/5 to-dental-gold/5">
+        <section className="py-16 bg-gradient-purple-soft">
           <div className="container-custom">
-            <h2 className="heading-lg mb-8 text-center text-dental-purple">
+            <SectionDivider variant="with-icon" icon={<Award size={20} />} />
+            
+            <h2 className="heading-lg mb-12 text-center text-dental-purple">
               Expertise e Experiência em Reabilitação Oral
             </h2>
-            
-            <div className="max-w-4xl mx-auto">
-              <Card className="shadow-lg">
-                <CardContent className="p-8">
-                  <div className="grid md:grid-cols-[200px,1fr] gap-8 items-center">
-                    <div className="mx-auto md:mx-0">
-                      <img
-                        src="/lovable-uploads/dra-carla-avatar.jpg"
-                        alt="Dra. Carla Christoph - Especialista em Prótese Dentária"
-                        className="w-48 h-48 rounded-full object-cover"
-                      />
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-2xl font-semibold mb-2 text-dental-purple">
-                        Dra. Carla Christoph
-                      </h3>
-                      <p className="text-dental-gold font-medium mb-4">
-                        Especialista em Prótese Dentária e Implantes | CRO-RJ 27.509
-                      </p>
-                      
-                      <div className="space-y-3 text-dental-gray">
-                        <p className="flex items-start gap-2">
-                          <CheckCircle className="text-dental-gold mt-0.5 flex-shrink-0" size={16} />
-                          <span>Mais de 20 anos dedicados à reabilitação oral</span>
-                        </p>
-                        <p className="flex items-start gap-2">
-                          <CheckCircle className="text-dental-gold mt-0.5 flex-shrink-0" size={16} />
-                          <span>8 anos como dentista militar na Marinha do Brasil nas clínicas de prótese e odontogeriatria</span>
-                        </p>
-                        <p className="flex items-start gap-2">
-                          <CheckCircle className="text-dental-gold mt-0.5 flex-shrink-0" size={16} />
-                          <span>Atualização contínua em técnicas e materiais</span>
-                        </p>
-                      </div>
-                      
-                      <p className="mt-4 text-dental-gray italic">
-                        "Cada sorriso conta uma história única. Nossa missão é reconstruir 
-                        não apenas dentes, mas devolver a confiança para viver plenamente, 
-                        sem limitações."
-                      </p>
+
+            <div className="max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-[300px,1fr] gap-8 items-start">
+                
+                {/* Foto da Dra. - Maior e mais destacada */}
+                <div className="mx-auto md:mx-0">
+                  <div className="relative">
+                    <img
+                      src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+                      alt="Dra. Carla Christoph - Especialista em Prótese Dentária"
+                      className="w-full rounded-2xl shadow-elegant"
+                    />
+                    {/* Badge flutuante */}
+                    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-dental-gold text-white px-6 py-2 rounded-full shadow-gold font-semibold text-sm whitespace-nowrap">
+                      20+ Anos de Experiência
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-              
-              <div className="mt-8 text-center text-dental-gray">
-                <p>
-                  Trabalhamos em conjunto com especialistas em Periodontia quando o caso 
-                  requer abordagem multidisciplinar, sempre coordenados pela Dra. Carla 
-                  para garantir o melhor resultado.
-                </p>
+                </div>
+                
+                {/* Conteúdo */}
+                <div className="bg-white p-8 rounded-2xl shadow-soft">
+                  <div className="mb-6">
+                    <h3 className="text-3xl font-display font-semibold text-dental-purple mb-2">
+                      Dra. Carla Christoph
+                    </h3>
+                    <p className="text-dental-gold-dark font-medium text-lg">
+                      CRO-RJ 27.509 | Especialista em Prótese Dentária
+                    </p>
+                  </div>
+                  
+                  <div className="space-y-4 text-dental-gray leading-relaxed">
+                    <p>
+                      Com mais de duas décadas dedicadas à reabilitação oral, a Dra. Carla 
+                      desenvolveu expertise reconhecida em casos de alta complexidade. Sua 
+                      abordagem combina precisão técnica com sensibilidade artística.
+                    </p>
+                    
+                    <p>
+                      Cada caso é tratado de forma absolutamente individual. "Não existem 
+                      sorrisos padronizados - cada prótese é única, planejada para harmonizar 
+                      com suas características faciais e estilo de vida", explica a especialista.
+                    </p>
+                  </div>
+                  
+                  {/* Credenciais */}
+                  <div className="mt-6 pt-6 border-t border-dental-gray/20">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="text-dental-gold mt-1" size={20} />
+                        <div>
+                          <p className="font-semibold text-dental-purple">Formação</p>
+                          <p className="text-sm text-dental-gray">Especialista em Prótese Dentária e Implantodontia</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="text-dental-gold mt-1" size={20} />
+                        <div>
+                          <p className="font-semibold text-dental-purple">Experiência</p>
+                          <p className="text-sm text-dental-gray">8 anos como dentista militar na Marinha</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="text-dental-gold mt-1" size={20} />
+                        <div>
+                          <p className="font-semibold text-dental-purple">Atualização</p>
+                          <p className="text-sm text-dental-gray">Cursos contínuos em DSD e scanner intraoral</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="text-dental-gold mt-1" size={20} />
+                        <div>
+                          <p className="font-semibold text-dental-purple">Tecnologia</p>
+                          <p className="text-sm text-dental-gray">Scanner iTero e planejamento digital</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

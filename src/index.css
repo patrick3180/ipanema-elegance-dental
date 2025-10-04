@@ -277,3 +277,20 @@
 .highlight-fade {
   animation: highlightFade 3s ease-in-out;
 }
+
+/* Gradientes e sombras premium para seção da especialista */
+.bg-gradient-purple-soft {
+  background: linear-gradient(135deg, hsl(250 100% 98%) 0%, hsl(30 100% 97%) 100%);
+}
+
+.shadow-elegant {
+  box-shadow: 0 10px 40px -10px hsl(var(--dental-purple) / 0.2);
+}
+
+.shadow-soft {
+  box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08);
+}
+
+.shadow-gold {
+  box-shadow: 0 4px 12px hsl(var(--dental-gold) / 0.3);
+}
