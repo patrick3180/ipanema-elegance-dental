@@ -455,11 +455,11 @@ const ProteseDentaria = () => {
                       abordagem combina precisão técnica com sensibilidade artística.
                     </p>
                     
-                    <p>
-                      Cada caso é tratado de forma absolutamente individual. "Não existem 
-                      sorrisos padronizados - cada prótese é única, planejada para harmonizar 
-                      com suas características faciais e estilo de vida", explica a especialista.
-                    </p>
+            <p>
+              Cada caso é tratado de forma absolutamente individual. Não existem 
+              sorrisos padronizados - cada prótese é única, planejada para harmonizar 
+              com suas características faciais e estilo de vida.
+            </p>
                   </div>
                   
                   {/* Credenciais */}
