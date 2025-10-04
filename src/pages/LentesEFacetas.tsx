@@ -1,7 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
-import ServiceBreadcrumb from "@/components/ServiceBreadcrumb";
+import TreatmentHero from "@/components/treatment/TreatmentHero";
+import SectionDivider from "@/components/treatment/SectionDivider";
 import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import ComparisonTable from "@/components/blog/ComparisonTable";
 import OptimizedImage from "@/components/OptimizedImage";
@@ -86,7 +87,7 @@ const LentesEFacetas = () => {
     }
   ];
 
-  const handleWhatsAppClick = (message: string) => {
+  const handleWhatsAppClick = (message?: string) => {
     // GCLID tracking preservado
     const gclid = new URLSearchParams(window.location.search).get('gclid');
     if (gclid) {
@@ -102,7 +103,8 @@ const LentesEFacetas = () => {
       });
     }
     
-    window.open(`https://wa.me/5521993304045?text=${encodeURIComponent(message)}`);
+    const defaultMessage = "Olá! Gostaria de conhecer o processo de lentes de contato dental e facetas de porcelana.";
+    window.open(`https://wa.me/5521993304045?text=${encodeURIComponent(message || defaultMessage)}`);
   };
 
   return (
@@ -162,38 +164,22 @@ const LentesEFacetas = () => {
       </Helmet>
       
       <PageLayout>
-        <section className="pt-20">
-          <div className="container-custom">
-            <ServiceBreadcrumb 
-              serviceName="Lentes de Contato Dental e Facetas de Resina"
-            />
-          </div>
-        </section>
-        
         {/* Hero Section */}
-        <section className="py-8 md:py-12 bg-dental-beige/20">
-          <div className="container-custom">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="heading-xl mb-6 text-dental-purple">
-                Lentes de Contato Dental e Facetas de Resina em Ipanema
-              </h1>
-              <p className="text-xl text-dental-gray mb-8 leading-relaxed">
-                Transforme seu sorriso preservando seus dentes. Especialista em Prótese Dental 
-                com mais de 20 anos criando sorrisos naturais e harmônicos.
-              </p>
-              
-              <div className="flex justify-center">
-                <button 
-                  onClick={() => handleWhatsAppClick("Olá! Gostaria de agendar uma avaliação para lentes de contato dental com a Dra. Carla.")}
-                  className="bg-dental-purple hover:bg-dental-purple/90 text-white px-8 py-4 text-lg rounded-lg font-semibold inline-flex items-center gap-2 transition-colors"
-                >
-                  <ArrowRight className="w-5 h-5" />
-                  Agendar Avaliação Estética
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
+        <TreatmentHero
+          title="Lentes de Contato Dental e Facetas de Porcelana"
+          subtitle="Transformação Estética com Naturalidade"
+          description="Lâminas ultrafinas de porcelana que transformam seu sorriso com precisão e arte. Design digital personalizado para resultados naturais e harmoniosos com suas características únicas."
+          badges={["Design Digital do Sorriso", "Cerâmica Premium", "Resultados Naturais"]}
+          doctorImage="/lovable-uploads/doutora-em-pe-jaleco.webp"
+          breadcrumbs={[
+            { label: "Início", href: "/" },
+            { label: "Tratamentos", href: "/servicos" },
+            { label: "Lentes e Facetas" }
+          ]}
+        />
+
+        {/* Section Divider */}
+        <SectionDivider variant="with-icon" icon={<Sparkles size={20} />} />
 
         {/* Quick Answer Box - ESSENCIAL PARA IA */}
         <section className="py-4 bg-white">
