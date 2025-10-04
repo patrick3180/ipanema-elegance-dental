@@ -236,12 +236,12 @@ const ProteseDentaria = () => {
                 variant="default"
               />
 
-              <InfoCard
-                icon={<Shield size={24} />}
-                title="Prótese sobre Implante"
-                description="A combinação ideal de estabilidade e naturalidade. Prótese fixada em implantes dentários para máximo conforto e durabilidade."
-                variant="highlighted"
-              />
+            <InfoCard
+              icon={<Shield size={24} />}
+              title="Prótese sobre Implante"
+              description="A combinação ideal de estabilidade e naturalidade. Prótese fixada em implantes dentários para máximo conforto e durabilidade."
+              variant="default"
+            />
 
               <InfoCard
                 icon={<Heart size={24} />}
@@ -250,12 +250,12 @@ const ProteseDentaria = () => {
                 variant="default"
               />
 
-              <InfoCard
-                icon={<Star size={24} />}
-                title="Protocolo All-on-4/6"
-                description="Reabilitação total da arcada sobre 4 ou 6 implantes, com prótese fixa para transformação completa do sorriso."
-                variant="premium"
-              />
+            <InfoCard
+              icon={<Star size={24} />}
+              title="Protocolo All-on-4/6"
+              description="Reabilitação total da arcada sobre 4 ou 6 implantes, com prótese fixa para transformação completa do sorriso."
+              variant="default"
+            />
 
               <InfoCard
                 icon={<Award size={24} />}
