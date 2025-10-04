@@ -7,7 +7,7 @@ import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import ComparisonTable from "@/components/blog/ComparisonTable";
 import { ComparisonTableItem } from "@/types/BlogPost";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Search, Cpu, Scan, Star, ArrowRight, Sparkles, Shield, Heart, Award, AlertCircle, Calendar, CheckCircle } from "lucide-react";
+import { Search, Scan, Star, ArrowRight, Sparkles, Shield, Heart, Award, AlertCircle, Calendar, CheckCircle, Package } from "lucide-react";
 import ProcessTimeline from '@/components/treatment/ProcessTimeline';
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -417,13 +417,13 @@ const ProteseDentaria = () => {
                   icon: <Scan size={24} />,
                   duration: "1a Consulta"
                 },
-                {
-                  number: 4,
-                  title: "Confecção e aplicação de dente provisório",
-                  description: "Confecção e colocação do dente provisório para garantir a estética e função até a colocação da prótese definitiva.",
-                  icon: <Scan size={24} />,
-                  duration: "1a Consulta"
-                },
+        {
+          number: 4,
+          title: "Confecção e aplicação de dente provisório",
+          description: "Confecção e colocação do dente provisório para garantir a estética e função até a colocação da prótese definitiva.",
+          icon: <Package size={24} />,
+          duration: "1a Consulta"
+        },
                 {
                   number: 5,
                   title: "Confecção Artesanal",
