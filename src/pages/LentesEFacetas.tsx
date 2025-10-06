@@ -820,96 +820,163 @@ const LentesEFacetas = () => {
           </div>
         </section>
 
-        {/* Estética e Saúde: Nossa Abordagem Integrada */}
-        <section className="py-12 bg-white">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              Além da Estética: Saúde Como Prioridade
-            </h2>
-            
-            <div className="max-w-6xl mx-auto">
-              <div className="bg-red-50 border-l-4 border-red-400 p-6 rounded-lg mb-8">
+        {/* Além da Estética: Saúde Como Prioridade */}
+        <section className="py-12 bg-gradient-to-b from-white to-dental-beige/20">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
+                Além da Estética: Saúde Como Prioridade
+              </h2>
+              <p className="text-lg text-dental-gray max-w-3xl mx-auto">
+                Um sorriso verdadeiramente bonito começa com dentes e gengivas saudáveis. Na nossa abordagem, estética e saúde caminham juntas.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 mb-8">
+              {/* COLUNA ESQUERDA - Alerta de Problemas */}
+              <div className="bg-red-50 border-l-4 border-red-400 p-6 rounded-lg">
                 <div className="flex items-start gap-3 mb-4">
-                  <Shield className="w-6 h-6 text-red-500 mt-1" />
+                  <Shield className="w-6 h-6 text-red-500 mt-1 flex-shrink-0" />
                   <h3 className="font-semibold text-lg text-red-900">
                     Problemas Comuns em Tratamentos Mal Executados
                   </h3>
                 </div>
-                <p className="text-dental-gray mb-4">
-                  Muitos pacientes chegam com problemas decorrentes de 
-                  tratamentos realizados sem os devidos cuidados:
+                <p className="text-dental-gray mb-4 text-sm">
+                  Muitos pacientes chegam com complicações decorrentes de tratamentos realizados sem os devidos cuidados:
                 </p>
-                <ul className="space-y-2 text-dental-gray">
-                  {[
-                    "Facetas sem adaptação adequada: Dificultam a higienização, causando inflamação gengival e mau hálito",
-                    "Preparo excessivo ou inadequado: Enfraquece o dente e pode causar sensibilidade permanente",
-                    "Sobrecontorno: Acúmulo de placa bacteriana e desenvolvimento de gengivite",
-                    "Aspecto artificial: 'Dentes de chiclete' que denunciam o procedimento",
-                    "Oclusão inadequada: Dores na ATM e desgaste prematuro"
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <span className="text-red-500 mt-1">•</span>
-                      <span><strong>{item.split(':')[0]}:</strong> {item.split(':')[1]}</span>
-                    </li>
-                  ))}
+                <ul className="space-y-3 text-dental-gray text-sm">
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-500 mt-1 flex-shrink-0">•</span>
+                    <span><strong>Adaptação inadequada:</strong> Dificulta higienização, causa inflamação gengival e mau hálito</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-500 mt-1 flex-shrink-0">•</span>
+                    <span><strong>Preparo excessivo:</strong> Enfraquece o dente e causa sensibilidade permanente</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-500 mt-1 flex-shrink-0">•</span>
+                    <span><strong>Sobrecontorno:</strong> Acúmulo de placa bacteriana e desenvolvimento de gengivite</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-500 mt-1 flex-shrink-0">•</span>
+                    <span><strong>Aspecto artificial:</strong> "Dentes de chiclete" que denuncam o procedimento</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-500 mt-1 flex-shrink-0">•</span>
+                    <span><strong>Oclusão comprometida:</strong> Dores na ATM (articulação) e desgaste precoce</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-500 mt-1 flex-shrink-0">•</span>
+                    <span><strong>Falta de acompanhamento:</strong> Problemas não detectados precocemente</span>
+                  </li>
                 </ul>
               </div>
-              
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="bg-green-50 p-6 rounded-lg">
-                  <div className="flex items-start gap-3 mb-4">
-                    <Heart className="w-6 h-6 text-green-600 mt-1" />
-                    <h3 className="font-semibold text-lg text-green-900">
-                      Nossa Abordagem: Saúde em Primeiro Lugar
-                    </h3>
+
+              {/* COLUNA DIREITA - Nossa Abordagem (4 cards empilhados) */}
+              <div className="space-y-4">
+                {/* Card 1 */}
+                <div className="bg-green-50 p-5 rounded-lg border-l-4 border-green-400">
+                  <div className="flex items-start gap-3 mb-3">
+                    <CheckCircle className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
+                    <h4 className="font-semibold text-green-900">
+                      Avaliação Periodontal Completa
+                    </h4>
                   </div>
-                  <ul className="space-y-3 text-dental-gray">
-                    {[
-                      "Avaliação periodontal completa antes de qualquer procedimento estético",
-                      "Mock-up físico obrigatório para você aprovar o resultado antes de começar",
-                      "Perfil de emergência natural que facilita a higienização diária",
-                      "Ajuste oclusal minucioso para prevenir fraturas e problemas na ATM",
-                      "Acompanhamento periódico para manutenção da saúde bucal"
-                    ].map((item, index) => (
-                      <li key={index} className="flex items-start gap-2">
-                        <span className="text-green-600 text-sm mt-1">▸</span>
-                        <span className="text-sm"><strong>{item.split(' ')[0]} {item.split(' ')[1]}</strong> {item.split(' ').slice(2).join(' ')}</span>
-                      </li>
-                    ))}
+                  <ul className="space-y-2 text-dental-gray text-sm ml-8">
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-600 mt-1">▸</span>
+                      <span>Saúde gengival verificada antes de iniciar estética</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-600 mt-1">▸</span>
+                      <span>Tratamento de gengivite/periodontite quando necessário</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-600 mt-1">▸</span>
+                      <span>Gengivoplastia para harmonização (se indicado)</span>
+                    </li>
                   </ul>
                 </div>
-                
-                <div className="bg-blue-50 p-6 rounded-lg">
-                  <div className="flex items-start gap-3 mb-4">
-                    <Star className="w-6 h-6 text-blue-600 mt-1" />
-                    <h3 className="font-semibold text-lg text-blue-900">
-                      Busca Pela Naturalidade Absoluta
-                    </h3>
+
+                {/* Card 2 */}
+                <div className="bg-green-50 p-5 rounded-lg border-l-4 border-green-400">
+                  <div className="flex items-start gap-3 mb-3">
+                    <CheckCircle className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
+                    <h4 className="font-semibold text-green-900">
+                      Análise Oclusal (Mordida)
+                    </h4>
                   </div>
-                  <ul className="space-y-3 text-dental-gray">
-                    {[
-                      "Análise facial detalhada para harmonia com suas características",
-                      "Estratificação de cor que imita a translucidez natural do esmalte", 
-                      "Textura superficial que reflete a luz como dentes naturais",
-                      "Proporções individualizadas respeitando sua idade e personalidade",
-                      "Evitamos o 'efeito Hollywood' artificial e padronizado"
-                    ].map((item, index) => (
-                      <li key={index} className="flex items-start gap-2">
-                        <span className="text-blue-600 text-sm mt-1">▸</span>
-                        <span className="text-sm"><strong>{item.split(' ')[0]} {item.split(' ')[1]}</strong> {item.split(' ').slice(2).join(' ')}</span>
-                      </li>
-                    ))}
+                  <ul className="space-y-2 text-dental-gray text-sm ml-8">
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-600 mt-1">▸</span>
+                      <span>Verificação do encaixe dos dentes</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-600 mt-1">▸</span>
+                      <span>Ajustes para distribuição equilibrada das forças</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-600 mt-1">▸</span>
+                      <span>Prevenção de desgastes e dores na ATM</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Card 3 */}
+                <div className="bg-green-50 p-5 rounded-lg border-l-4 border-green-400">
+                  <div className="flex items-start gap-3 mb-3">
+                    <CheckCircle className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
+                    <h4 className="font-semibold text-green-900">
+                      Planejamento Conservador
+                    </h4>
+                  </div>
+                  <ul className="space-y-2 text-dental-gray text-sm ml-8">
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-600 mt-1">▸</span>
+                      <span>Preparo mínimo respeitando biologia dental</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-600 mt-1">▸</span>
+                      <span>Preservação máxima da estrutura sadia</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-600 mt-1">▸</span>
+                      <span>Margens adaptadas para facilitar higienização</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Card 4 */}
+                <div className="bg-green-50 p-5 rounded-lg border-l-4 border-green-400">
+                  <div className="flex items-start gap-3 mb-3">
+                    <CheckCircle className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
+                    <h4 className="font-semibold text-green-900">
+                      Materiais Biocompatíveis
+                    </h4>
+                  </div>
+                  <ul className="space-y-2 text-dental-gray text-sm ml-8">
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-600 mt-1">▸</span>
+                      <span>Cerâmicas que não causam inflamação gengival</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-600 mt-1">▸</span>
+                      <span>Cimentos adesivos de última geração</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-600 mt-1">▸</span>
+                      <span>Sem metais (livre de alergias)</span>
+                    </li>
                   </ul>
                 </div>
               </div>
-              
-              <div className="mt-8 bg-dental-beige/30 p-6 rounded-lg text-center">
-                <p className="text-lg text-dental-gray italic">
-                  "Um sorriso verdadeiramente bonito é aquele que ninguém percebe que foi tratado. 
-                  Nosso objetivo é que as pessoas admirem seu sorriso, não questionem o que você fez."
-                </p>
-                <p className="text-sm text-dental-gray/70 mt-2">- Dra. Carla Christoph</p>
-              </div>
+            </div>
+
+            {/* Quote centralizada abaixo */}
+            <div className="bg-dental-beige/30 p-6 rounded-lg text-center max-w-4xl mx-auto">
+              <p className="text-lg text-dental-gray italic font-medium">
+                "Antes de pensar em estética, sempre avalio a saúde. Um sorriso bonito precisa de uma base saudável para durar."
+              </p>
             </div>
           </div>
         </section>
