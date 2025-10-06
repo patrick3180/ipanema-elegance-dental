@@ -246,7 +246,7 @@ const ProteseDentaria = () => {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">
-                    Cerâmica E-max
+                    Cerâmica
                   </span>
                   <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">
                     Resultado Natural
@@ -286,8 +286,7 @@ const ProteseDentaria = () => {
             {/* Prótese sobre Implante - RECOMENDADA */}
             <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
               <div className="absolute top-4 right-4 bg-dental-gold text-white text-xs font-semibold px-3 py-1 rounded-full z-10">
-                RECOMENDADA
-              </div>
+                </div>
               <div className="aspect-[4/3] relative">
                 <img 
                   src="/Implante.webp"
@@ -305,7 +304,7 @@ const ProteseDentaria = () => {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">
-                    Mais Procurada
+                    Aspecto 100% natural
                   </span>
                   <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">
                     Máxima Estabilidade
