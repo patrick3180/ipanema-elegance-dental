@@ -44,7 +44,7 @@ const ProcessTimeline = ({ steps, className }: ProcessTimelineProps) => {
       {/* Vertical connecting line */}
       <div
         className={cn(
-          "absolute left-[50px] md:left-[80px] top-0 w-0.5 bg-dental-gold/30 transition-all duration-1000 ease-out",
+          "absolute left-[30px] md:left-[50px] top-0 w-0.5 bg-dental-gold/30 transition-all duration-1000 ease-out",
           isVisible ? "h-full opacity-100" : "h-0 opacity-0"
         )}
         aria-hidden="true"
@@ -73,7 +73,7 @@ const ProcessTimeline = ({ steps, className }: ProcessTimelineProps) => {
               
               {/* Circle on the line */}
               <div
-                className="absolute top-4 md:top-6 -right-[26px] md:-right-[42px] w-4 h-4 rounded-full bg-dental-gold border-4 border-white shadow-sm"
+                className="absolute top-4 md:top-6 -right-[6px] md:-right-[12px] w-4 h-4 rounded-full bg-dental-gold border-4 border-white shadow-sm"
                 aria-hidden="true"
               />
             </div>
