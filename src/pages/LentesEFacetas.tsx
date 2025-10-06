@@ -18,24 +18,19 @@ const LentesEFacetas = () => {
   const comparisonData: ComparisonTableItem[] = [
     {
       "Criterio": "Critério",
-      "Critério": "Critério", 
-      "Rótulo coluna A": "Lentes de Contato Dental",
+      "Critério": "Critério",
+      "Rótulo coluna A": "Lentes de Cerâmica",
       "Rótulo coluna B": "Facetas de Resina"
     },
     {
       "Criterio": "Espessura",
-      "Rótulo coluna A": "0,2 a 0,5mm",
-      "Rótulo coluna B": "0,7 a 1,5mm"
+      "Rótulo coluna A": "0,2-0,5mm",
+      "Rótulo coluna B": "0,7-1,5mm"
     },
     {
-      "Criterio": "Desgaste Dental",
-      "Rótulo coluna A": "Mínimo ou Zero",
-      "Rótulo coluna B": "Moderado"
-    },
-    {
-      "Criterio": "Material",
-      "Rótulo coluna A": "Porcelana/Cerâmica",
-      "Rótulo coluna B": "Resina Composta"
+      "Criterio": "Preparo dental",
+      "Rótulo coluna A": "Mínimo",
+      "Rótulo coluna B": "Mínimo a moderado"
     },
     {
       "Criterio": "Durabilidade",
@@ -43,19 +38,34 @@ const LentesEFacetas = () => {
       "Rótulo coluna B": "5-8 anos"
     },
     {
-      "Criterio": "Resistência a Manchas",
-      "Rótulo coluna A": "Total",
+      "Criterio": "Manchamento",
+      "Rótulo coluna A": "Não mancha",
+      "Rótulo coluna B": "Pode manchar"
+    },
+    {
+      "Criterio": "Consultas necessárias",
+      "Rótulo coluna A": "2-3 (15-20 dias)",
+      "Rótulo coluna B": "1-2 (imediato)"
+    },
+    {
+      "Criterio": "Possibilidade de reparo",
+      "Rótulo coluna A": "Não",
+      "Rótulo coluna B": "Sim"
+    },
+    {
+      "Criterio": "Estética",
+      "Rótulo coluna A": "Translucidez superior",
+      "Rótulo coluna B": "Muito boa"
+    },
+    {
+      "Criterio": "Investimento",
+      "Rótulo coluna A": "Premium",
+      "Rótulo coluna B": "Acessível"
+    },
+    {
+      "Criterio": "Resistência",
+      "Rótulo coluna A": "Alta",
       "Rótulo coluna B": "Moderada"
-    },
-    {
-      "Criterio": "Tempo de Tratamento",
-      "Rótulo coluna A": "2-3 consultas",
-      "Rótulo coluna B": "1-2 consultas"
-    },
-    {
-      "Criterio": "Indicação Principal",
-      "Rótulo coluna A": "Transformação completa e duradoura",
-      "Rótulo coluna B": "Correções estéticas acessíveis"
     }
   ];
 
@@ -598,6 +608,34 @@ const LentesEFacetas = () => {
             </div>
           </div>
         </section>
+
+        <SectionDivider variant="with-icon" icon={<Sparkles className="w-5 h-5" />} />
+
+        {/* Tabela Comparativa */}
+        <section className="py-12 bg-dental-beige/20">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
+                Comparação Detalhada: Lentes vs Facetas
+              </h2>
+              <p className="text-lg text-dental-gray">
+                Entenda lado a lado as características de cada tratamento
+              </p>
+            </div>
+
+            <div className="overflow-x-auto">
+              <ComparisonTable data={comparisonData} />
+            </div>
+
+            <div className="mt-8 text-center">
+              <p className="text-dental-gray italic">
+                A escolha ideal depende do seu caso específico. Na consulta, avalio detalhadamente e recomendo a melhor opção para você.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <SectionDivider variant="with-icon" icon={<Star className="w-5 h-5" />} />
 
         {/* Seção da Especialista - Dra. Carla */}
         <section className="py-12 bg-white">
