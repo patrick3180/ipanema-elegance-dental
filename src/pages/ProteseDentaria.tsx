@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
 import SectionDivider from "@/components/treatment/SectionDivider";
-import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
+
 import ComparisonTable from "@/components/blog/ComparisonTable";
 import { ComparisonTableItem } from "@/types/BlogPost";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -185,14 +185,6 @@ const ProteseDentaria = () => {
         {/* Section Divider */}
         <SectionDivider variant="with-icon" icon={<Award size={20} />} />
 
-        {/* Quick Answer Box */}
-        <section className="py-8 bg-white">
-          <div className="container-custom">
-            <QuickAnswerBox
-              answer="Prótese dentária é a especialidade odontológica que restaura e substitui dentes ausentes ou danificados através de coroas, pontes, próteses removíveis ou sobre implantes. O tratamento devolve função mastigatória, estética natural e qualidade de vida, com planejamento individualizado e materiais de alta qualidade."
-            />
-          </div>
-        </section>
 
         {/* Introdução Empática */}
         <section className="py-12 bg-white">
