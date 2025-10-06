@@ -670,6 +670,9 @@ const ProteseDentaria = () => {
           </div>
         </section>
 
+        {/* Section Divider */}
+        <SectionDivider variant="simple" />
+
         {/* CTA Final */}
         <section className="py-16 bg-dental-purple text-white">
           <div className="container-custom text-center">
@@ -696,7 +699,7 @@ const ProteseDentaria = () => {
             </div>
             
             <p className="mt-6 text-sm opacity-75">
-              Atendimento de segunda a sexta, das 9h às 18h
+              Atendimento de segunda a sexta, das 9h às 19h
             </p>
           </div>
         </section>
