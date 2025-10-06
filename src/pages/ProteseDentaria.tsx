@@ -7,7 +7,7 @@ import SectionDivider from "@/components/treatment/SectionDivider";
 import ComparisonTable from "@/components/blog/ComparisonTable";
 import { ComparisonTableItem } from "@/types/BlogPost";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Search, Scan, Star, ArrowRight, Sparkles, Shield, Heart, Award, AlertCircle, Calendar, CheckCircle, Package, Zap, PlayCircle, Clock, HelpCircle } from "lucide-react";
+import { Search, Scan, Star, ArrowRight, Sparkles, Shield, Heart, Award, AlertCircle, Calendar, CheckCircle, Package, Zap, PlayCircle, Clock, HelpCircle, Utensils, Smile } from "lucide-react";
 import ProcessTimeline from '@/components/treatment/ProcessTimeline';
 import InfoCard from '@/components/treatment/InfoCard';
 import { Card, CardContent } from "@/components/ui/card";
@@ -186,24 +186,57 @@ const ProteseDentaria = () => {
         <SectionDivider variant="with-icon" icon={<Award size={20} />} />
 
 
-        {/* Introdução Empática */}
-        <section className="py-12 bg-white">
+        {/* Reabilitação Oral que Transforma Vidas */}
+        <section className="py-16 bg-white">
           <div className="container-custom">
-            <div className="max-w-4xl mx-auto">
-              <p className="text-lg leading-relaxed text-dental-gray mb-6">
-                Sabemos como a perda dentária impacta profundamente sua vida. Não é apenas sobre 
-                estética - é sobre o constrangimento em reuniões sociais, a dificuldade para 
-                saborear seus pratos favoritos, as mudanças na fala que afetam sua comunicação. 
-                Compreendemos essas dificuldades e, mais importante, temos as soluções para 
-                transformar essa realidade.
-              </p>
-              <p className="text-lg leading-relaxed text-dental-gray">
-                Com mais de 20 anos dedicados à reabilitação oral, desenvolvemos em nossa clínica 
-                em Ipanema um protocolo que une tecnologia de ponta - como scanner intraoral iTero 
-                e planejamento digital - com um cuidado verdadeiramente personalizado. Cada prótese 
-                é planejada considerando não apenas a função, mas a harmonia com seu rosto e seu 
-                estilo de vida.
-              </p>
+            <h2 className="heading-lg mb-4 text-center text-dental-purple">
+              Reabilitação Oral que Transforma Vidas
+            </h2>
+            <p className="text-center text-dental-gray mb-12 max-w-2xl mx-auto">
+              Mais de 20 anos devolvendo função, estética e qualidade de vida
+            </p>
+            
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              
+              {/* Card 1 */}
+              <div className="text-center">
+                <div className="w-16 h-16 bg-dental-purple/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Utensils className="w-8 h-8 text-dental-purple" />
+                </div>
+                <h3 className="text-xl font-semibold text-dental-purple mb-3">
+                  Função Mastigatória
+                </h3>
+                <p className="text-dental-gray">
+                  Recupere o prazer de saborear seus alimentos favoritos com conforto e segurança
+                </p>
+              </div>
+              
+              {/* Card 2 */}
+              <div className="text-center">
+                <div className="w-16 h-16 bg-dental-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Smile className="w-8 h-8 text-dental-gold" />
+                </div>
+                <h3 className="text-xl font-semibold text-dental-purple mb-3">
+                  Estética Natural
+                </h3>
+                <p className="text-dental-gray">
+                  Próteses que imitam perfeitamente a cor, forma e translucidez dos dentes naturais
+                </p>
+              </div>
+              
+              {/* Card 3 */}
+              <div className="text-center">
+                <div className="w-16 h-16 bg-dental-purple/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Heart className="w-8 h-8 text-dental-purple" />
+                </div>
+                <h3 className="text-xl font-semibold text-dental-purple mb-3">
+                  Qualidade de Vida
+                </h3>
+                <p className="text-dental-gray">
+                  Resgate sua confiança e autoestima para sorrir sem constrangimento
+                </p>
+              </div>
+              
             </div>
           </div>
         </section>
