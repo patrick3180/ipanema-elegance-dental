@@ -299,101 +299,302 @@ const LentesEFacetas = () => {
           </div>
         </section>
 
-        {/* Comparação: Lentes vs Facetas de Resina */}
-        <section className="py-8 bg-gray-50">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              Qual a Melhor Opção para Você?
-            </h2>
-            
-            <div className="max-w-5xl mx-auto">
-              <ComparisonTable data={comparisonData} />
-              
-              {/* NOVO: Prós e Contras detalhados */}
-              <div className="grid md:grid-cols-2 gap-8 mt-12">
-                {/* Lentes de Contato Dental */}
-                <div className="bg-white p-6 rounded-lg shadow-md">
-                  <h3 className="text-xl font-semibold mb-4 text-dental-purple">
-                    Lentes de Contato Dental
-                  </h3>
+        {/* Seção Modalidades - Lentes vs Facetas */}
+        <section className="py-12 bg-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
+                Lentes ou Facetas: Entenda as Diferenças
+              </h2>
+              <p className="text-lg text-dental-gray">
+                Cada sorriso é único. Conheça as opções para uma escolha informada.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Card 1 - Lentes de Contato Dental */}
+              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
+                {/* Imagem de fundo */}
+                <div className="aspect-[4/3] relative">
+                  <img 
+                    src="/lovable-uploads/lentes.webp"
+                    alt="Lentes de contato dental em cerâmica ultra-finas"
+                    className="w-full h-full object-cover"
+                  />
+                  {/* Overlay gradiente */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
                   
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="font-semibold text-green-600 mb-2">✓ Vantagens</h4>
-                      <ul className="space-y-2 text-sm text-dental-gray">
-                        <li>• Durabilidade excepcional (15-20 anos)</li>
-                        <li>• Zero manchamento - mantém cor original</li>
-                        <li>• Preservação máxima do dente (desgaste mínimo)</li>
-                        <li>• Resultado extremamente natural</li>
-                        <li>• Biocompatibilidade superior</li>
-                        <li>• Resistência a fraturas</li>
-                      </ul>
-                    </div>
-                    
-                    <div>
-                      <h4 className="font-semibold text-red-600 mb-2">✗ Considerações</h4>
-                      <ul className="space-y-2 text-sm text-dental-gray">
-                        <li>• Investimento inicial maior</li>
-                        <li>• Processo irreversível (mesmo com desgaste mínimo)</li>
-                        <li>• Necessita laboratório especializado</li>
-                        <li>• 2-3 consultas necessárias</li>
-                      </ul>
-                    </div>
-                    
-                    <div className="bg-blue-50 p-3 rounded">
-                      <p className="text-sm font-medium">Ideal para:</p>
-                      <p className="text-sm text-dental-gray">
-                        Quem busca solução definitiva e duradoura, valoriza resultado 
-                        natural superior e pode fazer o investimento.
-                      </p>
-                    </div>
+                  {/* Conteúdo sobre a imagem */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <h3 className="text-2xl font-display font-bold mb-2">
+                      Lentes de Contato Dental em Cerâmica
+                    </h3>
+                    <p className="text-sm text-white/90 mb-4">
+                      As lentes de contato dental são lâminas ultra-finas de cerâmica (0,2-0,5mm) que se aderem à superfície frontal dos dentes. Indicadas para quem busca transformação significativa com máxima conservação da estrutura dental original.
+                    </p>
                   </div>
                 </div>
-                
-                {/* Facetas de Resina */}
-                <div className="bg-white p-6 rounded-lg shadow-md">
-                  <h3 className="text-xl font-semibold mb-4 text-dental-purple">
-                    Facetas de Resina
-                  </h3>
-                  
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="font-semibold text-green-600 mb-2">✓ Vantagens</h4>
-                      <ul className="space-y-2 text-sm text-dental-gray">
-                        <li>• Investimento mais acessível</li>
-                        <li>• Pode ser feita em 1-2 consultas</li>
-                        <li>• Reversível em alguns casos</li>
-                        <li>• Reparos possíveis se necessário</li>
-                        <li>• Resultado imediato</li>
-                        <li>• Ótima relação custo-benefício</li>
-                      </ul>
-                    </div>
-                    
-                    <div>
-                      <h4 className="font-semibold text-red-600 mb-2">✗ Considerações</h4>
-                      <ul className="space-y-2 text-sm text-dental-gray">
-                        <li>• Durabilidade menor (5-8 anos)</li>
-                        <li>• Pode manchar com o tempo</li>
-                        <li>• Necessita polimentos periódicos</li>
-                        <li>• Menos resistente a fraturas</li>
-                      </ul>
-                    </div>
-                    
-                    <div className="bg-blue-50 p-3 rounded">
-                      <p className="text-sm font-medium">Ideal para:</p>
-                      <p className="text-sm text-dental-gray">
-                        Quem deseja melhorar o sorriso com investimento menor, 
-                        casos menos complexos ou como transição para lentes.
-                      </p>
-                    </div>
-                  </div>
+
+                {/* Conteúdo expansível abaixo da imagem */}
+                <div className="bg-white p-6">
+                  <Accordion type="single" collapsible className="w-full">
+                    {/* Aba 1 - Características */}
+                    <AccordionItem value="caracteristicas">
+                      <AccordionTrigger className="text-left hover:text-dental-purple">
+                        <span className="font-semibold">Características Principais</span>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <ul className="space-y-2 text-dental-gray text-sm">
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Espessura:</strong> 0,2 a 0,5mm (ultra-fina)</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Material:</strong> Cerâmica de dissilicato de lítio ou feldspática</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Preparo:</strong> Mínimo (0,1-0,3mm) quando necessário</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Durabilidade:</strong> 15 a 20 anos</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Estética:</strong> Translucidez superior, aspecto natural</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Resistência:</strong> Não mancha com alimentos ou bebidas</span>
+                          </li>
+                        </ul>
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    {/* Aba 2 - Vantagens e Considerações */}
+                    <AccordionItem value="vantagens">
+                      <AccordionTrigger className="text-left hover:text-dental-purple">
+                        <span className="font-semibold">Vantagens e Considerações</span>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <div className="space-y-4">
+                          <div>
+                            <h4 className="font-semibold text-green-700 mb-2 flex items-center gap-2">
+                              <CheckCircle className="w-4 h-4" /> Vantagens
+                            </h4>
+                            <ul className="space-y-2 text-dental-gray text-sm">
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600 mt-1">✓</span>
+                                <span>Máxima preservação dental (até 95%)</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600 mt-1">✓</span>
+                                <span>Resultado extremamente natural</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600 mt-1">✓</span>
+                                <span>Não altera sensibilidade na maioria dos casos</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600 mt-1">✓</span>
+                                <span>Resistente a manchas permanentemente</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600 mt-1">✓</span>
+                                <span>Biocompatível e sem alergias</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600 mt-1">✓</span>
+                                <span>Durabilidade comprovada de longo prazo</span>
+                              </li>
+                            </ul>
+                          </div>
+                          
+                          <div>
+                            <h4 className="font-semibold text-dental-gray mb-2">Considerações</h4>
+                            <ul className="space-y-2 text-dental-gray text-sm">
+                              <li className="flex items-start gap-2">
+                                <span className="text-dental-gray mt-1">•</span>
+                                <span>Investimento mais elevado</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-dental-gray mt-1">•</span>
+                                <span>Requer 2-3 consultas (15-20 dias de processo)</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-dental-gray mt-1">•</span>
+                                <span>Laboratório especializado (tempo de confecção)</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-dental-gray mt-1">•</span>
+                                <span>Não permite reparos parciais</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    {/* Aba 3 - Ideal Para */}
+                    <AccordionItem value="ideal">
+                      <AccordionTrigger className="text-left hover:text-dental-purple">
+                        <span className="font-semibold">Ideal Para</span>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <p className="text-dental-gray text-sm">
+                            Quem busca o máximo em estética e durabilidade, deseja preservar ao máximo os dentes naturais e está disposto a investir em um tratamento premium de longa duração.
+                          </p>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
                 </div>
               </div>
-              
-              <p className="text-center mt-6 text-dental-gray">
-                A escolha ideal depende do seu caso específico. A Dra. Carla fará uma avaliação 
-                completa para recomendar a melhor opção para você.
-              </p>
+
+              {/* Card 2 - Facetas de Resina */}
+              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
+                {/* Imagem de fundo */}
+                <div className="aspect-[4/3] relative">
+                  <img 
+                    src="/lovable-uploads/faceta-resina.webp"
+                    alt="Facetas de resina composta sendo aplicadas"
+                    className="w-full h-full object-cover"
+                  />
+                  {/* Overlay gradiente */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+                  
+                  {/* Conteúdo sobre a imagem */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <h3 className="text-2xl font-display font-bold mb-2">
+                      Facetas de Resina Composta
+                    </h3>
+                    <p className="text-sm text-white/90 mb-4">
+                      Restaurações diretas confeccionadas artesanalmente no próprio consultório. Excelente opção para quem busca melhoria estética imediata com investimento mais acessível.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Conteúdo expansível abaixo da imagem */}
+                <div className="bg-white p-6">
+                  <Accordion type="single" collapsible className="w-full">
+                    {/* Aba 1 - Características */}
+                    <AccordionItem value="caracteristicas">
+                      <AccordionTrigger className="text-left hover:text-dental-purple">
+                        <span className="font-semibold">Características Principais</span>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <ul className="space-y-2 text-dental-gray text-sm">
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Espessura:</strong> 0,7 a 1,5mm</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Material:</strong> Resina composta nanoparticulada</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Preparo:</strong> Mínimo a moderado</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Durabilidade:</strong> 5 a 8 anos</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Estética:</strong> Muito boa, resultado imediato</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Aplicação:</strong> Direto na boca em 1-2 consultas</span>
+                          </li>
+                        </ul>
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    {/* Aba 2 - Vantagens e Considerações */}
+                    <AccordionItem value="vantagens">
+                      <AccordionTrigger className="text-left hover:text-dental-purple">
+                        <span className="font-semibold">Vantagens e Considerações</span>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <div className="space-y-4">
+                          <div>
+                            <h4 className="font-semibold text-green-700 mb-2 flex items-center gap-2">
+                              <CheckCircle className="w-4 h-4" /> Vantagens
+                            </h4>
+                            <ul className="space-y-2 text-dental-gray text-sm">
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600 mt-1">✓</span>
+                                <span>Investimento mais acessível</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600 mt-1">✓</span>
+                                <span>Resultado em 1-2 consultas (processo rápido)</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600 mt-1">✓</span>
+                                <span>Confecção direta sem laboratório</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600 mt-1">✓</span>
+                                <span>Reparos possíveis se necessário</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600 mt-1">✓</span>
+                                <span>Ótima relação custo-benefício</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600 mt-1">✓</span>
+                                <span>Resultado em menos tempo</span>
+                              </li>
+                            </ul>
+                          </div>
+                          
+                          <div>
+                            <h4 className="font-semibold text-dental-gray mb-2">Considerações</h4>
+                            <ul className="space-y-2 text-dental-gray text-sm">
+                              <li className="flex items-start gap-2">
+                                <span className="text-dental-gray mt-1">•</span>
+                                <span>Durabilidade menor que cerâmica</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-dental-gray mt-1">•</span>
+                                <span>Pode manchar com o tempo (requer polimento periódico)</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-dental-gray mt-1">•</span>
+                                <span>Menos resistente a fraturas</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-dental-gray mt-1">•</span>
+                                <span>Necessita substituição mais frequente</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    {/* Aba 3 - Ideal Para */}
+                    <AccordionItem value="ideal">
+                      <AccordionTrigger className="text-left hover:text-dental-purple">
+                        <span className="font-semibold">Ideal Para</span>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <p className="text-dental-gray text-sm">
+                            Quem deseja melhorar o sorriso com investimento menor, casos menos complexos, resultado imediato, ou como opção temporária enquanto planeja um tratamento definitivo.
+                          </p>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                </div>
+              </div>
             </div>
           </div>
         </section>
