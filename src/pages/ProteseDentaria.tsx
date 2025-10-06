@@ -195,7 +195,7 @@ const ProteseDentaria = () => {
         </section>
 
         {/* Introdução Empática */}
-        <section className="py-12 bg-white">
+        <section className="py-12 bg-dental-beige/10">
           <div className="container-custom">
             <div className="max-w-4xl mx-auto">
               <p className="text-lg leading-relaxed text-dental-gray mb-6">
@@ -402,7 +402,7 @@ const ProteseDentaria = () => {
       </section>
 
         {/* Tabela Comparativa */}
-        <section className="py-12 bg-white">
+        <section className="py-16 bg-dental-beige/20">
           <div className="container-custom">
             <ComparisonTable
               data={comparisonData}
@@ -411,10 +411,10 @@ const ProteseDentaria = () => {
         </section>
 
         {/* Section Divider */}
-        <SectionDivider variant="simple" />
+        <SectionDivider variant="with-icon" icon={<Clock size={20} />} />
 
         {/* Processo Detalhado com ProcessTimeline */}
-        <section className="py-12 bg-dental-beige/20">
+        <section className="py-16 bg-white">
           <div className="container-custom">
             <h2 className="heading-lg mb-4 text-center text-dental-purple">
               Sua Jornada para um Novo Sorriso
@@ -480,7 +480,7 @@ const ProteseDentaria = () => {
         </section>
 
         {/* Casos Especiais */}
-        <section className="py-12 bg-white">
+        <section className="py-16 bg-dental-beige/10">
           <div className="container-custom">
             <h2 className="heading-lg mb-8 text-center text-dental-purple">
               Soluções para Casos Complexos
@@ -685,8 +685,11 @@ const ProteseDentaria = () => {
           </section>
         )}
 
+        {/* Section Divider antes FAQs */}
+        <SectionDivider variant="with-icon" icon={<HelpCircle size={20} />} />
+
         {/* FAQs */}
-        <section className="py-12 bg-dental-beige/20">
+        <section className="py-16 bg-dental-beige/20">
           <div className="container-custom">
             <h2 className="heading-lg mb-8 text-center text-dental-purple">
               Perguntas Frequentes sobre Prótese Dentária
@@ -714,7 +717,7 @@ const ProteseDentaria = () => {
         </section>
 
         {/* CTA Final */}
-        <section className="py-16 bg-dental-purple text-white">
+        <section className="py-20 bg-gradient-purple-gold text-white">
           <div className="container-custom text-center">
             <div className="flex items-center justify-center gap-3 mb-4">
               <Award className="w-8 h-8 text-dental-gold" />
