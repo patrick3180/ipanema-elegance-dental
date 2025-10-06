@@ -820,176 +820,178 @@ const LentesEFacetas = () => {
           </div>
         </section>
 
-    {/* Além da Estética: Saúde Como Prioridade */}
-    <section className="py-12 bg-gradient-to-b from-white to-dental-beige/20">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
-            Além da Estética: Saúde Como Prioridade
-          </h2>
-          <p className="text-lg text-dental-gray max-w-3xl mx-auto">
-            Um sorriso verdadeiramente bonito começa com dentes e gengivas saudáveis. Na nossa abordagem, estética e saúde caminham juntas.
-          </p>
-        </div>
+        {/* O Que Poucos Explicam Sobre Lentes e Facetas */}
+        <section className="py-16 bg-gradient-to-b from-white to-dental-beige/20">
+          <div className="max-w-6xl mx-auto px-4">
+            {/* Título e Introdução */}
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-6">
+                O Que Poucos Explicam Sobre Lentes e Facetas
+              </h2>
+              <p className="text-lg text-dental-gray max-w-3xl mx-auto leading-relaxed">
+                A estética dental envolve mais do que aparência. Entenda os aspectos técnicos que determinam o sucesso do seu tratamento.
+              </p>
+            </div>
 
-        <div className="grid md:grid-cols-2 gap-10 mb-10">
-          {/* COLUNA ESQUERDA - Alerta de Problemas */}
-          <div className="bg-red-50 p-8 rounded-xl shadow-md">
-            <div className="flex items-start gap-4 mb-6">
-              <div className="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <Shield className="w-7 h-7 text-red-600" />
+            {/* Seção 1: Desafios Técnicos Reais */}
+            <div className="mb-16">
+              <h3 className="text-xl font-semibold text-dental-purple mb-8 text-center">
+                Desafios Técnicos Reais
+              </h3>
+              
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Card 1 - Adaptação Marginal */}
+                <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+                      <div className="w-5 h-5 border-2 border-gray-400 rounded-full"></div>
+                    </div>
+                    <h4 className="font-semibold text-lg text-dental-purple">
+                      Adaptação Marginal
+                    </h4>
+                  </div>
+                  <p className="text-dental-gray text-sm leading-relaxed">
+                    Quando a interface entre a restauração e o dente não é perfeita, forma-se um espaço microscópico que pode acumular bactérias. Com o tempo, isso pode levar à inflamação gengival e sensibilidade.
+                  </p>
+                </div>
+
+                {/* Card 2 - Perfil de Emergência */}
+                <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+                      <div className="w-5 h-5 border-2 border-gray-400 rounded-sm"></div>
+                    </div>
+                    <h4 className="font-semibold text-lg text-dental-purple">
+                      Perfil de Emergência
+                    </h4>
+                  </div>
+                  <p className="text-dental-gray text-sm leading-relaxed">
+                    O contorno na região da gengiva deve respeitar a anatomia natural. Um perfil inadequado dificulta a higienização e pode causar inchaço e sangramento gengival crônico.
+                  </p>
+                </div>
+
+                {/* Card 3 - Equilíbrio Oclusal */}
+                <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+                      <div className="w-5 h-5 border-2 border-gray-400 rounded"></div>
+                    </div>
+                    <h4 className="font-semibold text-lg text-dental-purple">
+                      Equilíbrio Oclusal
+                    </h4>
+                  </div>
+                  <p className="text-dental-gray text-sm leading-relaxed">
+                    A forma como os dentes superiores e inferiores se encontram é crucial. Facetas mal planejadas podem gerar sobrecarga em pontos específicos, causando desconforto e até fraturas.
+                  </p>
+                </div>
+
+                {/* Card 4 - Biocompatibilidade */}
+                <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+                      <div className="w-5 h-5 border-2 border-gray-400 rounded-full"></div>
+                    </div>
+                    <h4 className="font-semibold text-lg text-dental-purple">
+                      Biocompatibilidade
+                    </h4>
+                  </div>
+                  <p className="text-dental-gray text-sm leading-relaxed">
+                    A escolha dos materiais e técnicas adesivas impacta diretamente a resposta dos tecidos. Alguns protocolos podem causar sensibilidade prolongada ou irritação gengival.
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-semibold text-xl text-red-900 mb-2">
-                  Problemas Comuns em Tratamentos Mal Executados
-                </h3>
-                <p className="text-dental-gray text-sm">
-                  Muitos pacientes chegam com complicações decorrentes de tratamentos realizados sem os devidos cuidados:
+            </div>
+
+            {/* Divisor elegante */}
+            <div className="flex items-center justify-center my-12">
+              <div className="flex items-center gap-4">
+                <div className="w-24 h-px bg-dental-gold"></div>
+                <Heart className="w-6 h-6 text-dental-gold" />
+                <div className="w-24 h-px bg-dental-gold"></div>
+              </div>
+            </div>
+
+            {/* Seção 2: Nossa Abordagem Diferenciada */}
+            <div className="mb-12">
+              <h3 className="text-xl font-semibold text-dental-purple mb-8 text-center">
+                Nossa Abordagem Diferenciada
+              </h3>
+              
+              <div className="space-y-6 max-w-4xl mx-auto">
+                {/* Item 1 */}
+                <div className="flex items-start gap-6 bg-white p-6 rounded-xl shadow-sm">
+                  <div className="w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center flex-shrink-0">
+                    <Shield className="w-6 h-6 text-dental-purple" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-dental-purple mb-2">
+                      Avaliação Periodontal Prévia
+                    </h4>
+                    <p className="text-dental-gray text-sm">
+                      Saúde gengival é pré-requisito. Tratamos qualquer inflamação antes de iniciar o trabalho estético.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Item 2 */}
+                <div className="flex items-start gap-6 bg-white p-6 rounded-xl shadow-sm">
+                  <div className="w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center flex-shrink-0">
+                    <Award className="w-6 h-6 text-dental-purple" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-dental-purple mb-2">
+                      Planejamento Oclusal Criterioso
+                    </h4>
+                    <p className="text-dental-gray text-sm">
+                      Analisamos a mordida em detalhes para garantir distribuição equilibrada das forças mastigatórias.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Item 3 */}
+                <div className="flex items-start gap-6 bg-white p-6 rounded-xl shadow-sm">
+                  <div className="w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center flex-shrink-0">
+                    <Sparkles className="w-6 h-6 text-dental-purple" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-dental-purple mb-2">
+                      Protocolo Conservador
+                    </h4>
+                    <p className="text-dental-gray text-sm">
+                      Preparos mínimos que preservam estrutura dental sadia e mantêm vitalidade pulpar.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Item 4 */}
+                <div className="flex items-start gap-6 bg-white p-6 rounded-xl shadow-sm">
+                  <div className="w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center flex-shrink-0">
+                    <Heart className="w-6 h-6 text-dental-purple" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-dental-purple mb-2">
+                      Acompanhamento Longitudinal
+                    </h4>
+                    <p className="text-dental-gray text-sm">
+                      Consultas periódicas para monitorar saúde gengival, integridade das restaurações e conforto oclusal.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Quote Final */}
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-dental-beige/30 p-10 rounded-2xl text-center relative">
+                <div className="absolute top-6 left-6 text-6xl text-dental-gold/20 font-serif">"</div>
+                <p className="text-xl md:text-2xl text-dental-purple italic font-display leading-relaxed relative z-10 px-8">
+                  A verdadeira beleza de um sorriso está na harmonia entre estética e função. Quando respeitamos a biologia, o resultado é duradouro e saudável.
                 </p>
-              </div>
-            </div>
-            
-            <ul className="space-y-3 text-dental-gray text-sm">
-              <li className="flex items-start gap-3">
-                <span className="text-red-500 text-lg mt-0.5 flex-shrink-0">•</span>
-                <span><strong>Adaptação inadequada:</strong> Dificulta higienização e causa inflamação gengival</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-red-500 text-lg mt-0.5 flex-shrink-0">•</span>
-                <span><strong>Preparo excessivo:</strong> Enfraquece o dente e causa sensibilidade permanente</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-red-500 text-lg mt-0.5 flex-shrink-0">•</span>
-                <span><strong>Sobrecontorno:</strong> Acúmulo de placa bacteriana e gengivite</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-red-500 text-lg mt-0.5 flex-shrink-0">•</span>
-                <span><strong>Aspecto artificial:</strong> "Dentes de chiclete" que denunciam o procedimento</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-red-500 text-lg mt-0.5 flex-shrink-0">•</span>
-                <span><strong>Oclusão comprometida:</strong> Dores na ATM e desgaste precoce</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* COLUNA DIREITA - Nossa Abordagem (4 cards com ícones diferentes) */}
-          <div className="space-y-6">
-            <h3 className="font-semibold text-xl text-dental-purple mb-6 text-center md:text-left">
-              Nossa Abordagem Integrada
-            </h3>
-
-            {/* Card 1 - Avaliação Periodontal */}
-            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Heart className="w-6 h-6 text-green-600" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-green-900 mb-2">
-                    Avaliação Periodontal Completa
-                  </h4>
-                  <ul className="space-y-1.5 text-dental-gray text-sm">
-                    <li className="flex items-start gap-2">
-                      <span className="text-green-600 mt-1">▸</span>
-                      <span>Saúde gengival verificada antes de iniciar estética</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-green-600 mt-1">▸</span>
-                      <span>Tratamento de gengivite/periodontite quando necessário</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 2 - Análise Oclusal */}
-            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Award className="w-6 h-6 text-blue-600" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-blue-900 mb-2">
-                    Análise Oclusal (Mordida)
-                  </h4>
-                  <ul className="space-y-1.5 text-dental-gray text-sm">
-                    <li className="flex items-start gap-2">
-                      <span className="text-blue-600 mt-1">▸</span>
-                      <span>Verificação do encaixe e distribuição equilibrada das forças</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-blue-600 mt-1">▸</span>
-                      <span>Prevenção de desgastes e dores na ATM</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 3 - Planejamento Conservador */}
-            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Shield className="w-6 h-6 text-dental-purple" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-dental-purple mb-2">
-                    Planejamento Conservador
-                  </h4>
-                  <ul className="space-y-1.5 text-dental-gray text-sm">
-                    <li className="flex items-start gap-2">
-                      <span className="text-dental-purple mt-1">▸</span>
-                      <span>Preparo mínimo respeitando biologia dental</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-dental-purple mt-1">▸</span>
-                      <span>Margens adaptadas para facilitar higienização</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 4 - Materiais Biocompatíveis */}
-            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Sparkles className="w-6 h-6 text-amber-600" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-amber-900 mb-2">
-                    Materiais Biocompatíveis
-                  </h4>
-                  <ul className="space-y-1.5 text-dental-gray text-sm">
-                    <li className="flex items-start gap-2">
-                      <span className="text-amber-600 mt-1">▸</span>
-                      <span>Cerâmicas que não causam inflamação gengival</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-amber-600 mt-1">▸</span>
-                      <span>Sem metais - livre de alergias</span>
-                    </li>
-                  </ul>
-                </div>
+                <div className="absolute bottom-6 right-6 text-6xl text-dental-gold/20 font-serif">"</div>
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Quote centralizada abaixo com ícone */}
-        <div className="bg-dental-beige/30 p-8 rounded-xl text-center max-w-4xl mx-auto shadow-sm">
-          <div className="flex justify-center mb-4">
-            <div className="w-12 h-12 bg-dental-gold/20 rounded-full flex items-center justify-center">
-              <Heart className="w-6 h-6 text-dental-gold" />
-            </div>
-          </div>
-          <p className="text-xl text-dental-purple italic font-medium font-display leading-relaxed">
-            "Antes de pensar em estética, sempre avalio a saúde. Um sorriso bonito precisa de uma base saudável para durar."
-          </p>
-        </div>
-      </div>
-    </section>
+        </section>
 
         {/* Indicações e Casos Tratados */}
         <section className="py-12 bg-dental-beige/20">
