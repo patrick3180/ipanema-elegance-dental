@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
 import SectionDivider from "@/components/treatment/SectionDivider";
-import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
+
 import ComparisonTable from "@/components/blog/ComparisonTable";
 import OptimizedImage from "@/components/OptimizedImage";
 import { ComparisonTableItem } from "@/types/BlogPost";
@@ -167,26 +167,135 @@ const LentesEFacetas = () => {
         {/* Hero Section */}
         <TreatmentHero
           title="Lentes de Contato Dental e Facetas de Porcelana"
-          subtitle="Transformação Estética com Naturalidade"
-          description="Lâminas ultrafinas de porcelana que transformam seu sorriso com precisão e arte. Design digital personalizado para resultados naturais e harmoniosos com suas características únicas."
-          badges={["Design Digital do Sorriso", "Cerâmica Premium", "Resultados Naturais"]}
+          subtitle="Estética Dental com a Dra. Carla Christoph"
+          description="Transforme seu sorriso com técnicas minimamente invasivas e resultados naturais. Scanner iTero 3D, Test Drive do Sorriso e planejamento personalizado. Mais de 20 anos de experiência em estética dental."
+          badges={["20+ anos de experiência", "Test Drive do Sorriso", "CRO-RJ 27.509"]}
           doctorImage="/lovable-uploads/doutora-em-pe-jaleco.webp"
           breadcrumbs={[
-            { label: "Início", href: "/" },
-            { label: "Tratamentos", href: "/servicos" },
-            { label: "Lentes e Facetas" }
+            {label: "Início", href: "/"},
+            {label: "Tratamentos", href: "/servicos"},
+            {label: "Lentes e Facetas"}
           ]}
         />
 
         {/* Section Divider */}
         <SectionDivider variant="with-icon" icon={<Sparkles size={20} />} />
 
-        {/* Quick Answer Box - ESSENCIAL PARA IA */}
-        <section className="py-4 bg-white">
-          <div className="container-custom">
-            <QuickAnswerBox 
-              answer="Lentes de contato dental são lâminas ultrafinas de porcelana (0,2-0,5mm) que preservam a estrutura dental, criando sorrisos naturais sem aspecto artificial. Facetas de resina são restaurações estéticas diretas que corrigem forma e cor com investimento mais acessível. A Dra. Carla Christoph oferece o 'Test Drive do Sorriso' - você experimenta seu novo sorriso na própria boca antes de aprovar o tratamento definitivo."
-            />
+        {/* Três Cards de Benefícios Genéricos */}
+        <section className="py-12 bg-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
+                Por Que Escolher Lentes ou Facetas?
+              </h2>
+              <p className="text-lg text-dental-gray">
+                Transformação que vai além da estética
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Card 1 - Autoestima e Confiança */}
+              <div className="bg-white p-6 rounded-xl shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center">
+                    <Heart className="w-6 h-6 text-red-500" />
+                  </div>
+                  <h3 className="font-semibold text-lg text-dental-purple">
+                    Autoestima e Confiança
+                  </h3>
+                </div>
+                <ul className="space-y-2 text-dental-gray text-sm">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
+                    <span>Transforme a forma como você se vê e é visto</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
+                    <span>Sorria sem medo em fotos e eventos sociais</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
+                    <span>Recupere a confiança para se expressar plenamente</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
+                    <span>Impacto positivo nas relações pessoais e profissionais</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
+                    <span>Sensação de bem-estar e satisfação com a própria imagem</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Card 2 - Naturalidade e Harmonia */}
+              <div className="bg-white p-6 rounded-xl shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center">
+                    <Sparkles className="w-6 h-6 text-dental-purple" />
+                  </div>
+                  <h3 className="font-semibold text-lg text-dental-purple">
+                    Naturalidade e Harmonia Facial
+                  </h3>
+                </div>
+                <ul className="space-y-2 text-dental-gray text-sm">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
+                    <span>Análise facial completa para harmonia com suas características únicas</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
+                    <span>Proporções individualizadas respeitando sua idade e personalidade</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
+                    <span>Resultado natural que recebe elogios pela beleza, não pela aparência de 'dentes feitos'</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
+                    <span>Textura e cor que imitam perfeitamente dentes naturais</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
+                    <span>Harmonização que realça sua beleza natural</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Card 3 - Tecnologia e Cuidado */}
+              <div className="bg-white p-6 rounded-xl shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center">
+                    <Shield className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <h3 className="font-semibold text-lg text-dental-purple">
+                    Tecnologia e Cuidado Integrado
+                  </h3>
+                </div>
+                <ul className="space-y-2 text-dental-gray text-sm">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
+                    <span>Scanner iTero 3D: moldagem digital sem desconforto</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
+                    <span>Test Drive do Sorriso: aprove ANTES do tratamento definitivo</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
+                    <span>Saúde sempre antes da estética (avaliação periodontal completa)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
+                    <span>Técnicas conservadoras que preservam seus dentes naturais</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
+                    <span>Acompanhamento de longo prazo para longevidade do tratamento</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
 
