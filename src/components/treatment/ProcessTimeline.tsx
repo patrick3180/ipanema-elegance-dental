@@ -44,7 +44,7 @@ const ProcessTimeline = ({ steps, className }: ProcessTimelineProps) => {
       {/* Vertical connecting line */}
       <div
         className={cn(
-          "absolute left-[58px] md:left-[88px] top-0 w-0.5 bg-dental-gold/30 transition-all duration-1000 ease-out",
+          "absolute left-[24px] md:left-[32px] top-0 w-0.5 bg-dental-gold/30 transition-all duration-1000 ease-out",
           isVisible ? "h-full opacity-100" : "h-0 opacity-0"
         )}
         aria-hidden="true"
@@ -56,7 +56,7 @@ const ProcessTimeline = ({ steps, className }: ProcessTimelineProps) => {
           <div
             key={index}
             className={cn(
-              "relative flex gap-6 md:gap-12 opacity-0 translate-y-4 transition-all duration-500 ease-out",
+              "relative flex gap-4 md:gap-8 opacity-0 translate-y-4 transition-all duration-500 ease-out",
               isVisible && "opacity-100 translate-y-0"
             )}
             style={{
@@ -67,13 +67,13 @@ const ProcessTimeline = ({ steps, className }: ProcessTimelineProps) => {
           >
             {/* Left side - Number */}
             <div className="relative flex-shrink-0">
-              <div className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-dental-gold/30 leading-none">
+              <div className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-dental-gold/30 leading-none">
                 {step.number}
               </div>
               
               {/* Circle on the line */}
               <div
-                className="absolute top-4 md:top-6 -right-[34px] md:-right-[52px] w-4 h-4 rounded-full bg-dental-gold border-4 border-white shadow-sm"
+                className="absolute top-4 md:top-6 left-[22px] md:left-[30px] w-4 h-4 rounded-full bg-dental-gold border-4 border-white shadow-sm transform -translate-x-1/2"
                 aria-hidden="true"
               />
             </div>
