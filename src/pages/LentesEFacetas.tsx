@@ -316,11 +316,11 @@ const LentesEFacetas = () => {
               <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
                 {/* Imagem de fundo */}
                 <div className="aspect-[4/3] relative">
-                  <img 
-                    src="/lovable-uploads/lentes.webp"
-                    alt="Lentes de contato dental em cerâmica ultra-finas"
-                    className="w-full h-full object-cover"
-                  />
+          <img 
+            src="/Lentes.webp"
+            alt="Lentes de contato dental em cerâmica ultra-finas"
+            className="w-full h-full object-cover"
+          />
                   {/* Overlay gradiente */}
                   <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
                   
@@ -458,11 +458,11 @@ const LentesEFacetas = () => {
               <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
                 {/* Imagem de fundo */}
                 <div className="aspect-[4/3] relative">
-                  <img 
-                    src="/lovable-uploads/faceta-resina.webp"
-                    alt="Facetas de resina composta sendo aplicadas"
-                    className="w-full h-full object-cover"
-                  />
+          <img 
+            src="/lovable-uploads/Faceta de Resina.webp"
+            alt="Facetas de resina composta sendo aplicadas"
+            className="w-full h-full object-cover"
+          />
                   {/* Overlay gradiente */}
                   <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
                   
