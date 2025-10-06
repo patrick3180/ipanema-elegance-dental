@@ -4,8 +4,7 @@ import PageLayout from "@/components/PageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
 import SectionDivider from "@/components/treatment/SectionDivider";
 
-import ComparisonTable from "@/components/blog/ComparisonTable";
-import { ComparisonTableItem } from "@/types/BlogPost";
+
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Search, Scan, Star, ArrowRight, Sparkles, Shield, Heart, Award, AlertCircle, Calendar, CheckCircle, Package, Zap, PlayCircle, Clock, HelpCircle, Utensils, Smile } from "lucide-react";
 import ProcessTimeline from '@/components/treatment/ProcessTimeline';
@@ -78,57 +77,6 @@ const ProteseDentaria = () => {
     }
   ];
 
-  // Dados da tabela comparativa
-  const comparisonData: ComparisonTableItem[] = [
-    {
-      "Criterio": "",
-      "Rótulo coluna A": "Coroa/Ponte", 
-      "Rótulo coluna B": "Removível",
-      "Sobre Implante": "Sobre Implante"
-    },
-    {
-      "Criterio": "Indicação",
-      "Rótulo coluna A": "1-3 dentes",
-      "Rótulo coluna B": "Múltiplos/todos",
-      "Sobre Implante": "Qualquer quantidade"
-    },
-    {
-      "Criterio": "Fixação", 
-      "Rótulo coluna A": "Dente preparado",
-      "Rótulo coluna B": "Grampos/mucosa",
-      "Sobre Implante": "Implante ósseo"
-    },
-    {
-      "Criterio": "Durabilidade",
-      "Rótulo coluna A": "10-15 anos", 
-      "Rótulo coluna B": "5-7 anos",
-      "Sobre Implante": "20+ anos"
-    },
-    {
-      "Criterio": "Preserva osso",
-      "Rótulo coluna A": "Parcial",
-      "Rótulo coluna B": "Não", 
-      "Sobre Implante": "Total"
-    },
-    {
-      "Criterio": "Sensação",
-      "Rótulo coluna A": "Natural",
-      "Rótulo coluna B": "Adaptação",
-      "Sobre Implante": "Como dente próprio"
-    },
-    {
-      "Criterio": "Manutenção", 
-      "Rótulo coluna A": "Como dente",
-      "Rótulo coluna B": "Remove p/ limpar",
-      "Sobre Implante": "Como dente"
-    },
-    {
-      "Criterio": "Investimento",
-      "Rótulo coluna A": "Moderado",
-      "Rótulo coluna B": "Inicial menor", 
-      "Sobre Implante": "Maior (melhor custo-benefício)"
-    }
-  ];
 
   return (
     <>
@@ -426,17 +374,6 @@ const ProteseDentaria = () => {
         </div>
       </section>
 
-        {/* Tabela Comparativa */}
-        <section className="py-12 bg-white">
-          <div className="container-custom">
-            <ComparisonTable
-              data={comparisonData}
-            />
-          </div>
-        </section>
-
-        {/* Section Divider */}
-        <SectionDivider variant="simple" />
 
         {/* Processo Detalhado com ProcessTimeline */}
         <section className="py-12 bg-dental-beige/20">
