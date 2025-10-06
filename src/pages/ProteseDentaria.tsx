@@ -3,11 +3,8 @@ import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
 import SectionDivider from "@/components/treatment/SectionDivider";
-import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
-import ComparisonTable from "@/components/blog/ComparisonTable";
-import { ComparisonTableItem } from "@/types/BlogPost";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Search, Scan, Star, ArrowRight, Sparkles, Shield, Heart, Award, AlertCircle, Calendar, CheckCircle, Package, Zap, PlayCircle, Clock, HelpCircle } from "lucide-react";
+import { Search, Scan, Star, ArrowRight, Sparkles, Shield, Heart, Award, AlertCircle, Calendar, CheckCircle, Package, Zap, PlayCircle, Clock, HelpCircle, Utensils, Smile } from "lucide-react";
 import ProcessTimeline from '@/components/treatment/ProcessTimeline';
 import InfoCard from '@/components/treatment/InfoCard';
 import { Card, CardContent } from "@/components/ui/card";
@@ -78,57 +75,6 @@ const ProteseDentaria = () => {
     }
   ];
 
-  // Dados da tabela comparativa
-  const comparisonData: ComparisonTableItem[] = [
-    {
-      "Criterio": "",
-      "Rótulo coluna A": "Coroa/Ponte", 
-      "Rótulo coluna B": "Removível",
-      "Sobre Implante": "Sobre Implante"
-    },
-    {
-      "Criterio": "Indicação",
-      "Rótulo coluna A": "1-3 dentes",
-      "Rótulo coluna B": "Múltiplos/todos",
-      "Sobre Implante": "Qualquer quantidade"
-    },
-    {
-      "Criterio": "Fixação", 
-      "Rótulo coluna A": "Dente preparado",
-      "Rótulo coluna B": "Grampos/mucosa",
-      "Sobre Implante": "Implante ósseo"
-    },
-    {
-      "Criterio": "Durabilidade",
-      "Rótulo coluna A": "10-15 anos", 
-      "Rótulo coluna B": "5-7 anos",
-      "Sobre Implante": "20+ anos"
-    },
-    {
-      "Criterio": "Preserva osso",
-      "Rótulo coluna A": "Parcial",
-      "Rótulo coluna B": "Não", 
-      "Sobre Implante": "Total"
-    },
-    {
-      "Criterio": "Sensação",
-      "Rótulo coluna A": "Natural",
-      "Rótulo coluna B": "Adaptação",
-      "Sobre Implante": "Como dente próprio"
-    },
-    {
-      "Criterio": "Manutenção", 
-      "Rótulo coluna A": "Como dente",
-      "Rótulo coluna B": "Remove p/ limpar",
-      "Sobre Implante": "Como dente"
-    },
-    {
-      "Criterio": "Investimento",
-      "Rótulo coluna A": "Moderado",
-      "Rótulo coluna B": "Inicial menor", 
-      "Sobre Implante": "Maior (melhor custo-benefício)"
-    }
-  ];
 
   return (
     <>
@@ -185,33 +131,55 @@ const ProteseDentaria = () => {
         {/* Section Divider */}
         <SectionDivider variant="with-icon" icon={<Award size={20} />} />
 
-        {/* Quick Answer Box */}
-        <section className="py-8 bg-white">
+        {/* Seção de 3 Cards Visuais */}
+        <section className="py-16 bg-white">
           <div className="container-custom">
-            <QuickAnswerBox
-              answer="Prótese dentária é a especialidade odontológica que restaura e substitui dentes ausentes ou danificados através de coroas, pontes, próteses removíveis ou sobre implantes. O tratamento devolve função mastigatória, estética natural e qualidade de vida, com planejamento individualizado e materiais de alta qualidade."
-            />
-          </div>
-        </section>
+            <h2 className="heading-lg mb-4 text-center text-dental-purple">
+              Reabilitação Oral que Transforma Vidas
+            </h2>
+            <p className="text-center text-dental-gray mb-12 max-w-2xl mx-auto">
+              Mais de 20 anos devolvendo função, estética e qualidade de vida
+            </p>
 
-        {/* Introdução Empática */}
-        <section className="py-12 bg-white">
-          <div className="container-custom">
-            <div className="max-w-4xl mx-auto">
-              <p className="text-lg leading-relaxed text-dental-gray mb-6">
-                Sabemos como a perda dentária impacta profundamente sua vida. Não é apenas sobre 
-                estética - é sobre o constrangimento em reuniões sociais, a dificuldade para 
-                saborear seus pratos favoritos, as mudanças na fala que afetam sua comunicação. 
-                Compreendemos essas dificuldades e, mais importante, temos as soluções para 
-                transformar essa realidade.
-              </p>
-              <p className="text-lg leading-relaxed text-dental-gray">
-                Com mais de 20 anos dedicados à reabilitação oral, desenvolvemos em nossa clínica 
-                em Ipanema um protocolo que une tecnologia de ponta - como scanner intraoral iTero 
-                e planejamento digital - com um cuidado verdadeiramente personalizado. Cada prótese 
-                é planejada considerando não apenas a função, mas a harmonia com seu rosto e seu 
-                estilo de vida.
-              </p>
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {/* Card 1: Função Mastigatória */}
+              <div className="text-center">
+                <div className="w-16 h-16 bg-dental-purple/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Utensils className="w-8 h-8 text-dental-purple" />
+                </div>
+                <h3 className="text-xl font-semibold text-dental-purple mb-3">
+                  Função Mastigatória
+                </h3>
+                <p className="text-dental-gray">
+                  Recupere o prazer de saborear seus alimentos favoritos com conforto e segurança
+                </p>
+              </div>
+
+              {/* Card 2: Estética Natural */}
+              <div className="text-center">
+                <div className="w-16 h-16 bg-dental-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Smile className="w-8 h-8 text-dental-gold" />
+                </div>
+                <h3 className="text-xl font-semibold text-dental-purple mb-3">
+                  Estética Natural
+                </h3>
+                <p className="text-dental-gray">
+                  Próteses que imitam perfeitamente a cor, forma e translucidez dos dentes naturais
+                </p>
+              </div>
+
+              {/* Card 3: Qualidade de Vida */}
+              <div className="text-center">
+                <div className="w-16 h-16 bg-dental-purple/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Heart className="w-8 h-8 text-dental-purple" />
+                </div>
+                <h3 className="text-xl font-semibold text-dental-purple mb-3">
+                  Qualidade de Vida
+                </h3>
+                <p className="text-dental-gray">
+                  Resgate sua confiança e autoestima para sorrir sem constrangimento
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -401,17 +369,6 @@ const ProteseDentaria = () => {
         </div>
       </section>
 
-        {/* Tabela Comparativa */}
-        <section className="py-12 bg-white">
-          <div className="container-custom">
-            <ComparisonTable
-              data={comparisonData}
-            />
-          </div>
-        </section>
-
-        {/* Section Divider */}
-        <SectionDivider variant="simple" />
 
         {/* Processo Detalhado com ProcessTimeline */}
         <section className="py-12 bg-dental-beige/20">
