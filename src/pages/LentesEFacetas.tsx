@@ -820,159 +820,222 @@ const LentesEFacetas = () => {
           </div>
         </section>
 
-        {/* O Que Poucos Explicam Sobre Lentes e Facetas */}
-        <section className="py-16 bg-gradient-to-b from-white to-dental-beige/20">
-          <div className="max-w-6xl mx-auto px-4">
-            {/* Título e Introdução */}
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-6">
+        {/* O Que Poucos Explicam - Versão Visual Rica */}
+        <section className="py-20 bg-gradient-to-b from-white via-dental-beige/10 to-white relative overflow-hidden">
+          {/* Pattern decorativo de fundo */}
+          <div className="absolute inset-0 opacity-[0.03]" style={{
+            backgroundImage: `radial-gradient(circle at 25px 25px, #381F47 2%, transparent 0%), radial-gradient(circle at 75px 75px, #381F47 2%, transparent 0%)`,
+            backgroundSize: '100px 100px'
+          }}></div>
+
+          <div className="max-w-6xl mx-auto px-4 relative z-10">
+            {/* Título com decoração */}
+            <div className="text-center mb-20">
+              <div className="inline-block mb-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-px bg-gradient-to-r from-transparent via-dental-gold to-transparent"></div>
+                  <Sparkles className="w-6 h-6 text-dental-gold" />
+                  <div className="w-12 h-px bg-gradient-to-r from-dental-gold via-transparent to-transparent"></div>
+                </div>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-display font-bold text-dental-purple mb-6">
                 O Que Poucos Explicam Sobre Lentes e Facetas
               </h2>
-              <p className="text-lg text-dental-gray max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg md:text-xl text-dental-gray max-w-3xl mx-auto leading-relaxed">
                 A estética dental envolve mais do que aparência. Entenda os aspectos técnicos que determinam o sucesso do seu tratamento.
               </p>
             </div>
 
-            {/* Seção 1: Desafios Técnicos Reais */}
-            <div className="mb-16">
-              <h3 className="text-xl font-semibold text-dental-purple mb-8 text-center">
-                Desafios Técnicos Reais
-              </h3>
+            {/* Seção 1: Desafios Técnicos - Com números grandes */}
+            <div className="mb-20">
+              <div className="text-center mb-12">
+                <h3 className="text-2xl font-semibold text-dental-purple mb-3">
+                  Desafios Técnicos Reais
+                </h3>
+                <p className="text-dental-gray">Aspectos que exigem expertise e atenção</p>
+              </div>
               
               <div className="grid md:grid-cols-2 gap-8">
-                {/* Card 1 - Adaptação Marginal */}
-                <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
-                      <div className="w-5 h-5 border-2 border-gray-400 rounded-full"></div>
+                {/* Card 1 */}
+                <div className="group relative bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-dental-beige/30 hover:border-dental-gold/30 overflow-hidden">
+                  {/* Número watermark */}
+                  <div className="absolute top-4 right-6 text-8xl font-display font-bold text-dental-purple/5 select-none">01</div>
+                  
+                  <div className="relative z-10">
+                    <div className="flex items-start gap-5 mb-5">
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <svg className="w-7 h-7 text-dental-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <circle cx="12" cy="12" r="9" strokeWidth="2"/>
+                          <path d="M12 7v6l3 3" strokeWidth="2" strokeLinecap="round"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-xl text-dental-purple mb-2 group-hover:text-dental-gold transition-colors">
+                          Adaptação Marginal
+                        </h4>
+                        <div className="w-12 h-1 bg-gradient-to-r from-dental-gold to-transparent rounded-full"></div>
+                      </div>
                     </div>
-                    <h4 className="font-semibold text-lg text-dental-purple">
-                      Adaptação Marginal
-                    </h4>
+                    <p className="text-dental-gray text-sm leading-relaxed">
+                      Quando a interface entre a restauração e o dente não é perfeita, forma-se um espaço microscópico que pode acumular bactérias. Com o tempo, isso pode levar à inflamação gengival e sensibilidade.
+                    </p>
                   </div>
-                  <p className="text-dental-gray text-sm leading-relaxed">
-                    Quando a interface entre a restauração e o dente não é perfeita, forma-se um espaço microscópico que pode acumular bactérias. Com o tempo, isso pode levar à inflamação gengival e sensibilidade.
-                  </p>
                 </div>
 
-                {/* Card 2 - Perfil de Emergência */}
-                <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
-                      <div className="w-5 h-5 border-2 border-gray-400 rounded-sm"></div>
+                {/* Card 2 */}
+                <div className="group relative bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-dental-beige/30 hover:border-dental-gold/30 overflow-hidden">
+                  <div className="absolute top-4 right-6 text-8xl font-display font-bold text-dental-purple/5 select-none">02</div>
+                  
+                  <div className="relative z-10">
+                    <div className="flex items-start gap-5 mb-5">
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <svg className="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <rect x="4" y="4" width="16" height="16" rx="2" strokeWidth="2"/>
+                          <path d="M9 9h6M9 12h6M9 15h4" strokeWidth="2" strokeLinecap="round"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-xl text-dental-purple mb-2 group-hover:text-dental-gold transition-colors">
+                          Perfil de Emergência
+                        </h4>
+                        <div className="w-12 h-1 bg-gradient-to-r from-dental-gold to-transparent rounded-full"></div>
+                      </div>
                     </div>
-                    <h4 className="font-semibold text-lg text-dental-purple">
-                      Perfil de Emergência
-                    </h4>
+                    <p className="text-dental-gray text-sm leading-relaxed">
+                      O contorno na região da gengiva deve respeitar a anatomia natural. Um perfil inadequado dificulta a higienização e pode causar inchaço e sangramento gengival crônico.
+                    </p>
                   </div>
-                  <p className="text-dental-gray text-sm leading-relaxed">
-                    O contorno na região da gengiva deve respeitar a anatomia natural. Um perfil inadequado dificulta a higienização e pode causar inchaço e sangramento gengival crônico.
-                  </p>
                 </div>
 
-                {/* Card 3 - Equilíbrio Oclusal */}
-                <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
-                      <div className="w-5 h-5 border-2 border-gray-400 rounded"></div>
+                {/* Card 3 */}
+                <div className="group relative bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-dental-beige/30 hover:border-dental-gold/30 overflow-hidden">
+                  <div className="absolute top-4 right-6 text-8xl font-display font-bold text-dental-purple/5 select-none">03</div>
+                  
+                  <div className="relative z-10">
+                    <div className="flex items-start gap-5 mb-5">
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <svg className="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2L2 7l10 5 10-5-10-5z" strokeWidth="2" strokeLinejoin="round"/>
+                          <path d="M2 17l10 5 10-5M2 12l10 5 10-5" strokeWidth="2" strokeLinejoin="round"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-xl text-dental-purple mb-2 group-hover:text-dental-gold transition-colors">
+                          Equilíbrio Oclusal
+                        </h4>
+                        <div className="w-12 h-1 bg-gradient-to-r from-dental-gold to-transparent rounded-full"></div>
+                      </div>
                     </div>
-                    <h4 className="font-semibold text-lg text-dental-purple">
-                      Equilíbrio Oclusal
-                    </h4>
+                    <p className="text-dental-gray text-sm leading-relaxed">
+                      A forma como os dentes superiores e inferiores se encontram é crucial. Facetas mal planejadas podem gerar sobrecarga em pontos específicos, causando desconforto e até fraturas.
+                    </p>
                   </div>
-                  <p className="text-dental-gray text-sm leading-relaxed">
-                    A forma como os dentes superiores e inferiores se encontram é crucial. Facetas mal planejadas podem gerar sobrecarga em pontos específicos, causando desconforto e até fraturas.
-                  </p>
                 </div>
 
-                {/* Card 4 - Biocompatibilidade */}
-                <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
-                      <div className="w-5 h-5 border-2 border-gray-400 rounded-full"></div>
+                {/* Card 4 */}
+                <div className="group relative bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-dental-beige/30 hover:border-dental-gold/30 overflow-hidden">
+                  <div className="absolute top-4 right-6 text-8xl font-display font-bold text-dental-purple/5 select-none">04</div>
+                  
+                  <div className="relative z-10">
+                    <div className="flex items-start gap-5 mb-5">
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-50 to-amber-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <svg className="w-7 h-7 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <circle cx="12" cy="12" r="10" strokeWidth="2"/>
+                          <path d="M12 6v6l4 2" strokeWidth="2" strokeLinecap="round"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-xl text-dental-purple mb-2 group-hover:text-dental-gold transition-colors">
+                          Biocompatibilidade
+                        </h4>
+                        <div className="w-12 h-1 bg-gradient-to-r from-dental-gold to-transparent rounded-full"></div>
+                      </div>
                     </div>
-                    <h4 className="font-semibold text-lg text-dental-purple">
-                      Biocompatibilidade
-                    </h4>
+                    <p className="text-dental-gray text-sm leading-relaxed">
+                      A escolha dos materiais e técnicas adesivas impacta diretamente a resposta dos tecidos. Alguns protocolos podem causar sensibilidade prolongada ou irritação gengival.
+                    </p>
                   </div>
-                  <p className="text-dental-gray text-sm leading-relaxed">
-                    A escolha dos materiais e técnicas adesivas impacta diretamente a resposta dos tecidos. Alguns protocolos podem causar sensibilidade prolongada ou irritação gengival.
-                  </p>
                 </div>
               </div>
             </div>
 
-            {/* Divisor elegante */}
-            <div className="flex items-center justify-center my-12">
+            {/* Divisor elegante com animação */}
+            <div className="flex items-center justify-center my-16">
               <div className="flex items-center gap-4">
-                <div className="w-24 h-px bg-dental-gold"></div>
-                <Heart className="w-6 h-6 text-dental-gold" />
-                <div className="w-24 h-px bg-dental-gold"></div>
+                <div className="w-32 h-px bg-gradient-to-r from-transparent via-dental-gold to-dental-gold"></div>
+                <div className="relative">
+                  <div className="absolute inset-0 bg-dental-gold/20 blur-xl rounded-full animate-pulse"></div>
+                  <Heart className="w-8 h-8 text-dental-gold relative z-10" />
+                </div>
+                <div className="w-32 h-px bg-gradient-to-l from-transparent via-dental-gold to-dental-gold"></div>
               </div>
             </div>
 
-            {/* Seção 2: Nossa Abordagem Diferenciada */}
-            <div className="mb-12">
-              <h3 className="text-xl font-semibold text-dental-purple mb-8 text-center">
-                Nossa Abordagem Diferenciada
-              </h3>
+            {/* Seção 2: Nossa Abordagem - Cards horizontais premium */}
+            <div className="mb-16">
+              <div className="text-center mb-12">
+                <h3 className="text-2xl font-semibold text-dental-purple mb-3">
+                  Nossa Abordagem Diferenciada
+                </h3>
+                <p className="text-dental-gray">Quatro pilares da excelência técnica</p>
+              </div>
               
-              <div className="space-y-6 max-w-4xl mx-auto">
+              <div className="space-y-5 max-w-4xl mx-auto">
                 {/* Item 1 */}
-                <div className="flex items-start gap-6 bg-white p-6 rounded-xl shadow-sm">
-                  <div className="w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center flex-shrink-0">
-                    <Shield className="w-6 h-6 text-dental-purple" />
+                <div className="group flex items-start gap-6 bg-white p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-dental-beige/30 hover:border-dental-purple/30 hover:-translate-y-1">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-dental-purple/10 to-dental-purple/5 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all">
+                    <Shield className="w-8 h-8 text-dental-purple" />
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-dental-purple mb-2">
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-lg text-dental-purple mb-2 group-hover:text-dental-gold transition-colors">
                       Avaliação Periodontal Prévia
                     </h4>
-                    <p className="text-dental-gray text-sm">
+                    <p className="text-dental-gray text-sm leading-relaxed">
                       Saúde gengival é pré-requisito. Tratamos qualquer inflamação antes de iniciar o trabalho estético.
                     </p>
                   </div>
                 </div>
 
                 {/* Item 2 */}
-                <div className="flex items-start gap-6 bg-white p-6 rounded-xl shadow-sm">
-                  <div className="w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center flex-shrink-0">
-                    <Award className="w-6 h-6 text-dental-purple" />
+                <div className="group flex items-start gap-6 bg-white p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-dental-beige/30 hover:border-dental-purple/30 hover:-translate-y-1">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-dental-purple/10 to-dental-purple/5 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all">
+                    <Award className="w-8 h-8 text-dental-purple" />
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-dental-purple mb-2">
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-lg text-dental-purple mb-2 group-hover:text-dental-gold transition-colors">
                       Planejamento Oclusal Criterioso
                     </h4>
-                    <p className="text-dental-gray text-sm">
+                    <p className="text-dental-gray text-sm leading-relaxed">
                       Analisamos a mordida em detalhes para garantir distribuição equilibrada das forças mastigatórias.
                     </p>
                   </div>
                 </div>
 
                 {/* Item 3 */}
-                <div className="flex items-start gap-6 bg-white p-6 rounded-xl shadow-sm">
-                  <div className="w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center flex-shrink-0">
-                    <Sparkles className="w-6 h-6 text-dental-purple" />
+                <div className="group flex items-start gap-6 bg-white p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-dental-beige/30 hover:border-dental-purple/30 hover:-translate-y-1">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-dental-purple/10 to-dental-purple/5 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all">
+                    <Sparkles className="w-8 h-8 text-dental-purple" />
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-dental-purple mb-2">
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-lg text-dental-purple mb-2 group-hover:text-dental-gold transition-colors">
                       Protocolo Conservador
                     </h4>
-                    <p className="text-dental-gray text-sm">
+                    <p className="text-dental-gray text-sm leading-relaxed">
                       Preparos mínimos que preservam estrutura dental sadia e mantêm vitalidade pulpar.
                     </p>
                   </div>
                 </div>
 
                 {/* Item 4 */}
-                <div className="flex items-start gap-6 bg-white p-6 rounded-xl shadow-sm">
-                  <div className="w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center flex-shrink-0">
-                    <Heart className="w-6 h-6 text-dental-purple" />
+                <div className="group flex items-start gap-6 bg-white p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-dental-beige/30 hover:border-dental-purple/30 hover:-translate-y-1">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-dental-purple/10 to-dental-purple/5 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all">
+                    <Heart className="w-8 h-8 text-dental-purple" />
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-dental-purple mb-2">
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-lg text-dental-purple mb-2 group-hover:text-dental-gold transition-colors">
                       Acompanhamento Longitudinal
                     </h4>
-                    <p className="text-dental-gray text-sm">
+                    <p className="text-dental-gray text-sm leading-relaxed">
                       Consultas periódicas para monitorar saúde gengival, integridade das restaurações e conforto oclusal.
                     </p>
                   </div>
@@ -980,14 +1043,23 @@ const LentesEFacetas = () => {
               </div>
             </div>
 
-            {/* Quote Final */}
+            {/* Quote Final - Premium */}
             <div className="max-w-4xl mx-auto">
-              <div className="bg-dental-beige/30 p-10 rounded-2xl text-center relative">
-                <div className="absolute top-6 left-6 text-6xl text-dental-gold/20 font-serif">"</div>
-                <p className="text-xl md:text-2xl text-dental-purple italic font-display leading-relaxed relative z-10 px-8">
-                  A verdadeira beleza de um sorriso está na harmonia entre estética e função. Quando respeitamos a biologia, o resultado é duradouro e saudável.
-                </p>
-                <div className="absolute bottom-6 right-6 text-6xl text-dental-gold/20 font-serif">"</div>
+              <div className="relative bg-gradient-to-br from-dental-beige/40 via-dental-beige/20 to-white p-12 rounded-3xl shadow-lg overflow-hidden">
+                {/* Decoração de fundo */}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-dental-gold/5 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-dental-purple/5 rounded-full blur-3xl"></div>
+                
+                {/* Aspas decorativas */}
+                <div className="absolute top-8 left-8 text-7xl text-dental-gold/20 font-serif leading-none">"</div>
+                <div className="absolute bottom-8 right-8 text-7xl text-dental-gold/20 font-serif leading-none">"</div>
+                
+                {/* Conteúdo */}
+                <div className="relative z-10 text-center px-8">
+                  <p className="text-2xl md:text-3xl text-dental-purple italic font-display leading-relaxed font-medium">
+                    A verdadeira beleza de um sorriso está na harmonia entre estética e função. Quando respeitamos a biologia, o resultado é duradouro e saudável.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
