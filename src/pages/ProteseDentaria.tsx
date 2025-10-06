@@ -7,7 +7,7 @@ import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import ComparisonTable from "@/components/blog/ComparisonTable";
 import { ComparisonTableItem } from "@/types/BlogPost";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Search, Scan, Star, ArrowRight, Sparkles, Shield, Heart, Award, AlertCircle, Calendar, CheckCircle, Package, Zap, PlayCircle } from "lucide-react";
+import { Search, Scan, Star, ArrowRight, Sparkles, Shield, Heart, Award, AlertCircle, Calendar, CheckCircle, Package, Zap, PlayCircle, Clock, HelpCircle } from "lucide-react";
 import ProcessTimeline from '@/components/treatment/ProcessTimeline';
 import InfoCard from '@/components/treatment/InfoCard';
 import { Card, CardContent } from "@/components/ui/card";
@@ -216,60 +216,191 @@ const ProteseDentaria = () => {
           </div>
         </section>
 
-        {/* Cards de Modalidades */}
-        <SectionDivider variant="with-icon" icon={<Sparkles size={20} />} />
-        
-        <section className="py-12 bg-dental-beige/20">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              Modalidades de Prótese Dentária Disponíveis
-            </h2>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              <InfoCard
-                icon={<Sparkles size={24} />}
-                title="Coroas Dentárias"
-                description="Capas protetoras em cerâmica pura ou zircônia que recobrem e protegem dentes danificados, devolvendo forma, função e estética impecável."
-                variant="default"
-              />
+      <SectionDivider variant="with-icon" icon={<Sparkles size={20} />} />
 
-              <InfoCard
-                icon={<Zap size={24} />}
-                title="Pontes Fixas"
-                description="Prótese fixa que substitui um ou mais dentes perdidos, ancorada em dentes vizinhos ou implantes, restaurando função e estética."
-                variant="default"
-              />
-
-            <InfoCard
-              icon={<Shield size={24} />}
-              title="Prótese sobre Implante"
-              description="A combinação ideal de estabilidade e naturalidade. Prótese fixada em implantes dentários para máximo conforto e durabilidade."
-              variant="default"
-            />
-
-              <InfoCard
-                icon={<Heart size={24} />}
-                title="Próteses Removíveis"
-                description="Parciais (PPR) ou totais (dentaduras) modernas, com melhor adaptação e estética superior."
-                variant="default"
-              />
-
-            <InfoCard
-              icon={<Star size={24} />}
-              title="Protocolo All-on-4/6"
-              description="Reabilitação total da arcada sobre 4 ou 6 implantes, com prótese fixa para transformação completa do sorriso."
-              variant="default"
-            />
-
-              <InfoCard
-                icon={<Award size={24} />}
-                title="Prótese Overdenture"
-                description="Prótese removível estabilizada por implantes, unindo praticidade de remoção com firmeza e conforto ao mastigar."
-                variant="default"
-              />
-            </div>
+      {/* Modalidades de Prótese */}
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-navy mb-4">Modalidades de Prótese Dentária Disponíveis</h2>
+            <p className="text-lg text-dental-text-secondary">Tecnologias e materiais de última geração para cada necessidade</p>
           </div>
-        </section>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            {/* Coroas Dentárias */}
+            <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
+              <div className="aspect-[4/3] relative">
+                <img 
+                  src="/lovable-uploads/Coroa e-max.webp"
+                  alt="Coroa dentária em cerâmica E-max sobre dente"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+              </div>
+              <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                <h3 className="text-2xl font-display font-semibold text-white mb-2">
+                  Coroas Dentárias
+                </h3>
+                <p className="text-white/90 text-sm mb-4 line-clamp-3">
+                  Capas protetoras em cerâmica pura ou zircônia que recobrem e protegem dentes danificados, devolvendo forma, função e estética impecável.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">
+                    Cerâmica E-max
+                  </span>
+                  <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">
+                    Resultado Natural
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Pontes Fixas */}
+            <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
+              <div className="aspect-[4/3] relative">
+                <img 
+                  src="/lovable-uploads/Ponte fixa.webp"
+                  alt="Ponte fixa em porcelana substituindo dentes"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+              </div>
+              <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                <h3 className="text-2xl font-display font-semibold text-white mb-2">
+                  Pontes Fixas
+                </h3>
+                <p className="text-white/90 text-sm mb-4 line-clamp-3">
+                  Prótese fixa que substitui um ou mais dentes perdidos, ancorada em dentes vizinhos ou implantes, restaurando função e estética.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">
+                    Solução Fixa
+                  </span>
+                  <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">
+                    Múltiplos Dentes
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Prótese sobre Implante - RECOMENDADA */}
+            <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
+              <div className="absolute top-4 right-4 bg-dental-gold text-white text-xs font-semibold px-3 py-1 rounded-full z-10">
+                RECOMENDADA
+              </div>
+              <div className="aspect-[4/3] relative">
+                <img 
+                  src="/Implante.webp"
+                  alt="Prótese sobre implante dentário"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+              </div>
+              <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                <h3 className="text-2xl font-display font-semibold text-white mb-2">
+                  Prótese sobre Implante
+                </h3>
+                <p className="text-white/90 text-sm mb-4 line-clamp-3">
+                  A combinação ideal de estabilidade e naturalidade. Prótese fixada em implantes dentários para máximo conforto e durabilidade.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">
+                    Mais Procurada
+                  </span>
+                  <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">
+                    Máxima Estabilidade
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Próteses Removíveis */}
+            <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
+              <div className="aspect-[4/3] relative">
+                <img 
+                  src="/lovable-uploads/Prótese parcial removível moderna.webp"
+                  alt="Prótese parcial removível moderna"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+              </div>
+              <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                <h3 className="text-2xl font-display font-semibold text-white mb-2">
+                  Próteses Removíveis
+                </h3>
+                <p className="text-white/90 text-sm mb-4 line-clamp-3">
+                  Parciais (PPR) ou totais (dentaduras) modernas, com melhor adaptação e estética superior.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">
+                    Solução Acessível
+                  </span>
+                  <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">
+                    Fácil Higiene
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Protocolo All-on-4/6 - PREMIUM */}
+            <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer border-2 border-dental-gold/30">
+              <div className="aspect-[4/3] relative">
+                <img 
+                  src="/lovable-uploads/all in 4.webp"
+                  alt="Protocolo All-on-4 arcada completa sobre implantes"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+              </div>
+              <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                <h3 className="text-2xl font-display font-semibold text-white mb-2">
+                  Protocolo All-on-4/6
+                </h3>
+                <p className="text-white/90 text-sm mb-4 line-clamp-3">
+                  Reabilitação total da arcada sobre 4 ou 6 implantes, com prótese fixa para transformação completa do sorriso.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">
+                    Transformação Total
+                  </span>
+                  <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">
+                    Prótese Fixa
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Prótese Overdenture */}
+            <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
+              <div className="aspect-[4/3] relative">
+                <img 
+                  src="/lovable-uploads/Overdenture com clips de retenção.webp"
+                  alt="Overdenture estabilizada por implantes com clips"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+              </div>
+              <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                <h3 className="text-2xl font-display font-semibold text-white mb-2">
+                  Prótese Overdenture
+                </h3>
+                <p className="text-white/90 text-sm mb-4 line-clamp-3">
+                  Prótese removível estabilizada por implantes, unindo praticidade de remoção com firmeza e conforto ao mastigar.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">
+                    Estabilidade
+                  </span>
+                  <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">
+                    Removível
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
 
         {/* Tabela Comparativa */}
         <section className="py-12 bg-white">
