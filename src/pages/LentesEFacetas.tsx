@@ -9,7 +9,7 @@ import ComparisonTable from "@/components/blog/ComparisonTable";
 import OptimizedImage from "@/components/OptimizedImage";
 import { ComparisonTableItem } from "@/types/BlogPost";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { CheckCircle, Star, ArrowRight, Play, Sparkles, Shield, Heart, Award, Search, HelpCircle } from "lucide-react";
+import { CheckCircle, Star, ArrowRight, Play, Sparkles, Shield, Heart, Award, Search, HelpCircle, Droplet, Maximize2, Ruler, Palette, AlertCircle } from "lucide-react";
 
 const LentesEFacetas = () => {
   // Placeholder para controlar exibição de casos
@@ -1220,49 +1220,81 @@ const LentesEFacetas = () => {
         <SectionDivider variant="with-icon" icon={<CheckCircle className="w-5 h-5" />} />
 
         {/* Indicações e Casos Tratados */}
-        <section className="py-12 bg-dental-beige/20">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              Quando as Lentes e Facetas São Indicadas?
-            </h2>
+        <section id="indicacoes" className="py-16 md:py-20 bg-dental-beige/10">
+          <div className="max-w-6xl mx-auto px-6 md:px-8">
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {/* Cabeçalho da Seção */}
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-dental-purple mb-4">
+                Quando as Lentes e Facetas São Indicadas?
+              </h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-transparent via-dental-gold to-transparent mx-auto mb-6"></div>
+              <p className="text-lg md:text-xl text-dental-gray max-w-3xl mx-auto leading-relaxed">
+                Descubra se lentes ou facetas são a solução ideal para transformar o seu sorriso
+              </p>
+            </div>
+
+            {/* Grid de Cards 3x2 */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
-                  icon: "🦷",
+                  icon: <Droplet className="w-8 h-8 text-purple-600" />,
+                  gradientClass: "bg-gradient-to-br from-purple-50 to-purple-100",
                   title: "Dentes Manchados",
                   description: "Manchas resistentes ao clareamento, por tetraciclina ou fluorose"
                 },
                 {
-                  icon: "🔄",
+                  icon: <Maximize2 className="w-8 h-8 text-blue-600" />,
+                  gradientClass: "bg-gradient-to-br from-blue-50 to-blue-100",
                   title: "Espaços entre Dentes",
                   description: "Diastemas que comprometem a harmonia do sorriso"
                 },
                 {
-                  icon: "📐",
+                  icon: <Ruler className="w-8 h-8 text-green-600" />,
+                  gradientClass: "bg-gradient-to-br from-green-50 to-green-100",
                   title: "Formato Irregular",
                   description: "Dentes pequenos, desgastados ou com forma inadequada"
                 },
                 {
-                  icon: "🎨",
+                  icon: <Palette className="w-8 h-8 text-yellow-600" />,
+                  gradientClass: "bg-gradient-to-br from-yellow-50 to-yellow-100",
                   title: "Cor Inadequada",
                   description: "Dentes escurecidos ou com tonalidade desigual"
                 },
                 {
-                  icon: "💔",
+                  icon: <AlertCircle className="w-8 h-8 text-red-500" />,
+                  gradientClass: "bg-gradient-to-br from-red-50 to-red-100",
                   title: "Fraturas e Lascas",
                   description: "Pequenos defeitos que afetam a estética"
                 },
                 {
-                  icon: "😊",
+                  icon: <Sparkles className="w-8 h-8 text-pink-500" />,
+                  gradientClass: "bg-gradient-to-br from-pink-50 to-pink-100",
                   title: "Renovação do Sorriso",
                   description: "Desejo de um sorriso mais harmônico e jovem"
                 }
               ].map((item, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg hover:shadow-lg transition-shadow">
-                  <div className="text-4xl mb-4 text-center">{item.icon}</div>
-                  <h3 className="font-semibold mb-3 text-dental-purple text-center">{item.title}</h3>
-                  <p className="text-dental-gray text-sm text-center">{item.description}</p>
+                <div
+                  key={index}
+                  className="group h-full bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-dental-beige/30 hover:border-dental-gold/30 overflow-hidden cursor-pointer"
+                >
+                  {/* Ícone Container */}
+                  <div className={`w-16 h-16 rounded-2xl ${item.gradientClass} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                    {item.icon}
+                  </div>
+
+                  {/* Título */}
+                  <h3 className="text-xl md:text-2xl font-display font-bold text-dental-purple mb-4 group-hover:text-dental-gold transition-colors">
+                    {item.title}
+                  </h3>
+
+                  {/* Linha Decorativa */}
+                  <div className="w-12 h-0.5 bg-gradient-to-r from-dental-gold to-transparent mb-4"></div>
+
+                  {/* Descrição */}
+                  <p className="text-dental-gray text-base leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
               ))}
             </div>
