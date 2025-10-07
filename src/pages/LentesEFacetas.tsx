@@ -637,7 +637,7 @@ const LentesEFacetas = () => {
         <SectionDivider variant="with-icon" icon={<Sparkles className="w-5 h-5" />} />
 
         {/* Tabela Comparativa */}
-        <section className="py-12 bg-dental-beige/20">
+        <section className="py-12 pb-8 bg-dental-beige/20">
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
@@ -661,8 +661,6 @@ const LentesEFacetas = () => {
         </section>
 
         <SectionDivider variant="with-icon" icon={<Star className="w-5 h-5" />} />
-
-        <SectionDivider variant="with-icon" icon={<Heart className="w-5 h-5" />} />
 
       {/* Seção da Especialista - Premium com Fade */}
       <section className="py-20 bg-gradient-to-b from-dental-beige/10 to-white">
