@@ -3,12 +3,13 @@ import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
 import SectionDivider from "@/components/treatment/SectionDivider";
+import ProcessTimeline from "@/components/treatment/ProcessTimeline";
 
 import ComparisonTable from "@/components/blog/ComparisonTable";
 import OptimizedImage from "@/components/OptimizedImage";
 import { ComparisonTableItem } from "@/types/BlogPost";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { CheckCircle, Star, ArrowRight, Play, Sparkles, Shield, Heart, Award } from "lucide-react";
+import { CheckCircle, Star, ArrowRight, Play, Sparkles, Shield, Heart, Award, Search } from "lucide-react";
 
 const LentesEFacetas = () => {
   // Placeholder para controlar exibição de casos
@@ -1065,6 +1066,8 @@ const LentesEFacetas = () => {
           </div>
         </section>
 
+        <SectionDivider variant="with-icon" icon={<CheckCircle className="w-5 h-5" />} />
+
         {/* Indicações e Casos Tratados */}
         <section className="py-12 bg-dental-beige/20">
           <div className="container-custom">
@@ -1115,56 +1118,52 @@ const LentesEFacetas = () => {
           </div>
         </section>
 
-        {/* Processo de Tratamento Digital */}
-        <section className="py-12 bg-white">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              Seu Tratamento com Tecnologia Digital
-            </h2>
-            
-            <div className="max-w-4xl mx-auto">
-              <div className="space-y-6">
-                {[
-                  {
-                    number: "1",
-                    title: "Análise Digital do Sorriso",
-                    description: "Fotografias profissionais e análise facial computadorizada. Estudo das proporções ideais para seu rosto. Planejamento digital do novo sorriso."
-                  },
-                  {
-                    number: "2", 
-                    title: "Mock-up: Test Drive do Seu Novo Sorriso",
-                    description: "O GRANDE DIFERENCIAL! Criação do seu novo sorriso com resina provisória não adesiva diretamente na sua boca. Você se vê no espelho, tira fotos, fala, sorri. Ajustamos juntos até ficar perfeito. É emocionante ver o resultado real!"
-                  },
-                  {
-                    number: "3",
-                    title: "Preparo Minimamente Invasivo", 
-                    description: "Com o mock-up aprovado, fazemos o preparo conservador. Para lentes: desgaste mínimo ou zero. Para facetas: preparo preciso. Utilizamos o scanner iTero para moldagem digital sem massa."
-                  },
-                  {
-                    number: "4",
-                    title: "Confecção Artesanal",
-                    description: "Lentes: laboratório especializado em cerâmica. Facetas de resina: esculpidas diretamente pela Dra. Carla. Personalização total de cor e forma."
-                  },
-                  {
-                    number: "5",
-                    title: "Cimentação e Finalização",
-                    description: "Prova final e ajustes necessários. Cimentação adesiva de alta precisão. Polimento e acabamento impecável."
-                  }
-                ].map((step, index) => (
-                  <div key={index} className="flex gap-6 bg-dental-beige/30 p-6 rounded-lg">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-dental-gold text-white rounded-full flex items-center justify-center font-bold text-lg">
-                        {step.number}
-                      </div>
-                    </div>
-                    <div className="flex-grow">
-                      <h3 className="font-semibold text-lg text-dental-purple mb-3">{step.title}</h3>
-                      <p className="text-dental-gray">{step.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+        <SectionDivider variant="with-icon" icon={<Star className="w-5 h-5" />} />
+
+        {/* Timeline do Processo */}
+        <section className="py-16 bg-white">
+          <div className="max-w-4xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
+                Sua Jornada Para o Sorriso dos Sonhos
+              </h2>
+              <p className="text-lg text-dental-gray">
+                Processo transparente e planejado em cada etapa
+              </p>
             </div>
+
+            <ProcessTimeline steps={[
+              {
+                number: "1",
+                title: "Avaliação Completa e Planejamento Digital",
+                description: "Consulta inicial com análise facial completa e fotográfica. Scanner iTero 3D: moldagem digital sem massa, sem desconforto. Avaliação da saúde bucal e periodontal. Estudo das proporções ideais para harmonização facial. Apresentação do plano de tratamento personalizado.",
+                icon: <Search className="w-6 h-6" />
+              },
+              {
+                number: "2",
+                title: "Test Drive do Sorriso (Mock-up)",
+                description: "O GRANDE DIFERENCIAL! Criação do seu novo sorriso com resina provisória não adesiva. Você vê, sente e aprova o resultado ANTES do tratamento definitivo. Tire fotos, vídeos, sorria, fale naturalmente. Ajustamos juntos até alcançar a perfeição. Momento emocionante de visualizar sua transformação real.",
+                icon: <Star className="w-6 h-6" />
+              },
+              {
+                number: "3",
+                title: "Preparo Conservador",
+                description: "Com o mock-up 100% aprovado, iniciamos o preparo. Lentes: preparo mínimo preservando ao máximo a estrutura dental. Facetas de resina: escultura direta no consultório (1-2 consultas). Nova escaneamento digital para laboratório (apenas lentes). Provisórios estéticos enquanto aguarda (se necessário).",
+                icon: <Shield className="w-6 h-6" />
+              },
+              {
+                number: "4",
+                title: "Confecção Artesanal",
+                description: "Lentes: laboratório especializado em cerâmica de alta translucidez (7-10 dias). Facetas de resina: confeccionadas diretamente pela Dra. Carla. Personalização total de cor, forma e textura. Controle de qualidade rigoroso antes da entrega.",
+                icon: <Sparkles className="w-6 h-6" />
+              },
+              {
+                number: "5",
+                title: "Cimentação e Finalização",
+                description: "Prova final e ajustes necessários. Cimentação adesiva de alta precisão (lentes) ou finalização (facetas). Polimento e acabamento impecável. Orientações de cuidados e higienização. Agendamento do retorno para avaliação.",
+                icon: <CheckCircle className="w-6 h-6" />
+              }
+            ]} />
           </div>
         </section>
 
