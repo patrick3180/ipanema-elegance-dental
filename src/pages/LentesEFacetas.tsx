@@ -205,7 +205,7 @@ const LentesEFacetas = () => {
           subtitle="Estética Dental com a Dra. Carla Christoph"
           description="Transforme seu sorriso com técnicas minimamente invasivas e resultados naturais. Scanner iTero 3D, Test Drive do Sorriso e planejamento personalizado. Mais de 20 anos de experiência em estética dental."
           badges={["20+ anos de experiência", "Test Drive do Sorriso", "CRO-RJ 27.509"]}
-          doctorImage="/lovable-uploads/doutora-em-pe-jaleco.webp"
+          doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
           breadcrumbs={[
             {label: "Início", href: "/"},
             {label: "Tratamentos", href: "/servicos"},
