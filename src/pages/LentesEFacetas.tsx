@@ -780,126 +780,191 @@ const LentesEFacetas = () => {
         </div>
       </section>
 
-        {/* Test Drive do Sorriso: Experimente Antes de Decidir */}
-        <section className="py-12 bg-dental-beige/20">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              Test Drive do Sorriso: Experimente Antes de Decidir
-            </h2>
-            
-            <div className="bg-gradient-to-r from-dental-gold/10 to-dental-purple/10 p-8 rounded-2xl max-w-6xl mx-auto">
-              <div className="grid md:grid-cols-2 gap-8 items-center">
-                <div className="space-y-6">
-                  <h3 className="text-2xl font-semibold text-dental-purple">
-                    Mock-up: Veja Seu Novo Sorriso Antes
-                  </h3>
-                  
-                  <p className="text-dental-gray font-medium">
-                    Uma das técnicas mais valiosas da odontologia estética moderna. 
-                    Você experimenta seu novo sorriso antes de qualquer procedimento definitivo!
-                  </p>
-                  
-                  <div className="space-y-4">
-                    {[
-                      {
-                        icon: "✨",
-                        title: "Resina Provisória Não Adesiva",
-                        description: "Aplicada diretamente sobre seus dentes, sem desgaste algum"
-                      },
-                      {
-                        icon: "👀",
-                        title: "Veja-se no Espelho", 
-                        description: "Observe de todos os ângulos, em luz natural e artificial"
-                      },
-                      {
-                        icon: "📸",
-                        title: "Tire Fotos e Vídeos",
-                        description: "Registre, fale, sorria - veja como fica em movimento"
-                      },
-                      {
-                        icon: "🎨",
-                        title: "Ajustes em Tempo Real",
-                        description: "Modificamos juntos até ficar perfeito para você"
-                      }
-                    ].map((item, index) => (
-                      <div key={index} className="flex items-start gap-4">
-                        <span className="text-2xl">{item.icon}</span>
-                        <div>
-                          <strong className="block text-dental-purple">{item.title}</strong>
-                          <span className="text-dental-gray text-sm">{item.description}</span>
-                        </div>
+        {/* Test Drive do Sorriso - Destaque Especial */}
+        <section className="py-16 bg-gradient-to-br from-dental-purple/5 to-dental-gold/5">
+          <div className="max-w-5xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 bg-dental-gold/10 px-4 py-2 rounded-full mb-4">
+                <Star className="w-5 h-5 text-dental-gold" />
+                <span className="text-dental-gold font-semibold text-sm">GRANDE DIFERENCIAL</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
+                Test Drive do Sorriso (Mock-up)
+              </h2>
+              <p className="text-xl text-dental-gray">
+                Veja e aprove seu novo sorriso ANTES de qualquer procedimento definitivo
+              </p>
+            </div>
+
+            <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
+              <div className="grid md:grid-cols-2">
+                {/* Coluna Esquerda - Destaque */}
+                <div className="bg-gradient-to-br from-dental-purple to-dental-purple/90 text-white p-10">
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center flex-shrink-0">
+                      <Sparkles className="w-7 h-7 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-display font-bold mb-2">
+                        A Experiência Transformadora
+                      </h3>
+                      <p className="text-white/90">
+                        Você experimenta seu novo sorriso antes de qualquer procedimento definitivo!
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-full bg-dental-gold flex items-center justify-center flex-shrink-0">
+                        <span className="font-bold text-white">1</span>
                       </div>
-                    ))}
+                      <div>
+                        <h4 className="font-semibold mb-1">Resina Provisória Não Adesiva</h4>
+                        <p className="text-sm text-white/80">Aplicada diretamente sobre seus dentes, sem desgaste algum</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-full bg-dental-gold flex items-center justify-center flex-shrink-0">
+                        <span className="font-bold text-white">2</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold mb-1">Veja-se no Espelho</h4>
+                        <p className="text-sm text-white/80">Observe de todos os ângulos, em luz natural e artificial</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-full bg-dental-gold flex items-center justify-center flex-shrink-0">
+                        <span className="font-bold text-white">3</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold mb-1">Tire Fotos e Vídeos</h4>
+                        <p className="text-sm text-white/80">Registre, fale, sorria - veja como fica em movimento</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-full bg-dental-gold flex items-center justify-center flex-shrink-0">
+                        <span className="font-bold text-white">4</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold mb-1">Ajustes em Tempo Real</h4>
+                        <p className="text-sm text-white/80">Modificamos juntos até ficar perfeito para você</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                
-                <div className="bg-white p-6 rounded-xl shadow-lg">
-                  <h4 className="font-bold text-lg mb-4 text-center text-dental-purple">
-                    A Experiência do Test Drive
-                  </h4>
-                  
-                  <div className="space-y-4">
-                    <div className="border-l-4 border-dental-gold pl-4">
-                      <p className="text-sm text-dental-gray italic">
-                        "É impressionante! Ver exatamente como vai ficar seu novo sorriso 
-                        antes de fazer qualquer coisa. Não é uma simulação no 
-                        computador - é REAL, na sua boca!"
-                      </p>
-                      <p className="text-xs text-dental-gray/70 mt-1">- Relato comum dos pacientes</p>
+
+                {/* Coluna Direita - Benefícios */}
+                <div className="p-10 bg-dental-beige/20">
+                  <h3 className="font-semibold text-xl text-dental-purple mb-6">
+                    Por Que o Test Drive É Revolucionário?
+                  </h3>
+
+                  <div className="space-y-5">
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-dental-gold mt-1 flex-shrink-0" />
+                      <div>
+                        <strong className="block text-dental-purple">Zero Ansiedade</strong>
+                        <p className="text-dental-gray text-sm">Você sabe exatamente como vai ficar antes de começar</p>
+                      </div>
                     </div>
-                    
-                    <div className="bg-dental-beige/40 p-4 rounded-lg">
-                      <h5 className="font-semibold text-sm mb-2">Por que o Mock-up é Tão Importante?</h5>
-                      <ul className="text-sm space-y-1 text-dental-gray">
-                        <li>• <strong>Decisão segura:</strong> Você prova antes de fazer o trabalho definitivo</li>
-                        <li>• <strong>Sem surpresas:</strong> O resultado final será igual ao mock-up aprovado</li>
-                        <li>• <strong>Personalização total:</strong> Ajustamos até você amar o resultado</li>
-                        <li>• <strong>Experiência real:</strong> Ver na própria boca é incomparável</li>
-                      </ul>
+
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-dental-gold mt-1 flex-shrink-0" />
+                      <div>
+                        <strong className="block text-dental-purple">Participação Ativa</strong>
+                        <p className="text-dental-gray text-sm">Você decide junto comigo, ajustamos até sua aprovação 100%</p>
+                      </div>
                     </div>
+
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-dental-gold mt-1 flex-shrink-0" />
+                      <div>
+                        <strong className="block text-dental-purple">Resultado Real</strong>
+                        <p className="text-dental-gray text-sm">Não é simulação digital - é real na sua boca, você sente e vive</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-dental-gold mt-1 flex-shrink-0" />
+                      <div>
+                        <strong className="block text-dental-purple">Confiança Total</strong>
+                        <p className="text-dental-gray text-sm">Só partimos para o definitivo quando você estiver 100% feliz</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-8 bg-gradient-to-br from-dental-gold/10 to-dental-purple/5 p-6 rounded-xl border border-dental-gold/20">
+                    <p className="text-dental-gray text-sm italic leading-relaxed">
+                      "É impressionante! Ver exatamente como vai ficar seu novo sorriso antes de fazer qualquer coisa. Não é uma simulação no computador - é REAL, na sua boca!"
+                    </p>
                   </div>
                 </div>
               </div>
-              
             </div>
           </div>
         </section>
 
-        {/* Tecnologia Digital: Scanner iTero Element 5D */}
-        <section className="py-12 bg-white">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              Tecnologia Digital: Scanner iTero Element 5D
-            </h2>
-            
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <p className="text-dental-gray mb-4">
-                  Utilizamos o scanner iTero Element 5D para planejamento técnico preciso:
+        {/* Tecnologia Digital - Scanner iTero */}
+        <section className="py-16 bg-white">
+          <div className="max-w-4xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
+                Tecnologia Digital: Scanner iTero Element 5D
+              </h2>
+              <p className="text-lg text-dental-gray">
+                Precisão milimétrica sem desconforto
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-dental-beige/30 to-white p-10 rounded-3xl shadow-lg">
+              <div className="space-y-6">
+                <p className="text-dental-gray leading-relaxed text-center text-lg">
+                  Utilizamos o scanner iTero Element 5D para planejamento técnico preciso: escaneamento digital sem moldagens com massa, modelo 3D preciso para o laboratório, comunicação digital com técnicos e arquivo digital do seu tratamento.
                 </p>
-                
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    {[
-                      "Escaneamento digital sem moldagens com massa",
-                      "Modelo 3D preciso para o laboratório"
-                    ].map((item, index) => (
-                      <div key={index} className="flex items-start gap-3">
-                        <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
-                        <span className="text-dental-gray text-sm">{item}</span>
-                      </div>
-                    ))}
+
+                <div className="grid md:grid-cols-2 gap-6 mt-8">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-dental-purple/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="w-6 h-6 text-dental-purple" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-dental-purple mb-1">Escaneamento Digital</h4>
+                      <p className="text-dental-gray text-sm">Sem moldagens com massa, sem desconforto</p>
+                    </div>
                   </div>
-                  <div className="space-y-2">
-                    {[
-                      "Comunicação digital com técnicos",
-                      "Arquivo digital do seu tratamento"
-                    ].map((item, index) => (
-                      <div key={index} className="flex items-start gap-3">
-                        <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
-                        <span className="text-dental-gray text-sm">{item}</span>
-                      </div>
-                    ))}
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-dental-purple/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="w-6 h-6 text-dental-purple" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-dental-purple mb-1">Modelo 3D Preciso</h4>
+                      <p className="text-dental-gray text-sm">Para o laboratório trabalhar com exatidão</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-dental-purple/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="w-6 h-6 text-dental-purple" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-dental-purple mb-1">Comunicação Digital</h4>
+                      <p className="text-dental-gray text-sm">Com técnicos especializados em cerâmica</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-dental-purple/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="w-6 h-6 text-dental-purple" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-dental-purple mb-1">Arquivo Digital</h4>
+                      <p className="text-dental-gray text-sm">Do seu tratamento para acompanhamento futuro</p>
+                    </div>
                   </div>
                 </div>
               </div>
