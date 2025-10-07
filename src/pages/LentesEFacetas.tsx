@@ -9,7 +9,7 @@ import ComparisonTable from "@/components/blog/ComparisonTable";
 import OptimizedImage from "@/components/OptimizedImage";
 import { ComparisonTableItem } from "@/types/BlogPost";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { CheckCircle, Star, ArrowRight, Play, Sparkles, Shield, Heart, Award, Search } from "lucide-react";
+import { CheckCircle, Star, ArrowRight, Play, Sparkles, Shield, Heart, Award, Search, HelpCircle } from "lucide-react";
 
 const LentesEFacetas = () => {
   // Placeholder para controlar exibição de casos
@@ -70,31 +70,55 @@ const LentesEFacetas = () => {
     }
   ];
 
-  // FAQs otimizadas para IA
+  // FAQs otimizadas - 12 perguntas completas
   const faqs = [
     {
       question: "Qual a diferença entre lente de contato dental e faceta de resina?",
-      answer: "Lentes de contato dental são lâminas ultrafinas de porcelana (0,2-0,5mm) que exigem desgaste mínimo ou zero do dente, ideais para correções sutis com máxima durabilidade. Facetas de resina são restaurações mais espessas (0,7-1,5mm) feitas diretamente no consultório, com custo mais acessível. Lentes duram 15-20 anos e não mancham, enquanto facetas de resina duram 5-8 anos e podem necessitar polimento periódico."
+      answer: "Lentes de contato dental são lâminas ultrafinas de porcelana (0,2-0,5mm) que exigem preparo mínimo do dente, ideais para transformações duradouras com máxima naturalidade. Facetas de resina são restaurações mais espessas (0,7-1,5mm) feitas diretamente no consultório, com custo mais acessível. Lentes duram 15-20 anos e não mancham, enquanto facetas de resina duram 5-8 anos e podem necessitar polimento periódico."
     },
     {
-      question: "As lentes de contato dental realmente não desgastam os dentes?",
-      answer: "Na maioria dos casos, o desgaste é mínimo (0,1-0,3mm) ou inexistente. O preparo, quando necessário, é limitado ao esmalte superficial, preservando até 95% da estrutura dental original. Isso contrasta com tratamentos mais antigos que exigiam desgastes significativos. A Dra. Carla utiliza técnicas minimamente invasivas para máxima preservação dental."
-    },
-    {
-      question: "Qual o investimento para lentes de contato dental e facetas em Ipanema?",
-      answer: "O investimento varia conforme o número de dentes tratados, complexidade do caso e tipo de material escolhido. Lentes de contato dental requerem maior investimento devido ao material cerâmico premium e durabilidade superior. Facetas de resina oferecem excelente custo-benefício. A Dra. Carla oferece planos de pagamento facilitados e condições especiais. O valor reflete toda a experiência, tecnologia avançada e acompanhamento personalizado de uma especialista com 20+ anos de experiência. Consulte valores detalhados na avaliação."
+      question: "É necessário desgastar muito os meus dentes?",
+      answer: "Não. A filosofia do consultório é a máxima preservação da estrutura dentária. Para lentes, o preparo é mínimo (0,1-0,3mm quando necessário), limitado ao esmalte superficial. Para facetas de resina, o preparo também é conservador. O importante é garantir adaptação perfeita e resultado estético duradouro preservando ao máximo seus dentes naturais."
     },
     {
       question: "Quanto tempo dura o tratamento completo?",
-      answer: "Para lentes de contato dental: 2-3 consultas em 15-20 dias. Primeira consulta para planejamento e moldagem, segunda para aprovação do mock-up, terceira para cimentação. Facetas de resina podem ser feitas em 1-2 consultas, pois são confeccionadas diretamente no consultório. A Dra. Carla trabalha com agenda espaçada para garantir tempo adequado em cada sessão."
+      answer: "Lentes de contato dental: 2-3 consultas em 15-20 dias. Primeira consulta para planejamento e moldagem digital, segunda para aprovação do Test Drive do Sorriso, terceira para cimentação. Facetas de resina: 1-2 consultas, pois são confeccionadas diretamente no consultório. Trabalhamos com agenda espaçada para garantir tempo adequado em cada sessão."
     },
     {
-      question: "Lentes de contato dental doem para colocar?",
-      answer: "O procedimento é indolor. Quando necessário algum preparo mínimo, é feito com anestesia local. A cimentação das lentes é um processo delicado que não causa dor. Pode haver sensibilidade leve nos primeiros dias, facilmente controlada com analgésicos simples se necessário."
+      question: "O tratamento para melhorar a estética do sorriso dói?",
+      answer: "Não. Todos os procedimentos estéticos são realizados com o máximo de conforto, utilizando anestesia local sempre que necessário. A cimentação das lentes é um processo delicado que não causa dor. Pode haver sensibilidade leve nos primeiros dias, facilmente controlada com analgésicos simples se necessário. A prioridade é uma experiência tranquila e indolor."
     },
     {
-      question: "O que é o 'Test Drive do Sorriso' (mock-up)?",
-      answer: "É uma técnica valiosa onde a Dra. Carla cria seu novo sorriso com resina provisória não adesiva diretamente na sua boca, sem desgastar os dentes. Você pode se olhar no espelho, tirar fotos, vídeos, falar, sorrir. É uma experiência transformadora! Ajustamos juntos até ficar perfeito. Só depois de você aprovar 100% é que partimos para o tratamento definitivo."
+      question: "O que é o Test Drive do Sorriso (mock-up)?",
+      answer: "É uma técnica onde criamos seu novo sorriso com resina provisória não adesiva diretamente na sua boca, sem desgastar os dentes. Você pode se olhar no espelho, tirar fotos, vídeos, falar, sorrir. É uma experiência transformadora! Ajustamos juntos até ficar perfeito. Só depois de você aprovar 100% é que partimos para o tratamento definitivo. Este é um dos nossos maiores diferenciais."
+    },
+    {
+      question: "As lentes podem parecer artificiais?",
+      answer: "Este é um dos maiores medos, e a nossa maior preocupação é evitá-lo. Quando bem executadas por uma especialista, absolutamente não. Usamos cerâmicas de última geração que mimetizam perfeitamente a beleza do dente natural. O segredo está na análise facial completa, estratificação de cor personalizada e proporções individualizadas. O resultado é um sorriso elogiado pela naturalidade."
+    },
+    {
+      question: "Posso fazer lentes mesmo tendo os dentes tortos?",
+      answer: "Sim, desde que o desalinhamento seja leve. Lentes podem corrigir pequenos desalinhamentos, giros e espaços. Porém, em casos de apinhamento severo ou problemas de mordida significativos, pode ser necessário ortodontia prévia para um resultado duradouro e saudável. Na consulta, avalio seu caso específico e recomendo a melhor abordagem."
+    },
+    {
+      question: "Preciso fazer em todos os dentes?",
+      answer: "Não necessariamente. Muitos casos envolvem apenas os dentes anteriores superiores (4 a 10 dentes). Na avaliação, analiso seu sorriso para determinar quantos dentes precisam ser incluídos para um resultado harmonioso. O planejamento é individualizado para cada pessoa."
+    },
+    {
+      question: "Qual o investimento para lentes de contato dental e facetas em Ipanema?",
+      answer: "O investimento varia conforme o número de dentes tratados, complexidade do caso e tipo de material escolhido. Lentes de contato dental requerem maior investimento devido ao material cerâmico premium e durabilidade superior (15-20 anos). Facetas de resina oferecem excelente custo-benefício para quem busca resultado imediato com investimento mais acessível. Oferecemos planos de pagamento facilitados. O valor reflete toda a experiência, tecnologia avançada e acompanhamento personalizado. Consulte valores detalhados na avaliação."
+    },
+    {
+      question: "Lentes podem manchar com café, vinho ou cigarro?",
+      answer: "A cerâmica utilizada nas lentes não mancha. Diferente das facetas de resina, o material cerâmico é impermeável e mantém o brilho e cor originais permanentemente. Você pode continuar consumindo café, vinho tinto, chá e outros alimentos sem preocupação. Apenas os dentes naturais adjacentes requerem atenção com clareamento prévio para não criarem contraste."
+    },
+    {
+      question: "Como é a manutenção das lentes e facetas?",
+      answer: "Lentes de cerâmica: Higiene oral normal (escova, fio dental, enxaguante), evitar morder objetos duros (canetas, unhas, gelo), uso de placa miorrelaxante se você range os dentes à noite. Retornos semestrais para avaliação e polimento profissional. Facetas de resina: Mesmos cuidados, porém requerem polimento profissional a cada 6 meses para manter o brilho. Ambas podem durar muitos anos com os cuidados adequados."
+    },
+    {
+      question: "Como funciona a consulta de planejamento?",
+      answer: "É uma conversa aprofundada para entendermos seus desejos e expectativas. Realizamos fotografias profissionais, escaneamento digital com iTero 3D e uma análise completa do seu sorriso e face. Juntos, definimos o melhor plano de tratamento, explicando os prós e contras de cada opção (lentes vs facetas). Você sairá da consulta com todas as informações necessárias para tomar uma decisão informada."
     }
   ];
 
@@ -1349,31 +1373,38 @@ const LentesEFacetas = () => {
           </section>
         )}
 
-        {/* FAQs Otimizadas para IA e Voice Search */}
-        <section className="py-12 bg-dental-beige/20">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              Perguntas Frequentes sobre Lentes e Facetas
-            </h2>
-            
-            <div className="max-w-4xl mx-auto">
-              <Accordion type="single" collapsible className="w-full space-y-4">
-                {faqs.map((faq, index) => (
-                  <AccordionItem 
-                    value={`item-${index + 1}`} 
-                    key={index}
-                    className="bg-white rounded-lg border border-dental-purple/20 px-6"
-                  >
-                    <AccordionTrigger className="text-left text-base font-semibold text-dental-purple hover:text-dental-gold transition-colors py-6">
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-dental-gray leading-relaxed pb-6">
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+        <SectionDivider variant="with-icon" icon={<HelpCircle className="w-5 h-5" />} />
+
+        {/* FAQs */}
+        <section className="py-16 bg-white">
+          <div className="max-w-4xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
+                Perguntas Frequentes
+              </h2>
+              <p className="text-lg text-dental-gray">
+                Tire todas as suas dúvidas sobre lentes e facetas
+              </p>
             </div>
+
+            <Accordion type="single" collapsible className="space-y-4">
+              {faqs.map((faq, index) => (
+                <AccordionItem 
+                  value={`faq-${index + 1}`} 
+                  key={index}
+                  className="bg-dental-beige/10 rounded-xl px-6 border-0"
+                >
+                  <AccordionTrigger className="text-left hover:text-dental-purple py-5">
+                    <span className="font-semibold text-dental-purple">
+                      {faq.question}
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-dental-gray pb-5">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </section>
 
