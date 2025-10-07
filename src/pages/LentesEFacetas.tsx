@@ -638,47 +638,93 @@ const LentesEFacetas = () => {
 
         <SectionDivider variant="with-icon" icon={<Star className="w-5 h-5" />} />
 
-        {/* Seção da Especialista - Dra. Carla */}
-        <section className="py-12 bg-white">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-12 text-center text-dental-purple">Sua Especialista em Estética Dental</h2>
-            
-            <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-              <div className="relative">
+        <SectionDivider variant="with-icon" icon={<Heart className="w-5 h-5" />} />
+
+        {/* Seção da Especialista */}
+        <section className="py-16 bg-dental-beige/20">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
+                Sua Dentista para Estética Dental
+              </h2>
+            </div>
+
+            <div className="grid md:grid-cols-[300px,1fr] gap-12 items-start max-w-5xl mx-auto">
+              {/* Foto */}
+              <div className="mx-auto md:mx-0">
                 <img
-                  src="/lovable-uploads/doutora-em-pe-jaleco.webp"
-                  alt="Dra. Carla Christoph - Especialista em Prótese Dental"
-                  className="rounded-2xl aspect-[4/5] object-cover object-top shadow-lg w-full h-auto"
-                  loading="eager"
+                  src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+                  alt="Dra. Carla Christoph"
+                  className="w-full rounded-2xl shadow-lg"
                 />
               </div>
-              
+
+              {/* Conteúdo */}
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-2xl font-semibold text-dental-purple mb-2">Dra. Carla Christoph</h3>
-                  <p className="text-dental-gold font-medium mb-4">CRO-RJ 27.509 | Especialista em Prótese Dental</p>
+                  <h3 className="text-2xl font-display font-bold text-dental-purple mb-2">
+                    Dra. Carla Christoph
+                  </h3>
+                  <p className="text-dental-gold font-semibold">CRO-RJ 27.509</p>
                 </div>
-                
-                <div className="space-y-3">
-                  {[
-                    "Mais de 20 anos de experiência em odontologia estética",
-                    "Especialista em Prótese Dental e Implantodontia", 
-                    "Centenas de casos de lentes e facetas realizados",
-                    "Formação contínua em estética dental avançada"
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-dental-gold mt-1 flex-shrink-0" />
-                      <span className="text-dental-gray">{item}</span>
-                    </div>
-                  ))}
+
+                <p className="text-dental-gray leading-relaxed">
+                  Mais de 20 anos dedicados à transformação de sorrisos em Ipanema. Especialista em Prótese Dentária e Implantodontia, com formação contínua em Design de Sorrisos, técnicas avançadas de resina, lentes de contato dental, diagnóstico digital e DTM.
+                </p>
+
+                <div className="bg-white p-6 rounded-xl shadow-sm">
+                  <h4 className="font-semibold text-dental-purple mb-4 flex items-center gap-2">
+                    <Award className="w-5 h-5 text-dental-gold" />
+                    Experiência Comprovada
+                  </h4>
+                  <ul className="space-y-2 text-dental-gray text-sm">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
+                      <span>Mais de 1.000 casos de lentes e facetas realizados com sucesso</span>
+                    </li>
+                  </ul>
                 </div>
-                
-                <div className="bg-dental-beige/30 p-6 rounded-xl">
-                  <p className="text-dental-gray leading-relaxed italic">
-                    "Minha filosofia é criar sorrisos naturais que parecem ter nascido assim. Uma das técnicas 
-                    mais valiosas que utilizo é o 'Test Drive do Sorriso' - uso resina provisória não adesiva para criar 
-                    seu novo sorriso diretamente na sua boca. Você se vê no espelho, tira fotos, fala, sorri... 
-                    é uma experiência transformadora ver o resultado real antes de começar."
+
+                <div className="bg-white p-6 rounded-xl shadow-sm">
+                  <h4 className="font-semibold text-dental-purple mb-4 flex items-center gap-2">
+                    <Sparkles className="w-5 h-5 text-dental-gold" />
+                    Diferenciais da Abordagem
+                  </h4>
+                  <ul className="space-y-3 text-dental-gray text-sm">
+                    <li className="flex items-start gap-2">
+                      <span className="text-dental-gold mt-1">▸</span>
+                      <span>Planejamento individualizado com foco em harmonização facial</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-dental-gold mt-1">▸</span>
+                      <span>Test Drive do Sorriso (mock-up) em 100% dos casos estéticos</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-dental-gold mt-1">▸</span>
+                      <span>Scanner intraoral iTero 3D para precisão digital</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-dental-gold mt-1">▸</span>
+                      <span>Parceria com laboratórios especializados em cerâmica</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-dental-gold mt-1">▸</span>
+                      <span>Avaliação de saúde periodontal antes de qualquer procedimento estético</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-dental-gold mt-1">▸</span>
+                      <span>Acompanhamento de longo prazo para longevidade do tratamento</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Quote destacada SEM assinatura */}
+                <div className="relative bg-gradient-to-br from-dental-purple/5 to-dental-gold/5 p-8 rounded-2xl mt-8 overflow-hidden">
+                  <div className="absolute top-4 left-4 text-5xl text-dental-gold/20 font-serif">"</div>
+                  <div className="absolute bottom-4 right-4 text-5xl text-dental-gold/20 font-serif">"</div>
+                  
+                  <p className="text-xl text-dental-purple italic font-display leading-relaxed text-center relative z-10 px-4">
+                    Meu objetivo não é criar sorrisos perfeitos, mas sorrisos verdadeiros. Cada pessoa tem uma beleza única que merece ser realçada, nunca padronizada.
                   </p>
                 </div>
               </div>
@@ -767,14 +813,6 @@ const LentesEFacetas = () => {
                 </div>
               </div>
               
-              <div className="mt-8 text-center">
-                <p className="text-lg text-dental-gray font-medium">
-                  "É emocionante ver a transformação instantânea! 
-                  Os pacientes ficam impressionados ao ver como ficará 
-                  o sorriso definitivo."
-                </p>
-                <p className="text-sm text-dental-gray/70 mt-2">- Dra. Carla Christoph</p>
-              </div>
             </div>
           </div>
         </section>
