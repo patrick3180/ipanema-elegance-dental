@@ -711,7 +711,7 @@ const LentesEFacetas = () => {
                     <h4 className="font-semibold text-dental-purple">Experiência</h4>
                   </div>
                   <p className="text-dental-gray text-sm">
-                    Mais de 1.000 casos de lentes e facetas realizados
+                    Centenas de casos de lentes e facetas realizados
                   </p>
                 </div>
 
