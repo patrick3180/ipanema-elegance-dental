@@ -640,97 +640,121 @@ const LentesEFacetas = () => {
 
         <SectionDivider variant="with-icon" icon={<Heart className="w-5 h-5" />} />
 
-        {/* Seção da Especialista */}
-        <section className="py-16 bg-dental-beige/20">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
-                Sua Dentista para Estética Dental
-              </h2>
-            </div>
+      {/* Seção da Especialista - Premium com Fade */}
+      <section className="py-20 bg-gradient-to-b from-dental-beige/10 to-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
+              Sua Dentista para Estética Dental
+            </h2>
+          </div>
 
-            <div className="grid md:grid-cols-[300px,1fr] gap-12 items-start max-w-5xl mx-auto">
-              {/* Foto */}
-              <div className="mx-auto md:mx-0">
+          <div className="grid md:grid-cols-[380px,1fr] gap-12 items-start max-w-6xl mx-auto">
+            {/* Foto com Fade Effect e Badge */}
+            <div className="relative">
+              {/* Container da imagem com gradiente fade */}
+              <div className="relative overflow-hidden rounded-3xl">
                 <img
                   src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
                   alt="Dra. Carla Christoph"
-                  className="w-full rounded-2xl shadow-lg"
+                  className="w-full"
                 />
+                {/* Gradiente fade lateral direito */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-dental-beige/80 pointer-events-none"></div>
+              </div>
+              
+              {/* Badge decorativo sobreposto */}
+              <div className="absolute bottom-6 left-6 bg-dental-gold text-white px-6 py-3 rounded-full shadow-lg">
+                <p className="font-semibold text-sm">20+ Anos de Experiência</p>
+              </div>
+            </div>
+
+            {/* Conteúdo */}
+            <div className="space-y-8">
+              {/* Cabeçalho */}
+              <div>
+                <h3 className="text-3xl font-display font-bold text-dental-purple mb-2">
+                  Dra. Carla Christoph
+                </h3>
+                <p className="text-dental-gold font-semibold text-lg mb-4">
+                  CRO-RJ 27.509 | Especialista em Prótese Dentária
+                </p>
+                <p className="text-dental-gray text-lg leading-relaxed">
+                  Com mais de duas décadas dedicadas à estética dental em Ipanema, desenvolvi expertise reconhecida em casos de alta complexidade. Minha abordagem combina precisão técnica com sensibilidade artística, sempre respeitando a individualidade de cada pessoa.
+                </p>
+                <p className="text-dental-gray text-lg leading-relaxed mt-4">
+                  Cada caso é tratado de forma absolutamente individual. Não existem sorrisos padronizados - cada tratamento é único, planejado para harmonizar com suas características faciais e estilo de vida.
+                </p>
               </div>
 
-              {/* Conteúdo */}
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-2xl font-display font-bold text-dental-purple mb-2">
-                    Dra. Carla Christoph
-                  </h3>
-                  <p className="text-dental-gold font-semibold">CRO-RJ 27.509</p>
+              {/* Grid 2x2 de informações */}
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Formação */}
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-10 h-10 rounded-full bg-dental-gold/10 flex items-center justify-center">
+                      <Award className="w-5 h-5 text-dental-gold" />
+                    </div>
+                    <h4 className="font-semibold text-dental-purple">Formação</h4>
+                  </div>
+                  <p className="text-dental-gray text-sm">
+                    Especialista em Prótese Dentária e Implantodontia
+                  </p>
                 </div>
 
-                <p className="text-dental-gray leading-relaxed">
-                  Mais de 20 anos dedicados à transformação de sorrisos em Ipanema. Especialista em Prótese Dentária e Implantodontia, com formação contínua em Design de Sorrisos, técnicas avançadas de resina, lentes de contato dental, diagnóstico digital e DTM.
-                </p>
-
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <h4 className="font-semibold text-dental-purple mb-4 flex items-center gap-2">
-                    <Award className="w-5 h-5 text-dental-gold" />
-                    Experiência Comprovada
-                  </h4>
-                  <ul className="space-y-2 text-dental-gray text-sm">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
-                      <span>Mais de 1.000 casos de lentes e facetas realizados com sucesso</span>
-                    </li>
-                  </ul>
+                {/* Experiência */}
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-10 h-10 rounded-full bg-dental-gold/10 flex items-center justify-center">
+                      <Star className="w-5 h-5 text-dental-gold" />
+                    </div>
+                    <h4 className="font-semibold text-dental-purple">Experiência</h4>
+                  </div>
+                  <p className="text-dental-gray text-sm">
+                    Mais de 1.000 casos de lentes e facetas realizados
+                  </p>
                 </div>
 
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <h4 className="font-semibold text-dental-purple mb-4 flex items-center gap-2">
-                    <Sparkles className="w-5 h-5 text-dental-gold" />
-                    Diferenciais da Abordagem
-                  </h4>
-                  <ul className="space-y-3 text-dental-gray text-sm">
-                    <li className="flex items-start gap-2">
-                      <span className="text-dental-gold mt-1">▸</span>
-                      <span>Planejamento individualizado com foco em harmonização facial</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-dental-gold mt-1">▸</span>
-                      <span>Test Drive do Sorriso (mock-up) em 100% dos casos estéticos</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-dental-gold mt-1">▸</span>
-                      <span>Scanner intraoral iTero 3D para precisão digital</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-dental-gold mt-1">▸</span>
-                      <span>Parceria com laboratórios especializados em cerâmica</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-dental-gold mt-1">▸</span>
-                      <span>Avaliação de saúde periodontal antes de qualquer procedimento estético</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-dental-gold mt-1">▸</span>
-                      <span>Acompanhamento de longo prazo para longevidade do tratamento</span>
-                    </li>
-                  </ul>
+                {/* Atualização */}
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-10 h-10 rounded-full bg-dental-gold/10 flex items-center justify-center">
+                      <Sparkles className="w-5 h-5 text-dental-gold" />
+                    </div>
+                    <h4 className="font-semibold text-dental-purple">Atualização</h4>
+                  </div>
+                  <p className="text-dental-gray text-sm">
+                    Formação contínua em Design de Sorrisos e técnicas avançadas
+                  </p>
                 </div>
 
-                {/* Quote destacada SEM assinatura */}
-                <div className="relative bg-gradient-to-br from-dental-purple/5 to-dental-gold/5 p-8 rounded-2xl mt-8 overflow-hidden">
-                  <div className="absolute top-4 left-4 text-5xl text-dental-gold/20 font-serif">"</div>
-                  <div className="absolute bottom-4 right-4 text-5xl text-dental-gold/20 font-serif">"</div>
-                  
-                  <p className="text-xl text-dental-purple italic font-display leading-relaxed text-center relative z-10 px-4">
-                    Meu objetivo não é criar sorrisos perfeitos, mas sorrisos verdadeiros. Cada pessoa tem uma beleza única que merece ser realçada, nunca padronizada.
+                {/* Tecnologia */}
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-10 h-10 rounded-full bg-dental-gold/10 flex items-center justify-center">
+                      <Shield className="w-5 h-5 text-dental-gold" />
+                    </div>
+                    <h4 className="font-semibold text-dental-purple">Tecnologia</h4>
+                  </div>
+                  <p className="text-dental-gray text-sm">
+                    Scanner iTero 3D e planejamento digital avançado
                   </p>
                 </div>
               </div>
+
+              {/* Quote destacada SEM assinatura */}
+              <div className="relative bg-gradient-to-br from-dental-purple/5 to-dental-gold/5 p-8 rounded-2xl mt-8 overflow-hidden border border-dental-gold/10">
+                <div className="absolute top-4 left-4 text-5xl text-dental-gold/20 font-serif">"</div>
+                <div className="absolute bottom-4 right-4 text-5xl text-dental-gold/20 font-serif">"</div>
+                
+                <p className="text-xl text-dental-purple italic font-display leading-relaxed text-center relative z-10 px-4">
+                  Meu objetivo não é criar sorrisos perfeitos, mas sorrisos verdadeiros. Cada pessoa tem uma beleza única que merece ser realçada, nunca padronizada.
+                </p>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
         {/* Test Drive do Sorriso: Experimente Antes de Decidir */}
         <section className="py-12 bg-dental-beige/20">
