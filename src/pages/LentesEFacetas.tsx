@@ -1253,96 +1253,6 @@ const LentesEFacetas = () => {
           </div>
         </section>
 
-        {/* Cuidados e Durabilidade */}
-        <section className="py-12 bg-dental-beige/20">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              Cuidados para Manter seu Novo Sorriso
-            </h2>
-            
-            <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="font-semibold text-lg mb-4 text-dental-purple flex items-center gap-2">
-                  <span className="text-2xl">🪥</span>
-                  Higiene Diária
-                </h3>
-                <ul className="space-y-2 text-dental-gray">
-                  {[
-                    "Escovação com cerdas macias 3x ao dia",
-                    "Uso obrigatório de fio dental",
-                    "Enxaguante bucal sem álcool", 
-                    "Pasta dental não abrasiva",
-                    "Escova interdental para áreas específicas"
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <span className="text-dental-gold mt-1">•</span>
-                      <span className="text-sm">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="font-semibold text-lg mb-4 text-dental-purple flex items-center gap-2">
-                  <span className="text-2xl">🛡️</span>
-                  Proteção e Prevenção
-                </h3>
-                <ul className="space-y-2 text-dental-gray">
-                  {[
-                    "Evitar morder objetos duros",
-                    "Não usar dentes como ferramentas",
-                    "Placa de bruxismo se necessário",
-                    "Evitar alimentos muito pigmentados (resina)",
-                    "Protetor bucal para esportes"
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <span className="text-dental-gold mt-1">•</span>
-                      <span className="text-sm">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="font-semibold text-lg mb-4 text-dental-purple flex items-center gap-2">
-                  <span className="text-2xl">📅</span>
-                  Manutenção Profissional
-                </h3>
-                <ul className="space-y-2 text-dental-gray">
-                  {[
-                    "Check-up a cada 6 meses",
-                    "Profilaxia profissional regular",
-                    "Polimento das restaurações",
-                    "Avaliação da integridade",
-                    "Ajustes quando necessário"
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <span className="text-dental-gold mt-1">•</span>
-                      <span className="text-sm">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="font-semibold text-lg mb-4 text-dental-purple flex items-center gap-2">
-                  <span className="text-2xl">⏰</span>
-                  Durabilidade Esperada
-                </h3>
-                <div className="space-y-4 text-dental-gray">
-                  <div>
-                    <strong className="text-dental-purple">Lentes de Contato:</strong>
-                    <p className="text-sm">15-20 anos com cuidados adequados</p>
-                  </div>
-                  <div>
-                    <strong className="text-dental-purple">Facetas de Resina:</strong>
-                    <p className="text-sm">5-8 anos, com possibilidade de reparos</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Casos Antes e Depois (Condicional) */}
         {caseImages && caseImages.length > 0 && (
@@ -1408,33 +1318,63 @@ const LentesEFacetas = () => {
           </div>
         </section>
 
+        <SectionDivider variant="with-icon" icon={<Star className="w-5 h-5" />} />
+
         {/* CTA Final */}
-        <section className="py-16 bg-dental-purple text-white">
-          <div className="container-custom text-center">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Award className="w-8 h-8 text-dental-gold" />
-              <h2 className="heading-lg">
-                Transforme Seu Sorriso com a Dra. Carla Christoph
-              </h2>
+        <section className="py-20 bg-gradient-to-br from-dental-purple via-dental-purple/95 to-dental-purple/90 relative overflow-hidden">
+          {/* Padrão decorativo de fundo */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-dental-gold rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-dental-gold rounded-full blur-3xl"></div>
+          </div>
+
+          <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+            {/* Ícone decorativo */}
+            <div className="flex justify-center mb-6">
+              <div className="w-16 h-16 bg-dental-gold/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                <Sparkles className="w-8 h-8 text-dental-gold" />
+              </div>
             </div>
-            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Especialista em Prótese Dental com mais de 20 anos criando sorrisos 
-              naturais e duradouros em Ipanema
+
+            {/* Título */}
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-6">
+              Pronto(a) Para Transformar Seu Sorriso?
+            </h2>
+
+            {/* Texto */}
+            <p className="text-lg md:text-xl text-white/90 mb-10 leading-relaxed max-w-3xl mx-auto">
+              Agende uma avaliação completa e conheça seu potencial de transformação. Na consulta, vamos analisar seu caso, realizar um checkup da sua saúde bucal, tirar fotografias profissionais e apresentar todas as possibilidades para o seu sorriso.
             </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button 
-                onClick={() => handleWhatsAppClick('Olá! Gostaria de agendar uma avaliação para lentes de contato dental com a Dra. Carla.')}
-                className="bg-dental-gold text-dental-purple px-8 py-4 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-all inline-flex items-center gap-2"
-              >
-                <ArrowRight className="w-5 h-5" />
-                Agendar Avaliação pelo WhatsApp
-              </button>
+
+            {/* Botão WhatsApp */}
+            <a
+              href="https://wa.me/5521993304045?text=Olá!%20Vi%20a%20página%20sobre%20Lentes%20e%20Facetas%20e%20gostaria%20de%20agendar%20uma%20avaliação%20para%20transformar%20meu%20sorriso."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-dental-gold hover:bg-dental-gold/90 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 group"
+            >
+              <svg className="w-6 h-6 group-hover:rotate-12 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              <span>Agendar Avaliação no WhatsApp</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </a>
+
+            {/* Informações adicionais */}
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-white/80 text-sm">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-dental-gold" />
+                <span>Resposta em até 24h</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-dental-gold" />
+                <span>Localização privilegiada em Ipanema</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-dental-gold" />
+                <span>Atendimento personalizado</span>
+              </div>
             </div>
-            
-            <p className="mt-6 text-sm opacity-75">
-              Atendimento sem pressa • Consultas com hora marcada • Ipanema, Rio de Janeiro
-            </p>
           </div>
         </section>
       </PageLayout>
