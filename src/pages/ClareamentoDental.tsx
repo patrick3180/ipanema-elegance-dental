@@ -1,115 +1,14 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
-import ServiceBreadcrumb from "@/components/ServiceBreadcrumb";
-import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
+import TreatmentHero from "@/components/treatment/TreatmentHero";
+import SectionDivider from "@/components/treatment/SectionDivider";
+import ProcessTimeline from "@/components/treatment/ProcessTimeline";
 import ComparisonTable from "@/components/blog/ComparisonTable";
-
-import { ComparisonTableItem } from "@/types/BlogPost";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { CheckCircle, Star, ArrowRight, Clock, Sparkles, Shield, Heart, Award, Zap, Calendar } from "lucide-react";
+import { Sparkles, Award, HelpCircle, Search, FileText, Scan, Zap, Heart, CheckCircle } from "lucide-react";
 
 const ClareamentoDental = () => {
-  // Placeholder para casos futuros
-  const caseImages = null;
-  
-  // Dados para tabela comparativa de técnicas de clareamento
-  const comparisonData: ComparisonTableItem[] = [
-    {
-      "Criterio": "Critério",
-      "Critério": "Critério",
-      "Rótulo coluna A": "Clareamento de Consultório",
-      "Rótulo coluna B": "Clareamento Caseiro",
-      "Rótulo coluna C": "Tratamento Combinado"
-    },
-    {
-      "Criterio": "Tempo Total",
-      "Rótulo coluna A": "1-3 sessões (60-90min)",
-      "Rótulo coluna B": "14-21 dias",
-      "Rótulo coluna C": "Consultório + 7-14 dias"
-    },
-    {
-      "Criterio": "Concentração do Gel",
-      "Rótulo coluna A": "35-37% peróxido de hidrogênio",
-      "Rótulo coluna B": "10-20% peróxido de carbamida",
-      "Rótulo coluna C": "Ambas as concentrações"
-    },
-    {
-      "Criterio": "Velocidade do Resultado",
-      "Rótulo coluna A": "Imediato (2-9 tons)",
-      "Rótulo coluna B": "Gradual e progressivo",
-      "Rótulo coluna C": "Rápido + manutenção"
-    },
-    {
-      "Criterio": "Sensibilidade",
-      "Rótulo coluna A": "Pode ser mais intensa",
-      "Rótulo coluna B": "Geralmente mínima",
-      "Rótulo coluna C": "Controlada"
-    },
-    {
-      "Criterio": "Durabilidade",
-      "Rótulo coluna A": "2-3 anos",
-      "Rótulo coluna B": "2-3 anos ou mais",
-      "Rótulo coluna C": "Máxima durabilidade"
-    },
-    {
-      "Criterio": "Supervisão",
-      "Rótulo coluna A": "100% em consultório",
-      "Rótulo coluna B": "Orientação + controle",
-      "Rótulo coluna C": "Acompanhamento total"
-    },
-    {
-      "Criterio": "Indicação Principal",
-      "Rótulo coluna A": "Resultados rápidos, eventos próximos",
-      "Rótulo coluna B": "Conforto, controle do paciente",
-      "Rótulo coluna C": "Máxima eficácia e durabilidade"
-    }
-  ];
-
-  // FAQs otimizadas para SEO e IA
-  const faqs = [
-    {
-      question: "Qual a diferença entre clareamento dental caseiro e de consultório?",
-      answer: "O clareamento de consultório utiliza gel com concentração de 35-37% de peróxido de hidrogênio, proporcionando resultados imediatos em 1-3 sessões de 60-90 minutos. O caseiro supervisionado usa concentrações menores (10-20% de peróxido de carbamida) aplicadas gradualmente por 14-21 dias com moldeiras personalizadas. Ambos são eficazes, mas o caseiro tende a causar menos sensibilidade e oferece maior controle ao paciente. A Dra. Carla personaliza a escolha conforme suas necessidades, urgência e sensibilidade dental."
-    },
-    {
-      question: "O clareamento dental causa sensibilidade nos dentes?",
-      answer: "A sensibilidade pode ocorrer temporariamente em alguns pacientes, mas é controlável com protocolos modernos. Utilizamos dessensibilizantes preventivos, ajustamos concentrações e tempos de aplicação individualmente, e aplicamos laser terapêutico quando indicado. A maioria dos pacientes experimenta pouca ou nenhuma sensibilidade, especialmente no tratamento caseiro. Quando presente, é transitória e desaparece em 24-72 horas após o tratamento."
-    },
-    {
-      question: "Quanto tempo dura o resultado do clareamento dental?",
-      answer: "Com cuidados adequados, os resultados mantêm-se por 2-3 anos. A durabilidade varia conforme hábitos alimentares, higiene oral e estilo de vida. Pacientes que evitam substâncias pigmentadas (café, vinho, tabaco) e mantêm excelente higiene podem preservar o resultado por mais tempo. Oferecemos protocolo de manutenção personalizado com sessões de reforço anuais que prolongam significativamente a durabilidade."
-    },
-    {
-      question: "Posso fazer clareamento tendo restaurações ou facetas?",
-      answer: "Sim, mas é importante saber que apenas dentes naturais respondem ao clareamento - restaurações, facetas e coroas mantêm sua cor original. Realizamos análise detalhada para determinar a melhor estratégia: clarear primeiro os dentes naturais e, se necessário, substituir restaurações visíveis após estabilização da cor (7-14 dias). Em alguns casos, podemos focar o clareamento em áreas específicas para manter harmonia estética."
-    },
-    {
-      question: "O clareamento dental é seguro para o esmalte?",
-      answer: "Completamente seguro quando realizado por profissional qualificado. Os géis modernos têm pH balanceado e não causam desmineralização do esmalte nem enfraquecem a estrutura dental. Utilizamos produtos com agentes remineralizantes e a Dra. Carla, com mais de 20 anos de experiência, segue protocolos científicos rigorosos que garantem a integridade dos seus dentes durante todo o processo."
-    },
-    {
-      question: "Quais cuidados são necessários após o clareamento?",
-      answer: "Nas primeiras 48 horas, seguir dieta branca evitando alimentos e bebidas pigmentados (café, vinho, molho de tomate, açaí). Manter higiene oral impecável com escovação após refeições e uso de fio dental. Usar canudos para bebidas escuras quando retomar consumo normal. Não fumar. Realizar manutenções periódicas conforme orientação. Fornecemos guia completo personalizado com todos os cuidados para maximizar a durabilidade do seu resultado."
-    },
-    {
-      question: "O clareamento funciona em todos os tipos de manchas?",
-      answer: "O clareamento é altamente eficaz para manchas extrínsecas causadas por alimentação, bebidas e idade. Manchas intrínsecas como as causadas por antibióticos (tetraciclina) ou excesso de flúor podem ter resposta limitada, requerendo protocolos especiais ou tratamentos alternativos como microabrasão ou laminados cerâmicos. Durante a avaliação, identificamos o tipo de mancha e estabelecemos expectativas realistas sobre os resultados possíveis."
-    },
-    {
-      question: "É melhor fazer clareamento antes ou depois de colocar facetas?",
-      answer: "Sempre antes. O clareamento deve preceder qualquer tratamento estético restaurador para estabelecer a cor base ideal. Após o clareamento, aguardamos 7-14 dias para estabilização completa da cor antes de selecionar a tonalidade das facetas ou restaurações. Isso garante harmonia perfeita entre dentes naturais clareados e as novas peças estéticas."
-    },
-    {
-      question: "Gestantes podem fazer clareamento dental?",
-      answer: "Por precaução, recomendamos aguardar o período pós-gestacional e amamentação. Embora não existam estudos conclusivos sobre riscos, priorizamos a segurança máxima. Durante a gestação, focamos em limpezas profissionais e orientações preventivas. O clareamento pode ser realizado com segurança após o período de amamentação, com excelentes resultados."
-    },
-    {
-      question: "Vale a pena investir no tratamento combinado?",
-      answer: "Para pacientes que buscam máxima eficácia e durabilidade, o tratamento combinado é ideal. Oferece resultado imediato do consultório com a manutenção e estabilidade do caseiro. É especialmente indicado para escurecimento severo, manchas resistentes ou quando se deseja o resultado mais duradouro possível. O investimento adicional se justifica pela superior qualidade e longevidade dos resultados."
-    }
-  ];
-
   const handleWhatsAppClick = (message: string) => {
     // GCLID tracking preservado
     const gclid = new URLSearchParams(window.location.search).get('gclid');
@@ -132,40 +31,35 @@ const ClareamentoDental = () => {
   return (
     <>
       <Helmet>
-        <title>Clareamento Dental em Ipanema | Dra. Carla Christoph - Resultados Seguros</title>
+        <title>Clareamento Dental em Ipanema | Dra. Carla Christoph</title>
         <meta 
           name="description" 
-          content="Clareamento dental profissional em Ipanema com a Dra. Carla Christoph. Técnicas modernas de consultório e caseiro supervisionado. Resultados de 2-9 tons mais brancos. +20 anos de experiência em estética dental."
+          content="Clareamento dental profissional em Ipanema. Técnicas de consultório e caseiro supervisionado. Protocolos personalizados com a Dra. Carla Christoph. CRO-RJ 27.509." 
         />
         <meta 
           name="keywords" 
-          content="clareamento dental ipanema, clareamento dental profissional, branqueamento dental, clareamento consultório, clareamento caseiro supervisionado, dentes brancos ipanema, clareamento dental preço, quanto custa clareamento dental, clareamento dental seguro, dra carla christoph"
+          content="clareamento dental ipanema, clareamento profissional, clareamento caseiro supervisionado, dentista ipanema" 
         />
-        <link rel="canonical" href="https://dracarlachristoph.com/clareamento-dental" />
+        <link rel="canonical" href="https://www.dracarlachristoph.com/clareamento-dental" />
         
         {/* Open Graph */}
-        <meta property="og:title" content="Clareamento Dental Profissional em Ipanema | Dra. Carla Christoph" />
-        <meta property="og:description" content="Conquiste dentes mais brancos com segurança. Clareamento dental profissional com resultados de 2-9 tons. Técnicas modernas e +20 anos de experiência." />
+        <meta property="og:title" content="Clareamento Dental em Ipanema | Dra. Carla Christoph" />
+        <meta property="og:description" content="Clareamento dental profissional com técnicas de consultório e caseiro supervisionado em Ipanema." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dracarlachristoph.com/clareamento-dental" />
-        <meta property="og:image" content="https://dracarlachristoph.com/og-clareamento.jpg" />
+        <meta property="og:url" content="https://www.dracarlachristoph.com/clareamento-dental" />
         
-        {/* Schema.org estruturado */}
+        {/* Schema Markup */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "MedicalProcedure",
             "name": "Clareamento Dental Profissional",
-            "description": "Procedimento odontológico estético para clarear os dentes utilizando peróxido de hidrogênio ou carbamida sob supervisão profissional",
-            "procedureType": "Cosmetic",
-            "bodyLocation": "Teeth",
-            "followup": "Consultas de controle e manutenção periódica",
-            "howPerformed": "Aplicação de gel clareador em consultório ou com moldeiras personalizadas para uso domiciliar supervisionado",
-            "preparation": "Avaliação bucal completa e limpeza profissional prévia",
+            "description": "Procedimento de clareamento dental com técnicas de consultório e caseiro supervisionado",
+            "procedureType": "Dental",
             "provider": {
               "@type": "Dentist",
               "name": "Dra. Carla Christoph",
-              "telephone": "+55-21-993304045",
+              "telephone": "+55-21-99330-4045",
               "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Ipanema",
@@ -175,542 +69,712 @@ const ClareamentoDental = () => {
             }
           })}
         </script>
-        
-        {/* FAQ Schema */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": faqs.map(faq => ({
-              "@type": "Question",
-              "name": faq.question,
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": faq.answer
-              }
-            }))
-          })}
-        </script>
       </Helmet>
 
       <PageLayout>
-        <section className="pt-20">
-          <div className="container-custom">
-            <ServiceBreadcrumb 
-              serviceName="Clareamento Dental Profissional"
-            />
-          </div>
-        </section>
-
         {/* Hero Section */}
-        <section className="py-8 md:py-12 bg-dental-beige/20">
-          <div className="container-custom">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="heading-xl mb-6 text-dental-purple">
-                Clareamento Dental Profissional: Ilumine seu Sorriso com Segurança
-              </h1>
-              <p className="text-xl text-dental-gray mb-8 leading-relaxed">
-                Conquiste dentes visivelmente mais brancos através de protocolos 
-                científicos personalizados. Com mais de 20 anos de experiência em 
-                estética dental, a Dra. Carla Christoph oferece as técnicas mais 
-                modernas de clareamento, garantindo resultados naturais e duradouros 
-                que respeitam a saúde dos seus dentes.
-              </p>
-              
-              <div className="flex justify-center">
-                <button 
-                  onClick={() => handleWhatsAppClick("Olá! Gostaria de agendar uma avaliação para clareamento dental com a Dra. Carla.")}
-                  className="bg-dental-purple hover:bg-dental-purple/90 text-white px-8 py-4 text-lg rounded-lg font-semibold inline-flex items-center gap-2 transition-colors"
-                >
-                  <ArrowRight className="w-5 h-5" />
-                  Agendar Avaliação
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
+        <TreatmentHero
+          title="Clareamento Dental Profissional"
+          subtitle="Estética Dental com a Dra. Carla Christoph"
+          description="Técnicas de consultório e caseiro supervisionado com protocolos personalizados que priorizam sua segurança e conforto. Acompanhamento individualizado em cada etapa do tratamento. Mais de 20 anos de experiência em estética dental."
+          badges={["20+ anos de experiência", "Protocolos personalizados", "CRO-RJ 27.509"]}
+          doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+          breadcrumbs={[
+            {label: "Início", href: "/"},
+            {label: "Tratamentos", href: "/servicos"},
+            {label: "Clareamento Dental"}
+          ]}
+        />
 
-        {/* Quick Answer Box - ESSENCIAL PARA IA */}
-        <section className="py-4 bg-white">
-          <div className="container-custom">
-            <QuickAnswerBox 
-              answer="Clareamento dental profissional é um procedimento odontológico estético que utiliza agentes clareadores (peróxido de hidrogênio ou carbamida) em concentrações seguras e eficazes para remover manchas e clarear a cor natural dos dentes. Realizado ou supervisionado por dentista qualificado, pode clarear de 2 a 9 tons na escala Vita, com resultados que duram 2-3 anos. A Dra. Carla Christoph oferece três modalidades: consultório (resultado imediato), caseiro supervisionado (gradual e confortável) e combinado (máxima eficácia)."
-            />
-          </div>
-        </section>
+        <SectionDivider variant="with-icon" icon={<Sparkles className="w-5 h-5" />} />
 
-        {/* Tipos de Clareamento - Cards */}
-        <section className="py-12 bg-dental-beige/20">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-12 text-center text-dental-purple">
-              Modalidades de Clareamento Dental Oferecidas
-            </h2>
-            
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {/* Clareamento de Consultório */}
-              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                <div className="w-12 h-12 bg-dental-purple/10 rounded-full flex items-center justify-center mb-4">
-                  <Zap className="w-6 h-6 text-dental-purple" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-dental-purple">
-                  Clareamento de Consultório
-                </h3>
-                <p className="text-dental-gray mb-4">
-                  Resultado imediato com gel de alta concentração (35-37% peróxido 
-                  de hidrogênio). Ideal para quem busca transformação rápida.
-                </p>
-                <ul className="space-y-2 text-sm text-dental-gray">
-                  <li className="flex items-start">
-                    <CheckCircle className="w-4 h-4 text-green-600 mr-2 mt-0.5" />
-                    <span>1-3 sessões de 60-90 minutos</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="w-4 h-4 text-green-600 mr-2 mt-0.5" />
-                    <span>Clareamento de 2-9 tons</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="w-4 h-4 text-green-600 mr-2 mt-0.5" />
-                    <span>Supervisão profissional total</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Clareamento Caseiro */}
-              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                <div className="w-12 h-12 bg-dental-gold/20 rounded-full flex items-center justify-center mb-4">
-                  <Calendar className="w-6 h-6 text-dental-gold" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-dental-purple">
-                  Clareamento Caseiro Supervisionado
-                </h3>
-                <p className="text-dental-gray mb-4">
-                  Tratamento gradual com moldeiras personalizadas e gel de menor 
-                  concentração. Máximo conforto e controle.
-                </p>
-                <ul className="space-y-2 text-sm text-dental-gray">
-                  <li className="flex items-start">
-                    <CheckCircle className="w-4 h-4 text-green-600 mr-2 mt-0.5" />
-                    <span>14-21 dias de tratamento</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="w-4 h-4 text-green-600 mr-2 mt-0.5" />
-                    <span>Menor sensibilidade</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="w-4 h-4 text-green-600 mr-2 mt-0.5" />
-                    <span>Flexibilidade de horários</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Tratamento Combinado */}
-              <div className="bg-gradient-to-br from-dental-purple/5 to-dental-gold/5 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-dental-gold">
-                <div className="w-12 h-12 bg-gradient-to-br from-dental-purple/20 to-dental-gold/20 rounded-full flex items-center justify-center mb-4">
-                  <Star className="w-6 h-6 text-dental-purple" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-dental-purple">
-                  Tratamento Combinado
-                  <span className="text-xs ml-2 text-dental-gold">MÁXIMA EFICÁCIA</span>
-                </h3>
-                <p className="text-dental-gray mb-4">
-                  União do resultado imediato com manutenção prolongada. 
-                  Nossa recomendação para resultados superiores.
-                </p>
-                <ul className="space-y-2 text-sm text-dental-gray">
-                  <li className="flex items-start">
-                    <Star className="w-4 h-4 text-dental-gold mr-2 mt-0.5" />
-                    <span>Início rápido + manutenção</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Star className="w-4 h-4 text-dental-gold mr-2 mt-0.5" />
-                    <span>Maior durabilidade</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Star className="w-4 h-4 text-dental-gold mr-2 mt-0.5" />
-                    <span>Resultados otimizados</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Comparação: Técnicas de Clareamento */}
-        <section className="py-8 bg-white">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              Qual a Técnica Ideal para Você?
-            </h2>
-            
-            <div className="max-w-6xl mx-auto">
-              <ComparisonTable data={comparisonData} />
-              
-              <p className="text-center mt-6 text-dental-gray">
-                A escolha da técnica ideal depende das suas necessidades específicas, 
-                urgência e sensibilidade dental. Durante a consulta, a Dra. Carla 
-                realizará uma avaliação completa para recomendar a melhor opção.
+        {/* Três Cards de Modalidades com Accordion */}
+        <section className="py-12 bg-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
+                Modalidades de Clareamento Disponíveis
+              </h2>
+              <p className="text-lg text-dental-gray">
+                Cada técnica é indicada conforme características individuais. Conheça as opções.
               </p>
             </div>
-          </div>
-        </section>
 
-        {/* Seção da Especialista - Dra. Carla */}
-        <section className="py-12 bg-dental-beige/20">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-12 text-center text-dental-purple">Sua Especialista em Clareamento Dental</h2>
-            
-            <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-              <div className="relative">
-                <img
-                  src="/lovable-uploads/doutora-em-pe-jaleco.webp"
-                  alt="Dra. Carla Christoph - Especialista em Clareamento Dental"
-                  className="rounded-2xl aspect-[4/5] object-cover object-top shadow-lg w-full h-auto"
-                  loading="eager"
-                />
-                <div className="absolute -bottom-6 -right-6 bg-dental-gold p-4 rounded-lg shadow-lg">
-                  <p className="text-white font-bold text-lg">20+ Anos</p>
-                  <p className="text-white text-sm">de Experiência</p>
-                </div>
-              </div>
+            <div className="grid md:grid-cols-3 gap-8">
               
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-2xl font-semibold text-dental-purple mb-2">Dra. Carla Christoph</h3>
-                  <p className="text-dental-gold font-medium mb-4">CRO-RJ 27.509 | Especialista em Prótese Dental</p>
+              {/* CARD 1 - CLAREAMENTO DE CONSULTÓRIO */}
+              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="aspect-[4/3] relative">
+                  <img 
+                    src="/lovable-uploads/Clareamento_de_consultorio.webp"
+                    alt="Modelo 3D mostrando clareamento dental de consultório"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
                 </div>
-                
-                <div className="space-y-3">
-                  {[
-                    "Mais de 20 anos de experiência em odontologia estética",
-                    "Especialista em Prótese Dental e Implantodontia", 
-                    "Centenas de casos de clareamento realizados com sucesso",
-                    "Formação contínua em técnicas modernas de clareamento"
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-dental-gold mt-1 flex-shrink-0" />
-                      <span className="text-dental-gray">{item}</span>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="bg-dental-beige/30 p-6 rounded-xl">
-                  <p className="text-dental-gray leading-relaxed italic">
-                    "Minha filosofia é proporcionar resultados naturais que respeitam a individualidade 
-                    de cada sorriso. Utilizo protocolos personalizados que minimizam a sensibilidade 
-                    e maximizam a durabilidade. Cada paciente recebe atenção especial para garantir 
-                    que o clareamento seja não apenas eficaz, mas também confortável e seguro."
+                <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                  <h3 className="text-2xl font-display font-semibold text-white mb-2">
+                    Clareamento de Consultório
+                  </h3>
+                  <p className="text-white/90 text-sm mb-4 line-clamp-3">
+                    Gel clareador de alta concentração aplicado em sessões de 60-90 minutos. Resultados visíveis a partir da primeira aplicação.
                   </p>
                 </div>
+
+                {/* Conteúdo expansível - Accordion */}
+                <div className="bg-white p-6">
+                  <Accordion type="single" collapsible className="w-full">
+                    
+                    <AccordionItem value="caracteristicas">
+                      <AccordionTrigger className="text-left hover:text-dental-purple">
+                        <span className="font-semibold">Características Principais</span>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <ul className="space-y-2 text-dental-gray text-sm">
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Concentração:</strong> 35-37% peróxido de hidrogênio</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Sessões:</strong> 1 a 3 consultas</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Clareamento:</strong> 4-9 tons</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Duração:</strong> 2-3 anos com cuidados adequados</span>
+                          </li>
+                        </ul>
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    <AccordionItem value="vantagens">
+                      <AccordionTrigger className="text-left hover:text-dental-purple">
+                        <span className="font-semibold">Vantagens e Considerações</span>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <div className="space-y-3">
+                          <div className="bg-green-50 p-3 rounded-lg">
+                            <p className="font-semibold text-green-900 mb-2 text-sm">Vantagens:</p>
+                            <ul className="space-y-1 text-dental-gray text-sm">
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600">✓</span>
+                                <span>Resultado em poucas sessões</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600">✓</span>
+                                <span>Supervisão profissional constante</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600">✓</span>
+                                <span>Controle preciso do processo</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600">✓</span>
+                                <span>Isolamento da gengiva para evitar irritação</span>
+                              </li>
+                            </ul>
+                          </div>
+                          <div className="bg-blue-50 p-3 rounded-lg">
+                            <p className="font-semibold text-blue-900 mb-2 text-sm">Considerações:</p>
+                            <ul className="space-y-1 text-dental-gray text-sm">
+                              <li className="flex items-start gap-2">
+                                <span className="text-dental-gray">•</span>
+                                <span>Sensibilidade temporária possível</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-dental-gray">•</span>
+                                <span>Requer disponibilidade para consultas</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    <AccordionItem value="ideal">
+                      <AccordionTrigger className="text-left hover:text-dental-purple">
+                        <span className="font-semibold">Ideal Para</span>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <p className="text-dental-gray text-sm">
+                            Casos que necessitam resultado em curto espaço de tempo, manchas mais resistentes ou quem prefere supervisão presencial constante.
+                          </p>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    
+                  </Accordion>
+                </div>
               </div>
+
+              {/* CARD 2 - CLAREAMENTO CASEIRO */}
+              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="aspect-[4/3] relative">
+                  <img 
+                    src="/lovable-uploads/Clareamento_caseiro.webp"
+                    alt="Modelo 3D mostrando moldeiras de clareamento caseiro"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+                </div>
+                <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                  <h3 className="text-2xl font-display font-semibold text-white mb-2">
+                    Clareamento Caseiro Supervisionado
+                  </h3>
+                  <p className="text-white/90 text-sm mb-4 line-clamp-3">
+                    Moldeiras personalizadas confeccionadas no consultório. Gel de menor concentração para aplicação diária em casa com acompanhamento profissional.
+                  </p>
+                </div>
+
+                <div className="bg-white p-6">
+                  <Accordion type="single" collapsible className="w-full">
+                    
+                    <AccordionItem value="caracteristicas">
+                      <AccordionTrigger className="text-left hover:text-dental-purple">
+                        <span className="font-semibold">Características Principais</span>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <ul className="space-y-2 text-dental-gray text-sm">
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Concentração:</strong> 10-20% peróxido de carbamida</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Moldeiras:</strong> Personalizadas e anatômicas</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Aplicação:</strong> 14 a 21 dias</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Clareamento:</strong> 2-6 tons</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Duração:</strong> 2-3 anos com cuidados adequados</span>
+                          </li>
+                        </ul>
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    <AccordionItem value="vantagens">
+                      <AccordionTrigger className="text-left hover:text-dental-purple">
+                        <span className="font-semibold">Vantagens e Considerações</span>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <div className="space-y-3">
+                          <div className="bg-green-50 p-3 rounded-lg">
+                            <p className="font-semibold text-green-900 mb-2 text-sm">Vantagens:</p>
+                            <ul className="space-y-1 text-dental-gray text-sm">
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600">✓</span>
+                                <span>Aplicação no conforto de casa</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600">✓</span>
+                                <span>Flexibilidade de horários</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600">✓</span>
+                                <span>Menor sensibilidade</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600">✓</span>
+                                <span>Gradual e controlado</span>
+                              </li>
+                            </ul>
+                          </div>
+                          <div className="bg-blue-50 p-3 rounded-lg">
+                            <p className="font-semibold text-blue-900 mb-2 text-sm">Considerações:</p>
+                            <ul className="space-y-1 text-dental-gray text-sm">
+                              <li className="flex items-start gap-2">
+                                <span className="text-dental-gray">•</span>
+                                <span>Requer disciplina na aplicação</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    <AccordionItem value="ideal">
+                      <AccordionTrigger className="text-left hover:text-dental-purple">
+                        <span className="font-semibold">Ideal Para</span>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <p className="text-dental-gray text-sm">
+                            Quem prefere tratamento gradual, possui rotina flexível e busca conforto durante o processo.
+                          </p>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    
+                  </Accordion>
+                </div>
+              </div>
+
+              {/* CARD 3 - TRATAMENTO COMBINADO */}
+              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="aspect-[4/3] relative">
+                  <img 
+                    src="/lovable-uploads/Clareamento_combinado.webp"
+                    alt="Modelo 3D mostrando antes e depois do clareamento dental"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+                </div>
+                <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                  <h3 className="text-2xl font-display font-semibold text-white mb-2">
+                    Tratamento Combinado
+                  </h3>
+                  <p className="text-white/90 text-sm mb-4 line-clamp-3">
+                    Início em consultório seguido de manutenção caseira. Combina resultado inicial mais evidente com estabilização gradual.
+                  </p>
+                </div>
+
+                <div className="bg-white p-6">
+                  <Accordion type="single" collapsible className="w-full">
+                    
+                    <AccordionItem value="caracteristicas">
+                      <AccordionTrigger className="text-left hover:text-dental-purple">
+                        <span className="font-semibold">Características Principais</span>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <ul className="space-y-2 text-dental-gray text-sm">
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Protocolo:</strong> Consultório + caseiro sequencial</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Tempo total:</strong> Variável conforme caso</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Clareamento:</strong> 6-9 tons</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-dental-gold mt-1">▸</span>
+                            <span><strong>Duração:</strong> 3+ anos com protocolo de manutenção</span>
+                          </li>
+                        </ul>
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    <AccordionItem value="vantagens">
+                      <AccordionTrigger className="text-left hover:text-dental-purple">
+                        <span className="font-semibold">Vantagens e Considerações</span>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <div className="space-y-3">
+                          <div className="bg-green-50 p-3 rounded-lg">
+                            <p className="font-semibold text-green-900 mb-2 text-sm">Vantagens:</p>
+                            <ul className="space-y-1 text-dental-gray text-sm">
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600">✓</span>
+                                <span>Resultado inicial mais evidente</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600">✓</span>
+                                <span>Estabilização gradual</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600">✓</span>
+                                <span>Maior durabilidade</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-green-600">✓</span>
+                                <span>Protocolo completo</span>
+                              </li>
+                            </ul>
+                          </div>
+                          <div className="bg-blue-50 p-3 rounded-lg">
+                            <p className="font-semibold text-blue-900 mb-2 text-sm">Considerações:</p>
+                            <ul className="space-y-1 text-dental-gray text-sm">
+                              <li className="flex items-start gap-2">
+                                <span className="text-dental-gray">•</span>
+                                <span>Investimento maior</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    <AccordionItem value="ideal">
+                      <AccordionTrigger className="text-left hover:text-dental-purple">
+                        <span className="font-semibold">Ideal Para</span>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <p className="text-dental-gray text-sm">
+                            Casos de escurecimento mais acentuado, manchas persistentes ou quando se busca resultado mais duradouro.
+                          </p>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    
+                  </Accordion>
+                </div>
+              </div>
+
             </div>
           </div>
         </section>
 
-        {/* Processo Passo a Passo */}
+        <SectionDivider variant="with-icon" icon={<Sparkles className="w-5 h-5" />} />
+
+        {/* Tabela Comparativa */}
+        <section className="py-12 pb-8 bg-dental-beige/20">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
+                Comparação Entre as Modalidades
+              </h2>
+            </div>
+
+            <ComparisonTable data={[
+              {
+                "Criterio": "Concentração",
+                "Critério": "Concentração",
+                "Rótulo coluna A": "35-37%",
+                "Rótulo coluna B": "10-20%",
+                "Rótulo coluna C": "Ambas"
+              },
+              {
+                "Criterio": "Tempo de Tratamento",
+                "Critério": "Tempo de Tratamento",
+                "Rótulo coluna A": "1-3 sessões",
+                "Rótulo coluna B": "14-21 dias",
+                "Rótulo coluna C": "Variável"
+              },
+              {
+                "Criterio": "Clareamento Esperado",
+                "Critério": "Clareamento Esperado",
+                "Rótulo coluna A": "4-9 tons",
+                "Rótulo coluna B": "2-6 tons",
+                "Rótulo coluna C": "6-9 tons"
+              },
+              {
+                "Criterio": "Sensibilidade",
+                "Critério": "Sensibilidade",
+                "Rótulo coluna A": "Moderada",
+                "Rótulo coluna B": "Baixa",
+                "Rótulo coluna C": "Baixa a moderada"
+              },
+              {
+                "Criterio": "Supervisão",
+                "Critério": "Supervisão",
+                "Rótulo coluna A": "Presencial",
+                "Rótulo coluna B": "À distância",
+                "Rótulo coluna C": "Ambas"
+              },
+              {
+                "Criterio": "Durabilidade",
+                "Critério": "Durabilidade",
+                "Rótulo coluna A": "2-3 anos",
+                "Rótulo coluna B": "2-3 anos",
+                "Rótulo coluna C": "3+ anos"
+              }
+            ]} />
+
+            <p className="text-center mt-6 text-dental-gray">
+              A indicação depende da análise individual de cada caso. Na avaliação, consideramos suas necessidades, rotina e características dentais específicas.
+            </p>
+          </div>
+        </section>
+
+        <SectionDivider variant="with-icon" icon={<Sparkles className="w-5 h-5" />} />
+
+        {/* Processo Timeline */}
         <section className="py-12 bg-white">
           <div className="container-custom">
-            <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              Sua Jornada para um Sorriso Mais Branco
+            <h2 className="heading-lg mb-4 text-center text-dental-purple">
+              Etapas do Tratamento
             </h2>
+            <p className="text-center text-dental-gray mb-12 max-w-2xl mx-auto">
+              Do planejamento aos cuidados pós-tratamento, cada etapa é pensada para seu conforto
+            </p>
             
-            <div className="max-w-4xl mx-auto">
-              <div className="space-y-6">
-                {[
-                  {
-                    number: "1",
-                    title: "Avaliação e Registro Inicial",
-                    description: "Exame clínico completo, análise da saúde bucal e registro preciso da cor inicial dos dentes usando a escala Vita. Documentação fotográfica profissional para comparação posterior dos resultados alcançados."
-                  },
-                  {
-                    number: "2",
-                    title: "Planejamento Personalizado",
-                    description: "Definição da técnica ideal baseada em suas expectativas, sensibilidade dental, tempo disponível e características específicas dos seus dentes. Explicação detalhada do processo e estabelecimento de metas realistas."
-                  },
-                  {
-                    number: "3",
-                    title: "Preparação e Proteção",
-                    description: "Limpeza profissional prévia quando necessária. No consultório: proteção completa de gengivas e mucosas com isolamento absoluto. No caseiro: confecção de moldeiras personalizadas para aplicação segura."
-                  },
-                  {
-                    number: "4",
-                    title: "Aplicação do Tratamento",
-                    description: "Aplicação supervisionada do gel clareador com monitoramento constante da resposta dos dentes. No caseiro: orientação detalhada sobre uso correto, tempo de aplicação e cuidados com as moldeiras."
-                  },
-                  {
-                    number: "5",
-                    title: "Acompanhamento e Ajustes",
-                    description: "Consultas de controle para avaliar progresso, gerenciar qualquer sensibilidade e otimizar resultados. Ajustes no protocolo conforme necessário para maximizar eficácia e conforto."
-                  },
-                  {
-                    number: "6",
-                    title: "Resultado Final e Manutenção",
-                    description: "Registro da cor final alcançada e comparação com inicial. Orientações personalizadas de manutenção e agenda de sessões de reforço para preservar resultados por anos."
-                  }
-                ].map((step, index) => (
-                  <div key={index} className="flex gap-6 bg-dental-beige/30 p-6 rounded-lg">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-dental-gold text-white rounded-full flex items-center justify-center font-bold text-lg">
-                        {step.number}
+            <ProcessTimeline
+              steps={[
+                {
+                  number: 1,
+                  title: "Avaliação Inicial",
+                  description: "Exame clínico, análise da saúde bucal e registro fotográfico da cor inicial. Identificação do tipo de mancha e viabilidade do tratamento.",
+                  icon: <Search size={24} />,
+                  duration: "1ª Consulta"
+                },
+                {
+                  number: 2,
+                  title: "Planejamento",
+                  description: "Definição da técnica conforme suas características individuais. Explicação detalhada do processo e estabelecimento de expectativas.",
+                  icon: <FileText size={24} />,
+                  duration: "1ª Consulta"
+                },
+                {
+                  number: 3,
+                  title: "Preparo",
+                  description: "Profilaxia para remoção de manchas superficiais. Tratamento de cáries ou problemas gengivais quando identificados.",
+                  icon: <Sparkles size={24} />,
+                  duration: "Se necessário"
+                },
+                {
+                  number: 4,
+                  title: "Moldagem e Confecção (Caseiro)",
+                  description: "Moldagem e confecção de moldeiras personalizadas para clareamento caseiro. Todo o processo é realizado na primeira consulta, com ajuste preciso para distribuição uniforme do gel e proteção das gengivas.",
+                  icon: <Scan size={24} />,
+                  duration: "1ª Consulta"
+                },
+                {
+                  number: 5,
+                  title: "Aplicação",
+                  description: "Consultório: Proteção das gengivas e aplicação supervisionada. Caseiro: Orientação detalhada sobre uso correto das moldeiras.",
+                  icon: <Zap size={24} />,
+                  duration: "Conforme protocolo"
+                },
+                {
+                  number: 6,
+                  title: "Acompanhamento",
+                  description: "Avaliação do progresso e ajustes quando necessário. Manejo de sensibilidade com protocolos específicos.",
+                  icon: <Heart size={24} />,
+                  duration: "Durante tratamento"
+                },
+                {
+                  number: 7,
+                  title: "Finalização",
+                  description: "Registro fotográfico final e orientações de manutenção personalizadas para preservação dos resultados.",
+                  icon: <CheckCircle size={24} />,
+                  duration: "Última consulta"
+                }
+              ]}
+            />
+          </div>
+        </section>
+
+        <SectionDivider variant="with-icon" icon={<Award className="w-5 h-5" />} />
+
+        {/* Seção da Especialista - EXATAMENTE como ProteseDentaria.tsx */}
+        <section className="py-16 bg-gradient-purple-soft">
+          <div className="container-custom">
+            <h2 className="heading-lg mb-12 text-center text-dental-purple">
+              Expertise e Experiência em Estética Dental
+            </h2>
+
+            <div className="max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-[300px,1fr] gap-8 items-start">
+                
+                {/* Foto da Dra. - Maior e mais destacada */}
+                <div className="mx-auto md:mx-0">
+                  <div className="relative">
+                    <img
+                      src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+                      alt="Dra. Carla Christoph - Especialista em Estética Dental"
+                      className="w-full rounded-2xl shadow-elegant"
+                    />
+                    {/* Badge flutuante */}
+                    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-dental-gold text-white px-6 py-2 rounded-full shadow-gold font-semibold text-sm whitespace-nowrap">
+                      20+ Anos de Experiência
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Conteúdo */}
+                <div className="bg-white p-8 rounded-2xl shadow-soft">
+                  <div className="mb-6">
+                    <h3 className="text-3xl font-display font-semibold text-dental-purple mb-2">
+                      Dra. Carla Christoph
+                    </h3>
+                    <p className="text-dental-gold-dark font-medium text-lg">
+                      CRO-RJ 27.509 | Especialista em Prótese Dentária e Implantodontia
+                    </p>
+                  </div>
+                  
+                  <div className="space-y-4 text-dental-gray leading-relaxed">
+                    <p>
+                      Com mais de duas décadas dedicadas à estética dental, a Dra. Carla 
+                      desenvolveu expertise reconhecida em clareamento dental. Sua 
+                      abordagem combina precisão técnica com sensibilidade ao conforto do paciente.
+                    </p>
+                    
+                    <p>
+                      Cada caso é tratado de forma absolutamente individual. Não existem 
+                      protocolos padronizados - cada tratamento é único, planejado para 
+                      harmonizar com suas características dentais e estilo de vida.
+                    </p>
+                  </div>
+                  
+                  {/* Credenciais */}
+                  <div className="mt-6 pt-6 border-t border-dental-gray/20">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="text-dental-gold mt-1" size={20} />
+                        <div>
+                          <p className="font-semibold text-dental-purple">Formação</p>
+                          <p className="text-sm text-dental-gray">Especialista em Prótese Dentária e Implantodontia</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="text-dental-gold mt-1" size={20} />
+                        <div>
+                          <p className="font-semibold text-dental-purple">Experiência</p>
+                          <p className="text-sm text-dental-gray">Centenas de clareamentos realizados</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="text-dental-gold mt-1" size={20} />
+                        <div>
+                          <p className="font-semibold text-dental-purple">Atualização</p>
+                          <p className="text-sm text-dental-gray">Formação contínua em técnicas de clareamento</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="text-dental-gold mt-1" size={20} />
+                        <div>
+                          <p className="font-semibold text-dental-purple">Protocolos</p>
+                          <p className="text-sm text-dental-gray">Personalizados para mínima sensibilidade</p>
+                        </div>
                       </div>
                     </div>
-                    <div className="flex-grow">
-                      <h3 className="font-semibold text-lg text-dental-purple mb-3">{step.title}</h3>
-                      <p className="text-dental-gray">{step.description}</p>
-                    </div>
                   </div>
-                ))}
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Benefícios */}
-        <section className="py-12 bg-dental-beige/20">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-12 text-center text-dental-purple">
-              Benefícios do Clareamento Profissional
-            </h2>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {[
-                {
-                  icon: <Sparkles className="w-6 h-6" />,
-                  title: "Resultados Comprovados",
-                  description: "Clareamento de 2-9 tons com durabilidade de 2-3 anos"
-                },
-                {
-                  icon: <Shield className="w-6 h-6" />,
-                  title: "Segurança Garantida",
-                  description: "Supervisão profissional e produtos de qualidade certificada"
-                },
-                {
-                  icon: <Heart className="w-6 h-6" />,
-                  title: "Autoestima Elevada",
-                  description: "Confiança renovada para sorrir sem restrições"
-                },
-                {
-                  icon: <Award className="w-6 h-6" />,
-                  title: "Personalização Total",
-                  description: "Protocolo adaptado às suas necessidades específicas"
-                }
-              ].map((benefit, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center">
-                  <div className="w-12 h-12 bg-dental-purple/10 rounded-full flex items-center justify-center mx-auto mb-4 text-dental-purple">
-                    {benefit.icon}
-                  </div>
-                  <h3 className="font-semibold text-dental-purple mb-2">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-sm text-dental-gray">
-                    {benefit.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <SectionDivider variant="with-icon" icon={<HelpCircle className="w-5 h-5" />} />
 
-        {/* Segurança e Manejo da Sensibilidade */}
-        <section className="py-12 bg-white">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-12 text-center text-dental-purple">
-              Segurança e Manejo da Sensibilidade
-            </h2>
-            
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {/* Protocolos de Conforto */}
-              <div className="bg-green-50 p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-4 text-dental-purple flex items-center">
-                  <CheckCircle className="w-6 h-6 text-green-600 mr-2" />
-                  Protocolos de Conforto
-                </h3>
-                <ul className="space-y-3 text-dental-gray">
-                  <li className="flex items-start">
-                    <span className="text-green-600 mr-2">•</span>
-                    Aplicação prévia de dessensibilizantes
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-600 mr-2">•</span>
-                    Ajuste personalizado de concentração e tempo
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-600 mr-2">•</span>
-                    Laser terapêutico para casos sensíveis
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-600 mr-2">•</span>
-                    Uso de agentes remineralizantes
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-600 mr-2">•</span>
-                    Monitoramento contínuo durante tratamento
-                  </li>
-                </ul>
-              </div>
-              
-              {/* Contraindicações */}
-              <div className="bg-blue-50 p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-4 text-dental-purple flex items-center">
-                  <Shield className="w-6 h-6 text-blue-600 mr-2" />
-                  Avaliação de Contraindicações
-                </h3>
-                <ul className="space-y-3 text-dental-gray">
-                  <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">•</span>
-                    Gestantes e lactantes (aguardar período)
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">•</span>
-                    Menores de 16 anos (avaliação individual)
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">•</span>
-                    Cáries ativas (tratar previamente)
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">•</span>
-                    Doença periodontal não controlada
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">•</span>
-                    Hipersensibilidade dental severa
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Manutenção e Cuidados */}
-        <section className="py-12 bg-dental-beige/20">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-12 text-center text-dental-purple">
-              Preservando seu Novo Sorriso
-            </h2>
-            
-            <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
-              {/* Primeiras 48 horas */}
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Clock className="w-8 h-8 text-red-600" />
-                </div>
-                <h3 className="font-semibold text-dental-purple mb-3">
-                  Primeiras 48 Horas
-                </h3>
-                <p className="text-sm text-dental-gray">
-                  Dieta branca rigorosa. Evitar café, vinho, chá, molhos escuros, 
-                  frutas vermelhas e qualquer alimento pigmentado.
-                </p>
-              </div>
-
-              {/* Cuidados Contínuos */}
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Shield className="w-8 h-8 text-blue-600" />
-                </div>
-                <h3 className="font-semibold text-dental-purple mb-3">
-                  Cuidados Diários
-                </h3>
-                <p className="text-sm text-dental-gray">
-                  Higiene oral impecável, uso de canudos para bebidas escuras, 
-                  não fumar e evitar excesso de alimentos ácidos.
-                </p>
-              </div>
-
-              {/* Manutenção Profissional */}
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Star className="w-8 h-8 text-green-600" />
-                </div>
-                <h3 className="font-semibold text-dental-purple mb-3">
-                  Manutenção Periódica
-                </h3>
-                <p className="text-sm text-dental-gray">
-                  Limpezas profissionais semestrais e sessões de reforço anuais 
-                  para preservar o resultado por anos.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Casos Antes e Depois (Condicional) */}
-        {caseImages && caseImages.length > 0 && (
-          <section className="py-12 bg-white">
-            <div className="container-custom">
-              <h2 className="heading-lg mb-8 text-center text-dental-purple">
-                Transformações Reais de Nossos Pacientes
-              </h2>
-              
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                {/* Placeholder para futuros casos */}
-              </div>
-              
-              <p className="text-center mt-6 text-dental-gray">
-                Todos os casos foram tratados pela Dra. Carla Christoph com 
-                protocolos personalizados de clareamento.
-              </p>
-            </div>
-          </section>
-        )}
-
-        {/* FAQs Otimizadas para IA e Voice Search */}
+        {/* FAQs */}
         <section className="py-12 bg-white">
           <div className="container-custom">
             <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              Perguntas Frequentes sobre Clareamento Dental
+              Perguntas Frequentes Sobre Clareamento
             </h2>
             
             <div className="max-w-4xl mx-auto">
-              <Accordion type="single" collapsible className="w-full space-y-4">
-                {faqs.map((faq, index) => (
-                  <AccordionItem 
-                    value={`item-${index + 1}`} 
-                    key={index}
-                    className="bg-dental-beige/30 rounded-lg border border-dental-purple/20 px-6"
-                  >
-                    <AccordionTrigger className="text-left text-base font-semibold text-dental-purple hover:text-dental-gold transition-colors py-6">
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-dental-gray leading-relaxed pb-6">
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
+              <Accordion type="single" collapsible className="w-full">
+                
+                <AccordionItem value="faq-1">
+                  <AccordionTrigger>Qual a diferença entre as modalidades?</AccordionTrigger>
+                  <AccordionContent>
+                    O clareamento de consultório utiliza gel de maior concentração (35-37%), com resultados em 1-3 sessões. O caseiro usa concentração menor (10-20%), aplicada gradualmente em 14-21 dias com moldeiras personalizadas. O combinado inicia em consultório e mantém resultado com aplicações caseiras. A indicação depende da análise individual.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="faq-2">
+                  <AccordionTrigger>O clareamento causa sensibilidade?</AccordionTrigger>
+                  <AccordionContent>
+                    Sensibilidade temporária pode ocorrer, mas protocolos modernos minimizam esse desconforto. Utilizamos dessensibilizantes, ajustamos concentrações conforme necessário e aplicamos laser terapêutico quando indicado. A maioria dos pacientes relata pouco ou nenhum desconforto.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="faq-3">
+                  <AccordionTrigger>Quanto tempo dura o resultado?</AccordionTrigger>
+                  <AccordionContent>
+                    Com cuidados adequados, os resultados mantêm-se por 2-3 anos. A durabilidade varia conforme hábitos alimentares e higiene. Protocolo de manutenção com sessões anuais prolonga significativamente os resultados.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="faq-4">
+                  <AccordionTrigger>Posso fazer clareamento com restaurações?</AccordionTrigger>
+                  <AccordionContent>
+                    Sim, mas apenas dentes naturais respondem ao clareamento. Restaurações e próteses mantêm sua cor original. Analisamos seu caso para determinar a melhor estratégia, considerando se há necessidade de substituição posterior das restaurações visíveis.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="faq-5">
+                  <AccordionTrigger>O clareamento é seguro para o esmalte?</AccordionTrigger>
+                  <AccordionContent>
+                    Quando realizado com protocolos adequados, não causa danos ao esmalte. Os géis modernos têm pH balanceado e não provocam desmineralização. Utilizamos produtos com agentes remineralizantes que preservam a integridade dental.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="faq-6">
+                  <AccordionTrigger>Quais cuidados após o clareamento?</AccordionTrigger>
+                  <AccordionContent>
+                    Nas primeiras 48 horas, evitar alimentos e bebidas pigmentados. Manter higiene oral adequada com escovação após refeições. Uso de canudos para bebidas escuras. Consultas semestrais para manutenção profissional.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="faq-7">
+                  <AccordionTrigger>Clareamento funciona em todos os tipos de manchas?</AccordionTrigger>
+                  <AccordionContent>
+                    A eficácia varia conforme o tipo de mancha. Manchas por alimentos e idade respondem muito bem. Manchas por medicamentos têm resposta variável. Na avaliação, analisamos seu caso específico e estabelecemos expectativas realistas.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="faq-8">
+                  <AccordionTrigger>Clareamento e limpeza são diferentes?</AccordionTrigger>
+                  <AccordionContent>
+                    Sim. A limpeza remove tártaro e manchas superficiais, devolvendo a cor natural. O clareamento altera quimicamente a cor interna do dente, clareando além da cor natural. Frequentemente realizamos limpeza antes do clareamento para otimizar resultados.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="faq-9">
+                  <AccordionTrigger>Produtos de farmácia têm o mesmo efeito?</AccordionTrigger>
+                  <AccordionContent>
+                    Produtos sem prescrição contêm concentrações muito baixas devido a regulamentação, oferecendo resultados limitados. O clareamento profissional usa concentrações terapêuticas sob supervisão, garantindo eficácia superior e segurança.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="faq-10">
+                  <AccordionTrigger>Como é feita a escolha da modalidade?</AccordionTrigger>
+                  <AccordionContent>
+                    Na consulta de avaliação, analiso suas características individuais, tipo de mancha, sensibilidade prévia, rotina e expectativas. A indicação considera todos esses fatores para definir o protocolo mais adequado ao seu caso.
+                  </AccordionContent>
+                </AccordionItem>
+
               </Accordion>
             </div>
           </div>
         </section>
 
         {/* CTA Final */}
-        <section className="py-16 bg-dental-purple text-white">
+        <section className="py-16 bg-gradient-purple-gold">
           <div className="container-custom text-center">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Sparkles className="w-8 h-8 text-dental-gold" />
-              <h2 className="heading-lg">
-                Conquiste um Sorriso Mais Branco e Radiante
-              </h2>
-            </div>
-            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Especialista em Prótese Dental com mais de 20 anos oferecendo 
-              clareamento dental seguro e eficaz em Ipanema
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+              Agendar Avaliação
+            </h2>
+            <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+              Análise personalizada para definição do protocolo mais adequado ao seu caso. Atendimento em Ipanema com a Dra. Carla Christoph.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button 
-                onClick={() => handleWhatsAppClick('Olá! Gostaria de agendar uma avaliação para clareamento dental com a Dra. Carla.')}
-                className="bg-dental-gold text-dental-purple px-8 py-4 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-all inline-flex items-center gap-2"
-              >
-                <ArrowRight className="w-5 h-5" />
-                Agendar Avaliação pelo WhatsApp
-              </button>
-            </div>
+            <button
+              onClick={() => handleWhatsAppClick("Olá! Gostaria de agendar uma avaliação para clareamento dental com a Dra. Carla Christoph.")}
+              className="bg-white hover:bg-dental-beige text-dental-purple px-8 py-4 text-lg rounded-lg font-semibold inline-flex items-center gap-2 transition-colors shadow-lg hover:shadow-xl"
+            >
+              Agendar no WhatsApp
+            </button>
             
-            <p className="mt-6 text-sm opacity-75">
-              Atendimento personalizado • Consultas com hora marcada • Ipanema, Rio de Janeiro
-            </p>
+            <div className="flex flex-wrap justify-center gap-6 mt-8 text-white/80 text-sm">
+              <div className="flex items-center gap-2">
+                <CheckCircle size={16} />
+                <span>WhatsApp 24h para agendamento e dúvidas</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle size={16} />
+                <span>Ipanema, Rio de Janeiro</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle size={16} />
+                <span>CRO-RJ 27.509</span>
+              </div>
+            </div>
           </div>
         </section>
+
       </PageLayout>
     </>
   );
