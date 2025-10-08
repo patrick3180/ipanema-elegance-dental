@@ -102,24 +102,24 @@ const ClareamentoDental = () => {
 
             <div className="grid md:grid-cols-3 gap-8">
               
-              {/* CARD 1 - CLAREAMENTO DE CONSULTÓRIO */}
-              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
-                <div className="aspect-[4/3] relative">
-                  <img 
-                    src="/lovable-uploads/Clareamento_de_consultorio.webp"
-                    alt="Modelo 3D mostrando clareamento dental de consultório"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
-                </div>
-                <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                  <h3 className="text-2xl font-display font-semibold text-white mb-2">
-                    Clareamento de Consultório
-                  </h3>
-                  <p className="text-white/90 text-sm mb-4 line-clamp-3">
-                    Gel clareador de alta concentração aplicado em sessões de 60-90 minutos. Resultados visíveis a partir da primeira aplicação.
-                  </p>
-                </div>
+      {/* CARD 1 - CLAREAMENTO DE CONSULTÓRIO */}
+      <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
+        <div className="aspect-[4/3] relative">
+          <img 
+            src="/lovable-uploads/Clareamento_de_consultorio.webp"
+            alt="Modelo 3D mostrando clareamento dental de consultório"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+          <div className="absolute bottom-0 left-0 right-0 p-6">
+            <h3 className="text-2xl font-display font-semibold text-white mb-2">
+              Clareamento de Consultório
+            </h3>
+            <p className="text-white/90 text-sm mb-4 line-clamp-3">
+              Gel clareador de alta concentração aplicado em sessões de 60-90 minutos. Resultados visíveis a partir da primeira aplicação.
+            </p>
+          </div>
+        </div>
 
                 {/* Conteúdo expansível - Accordion */}
                 <div className="bg-white p-6">
@@ -212,24 +212,24 @@ const ClareamentoDental = () => {
                 </div>
               </div>
 
-              {/* CARD 2 - CLAREAMENTO CASEIRO */}
-              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
-                <div className="aspect-[4/3] relative">
-                  <img 
-                    src="/lovable-uploads/Clareamento_caseiro.webp"
-                    alt="Modelo 3D mostrando moldeiras de clareamento caseiro"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
-                </div>
-                <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                  <h3 className="text-2xl font-display font-semibold text-white mb-2">
-                    Clareamento Caseiro Supervisionado
-                  </h3>
-                  <p className="text-white/90 text-sm mb-4 line-clamp-3">
-                    Moldeiras personalizadas confeccionadas no consultório. Gel de menor concentração para aplicação diária em casa com acompanhamento profissional.
-                  </p>
-                </div>
+      {/* CARD 2 - CLAREAMENTO CASEIRO */}
+      <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
+        <div className="aspect-[4/3] relative">
+          <img 
+            src="/lovable-uploads/Clareamento_caseiro.webp"
+            alt="Modelo 3D mostrando moldeiras de clareamento caseiro"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+          <div className="absolute bottom-0 left-0 right-0 p-6">
+            <h3 className="text-2xl font-display font-semibold text-white mb-2">
+              Clareamento Caseiro Supervisionado
+            </h3>
+            <p className="text-white/90 text-sm mb-4 line-clamp-3">
+              Moldeiras personalizadas confeccionadas no consultório. Gel de menor concentração para aplicação diária em casa com acompanhamento profissional.
+            </p>
+          </div>
+        </div>
 
                 <div className="bg-white p-6">
                   <Accordion type="single" collapsible className="w-full">
@@ -321,24 +321,24 @@ const ClareamentoDental = () => {
                 </div>
               </div>
 
-              {/* CARD 3 - TRATAMENTO COMBINADO */}
-              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
-                <div className="aspect-[4/3] relative">
-                  <img 
-                    src="/lovable-uploads/Clareamento_combinado.webp"
-                    alt="Modelo 3D mostrando antes e depois do clareamento dental"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
-                </div>
-                <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                  <h3 className="text-2xl font-display font-semibold text-white mb-2">
-                    Tratamento Combinado
-                  </h3>
-                  <p className="text-white/90 text-sm mb-4 line-clamp-3">
-                    Início em consultório seguido de manutenção caseira. Combina resultado inicial mais evidente com estabilização gradual.
-                  </p>
-                </div>
+      {/* CARD 3 - TRATAMENTO COMBINADO */}
+      <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
+        <div className="aspect-[4/3] relative">
+          <img 
+            src="/lovable-uploads/Clareamento_combinado.webp"
+            alt="Modelo 3D mostrando antes e depois do clareamento dental"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+          <div className="absolute bottom-0 left-0 right-0 p-6">
+            <h3 className="text-2xl font-display font-semibold text-white mb-2">
+              Tratamento Combinado
+            </h3>
+            <p className="text-white/90 text-sm mb-4 line-clamp-3">
+              Início em consultório seguido de manutenção caseira. Combina resultado inicial mais evidente com estabilização gradual.
+            </p>
+          </div>
+        </div>
 
                 <div className="bg-white p-6">
                   <Accordion type="single" collapsible className="w-full">
