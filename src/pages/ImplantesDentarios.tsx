@@ -113,23 +113,23 @@ const ImplantesDentarios = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* Card 1: Implante Unitário */}
               <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]">
-                <div className="aspect-[3/2] relative">
-                  <img 
-                    src="/lovable-uploads/Implante unitario.webp"
-                    alt="Implante Unitário"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent" />
-                  
-                  <div className="absolute top-0 left-0 right-0 p-8 text-white">
-                    <h3 className="text-xl font-display font-bold mb-2">Implante Unitário</h3>
-                    <p className="text-sm text-white/90 leading-relaxed">
-                      Substitui um único dente perdido sem comprometer os dentes adjacentes. Pino de titânio + coroa em cerâmica pura para resultado natural e durável.
-                    </p>
-                  </div>
-                </div>
+              <div className="aspect-[4/3] relative">
+                <img 
+                  src="/lovable-uploads/Implante unitario.webp"
+                  alt="Implante Unitário"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent" />
                 
-                <div className="bg-white p-4">
+                <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                  <h3 className="text-xl font-display font-bold mb-2">Implante Unitário</h3>
+                  <p className="text-sm text-white/90 leading-relaxed line-clamp-3">
+                    Substitui um único dente perdido sem comprometer os dentes adjacentes. Pino de titânio + coroa em cerâmica pura para resultado natural e durável.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="bg-white p-4 relative z-10">
                   <Accordion type="single" collapsible>
                     <AccordionItem value="detalhes" className="border-none">
                       <AccordionTrigger className="text-dental-purple font-semibold hover:no-underline">
@@ -164,23 +164,23 @@ const ImplantesDentarios = () => {
 
               {/* Card 2: Ponte sobre Implantes */}
               <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]">
-                <div className="aspect-[3/2] relative">
-                  <img 
-                    src="/lovable-uploads/Ponte Implante.webp"
-                    alt="Ponte sobre Implantes"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent" />
-                  
-                  <div className="absolute top-0 left-0 right-0 p-8 text-white">
-                    <h3 className="text-xl font-display font-bold mb-2">Ponte sobre Implantes</h3>
-                    <p className="text-sm text-white/90 leading-relaxed">
-                      Reabilita múltiplos dentes ausentes adjacentes com dois ou mais implantes. Estabilidade superior às pontes convencionais sem desgaste de dentes saudáveis.
-                    </p>
-                  </div>
-                </div>
+              <div className="aspect-[4/3] relative">
+                <img 
+                  src="/lovable-uploads/Ponte Implante.webp"
+                  alt="Ponte sobre Implantes"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent" />
                 
-                <div className="bg-white p-4">
+                <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                  <h3 className="text-xl font-display font-bold mb-2">Ponte sobre Implantes</h3>
+                  <p className="text-sm text-white/90 leading-relaxed line-clamp-3">
+                    Reabilita múltiplos dentes ausentes adjacentes com dois ou mais implantes. Estabilidade superior às pontes convencionais sem desgaste de dentes saudáveis.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="bg-white p-4 relative z-10">
                   <Accordion type="single" collapsible>
                     <AccordionItem value="detalhes" className="border-none">
                       <AccordionTrigger className="text-dental-purple font-semibold hover:no-underline">
@@ -215,23 +215,23 @@ const ImplantesDentarios = () => {
 
               {/* Card 3: Protocolo All-on-4/6 */}
               <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]">
-                <div className="aspect-[3/2] relative">
-                  <img 
-                    src="/lovable-uploads/all in 4.webp"
-                    alt="Protocolo All-on-4/6"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent" />
-                  
-                  <div className="absolute top-0 left-0 right-0 p-8 text-white">
-                    <h3 className="text-xl font-display font-bold mb-2">Protocolo All-on-4/6</h3>
-                    <p className="text-sm text-white/90 leading-relaxed">
-                      Reabilitação total de arcada com apenas 4 a 6 implantes estrategicamente posicionados. Prótese fixa completa com excelente custo-benefício.
-                    </p>
-                  </div>
-                </div>
+              <div className="aspect-[4/3] relative">
+                <img 
+                  src="/lovable-uploads/all in 4.webp"
+                  alt="Protocolo All-on-4/6"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent" />
                 
-                <div className="bg-white p-4">
+                <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                  <h3 className="text-xl font-display font-bold mb-2">Protocolo All-on-4/6</h3>
+                  <p className="text-sm text-white/90 leading-relaxed line-clamp-3">
+                    Reabilitação total de arcada com apenas 4 a 6 implantes estrategicamente posicionados. Prótese fixa completa com excelente custo-benefício.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="bg-white p-4 relative z-10">
                   <Accordion type="single" collapsible>
                     <AccordionItem value="detalhes" className="border-none">
                       <AccordionTrigger className="text-dental-purple font-semibold hover:no-underline">
@@ -266,23 +266,23 @@ const ImplantesDentarios = () => {
 
               {/* Card 4: Overdenture */}
               <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]">
-                <div className="aspect-[3/2] relative">
-                  <img 
-                    src="/lovable-uploads/Overdenture com clips de retenção.webp"
-                    alt="Overdenture"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent" />
-                  
-                  <div className="absolute top-0 left-0 right-0 p-8 text-white">
-                    <h3 className="text-xl font-display font-bold mb-2">Overdenture</h3>
-                    <p className="text-sm text-white/90 leading-relaxed">
-                      Prótese removível com encaixe de precisão sobre 2 a 4 implantes. Estabilidade e retenção superiores às dentaduras convencionais com investimento acessível.
-                    </p>
-                  </div>
-                </div>
+              <div className="aspect-[4/3] relative">
+                <img 
+                  src="/lovable-uploads/Overdenture com clips de retenção.webp"
+                  alt="Overdenture"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent" />
                 
-                <div className="bg-white p-4">
+                <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                  <h3 className="text-xl font-display font-bold mb-2">Overdenture</h3>
+                  <p className="text-sm text-white/90 leading-relaxed line-clamp-3">
+                    Prótese removível com encaixe de precisão sobre 2 a 4 implantes. Estabilidade e retenção superiores às dentaduras convencionais com investimento acessível.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="bg-white p-4 relative z-10">
                   <Accordion type="single" collapsible>
                     <AccordionItem value="detalhes" className="border-none">
                       <AccordionTrigger className="text-dental-purple font-semibold hover:no-underline">
