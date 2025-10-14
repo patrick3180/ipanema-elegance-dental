@@ -113,7 +113,7 @@ const ImplantesDentarios = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* Card 1: Implante Unitário */}
               <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]">
-                <div className="aspect-[4/3] relative">
+                <div className="aspect-[3/2] relative">
                   <img 
                     src="/lovable-uploads/Implante unitario.webp"
                     alt="Implante Unitário"
@@ -121,9 +121,9 @@ const ImplantesDentarios = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent" />
                   
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <h3 className="text-2xl font-display font-bold mb-2">Implante Unitário</h3>
-                    <p className="text-sm text-white/90">
+                  <div className="absolute top-0 left-0 right-0 p-8 text-white">
+                    <h3 className="text-xl font-display font-bold mb-2">Implante Unitário</h3>
+                    <p className="text-sm text-white/90 leading-relaxed">
                       Substitui um único dente perdido sem comprometer os dentes adjacentes. Pino de titânio + coroa em cerâmica pura para resultado natural e durável.
                     </p>
                   </div>
@@ -164,7 +164,7 @@ const ImplantesDentarios = () => {
 
               {/* Card 2: Ponte sobre Implantes */}
               <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]">
-                <div className="aspect-[4/3] relative">
+                <div className="aspect-[3/2] relative">
                   <img 
                     src="/lovable-uploads/Ponte Implante.webp"
                     alt="Ponte sobre Implantes"
@@ -172,9 +172,9 @@ const ImplantesDentarios = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent" />
                   
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <h3 className="text-2xl font-display font-bold mb-2">Ponte sobre Implantes</h3>
-                    <p className="text-sm text-white/90">
+                  <div className="absolute top-0 left-0 right-0 p-8 text-white">
+                    <h3 className="text-xl font-display font-bold mb-2">Ponte sobre Implantes</h3>
+                    <p className="text-sm text-white/90 leading-relaxed">
                       Reabilita múltiplos dentes ausentes adjacentes com dois ou mais implantes. Estabilidade superior às pontes convencionais sem desgaste de dentes saudáveis.
                     </p>
                   </div>
@@ -215,7 +215,7 @@ const ImplantesDentarios = () => {
 
               {/* Card 3: Protocolo All-on-4/6 */}
               <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]">
-                <div className="aspect-[4/3] relative">
+                <div className="aspect-[3/2] relative">
                   <img 
                     src="/lovable-uploads/all in 4.webp"
                     alt="Protocolo All-on-4/6"
@@ -223,9 +223,9 @@ const ImplantesDentarios = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent" />
                   
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <h3 className="text-2xl font-display font-bold mb-2">Protocolo All-on-4/6</h3>
-                    <p className="text-sm text-white/90">
+                  <div className="absolute top-0 left-0 right-0 p-8 text-white">
+                    <h3 className="text-xl font-display font-bold mb-2">Protocolo All-on-4/6</h3>
+                    <p className="text-sm text-white/90 leading-relaxed">
                       Reabilitação total de arcada com apenas 4 a 6 implantes estrategicamente posicionados. Prótese fixa completa com excelente custo-benefício.
                     </p>
                   </div>
@@ -266,7 +266,7 @@ const ImplantesDentarios = () => {
 
               {/* Card 4: Overdenture */}
               <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]">
-                <div className="aspect-[4/3] relative">
+                <div className="aspect-[3/2] relative">
                   <img 
                     src="/lovable-uploads/Overdenture com clips de retenção.webp"
                     alt="Overdenture"
@@ -274,9 +274,9 @@ const ImplantesDentarios = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent" />
                   
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <h3 className="text-2xl font-display font-bold mb-2">Overdenture</h3>
-                    <p className="text-sm text-white/90">
+                  <div className="absolute top-0 left-0 right-0 p-8 text-white">
+                    <h3 className="text-xl font-display font-bold mb-2">Overdenture</h3>
+                    <p className="text-sm text-white/90 leading-relaxed">
                       Prótese removível com encaixe de precisão sobre 2 a 4 implantes. Estabilidade e retenção superiores às dentaduras convencionais com investimento acessível.
                     </p>
                   </div>
@@ -381,47 +381,58 @@ const ImplantesDentarios = () => {
         <SectionDivider variant="with-icon" icon={<Activity className="w-5 h-5" />} />
 
         {/* Process Timeline */}
-        <ProcessTimeline 
-          title="Jornada do Tratamento: Do Planejamento ao Sorriso Completo"
-          subtitle="Cada etapa é cuidadosamente executada para resultados previsíveis"
-          steps={[
-            {
-              number: "1",
-              title: "Avaliação e Solicitação de Exames",
-              description: "Exame clínico completo, digitalização das arcadas com scanner oral 3D, estudo de caso detalhado e solicitação de exames de imagem para planejamento preciso do seu tratamento.",
-              icon: <Scan className="w-6 h-6" />,
-              duration: "1 consulta"
-            },
-            {
-              number: "2",
-              title: "Instalação dos Implantes com Precisão Milimétrica",
-              description: "Técnica minimamente invasiva quando indicado, reduzindo desconforto e acelerando recuperação. Prótese provisória em casos selecionados, de acordo com o planejamento definido.",
-              icon: <Activity className="w-6 h-6" />,
-              duration: "1-2 horas"
-            },
-            {
-              number: "3",
-              title: "Período de Osseointegração",
-              description: "Aguardamos a união biológica entre titânio e osso (3 a 6 meses). Durante este período, você utiliza prótese provisória quando necessário. Acompanhamento periódico para monitorar cicatrização e integração.",
-              icon: <Clock className="w-6 h-6" />,
-              duration: "3-6 meses"
-            },
-            {
-              number: "4",
-              title: "Moldagem Digital e Prótese Definitiva",
-              description: "Moldagem com scanner intraoral ou convencional. Confecção da prótese definitiva em cerâmica pura com cor, forma e translucidez naturais. Instalação e ajustes finais para conforto e estética impecáveis.",
-              icon: <CheckCircle className="w-6 h-6" />,
-              duration: "2-3 consultas"
-            },
-            {
-              number: "5",
-              title: "Manutenção e Controle",
-              description: "Protocolo de higienização personalizado e retornos periódicos (6 meses inicialmente). Acompanhamento da saúde peri-implantar, ajustes necessários e orientações para longevidade do tratamento.",
-              icon: <Heart className="w-6 h-6" />,
-              duration: "A cada 6 meses"
-            }
-          ]}
-        />
+        <section className="py-12 bg-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
+                Jornada do Tratamento: Do Planejamento ao Sorriso Completo
+              </h2>
+              <p className="text-lg text-dental-gray">
+                Cada etapa é cuidadosamente executada para resultados previsíveis
+              </p>
+            </div>
+            
+            <ProcessTimeline 
+              steps={[
+                {
+                  number: "1",
+                  title: "Avaliação e Solicitação de Exames",
+                  description: "Exame clínico completo, digitalização das arcadas com scanner oral 3D, estudo de caso detalhado e solicitação de exames de imagem para planejamento preciso do seu tratamento.",
+                  icon: <Scan className="w-6 h-6" />,
+                  duration: "1 consulta"
+                },
+                {
+                  number: "2",
+                  title: "Instalação dos Implantes com Precisão Milimétrica",
+                  description: "Técnica minimamente invasiva quando indicado, reduzindo desconforto e acelerando recuperação. Prótese provisória em casos selecionados, de acordo com o planejamento definido.",
+                  icon: <Activity className="w-6 h-6" />,
+                  duration: "1-2 horas"
+                },
+                {
+                  number: "3",
+                  title: "Período de Osseointegração",
+                  description: "Aguardamos a união biológica entre titânio e osso (3 a 6 meses). Durante este período, você utiliza prótese provisória quando necessário. Acompanhamento periódico para monitorar cicatrização e integração.",
+                  icon: <Clock className="w-6 h-6" />,
+                  duration: "3-6 meses"
+                },
+                {
+                  number: "4",
+                  title: "Moldagem Digital e Prótese Definitiva",
+                  description: "Moldagem com scanner intraoral ou convencional. Confecção da prótese definitiva em cerâmica pura com cor, forma e translucidez naturais. Instalação e ajustes finais para conforto e estética impecáveis.",
+                  icon: <CheckCircle className="w-6 h-6" />,
+                  duration: "2-3 consultas"
+                },
+                {
+                  number: "5",
+                  title: "Manutenção e Controle",
+                  description: "Protocolo de higienização personalizado e retornos periódicos (6 meses inicialmente). Acompanhamento da saúde peri-implantar, ajustes necessários e orientações para longevidade do tratamento.",
+                  icon: <Heart className="w-6 h-6" />,
+                  duration: "A cada 6 meses"
+                }
+              ]}
+            />
+          </div>
+        </section>
 
         <SectionDivider variant="with-icon" icon={<Award className="w-5 h-5" />} />
 
@@ -437,7 +448,7 @@ const ImplantesDentarios = () => {
                   className="w-full rounded-2xl shadow-elegant"
                 />
                 <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-dental-gold text-white px-6 py-2 rounded-full shadow-lg font-semibold text-sm whitespace-nowrap">
-                  4000+ pacientes atendidos
+                  20+ anos de experiência
                 </div>
               </div>
 
@@ -636,12 +647,6 @@ const ImplantesDentarios = () => {
             >
               Agendar Avaliação
             </button>
-
-            <div className="mt-4">
-              <a href="/contato" className="text-white underline inline-block">
-                Outras Formas de Contato
-              </a>
-            </div>
 
             <p className="text-white/80 text-sm mt-6">
               WhatsApp: (21) 99330-4045 | Atendimento de segunda a sexta, 9h às 19h
