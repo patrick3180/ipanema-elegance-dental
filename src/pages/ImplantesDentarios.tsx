@@ -9,31 +9,52 @@ import {
   Cpu, Scan, Shield, Heart, Activity, Clock, CheckCircle, 
   Award, HelpCircle, Smile, Sparkles
 } from "lucide-react";
+import { sendGCLIDToWebhook } from "@/utils/gclid";
+import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
+import { useScrollTracking } from '@/hooks/useScrollTracking';
+import FastServerResponseOptimizer from '@/components/performance/FastServerResponseOptimizer';
+import CriticalCSSOptimizer from '@/components/performance/CriticalCSSOptimizer';
 
 const ImplantesDentarios = () => {
-  const handleWhatsAppClick = () => {
+  // Critical image preload
+  useCriticalImagePreload({
+    images: [
+      { src: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp', width: 1024 },
+      { src: '/lovable-uploads/Implante unitario.webp', width: 800 }
+    ],
+    enabled: true
+  });
+
+  // Scroll tracking
+  useScrollTracking({ 
+    pagePath: '/implantes-dentarios',
+    enabled: process.env.NODE_ENV === 'production'
+  });
+
+  const handleWhatsAppClick = async () => {
     // GTM tracking
     if (window.dataLayer) {
       window.dataLayer.push({
         event: 'whatsapp_click',
         event_category: 'Contact',
         event_action: 'Click',
-        event_label: 'CTA Implantes'
+        event_label: 'CTA Implantes',
+        page_type: 'service_page'
       });
     }
     
     // Google Ads conversion
     if (window.gtag) {
       window.gtag('event', 'conversion', {
-        'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9'
+        'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
+        'event_callback': function() {
+          console.log('Google Ads conversion tracked - Implantes Service Page');
+        }
       });
     }
 
-    // GCLID tracking
-    const gclid = new URLSearchParams(window.location.search).get('gclid');
-    if (gclid) {
-      localStorage.setItem('gclid', gclid);
-    }
+    // Send GCLID to webhook
+    await sendGCLIDToWebhook('implantes_service_page_cta');
     
     // Open WhatsApp
     const phone = "5521993304045";
@@ -60,6 +81,29 @@ const ImplantesDentarios = () => {
         
         <link rel="canonical" href="https://dracarlachristoph.com/implantes-dentarios" />
         
+        {/* Critical CSS para LCP */}
+        <style>{`
+          .dental-purple{color:#381F47}
+          .bg-dental-purple{background-color:#381F47}
+          .font-display{font-family:'Playfair Display',Georgia,serif}
+          .aspect-\\[5\\/4\\]{aspect-ratio:5/4}
+          @media(min-width:1024px){.lg\\:aspect-square{aspect-ratio:1}}
+        `}</style>
+
+        {/* Font preload */}
+        <link
+          rel="preload"
+          href="https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDXbtM.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+
+        {/* Preconnect */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="//api.whatsapp.com" />
+        
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -81,6 +125,9 @@ const ImplantesDentarios = () => {
           })}
         </script>
       </Helmet>
+
+      <FastServerResponseOptimizer />
+      <CriticalCSSOptimizer inlineStyles="" />
 
       <PageLayout>
         <TreatmentHero
