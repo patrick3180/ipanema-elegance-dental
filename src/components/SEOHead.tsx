@@ -151,6 +151,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       
       {/* Google Search Console Verification */}
       <meta name="google-site-verification" content="0k2ILA3P_ahn1P6bl8bGpiSLJBcIYTaia47XPl0c3AQ" />
+      <meta name="google-site-verification" content="mufiI1fRvsBjdZpIg6V7PCLlw12pjd4d-zd5dzoIkN8" />
       
       {/* Canonical URL - Always use normalized .com URL */}
       <link rel="canonical" href={currentUrl} />
