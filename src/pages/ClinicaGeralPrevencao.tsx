@@ -1,126 +1,452 @@
 import React from "react";
-import TreatmentPageTemplate from "@/components/TreatmentPageTemplate";
-import { FAQ } from "@/components/treatment/types";
+import { Helmet } from "react-helmet-async";
+import PageLayout from "@/components/PageLayout";
+import TreatmentHero from "@/components/treatment/TreatmentHero";
+import SectionDivider from "@/components/treatment/SectionDivider";
+import ProcessTimeline from "@/components/treatment/ProcessTimeline";
+import { 
+  Accordion, 
+  AccordionContent, 
+  AccordionItem, 
+  AccordionTrigger 
+} from "@/components/ui/accordion";
+import { 
+  Shield,
+  Scan,
+  Heart,
+  Sparkles,
+  Search,
+  Calendar,
+  ClipboardCheck,
+  HelpCircle,
+  ArrowRight
+} from "lucide-react";
+
+const faqs = [
+  {
+    question: "O que está incluído no check-up preventivo?",
+    answer: "O check-up completo inclui exame clínico detalhado, limpeza profissional (profilaxia), avaliação de risco de cáries e doenças gengivais, orientação personalizada de higiene e, quando necessário, solicitação de radiografias. É uma avaliação completa para identificar qualquer problema antes que cause sintomas."
+  },
+  {
+    question: "Com que frequência devo fazer consultas preventivas?",
+    answer: "A frequência varia conforme seu perfil de risco. Pacientes de baixo risco podem vir a cada 6-8 meses, enquanto quem tem maior predisposição a cáries ou problemas gengivais deve retornar a cada 3-4 meses. Na primeira consulta, criamos um cronograma personalizado para você."
+  },
+  {
+    question: "A limpeza profissional dói?",
+    answer: "A limpeza com ultrassom é muito confortável. A maioria dos pacientes relata apenas uma leve sensação de vibração. Em casos de muita sensibilidade, podemos usar anestesia tópica para garantir seu conforto total durante o procedimento."
+  },
+  {
+    question: "Por que prevenir é mais econômico que tratar?",
+    answer: "Uma consulta preventiva custa uma fração do valor de tratamentos como canal, implantes ou enxertos gengivais. Além disso, você evita dor, desconforto e tempo longe do trabalho. Investir em prevenção é proteger sua saúde e seu bolso."
+  },
+  {
+    question: "Scanner digital 3D substitui as moldagens tradicionais?",
+    answer: "Sim! O scanner captura imagens digitais precisas da sua boca em poucos minutos, sem aquele desconforto das moldeiras com massa. É mais rápido, mais preciso e muito mais confortável, especialmente para quem tem reflexo de vômito."
+  },
+  {
+    question: "Como vocês identificam cáries no estágio inicial?",
+    answer: "Além do exame clínico, usamos câmeras de alta definição com magnificação e, quando necessário, radiografias digitais. Conseguimos identificar lesões de cárie ainda reversíveis, que podem ser tratadas apenas com aplicação de flúor, sem necessidade de restauração."
+  },
+  {
+    question: "O que fazer para prevenir mau hálito?",
+    answer: "Primeiro identificamos a causa - que em 90% dos casos está na boca (língua, gengiva ou dentes). Depois criamos um protocolo específico que pode incluir limpeza profissional, tratamento gengival, orientação sobre limpeza da língua e indicação de produtos adequados."
+  },
+  {
+    question: "Aplicação de flúor é só para crianças?",
+    answer: "Não! Adultos com alto risco de cáries, sensibilidade dental, boca seca ou exposição de raízes também se beneficiam muito da aplicação profissional de flúor. É um procedimento preventivo simples que fortalece o esmalte e reduz a sensibilidade."
+  },
+  {
+    question: "Qual a diferença entre limpeza em casa e profissional?",
+    answer: "A escovação e fio dental diários removem a placa bacteriana fresca. Mas o tártaro (placa mineralizada) só pode ser removido com instrumentos profissionais. Além disso, conseguimos limpar áreas que você não alcança em casa, como abaixo da linha da gengiva."
+  },
+  {
+    question: "Quando devo procurar prevenção e não tratamento?",
+    answer: "Sempre que não houver dor ou problema ativo! A prevenção deve ser sua primeira escolha. Se faz mais de 6 meses desde sua última consulta, se percebe sangramento gengival, mau hálito ou sensibilidade, é hora de uma avaliação preventiva - antes que vire tratamento complexo."
+  }
+];
+
+const handleWhatsAppClick = (message: string) => {
+  const phoneNumber = "5521993304045";
+  const encodedMessage = encodeURIComponent(message);
+  window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
+};
 
 const ClinicaGeralPrevencao = () => {
-  // Define the FAQs
-  const faqs: FAQ[] = [
-    {
-      question: "Qual a base científica para consultas preventivas semestrais?",
-      answer: "A frequência semestral baseia-se em evidências científicas sobre o ciclo de formação do biofilme bacteriano e desenvolvimento de lesões cariosas. Estudos demonstram que lesões incipientes podem ser revertidas em 3-6 meses com intervenção adequada, enquanto a formação de tártaro significativo ocorre entre 90-180 dias. A retração gengival, que afeta 58% da população adulta, progride gradualmente e pode ser detectada precocemente neste intervalo. Para pacientes de alto risco (doença periodontal, diabetes, xerostomia), intervalos de 3-4 meses são mais apropriados."
-    },
-    {
-      question: "Como o ultrassom odontológico revoluciona a limpeza preventiva?",
-      answer: "O ultrassom odontológico opera em frequências de 25.000-30.000 Hz, criando micromovimentos que fragmentam biofilme e cálculo dentário sem causar danos aos tecidos saudáveis. Comparado aos métodos tradicionais, oferece maior conforto (os pacientes relatam sensação de 'cócegas' suaves), eficiência superior (procedimentos 30-40% mais rápidos), e melhor acesso a áreas de difícil alcance. A irrigação simultânea remove bactérias e mantém a área resfriada, proporcionando limpeza mais completa."
-    },
-    {
-      question: "Por que 90% dos casos de mau hálito têm origem bucal?",
-      answer: "A cavidade bucal oferece condições ideais para bactérias anaeróbicas produtoras de compostos sulfurados voláteis - principais responsáveis pelo odor desagradável. A saburra lingual (camada esbranquiçada na língua), cáries, doenças gengivais, xerostomia e acúmulo de biofilme criam ambientes propícios para essas bactérias. Apenas 10% dos casos têm origem extra-bucal (problemas renais, hepáticos, diabetes descompensado). Por isso, a prevenção odontológica é fundamental para controlar a halitose."
-    },
-    {
-      question: "Como prevenir a retração gengival que afeta 58% dos adultos?",
-      answer: "A retração gengival resulta principalmente de escovação agressiva, doenças periodontais, fatores genéticos e bruxismo. A prevenção inclui: técnica de escovação suave com escovas de cerdas macias, movimentos circulares delicados, uso correto do fio dental, tratamento de doenças gengivais, controle do bruxismo com placas de proteção, e consultas regulares para monitoramento. Pessoas com gengiva naturalmente fina têm maior predisposição e necessitam cuidados especiais."
-    },
-    {
-      question: "Qual o processo científico da formação de cáries e como prevenir?",
-      answer: "A cárie é uma doença multifatorial envolvendo quatro fatores: bactérias específicas (principalmente Streptococcus mutans), açúcares fermentáveis, dente susceptível e tempo. As bactérias metabolizam açúcares produzindo ácidos que desmineralizam o esmalte. A prevenção baseia-se em: higiene adequada para remoção do biofilme, uso de flúor para remineralização, controle da dieta açucarada, estimulação da produção de saliva, e diagnóstico precoce através de check-ups regulares."
-    },
-    {
-      question: "Como a tecnologia digital revoluciona o diagnóstico preventivo?",
-      answer: "O check-up digital utiliza câmeras intraorais com magnificação de 50-100x, permitindo detecção de alterações invisíveis ao exame convencional. Inclui análise de fluorescência para cáries incipientes, transiluminação para trincas, documentação fotográfica padronizada para acompanhamento longitudinal, e sistemas de análise computadorizada. Esta tecnologia aumenta a precisão diagnóstica em 40-60% comparada ao exame visual tradicional, permitindo intervenção em estágios reversíveis."
-    },
-    {
-      question: "Qual a relação entre xerostomia e problemas bucais múltiplos?",
-      answer: "A xerostomia (boca seca) compromete as funções protetivas da saliva: neutralização de ácidos, remineralização do esmalte, controle bacteriano e limpeza natural. Sua redução aumenta significativamente o risco de cáries (especialmente na raiz), mau hálito (pela proliferação bacteriana), doenças gengivais e maior susceptibilidade a infecções. Pode ser causada por medicamentos, diabetes, síndrome de Sjögren, radioterapia ou envelhecimento. O tratamento inclui hidratação adequada, substitutos salivares e acompanhamento intensificado."
-    },
-    {
-      question: "Como a prevenção se integra com tratamentos estéticos posteriores?",
-      answer: "A saúde periodontal ótima é pré-requisito para tratamentos estéticos, garantindo estabilidade gengival e ausência de inflamação que comprometeria resultados. O controle de biofilme adequado prolonga longevidade de restaurações estéticas em 30-50%. Protocolos preventivos específicos incluem aplicação de flúor pós-clareamento para reduzir sensibilidade, técnicas especiais de higiene para pacientes com lentes de contato dental ou facetas, e monitoramento de retração gengival que pode comprometer a estética."
-    },
-    {
-      question: "Qual o impacto econômico da prevenção versus tratamentos curativos?",
-      answer: "Estudos econômicos demonstram que cada real investido em prevenção economiza 8-50 reais em tratamentos curativos. Uma consulta preventiva custa tipicamente 10-15% de um tratamento endodôntico, 5% de um implante dental, 3% de um enxerto gengival, e 2-3% de uma reabilitação protética extensa. Considerando longevidade da dentição natural, qualidade de vida e ausência de dor, o retorno do investimento preventivo é extraordinário a longo prazo."
-    },
-    {
-      question: "Como personalizar protocolos preventivos conforme fatores de risco?",
-      answer: "A personalização baseia-se em análise multifatorial: índice de risco de cáries (CAMBRA), condição periodontal, análise salivar (fluxo, pH, capacidade tampão), hábitos alimentares, medicações xerostômicas, presença de restaurações, fatores sistêmicos e genéticos. Pacientes de baixo risco podem ter intervalos de 6-8 meses, enquanto alto risco necessita 3-4 meses com protocolos intensificados de flúor, antimicrobianos, orientação específica sobre higiene e controle de fatores causais como bruxismo."
-    }
-  ];
-
   return (
-    <TreatmentPageTemplate
-      slug="clinica-geral-e-prevencao"
-      title="Clínica Geral e Prevenção Odontológica em Ipanema"
-      metaDescription="Prevenção odontológica científica em Ipanema com Dra. Carla Christoph. Ultrassom 25.000-30.000 Hz, check-up digital com magnificação 50-100x, protocolos baseados em evidências. Prevenção de cáries, retração gengival (58% dos adultos) e mau hálito (90% origem bucal)."
-      introduction="A base para um sorriso saudável e duradouro começa com a prevenção científica e os cuidados de rotina baseados em evidências consolidadas. Na clínica da Dra. Carla Christoph em Ipanema, oferecemos um acompanhamento completo em clínica geral, focado em manter sua saúde bucal através de protocolos avançados que podem prevenir até 90% dos problemas bucais. Com mais de 20 anos de experiência clínica e especialização em Prótese Dental e Implantodontia, nossa [abordagem integral da saúde bucal](/blog/odontologia-estetica-sorriso-natural) combina prevenção baseada em evidências científicas, tecnologia de ponta e diagnóstico precoce de condições como [cáries em estágios reversíveis](/blog/saude-bucal-carie-dental-prevencao), problemas gengivais e [halitose de origem bucal](/blog/saude-bucal-mau-halito), oferecendo cuidados personalizados que podem reduzir em até 90% a necessidade de tratamentos complexos futuros."
-      sections={[
-        {
-          id: "ciencia-prevencao",
-          title: "A Ciência da Prevenção Odontológica: Fundamentos e Evidências",
-          content: "A Clínica Geral Odontológica moderna baseia-se em sólidos fundamentos científicos que comprovam a eficácia da prevenção na manutenção da saúde bucal integral. Estudos longitudinais demonstram que protocolos preventivos adequados podem reduzir a incidência de cáries em 20-40%, de doença periodontal em até 60%, e controlar efetivamente 90% dos casos de mau hálito que têm origem bucal. A prevenção de retração gengival - condição que afeta 58% da população adulta mundial - é especialmente importante, pois uma vez instalada, frequentemente requer intervenções cirúrgicas complexas. A abordagem preventiva atual utiliza conceitos de análise de risco individual, baseando-se em fatores como capacidade salivar, microbiota bucal, hábitos alimentares, condições sistêmicas e predisposição genética. O modelo CAMBRA (Caries Management by Risk Assessment) permite estratificação precisa dos pacientes, personalizando intervalos de consulta e protocolos terapêuticos. Na nossa clínica em Ipanema, a Dra. Carla Christoph implementa esses conceitos científicos através de tecnologia avançada, incluindo análise salivar quando indicada, teste de atividade de cáries, monitoramento digital longitudinal e protocolos específicos para cada tipo de risco. Esta abordagem baseada em evidências transforma a prevenção de uma prática empírica em ciência aplicada, oferecendo resultados mensuráveis e previsíveis.",
-          type: "default"
-        },
-        {
-          id: "tecnologia-ultrassom",
-          title: "Ultrassom Odontológico: Revolução na Prevenção e Limpeza Profissional",
-          content: "O [ultrassom odontológico representa uma revolução](/blog/saude-bucal-ultrassom-odontologico) na odontologia preventiva, utilizando vibrações ultrassônicas de 25.000 a 30.000 Hz para realizar limpezas mais eficazes, confortáveis e precisas. Esta tecnologia funciona através de micromovimentos que conseguem quebrar e fragmentar depósitos de biofilme dental e cálculo dentário sem causar danos aos tecidos saudáveis dos dentes e gengivas. **Vantagens Técnicas Comprovadas:** Maior conforto para o paciente (sensação de vibração suave vs pressão dos instrumentos manuais), otimização do tempo de atendimento (redução de 30-40% no tempo de procedimento), melhor assepsia com remoção superior de bactérias em áreas de difícil acesso, e irrigação simultânea que mantém a área limpa e resfriada. **Aplicações Específicas:** Remoção eficaz de biofilme que causa cáries e mau hálito, tratamento de doenças gengivais com acesso a bolsas periodontais profundas, alisamento radicular para prevenção de recolonização bacteriana, e limpeza delicada que não traumatiza a gengiva (prevenindo retração). A experiência dos pacientes é significativamente superior: muitos relatam que procedimentos que anteriormente evitavam devido ao desconforto se tornam toleráveis e até relaxantes com o ultrassom. Esta tecnologia é especialmente benéfica para pacientes com sensibilidade dental, ansiedade odontológica, ou grande quantidade de tártaro acumulado.",
-          type: "default"
-        },
-        {
-          id: "prevencao-integrada",
-          title: "Prevenção Integrada: Cáries, Doenças Gengivais, Mau Hálito e Retração",
-          content: [
-            "**Prevenção de Cáries Baseada em Evidências:** A cárie é uma doença multifatorial envolvendo bactérias específicas (principalmente Streptococcus mutans), açúcares fermentáveis, dentes susceptíveis e tempo. Protocolos incluem controle de biofilme, fluoretação adequada, modificação da dieta cariogênica, estímulo da produção salivar e monitoramento de lesões incipientes através de métodos de fluorescência.",
-            "**Controle do Mau Hálito de Origem Bucal:** Como 90% dos casos de halitose têm origem na cavidade bucal, focamos na remoção da saburra lingual, tratamento de cáries ocultas, controle de doenças gengivais, e manejo da xerostomia. Protocolos específicos incluem limpeza adequada da língua, uso de antimicrobianos quando indicado, e controle dos fatores que favorecem bactérias anaeróbicas produtoras de compostos sulfurados.",
-            "**Prevenção de Retração Gengival:** Condição que afeta 58% da população adulta, requer educação sobre técnica correta de escovação (movimentos circulares suaves, escovas de cerdas macias), uso adequado do fio dental, tratamento precoce de doenças periodontais, controle do bruxismo, e monitoramento de pacientes com predisposição genética.",
-            "**Manejo de Xerostomia:** A boca seca aumenta drasticamente o risco de cáries, mau hálito e doenças gengivais. Protocolos incluem identificação de medicamentos xerostômicos, hidratação adequada, uso de substitutos salivares, estímulo mecânico da produção salivar, e acompanhamento intensificado com aplicações frequentes de flúor.",
-            "**Detecção Precoce com Tecnologia Digital:** Check-up com câmeras intraorais de alta definição, magnificação óptica de 50-100x, transiluminação para detecção de trincas, análise de fluorescência para lesões incipientes, e documentação fotográfica padronizada para acompanhamento longitudinal das condições bucais."
-          ],
-          type: "benefits"
-        },
-        {
-          id: "diagnostico-precoce-avancado",
-          title: "Diagnóstico Precoce Avançado: Identificando Problemas Antes dos Sintomas",
-          content: "O diagnóstico precoce representa a essência da odontologia preventiva moderna, utilizando tecnologias e protocolos científicos que identificam alterações em estágios reversíveis ou facilmente tratáveis. **Detecção de Lesões Cariosas Incipientes:** Métodos de fluorescência quantitativa (DIAGNOdent) identificam alterações metabólicas bacterianas antes da cavitação visível, permitindo remineralização através de protocolos específicos com flúor, cálcio e fosfato. Estas lesões podem ser completamente revertidas sem necessidade de restaurações. **Identificação de Problemas Gengivais Precoces:** Análise do fluido crevicular, sondagem periodontal computadorizada, e detecção de sangramento marginal identificam alterações inflamatórias antes da perda de inserção ou retração gengital visível. **Diagnóstico de Retração Gengival Incipiente:** A [retração gengival em estágios iniciais](/blog/saude-bucal-retracao-gengival) é detectada através de análise comparativa fotográfica, medições precisas da margem gengival, e avaliação de fatores de risco como trauma de escovação e doenças periodontais. **Análise de Fatores Causais do Mau Hálito:** Investigação sistemática incluindo análise da saburra lingual, teste de fluxo salivar, identificação de cáries ocultas, avaliação de doenças gengivais, e correlação com fatores sistêmicos quando indicado. **Detecção de Dentes Trincados:** A [identificação precoce de trincas invisíveis](/blog/saude-bucal-dente-trincado) através de transiluminação, teste de mordida específico, e análise de sintomatologia permite tratamento conservador antes da evolução para fraturas que comprometeriam a preservação dental. Esta abordagem diagnóstica transforma o conceito de 'aguardar sintomas aparecerem' em 'prevenir problemas antes que se desenvolvam'.",
-          type: "default"
-        },
-        {
-          id: "protocolos-personalizados",
-          title: "Protocolos Preventivos Personalizados: Ciência Aplicada à Individualidade",
-          content: "A personalização dos protocolos preventivos baseia-se em análise científica multifatorial que considera características biológicas, comportamentais e sistêmicas de cada paciente. **Estratificação de Risco de Cáries:** Aplicação do modelo CAMBRA considerando capacidade salivar (fluxo, pH, capacidade tampão), microbiota cariogênica, frequência de exposição a açúcares, presença de restaurações, uso de medicamentos xerostômicos, e histórico familiar. Pacientes de alto risco recebem protocolos intensificados com flúor de alta concentração, antimicrobianos específicos, e consultas trimestrais. **Avaliação de Risco Periodontal:** Utilização de índices padronizados (PSR/BPE), análise de fatores genéticos, avaliação de hábitos como tabagismo, controle de diabetes, e identificação de fatores traumáticos como [bruxismo](/blog/saude-bucal-bruxismo-e-estresse). **Protocolo para Prevenção de Retração Gengival:** Análise da técnica de higiene bucal, avaliação da espessura gengival (pacientes com gengiva fina têm maior predisposição), controle de doenças periodontais, manejo do bruxismo, e orientação específica sobre produtos adequados (escovas de cerdas ultramacias quando indicado). **Manejo Personalizado da Halitose:** Investigação das causas específicas (90% têm origem bucal), protocolos de limpeza lingual adequados, controle de xerostomia, tratamento de doenças gengivais associadas, e modificação de fatores comportamentais. **Integração com Condições Sistêmicas:** Diabéticos recebem protocolos específicos para controle glicêmico e prevenção de complicações periodontais, gestantes têm acompanhamento adaptado às alterações hormonais, e pacientes com medicações xerostômicas recebem cuidados intensificados para xerostomia.",
-          type: "default"
-        },
-        {
-          id: "casos-especiais-complexos",
-          title: "Casos Especiais: Prevenção em Situações Complexas e Multifatoriais",
-          content: "Determinadas condições clínicas e sistêmicas requerem protocolos preventivos específicos e cuidados intensificados para manutenção da saúde bucal. **Prevenção em Diabéticos:** Pacientes diabéticos apresentam risco 2-3 vezes maior de desenvolver doença periodontal, sendo essencial controle glicêmico rigoroso, consultas preventivas trimestrais, monitoramento intensificado de inflamação gengival, protocolo específico de higiene bucal, e coordenação com o endocrinologista para controle metabólico. A doença periodontal pode desestabilizar o controle glicêmico, criando um ciclo vicioso que deve ser quebrado através de prevenção eficaz. **Manejo Preventivo na Gravidez:** As alterações hormonais da gestação aumentam significativamente o risco de gengivite gravídica e exacerbação de problemas periodontais existentes. Protocolos específicos incluem consultas durante cada trimestre, orientação sobre técnicas adaptadas de higiene (considerando náuseas e sensibilidade), controle rigoroso de placa bacteriana, e tratamento precoce de alterações gengivais. **Prevenção em Pacientes com Medicações Xerostômicas:** Mais de 400 medicamentos podem causar xerostomia, incluindo antidepressivos, anti-hipertensivos, diuréticos e antihistamínicos. Protocolos incluem identificação de medicamentos causais, coordenação com médicos para possível substituição, uso de substitutos salivares, estímulo mecânico da produção salivar, aplicações frequentes de flúor, e acompanhamento intensificado devido ao alto risco de cáries radiculares. **Prevenção em Pacientes com Ansiedade Odontológica:** A ansiedade pode levar ao adiamento de cuidados preventivos, criando ciclo de deterioração. Protocolos incluem técnicas de manejo da ansiedade, sedação consciente quando necessário, consultas mais frequentes e menos invasivas, educação específica sobre a importância da prevenção, e criação de ambiente acolhedor que reduz o estresse. **Protocolos para Idosos:** O envelhecimento traz desafios específicos como xerostomia medicamentosa, retração gengival fisiológica, dificuldades motoras para higiene, maior risco de cáries radiculares, e necessidade de coordenação com múltiplas especialidades médicas. Protocolos adaptados incluem técnicas facilitadas de higiene, acompanhamento geriátrico integrado, e prevenção específica de complicações age-related.",
-          type: "default"
-        },
-        {
-          id: "integracao-saude-sistemica",
-          title: "Integração entre Saúde Bucal e Sistêmica: Prevenção Holística",
-          content: "A odontologia moderna reconhece as complexas interrelações entre saúde bucal e sistêmica, estabelecendo protocolos preventivos que considerem o paciente como um todo integrado. **Prevenção de Doenças Cardiovasculares:** Evidências científicas comprovam associação entre doença periodontal e risco cardiovascular aumentado. Bactérias bucais como Porphyromonas gingivalis podem induzir aterosclerose e estados pró-trombóticos. Protocolos preventivos incluem controle rigoroso de placa bacteriana, tratamento precoce de gengivites, coordenação com cardiologistas para pacientes de alto risco, e educação sobre a importância da saúde bucal na prevenção cardiovascular. **Prevenção em Pacientes com Artrite Reumatoide:** A associação bidireccional entre doença periodontal e artrite reumatoide está bem estabelecida. Protocolos incluem consultas preventivas mais frequentes, controle inflamatório rigoroso, coordenação com reumatologistas, adaptação de técnicas de higiene para limitações motoras, e uso de antimicrobianos específicos quando indicado. **Manejo Preventivo em Câncer:** Pacientes oncológicos, especialmente aqueles em radioterapia ou quimioterapia, apresentam riscos específicos como mucosite, xerostomia severa, e infecções oportunistas. Protocolos incluem avaliação odontológica pré-tratamento oncológico, eliminação de focos infecciosos, protocolos específicos de higiene durante tratamento, uso de substitutos salivares e flúor de alta concentração, e acompanhamento multidisciplinar. **Prevenção Respiratória:** Aspiração de bactérias bucais pode causar pneumonia, especialmente em idosos e pacientes debilitados. Protocolos incluem higiene bucal intensificada em pacientes hospitalizados, controle de biofilme em próteses dentárias, e educação sobre técnicas específicas de higiene para reduzir carga bacteriana. **Integração com Medicina do Trabalho:** Protocolos preventivos específicos para profissões de risco incluem trabalhadores expostos a ácidos (indústrias químicas), açúcares (confeitarias), ou situações de estresse extremo que podem levar ao bruxismo. A prevenção é adaptada aos riscos ocupacionais específicos de cada paciente.",
-          type: "default"
-        },
-        {
-          id: "protocolo-consulta-preventiva",
-          title: "Protocolo de Consulta Preventiva Avançada: Excelência Científica Aplicada",
-          content: [
-            "**Anamnese Detalhada e Estratificação de Risco:** Avaliação completa incluindo histórico médico e odontológico, medicações em uso, hábitos alimentares e de higiene, fatores de risco sistêmicos (diabetes, doenças cardiovasculares, artrite reumatoide), histórico familiar de problemas bucais, e análise de ansiedade odontológica.",
-            "**Exame Clínico Sistematizado:** Inspeção extraoral e intraoral completa, avaliação de tecidos moles, exame periodontal com sondagem quando indicado, teste de vitalidade dental em casos suspeitos, avaliação oclusal e detecção de sinais de bruxismo, e documentação fotográfica padronizada para acompanhamento longitudinal.",
-            "**Diagnóstico por Imagem Personalizado:** Radiografias interproximais para detecção de cáries incipientes, panorâmica quando indicada para avaliação geral, e tecnologias avançadas como DIAGNOdent para lesões iniciais ou transiluminação para trincas, conforme necessidade individual.",
-            "**Profilaxia Avançada com Ultrassom:** Remoção completa de biofilme e cálculo através de ultrassom 25.000-30.000 Hz, irrigação com soluções antimicrobianas quando indicado, polimento seletivo preservando estrutura dental, e aplicação de flúor adequada ao risco individual (gel, verniz ou flúor de alta concentração).",
-            "**Educação Personalizada e Técnicas de Higiene:** Demonstração de técnica correta de escovação adaptada à anatomia individual, orientação sobre uso adequado do fio dental e escovas interdentais, recomendação de produtos específicos (cremes dentais, enxaguatórios, escovas), e educação sobre fatores de risco modificáveis.",
-            "**Planejamento Preventivo Individualizado:** Definição de intervalos de retorno baseados em análise de risco individual, protocolo domiciliar personalizado, identificação de necessidades de especialistas (periodontista, endodontista), integração com cuidados médicos quando necessário, e estabelecimento de metas mensuráveis para próxima consulta.",
-            "**Monitoramento e Acompanhamento:** Registro digital de todos os parâmetros clínicos para acompanhamento longitudinal, fotografias comparativas para documentação de mudanças, análise de tendências individuais (melhora, estabilidade, piora), e ajustes de protocolo baseados em resposta individual ao tratamento preventivo."
-          ],
-          type: "steps"
-        }
-      ]}
-      faqs={faqs}
-      whatsappMessage="Olá! Gostaria de agendar uma consulta de prevenção odontológica e saber mais sobre os protocolos científicos de clínica geral."
-      ctaHeading="Agende Sua Consulta de Prevenção Científica"
-    />
+    <PageLayout>
+      <Helmet>
+        <title>Clínica Geral e Prevenção Odontológica em Ipanema | Dra. Carla Christoph</title>
+        <meta 
+          name="description" 
+          content="Check-up digital e prevenção odontológica em Ipanema. Scanner 3D, ultrassom, protocolo personalizado. Dra. Carla Christoph CRO-RJ 27.509 - 20+ anos de experiência." 
+        />
+        <meta 
+          name="keywords" 
+          content="dentista ipanema, check-up dental, prevenção odontológica, limpeza dental, profilaxia, clínica geral odontologia, dra carla christoph" 
+        />
+        <link rel="canonical" href="https://dracarlaodontologia.com.br/clinica-geral-e-prevencao" />
+      </Helmet>
+
+      <TreatmentHero
+        title="Cuide da Saúde do Seu Sorriso com Prevenção e Tecnologia"
+        subtitle="Dra. Carla Christoph - Especialista em Saúde Bucal Integral"
+        description="Check-up digital completo e protocolos preventivos para identificar problemas antes que se tornem complexos. Porque prevenir é sempre melhor - e mais econômico - do que remediar."
+        badges={["20+ anos de experiência", "CRO-RJ 27.509", "Scanner Digital 3D"]}
+        doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+        breadcrumbs={[
+          { label: "Início", href: "/" },
+          { label: "Tratamentos", href: "/servicos" },
+          { label: "Clínica Geral e Prevenção" }
+        ]}
+      />
+
+      <SectionDivider variant="with-icon" icon={<Shield size={20} />} />
+
+      <section className="py-16 bg-white">
+        <div className="container-custom">
+          <h2 className="heading-lg mb-4 text-center text-dental-purple">
+            Prevenção que Faz a Diferença
+          </h2>
+          <p className="text-center text-dental-gray mb-12 max-w-2xl mx-auto">
+            Tecnologia avançada e cuidado personalizado para manter seu sorriso saudável
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-dental-purple/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Shield className="w-8 h-8 text-dental-purple" />
+              </div>
+              <h3 className="text-xl font-semibold text-dental-purple mb-3">
+                Prevenção que Funciona
+              </h3>
+              <p className="text-dental-gray">
+                Protocolos personalizados que evitam a maioria dos problemas bucais, mantendo seu sorriso saudável por muito mais tempo
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-dental-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Scan className="w-8 h-8 text-dental-gold" />
+              </div>
+              <h3 className="text-xl font-semibold text-dental-purple mb-3">
+                Tecnologia a Seu Favor
+              </h3>
+              <p className="text-dental-gray">
+                Check-up com scanner digital 3D e câmera HD que identifica problemas invisíveis a olho nu, antes que causem dor ou desconforto
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-dental-purple/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Heart className="w-8 h-8 text-dental-purple" />
+              </div>
+              <h3 className="text-xl font-semibold text-dental-purple mb-3">
+                Acompanhamento Individual
+              </h3>
+              <p className="text-dental-gray">
+                Cada paciente é único. Criamos um plano preventivo sob medida para suas necessidades, estilo de vida e histórico
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider variant="with-icon" icon={<Sparkles size={20} />} />
+
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
+              Seu Check-up Preventivo Completo
+            </h2>
+            <p className="text-lg text-dental-gray">
+              Cada consulta é planejada para identificar e prevenir problemas antes que apareçam
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
+              <div className="aspect-[4/3] relative">
+                <img 
+                  src="/lovable-uploads/scanner + intraoral.webp"
+                  alt="Check-up Digital Completo com Scanner 3D"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
+              </div>
+              
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <h3 className="text-2xl font-display font-bold mb-2 group-hover:text-dental-gold transition-colors">
+                  Check-up Digital Completo
+                </h3>
+                <p className="text-sm leading-relaxed opacity-95">
+                  Avaliação detalhada com scanner digital 3D e câmera de alta definição. Conseguimos ver o que os olhos não veem, identificando pequenos problemas antes que virem grandes preocupações.
+                </p>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
+              <div className="aspect-[4/3] relative">
+                <img 
+                  src="/lovable-uploads/ulrassom.webp"
+                  alt="Limpeza Profissional com Ultrassom"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
+              </div>
+              
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <h3 className="text-2xl font-display font-bold mb-2 group-hover:text-dental-gold transition-colors">
+                  Limpeza Profissional
+                </h3>
+                <p className="text-sm leading-relaxed opacity-95">
+                  Profilaxia com tecnologia ultrassônica que remove tártaro e manchas de forma confortável. Seus dentes mais limpos, sua gengiva mais saudável, seu hálito mais fresco.
+                </p>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
+              <div className="aspect-[4/3] relative">
+                <img 
+                  src="/lovable-uploads/Fluor.webp"
+                  alt="Prevenção de Cáries com Flúor"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
+              </div>
+              
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <h3 className="text-2xl font-display font-bold mb-2 group-hover:text-dental-gold transition-colors">
+                  Prevenção de Cáries
+                </h3>
+                <p className="text-sm leading-relaxed opacity-95">
+                  Aplicação de flúor, selantes e acompanhamento próximo das áreas de risco para manter seus dentes protegidos e saudáveis.
+                </p>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
+              <div className="aspect-[4/3] relative">
+                <img 
+                  src="/lovable-uploads/Periodontal.webp"
+                  alt="Saúde Gengival e Prevenção Periodontal"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
+              </div>
+              
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <h3 className="text-2xl font-display font-bold mb-2 group-hover:text-dental-gold transition-colors">
+                  Cuidado com a Gengiva
+                </h3>
+                <p className="text-sm leading-relaxed opacity-95">
+                  Prevenção e controle de inflamações gengivais. Gengiva saudável é a base para dentes que duram a vida toda - e para evitar problemas que vão além da boca.
+                </p>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
+              <div className="aspect-[4/3] relative">
+                <img 
+                  src="/lovable-uploads/mau halito.webp"
+                  alt="Controle de Mau Hálito"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
+              </div>
+              
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <h3 className="text-2xl font-display font-bold mb-2 group-hover:text-dental-gold transition-colors">
+                  Controle de Mau Hálito
+                </h3>
+                <p className="text-sm leading-relaxed opacity-95">
+                  Investigamos a causa real do mau hálito e criamos um protocolo específico para você. Porque confiança ao conversar e sorrir não tem preço.
+                </p>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
+              <div className="aspect-[4/3] relative">
+                <img 
+                  src="/lovable-uploads/planejamento.webp"
+                  alt="Plano Preventivo Personalizado"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
+              </div>
+              
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <h3 className="text-2xl font-display font-bold mb-2 group-hover:text-dental-gold transition-colors">
+                  Seu Plano Preventivo
+                </h3>
+                <p className="text-sm leading-relaxed opacity-95">
+                  Com base no seu risco individual, criamos um cronograma de cuidados sob medida. Orientação sobre produtos adequados, técnicas corretas e frequência ideal de consultas.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-gradient-purple-soft">
+        <div className="container-custom">
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <div className="relative">
+              <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-elegant">
+                <img 
+                  src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+                  alt="Dra. Carla Christoph - Especialista em Saúde Bucal"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-dental-gold/20 rounded-full blur-3xl" />
+            </div>
+
+            <div>
+              <h2 className="heading-lg mb-6 text-dental-purple">
+                Sua Parceira na Saúde Bucal
+              </h2>
+              
+              <div className="space-y-4 text-dental-gray leading-relaxed">
+                <p>
+                  Com mais de 20 anos de experiência, aprendi que cada sorriso conta uma história única. 
+                  Não existe protocolo padrão - existe o cuidado que você precisa, no momento que você precisa.
+                </p>
+                
+                <p>
+                  Minha abordagem combina tecnologia de ponta com tempo dedicado para entender suas necessidades reais. 
+                  Porque prevenir não é só limpar os dentes - é criar uma relação de confiança onde você se sente cuidado.
+                </p>
+              </div>
+
+              <div className="mt-6 pt-6 border-t border-dental-gold/20">
+                <p className="font-semibold text-dental-purple text-lg">
+                  Dra. Carla Christoph
+                </p>
+                <p className="text-dental-gray">
+                  CRO-RJ 27.509
+                </p>
+                <p className="text-sm text-dental-gray mt-2">
+                  Especialista em Prótese Dental e Implantodontia
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider variant="with-icon" icon={<Calendar size={20} />} />
+
+      <section className="py-16 bg-white">
+        <div className="container-custom">
+          <h2 className="heading-lg mb-4 text-center text-dental-purple">
+            Sua Consulta Preventiva, Passo a Passo
+          </h2>
+          <p className="text-center text-dental-gray mb-12 max-w-2xl mx-auto">
+            Um protocolo completo pensado para sua saúde bucal integral
+          </p>
+
+          <ProcessTimeline
+            steps={[
+              {
+                number: 1,
+                title: "Análise Inicial",
+                description: "Conversamos sobre seu histórico, hábitos e preocupações + exame visual detalhado",
+                icon: <Search size={24} />,
+                duration: "1ª Consulta"
+              },
+              {
+                number: 2,
+                title: "Diagnóstico Digital",
+                description: "Scanner digital 3D + Solicitação de exames complementares quando necessário",
+                icon: <Scan size={24} />,
+                duration: "1ª Consulta"
+              },
+              {
+                number: 3,
+                title: "Profilaxia Avançada",
+                description: "Limpeza profissional com ultrassom 30.000 Hz - confortável e eficaz",
+                icon: <Sparkles size={24} />,
+                duration: "1ª Consulta"
+              },
+              {
+                number: 4,
+                title: "Protocolo Personalizado",
+                description: "Seu plano preventivo individual com orientações específicas e cronograma",
+                icon: <ClipboardCheck size={24} />,
+                duration: "1ª Consulta"
+              },
+              {
+                number: 5,
+                title: "Acompanhamento",
+                description: "Retornos programados para manter sua saúde bucal sempre em dia",
+                icon: <Calendar size={24} />,
+                duration: "Periódico"
+              }
+            ]}
+          />
+        </div>
+      </section>
+
+      <SectionDivider variant="with-icon" icon={<HelpCircle size={20} />} />
+
+      <section className="py-16 bg-dental-beige/20">
+        <div className="container-custom">
+          <h2 className="heading-lg mb-8 text-center text-dental-purple">
+            Perguntas Frequentes sobre Prevenção
+          </h2>
+          
+          <div className="max-w-4xl mx-auto">
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              {faqs.map((faq, index) => (
+                <AccordionItem 
+                  key={index} 
+                  value={`item-${index + 1}`} 
+                  className="bg-white rounded-lg border border-dental-purple/20 px-6"
+                >
+                  <AccordionTrigger className="text-left text-base font-semibold text-dental-purple hover:text-dental-gold transition-colors py-6">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-dental-gray leading-relaxed pb-6">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-gradient-purple-gold text-white">
+        <div className="container-custom text-center">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Shield className="w-8 h-8 text-dental-gold" />
+            <h2 className="heading-lg">
+              Pronto para Investir na Saúde do Seu Sorriso?
+            </h2>
+          </div>
+          
+          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+            Agende seu check-up preventivo e descubra como pequenos cuidados fazem toda a diferença. 
+            Tecnologia de ponta, atendimento humanizado e protocolos personalizados aguardam você em Ipanema.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button 
+              onClick={() => handleWhatsAppClick('Olá! Gostaria de agendar uma consulta preventiva e check-up digital com a Dra. Carla Christoph.')}
+              className="bg-dental-gold text-dental-purple px-8 py-4 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-all inline-flex items-center gap-2"
+            >
+              <ArrowRight className="w-5 h-5" />
+              Agendar Minha Consulta Preventiva
+            </button>
+          </div>
+          
+          <p className="mt-6 text-sm opacity-75">
+            Atendimento de segunda a sexta, das 9h às 19h
+          </p>
+        </div>
+      </section>
+    </PageLayout>
   );
 };
 
