@@ -23,6 +23,10 @@ const routes = {
     title: 'Lentes de Contato Dental e Facetas em Ipanema | Dra. Carla Christoph',
     description: 'Lentes de contato dental e facetas de resina em Ipanema. Transforme seu sorriso com a Dra. Carla Christoph. Resultados naturais e duradouros.',
   },
+  '/lentes-de-contato-dental-e-facetas-de-porcelana': {
+    title: 'Lentes de Contato Dental e Facetas em Ipanema | Dra. Carla Christoph',
+    description: 'Lentes de contato dental e facetas em Ipanema. Transforme seu sorriso com a Dra. Carla Christoph. Resultados naturais e duradouros.',
+  },
   '/protese-dentaria': {
     title: 'Prótese Dentária em Ipanema | Dra. Carla Christoph',
     description: 'Prótese dentária fixa e removível em Ipanema. Especialista em reabilitação oral com mais de 20 anos de experiência. Dra. Carla Christoph. CRO-RJ 27.509.',
