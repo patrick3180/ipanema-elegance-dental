@@ -112,7 +112,7 @@ const ConsultaInicialLandingPage = () => {
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dracarla.lovable.app/lp/consulta-inicial" />
+        <meta property="og:url" content="https://dracarlachristoph.com/lp/consulta-inicial" />
         <meta property="og:title" content={consultaInicialConfig.seo.title} />
         <meta property="og:description" content={consultaInicialConfig.seo.description} />
         <meta property="og:image" content="/lovable-uploads/RIT08058-vertical-doutora-site.webp" />
@@ -121,7 +121,7 @@ const ConsultaInicialLandingPage = () => {
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://dracarla.lovable.app/lp/consulta-inicial" />
+        <meta property="twitter:url" content="https://dracarlachristoph.com/lp/consulta-inicial" />
         <meta property="twitter:title" content={consultaInicialConfig.seo.title} />
         <meta property="twitter:description" content={consultaInicialConfig.seo.description} />
         <meta property="twitter:image" content="/lovable-uploads/RIT08058-vertical-doutora-site.webp" />
@@ -133,7 +133,7 @@ const ConsultaInicialLandingPage = () => {
             "@type": "Dentist",
             "name": "Dra. Carla Christoph",
             "description": consultaInicialConfig.seo.description,
-            "url": "https://dracarla.lovable.app/lp/consulta-inicial",
+            "url": "https://dracarlachristoph.com/lp/consulta-inicial",
             "telephone": "+5521993304045",
             "address": {
               "@type": "PostalAddress",
