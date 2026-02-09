@@ -106,7 +106,7 @@ const ProfilaxiaLandingPage: React.FC = () => {
         <title>{profilaxiaConfig.seo.title}</title>
         <meta name="description" content={profilaxiaConfig.seo.description} />
         <meta name="keywords" content={profilaxiaConfig.seo.keywords?.join(', ')} />
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="robots" content="noindex, nofollow" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         
         {/* Critical CSS inline for above-the-fold content */}
