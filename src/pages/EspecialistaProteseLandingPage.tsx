@@ -55,32 +55,7 @@ const EspecialistaProteseLandingPage = () => {
       console.log('[LP Especialista Prótese] Page view tracked');
     }
 
-    // Defer GTM loading until user interaction or 3 seconds
-    const deferGTM = () => {
-      if (typeof window !== 'undefined' && !(window as any).gtmLoaded) {
-        const script = document.createElement('script');
-        script.src = `https://www.googletagmanager.com/gtm.js?id=${especialistaProteseConfig.tracking.gtmId}`;
-        script.async = true;
-        document.head.appendChild(script);
-        (window as any).gtmLoaded = true;
-        console.log('[LP Especialista Prótese] GTM loaded');
-      }
-    };
-
-    const timer = setTimeout(deferGTM, 3000);
-    const events = ['mousedown', 'touchstart', 'scroll'];
-    const handleInteraction = () => {
-      clearTimeout(timer);
-      deferGTM();
-      events.forEach(event => window.removeEventListener(event, handleInteraction));
-    };
-
-    events.forEach(event => window.addEventListener(event, handleInteraction, { passive: true }));
-
-    return () => {
-      clearTimeout(timer);
-      events.forEach(event => window.removeEventListener(event, handleInteraction));
-    };
+    // GTM is now loaded via index.html - no duplicate loading needed
   }, []);
 
   return (

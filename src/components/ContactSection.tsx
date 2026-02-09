@@ -59,6 +59,16 @@ const ContactSection = () => {
       });
 
       if (response.ok) {
+        // Google Ads conversion tracking
+        if (window.gtag) {
+          window.gtag('event', 'conversion', {
+            'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
+            'event_callback': function() {
+              console.log('Google Ads conversion tracked - Contact Form Submit');
+            }
+          });
+        }
+
         toast({
           title: "Mensagem enviada!",
           description: "Entraremos em contato em breve.",

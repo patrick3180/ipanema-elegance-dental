@@ -54,41 +54,7 @@ const LentesDeContatoPorcelanaLandingPage = () => {
       });
     }
 
-    // Enhanced deferred GTM loading with performance optimization
-    const loadGTM = () => {
-      if (lentesPorcelanaAcolhedorConfig.tracking?.gtmId && !(window as any).gtmLoaded) {
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = `https://www.googletagmanager.com/gtm.js?id=${lentesPorcelanaAcolhedorConfig.tracking.gtmId}`;
-        script.onload = () => {
-          (window as any).gtmLoaded = true;
-          console.log('GTM loaded for lentes porcelana acolhedor');
-        };
-        document.head.appendChild(script);
-      }
-    };
-
-    // Load GTM after user interaction or 3 seconds
-    const interactionEvents = ['mousedown', 'touchstart', 'keydown', 'scroll'];
-    const loadOnInteraction = () => {
-      loadGTM();
-      interactionEvents.forEach(event => 
-        document.removeEventListener(event, loadOnInteraction)
-      );
-    };
-
-    interactionEvents.forEach(event => 
-      document.addEventListener(event, loadOnInteraction, { passive: true })
-    );
-
-    const fallbackTimer = setTimeout(loadGTM, 3000);
-
-    return () => {
-      clearTimeout(fallbackTimer);
-      interactionEvents.forEach(event => 
-        document.removeEventListener(event, loadOnInteraction)
-      );
-    };
+    // GTM is now loaded via index.html - no duplicate loading needed
   }, []);
 
   const canonicalUrl = "https://dracarlachristoph.com/lp/lentes-porcelana-ipanema";

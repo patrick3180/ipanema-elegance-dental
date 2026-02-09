@@ -49,38 +49,8 @@ const EsteticaSorrisoLandingPage = () => {
       });
     }
 
-    // Deferred GTM loading with user interaction
-    const loadGTM = () => {
-      if (config.tracking.gtmId && typeof window !== 'undefined') {
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = `https://www.googletagmanager.com/gtm.js?id=${config.tracking.gtmId}`;
-        document.head.appendChild(script);
-      }
-    };
-
-    // Load GTM on first user interaction or after 3 seconds
-    const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
-    const handleInteraction = () => {
-      loadGTM();
-      events.forEach(event => {
-        document.removeEventListener(event, handleInteraction, true);
-      });
-    };
-
-    events.forEach(event => {
-      document.addEventListener(event, handleInteraction, true);
-    });
-
-    const timer = setTimeout(loadGTM, 3000);
-
-    return () => {
-      clearTimeout(timer);
-      events.forEach(event => {
-        document.removeEventListener(event, handleInteraction, true);
-      });
-    };
-  }, [config.campaign, config.messageMatch.adGroup, config.messageMatch.keyword, config.tracking.gtmId]);
+    // GTM is now loaded via index.html - no duplicate loading needed
+  }, [config.campaign, config.messageMatch.adGroup, config.messageMatch.keyword]);
 
   // Structured data for SEO
   const structuredData = {

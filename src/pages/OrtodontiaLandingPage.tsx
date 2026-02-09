@@ -37,47 +37,19 @@ const OrtodontiaLandingPage = () => {
     // Capture GCLID for conversion tracking
     captureGCLID();
     
-    // Minimal GTM loading - defer to avoid blocking
-    const loadGTM = () => {
-      if (typeof window !== 'undefined' && !window.dataLayer) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(...args: any[]) {
-          window.dataLayer.push(arguments);
-        }
-        window.gtag = gtag;
-        
-        gtag('js', new Date());
-        gtag('config', ortodontiaConfig.tracking.gtagId, {
-          send_page_view: false
-        });
-
-        // Push page_view event
-        window.dataLayer.push({
-          event: 'page_view',
-          page_title: ortodontiaConfig.seo.title,
-          page_location: window.location.href,
-          page_path: '/lp/ortodontia-ipanema',
-          campaign: ortodontiaConfig.campaign,
-          ad_group: ortodontiaConfig.messageMatch.adGroup,
-          keyword: ortodontiaConfig.messageMatch.keyword
-        });
-      }
-    };
-
-    // Load GTM after interaction or 3 seconds
-    const events = ['scroll', 'click', 'touchstart'];
-    const loadOnEvent = () => {
-      loadGTM();
-      events.forEach(event => document.removeEventListener(event, loadOnEvent));
-    };
-    
-    events.forEach(event => document.addEventListener(event, loadOnEvent, { once: true }));
-    const timer = setTimeout(loadGTM, 3000);
-    
-    return () => {
-      clearTimeout(timer);
-      events.forEach(event => document.removeEventListener(event, loadOnEvent));
-    };
+    // Push page_view event (GTM is loaded via index.html)
+    if (typeof window !== 'undefined') {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'page_view',
+        page_title: ortodontiaConfig.seo.title,
+        page_location: window.location.href,
+        page_path: '/lp/ortodontia-ipanema',
+        campaign: ortodontiaConfig.campaign,
+        ad_group: ortodontiaConfig.messageMatch.adGroup,
+        keyword: ortodontiaConfig.messageMatch.keyword
+      });
+    }
   }, []);
 
   // Production scroll tracking
