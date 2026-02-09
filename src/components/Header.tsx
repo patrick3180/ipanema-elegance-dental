@@ -61,6 +61,12 @@ const Header = () => {
             : "py-6 bg-transparent"
       )}
     >
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-dental-purple focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:outline-none"
+      >
+        Pular para o conteúdo
+      </a>
       <div className="container mx-auto flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 text-dental-purple font-display text-2xl">
           Dra. Carla Christoph

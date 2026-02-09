@@ -24,7 +24,7 @@ const PageLayout = ({ children, className = "" }: PageLayoutProps) => {
   return (
     <div className="bg-dental-beige min-h-screen">
       <Header />
-      <main className={`pt-0 ${className}`}>{children}</main>
+      <main id="main-content" className={`pt-0 ${className}`}>{children}</main>
       <Footer />
       {!isLandingPage && <WhatsAppButton />}
     </div>
