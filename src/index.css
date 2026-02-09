@@ -294,3 +294,13 @@
 .shadow-gold {
   box-shadow: 0 4px 12px hsl(var(--dental-gold) / 0.3);
 }
+
+/* Respeitar preferência do usuário por redução de movimento */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse,
+  .animate-fade-in,
+  .animate-fade-in-up {
+    animation: none !important;
+    transition: none !important;
+  }
+}

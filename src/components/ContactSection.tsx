@@ -1,10 +1,11 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { Map, Clock, Phone, Mail } from "lucide-react";
 import { sendGCLIDToWebhook } from "@/utils/gclid";
@@ -12,10 +13,26 @@ import { useToast } from "@/hooks/use-toast";
 
 const ContactSection = () => {
   const { toast } = useToast();
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
+    if (!name.trim() || !phone.trim() || !email.trim() || !message.trim()) {
+      toast({
+        title: "Campos obrigatórios",
+        description: "Por favor, preencha todos os campos antes de enviar.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
     // Track event with Google Tag Manager
     if (window.dataLayer) {
       window.dataLayer.push({
@@ -28,12 +45,45 @@ const ContactSection = () => {
 
     // Send GCLID to webhook
     await sendGCLIDToWebhook('contact_form_submit');
-    
-    // Show success message
-    toast({
-      title: "Mensagem enviada!",
-      description: "Entraremos em contato em breve.",
-    });
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name.trim(),
+          phone: phone.trim(),
+          email: email.trim(),
+          message: message.trim(),
+        }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Mensagem enviada!",
+          description: "Entraremos em contato em breve.",
+        });
+        setName("");
+        setPhone("");
+        setEmail("");
+        setMessage("");
+      } else {
+        const data = await response.json().catch(() => ({}));
+        toast({
+          title: "Erro ao enviar",
+          description: data.error || "Tente novamente mais tarde.",
+          variant: "destructive",
+        });
+      }
+    } catch {
+      toast({
+        title: "Erro ao enviar",
+        description: "Verifique sua conexão e tente novamente.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -61,34 +111,66 @@ const ContactSection = () => {
                 <form className="space-y-4" onSubmit={handleFormSubmit}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
+                      <Label htmlFor="contact-name" className="mb-1.5 block text-dental-purple">
+                        Nome
+                      </Label>
                       <Input
-                        placeholder="Nome"
+                        id="contact-name"
+                        placeholder="Seu nome completo"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
                         className="border-dental-gray/30"
                       />
                     </div>
                     <div>
+                      <Label htmlFor="contact-phone" className="mb-1.5 block text-dental-purple">
+                        Telefone
+                      </Label>
                       <Input
-                        placeholder="Telefone"
+                        id="contact-phone"
+                        placeholder="(21) 99999-9999"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        required
                         className="border-dental-gray/30"
                       />
                     </div>
                   </div>
                   <div>
+                    <Label htmlFor="contact-email" className="mb-1.5 block text-dental-purple">
+                      E-mail
+                    </Label>
                     <Input
-                      placeholder="E-mail"
+                      id="contact-email"
+                      placeholder="seu@email.com"
                       type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
                       className="border-dental-gray/30"
                     />
                   </div>
                   <div>
+                    <Label htmlFor="contact-message" className="mb-1.5 block text-dental-purple">
+                      Mensagem
+                    </Label>
                     <Textarea
-                      placeholder="Mensagem"
+                      id="contact-message"
+                      placeholder="Como podemos ajudar?"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      required
                       className="min-h-[120px] border-dental-gray/30"
                     />
                   </div>
                   <div>
-                    <Button type="submit" className="w-full bg-dental-purple hover:bg-dental-purple/90">
-                      Enviar Mensagem
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-dental-purple hover:bg-dental-purple/90"
+                    >
+                      {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
                     </Button>
                   </div>
                 </form>
@@ -154,6 +236,7 @@ const ContactSection = () => {
             <div>
               <AspectRatio ratio={16 / 9}>
                 <iframe
+                  title="Localização da clínica Dra. Carla Christoph no Google Maps - Ipanema, Rio de Janeiro"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3673.8038117882485!2d-43.20445902529023!3d-22.9554811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bd5982d11a59b%3A0xf72b52f26c87f5c0!2sR.%20Visc.%20de%20Piraj%C3%A1%2C%20550%20-%20Ipanema%2C%20Rio%20de%20Janeiro%20-%20RJ%2C%2022410-002!5e0!3m2!1spt-BR!2sbr!4v1714480152894!5m2!1spt-BR!2sbr"
                   className="w-full h-full rounded-lg"
                   style={{ border: 0 }}

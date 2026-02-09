@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Instagram, Facebook, Linkedin } from "lucide-react";
+import { Instagram, Facebook } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 const Footer = () => {
@@ -33,13 +33,6 @@ const Footer = () => {
                 className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-dental-gold/70 transition-colors"
               >
                 <Facebook size={18} />
-              </a>
-              <a
-                href="#"
-                aria-label="LinkedIn"
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-dental-gold/70 transition-colors"
-              >
-                <Linkedin size={18} />
               </a>
             </div>
           </div>
