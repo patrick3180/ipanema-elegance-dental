@@ -176,20 +176,22 @@ let count = 0;
 
 // Regular pages
 for (const [routePath, meta] of Object.entries(routes)) {
-  const dirPath = path.join(distDir, routePath);
-  fs.mkdirSync(dirPath, { recursive: true });
-  fs.writeFileSync(path.join(dirPath, 'index.html'), generatePage(routePath, meta));
+  const filePath = path.join(distDir, routePath + '.html');
+  const fileDir = path.dirname(filePath);
+  fs.mkdirSync(fileDir, { recursive: true });
+  fs.writeFileSync(filePath, generatePage(routePath, meta));
   count++;
-  console.log('Generated: ' + routePath);
+  console.log('Generated: ' + routePath + '.html');
 }
 
 // Landing pages (with noindex)
 for (const [routePath, meta] of Object.entries(landingPages)) {
-  const dirPath = path.join(distDir, routePath);
-  fs.mkdirSync(dirPath, { recursive: true });
-  fs.writeFileSync(path.join(dirPath, 'index.html'), generatePage(routePath, meta, true));
+  const filePath = path.join(distDir, routePath + '.html');
+  const fileDir = path.dirname(filePath);
+  fs.mkdirSync(fileDir, { recursive: true });
+  fs.writeFileSync(filePath, generatePage(routePath, meta, true));
   count++;
-  console.log('Generated (noindex): ' + routePath);
+  console.log('Generated (noindex): ' + routePath + '.html');
 }
 
 console.log('\nDone! Generated ' + count + ' static HTML files with correct meta tags.');
