@@ -57,8 +57,10 @@ const AboutPage = () => {
       "name": "Clínica Dra. Carla Christoph",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Ipanema, Rio de Janeiro",
+        "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
+        "addressLocality": "Ipanema",
         "addressRegion": "RJ",
+        "postalCode": "22410-002",
         "addressCountry": "BR"
       }
     },

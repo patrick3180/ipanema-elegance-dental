@@ -101,11 +101,13 @@ const ProteseDentaria = () => {
             "provider": {
               "@type": "Dentist",
               "name": "Dra. Carla Christoph",
-              "telephone": "+55-21-99330-4045",
+              "telephone": "+5521993304045",
               "address": {
                 "@type": "PostalAddress",
+                "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
                 "addressLocality": "Ipanema",
                 "addressRegion": "RJ",
+                "postalCode": "22410-002",
                 "addressCountry": "BR"
               }
             }

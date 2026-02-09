@@ -153,13 +153,14 @@ const LentesDeContatoPorcelanaLandingPage = () => {
             "url": canonicalUrl,
             "logo": ogImage,
             "image": ogImage,
-            "telephone": "+55 21 99330-4045",
+            "telephone": "+5521993304045",
             "address": {
               "@type": "PostalAddress",
-              "addressLocality": "Rio de Janeiro",
+              "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
+              "addressLocality": "Ipanema",
               "addressRegion": "RJ",
-              "addressCountry": "BR",
-              "streetAddress": "Ipanema"
+              "postalCode": "22410-002",
+              "addressCountry": "BR"
             },
             "geo": {
               "@type": "GeoCoordinates",

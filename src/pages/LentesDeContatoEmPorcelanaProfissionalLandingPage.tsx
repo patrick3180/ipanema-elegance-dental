@@ -194,12 +194,13 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
             "name": "Dra. Carla Christoph",
             "description": "Especialista em Lentes de Contato de Porcelana em Ipanema",
             "url": "https://www.dracarlachristoph.com",
-            "telephone": "+55 21 99330-4045",
+            "telephone": "+5521993304045",
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "Rua Visconde de Pirajá",
+              "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
               "addressLocality": "Ipanema",
               "addressRegion": "RJ",
+              "postalCode": "22410-002",
               "addressCountry": "BR"
             },
             "geo": {
