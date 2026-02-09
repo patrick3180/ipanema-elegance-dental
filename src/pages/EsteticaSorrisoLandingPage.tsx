@@ -88,9 +88,9 @@ const EsteticaSorrisoLandingPage = () => {
     "@graph": [
       {
         "@type": "LocalBusiness",
-        "@id": "https://dracarlaodonto.com/#dentist",
+        "@id": "https://dracarlachristoph.com/#dentist",
         "name": "Dra. Carla Christoph - Estética Dental",
-        "url": "https://dracarlaodonto.com/lp/estetica-dental-ipanema",
+        "url": "https://dracarlachristoph.com/lp/estetica-dental-ipanema",
         "telephone": config.whatsapp.number,
         "priceRange": "$$",
         "address": {
@@ -127,17 +127,17 @@ const EsteticaSorrisoLandingPage = () => {
         <meta property="og:title" content={config.seo.title} />
         <meta property="og:description" content={config.seo.description} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dracarlaodonto.com/lp/estetica-dental-ipanema" />
-        <meta property="og:image" content="https://dracarlaodonto.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
+        <meta property="og:url" content="https://dracarlachristoph.com/lp/estetica-dental-ipanema" />
+        <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={config.seo.title} />
         <meta name="twitter:description" content={config.seo.description} />
-        <meta name="twitter:image" content="https://dracarlaodonto.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
+        <meta name="twitter:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
         
         {/* Canonical URL */}
-        <link rel="canonical" href="https://dracarlaodonto.com/lp/estetica-dental-ipanema" />
+        <link rel="canonical" href="https://dracarlachristoph.com/lp/estetica-dental-ipanema" />
         
         {/* Structured Data */}
         <script type="application/ld+json">
