@@ -1,36 +1,27 @@
 
-
-## Correcao: HTMLs estaticos nao servidos pelo Vercel
+## Remover AggregateRating fabricado
 
 ### Problema
-O Vercel ignora os subdiretorios `dist/implantes-dentarios/index.html` por causa do rewrite catch-all, servindo sempre o `dist/index.html` raiz.
+Tres arquivos contem `aggregateRating` no structured data (JSON-LD) sem base em avaliacoes reais verificaveis. Isso pode gerar penalizacao do Google por dados estruturados enganosos.
 
-### Alteracoes (2 arquivos)
+### Arquivos afetados (3)
 
-**1. `scripts/generate-static-meta.js`**
-Trocar a logica de escrita de subdiretorios para arquivos `.html` na raiz do `dist`:
-- De: `dist/implantes-dentarios/index.html`
-- Para: `dist/implantes-dentarios.html`
-- Para rotas com subpath (`/lp/consulta-inicial`): `dist/lp/consulta-inicial.html`
+**1. `src/pages/LentesDeContatoPorcelanaLandingPage.tsx`** (linhas 170-175)
+- Remover a virgula apos `"priceRange": "$$$"` e o bloco `aggregateRating` inteiro
+- O objeto fecha direto apos `"priceRange": "$$$"`
 
-A alteracao e feita nos dois loops (paginas organicas e landing pages), substituindo:
-```text
-const dirPath = path.join(distDir, routePath);
-fs.mkdirSync(dirPath, { recursive: true });
-fs.writeFileSync(path.join(dirPath, 'index.html'), ...);
-```
-Por:
-```text
-const filePath = path.join(distDir, routePath + '.html');
-const fileDir = path.dirname(filePath);
-fs.mkdirSync(fileDir, { recursive: true });
-fs.writeFileSync(filePath, ...);
-```
+**2. `src/pages/Index.tsx`** (linhas 58-65)
+- Remover a virgula no final do array `sameAs` (linha 58) e o bloco `aggregateRating` inteiro (linhas 59-65)
+- A propriedade `sameAs` fica seguida diretamente por `"hasOfferCatalog"`
 
-**2. `vercel.json`**
-Adicionar `"cleanUrls": true` ao objeto raiz. Isso faz o Vercel servir `implantes-dentarios.html` quando o usuario acessa `/implantes-dentarios`. Nenhuma outra propriedade e alterada.
+**3. `src/pages/EspecialistaProteseLandingPage.tsx`** (linhas 171-176)
+- Remover a virgula apos `"openingHours"` e o bloco `aggregateRating` inteiro
+- O objeto fecha direto apos `"openingHours": "Mo-Fr 08:00-18:00"`
 
-### Resultado
-- Crawlers e bots receberao as meta tags corretas por rota
-- URLs continuam limpas (sem `.html`)
-- Nenhum componente React, rota ou estilo e alterado
+### O que NAO muda
+- Nenhum outro structured data e alterado
+- Nenhum componente React e modificado
+- Nenhum estilo ou rota e afetado
+
+### Risco
+Zero. Apenas remove trechos de JSON dentro de strings template.
