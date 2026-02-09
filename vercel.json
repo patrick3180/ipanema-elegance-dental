@@ -9,24 +9,12 @@
       "destination": "/api/sitemap"
     },
     {
-      "source": "/robots.txt",
+      "source": "/robots.txt", 
       "destination": "/api/robots"
     },
     {
-      "source": "/assets/(.*)",
-      "destination": "/assets/$1"
-    },
-    {
-      "source": "/lovable-uploads/(.*)",
-      "destination": "/lovable-uploads/$1"
-    },
-    {
-      "source": "/(.*\\.(js|css|png|jpg|jpeg|gif|webp|avif|svg|ico|woff|woff2|ttf|eot|map|json|xml|txt|html))",
-      "destination": "/$1"
-    },
-    {
       "source": "/(.*)",
-      "destination": "/api/index"
+      "destination": "/index.html"
     }
   ],
   "headers": [

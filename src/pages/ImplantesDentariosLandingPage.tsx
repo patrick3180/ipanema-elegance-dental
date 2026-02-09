@@ -83,7 +83,7 @@ const ImplantesDentariosLandingPage: React.FC = () => {
         <title>{implantesDentariosConfig.seo.title}</title>
         <meta name="description" content={implantesDentariosConfig.seo.description} />
         <meta name="keywords" content={implantesDentariosConfig.seo.keywords?.join(', ')} />
-        <meta name="robots" content="noindex, nofollow" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://dracarlachristoph.com/lp/implantes-dentarios-ipanema" />
         
         {/* Single critical font preload */}

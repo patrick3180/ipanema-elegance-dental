@@ -109,7 +109,6 @@ const DenteQuebradoLandingPage: React.FC = () => {
         <title>{denteQuebradoConfig.seo.title}</title>
         <meta name="description" content={denteQuebradoConfig.seo.description} />
         <meta name="keywords" content={denteQuebradoConfig.seo.keywords.join(', ')} />
-        <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href="https://dracarlachristoph.com/lp/dente-quebrado-urgencia-ipanema" />
 
         {/* Open Graph tags */}

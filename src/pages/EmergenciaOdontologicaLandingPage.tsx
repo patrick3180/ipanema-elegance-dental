@@ -109,7 +109,6 @@ const EmergenciaOdontologicaLandingPage: React.FC = () => {
         <title>{emergenciaOdontologicaConfig.seo.title}</title>
         <meta name="description" content={emergenciaOdontologicaConfig.seo.description} />
         <meta name="keywords" content={emergenciaOdontologicaConfig.seo.keywords.join(', ')} />
-        <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href="https://dracarlachristoph.com/lp/emergencia-odontologica-ipanema" />
 
         {/* Open Graph tags */}

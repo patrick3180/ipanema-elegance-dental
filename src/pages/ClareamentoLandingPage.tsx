@@ -85,7 +85,7 @@ const ClareamentoLandingPage: React.FC = () => {
         <title>{clareamentoConfig.seo.title}</title>
         <meta name="description" content={clareamentoConfig.seo.description} />
         <meta name="keywords" content={clareamentoConfig.seo.keywords?.join(', ')} />
-        <meta name="robots" content="noindex, nofollow" />
+        <meta name="robots" content="index, follow" />
         
         {/* Single critical font preload */}
         <link
