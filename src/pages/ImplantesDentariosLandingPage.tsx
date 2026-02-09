@@ -158,8 +158,10 @@ const ImplantesDentariosLandingPage: React.FC = () => {
           "medicalSpecialty": "Implantologia",
           "address": {
             "@type": "PostalAddress",
+            "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
             "addressLocality": "Ipanema",
-            "addressRegion": "Rio de Janeiro",
+            "addressRegion": "RJ",
+            "postalCode": "22410-002",
             "addressCountry": "BR"
           },
           "offers": {

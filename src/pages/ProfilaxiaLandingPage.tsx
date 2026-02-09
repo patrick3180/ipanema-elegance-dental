@@ -181,8 +181,10 @@ const ProfilaxiaLandingPage: React.FC = () => {
             "description": "Profilaxia dental com tecnologia ultrassônica em Ipanema",
             "address": {
               "@type": "PostalAddress",
+              "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
               "addressLocality": "Ipanema",
               "addressRegion": "RJ",
+              "postalCode": "22410-002",
               "addressCountry": "BR"
             },
             "telephone": "+5521993304045",

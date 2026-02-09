@@ -91,12 +91,14 @@ const EsteticaSorrisoLandingPage = () => {
         "@id": "https://dracarlachristoph.com/#dentist",
         "name": "Dra. Carla Christoph - Estética Dental",
         "url": "https://dracarlachristoph.com/lp/estetica-dental-ipanema",
-        "telephone": config.whatsapp.number,
+        "telephone": "+5521993304045",
         "priceRange": "$$",
         "address": {
           "@type": "PostalAddress",
+          "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
           "addressLocality": "Ipanema",
           "addressRegion": "RJ",
+          "postalCode": "22410-002",
           "addressCountry": "BR"
         },
         "geo": {

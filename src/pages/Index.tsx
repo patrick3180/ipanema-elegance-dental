@@ -19,10 +19,10 @@ const Index = () => {
     "description": "Dentista especialista em Ipanema com mais de 20 anos de experiência. Odontologia estética, implantes dentários, lentes de contato dental, clareamento dental e reabilitação oral.",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Rua Visconde de Pirajá, Ipanema",
-      "addressLocality": "Rio de Janeiro",
+      "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
+      "addressLocality": "Ipanema",
       "addressRegion": "RJ",
-      "postalCode": "22410-000",
+      "postalCode": "22410-002",
       "addressCountry": "BR"
     },
     "geo": {
@@ -30,7 +30,7 @@ const Index = () => {
       "latitude": "-22.9868",
       "longitude": "-43.2005"
     },
-    "telephone": "+55 21 99330-4045",
+    "telephone": "+5521993304045",
     "email": "contato@dracarlachristoph.com",
     "priceRange": "$$",
     "paymentAccepted": "Cash, Credit Card, Bank Transfer",

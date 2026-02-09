@@ -189,11 +189,13 @@ const EmergenciaOdontologicaLandingPage: React.FC = () => {
             "url": "https://dracarlachristoph.com/lp/emergencia-odontologica-ipanema",
             "address": {
               "@type": "PostalAddress",
+              "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
               "addressLocality": "Ipanema",
-              "addressRegion": "Rio de Janeiro",
+              "addressRegion": "RJ",
+              "postalCode": "22410-002",
               "addressCountry": "BR"
             },
-            "telephone": `+${emergenciaOdontologicaConfig.whatsapp.number}`,
+            "telephone": "+5521993304045",
             "priceRange": "$$",
             "areaServed": "Rio de Janeiro"
           })}

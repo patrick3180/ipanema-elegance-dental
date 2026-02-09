@@ -150,12 +150,13 @@ const EspecialistaProteseLandingPage = () => {
             "image": "https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp",
             "description": "Reabilitação oral para casos complexos em Ipanema. Especialista em prótese dentária com planejamento detalhado.",
             "url": "https://dracarlachristoph.com/lp/especialista-protese-ipanema",
-            "telephone": "+55 21 99330-4045",
+            "telephone": "+5521993304045",
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "Rua Visconde de Pirajá",
+              "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
               "addressLocality": "Ipanema",
               "addressRegion": "RJ",
+              "postalCode": "22410-002",
               "addressCountry": "BR"
             },
             "geo": {
