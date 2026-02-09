@@ -132,7 +132,7 @@ const EspecialistaProteseLandingPage = () => {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
         {/* Additional Meta Tags */}
-        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="robots" content="noindex, nofollow" />
         <meta name="language" content="Portuguese" />
         <meta name="revisit-after" content="7 days" />
         <meta name="author" content="Dra. Carla Christoph" />

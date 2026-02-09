@@ -95,7 +95,7 @@ const OrtodontiaLandingPage = () => {
         <title>{ortodontiaConfig.seo.title}</title>
         <meta name="description" content={ortodontiaConfig.seo.description} />
         <meta name="keywords" content={ortodontiaConfig.seo.keywords?.join(', ')} />
-        <meta name="robots" content="index, follow" />
+        <meta name="robots" content="noindex, nofollow" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
         {/* Critical Resource Preloads - Only essentials */}
