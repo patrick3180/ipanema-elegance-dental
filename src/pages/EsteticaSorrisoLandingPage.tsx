@@ -122,6 +122,7 @@ const EsteticaSorrisoLandingPage = () => {
         <title>{config.seo.title}</title>
         <meta name="description" content={config.seo.description} />
         <meta name="keywords" content={config.seo.keywords?.join(', ')} />
+        <meta name="robots" content="noindex, nofollow" />
         
         {/* Open Graph */}
         <meta property="og:title" content={config.seo.title} />

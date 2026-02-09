@@ -37,6 +37,7 @@ const LPLentesPorcelana = () => {
       <Helmet>
         <title>Lentes de Contato Dental em Porcelana Ipanema | Dra. Carla Christoph</title>
         <meta name="description" content="Lentes de porcelana ultrafinas em Ipanema. Dentes naturalmente brancos que não mancham. Test Drive do Sorriso e scanner 3D. 20+ anos de experiência. CRO-RJ 27.509" />
+        <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href="https://dracarlachristoph.com/lp/lentes-porcelana-ipanema" />
         
         {/* Open Graph */}

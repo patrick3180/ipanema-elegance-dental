@@ -121,6 +121,7 @@ const LimpezaDentalLandingPage: React.FC = () => {
         <title>{limpezaDentalConfig.seo.title}</title>
         <meta name="description" content={limpezaDentalConfig.seo.description} />
         <meta name="keywords" content={limpezaDentalConfig.seo.keywords.join(', ')} />
+        <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href="https://dracarlachristoph.com/lp/limpeza-dental-ipanema" />
 
         {/* Open Graph tags */}
