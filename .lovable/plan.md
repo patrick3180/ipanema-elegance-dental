@@ -1,60 +1,37 @@
 
 
-## Plano: Garantir noindex, nofollow em todas as Landing Pages
+## Plano: Script pos-build para meta tags estaticas por rota
 
-### Resumo
+### Objetivo
+Crawlers e bots (WhatsApp, Facebook, Google) recebem sempre as meta tags da homepage porque a SPA serve o mesmo `index.html` para todas as URLs. A solucao e um script pos-build que gera copias do HTML com meta tags corretas para cada rota.
 
-Das 15 landing pages listadas (incluindo o template), o cenario atual e:
+### Alteracoes (3 itens)
 
-**Ja tem `noindex, nofollow` (nenhuma acao necessaria):**
-- `LandingPageTemplate.tsx` (linha 90) - OK
+**1. Criar `scripts/generate-static-meta.js` (arquivo novo)**
+- Script Node.js que roda apos o build do Vite
+- Le `dist/index.html` como template base
+- Gera um `index.html` customizado em cada subdiretorio de rota (ex: `dist/implantes-dentarios/index.html`)
+- Para paginas organicas: title, description, og tags, canonical com dominio `dracarlachristoph.com`
+- Para landing pages (`/lp/*`): mesmo tratamento + `noindex, nofollow`
+- 14 paginas organicas + 13 landing pages = 27 arquivos gerados
 
-**Tem `robots` com `index, follow` (trocar para `noindex, nofollow`):**
-- `ClareamentoLandingPage.tsx` (linha 88)
-- `ConsultaInicialLandingPage.tsx` (linha 98)
-- `OrtodontiaLandingPage.tsx` (linha 98)
-- `ImplantesDentariosLandingPage.tsx` (linha 86)
-- `ProfilaxiaLandingPage.tsx` (linha 109)
-- `EspecialistaProteseLandingPage.tsx` (linha 135)
-- `LentesDeContatoPorcelanaLandingPage.tsx` (linha 194)
+**2. Atualizar `package.json` script de build**
+- De: `"build": "vite build"`
+- Para: `"build": "vite build && node scripts/generate-static-meta.js"`
 
-**Nao tem tag `robots` (adicionar `<meta name="robots" content="noindex, nofollow" />`):**
-- `LimpezaDentalLandingPage.tsx`
-- `DorDeDenteLandingPage.tsx`
-- `DenteQuebradoLandingPage.tsx`
-- `EmergenciaOdontologicaLandingPage.tsx`
-- `EsteticaSorrisoLandingPage.tsx`
-- `SaudeGengivalLandingPage.tsx`
-- `LPLentesPorcelana.tsx`
+**3. `vercel.json` - Sem alteracao necessaria**
+- O Vercel ja serve arquivos estaticos existentes antes de aplicar rewrites
+- A regra catch-all `/(.*) -> /index.html` so e usada se nao existir arquivo estatico
+- Os arquivos gerados (ex: `/implantes-dentarios/index.html`) serao servidos automaticamente
 
-Nota: `FacetasResinaDiretaLandingPage.tsx` nao foi listada pelo usuario, mas tambem nao tem a tag. Sera ignorada conforme solicitado.
+### Seguranca
+- Se o script falhar, o build falha mas o site anterior continua no ar
+- Para reverter, basta voltar o build command para `"vite build"`
+- Nenhum componente React, rota ou estilo e alterado
 
-### Alteracoes
+### Detalhes tecnicos
 
-**Grupo 1 - Trocar valor existente (7 arquivos):**
-Substituir o conteudo da meta tag robots existente por `noindex, nofollow`. Tambem remover `googlebot` index/follow se presente (caso de `LentesDeContatoPorcelanaLandingPage.tsx` linha 195).
+Rotas organicas (14): `/sobre`, `/servicos`, `/clareamento-dental`, `/implantes-dentarios`, `/lentes-de-contato-dental-e-facetas-de-resina`, `/protese-dentaria`, `/restauracoes-esteticas`, `/tratamento-de-canal`, `/clinica-geral-e-prevencao`, `/saude-da-gengiva`, `/ortodontia`, `/blog`, `/contato`, `/diferenciais`
 
-**Grupo 2 - Adicionar tag (7 arquivos):**
-Inserir `<meta name="robots" content="noindex, nofollow" />` logo apos a tag `<meta name="description">` ou `<meta name="keywords">` dentro do `<Helmet>`, sem alterar mais nada.
-
-### Detalhes Tecnicos
-
-| Arquivo | Acao | Linha |
-|---------|------|-------|
-| ClareamentoLandingPage.tsx | Trocar `index, follow` | 88 |
-| ConsultaInicialLandingPage.tsx | Trocar `index, follow` | 98 |
-| OrtodontiaLandingPage.tsx | Trocar `index, follow` | 98 |
-| ImplantesDentariosLandingPage.tsx | Trocar `index, follow` | 86 |
-| ProfilaxiaLandingPage.tsx | Trocar valor longo | 109 |
-| EspecialistaProteseLandingPage.tsx | Trocar valor longo | 135 |
-| LentesDeContatoPorcelanaLandingPage.tsx | Trocar valor longo + remover googlebot | 194-195 |
-| LimpezaDentalLandingPage.tsx | Adicionar apos description | ~122 |
-| DorDeDenteLandingPage.tsx | Adicionar apos description | ~110 |
-| DenteQuebradoLandingPage.tsx | Adicionar apos description | ~110 |
-| EmergenciaOdontologicaLandingPage.tsx | Adicionar apos description | ~110 |
-| EsteticaSorrisoLandingPage.tsx | Adicionar apos description | ~123 |
-| SaudeGengivalLandingPage.tsx | Adicionar apos description | ~134 |
-| LPLentesPorcelana.tsx | Adicionar apos description | ~39 |
-
-Nenhuma outra alteracao sera feita nos arquivos.
+Landing pages com noindex (13): todas as rotas `/lp/*` existentes no App.tsx
 
