@@ -56,13 +56,6 @@ const Index = () => {
       "https://instagram.com/dracarlachristoph",
       "https://wa.me/5521993304045"
     ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "127",
-      "bestRating": "5",
-      "worstRating": "4"
-    },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Serviços Odontológicos Especializados",

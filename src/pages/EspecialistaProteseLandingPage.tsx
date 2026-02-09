@@ -168,12 +168,7 @@ const EspecialistaProteseLandingPage = () => {
               "name": "Rio de Janeiro"
             },
             "priceRange": "$$$$",
-            "openingHours": "Mo-Fr 08:00-18:00",
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "5.0",
-              "reviewCount": "150"
-            }
+            "openingHours": "Mo-Fr 08:00-18:00"
           })}
         </script>
 
