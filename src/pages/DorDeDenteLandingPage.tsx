@@ -109,6 +109,7 @@ const DorDeDenteLandingPage: React.FC = () => {
         <title>{dorDeDenteConfig.seo.title}</title>
         <meta name="description" content={dorDeDenteConfig.seo.description} />
         <meta name="keywords" content={dorDeDenteConfig.seo.keywords.join(', ')} />
+        <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href="https://dracarlachristoph.com/lp/dor-de-dente-urgencia-ipanema" />
 
         {/* Open Graph tags */}
