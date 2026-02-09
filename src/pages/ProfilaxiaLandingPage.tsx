@@ -61,39 +61,7 @@ const ProfilaxiaLandingPage: React.FC = () => {
       });
     }
 
-    // Defer GTM loading based on user interaction or timeout
-    const gtmTimer = setTimeout(() => {
-      if (typeof window !== 'undefined' && !window.gtag) {
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = `https://www.googletagmanager.com/gtag/js?id=${profilaxiaConfig.tracking.gtagId}`;
-        document.head.appendChild(script);
-      }
-    }, 3000);
-
-    const handleInteraction = () => {
-      clearTimeout(gtmTimer);
-      if (typeof window !== 'undefined' && !window.gtag) {
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = `https://www.googletagmanager.com/gtag/js?id=${profilaxiaConfig.tracking.gtagId}`;
-        document.head.appendChild(script);
-      }
-      document.removeEventListener('click', handleInteraction);
-      document.removeEventListener('scroll', handleInteraction);
-      document.removeEventListener('touchstart', handleInteraction);
-    };
-
-    document.addEventListener('click', handleInteraction, { passive: true });
-    document.addEventListener('scroll', handleInteraction, { passive: true });
-    document.addEventListener('touchstart', handleInteraction, { passive: true });
-
-    return () => {
-      clearTimeout(gtmTimer);
-      document.removeEventListener('click', handleInteraction);
-      document.removeEventListener('scroll', handleInteraction);
-      document.removeEventListener('touchstart', handleInteraction);
-    };
+    // GTM is now loaded via index.html - no duplicate loading needed
   }, []);
 
   return (
@@ -161,16 +129,7 @@ const ProfilaxiaLandingPage: React.FC = () => {
         <meta name="twitter:description" content={profilaxiaConfig.seo.description} />
         <meta name="twitter:image" content="/lovable-uploads/vertical-de-jaleco.webp" />
 
-        {/* Google Tag Manager */}
-        <script>
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${profilaxiaConfig.tracking.gtmId}');
-          `}
-        </script>
+        {/* GTM is loaded via index.html */}
 
         {/* Structured Data for Local Business */}
         <script type="application/ld+json">
@@ -207,7 +166,7 @@ const ProfilaxiaLandingPage: React.FC = () => {
         </script>
       </Helmet>
 
-      <div dangerouslySetInnerHTML={{ __html: `<noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=${profilaxiaConfig.tracking.gtmId}\" height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>` }} />
+      {/* GTM noscript handled via index.html */}
 
       <ErrorBoundary><div className="min-h-screen bg-white">
         {/* Critical Above-the-fold Content */}

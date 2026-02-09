@@ -57,39 +57,7 @@ const SaudeGengivalLandingPage = () => {
       });
     }
 
-    // Enhanced GTM initialization with deferred loading
-    const gtmScript = document.createElement('script');
-    gtmScript.type = 'text/javascript';
-    gtmScript.innerHTML = `
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js',page_type:'landing_page',
-      landing_category:'saude_gengival',campaign:'${config.campaign}'});
-      var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-      j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-      f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${config.tracking.gtmId}');
-    `;
-
-    // Defer GTM loading based on user interaction or timeout
-    const loadGTM = () => {
-      document.head.appendChild(gtmScript);
-      document.removeEventListener('mousemove', loadGTM);
-      document.removeEventListener('scroll', loadGTM);
-      document.removeEventListener('touchstart', loadGTM);
-    };
-
-    document.addEventListener('mousemove', loadGTM);
-    document.addEventListener('scroll', loadGTM);
-    document.addEventListener('touchstart', loadGTM);
-    
-    // Fallback: load after 3 seconds
-    const fallbackTimer = setTimeout(loadGTM, 3000);
-
-    return () => {
-      clearTimeout(fallbackTimer);
-      document.removeEventListener('mousemove', loadGTM);
-      document.removeEventListener('scroll', loadGTM);
-      document.removeEventListener('touchstart', loadGTM);
-    };
+    // GTM is now loaded via index.html - no duplicate loading needed
   }, [config]);
 
   // Structured data for SEO

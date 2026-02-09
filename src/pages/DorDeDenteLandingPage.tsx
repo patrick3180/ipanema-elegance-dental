@@ -56,38 +56,7 @@ const DorDeDenteLandingPage: React.FC = () => {
       });
     }
 
-    // Deferred GTM loading - only after user interaction or 3s delay
-    const loadGTM = () => {
-      if (typeof window !== 'undefined' && !(window as any).gtmLoaded && dorDeDenteConfig.tracking.gtmId) {
-        const script = document.createElement('script');
-        script.src = `https://www.googletagmanager.com/gtm.js?id=${dorDeDenteConfig.tracking.gtmId}`;
-        script.async = true;
-        document.head.appendChild(script);
-        (window as any).gtmLoaded = true;
-      }
-    };
-
-    // Load GTM after user interaction or 3 seconds
-    const userEvents = ['mousedown', 'keydown', 'scroll', 'touchstart'];
-    const handleUserInteraction = () => {
-      loadGTM();
-      userEvents.forEach(event => {
-        document.removeEventListener(event, handleUserInteraction);
-      });
-    };
-
-    userEvents.forEach(event => {
-      document.addEventListener(event, handleUserInteraction, { passive: true });
-    });
-
-    const gtmTimer = setTimeout(loadGTM, 3000);
-
-    return () => {
-      clearTimeout(gtmTimer);
-      userEvents.forEach(event => {
-        document.removeEventListener(event, handleUserInteraction);
-      });
-    };
+    // GTM is now loaded via index.html - no duplicate loading needed
   }, []);
 
   // Scroll tracking for production analytics

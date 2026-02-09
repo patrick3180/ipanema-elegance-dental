@@ -114,18 +114,31 @@
       }
     </script>
     
-    <!-- Defer ALL analytics to 8 seconds -->
+    <!-- GTM: carrega após 2s OU na primeira interação (o que vier primeiro) -->
     <script>
-      window.addEventListener('load',()=>{
-        setTimeout(()=>{
-          // GTM
+      (function(){
+        var loaded = false;
+        function loadGTM(){
+          if(loaded) return;
+          loaded = true;
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-WZRDNBKQ');
-        },8000);
-      });
+          })(w,d,'script','dataLayer','GTM-WZRDNBKQ');
+        }
+        var w=window,d=document;
+        var timer = setTimeout(loadGTM, 2000);
+        ['mousedown','touchstart','scroll','keydown'].forEach(function(evt){
+          d.addEventListener(evt, function handler(){
+            clearTimeout(timer);
+            loadGTM();
+            ['mousedown','touchstart','scroll','keydown'].forEach(function(e){
+              d.removeEventListener(e, handler);
+            });
+          }, {passive:true, once:true});
+        });
+      })();
     </script>
     
     <!-- GPTEngineer último -->

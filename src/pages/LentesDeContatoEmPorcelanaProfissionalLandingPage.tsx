@@ -37,12 +37,14 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
   });
 
   useEffect(() => {
-    // Capture GCLID and store in sessionStorage
+    // Capture GCLID and store in localStorage (consistent with gclid.ts)
     const urlParams = new URLSearchParams(window.location.search);
     const gclid = urlParams.get('gclid');
     
     if (gclid) {
-      sessionStorage.setItem('gclid', gclid);
+      localStorage.setItem('gclid', gclid);
+      localStorage.setItem('gclid_timestamp', Date.now().toString());
+      localStorage.setItem('gclid_page', window.location.pathname);
     }
 
     // Data layer push for page view event
@@ -58,46 +60,7 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
       });
     }
 
-    // Deferred GTM loading for better performance
-    const loadGTM = () => {
-      if (typeof window !== 'undefined' && !window.gtag && lentesPorcelanaProfissionalConfig.tracking.gtmId) {
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = `https://www.googletagmanager.com/gtag/js?id=${lentesPorcelanaProfissionalConfig.tracking.gtagId}`;
-        document.head.appendChild(script);
-
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = function(...args: any[]) {
-          window.dataLayer.push(args);
-        };
-        window.gtag('js', new Date());
-        window.gtag('config', lentesPorcelanaProfissionalConfig.tracking.gtagId, {
-          send_page_view: false
-        });
-      }
-    };
-
-    // Load GTM after user interaction or 3s timeout
-    const timeoutId = setTimeout(loadGTM, 3000);
-    
-    const handleUserInteraction = () => {
-      clearTimeout(timeoutId);
-      loadGTM();
-      ['mousedown', 'touchstart', 'keydown', 'scroll'].forEach(event => {
-        document.removeEventListener(event, handleUserInteraction, { passive: true } as any);
-      });
-    };
-
-    ['mousedown', 'touchstart', 'keydown', 'scroll'].forEach(event => {
-      document.addEventListener(event, handleUserInteraction, { passive: true } as any);
-    });
-
-    return () => {
-      clearTimeout(timeoutId);
-      ['mousedown', 'touchstart', 'keydown', 'scroll'].forEach(event => {
-        document.removeEventListener(event, handleUserInteraction);
-      });
-    };
+    // GTM is now loaded via index.html - no duplicate loading needed
   }, []);
 
   useScrollTracking({ 
