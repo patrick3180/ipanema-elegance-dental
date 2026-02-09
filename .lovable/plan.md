@@ -1,78 +1,113 @@
 
 
-## Acessibilidade + Formulario de Contato Funcional
+## Corrigir Tracking: GTM, Conversoes e Limpeza
 
-### PARTE 1 -- Formulario de Contato (ContactSection.tsx)
+### Resumo
+O GTM esta sendo carregado de multiplos lugares (index.html, GTMManager, AsyncScriptManager, useEffect em landing pages), causando duplicacao e potencial perda de conversoes. O delay de 8s no index.html e excessivo. O formulario de contato nao rastreia conversoes do Google Ads. E uma landing page usa sessionStorage para GCLID em vez de localStorage.
 
-**a) State para campos do formulario**
-Adicionar `useState` para `name`, `phone`, `email`, `message` e `isSubmitting`.
+---
 
-**b) Labels acessiveis**
-Adicionar `<Label>` visivel com `htmlFor` para cada campo:
-- Nome (id="contact-name")
-- Telefone (id="contact-phone")
-- E-mail (id="contact-email")
-- Mensagem (id="contact-message")
+### PARTE 1 -- Reduzir delay do GTM (index.html)
 
-Manter placeholders como texto de ajuda. Adicionar `required` em todos os campos.
+Substituir o bloco com `setTimeout(..., 8000)` por carregamento com delay de 2s OU primeira interacao (mousedown/touchstart/scroll/keydown).
 
-**c) API serverless (api/contact.js)**
-Criar `api/contact.js` com Vercel Serverless Function que:
-- Recebe POST com `{ name, phone, email, message }`
-- Valida campos obrigatorios
-- Envia via Web3Forms (com placeholder `SUA_ACCESS_KEY_AQUI`)
-- Retorna 200/400/500
+---
 
-**d) handleFormSubmit funcional**
-- Validar campos preenchidos (toast de erro se vazio)
-- Estado de loading no botao ("Enviando..." + disabled)
-- POST para `/api/contact`
-- Sucesso: toast + limpar campos
-- Erro: toast de erro
-- Manter GTM tracking e GCLID existentes
+### PARTE 2 -- Remover carregamento duplicado do GTM
 
-**e) Title no iframe do Google Maps**
-Adicionar `title="Localizacao da clinica Dra. Carla Christoph no Google Maps - Ipanema, Rio de Janeiro"`
+#### a) GTMManager.tsx -- retornar null
+O componente e usado em 7 landing pages: Ortodontia, ConsultaInicial, Clareamento, Implantes, Limpeza, DorDeDente, DenteQuebrado, Emergencia. Fazer o componente retornar `null` sem remover os imports (seguro).
 
-### PARTE 2 -- Acessibilidade global
+#### b) LazyScriptLoader.tsx -- pass-through
+Nao e usado em nenhum lugar (so definido). Fazer retornar `<>{children}</>`.
 
-**a) Cor dental-gray mais escura (tailwind.config.ts)**
-Alterar `gray: "#808080"` para `gray: "#6B6B6B"` -- contraste 5.4:1.
+#### c) AsyncScriptManager.tsx -- retornar null
+Usado em 3 landing pages: Profilaxia (sem props de GTM, ja retorna null), Clareamento (com enableTracking=true), Implantes (com enableTracking=true). Fazer retornar `null`.
 
-**b) Link "Pular para o conteudo" (Header.tsx)**
-Adicionar como primeiro elemento dentro do `<header>`:
+#### d) Remover carregamento de scripts GTM via useEffect em 10 landing pages
+
+Manter os pushes de `window.dataLayer` (page_view events). Remover APENAS o codigo que cria `<script>` tags e listeners de interacao para GTM/gtag.
+
+| Landing Page | Linhas do useEffect com script GTM |
+|---|---|
+| DorDeDenteLandingPage.tsx | L59-91 (loadGTM + listeners) |
+| DenteQuebradoLandingPage.tsx | L59-91 (loadGTM + listeners) |
+| EmergenciaOdontologicaLandingPage.tsx | L59-91 (loadGTM + listeners) |
+| LimpezaDentalLandingPage.tsx | L73-105 (loadGTM + listeners) |
+| EspecialistaProteseLandingPage.tsx | L58-84 (deferGTM + listeners) |
+| EsteticaSorrisoLandingPage.tsx | L52-83 (loadGTM + listeners) |
+| LentesDeContatoPorcelanaLandingPage.tsx | L57-92 (loadGTM + listeners) |
+| LentesDeContatoEmPorcelanaProfissionalLandingPage.tsx | L61-100 (loadGTM + listeners) |
+| SaudeGengivalLandingPage.tsx | L60-93 (gtmScript + listeners) |
+| ProfilaxiaLandingPage.tsx | L64-97 (useEffect script) + L164-173 (Helmet inline script) + L210 (noscript iframe) |
+| OrtodontiaLandingPage.tsx | L40-80 (gtag config + listeners -- NAO cria script tag, apenas configura gtag; remover listeners e gtag config, manter dataLayer push) |
+| ConsultaInicialLandingPage.tsx | L40-80 (mesmo padrao que Ortodontia -- remover gtag config + listeners, manter dataLayer push) |
+
+---
+
+### PARTE 3 -- Conversao Ads no formulario de contato (ContactSection.tsx)
+
+Adicionar tracking de conversao Google Ads dentro do bloco `if (response.ok)`, apos o push do dataLayer e antes do toast de sucesso:
+
 ```text
-<a href="#main-content" className="sr-only focus:not-sr-only ...">
-  Pular para o conteudo
-</a>
+if (window.gtag) {
+  window.gtag('event', 'conversion', {
+    'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
+    'event_callback': function() {
+      console.log('Google Ads conversion tracked - Contact Form Submit');
+    }
+  });
+}
 ```
 
-**c) id="main-content" no PageLayout (PageLayout.tsx)**
-Adicionar `id="main-content"` ao `<main>` existente (ja usa tag `<main>`).
+---
 
-**d) Remover link LinkedIn do Footer (Footer.tsx)**
-Remover o `<a>` com `href="#"` e `aria-label="LinkedIn"`. Manter Instagram e Facebook.
+### PARTE 4 -- GCLID: sessionStorage para localStorage
 
-**e) prefers-reduced-motion (src/index.css)**
-Adicionar media query ao final do arquivo para desabilitar animacoes quando o usuario prefere reducao de movimento.
+No arquivo `LentesDeContatoEmPorcelanaProfissionalLandingPage.tsx` (unico que usa sessionStorage), substituir:
+```text
+sessionStorage.setItem('gclid', gclid);
+```
+Por:
+```text
+localStorage.setItem('gclid', gclid);
+localStorage.setItem('gclid_timestamp', Date.now().toString());
+localStorage.setItem('gclid_page', window.location.pathname);
+```
 
-### Resumo de arquivos
+---
+
+### Resumo de arquivos alterados
 
 | Arquivo | Mudanca |
-|---------|---------|
-| src/components/ContactSection.tsx | Labels + state + form funcional + title no iframe |
-| api/contact.js | NOVO -- serverless function Web3Forms |
-| tailwind.config.ts | dental-gray #808080 para #6B6B6B |
-| src/components/Header.tsx | Link "Pular para o conteudo" |
-| src/components/PageLayout.tsx | id="main-content" no main |
-| src/components/Footer.tsx | Remover link LinkedIn |
-| src/index.css | prefers-reduced-motion |
+|---|---|
+| index.html | GTM delay 8s para 2s + interacao |
+| GTMManager.tsx | return null |
+| LazyScriptLoader.tsx | pass-through |
+| AsyncScriptManager.tsx | return null |
+| ContactSection.tsx | Ads conversion tracking |
+| LentesDeContatoEmPorcelanaProfissionalLandingPage.tsx | sessionStorage para localStorage + remover GTM script |
+| DorDeDenteLandingPage.tsx | Remover GTM script creation |
+| DenteQuebradoLandingPage.tsx | Remover GTM script creation |
+| EmergenciaOdontologicaLandingPage.tsx | Remover GTM script creation |
+| LimpezaDentalLandingPage.tsx | Remover GTM script creation |
+| EspecialistaProteseLandingPage.tsx | Remover GTM script creation |
+| EsteticaSorrisoLandingPage.tsx | Remover GTM script creation |
+| LentesDeContatoPorcelanaLandingPage.tsx | Remover GTM script creation |
+| SaudeGengivalLandingPage.tsx | Remover GTM script creation |
+| ProfilaxiaLandingPage.tsx | Remover GTM script creation + Helmet inline script + noscript |
+| OrtodontiaLandingPage.tsx | Remover gtag config + listeners |
+| ConsultaInicialLandingPage.tsx | Remover gtag config + listeners |
 
 ### O que NAO muda
-- Design visual (labels seguem estilo existente)
-- Tracking GTM/GCLID
+- Container ID GTM-WZRDNBKQ
+- Conversion action AW-16894364517/OQZvCMXV0foZEOqP7vY9
+- Logica de GCLID em src/utils/gclid.ts
+- Webhook de GCLID
+- window.dataLayer pushes (page_view events preservados)
 - vercel.json
-- Nenhum outro componente
+- Nenhum componente visual ou de layout
 
-### Nota importante
-A access_key do Web3Forms ficara como placeholder `SUA_ACCESS_KEY_AQUI`. Para o formulario funcionar em producao, voce precisa criar uma conta gratuita em https://web3forms.com, gerar a chave para o email contato@dracarlachristoph.com, e substituir o placeholder no arquivo `api/contact.js`.
+### Risco
+Baixo-medio. Altera carregamento de scripts mas nao muda logica de negocio. O GTM passara a ser carregado exclusivamente pelo index.html.
+
