@@ -1,37 +1,36 @@
 
 
-## Plano: Script pos-build para meta tags estaticas por rota
+## Correcao: HTMLs estaticos nao servidos pelo Vercel
 
-### Objetivo
-Crawlers e bots (WhatsApp, Facebook, Google) recebem sempre as meta tags da homepage porque a SPA serve o mesmo `index.html` para todas as URLs. A solucao e um script pos-build que gera copias do HTML com meta tags corretas para cada rota.
+### Problema
+O Vercel ignora os subdiretorios `dist/implantes-dentarios/index.html` por causa do rewrite catch-all, servindo sempre o `dist/index.html` raiz.
 
-### Alteracoes (3 itens)
+### Alteracoes (2 arquivos)
 
-**1. Criar `scripts/generate-static-meta.js` (arquivo novo)**
-- Script Node.js que roda apos o build do Vite
-- Le `dist/index.html` como template base
-- Gera um `index.html` customizado em cada subdiretorio de rota (ex: `dist/implantes-dentarios/index.html`)
-- Para paginas organicas: title, description, og tags, canonical com dominio `dracarlachristoph.com`
-- Para landing pages (`/lp/*`): mesmo tratamento + `noindex, nofollow`
-- 14 paginas organicas + 13 landing pages = 27 arquivos gerados
+**1. `scripts/generate-static-meta.js`**
+Trocar a logica de escrita de subdiretorios para arquivos `.html` na raiz do `dist`:
+- De: `dist/implantes-dentarios/index.html`
+- Para: `dist/implantes-dentarios.html`
+- Para rotas com subpath (`/lp/consulta-inicial`): `dist/lp/consulta-inicial.html`
 
-**2. Atualizar `package.json` script de build**
-- De: `"build": "vite build"`
-- Para: `"build": "vite build && node scripts/generate-static-meta.js"`
+A alteracao e feita nos dois loops (paginas organicas e landing pages), substituindo:
+```text
+const dirPath = path.join(distDir, routePath);
+fs.mkdirSync(dirPath, { recursive: true });
+fs.writeFileSync(path.join(dirPath, 'index.html'), ...);
+```
+Por:
+```text
+const filePath = path.join(distDir, routePath + '.html');
+const fileDir = path.dirname(filePath);
+fs.mkdirSync(fileDir, { recursive: true });
+fs.writeFileSync(filePath, ...);
+```
 
-**3. `vercel.json` - Sem alteracao necessaria**
-- O Vercel ja serve arquivos estaticos existentes antes de aplicar rewrites
-- A regra catch-all `/(.*) -> /index.html` so e usada se nao existir arquivo estatico
-- Os arquivos gerados (ex: `/implantes-dentarios/index.html`) serao servidos automaticamente
+**2. `vercel.json`**
+Adicionar `"cleanUrls": true` ao objeto raiz. Isso faz o Vercel servir `implantes-dentarios.html` quando o usuario acessa `/implantes-dentarios`. Nenhuma outra propriedade e alterada.
 
-### Seguranca
-- Se o script falhar, o build falha mas o site anterior continua no ar
-- Para reverter, basta voltar o build command para `"vite build"`
+### Resultado
+- Crawlers e bots receberao as meta tags corretas por rota
+- URLs continuam limpas (sem `.html`)
 - Nenhum componente React, rota ou estilo e alterado
-
-### Detalhes tecnicos
-
-Rotas organicas (14): `/sobre`, `/servicos`, `/clareamento-dental`, `/implantes-dentarios`, `/lentes-de-contato-dental-e-facetas-de-resina`, `/protese-dentaria`, `/restauracoes-esteticas`, `/tratamento-de-canal`, `/clinica-geral-e-prevencao`, `/saude-da-gengiva`, `/ortodontia`, `/blog`, `/contato`, `/diferenciais`
-
-Landing pages com noindex (13): todas as rotas `/lp/*` existentes no App.tsx
-
