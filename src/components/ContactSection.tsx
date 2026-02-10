@@ -105,7 +105,7 @@ const ContactSection = () => {
           </h2>
           <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />
           <p className="text-dental-gray mb-4">
-            Transforme seu Sorriso: Agende sua Consulta em Ipanema
+            Agende sua Consulta em Ipanema
           </p>
           {/* Warning about insurance plans */}
           <p className="text-red-600 font-bold text-lg mb-6">
@@ -213,8 +213,7 @@ const ContactSection = () => {
                   <div>
                     <h4 className="font-medium text-dental-purple">Horário de Atendimento</h4>
                     <p className="text-dental-gray">
-                      Segunda a Sexta: 9h às 18h<br />
-                      Sábados: 9h às 13h
+                      Segunda a Sexta: 9h às 19h
                     </p>
                   </div>
                 </div>
