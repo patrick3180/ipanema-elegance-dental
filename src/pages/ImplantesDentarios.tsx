@@ -187,7 +187,7 @@ const ImplantesDentarios = () => {
                       <AccordionContent className="text-dental-gray space-y-3 pt-2">
                         <div>
                           <p className="font-semibold text-dental-purple mb-1">O que é:</p>
-                          <p className="text-sm">Solução definitiva para substituir um único dente perdido sem necessidade de desgastar os dentes vizinhos. O pino de titânio biocompatível é instalado no osso, substituindo a raiz do dente ausente.</p>
+                          <p className="text-sm">Reposição permanente de um único dente perdido sem necessidade de desgastar os dentes vizinhos. O pino de titânio biocompatível é instalado no osso, substituindo a raiz do dente ausente.</p>
                         </div>
                         <div>
                           <p className="font-semibold text-dental-purple mb-1">Quando indicado:</p>
@@ -203,7 +203,7 @@ const ImplantesDentarios = () => {
                         </div>
                         <div>
                           <p className="font-semibold text-dental-purple mb-1">Vantagens:</p>
-                          <p className="text-sm">Preserva dentes adjacentes saudáveis, estética impecável com aspecto de dente natural, durabilidade superior a pontes convencionais e conforto total.</p>
+                          <p className="text-sm">Preserva dentes adjacentes saudáveis, estética natural com aspecto de dente real, durabilidade superior a pontes convencionais e conforto total.</p>
                         </div>
                       </AccordionContent>
                     </AccordionItem>
@@ -369,7 +369,7 @@ const ImplantesDentarios = () => {
 
         <SectionDivider variant="with-icon" icon={<Sparkles className="w-5 h-5" />} />
 
-        {/* Seção Diferencial Premium */}
+        {/* Seção Diferenciais */}
         <section className="py-12 bg-dental-beige/20">
           <div className="max-w-5xl mx-auto px-4">
             <div className="text-center mb-12">
@@ -377,7 +377,7 @@ const ImplantesDentarios = () => {
                 Diferenciais do Nosso Tratamento
               </h2>
               <p className="text-lg text-dental-gray">
-                Tecnologia de ponta e cuidado personalizado para resultados excepcionais
+                Como trabalhamos para oferecer segurança e previsibilidade
               </p>
             </div>
 
@@ -402,10 +402,10 @@ const ImplantesDentarios = () => {
                     <Shield className="w-12 h-12 text-dental-purple" />
                   </div>
                   <h3 className="text-xl font-display font-bold text-dental-purple mb-3">
-                    Implantes Premium
+                    Implantes de Referência
                   </h3>
                   <p className="text-dental-gray">
-                    Utilizamos apenas implantes de marcas líderes mundiais com superfície tratada que favorece a osseointegração e garante longevidade.
+                    Trabalhamos com marcas de referência mundial, com superfície tratada que favorece a osseointegração e comprovação científica de longo prazo.
                   </p>
                 </div>
               </div>
@@ -467,7 +467,7 @@ const ImplantesDentarios = () => {
                 {
                   number: "4",
                   title: "Moldagem Digital e Prótese Definitiva",
-                  description: "Moldagem com scanner intraoral ou convencional. Confecção da prótese definitiva em cerâmica pura com cor, forma e translucidez naturais. Instalação e ajustes finais para conforto e estética impecáveis.",
+                  description: "Moldagem com scanner intraoral ou convencional. Confecção da prótese definitiva em cerâmica pura com cor, forma e translucidez naturais. Instalação e ajustes finais para conforto e estética natural.",
                   icon: <CheckCircle className="w-6 h-6" />,
                   duration: "2-3 consultas"
                 },
@@ -507,39 +507,23 @@ const ImplantesDentarios = () => {
                   Dra. Carla Christoph
                 </h2>
                 <p className="text-xl text-dental-gold font-semibold mb-4">
-                  Especialista em Reabilitação Oral e Implantodontia
+                  CRO-RJ 27.509 | Especialista em Prótese Dentária e Implantodontia
                 </p>
                 
                 <p className="text-dental-gray mb-4">
-                  Com mais de 20 anos de experiência, a Dra. Carla é especialista em implantodontia e próteses no Rio de Janeiro. Atualização constante em congressos nacionais e internacionais, domínio de técnicas modernas de cirurgia e planejamento digital 3D.
+                  Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
                 </p>
                 
                 <p className="text-dental-gray mb-6">
-                  Cada tratamento é meticulosamente planejado considerando anatomia individual, expectativas estéticas e qualidade de vida. O objetivo é sempre devolver não apenas dentes, mas confiança e bem-estar.
+                  Sua formação em Implantodontia permite planejar desde casos unitários até reabilitações completas com segurança e previsibilidade. Cada implante é posicionado com base em planejamento digital, considerando estética e função a longo prazo.
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-4 mt-6">
                   <div className="flex items-start gap-3">
                     <CheckCircle className="text-dental-gold flex-shrink-0 mt-1" size={20} />
                     <div>
-                      <p className="font-semibold text-dental-purple">CRO-RJ 27.509</p>
-                      <p className="text-sm text-dental-gray">Mais de 20 anos de atuação</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="text-dental-gold flex-shrink-0 mt-1" size={20} />
-                    <div>
-                      <p className="font-semibold text-dental-purple">Especialização</p>
-                      <p className="text-sm text-dental-gray">Prótese, Implantodontia e Estética</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="text-dental-gold flex-shrink-0 mt-1" size={20} />
-                    <div>
-                      <p className="font-semibold text-dental-purple">Tecnologia</p>
-                      <p className="text-sm text-dental-gray">Scanner digital 3D, planejamento avançado</p>
+                      <p className="font-semibold text-dental-purple">Formação</p>
+                      <p className="text-sm text-dental-gray">Especialista em Prótese Dentária e Implantodontia</p>
                     </div>
                   </div>
                   
@@ -547,7 +531,23 @@ const ImplantesDentarios = () => {
                     <CheckCircle className="text-dental-gold flex-shrink-0 mt-1" size={20} />
                     <div>
                       <p className="font-semibold text-dental-purple">Experiência</p>
-                      <p className="text-sm text-dental-gray">Centenas de casos complexos resolvidos</p>
+                      <p className="text-sm text-dental-gray">20+ anos, incluindo 8 na Marinha</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="text-dental-gold flex-shrink-0 mt-1" size={20} />
+                    <div>
+                      <p className="font-semibold text-dental-purple">Tecnologia</p>
+                      <p className="text-sm text-dental-gray">Scanner iTero, planejamento digital do sorriso</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="text-dental-gold flex-shrink-0 mt-1" size={20} />
+                    <div>
+                      <p className="font-semibold text-dental-purple">Abordagem</p>
+                      <p className="text-sm text-dental-gray">Consultas individualizadas, mínimo de 1 hora</p>
                     </div>
                   </div>
                 </div>
@@ -670,7 +670,7 @@ const ImplantesDentarios = () => {
                   Vocês atendem convênios odontológicos?
                 </AccordionTrigger>
                 <AccordionContent className="text-dental-gray">
-                  Nosso atendimento é exclusivamente particular, o que nos permite dedicar tempo adequado a cada paciente e utilizar materiais premium. Oferecemos orçamento detalhado e transparente na primeira consulta.
+                  Nosso atendimento é particular, o que nos permite dedicar o tempo necessário a cada paciente e utilizar somente materiais de primeira linha. Na primeira consulta, apresentamos um orçamento detalhado e transparente.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>

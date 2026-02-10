@@ -134,7 +134,7 @@ const Ortodontia = () => {
         
         {/* Open Graph */}
         <meta property="og:title" content="Ortodontia e Invisalign® em Ipanema | Dra. Carla Christoph" />
-        <meta property="og:description" content="Transforme seu sorriso com ortodontia moderna. Dr. Bruno Moreira, especialista com doutorado UERJ, oferece Invisalign® e tecnologia iTero no consultório da Dra. Carla." />
+        <meta property="og:description" content="Ortodontia moderna em Ipanema com Dr. Bruno Moreira, especialista com doutorado UERJ. Invisalign® e tecnologia iTero no consultório da Dra. Carla." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dracarlachristoph.com/ortodontia" />
         <meta property="og:image" content="https://dracarlachristoph.com/og-ortodontia.jpg" />
@@ -209,7 +209,7 @@ const Ortodontia = () => {
                 ortodôntico especializado com o Dr. Bruno Moreira das Neves, 
                 ortodontista com doutorado pela UERJ. Utilizamos tecnologia 
                 avançada como scanner iTero Element 5D e Invisalign® para 
-                transformar seu sorriso com conforto e precisão.
+                alinhar seu sorriso com conforto e precisão.
               </p>
               
               <div className="flex justify-center">
@@ -267,7 +267,6 @@ const Ortodontia = () => {
                 </div>
                 <h3 className="text-xl font-semibold mb-3 text-dental-purple">
                   Invisalign®
-                  <span className="text-xs ml-2 text-dental-gold">PREMIUM</span>
                 </h3>
                 <p className="text-dental-gray mb-4">
                   Alinhadores transparentes removíveis, praticamente invisíveis. 
@@ -438,7 +437,7 @@ const Ortodontia = () => {
         <section className="py-12 bg-gray-50">
           <div className="container-custom">
             <h2 className="heading-lg mb-12 text-center text-dental-purple">
-              Sua Jornada para um Sorriso Perfeito
+              Sua Jornada para um Sorriso Alinhado
             </h2>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
@@ -466,7 +465,7 @@ const Ortodontia = () => {
                 {
                   number: "5",
                   title: "Refinamentos",
-                  description: "Ajustes finais para perfeição do resultado. Com Invisalign®, novos alinhadores se necessário."
+                  description: "Ajustes finais para precisão do resultado. Com Invisalign®, novos alinhadores se necessário."
                 },
                 {
                   number: "6",

@@ -46,7 +46,7 @@ const AboutSection = () => {
           </h2>
           <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />
           <p className="text-dental-gray mb-6">
-            Uma trajetória de paixão pela odontologia e dedicação em transformar sorrisos em Ipanema
+            Mais de 20 anos dedicados à reabilitação oral e odontologia estética em Ipanema
           </p>
         </div>
 
