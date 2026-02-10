@@ -47,7 +47,7 @@ const Header = () => {
     { title: "Tratamentos", path: "/servicos" },
     { title: "Blog", path: "/blog" },
     { title: "Depoimentos", action: () => handleSectionNavigation("depoimentos") },
-    { title: "Contato", action: () => handleSectionNavigation("contato") }
+    { title: "Contato", path: "/contato" }
   ];
 
   return (

@@ -3,13 +3,12 @@ import PageLayout from "@/components/PageLayout";
 import SEOHead from "@/components/SEOHead";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, Award, Anchor, ScanLine, Stethoscope } from "lucide-react";
 import OptimizedImage from "@/components/OptimizedImage";
 import { sendGCLIDToWebhook } from "@/utils/gclid";
 
 const AboutPage = () => {
   const handleWhatsAppClick = async () => {
-    // Track event with Google Tag Manager (if available)
     if (window.dataLayer) {
       window.dataLayer.push({
         event: 'whatsapp_click',
@@ -19,7 +18,6 @@ const AboutPage = () => {
       });
     }
 
-    // Google Ads conversion tracking
     if (window.gtag) {
       window.gtag('event', 'conversion', {
         'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
@@ -29,7 +27,6 @@ const AboutPage = () => {
       });
     }
 
-    // Send GCLID to webhook
     await sendGCLIDToWebhook('about_page_button');
 
     console.log("WhatsApp button clicked from About page - tracking event");
@@ -78,7 +75,7 @@ const AboutPage = () => {
     ],
     "knowsAbout": [
       "Prótese Dental",
-      "Implantodontia", 
+      "Implantodontia",
       "Odontologia Estética",
       "Lentes de Contato Dental",
       "Facetas de Porcelana",
@@ -90,6 +87,29 @@ const AboutPage = () => {
       "name": "Conselho Regional de Odontologia"
     }
   };
+
+  const credentials = [
+    {
+      icon: Stethoscope,
+      title: "Prótese Dentária",
+      description: "Especialização em Prótese — a base para reabilitações orais complexas, de coroas unitárias a próteses totais."
+    },
+    {
+      icon: Award,
+      title: "Implantodontia",
+      description: "Especialização em Implantes — planejamento e execução de casos unitários a reabilitações completas."
+    },
+    {
+      icon: Anchor,
+      title: "8 Anos na Marinha",
+      description: "Odontoclínica Central da Marinha do Brasil — experiência em casos de alta complexidade com disciplina militar."
+    },
+    {
+      icon: ScanLine,
+      title: "Tecnologia Digital",
+      description: "Scanner intraoral iTero, planejamento digital do sorriso e Test Drive do Sorriso para visualização prévia do resultado."
+    }
+  ];
 
   return (
     <>
@@ -103,17 +123,19 @@ const AboutPage = () => {
       <PageLayout>
         <section className="section-spacing">
           <div className="container-custom">
+            {/* Header */}
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h1 className="heading-lg mb-4">Dra. Carla Christoph: Sua Dentista Especialista em Ipanema</h1>
               <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />
-              <p className="text-dental-gray mb-6">Uma trajetória de paixão pela odontologia e dedicação em transformar sorrisos</p>
+              <p className="text-dental-gray mb-6">Mais de 20 anos dedicados à reabilitação oral e odontologia estética em Ipanema</p>
             </div>
 
+            {/* Bio + Photo */}
             <div className="grid md:grid-cols-2 gap-16 items-center mb-16">
               <div className="aspect-square rounded-2xl overflow-hidden">
-                <OptimizedImage 
-                  src="/lovable-uploads/b1c1cbdb-bde0-4d9e-912e-74cf74cf716d.png" 
-                  alt="Dra. Carla Christoph, dentista em Ipanema, sentada em seu consultório odontológico, especialista em odontologia estética e com ampla formação acadêmica." 
+                <OptimizedImage
+                  src="/lovable-uploads/b1c1cbdb-bde0-4d9e-912e-74cf74cf716d.png"
+                  alt="Dra. Carla Christoph, dentista em Ipanema, sentada em seu consultório odontológico, especialista em odontologia estética e com ampla formação acadêmica."
                   className="w-full h-full object-cover"
                   width={600}
                   height={600}
@@ -124,78 +146,55 @@ const AboutPage = () => {
 
               <div className="prose max-w-none">
                 <p>
-                  Há mais de 20 anos à frente de consultórios odontológicos, a Dra. Carla Christoph dedica sua carreira a transformar sorrisos e vidas em Ipanema. Com títulos de especialista em Prótese Dental e Implantodontia, e uma busca constante por aperfeiçoamento através de diversos cursos, sua prática é focada em oferecer soluções de reabilitação oral e odontologia estética da mais alta qualidade.
+                  Com mais de duas décadas em Ipanema, a Dra. Carla Christoph construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Especialista em Prótese Dentária e Implantodontia (CRO-RJ 27.509), sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha — experiência que trouxe disciplina e precisão para sua prática clínica.
                 </p>
                 <p>
-                  A Dra. Carla combina sua vasta experiência com uma abordagem que prioriza a individualidade de cada paciente, utilizando somente materiais de alta qualidade para garantir resultados naturais e funcionais.
+                  A Dra. Carla utiliza escaneamento digital intraoral (iTero) e ferramentas de planejamento do sorriso para oferecer previsibilidade e segurança em cada tratamento. Cada caso é tratado como único, com o tempo necessário para ouvir, planejar e executar.
                 </p>
               </div>
             </div>
 
+            {/* Como Funciona o Atendimento */}
             <div className="max-w-3xl mx-auto mb-16">
-              <h2 className="heading-md mb-6 text-center">Atenção Individual e Qualidade em Materiais</h2>
+              <h2 className="heading-md mb-6 text-center">Como Funciona o Atendimento</h2>
               <div className="prose mx-auto">
                 <p>
-                  Cada paciente é tratado de forma individual, desde o diagnóstico até a finalização do tratamento. A Dra. Carla Christoph utiliza materiais de alta qualidade, assegurando estética, longevidade e biocompatibilidade nos tratamentos realizados em nossa clínica em Ipanema.
+                  Cada consulta tem no mínimo 1 hora de duração. Nesse tempo, a Dra. Carla faz uma avaliação completa, explica cada opção de tratamento com calma e monta um plano personalizado. Somente materiais de primeira linha são utilizados — cerâmicas, resinas e componentes de implante com comprovação científica e rastreabilidade.
                 </p>
               </div>
             </div>
 
-            <div className="max-w-3xl mx-auto mb-16">
-              <h2 className="heading-md mb-6 text-center">Formação e Expertise da Sua Dentista em Ipanema</h2>
-              <div className="prose mx-auto">
-                <p>
-                  A Dra. Carla Christoph possui uma sólida formação acadêmica e profissional:
-                </p>
-                <ul>
-                  <li>Especialista em Prótese Dental</li>
-                  <li>Especialista em Implantodontia</li>
-                  <li>Mais de 20 anos de experiência clínica e como proprietária de consultórios</li>
-                  <li>8 anos de atuação como dentista militar na Odontoclínica Central da Marinha</li>
-                  <li>Participação contínua em cursos e congressos nas áreas de odontologia estética (como lentes de contato dental e facetas), reabilitação oral e odontologia funcional, incluindo o uso de tecnologias como o Design Digital do Sorriso (DSD) e escaneamento intraoral quando indicado</li>
-                </ul>
+            {/* Formação e Experiência - Grid 2x2 */}
+            <div className="max-w-4xl mx-auto mb-16">
+              <h2 className="heading-md mb-8 text-center">Formação e Experiência</h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                {credentials.map((cred) => (
+                  <div key={cred.title} className="bg-white p-6 rounded-lg shadow-sm">
+                    <div className="flex items-center gap-3 mb-3">
+                      <cred.icon className="text-dental-gold" size={24} />
+                      <h3 className="font-display font-medium text-lg">{cred.title}</h3>
+                    </div>
+                    <p className="text-dental-gray text-sm">{cred.description}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
+            {/* O Que Esperar da Primeira Consulta */}
             <div className="max-w-3xl mx-auto mb-16">
-              <h2 className="heading-md mb-6 text-center">A Clínica em Ipanema: Conforto e Tecnologia para Você</h2>
-              <div className="prose mx-auto">
-                <p>
-                  Nosso consultório em Ipanema foi pensado para oferecer um ambiente acolhedor, moderno e equipado com tecnologia de ponta, garantindo que sua experiência odontológica seja a mais tranquila e eficaz possível. Desde o agendamento até o acompanhamento pós-tratamento, nossa equipe se dedica ao seu bem-estar.
-                </p>
-              </div>
-            </div>
-
-            <div className="max-w-3xl mx-auto mb-16">
-              <h2 className="heading-md mb-6 text-center">Nosso Compromisso: Sua Satisfação e Saúde Bucal</h2>
+              <h2 className="heading-md mb-6 text-center">O Que Esperar da Primeira Consulta</h2>
               <div className="bg-dental-beige/50 p-8 rounded-lg">
-                <div className="mb-6">
-                  <h3 className="font-display font-medium text-xl mb-2">Missão</h3>
-                  <p>Cuidar da saúde bucal e elevar a autoestima por meio de uma odontologia refinada, que une excelência técnica, estética natural e atenção humana em cada detalhe.</p>
-                </div>
-                
-                <div className="mb-6">
-                  <h3 className="font-display font-medium text-xl mb-2">Visão</h3>
-                  <p>Ser reconhecida como a clínica de referência em Ipanema para quem busca resultados sofisticados, naturais e duradouros em odontologia estética e reabilitação oral.</p>
-                </div>
-                
-                <div>
-                  <h3 className="font-display font-medium text-xl mb-2">Valores</h3>
-                  <ul className="list-disc pl-5">
-                    <li>Precisão estética com naturalidade</li>
-                    <li>Empatia e atenção verdadeira a cada paciente</li>
-                    <li>Ética, clareza e confiança em todas as etapas do cuidado</li>
-                    <li>Atualização constante em técnicas e materiais</li>
-                    <li>Compromisso com a excelência, sem excessos</li>
-                  </ul>
-                </div>
+                <p className="text-dental-gray">
+                  Na primeira consulta, a Dra. Carla faz uma avaliação completa com exame clínico, fotografias e, quando indicado, escaneamento digital. Você sai entendendo exatamente o que precisa ser feito, em que ordem, e quanto tempo leva. Sem surpresas.
+                </p>
               </div>
             </div>
 
+            {/* CTA */}
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="heading-md mb-4">Agende uma Conversa com a Dra. Carla Christoph em Ipanema</h2>
+              <h2 className="heading-md mb-4">Agende Sua Primeira Consulta</h2>
               <p className="text-lg text-dental-gray mb-8">
-                Descubra como nossa expertise em odontologia estética e reabilitação oral pode transformar seu sorriso.
+                Agende sua primeira consulta com a Dra. Carla em Ipanema.
               </p>
               <Button onClick={handleWhatsAppClick} className="bg-dental-gold hover:bg-dental-gold/90 text-white rounded-md px-8 py-6" size="lg">
                 <MessageCircle size={20} className="mr-2" />

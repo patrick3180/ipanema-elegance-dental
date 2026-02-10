@@ -141,8 +141,8 @@ const App = () => {
                 <Route path="/ortodontia" element={<Ortodontia />} />
                 
                 {/* Rotas temporárias - redirecionam para home */}
-                <Route path="/sobre" element={<Navigate to="/" replace />} />
-                <Route path="/contato" element={<Navigate to="/" replace />} />
+                <Route path="/sobre" element={<AboutPage />} />
+                <Route path="/contato" element={<ContactPage />} />
                 <Route path="/diferenciais" element={<Navigate to="/" replace />} />
                 
                 {/* Catch all - redirect to home */}
