@@ -1,49 +1,98 @@
 
 
-## Reescrever Saude da Gengiva com Template Rico
+## Bio Canonica, Depoimentos e Limpeza de Cliches
 
 ### Resumo
-Reescrever completamente `src/pages/SaudeDaGengiva.tsx`, removendo o `TreatmentPageTemplate` generico e criando uma pagina manual rica seguindo o padrao exato de `TratamentoDeCanal.tsx`. O tom segue o mesmo modelo: a Dra. Carla coordena e integra o tratamento periodontal ao plano completo, mas o procedimento e feito por periodontista parceiro.
+Aplicar tres melhorias simultaneas: (A) padronizar a bio da Dra. Carla com paragrafos contextuais em 6 paginas, (B) refinar depoimentos removendo estrelas e cliches, (C) eliminar cliches globalmente.
 
-### Arquivo alterado
-**`src/pages/SaudeDaGengiva.tsx`** -- reescrita completa
+---
 
-### Estrutura da pagina (10 secoes)
+### Parte A -- Bio Canonica (6 arquivos)
 
-1. **Helmet** com title, meta description, keywords, Open Graph, canonical, Schema MedicalProcedure + FAQPage JSON-LD (6 FAQs)
-2. **FastServerResponseOptimizer + CriticalCSSOptimizer** (performance)
-3. **TreatmentHero** -- titulo "Saude da Gengiva em Ipanema", badges (Saude Periodontal, Acompanhamento Integrado, CRO-RJ 27.509), foto padrao, breadcrumbs
-4. **SectionDivider** (AlertCircle) + **Secao empatica** -- "Sinais que Muita Gente Ignora" -- 3 paragrafos em prosa sobre sangramento, periodontite silenciosa e sinais de alerta
-5. **SectionDivider** (Shield) + **3 cards com icones** (Activity, AlertCircle, ArrowRight) -- Gengivite, Periodontite, Retracao Gengival
-6. **Secao diferencial** (bg-gradient-purple-soft) -- foto da Dra. + badge "Cuidado Integrado" + 2 paragrafos + grid 2x2 credenciais (Visao integrada, Parceria especializada, Experiencia, Abordagem)
-7. **SectionDivider** + **ProcessTimeline** (4 steps: Avaliacao, Tratamento Periodontal, Reavaliacao, Manutencao Periodica)
-8. **Secao informativa** (bg-white) -- "A Relacao entre Gengiva e Saude Geral" -- 2 paragrafos
-9. **SectionDivider** (HelpCircle) + **FAQ com Accordion** (6 perguntas) + Schema FAQPage no Helmet
-10. **CTA Final** (gradiente dental-purple para dental-gold) -- icone Heart, titulo "Cuide da Base do Seu Sorriso", botao WhatsApp com tracking completo
+Cada arquivo tera o paragrafo 1 identico + paragrafo 2 contextual. Layout, foto, badge e grid de credenciais permanecem inalterados.
 
-### Imports e tracking
-- `FastServerResponseOptimizer`, `CriticalCSSOptimizer`, `useCriticalImagePreload`, `useScrollTracking`
-- `handleWhatsAppClick` async com dataLayer push, Google Ads conversion (`AW-16894364517/OQZvCMXV0foZEOqP7vY9`), e `sendGCLIDToWebhook`
-- Icones Lucide: Shield, AlertCircle, Activity, ArrowRight, Heart, Search, HelpCircle, CheckCircle
+**1. `src/components/AboutSection.tsx`** (linhas 68-76)
+- Substituir os 3 paragrafos atuais por:
+  - P1 (core): "Com mais de duas decadas em Ipanema, a Dra. Carla construiu sua reputacao..."
+  - P2 (homepage): "Especialista em Protese Dentaria e Implantodontia, a Dra. Carla utiliza escaneamento digital intraoral..."
 
-### Detalhes tecnicos
-- Remove dependencia do `TreatmentPageTemplate` e `FAQ` type import
-- Usa mesmos componentes: `PageLayout`, `TreatmentHero`, `SectionDivider`, `ProcessTimeline`, `Accordion`
-- FAQPage structured data com as 6 FAQs
-- Classes CSS do design system (dental-purple, dental-gold, dental-beige, dental-gray)
-- Responsividade mobile: grid md:grid-cols-3 nos cards, md:grid-cols-[300px,1fr] na secao da especialista
-- Estrutura identica ao TratamentoDeCanal.tsx recentemente implementado
+**2. `src/pages/ClareamentoDental.tsx`** (linhas ~604-614)
+- Substituir os 2 paragrafos da secao da especialista por bio core + paragrafo contextual clareamento
 
-### Tom de voz
-- Dra. Carla **coordena, acompanha e integra** o cuidado periodontal ao plano de tratamento
-- O tratamento periodontal e feito por **periodontista parceiro**
-- Saude gengival posicionada como **pre-requisito** para outros tratamentos (lentes, implantes, protese)
-- Sem palavras proibidas: "perfeito", "excelencia", "humanizado", "tecnologia de ponta"
-- Sem precos
+**3. `src/pages/LentesEFacetas.tsx`** (linhas ~704-709)
+- Substituir os 2 paragrafos por bio core + paragrafo contextual lentes/facetas (iTero, Test Drive)
+
+**4. `src/pages/ProteseDentaria.tsx`** (linhas ~544-555)
+- Substituir os 2 paragrafos por bio core + paragrafo contextual protese (reabilitacao oral, casos complexos)
+
+**5. `src/pages/RestaureacoesEsteticas.tsx`** (linhas ~90-96)
+- Substituir os 2 paragrafos por bio core + paragrafo contextual restauracoes (resinas, translucidez natural)
+
+**6. `src/pages/Ortodontia.tsx`** (linhas ~559-571)
+- Substituir os 2 paragrafos da Dra. Carla por bio core + paragrafo contextual ortodontia (parceria com Dr. Bruno)
+- NAO alterar a bio do Dr. Bruno
+
+---
+
+### Parte B -- Refinar Depoimentos
+
+**`src/components/TestimonialsSection.tsx`**
+- Remover import de `StarIcon`
+- Remover campos `rating` e `location` dos dados
+- Integrar bairro no campo `name` (ex: "Beatriz M. -- Ipanema")
+- Substituir textos dos 3 depoimentos pelos novos (tom conversacional, especificos, sem cliches)
+- Remover bloco de renderizacao das estrelas (linhas 46-54)
+- Remover `<span>` do location (linha 58)
+
+Novos depoimentos conforme especificado no prompt (Beatriz/lentes, Roberto/reabilitacao, Juliana/acompanhamento).
+
+---
+
+### Parte C -- Limpeza de Cliches
+
+**`src/components/Hero.tsx`**
+- H1 (linha 47): "Dra. Carla Christoph: Dentista em Ipanema para um Sorriso Perfeito" → "Dra. Carla Christoph — Dentista Especialista em Ipanema"
+- Subtitulo (linhas 49-50): remover "une a excelencia da odontologia estetica a um atendimento personalizado. Cuidamos do seu sorriso com a dedicacao que ele merece." → "Odontologia estetica e reabilitacao oral com tempo e atencao ao seu caso."
+
+**`src/pages/ServicesPage.tsx`**
+- Adicionar paragrafo introdutorio antes do `<ServicesSection />`: "Cada tratamento e planejado individualmente, com tempo e atencao ao que o seu caso especifico precisa. Conheca as opcoes e agende sua avaliacao."
+
+**`src/pages/Ortodontia.tsx`**
+- Linha 209: "tratamento ortodontico de excelencia" → "tratamento ortodontico especializado"
+- Linhas 246-249: "cuidado personalizado... excelencia nos resultados" → "cuidado individual... precisao nos resultados"
+- Linhas 567-570: "tratamento tecnico de excelencia, mas tambem o cuidado e atencao que merecem durante toda a transformacao do sorriso" → "o tratamento mais indicado, com o tempo e atencao que cada caso exige"
+- Linhas 653-656: "transformar seu sorriso. Tecnologia avancada, expertise comprovada e atendimento personalizado te aguardam" → "alinhar seu sorriso. Scanner iTero 3D, Invisalign e consultas sem pressa te aguardam"
+
+**`src/pages/ProteseDentaria.tsx`**
+- Linha 123 (hero description): "materiais de excelencia" → "materiais de alta qualidade"
+
+**`src/pages/LentesEFacetas.tsx`**
+- Linha 206 (hero description): "Transforme seu sorriso" → "Recupere a confianca no seu sorriso"
+
+**`src/pages/AboutPage.tsx`**
+- Linha 130: "materiais de excelencia para garantir resultados naturais, funcionais e duradouros" → "materiais de alta qualidade para garantir resultados naturais e funcionais"
+- Linha 136: "Cuidado Personalizado e Excelencia em Materiais" → "Atencao Individual e Qualidade em Materiais"
+- Linha 139: substituir "atendimento e totalmente individualizado" e "materiais de excelencia" por versoes sem cliche
+
+**`src/pages/ServiceDetail.tsx`**
+- Linha 14: "Transforme seu sorriso" → "Corrija cor, forma e imperfeicoes"
+- Linha 15: "resultados naturais e duradouros" → "resultado que respeita a aparencia natural dos dentes"
+
+**`src/components/landing/limpeza/LimpezaDentalCTA.tsx`**
+- Linha 141: "Atendimento particular de excelencia" → "Atendimento particular com tempo dedicado"
+
+**`src/components/seo/InternalLinkingOptimizer.tsx`**
+- Linha 53: "Tecnologia de ponta" → "Scanner iTero 3D"
+
+---
 
 ### O que NAO muda
-- Nenhum outro arquivo
-- Design system, paleta, tipografia
-- Componentes reutilizaveis
-- Rota no App.tsx (ja existe /saude-da-gengiva)
+- Funcionalidades, tracking, componentes de performance, estrutura de rotas
+- Meta tags, structured data, SEO tecnico (exceto onde cliches aparecem em meta descriptions visadas)
+- CTAs WhatsApp, botao flutuante
+- Design system (cores, tipografia, espacamento)
+- Bio do Dr. Bruno na pagina de Ortodontia
+- Paginas ja reescritas nos Prompts 1-3 (Implantes, Canal, Gengiva)
+
+### Total de arquivos editados: ~12
 
