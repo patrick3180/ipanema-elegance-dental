@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { sendGCLIDToWebhook } from "@/utils/gclid";
 
 interface HeroSectionProps {
@@ -65,59 +65,81 @@ const HeroSection = ({
 
   return (
     <section 
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#CFCBB4]"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
       style={{
+        background: 'linear-gradient(180deg, #D4D0B8 0%, #CFCBB4 50%, #C9C4AE 100%)',
         backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
     >
-      
+      {/* Decorative radial gradient */}
+      <div
+        className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle at 80% 20%, rgba(179,149,95,0.03) 0%, transparent 70%)',
+        }}
+      />
+
       <div className="container-custom relative z-10">
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
+          {/* Credential badges */}
+          <div className="flex flex-wrap justify-center gap-3 mb-6">
+            <span className="inline-flex items-center bg-[#381F47]/10 text-[#381F47] text-xs font-semibold px-3 py-1.5 rounded-full">
+              CRO-RJ 27.509
+            </span>
+            <span className="inline-flex items-center bg-[#B3955F]/15 text-[#8B7340] text-xs font-semibold px-3 py-1.5 rounded-full">
+              Atendimento Particular · Ipanema
+            </span>
+          </div>
+
           {/* Headline */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-dental-purple mb-6 leading-tight">
+          <h1 className="text-[34px] md:text-4xl lg:text-5xl font-display font-bold text-dental-purple mb-6 leading-tight">
             {headline}
           </h1>
           
           {/* Subheadline */}
-          <p className="text-xl md:text-2xl text-dental-purple/80 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
             {subheadline}
           </p>
           
-          {/* Benefits */}
-          <div className="flex flex-wrap justify-center gap-4 mb-10">
+          {/* Benefits as pills */}
+          <div className="flex flex-wrap justify-center gap-3 mb-10">
             {benefits.map((benefit, index) => (
               <span 
                 key={index}
-                className="bg-dental-purple/10 text-dental-purple px-4 py-2 rounded-full text-sm md:text-base font-medium border border-dental-purple/20"
+                className="inline-flex items-center gap-2 bg-white border border-[#B3955F]/40 rounded-full px-3.5 py-1.5 text-sm text-[#381F47] font-medium"
               >
-                ✓ {benefit}
+                <span className="text-[#B3955F] text-[8px]">●</span>
+                {benefit}
               </span>
             ))}
           </div>
           
           {/* CTA Button */}
-          <button
-            onClick={handleCTAClick}
-            className="bg-[#381F47] hover:bg-[#4a2759] text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2 mx-auto"
-            aria-label={ctaText}
-            data-gtm-category="Contact"
-            data-gtm-action="Click"
-            data-gtm-label={`hero-cta-${campaign}`}
-            data-gtm-ad-group={messageMatch.adGroup}
-            data-gtm-keyword={messageMatch.keyword}
-            data-gtm-message-match="hero_cta"
-          >
-            {ctaText}
-            <ArrowRight className="w-5 h-5" />
-          </button>
-          
-          {urgency && (
-            <p className="text-[#CFCBB4] text-sm font-medium animate-pulse mt-4">
-              {urgency}
-            </p>
-          )}
+          <div className="flex flex-col items-center gap-2">
+            <button
+              onClick={handleCTAClick}
+              className="w-full md:w-auto text-white px-8 py-4 rounded-[10px] font-bold text-[15px] transition-all duration-300 hover:scale-105 shadow-[0_4px_14px_rgba(37,211,102,0.3)] hover:shadow-[0_6px_20px_rgba(37,211,102,0.4)] flex items-center justify-center gap-3"
+              style={{
+                background: 'linear-gradient(135deg, #25D366 0%, #20BD5A 100%)',
+              }}
+              aria-label={ctaText}
+              data-gtm-category="Contact"
+              data-gtm-action="Click"
+              data-gtm-label={`hero-cta-${campaign}`}
+              data-gtm-ad-group={messageMatch.adGroup}
+              data-gtm-keyword={messageMatch.keyword}
+              data-gtm-message-match="hero_cta"
+            >
+              <MessageCircle className="w-5 h-5" />
+              {ctaText}
+            </button>
+            <div className="flex items-center gap-1.5">
+              <span className="text-green-500 text-[8px]">●</span>
+              <span className="text-[11px] text-gray-500">WhatsApp 24h</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

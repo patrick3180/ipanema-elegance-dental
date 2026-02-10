@@ -1,10 +1,9 @@
 import React from 'react';
-import { Star, Users, Clock, Award, MessageCircle } from 'lucide-react';
+import { Users, Clock, Award, MessageCircle } from 'lucide-react';
 
 interface Testimonial {
   name: string;
   text: string;
-  rating?: number;
   avatar?: string;
 }
 
@@ -24,16 +23,6 @@ const ConsultaInicialSocialProof: React.FC<ConsultaInicialSocialProofProps> = ({
   testimonials,
   stats
 }) => {
-  const renderStars = (rating: number = 5) => {
-    return Array.from({ length: 5 }, (_, index) => (
-      <Star
-        key={index}
-        size={16}
-        className={index < rating ? "text-yellow-400 fill-current" : "text-gray-300"}
-      />
-    ));
-  };
-
   const getStatIcon = (label: string) => {
     if (label.includes('Experiência')) return <Award size={24} className="text-[#B3955F]" />;
     if (label.includes('Pacientes')) return <Users size={24} className="text-[#B3955F]" />;
@@ -76,11 +65,6 @@ const ConsultaInicialSocialProof: React.FC<ConsultaInicialSocialProofProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <div key={index} className="bg-gray-50 rounded-lg p-6 space-y-4 hover:shadow-lg transition-shadow duration-300">
-                {/* Rating */}
-                <div className="flex gap-1">
-                  {renderStars(testimonial.rating)}
-                </div>
-                
                 {/* Text */}
                 <blockquote className="text-[#333333] leading-relaxed italic">
                   "{testimonial.text}"
@@ -101,13 +85,8 @@ const ConsultaInicialSocialProof: React.FC<ConsultaInicialSocialProofProps> = ({
                       </span>
                     </div>
                   )}
-                  <div>
-                    <div className="font-semibold text-[#381F47]">
-                      {testimonial.name}
-                    </div>
-                    <div className="text-sm text-[#666666]">
-                      Paciente Verificado
-                    </div>
+                  <div className="font-semibold text-[#381F47]">
+                    {testimonial.name}
                   </div>
                 </div>
               </div>
