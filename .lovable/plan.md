@@ -1,86 +1,67 @@
 
 
-## Prompt 14 — Revisar Conteudo e Reativar Paginas Sobre e Contato
+## Prompt 15 — Ajustes Rapidos: ContactSection, ServicesSection e /servicos
 
 ### Resumo
-4 alteracoes: reescrever AboutPage, simplificar ContactPage (remover formulario, adicionar WhatsApp CTA), reativar rotas no App.tsx, e corrigir link "Contato" no Header.
+3 alteracoes pontuais: corrigir cliches e horario no ContactSection, limpar descricoes dos cards no ServicesSection, e ajustar intro da pagina /servicos.
 
 ---
 
-### Alteracao 1: Reescrever `src/pages/AboutPage.tsx`
+### Alteracao 1: `src/components/ContactSection.tsx`
 
-Manter intactos: SEOHead, handleWhatsAppClick, PageLayout, OptimizedImage, botao WhatsApp CTA, Separator.
+**1a) Linha 108** — Remover "Transforme":
+- De: `Transforme seu Sorriso: Agende sua Consulta em Ipanema`
+- Para: `Agende sua Consulta em Ipanema`
 
-**Conteudo revisado:**
-
-- **Subtitulo**: "Mais de 20 anos dedicados a reabilitacao oral e odontologia estetica em Ipanema"
-- **Paragrafo 1** (bio canonica): mencao a 20+ anos em Ipanema, Protese Dentaria + Implantodontia, CRO-RJ 27.509, 8 anos na Marinha
-- **Paragrafo 2**: iTero, planejamento digital, cada caso unico
-- **Secao "Atencao Individual"** vira **"Como Funciona o Atendimento"**: consulta de 1h, avaliacao completa, materiais de primeira linha
-- **Secao "Formacao e Expertise"** vira **"Formacao e Experiencia"**: grid 2x2 com 4 cards (Protese, Implantodontia, Marinha, Tecnologia Digital)
-- **Secao Missao/Visao/Valores** removida, substituida por **"O Que Esperar da Primeira Consulta"**: exame clinico, fotografias, escaneamento, plano claro
-- **CTA final**: "Agende sua primeira consulta com a Dra. Carla em Ipanema."
-
-Palavras banidas eliminadas: "transformar", "excelencia".
+**1b) Linhas 216-217** — Corrigir horario:
+- De: `Segunda a Sexta: 9h às 18h` + `Sábados: 9h às 13h`
+- Para: `Segunda a Sexta: 9h às 19h` (remover linha de sabados e o `<br />`)
 
 ---
 
-### Alteracao 2: Simplificar `src/pages/ContactPage.tsx`
+### Alteracao 2: `src/components/ServicesSection.tsx`
 
-**Remover:** formulario inteiro (nao funciona — apenas console.log), imports de react-hook-form, zod, Form components.
+Substituir apenas o campo `description` dos 6 cards indicados. Titulos, imagens, slugs e estrutura intactos.
 
-**Adicionar:**
-- SEOHead com title, description, canonicalUrl
-- Botao WhatsApp proeminente como CTA principal (topo da pagina)
-- handleWhatsAppClick com tracking GTM + Google Ads + GCLID (mesmo padrao AboutPage)
-- Aviso "NAO TRABALHAMOS COM PLANOS E CONVENIOS" em destaque
-- Imports: `sendGCLIDToWebhook`, `MessageCircle`, `SEOHead`
+**2a) Lentes (linha 9):**
+Para: `"Lâminas ultrafinas de porcelana que corrigem cor, forma e pequenas imperfeições. Resultado natural e duradouro, planejado digitalmente com scanner iTero."`
 
-**Manter:** PageLayout, informacoes de contato (endereco, telefone, email), mapa Google, Separator.
+**2b) Clareamento (linha 15):**
+Para: `"Dentes mais brancos com segurança. Protocolo em consultório ou supervisionado em casa, com controle de sensibilidade e resultado natural."`
 
-**Corrigir:** horario para "Segunda a Sexta: 9h as 19h" (sem sabados, sem "18h").
+**2c) Implantes (linha 27):**
+Para: `"Reabilitação de dentes perdidos com implantes que devolvem função mastigatória e estética. Planejamento digital para casos unitários ou reabilitações completas."`
 
-**Layout final:** WhatsApp CTA no topo, grid com info de contato + mapa abaixo.
+**2d) Ortodontia (linha 33):**
+Para: `"Alinhamento dental e correção de mordida com aparelhos fixos, estéticos ou alinhadores Invisalign\u00ae. Parceria com o Dr. Bruno, Doutor em Ortodontia pela UERJ."`
 
----
+**2e) Restauracoes (linha 45):**
+Para: `"Tratamento de cáries e reconstrução de dentes fraturados com resinas e cerâmicas que reproduzem a cor e translucidez natural do dente."`
 
-### Alteracao 3: Reativar rotas em `src/App.tsx`
+**2f) Canal (linha 51):**
+Para: `"Tratamento de canal para eliminar dor e preservar o dente natural. Procedimento realizado por endodontista especializado, com acompanhamento da Dra. Carla do início ao fim."`
 
-- Adicionar lazy imports para AboutPage e ContactPage (linhas 18-19 area)
-- Linhas 142-143: substituir `<Navigate to="/" replace />` por componentes reais:
-
-```
-<Route path="/sobre" element={<AboutPage />} />
-<Route path="/contato" element={<ContactPage />} />
-```
-
-- Manter `/diferenciais` como redirect para `/`
-- NAO alterar nenhuma outra rota
+Cards que NAO mudam: Proteses Dentarias (ok), Clinica Geral (ok), Saude da Gengiva (ok — sem cliches banidos).
 
 ---
 
-### Alteracao 4: Corrigir link "Contato" no Header
+### Alteracao 3: `src/pages/ServicesPage.tsx`
 
-**Arquivo:** `src/components/Header.tsx`
-
-Linha 50: "Contato" usa `action: () => handleSectionNavigation("contato")` (scroll para secao da homepage).
-
-**Corrigir para:** `{ title: "Contato", path: "/contato" }` (link direto, mesmo padrao de "Sobre" na linha 46).
-
-"Sobre" ja aponta para `/sobre` via path — esta correto, nao precisa mudar.
+Linha 26 — Ajustar intro para incluir nome da Dra. Carla (conforme prompt):
+- De: `"Cada tratamento é planejado individualmente, com tempo e atenção ao que o seu caso específico precisa. Conheça as opções e agende sua avaliação."`
+- Para: `"Cada tratamento é planejado individualmente, com tempo e atenção ao que o seu caso específico precisa. Conheça os serviços oferecidos pela Dra. Carla Christoph em Ipanema."`
 
 ---
 
-### Arquivos modificados (total: 4)
-1. `src/pages/AboutPage.tsx` — conteudo revisado, palavras banidas removidas
-2. `src/pages/ContactPage.tsx` — formulario removido, WhatsApp CTA, SEOHead, aviso planos
-3. `src/App.tsx` — rotas /sobre e /contato reativadas
-4. `src/components/Header.tsx` — link Contato corrigido de scroll para rota
+### Arquivos modificados (total: 3)
+1. `src/components/ContactSection.tsx` — subtitulo e horario
+2. `src/components/ServicesSection.tsx` — 6 descricoes de cards
+3. `src/pages/ServicesPage.tsx` — ajuste menor na intro
 
 ### O que NAO muda
 - Landing pages, configs, componentes ConsultaInicial*
-- Service pages
-- Tracking existente (GTM, Google Ads, GCLID)
-- Outras rotas no App.tsx
-- Outros links do Header
-
+- App.tsx, rotas
+- Service pages individuais
+- Hero.tsx
+- Formulario do ContactSection (funciona, mantem intacto)
+- Tracking (GTM, Google Ads, GCLID)
