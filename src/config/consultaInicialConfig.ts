@@ -2,7 +2,6 @@ import { LandingPageConfig } from "@/types/LandingPageConfig";
 
 export const consultaInicialConfig: LandingPageConfig = {
   campaign: "consulta-inicial-premium",
-  urgency: "Quanto mais você adia, mais complexo pode se tornar",
 
   messageMatch: {
     adGroup: "consulta-premium-ipanema",
@@ -15,147 +14,73 @@ export const consultaInicialConfig: LandingPageConfig = {
   },
 
   hero: {
-    headline: "A Consulta Odontológica Como Deveria Ser: Sem Pressa, Com Excelência",
-    subheadline: "Diagnóstico completo e personalizado em Ipanema. Cada caso tratado individualmente, com tempo adequado para suas necessidades específicas.",
+    headline: "Uma Consulta Odontológica com Tempo para Ouvir, Examinar e Explicar",
+    subheadline: "Mínimo de 1 hora dedicada ao seu caso. Diagnóstico detalhado, explicação clara e plano de tratamento individualizado — sem pressa e sem surpresas.",
     ctaText: "Agendar Minha Consulta",
     backgroundImage: "/lovable-uploads/RIT08058-vertical-doutora-site.webp"
   },
 
   benefits: [
-    "WhatsApp 24 horas",
-    "Consultas sem pressa", 
-    "20+ anos de experiência",
-    "Atendimento particular"
+    "Mínimo de 1h por consulta",
+    "Diagnóstico clínico detalhado",
+    "WhatsApp 24h",
+    "20+ anos de experiência"
   ],
 
   problem: {
-    title: "Sabemos Como é Frustrante uma Consulta Odontológica Apressada",
-    description: "Se você já saiu de um consultório sentindo que não foi ouvido ou que suas dúvidas não foram esclarecidas, você não está sozinho. Entendemos essa frustração.",
+    title: "Se Você Já Saiu de uma Consulta com Mais Dúvidas do que Respostas",
+    description: "Muita gente adia o dentista não por medo do tratamento, mas por experiências frustrantes. Se você se identifica com alguma dessas situações, saiba que existe outra forma de ser atendido.",
     problems: [
-      "Consultas de 15 minutos onde mal dá tempo de explicar o problema",
-      "Sensação de estar numa 'linha de produção' sem atenção individual",
-      "Dentista que não explica claramente o que está acontecendo",
-      "Pressa para liberar a cadeira para o próximo paciente",
-      "Diagnósticos superficiais que não identificam problemas reais",
-      "Falta de transparência sobre custos e opções de tratamento"
+      "Consultas de 15 minutos onde não dá tempo de explicar o que sente.",
+      "Sair do consultório sem entender o que foi diagnosticado ou por que precisa de tal procedimento.",
+      "Sentir que é apenas mais um na agenda — sem atenção individual.",
+      "Receber um orçamento sem explicação clara do que cada item significa.",
+      "Diagnósticos superficiais que não identificam a causa real do problema.",
+      "Ter receio de perguntar porque o profissional parece apressado."
     ]
   },
 
   guide: {
-    title: "Sua Especialista em Cuidado Personalizado",
-    subtitle: "Dra. Carla Christoph entende que cada sorriso é único e merece atenção individualizada em Ipanema.",
+    title: "Como Funciona a Consulta com a Dra. Carla Christoph",
+    subtitle: "Especialista em Prótese e Implantodontia, com mais de 20 anos de experiência clínica em Ipanema.",
     steps: [
-      {
-        number: "✓",
-        title: "Especialista em Prótese Dental",
-        description: "Formação especializada para casos complexos"
-      },
-      {
-        number: "✓", 
-        title: "Especialista em Implantodontia",
-        description: "Expertise em reabilitação oral completa"
-      },
-      {
-        number: "✓",
-        title: "CRO-RJ 27509",
-        description: "Registro profissional ativo e regularizado"
-      },
-      {
-        number: "✓",
-        title: "20+ anos de experiência",
-        description: "Duas décadas cuidando de sorrisos"
-      },
-      {
-        number: "✓",
-        title: "4.000+ pacientes atendidos",
-        description: "Experiência comprovada e resultados consistentes"
-      },
-      {
-        number: "✓",
-        title: "Consultas sem pressa",
-        description: "Tempo adequado para cada caso específico"
-      }
+      { number: "1", title: "Conversa Inicial", description: "Ouvimos seu histórico, suas queixas e o que você espera. Sem formulário apressado — uma conversa de verdade." },
+      { number: "2", title: "Exame Clínico Completo", description: "Avaliação detalhada dos dentes, gengiva, mordida e articulação. Radiografias quando necessário. Inclui profilaxia (limpeza profissional)." },
+      { number: "3", title: "Explicação do Diagnóstico", description: "Mostramos o que foi encontrado, explicamos cada ponto e respondemos todas as suas dúvidas — com calma." },
+      { number: "4", title: "Plano de Tratamento Individualizado", description: "Se houver necessidade de tratamento, apresentamos as opções com valores transparentes. Você decide no seu tempo." }
     ]
   },
 
   socialProof: {
-    title: "O Que Nossos Pacientes Dizem Sobre o Atendimento Personalizado",
+    title: "O Que Nossos Pacientes Contam Sobre a Consulta",
     testimonials: [
-      {
-        name: "Maria S.",
-        text: "Finalmente encontrei uma dentista que me ouve. A consulta durou mais de uma hora, ela explicou tudo detalhadamente e não senti pressa nenhuma. Atendimento como deveria ser.",
-        rating: 5
-      },
-      {
-        name: "Roberto M.",
-        text: "Depois de anos evitando dentista por experiências ruins, a Dra. Carla mudou minha perspectiva. Consulta completa, sem pressa, com explicações claras sobre cada procedimento.",
-        rating: 5
-      },
-      {
-        name: "Ana L.",
-        text: "O que mais me impressionou foi a atenção individual. Não me senti apenas mais um número. Ela dedicou tempo para entender meu histórico e explicar todas as opções.",
-        rating: 5
-      }
+      { name: "Ricardo M. — Ipanema", text: "A consulta durou mais de uma hora. Ela explicou cada detalhe do exame, mostrou as radiografias e só depois falou sobre tratamento. Nunca tinha sido atendido assim." },
+      { name: "Claudia F. — Leblon", text: "Tinha mudado de dentista várias vezes. Aqui, pela primeira vez, senti que alguém realmente ouviu o que eu tinha para dizer antes de começar a examinar." },
+      { name: "André S. — Copacabana", text: "O que me impressionou foi a transparência. Ela explicou o que precisava ser feito, o que podia esperar e o que era prioridade. Sem pressão nenhuma." }
     ],
     stats: [
-      {
-        number: "20+",
-        label: "Anos de Experiência"
-      },
-      {
-        number: "4.000+",
-        label: "Pacientes Atendidos"
-      },
-      {
-        number: "1 hora",
-        label: "Mínimo por Agendamento"
-      },
-      {
-        number: "24h",
-        label: "Atendimento WhatsApp"
-      }
+      { number: "20+", label: "Anos de Experiência" },
+      { number: "4.000+", label: "Pacientes Atendidos" },
+      { number: "1h+", label: "Mínimo por Consulta" },
+      { number: "24h", label: "WhatsApp Disponível" }
     ]
   },
 
   faq: {
-    title: "Perguntas Frequentes Sobre Nossa Consulta Personalizada",
+    title: "Dúvidas Sobre a Consulta Inicial",
     questions: [
-      {
-        question: "Como funciona uma consulta \"sem pressa\"?",
-        answer: "Reservamos no mínimo 1 hora para cada consulta inicial, permitindo tempo adequado para ouvir seu histórico, realizar exame detalhado, explicar achados e discutir opções de tratamento. Sem pressa para liberar a cadeira."
-      },
-      {
-        question: "Qual a diferença para outros consultórios?",
-        answer: "Nosso foco é qualidade individual versus quantidade. Atendemos menos pacientes por dia para dedicar atenção personalizada a cada caso. Cada pessoa é única e merece cuidado individualizado."
-      },
-      {
-        question: "Por que vocês são atendimento particular?",
-        answer: "O atendimento particular nos permite usar materiais de excelência, dedicar tempo adequado e personalizar completamente seu tratamento sem limitações de convênios."
-      },
-      {
-        question: "Como funciona o agendamento?",
-        answer: "Nosso WhatsApp funciona 24 horas. Você pode enviar mensagem a qualquer hora para agendar sua consulta ou tirar dúvidas. Respondemos rapidamente, inclusive fins de semana."
-      },
-      {
-        question: "Que tipo de avaliação é feita na consulta inicial?",
-        answer: "Realizamos anamnese completa, exame clínico detalhado, avaliação periodontal, análise oclusal e radiografias quando necessário. Em toda consulta de avaliação também é incluída a profilaxia (limpeza dental profissional). Tudo explicado passo a passo."
-      },
-      {
-        question: "Vocês atendem emergências?",
-        answer: "Embora nosso atendimento seja durante horário normal do consultório, sempre nos empenhamos em acomodar situações de emergência odontológica. Entre em contato pelo WhatsApp 24h e buscaremos uma solução que atenda sua necessidade sem comprometer a qualidade do atendimento aos pacientes já agendados."
-      },
-      {
-        question: "Como são definidos os custos dos tratamentos?",
-        answer: "Após avaliação completa, apresentamos plano de tratamento detalhado com valores transparentes e opções de parcelamento. Sem surpresas ou custos ocultos."
-      }
+      { question: "Por que a consulta dura no mínimo 1 hora?", answer: "Porque um diagnóstico bem feito exige tempo. Precisamos ouvir seu histórico, examinar com atenção, explicar os achados e discutir opções — tudo isso sem pressa. É assim que evitamos diagnósticos superficiais." },
+      { question: "O que está incluído na consulta?", answer: "Anamnese completa, exame clínico detalhado, avaliação periodontal, análise da mordida, radiografias quando necessário e profilaxia (limpeza profissional). Tudo explicado passo a passo." },
+      { question: "Por que o atendimento é particular?", answer: "O formato particular nos permite dedicar o tempo que cada caso exige, usar materiais selecionados e manter um número reduzido de pacientes por dia. É o que garante a qualidade do atendimento." },
+      { question: "Como funciona o agendamento?", answer: "Pelo WhatsApp, que funciona 24 horas. Você envia mensagem, escolhemos juntos o melhor horário e confirmamos. Respondemos inclusive nos fins de semana." },
+      { question: "Vocês atendem emergências?", answer: "Nosso atendimento é em horário de consultório, mas nos empenhamos em acomodar urgências. Entre em contato pelo WhatsApp e buscamos uma solução." }
     ]
   },
 
   cta: {
-    title: "Pronto para uma Experiência Odontológica Diferenciada?",
-    subtitle: "Agende sua consulta personalizada e descubra o cuidado odontológico como deveria ser: individualizado, transparente e sem pressa.",
-    buttonText: "Agendar Minha Consulta",
-    urgency: "Quanto mais você adia, mais complexo pode se tornar"
+    title: "Pronto para uma Consulta Diferente?",
+    subtitle: "Agende sua avaliação e descubra como é ser atendido com tempo, atenção e transparência.",
+    buttonText: "Agendar Minha Consulta"
   },
 
   contact: {
