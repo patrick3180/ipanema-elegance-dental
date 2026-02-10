@@ -15,7 +15,7 @@ export const denteQuebradoConfig: LandingPageConfig = {
   
   hero: {
     headline: 'Dente Quebrado? Restauração com Resultado Natural em Ipanema',
-    subheadline: 'Encaixe prioritário para resolver rápido. A Dra. Carla Christoph restaura dentes fraturados com materiais que reproduzem a aparência natural — ninguém vai perceber.',
+    subheadline: 'Encaixe prioritário para resolver rápido. A Dra. Carla Christoph restaura dentes fraturados com materiais que reproduzem a aparência natural do dente original.',
     ctaText: 'Pedir Atendimento Agora',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
@@ -28,15 +28,15 @@ export const denteQuebradoConfig: LandingPageConfig = {
   ],
   
   problem: {
-    title: 'Dente Quebrado é Urgente — E Constrangedor',
-    description: 'Seja um acidente, uma mordida no lugar errado ou um dente que já estava fragilizado — uma fratura dental precisa de atenção rápida. Além do incômodo, afeta a confiança em qualquer situação social.',
+    title: 'Dente Quebrou — E Agora?',
+    description: 'Uma fratura dental pode acontecer a qualquer momento: mordendo algo duro, num acidente ou num dente que já estava fragilizado. O mais importante é agir rápido e saber que tem solução.',
     problems: [
-      'Dente da frente quebrado — visível ao falar e sorrir.',
-      'Constrangimento em reuniões, eventos ou encontros.',
+      'Dente quebrou e preciso resolver o mais rápido possível.',
       'Bordas cortantes que machucam a língua ou a bochecha.',
       'Sensibilidade ao frio, calor ou ao morder.',
-      'Medo de que o problema piore ou que perca o dente.',
-      'Precisa resolver antes de um compromisso importante.'
+      'Não sei se preciso de restauração simples ou tratamento mais complexo.',
+      'Preciso resolver antes de um compromisso próximo.',
+      'Tenho medo de que o problema piore se não tratar logo.'
     ]
   },
   
@@ -52,7 +52,7 @@ export const denteQuebradoConfig: LandingPageConfig = {
   },
   
   socialProof: {
-    title: 'Quem Precisou, Conta',
+    title: 'Quem Já Passou por Isso',
     testimonials: [
       { name: 'Ana Clara R. — Ipanema', text: 'Quebrei o dente da frente mordendo uma azeitona. Consegui atendimento no dia seguinte. A restauração ficou tão natural que eu mesma esqueço qual dente foi.' },
       { name: 'Pedro H. — Leblon', text: 'Meu filho quebrou o dente num treino. A Dra. Carla encaixou no mesmo dia e restaurou com calma. Ele saiu sorrindo.' },

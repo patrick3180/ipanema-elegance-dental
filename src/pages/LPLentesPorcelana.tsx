@@ -1,11 +1,34 @@
+import React, { Suspense, useEffect } from 'react';
 import { Helmet } from "react-helmet-async";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CheckCircle } from "lucide-react";
-import { sendGCLIDToWebhook } from "@/utils/gclid";
+import { sendGCLIDToWebhook, captureGCLID } from "@/utils/gclid";
+import { lentesPorcelanaAcolhedorConfig } from '@/config/lentesPorcelanaAcolhedorConfig';
+import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
+
+const ConsultaInicialProblem = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialProblem'));
+const ConsultaInicialGuide = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialGuide'));
+const ConsultaInicialSocialProof = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialSocialProof'));
+const ConsultaInicialFAQ = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialFAQ'));
+const ConsultaInicialCTA = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialCTA'));
+const ClareamentoFooter = React.lazy(() => import('@/components/landing/clareamento/ClareamentoFooter'));
+const FloatingWhatsApp = React.lazy(() => import('@/components/landing/FloatingWhatsApp'));
+
+const config = lentesPorcelanaAcolhedorConfig;
 
 const LPLentesPorcelana = () => {
+  useEffect(() => {
+    captureGCLID();
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'page_view',
+        page_title: 'LP Lentes Porcelana Ipanema',
+        page_location: window.location.href,
+        campaign: config.campaign
+      });
+    }
+  }, []);
+
   const handleWhatsAppClick = async () => {
-    // Google Tag Manager tracking
     if (window.dataLayer) {
       window.dataLayer.push({
         event: 'whatsapp_click',
@@ -15,19 +38,16 @@ const LPLentesPorcelana = () => {
       });
     }
     
-    // Google Ads conversion tracking
     if (window.gtag) {
       window.gtag('event', 'conversion', {
         'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9'
       });
     }
 
-    // Send GCLID to webhook
     await sendGCLIDToWebhook('lp_lentes_porcelana_cta');
     
-    // Open WhatsApp
-    const phoneNumber = "5521993304045";
-    const message = "Olá! Gostaria de agendar minha avaliação para lentes de contato dental em porcelana.";
+    const phoneNumber = config.whatsapp.number;
+    const message = config.whatsapp.message;
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
   };
@@ -82,6 +102,13 @@ const LPLentesPorcelana = () => {
           })}
         </script>
       </Helmet>
+
+      <ConsultaInicialHeader
+        whatsappNumber={config.whatsapp.number}
+        whatsappMessage={config.whatsapp.message}
+        campaign={config.campaign}
+        messageMatch={config.messageMatch}
+      />
 
       {/* SEÇÃO 1: HERO LANDING */}
       <section className="bg-gradient-to-b from-dental-beige/30 to-white py-16 md:py-20">
@@ -216,185 +243,62 @@ const LPLentesPorcelana = () => {
         </div>
       </section>
 
-      {/* SEÇÃO 3: ACCORDIONS CENTRALIZADOS */}
-      <section className="bg-dental-beige/20 py-16 md:py-20">
-        <div className="max-w-4xl mx-auto px-4">
-          <Accordion type="single" collapsible className="space-y-4">
-            {/* ACCORDION 1: Características Principais */}
-            <AccordionItem value="caracteristicas" className="bg-white rounded-lg shadow-soft px-6">
-              <AccordionTrigger className="text-left text-lg font-semibold text-dental-purple hover:no-underline">
-                Características Principais
-              </AccordionTrigger>
-              <AccordionContent>
-                <ul className="space-y-2 text-dental-gray">
-                  <li className="flex items-start gap-2">
-                    <span className="text-dental-gold mt-1 font-bold">•</span>
-                    <span><strong>Espessura:</strong> 0,2 a 0,5mm (ultra-fina)</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-dental-gold mt-1 font-bold">•</span>
-                    <span><strong>Material:</strong> Cerâmica de dissilicato de lítio ou feldspática</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-dental-gold mt-1 font-bold">•</span>
-                    <span><strong>Preparo:</strong> Mínimo (0,1-0,3mm) quando necessário</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-dental-gold mt-1 font-bold">•</span>
-                    <span><strong>Durabilidade:</strong> 15 a 20 anos</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-dental-gold mt-1 font-bold">•</span>
-                    <span><strong>Estética:</strong> Translucidez superior, aspecto natural</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-dental-gold mt-1 font-bold">•</span>
-                    <span><strong>Resistência:</strong> Não mancha com alimentos ou bebidas</span>
-                  </li>
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
+      {/* Standard LP sections from config */}
+      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+        <ConsultaInicialProblem
+          title={config.problem.title}
+          description={config.problem.description}
+          problems={config.problem.problems}
+        />
+      </Suspense>
 
-            {/* ACCORDION 2: Vantagens e Considerações */}
-            <AccordionItem value="vantagens" className="bg-white rounded-lg shadow-soft px-6">
-              <AccordionTrigger className="text-left text-lg font-semibold text-dental-purple hover:no-underline">
-                Vantagens e Considerações
-              </AccordionTrigger>
-              <AccordionContent className="space-y-4">
-                {/* Vantagens */}
-                <div className="bg-green-50 p-4 rounded-lg">
-                  <p className="font-semibold text-green-900 mb-2">Vantagens:</p>
-                  <ul className="space-y-1 text-dental-gray text-sm">
-                    <li className="flex items-start gap-2">
-                      <span className="text-green-600 font-bold">✓</span>
-                      <span>Máxima preservação da estrutura dental original</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-green-600 font-bold">✓</span>
-                      <span>Resultado estético natural e duradouro</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-green-600 font-bold">✓</span>
-                      <span>Não escurece ou mancha com o tempo</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-green-600 font-bold">✓</span>
-                      <span>Resistência superior a facetas de resina</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-green-600 font-bold">✓</span>
-                      <span>Translucidez que imita dentes naturais</span>
-                    </li>
-                  </ul>
-                </div>
+      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+        <ConsultaInicialGuide
+          title={config.guide.title}
+          subtitle={config.guide.subtitle}
+          steps={config.guide.steps}
+        />
+      </Suspense>
 
-                {/* Considerações */}
-                <div className="bg-blue-50 p-4 rounded-lg">
-                  <p className="font-semibold text-blue-900 mb-2">Considerações:</p>
-                  <ul className="space-y-1 text-dental-gray text-sm">
-                    <li className="flex items-start gap-2">
-                      <span className="text-dental-gray">•</span>
-                      <span>Investimento premium refletindo durabilidade e qualidade</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-dental-gray">•</span>
-                      <span>Não é reversível (torna-se parte permanente do dente)</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-dental-gray">•</span>
-                      <span>Requer uso de placa miorrelaxante em casos de bruxismo</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-dental-gray">•</span>
-                      <span>Impossível reparar se fraturar (necessita substituição)</span>
-                    </li>
-                  </ul>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
+      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+        <ConsultaInicialSocialProof
+          title={config.socialProof.title}
+          testimonials={config.socialProof.testimonials}
+          stats={config.socialProof.stats}
+        />
+      </Suspense>
 
-            {/* ACCORDION 3: Ideal Para */}
-            <AccordionItem value="ideal" className="bg-white rounded-lg shadow-soft px-6">
-              <AccordionTrigger className="text-left text-lg font-semibold text-dental-purple hover:no-underline">
-                Ideal Para
-              </AccordionTrigger>
-              <AccordionContent className="space-y-4">
-                {/* Indicações */}
-                <div className="bg-dental-purple/5 p-4 rounded-lg">
-                  <p className="font-semibold text-dental-purple mb-2">Indicações:</p>
-                  <ul className="space-y-1 text-dental-gray text-sm">
-                    <li className="flex items-start gap-2">
-                      <span className="text-dental-gold font-bold">→</span>
-                      <span>Dentes com manchas que não respondem ao clareamento</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-dental-gold font-bold">→</span>
-                      <span>Correção de formato, tamanho ou proporções dentais</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-dental-gold font-bold">→</span>
-                      <span>Fechamento de diastemas (espaços entre dentes)</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-dental-gold font-bold">→</span>
-                      <span>Pequenos desalinhamentos ou rotações</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-dental-gold font-bold">→</span>
-                      <span>Dentes desgastados por bruxismo ou envelhecimento</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-dental-gold font-bold">→</span>
-                      <span>Fraturas nas bordas incisais</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-dental-gold font-bold">→</span>
-                      <span>Quem busca transformação estética de longo prazo</span>
-                    </li>
-                  </ul>
-                </div>
+      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+        <ConsultaInicialFAQ
+          title={config.faq.title}
+          questions={config.faq.questions}
+        />
+      </Suspense>
 
-                {/* Contraindicações */}
-                <div className="bg-red-50 p-4 rounded-lg">
-                  <p className="font-semibold text-red-900 mb-2">Contraindicações:</p>
-                  <ul className="space-y-1 text-dental-gray text-sm">
-                    <li className="flex items-start gap-2">
-                      <span className="text-red-600 font-bold">✗</span>
-                      <span>Má higiene bucal ou cáries ativas</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-red-600 font-bold">✗</span>
-                      <span>Doença periodontal não controlada</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-red-600 font-bold">✗</span>
-                      <span>Bruxismo severo sem uso de placa</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-red-600 font-bold">✗</span>
-                      <span>Dentes muito desgastados (pode precisar coroa)</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-red-600 font-bold">✗</span>
-                      <span>Desalinhamento severo (ortodontia prévia necessária)</span>
-                    </li>
-                  </ul>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+        <ConsultaInicialCTA
+          title={config.cta.title}
+          subtitle={config.cta.subtitle}
+          buttonText={config.cta.buttonText}
+          whatsappNumber={config.whatsapp.number}
+          whatsappMessage={config.whatsapp.message}
+          campaign={config.campaign}
+          messageMatch={config.messageMatch}
+        />
+      </Suspense>
 
-          {/* CTA Final */}
-          <div className="mt-12 text-center">
-            <button
-              onClick={handleWhatsAppClick}
-              className="bg-gradient-to-r from-dental-purple to-dental-gold hover:opacity-90 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all shadow-lg hover:shadow-xl inline-flex items-center gap-2"
-            >
-              Agendar Minha Avaliação Agora
-            </button>
-          </div>
-        </div>
-      </section>
+      <Suspense fallback={null}>
+        <ClareamentoFooter />
+      </Suspense>
+
+      <Suspense fallback={null}>
+        <FloatingWhatsApp
+          phoneNumber={config.whatsapp.number}
+          message={config.whatsapp.message}
+          campaign={config.campaign}
+          messageMatch={config.messageMatch}
+        />
+      </Suspense>
     </>
   );
 };
