@@ -9,7 +9,7 @@ const CriticalCSSInline = () => {
         min-height: 100vh; 
         display: flex; 
         align-items: center; 
-        background: #CFCBB4;
+        background: #FAF7F2;
         padding-top: 90px;
         padding-bottom: 4rem;
       }
@@ -128,7 +128,7 @@ const CriticalCSSInline = () => {
       /* Utilities */
       .text-primary { color: #381F47; }
       .text-secondary { color: #333333; }
-      .bg-accent { background: #CFCBB4; }
+      .bg-accent { background: #FAF7F2; }
       .text-accent { color: #B3955F; }
     `;
 

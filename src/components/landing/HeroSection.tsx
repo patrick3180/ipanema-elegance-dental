@@ -67,7 +67,7 @@ const HeroSection = ({
     <section 
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
       style={{
-        background: 'linear-gradient(180deg, #D4D0B8 0%, #CFCBB4 50%, #C9C4AE 100%)',
+        background: 'linear-gradient(170deg, #FAF7F2 0%, #F5F0E8 40%, #EDE8DC 100%)',
         backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -77,7 +77,7 @@ const HeroSection = ({
       <div
         className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none"
         style={{
-          background: 'radial-gradient(circle at 80% 20%, rgba(179,149,95,0.03) 0%, transparent 70%)',
+          background: 'radial-gradient(circle at 80% 20%, rgba(179,149,95,0.05) 0%, transparent 70%)',
         }}
       />
 
@@ -104,7 +104,7 @@ const HeroSection = ({
           </p>
           
           {/* Benefits as pills */}
-          <div className="flex flex-wrap justify-center gap-3 mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10 max-w-lg mx-auto">
             {benefits.map((benefit, index) => (
               <span 
                 key={index}
