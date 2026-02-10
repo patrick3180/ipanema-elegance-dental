@@ -16,6 +16,8 @@ const Index = lazy(() => import("./pages/Index"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
 
 // Landing pages - TODAS ATIVAS
 const LimpezaDentalLandingPage = lazy(() => import("./pages/LimpezaDentalLandingPage"));
@@ -139,8 +141,8 @@ const App = () => {
                 <Route path="/ortodontia" element={<Ortodontia />} />
                 
                 {/* Rotas temporárias - redirecionam para home */}
-                <Route path="/sobre" element={<Navigate to="/" replace />} />
-                <Route path="/contato" element={<Navigate to="/" replace />} />
+                <Route path="/sobre" element={<AboutPage />} />
+                <Route path="/contato" element={<ContactPage />} />
                 <Route path="/diferenciais" element={<Navigate to="/" replace />} />
                 
                 {/* Catch all - redirect to home */}
