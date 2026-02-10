@@ -49,7 +49,7 @@ export const implantesDentariosConfig: LandingPageConfig = {
       { number: '2', title: 'Planejamento Digital do Caso', description: 'Definição da posição, angulação e tipo de implante mais adequado — tudo planejado antes da cirurgia.' },
       { number: '3', title: 'Cirurgia de Instalação', description: 'Procedimento com anestesia local, de forma tranquila. Na maioria dos casos, o pós é mais simples do que se imagina.' },
       { number: '4', title: 'Cicatrização e Integração', description: 'O implante se integra ao osso ao longo de alguns meses. Durante esse período, você pode usar uma prótese provisória.' },
-      { number: '5', title: 'Prótese Definitiva pela Dra. Carla', description: 'Moldagem digital e confecção da coroa ou prótese final — planejada para encaixar com precisão e parecer natural.' }
+      { number: '5', title: 'Prótese Definitiva pela Dra. Carla', description: 'Moldagem digital e confecção da coroa ou prótese final — com materiais de primeira linha selecionados individualmente para cada caso.' }
     ]
   },
 

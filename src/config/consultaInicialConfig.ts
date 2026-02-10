@@ -22,21 +22,21 @@ export const consultaInicialConfig: LandingPageConfig = {
 
   benefits: [
     "Mínimo de 1h por consulta",
-    "Diagnóstico clínico detalhado",
+    "Somente materiais de primeira linha",
     "WhatsApp 24h",
     "20+ anos de experiência"
   ],
 
   problem: {
-    title: "Se Você Já Saiu de uma Consulta com Mais Dúvidas do que Respostas",
-    description: "Muita gente adia o dentista não por medo do tratamento, mas por experiências frustrantes. Se você se identifica com alguma dessas situações, saiba que existe outra forma de ser atendido.",
+    title: "Quando Você Precisa de uma Consulta de Verdade",
+    description: "Nem toda consulta odontológica é igual. Se você valoriza tempo, atenção e clareza antes de iniciar qualquer tratamento, a consulta com a Dra. Carla foi pensada para isso.",
     problems: [
-      "Consultas de 15 minutos onde não dá tempo de explicar o que sente.",
-      "Sair do consultório sem entender o que foi diagnosticado ou por que precisa de tal procedimento.",
-      "Sentir que é apenas mais um na agenda — sem atenção individual.",
-      "Receber um orçamento sem explicação clara do que cada item significa.",
-      "Diagnósticos superficiais que não identificam a causa real do problema.",
-      "Ter receio de perguntar porque o profissional parece apressado."
+      "Preciso de tempo para explicar meu histórico e ser ouvido com calma.",
+      "Quero sair da consulta entendendo exatamente o que tenho e o que precisa ser feito.",
+      "Valorizo atenção individual — cada caso é diferente.",
+      "Quero um plano de tratamento com valores claros, sem surpresas.",
+      "Prefiro um diagnóstico detalhado, mesmo que demore mais.",
+      "Quero me sentir à vontade para fazer todas as perguntas que precisar."
     ]
   },
 

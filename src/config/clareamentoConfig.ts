@@ -46,7 +46,7 @@ export const clareamentoConfig: LandingPageConfig = {
     steps: [
       { number: '1', title: 'Avaliação e Diagnóstico', description: 'Análise da causa do escurecimento, condição dos dentes e gengiva. Definição do protocolo mais adequado para o seu caso.' },
       { number: '2', title: 'Preparação Cuidadosa', description: 'Proteção dos tecidos gengivais e avaliação da sensibilidade para garantir segurança e conforto durante o procedimento.' },
-      { number: '3', title: 'Aplicação Profissional', description: 'Clareamento de consultório (sessão de 45-60 min) ou moldeiras para clareamento caseiro supervisionado — depende do caso.' },
+      { number: '3', title: 'Aplicação Profissional', description: 'Clareamento de consultório (sessão de 45-60 min) ou moldeiras para clareamento caseiro supervisionado — depende do caso. Utilizamos somente géis clareadores de primeira linha.' },
       { number: '4', title: 'Acompanhamento dos Resultados', description: 'Monitoramento do progresso e orientações para manutenção. A cor estabiliza ao longo de 2 semanas após o término.' }
     ]
   },
