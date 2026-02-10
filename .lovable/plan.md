@@ -1,67 +1,73 @@
 
 
-## Prompt 15 — Ajustes Rapidos: ContactSection, ServicesSection e /servicos
+## Prompt 16 — Criar Pagina 404 e Corrigir Catch-All
 
 ### Resumo
-3 alteracoes pontuais: corrigir cliches e horario no ContactSection, limpar descricoes dos cards no ServicesSection, e ajustar intro da pagina /servicos.
+3 alteracoes: criar `NotFoundPage.tsx` com design consistente e tracking, adicionar rota `/gone` para GonePage, e substituir o catch-all no App.tsx.
 
 ---
 
-### Alteracao 1: `src/components/ContactSection.tsx`
+### Alteracao 1: Criar `src/pages/NotFoundPage.tsx`
 
-**1a) Linha 108** — Remover "Transforme":
-- De: `Transforme seu Sorriso: Agende sua Consulta em Ipanema`
-- Para: `Agende sua Consulta em Ipanema`
+Pagina 404 nova, seguindo o design system do site (inspirada no GonePage.tsx).
 
-**1b) Linhas 216-217** — Corrigir horario:
-- De: `Segunda a Sexta: 9h às 18h` + `Sábados: 9h às 13h`
-- Para: `Segunda a Sexta: 9h às 19h` (remover linha de sabados e o `<br />`)
+**Estrutura:**
+- SEOHead com `noIndex={true}`
+- `useEffect` que chama `seoMonitor.logNotFound(window.location.pathname)` ao montar
+- `handleWhatsAppClick` async com tracking completo (GTM dataLayer + Google Ads conversion `AW-16894364517/OQZvCMXV0foZEOqP7vY9` + `sendGCLIDToWebhook('404_page_button')`)
+- Icone `Search` (lucide) grande, cor `dental-gold`
+- H1: "Pagina Nao Encontrada" (heading-lg, dental-purple)
+- Paragrafo 1: "O endereco que voce digitou nao existe ou foi movido."
+- Paragrafo 2: "Mas estamos aqui para ajudar. Veja algumas opcoes:"
+- 3 botoes em `flex flex-col sm:flex-row gap-4`:
+  1. "Pagina Inicial" — link para `/`, `bg-dental-gold text-white`, icone `ArrowLeft`
+  2. "Ver Tratamentos" — link para `/servicos`, `outline border-dental-purple text-dental-purple`
+  3. "Falar no WhatsApp" — `onClick={handleWhatsAppClick}`, `bg-green-600 text-white`, icone `MessageCircle`
 
----
-
-### Alteracao 2: `src/components/ServicesSection.tsx`
-
-Substituir apenas o campo `description` dos 6 cards indicados. Titulos, imagens, slugs e estrutura intactos.
-
-**2a) Lentes (linha 9):**
-Para: `"Lâminas ultrafinas de porcelana que corrigem cor, forma e pequenas imperfeições. Resultado natural e duradouro, planejado digitalmente com scanner iTero."`
-
-**2b) Clareamento (linha 15):**
-Para: `"Dentes mais brancos com segurança. Protocolo em consultório ou supervisionado em casa, com controle de sensibilidade e resultado natural."`
-
-**2c) Implantes (linha 27):**
-Para: `"Reabilitação de dentes perdidos com implantes que devolvem função mastigatória e estética. Planejamento digital para casos unitários ou reabilitações completas."`
-
-**2d) Ortodontia (linha 33):**
-Para: `"Alinhamento dental e correção de mordida com aparelhos fixos, estéticos ou alinhadores Invisalign\u00ae. Parceria com o Dr. Bruno, Doutor em Ortodontia pela UERJ."`
-
-**2e) Restauracoes (linha 45):**
-Para: `"Tratamento de cáries e reconstrução de dentes fraturados com resinas e cerâmicas que reproduzem a cor e translucidez natural do dente."`
-
-**2f) Canal (linha 51):**
-Para: `"Tratamento de canal para eliminar dor e preservar o dente natural. Procedimento realizado por endodontista especializado, com acompanhamento da Dra. Carla do início ao fim."`
-
-Cards que NAO mudam: Proteses Dentarias (ok), Clinica Geral (ok), Saude da Gengiva (ok — sem cliches banidos).
+**O arquivo antigo `src/pages/NotFound.tsx` sera removido** (nunca e importado em nenhum lugar).
 
 ---
 
-### Alteracao 3: `src/pages/ServicesPage.tsx`
+### Alteracao 2: Adicionar rota `/gone` no App.tsx
 
-Linha 26 — Ajustar intro para incluir nome da Dra. Carla (conforme prompt):
-- De: `"Cada tratamento é planejado individualmente, com tempo e atenção ao que o seu caso específico precisa. Conheça as opções e agende sua avaliação."`
-- Para: `"Cada tratamento é planejado individualmente, com tempo e atenção ao que o seu caso específico precisa. Conheça os serviços oferecidos pela Dra. Carla Christoph em Ipanema."`
+Atualmente o middleware (`redirectMiddleware.ts`) faz `window.history.replaceState(null, '', '/gone')` para URLs 410, mas NAO existe uma rota `/gone` no App.tsx — o que significa que URLs marcadas como "gone" caem no catch-all e sao redirecionadas para home (comportamento incorreto).
+
+**Adicionar:**
+- Lazy import: `const GonePage = lazy(() => import("./pages/GonePage"));`
+- Rota ANTES do catch-all: `<Route path="/gone" element={<GonePage />} />`
+
+---
+
+### Alteracao 3: Substituir catch-all no App.tsx
+
+**De:**
+```
+<Route path="*" element={<Navigate to="/" replace />} />
+```
+
+**Para:**
+```
+<Route path="*" element={<NotFoundPage />} />
+```
+
+**Adicionar lazy import:**
+```
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
+```
+
+NAO alterar nenhuma outra rota.
 
 ---
 
 ### Arquivos modificados (total: 3)
-1. `src/components/ContactSection.tsx` — subtitulo e horario
-2. `src/components/ServicesSection.tsx` — 6 descricoes de cards
-3. `src/pages/ServicesPage.tsx` — ajuste menor na intro
+1. `src/pages/NotFoundPage.tsx` — novo arquivo (pagina 404 com tracking)
+2. `src/App.tsx` — 2 lazy imports novos (NotFoundPage, GonePage), rota `/gone`, catch-all atualizado
+3. `src/pages/NotFound.tsx` — removido (arquivo legado, nunca usado)
 
 ### O que NAO muda
 - Landing pages, configs, componentes ConsultaInicial*
-- App.tsx, rotas
-- Service pages individuais
-- Hero.tsx
-- Formulario do ContactSection (funciona, mantem intacto)
-- Tracking (GTM, Google Ads, GCLID)
+- Service pages
+- `urlRedirects.ts`, `redirectMiddleware.ts`, `seoMonitoring.ts`, `404ErrorHandler.ts`
+- `GonePage.tsx` (conteudo intacto, apenas ganha rota)
+- Tracking existente (GTM, Google Ads, GCLID)
+- Nenhuma rota existente alterada (apenas catch-all)
