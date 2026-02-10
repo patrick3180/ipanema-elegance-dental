@@ -14,73 +14,73 @@ export const emergenciaOdontologicaConfig: LandingPageConfig = {
   },
   
   hero: {
-    headline: 'Emergência Odontológica? Atendimento Prioritário para Urgências em Ipanema',
-    subheadline: 'Seja um dente quebrado, dor súbita ou prótese solta, faremos o possível para te encaixar no primeiro horário. Resolva seu problema com agilidade e segurança.',
-    ctaText: 'Agendar Meu Atendimento Urgente',
+    headline: 'Emergência Odontológica em Ipanema — Encaixe Prioritário',
+    subheadline: 'Dente quebrado, dor aguda, prótese solta ou inchaço. Entre em contato pelo WhatsApp e resolveremos o mais rápido possível.',
+    ctaText: 'Pedir Atendimento Agora',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
   
   benefits: [
-    'Atendimento prioritário para diversos tipos de urgência',
-    'Solução rápida e segura para o seu desconforto',
-    'Diagnóstico preciso para tratar a causa do problema',
-    'WhatsApp 24h para agendamentos e orientações imediatas'
+    'WhatsApp 24h — resposta imediata',
+    'Encaixe prioritário na agenda',
+    'Diagnóstico e resolução no mesmo dia',
+    '20+ anos de experiência'
   ],
   
   problem: {
-    title: 'Sabemos que Imprevistos Dentais Acontecem',
-    description: 'Uma emergência odontológica pode ser estressante e impactar sua rotina. Seja um acidente, uma dor inesperada ou uma peça protética que soltou, nossa clínica está preparada para oferecer o suporte necessário com a máxima prioridade.',
+    title: 'Imprevistos Dentais Não Esperam',
+    description: 'Uma emergência odontológica é estressante. Você precisa de um profissional que atenda rápido, resolva o problema e explique os próximos passos com clareza.',
     problems: [
-      'Dente quebrado ou lascado em um acidente',
-      'Dor de dente súbita e intensa',
-      'Lente de contato, faceta ou coroa que soltou',
-      'Abscesso, inchaço ou inflamação na gengiva',
-      'Problemas com próteses ou implantes',
-      'Qualquer desconforto que precise de atenção imediata'
+      'Dente que quebrou ou lascou — precisa de restauração urgente.',
+      'Dor de dente intensa que não passa com analgésico.',
+      'Lente, faceta ou coroa que soltou — precisa cimentar.',
+      'Inchaço ou abscesso na gengiva.',
+      'Prótese que soltou ou quebrou.',
+      'Não sabe se é urgência — quer orientação rápida.'
     ]
   },
   
   guide: {
     title: 'Como Funciona o Atendimento de Emergência',
-    subtitle: 'Nosso processo para resolver seu problema com rapidez e eficiência',
+    subtitle: 'Do contato à resolução — rápido e organizado.',
     steps: [
-      { number: '1', title: 'Contato Imediato via WhatsApp', description: 'Envie sua mensagem descrevendo a situação. Nossa equipe responde 24h e pode orientar sobre os primeiros cuidados.' },
-      { number: '2', title: 'Agendamento Prioritário', description: 'Casos de urgência têm preferência total na agenda. Faremos o máximo para encontrar um encaixe no mesmo dia.' },
-      { number: '3', title: 'Avaliação da Emergência', description: 'Na consulta, faremos uma análise completa do problema, com exames se necessário, para definir o melhor tratamento imediato.' },
-      { number: '4', title: 'Resolução Imediata', description: 'Realizamos o procedimento necessário para resolver a urgência, seja uma restauração, o alívio da dor ou a cimentação de uma peça.' },
-      { number: '5', title: 'Próximos Passos', description: 'Você sai da clínica com o problema emergencial resolvido e um plano claro para qualquer tratamento definitivo que seja necessário.' }
+      { number: '1', title: 'WhatsApp Imediato', description: 'Descreva o que aconteceu. Nossa equipe responde 24h e orienta os primeiros cuidados enquanto agenda o encaixe.' },
+      { number: '2', title: 'Encaixe Prioritário', description: 'Urgências têm preferência na agenda. Na maioria dos casos, conseguimos atender no mesmo dia.' },
+      { number: '3', title: 'Diagnóstico e Tratamento', description: 'Avaliação completa, radiografia se necessário, e resolução imediata — restauração, cimentação, alívio da dor.' },
+      { number: '4', title: 'Orientação de Continuidade', description: 'Você sai com o problema resolvido e um plano claro para tratamento definitivo, se necessário.' }
     ]
   },
 
   socialProof: {
-    title: 'O Que Nossos Pacientes Dizem Sobre o Atendimento de Urgência',
+    title: 'Quem Precisou, Conta',
     testimonials: [
-        { name: 'Rafael T., Executivo de Marketing', text: 'Tive uma emergência no domingo. Mandei um WhatsApp e consegui um encaixe para segunda de manhã. A Dra. Carla foi incrível, resolveu meu problema com uma agilidade e competência impressionantes!', rating: 5 },
-        { name: 'Daniela M., Mãe de Paciente', text: 'Minha filha teve um acidente na escola e a Dra. Carla nos encaixou no mesmo dia. Foi super cuidadosa e o resultado ficou perfeito. A calma que ela nos passou foi essencial.', rating: 5 },
-        { name: 'Carlos Eduardo S., Advogado', text: 'Minha coroa soltou e eu tinha uma audiência importante. Fui atendido com prioridade e saí com tudo resolvido. Atendimento eficiente e de altíssima qualidade.', rating: 5 }
+        { name: 'Renata S. — Ipanema', text: 'Soltou minha lente num sábado. Mandei mensagem no WhatsApp e na segunda cedo já estava no consultório. Resolveu na hora.' },
+        { name: 'Marcos T. — Leblon', text: 'Acordei com dor forte num dente. Consegui encaixe no mesmo dia. A Dra. Carla diagnosticou, resolveu a urgência e planejou o tratamento definitivo.' },
+        { name: 'Ana Clara R. — Copacabana', text: 'Quebrei o dente da frente num acidente. O atendimento foi rápido e a restauração ficou natural. Ninguém percebe.' }
     ],
     stats: [
+        { number: '24h', label: 'WhatsApp Disponível' },
         { number: '20+', label: 'Anos de Experiência' },
         { number: '4.000+', label: 'Pacientes Atendidos' },
-        { number: '1 hora', label: 'Mínimo por Agendamento' },
-        { number: '24h', label: 'Atendimento WhatsApp' }
+        { number: 'Mesmo dia', label: 'Encaixe Prioritário' }
     ]
   },
   
   faq: {
-    title: 'Dúvidas Comuns sobre Urgências',
+    title: 'Dúvidas sobre Emergências',
     questions: [
-        { question: 'Que tipo de emergências vocês atendem?', answer: 'Atendemos uma vasta gama de urgências: dentes quebrados, dor aguda, coroas ou facetas que soltaram, problemas em próteses e abscessos. Entre em contato que avaliaremos seu caso.' },
-        { question: 'Conseguem me atender ainda hoje?', answer: 'Faremos todo o possível. Urgências são nossa prioridade e sempre buscamos encaixar esses casos no mesmo dia ou no primeiro horário disponível.' },
-        { question: 'E se a emergência acontecer no fim de semana?', answer: 'Nosso WhatsApp 24h permite que você entre em contato a qualquer momento. Você receberá orientações e garantirá seu agendamento para o primeiro horário útil.' },
-        { question: 'O resultado estético é bom mesmo sendo urgência?', answer: 'Com certeza. Urgência não significa um trabalho de menor qualidade. Utilizamos materiais de alta performance para garantir que você saia com a estética e função do seu sorriso recuperadas.' }
+        { question: 'Vocês atendem no mesmo dia?', answer: 'Nos esforçamos para isso. Entre em contato pelo WhatsApp descrevendo a situação e faremos o possível para encaixar no primeiro horário disponível.' },
+        { question: 'Como saber se é emergência?', answer: 'Se há dor intensa, sangramento que não para, dente quebrado visível, inchaço ou prótese solta — é emergência. Na dúvida, mande mensagem no WhatsApp e orientamos.' },
+        { question: 'O atendimento de emergência resolve de vez?', answer: 'Depende do caso. Muitas vezes sim (restauração, cimentação). Em casos mais complexos, resolvemos a urgência e planejamos o tratamento definitivo para uma consulta seguinte.' },
+        { question: 'Vocês atendem convênios?', answer: 'Nosso atendimento é particular. Na consulta de emergência, resolvemos o problema imediato e apresentamos as opções para continuidade.' }
     ]
   },
   
   cta: {
-    title: 'Não Deixe um Imprevisto Estragar seu Dia',
-    subtitle: 'Entre em contato imediatamente pelo WhatsApp 24h. Temos prioridade total para emergências.',
-    buttonText: 'Agendar Atendimento Urgente'
+    title: 'Precisa de Atendimento Agora?',
+    subtitle: 'Mande mensagem pelo WhatsApp. Respondemos 24h e encaixamos o mais rápido possível.',
+    buttonText: 'Falar no WhatsApp Agora',
+    urgency: 'Quanto antes o atendimento, mais simples a solução.'
   },
   
   contact: {
