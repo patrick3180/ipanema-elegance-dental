@@ -57,14 +57,14 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
     <section
       className="pt-[90px] py-16 lg:py-24 relative overflow-hidden"
       style={{
-        background: 'linear-gradient(180deg, #D4D0B8 0%, #CFCBB4 50%, #C9C4AE 100%)',
+        background: 'linear-gradient(170deg, #FAF7F2 0%, #F5F0E8 40%, #EDE8DC 100%)',
       }}
     >
       {/* Decorative radial gradient */}
       <div
         className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none"
         style={{
-          background: 'radial-gradient(circle at 80% 20%, rgba(179,149,95,0.03) 0%, transparent 70%)',
+          background: 'radial-gradient(circle at 80% 20%, rgba(179,149,95,0.05) 0%, transparent 70%)',
         }}
       />
 
@@ -93,7 +93,7 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
             </div>
 
             {/* Benefits as pills */}
-            <div className="flex flex-wrap gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {benefits.map((benefit, index) => (
                 <span
                   key={index}
