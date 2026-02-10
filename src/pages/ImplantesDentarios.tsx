@@ -164,7 +164,7 @@ const ImplantesDentarios = () => {
               <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]">
               <div className="aspect-[5/4] lg:aspect-square relative">
                 <img 
-                  src="/lovable-uploads/Implante unitario.webp"
+                  src="/lovable-uploads/implante-unitario.webp"
                   alt="Implante Unitário"
                   className="w-full h-full object-cover"
                 />
@@ -215,7 +215,7 @@ const ImplantesDentarios = () => {
               <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]">
               <div className="aspect-[5/4] lg:aspect-square relative">
                 <img 
-                  src="/lovable-uploads/Ponte Implante.webp"
+                  src="/lovable-uploads/ponte-implante.webp"
                   alt="Ponte sobre Implantes"
                   className="w-full h-full object-cover"
                 />
@@ -266,7 +266,7 @@ const ImplantesDentarios = () => {
               <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]">
               <div className="aspect-[5/4] lg:aspect-square relative">
                 <img 
-                  src="/lovable-uploads/all in 4.webp"
+                  src="/lovable-uploads/all-in-4.webp"
                   alt="Protocolo All-on-4/6"
                   className="w-full h-full object-cover"
                 />
@@ -317,7 +317,7 @@ const ImplantesDentarios = () => {
               <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]">
               <div className="aspect-[5/4] lg:aspect-square relative">
                 <img 
-                  src="/lovable-uploads/Overdenture com clips de retenção.webp"
+                  src="/lovable-uploads/overdenture-clips-retencao.webp"
                   alt="Overdenture"
                   className="w-full h-full object-cover"
                 />
