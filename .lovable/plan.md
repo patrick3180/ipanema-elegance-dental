@@ -1,86 +1,116 @@
 
 
-## Prompt 11 — Correcoes da Auditoria Completa de LPs
+## Prompt 12 — Correcoes Pos-Execucao do Prompt 11
 
 ### Resumo
-4 correcoes de conteudo em arquivos de config TypeScript. Nenhum componente, rota ou estrutura visual e alterado.
+3 alteracoes: corrigir grid adaptativo do Guide, reescrever tom da LP Dente Quebrado, e reestruturar LPLentesPorcelana com secoes padrao.
 
 ---
 
-### Alteracao 1: `src/config/consultaInicialConfig.ts`
+### Alteracao 1: `src/components/landing/consulta/ConsultaInicialGuide.tsx`
 
-**Benefits** (linhas 23-28): Trocar "Diagnostico clinico detalhado" por "Somente materiais de primeira linha"
+Substituir o grid fixo `grid-cols-1 md:grid-cols-2 lg:grid-cols-3` (linha 37) por logica condicional baseada no numero de steps:
+
+```tsx
+const getGridClass = (count: number) => {
+  if (count === 3 || count === 6) return 'grid grid-cols-1 md:grid-cols-3 gap-8';
+  return 'grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto';
+};
 ```
-benefits: [
-  "Minimo de 1h por consulta",
-  "Somente materiais de primeira linha",
-  "WhatsApp 24h",
-  "20+ anos de experiencia"
-],
+
+- 3 steps: `md:grid-cols-3` (1 linha)
+- 4 steps: `sm:grid-cols-2` (2x2 simetrico)
+- 5 steps: `sm:grid-cols-2` (2+2+1, ultimo centralizado via col-span hack ou simplesmente centralizado pelo max-w + mx-auto)
+- 6 steps: `md:grid-cols-3` (2x3)
+
+Para centralizar o ultimo card quando impar (5 steps), adicionar logica no map:
+
+```tsx
+{steps.map((step, index) => {
+  const isOddLast = steps.length % 2 !== 0 && index === steps.length - 1 
+    && steps.length !== 3 && steps.length !== 6;
+  return (
+    <div key={index} className={`bg-white rounded-lg p-6 ... ${isOddLast ? 'sm:col-span-2 sm:max-w-sm sm:mx-auto' : ''}`}>
+      ...
+    </div>
+  );
+})}
 ```
 
-**Problem** (linhas 30-41): Reescrever inteiro — remover criticas implicitas a outros profissionais ("15 minutos", "apressado", "superficiais") e focar no que o paciente precisa:
-- Titulo: "Quando Voce Precisa de uma Consulta de Verdade"
-- Descricao focada no valor, nao na critica
-- 6 itens escritos na primeira pessoa do paciente ("Preciso de tempo...", "Quero sair entendendo...", etc.)
+---
+
+### Alteracao 2: `src/config/denteQuebradoConfig.ts`
+
+Substituir 3 campos apenas:
+
+**hero.subheadline** (linha 18): Remover "ninguem vai perceber" (promessa exagerada). Novo texto:
+```
+'Encaixe prioritario para resolver rapido. A Dra. Carla Christoph restaura dentes fraturados com materiais que reproduzem a aparencia natural do dente original.'
+```
+
+**problem** (linhas 30-41): Reescrever inteiro — remover "Constrangedor", "Constrangimento em reunioes", "afeta a confianca em qualquer situacao social". Novo:
+- title: "Dente Quebrou — E Agora?"
+- description factual sem manipulacao emocional
+- 6 problems focados no problema clinico, nao no constrangimento
+
+**socialProof.title** (linha 55): De "Quem Precisou, Conta" para "Quem Ja Passou por Isso"
+
+Campos intactos: campaign, messageMatch, whatsapp, hero.headline, hero.ctaText, hero.backgroundImage, benefits, guide, faq, cta, contact, seo, tracking.
 
 ---
 
-### Alteracao 2: `src/config/lentesPorcelanaProfissionalConfig.ts`
+### Alteracao 3: `src/pages/LPLentesPorcelana.tsx`
 
-Substituir campos hero, benefits, problem, guide, socialProof, faq e cta. Manter INTACTOS: campaign, messageMatch, whatsapp, contact, seo, tracking.
+Reestruturacao major — manter hero (linhas 87-140) e cards de indicacoes (linhas 142-217), remover accordions (linhas 219-397), adicionar secoes padrao.
 
-Mudancas principais:
-- **Hero**: headline "Lentes de Porcelana em Ipanema — Resultado Natural que Dura mais de 15 Anos" (remover "Investimento Estrategico" e "Imagem Profissional")
-- **Benefits**: Porcelana de alta translucidez, Test Drive, WhatsApp 24h, 20+ anos
-- **Problem**: titulo "Quer Transformar Seu Sorriso mas Tem Receio do Resultado?" (remover tom coaching)
-- **Guide**: 4 steps factuais (Consulta, Test Drive, Laboratorio, Cimentacao)
-- **SocialProof**: 3 depoimentos nome+bairro sem rating, stats com iTero e "100% Casos com Test Drive"
-- **FAQ**: 6 perguntas factuais (remover "excelencia", "perfeito")
-- **CTA**: "Quer Ver Como Seu Sorriso Pode Ficar?" sem urgency
+**Adicionar imports:**
+- `lentesPorcelanaAcolhedorConfig` de `@/config/lentesPorcelanaAcolhedorConfig`
+- `ConsultaInicialHeader` (import direto)
+- Lazy imports: `ConsultaInicialProblem`, `ConsultaInicialGuide`, `ConsultaInicialSocialProof`, `ConsultaInicialFAQ`, `ConsultaInicialCTA`, `ClareamentoFooter`, `FloatingWhatsApp`
+- `React, { Suspense }` e `useEffect`
+
+**Remover imports nao mais usados:**
+- `Accordion`, `AccordionContent`, `AccordionItem`, `AccordionTrigger`
+
+**Atualizar handleWhatsAppClick:**
+- Usar `lentesPorcelanaAcolhedorConfig.whatsapp.number` e `.message` em vez de strings hardcoded
+
+**Adicionar antes do hero:**
+- `ConsultaInicialHeader` com props da config
+
+**Manter intacto:**
+- Hero section (linhas 87-140)
+- Cards de indicacoes (linhas 142-217)
+
+**Substituir accordions (linhas 219-397) por:**
+```
+<Suspense fallback={...}>
+  <ConsultaInicialProblem ... />
+  <ConsultaInicialGuide ... />
+  <ConsultaInicialSocialProof ... />
+  <ConsultaInicialFAQ ... />
+  <ConsultaInicialCTA ... />
+  <ClareamentoFooter />
+  <FloatingWhatsApp ... />
+</Suspense>
+```
+
+Todas as props vem de `lentesPorcelanaAcolhedorConfig`.
+
+**Adicionar useEffect** para GCLID capture e dataLayer push (mesmo padrao de LentesDeContatoPorcelanaLandingPage.tsx).
 
 ---
 
-### Alteracao 3: `src/config/landingPageConfigs.ts`
-
-Substituir arquivo inteiro por export vazio com comentario explicativo. Remove lentesConfig e implantesConfig (codigo morto com WhatsApp errado, ratings, stats inventadas, "consulta gratuita").
-
-Tambem atualizar `src/pages/LandingPageTemplate.tsx` linha 4: remover import de lentesConfig e usar um fallback inline ou importar de outro config. Como LandingPageTemplate nao e usado em nenhuma rota (confirmado: nao aparece no App.tsx), a solucao mais simples e:
-- Remover o import de lentesConfig (linha 4)
-- Trocar `const pageConfig = config || lentesConfig;` por `const pageConfig = config!;` (o componente so funciona com config passado via props)
-
----
-
-### Alteracao 4: Mencao a materiais de primeira linha em 4 configs
-
-**4A: `src/config/implantesDentariosConfig.ts`** (linha 52)
-- Step 5 description: trocar final de `"planejada para encaixar com precisao e parecer natural."` para `"com materiais de primeira linha selecionados individualmente para cada caso."`
-
-**4B: `src/config/especialistaProteseConfig.ts`** (linha 49)
-- Step 3 description: trocar `"usando materiais selecionados"` por `"usando somente materiais de primeira linha"`
-
-**4C: `src/config/clareamentoConfig.ts`** (linha 49)
-- Step 3 description: adicionar ao final `" Utilizamos somente geis clareadores de primeira linha."`
-
-**4D: `src/config/lentesPorcelanaAcolhedorConfig.ts`** (linha 49)
-- Step 3 description: trocar `"Porcelana que reproduz a cor e translucidez dos dentes naturais."` por `"somente materiais de primeira linha. Reproduz a cor e o brilho dos dentes naturais."`
-
----
-
-### Arquivos modificados (total: 7)
-1. `src/config/consultaInicialConfig.ts` — benefits + problem
-2. `src/config/lentesPorcelanaProfissionalConfig.ts` — hero, benefits, problem, guide, socialProof, faq, cta
-3. `src/config/landingPageConfigs.ts` — substituir por export vazio
-4. `src/pages/LandingPageTemplate.tsx` — remover import de lentesConfig
-5. `src/config/implantesDentariosConfig.ts` — step 5 description
-6. `src/config/especialistaProteseConfig.ts` — step 3 description
-7. `src/config/clareamentoConfig.ts` — step 3 description
-8. `src/config/lentesPorcelanaAcolhedorConfig.ts` — step 3 description
+### Arquivos modificados (total: 3)
+1. `src/components/landing/consulta/ConsultaInicialGuide.tsx` — grid adaptativo
+2. `src/config/denteQuebradoConfig.ts` — subheadline, problem, socialProof.title
+3. `src/pages/LPLentesPorcelana.tsx` — reestruturacao com secoes padrao
 
 ### O que NAO muda
-- Campos campaign, messageMatch, whatsapp, seo, tracking, contact
-- Nenhum componente React visual
+- Campos campaign, messageMatch, whatsapp, seo, tracking
 - App.tsx e rotas
+- Hero customizado e cards de indicacoes do LPLentesPorcelana
+- Tracking (GTM, GCLID, Google Ads conversion)
 - backgroundImage de qualquer config
-- Tracking (GTM, GCLID, Google Ads)
+- Nenhuma palavra proibida adicionada
 
