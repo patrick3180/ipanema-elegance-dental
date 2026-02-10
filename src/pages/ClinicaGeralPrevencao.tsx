@@ -314,7 +314,7 @@ const ClinicaGeralPrevencao = () => {
                 </p>
                 
                 <p>
-                  Minha abordagem combina tecnologia de ponta com tempo dedicado para entender suas necessidades reais. 
+                  Minha abordagem combina scanner digital e planejamento individualizado com tempo dedicado para entender suas necessidades reais. 
                   Porque prevenir não é só limpar os dentes - é criar uma relação de confiança onde você se sente cuidado.
                 </p>
               </div>
@@ -428,7 +428,7 @@ const ClinicaGeralPrevencao = () => {
           
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
             Agende seu check-up preventivo e descubra como pequenos cuidados fazem toda a diferença. 
-            Tecnologia de ponta, atendimento humanizado e protocolos personalizados aguardam você em Ipanema.
+            Scanner digital, protocolos personalizados e tempo para cuidar da sua saúde bucal aguardam você em Ipanema.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

@@ -51,7 +51,7 @@ const ProteseDentaria = () => {
     },
     {
       question: "Qual a diferença entre porcelana e resina?",
-      answer: "A porcelana (cerâmica) oferece superior estética, durabilidade e resistência a manchas. É nossa escolha para casos definitivos. A resina pode ser usada em provisórios ou situações específicas. Utilizamos apenas materiais premium importados para garantir o melhor resultado."
+      answer: "A porcelana (cerâmica) oferece superior estética, durabilidade e resistência a manchas. É nossa escolha para casos de longa duração. A resina pode ser usada em provisórios ou situações específicas. Utilizamos materiais de primeira linha para garantir durabilidade e resultado natural."
     },
     {
       question: "É possível fazer prótese com pouco osso?",
@@ -137,7 +137,7 @@ const ProteseDentaria = () => {
         <section className="py-16 bg-white">
           <div className="container-custom">
             <h2 className="heading-lg mb-4 text-center text-dental-purple">
-              Reabilitação Oral que Transforma Vidas
+              Reabilitação Oral Completa
             </h2>
             <p className="text-center text-dental-gray mb-12 max-w-2xl mx-auto">
               Mais de 20 anos devolvendo função, estética e qualidade de vida
@@ -311,7 +311,7 @@ const ProteseDentaria = () => {
               </div>
             </div>
 
-            {/* Protocolo All-on-4/6 - PREMIUM */}
+            {/* Protocolo All-on-4/6 */}
             <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer border-2 border-dental-gold/30">
               <div className="aspect-[4/3] relative">
                 <img 
@@ -326,11 +326,11 @@ const ProteseDentaria = () => {
                   Protocolo All-on-4/6
                 </h3>
                 <p className="text-white/90 text-sm mb-4 line-clamp-3">
-                  Reabilitação total da arcada sobre 4 ou 6 implantes, com prótese fixa para transformação completa do sorriso.
+                  Reabilitação total da arcada sobre 4 ou 6 implantes, com prótese fixa para reabilitação completa da arcada.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">
-                    Transformação Total
+                    Reabilitação Completa
                   </span>
                   <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">
                     Prótese Fixa
@@ -379,7 +379,7 @@ const ProteseDentaria = () => {
               Sua Jornada para um Novo Sorriso
             </h2>
             <p className="text-center text-dental-gray mb-12 max-w-2xl mx-auto">
-              Cada etapa é cuidadosamente planejada para garantir conforto, precisão e resultados excepcionais
+              Cada etapa é cuidadosamente planejada para garantir conforto, precisão e resultados naturais e previsíveis
             </p>
             
             <ProcessTimeline
@@ -415,7 +415,7 @@ const ProteseDentaria = () => {
                 {
                   number: 5,
                   title: "Confecção Artesanal",
-                  description: "Nosso laboratório parceiro cria sua prótese com cerâmicas premium, estratificando cores e texturas para um resultado indistinguível de dentes naturais.",
+                  description: "Nosso laboratório parceiro cria sua prótese com cerâmicas de alta qualidade, estratificando cores e texturas para um resultado indistinguível de dentes naturais.",
                   icon: <Sparkles size={24} />,
                   duration: "1-2 semanas"
                 },
@@ -486,7 +486,7 @@ const ProteseDentaria = () => {
                   <ul className="space-y-2 text-sm text-dental-gray">
                     <li className="flex items-start gap-2">
                       <ArrowRight className="text-dental-gold mt-0.5" size={16} />
-                      <span>Cerâmicas premium importadas</span>
+                      <span>Cerâmicas de alta qualidade</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <ArrowRight className="text-dental-gold mt-0.5" size={16} />
