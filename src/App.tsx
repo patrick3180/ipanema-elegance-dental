@@ -31,6 +31,7 @@ const EmergenciaOdontologicaLandingPage = lazy(() => import("./pages/EmergenciaO
 const EspecialistaProteseLandingPage = lazy(() => import("./pages/EspecialistaProteseLandingPage"));
 const ImplantesDentariosLandingPage = lazy(() => import("./pages/ImplantesDentariosLandingPage"));
 const LPLentesPorcelana = lazy(() => import("./pages/LPLentesPorcelana"));
+const FacetasResinaDiretaLandingPage = lazy(() => import("./pages/FacetasResinaDiretaLandingPage"));
 
 // Service pages - TODAS AS PÁGINAS DE TRATAMENTO
 const SaudeDaGengiva = lazy(() => import("./pages/SaudeDaGengiva"));
@@ -122,6 +123,7 @@ const App = () => {
             <Route path="/lp/especialista-protese-ipanema" element={<EspecialistaProteseLandingPage />} />
             <Route path="/lp/implantes-dentarios-ipanema" element={<ImplantesDentariosLandingPage />} />
             <Route path="/lp/lentes-porcelana-ipanema" element={<LPLentesPorcelana />} />
+                <Route path="/lp/facetas-resina-ipanema" element={<FacetasResinaDiretaLandingPage />} />
                 
                 {/* Service pages - TODAS AS PÁGINAS DE TRATAMENTO */}
                 <Route path="/saude-da-gengiva" element={<SaudeDaGengiva />} />
