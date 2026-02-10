@@ -45,6 +45,8 @@ const RestaureacoesEsteticas = lazy(() => import("./pages/RestaureacoesEsteticas
 const TratamentoDeCanal = lazy(() => import("./pages/TratamentoDeCanal"));
 const ClinicaGeralPrevencao = lazy(() => import("./pages/ClinicaGeralPrevencao"));
 const Ortodontia = lazy(() => import("./pages/Ortodontia"));
+const GonePage = lazy(() => import("./pages/GonePage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -145,8 +147,11 @@ const App = () => {
                 <Route path="/contato" element={<ContactPage />} />
                 <Route path="/diferenciais" element={<Navigate to="/" replace />} />
                 
-                {/* Catch all - redirect to home */}
-                <Route path="*" element={<Navigate to="/" replace />} />
+                {/* Gone page for 410 redirects */}
+                <Route path="/gone" element={<GonePage />} />
+                
+                {/* Catch all - 404 page */}
+                <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </Suspense>
           </BrowserRouter>
