@@ -1,56 +1,86 @@
 
 
-## Prompt 10 — Correcoes no Hero das LPs: Grid de Benefits e Cor de Fundo
+## Prompt 11 — Correcoes da Auditoria Completa de LPs
 
 ### Resumo
-Duas correcoes pontuais no hero das LPs: trocar layout dos benefits de flex-wrap para grid 2x2, e clarear o fundo do hero para harmonizar com a foto da doutora.
+4 correcoes de conteudo em arquivos de config TypeScript. Nenhum componente, rota ou estrutura visual e alterado.
 
 ---
 
-### Arquivos alterados (3)
+### Alteracao 1: `src/config/consultaInicialConfig.ts`
 
-**1. `src/components/landing/consulta/ConsultaInicialHero.tsx`**
+**Benefits** (linhas 23-28): Trocar "Diagnostico clinico detalhado" por "Somente materiais de primeira linha"
+```
+benefits: [
+  "Minimo de 1h por consulta",
+  "Somente materiais de primeira linha",
+  "WhatsApp 24h",
+  "20+ anos de experiencia"
+],
+```
 
-- **Linha 60**: Trocar background do gradiente escuro para claro
-  - De: `linear-gradient(180deg, #D4D0B8 0%, #CFCBB4 50%, #C9C4AE 100%)`
-  - Para: `linear-gradient(170deg, #FAF7F2 0%, #F5F0E8 40%, #EDE8DC 100%)`
+**Problem** (linhas 30-41): Reescrever inteiro — remover criticas implicitas a outros profissionais ("15 minutos", "apressado", "superficiais") e focar no que o paciente precisa:
+- Titulo: "Quando Voce Precisa de uma Consulta de Verdade"
+- Descricao focada no valor, nao na critica
+- 6 itens escritos na primeira pessoa do paciente ("Preciso de tempo...", "Quero sair entendendo...", etc.)
 
-- **Linha 67**: Ajustar opacidade do radial-gradient decorativo
-  - De: `rgba(179,149,95,0.03)`
-  - Para: `rgba(179,149,95,0.05)`
+---
 
-- **Linha 96**: Trocar benefits de flex-wrap para grid 2x2
-  - De: `<div className="flex flex-wrap gap-3">`
-  - Para: `<div className="grid grid-cols-1 sm:grid-cols-2 gap-3">`
+### Alteracao 2: `src/config/lentesPorcelanaProfissionalConfig.ts`
 
-**2. `src/components/landing/HeroSection.tsx`**
+Substituir campos hero, benefits, problem, guide, socialProof, faq e cta. Manter INTACTOS: campaign, messageMatch, whatsapp, contact, seo, tracking.
 
-- **Linha 70**: Mesmo ajuste de background
-  - De: `linear-gradient(180deg, #D4D0B8 0%, #CFCBB4 50%, #C9C4AE 100%)`
-  - Para: `linear-gradient(170deg, #FAF7F2 0%, #F5F0E8 40%, #EDE8DC 100%)`
+Mudancas principais:
+- **Hero**: headline "Lentes de Porcelana em Ipanema — Resultado Natural que Dura mais de 15 Anos" (remover "Investimento Estrategico" e "Imagem Profissional")
+- **Benefits**: Porcelana de alta translucidez, Test Drive, WhatsApp 24h, 20+ anos
+- **Problem**: titulo "Quer Transformar Seu Sorriso mas Tem Receio do Resultado?" (remover tom coaching)
+- **Guide**: 4 steps factuais (Consulta, Test Drive, Laboratorio, Cimentacao)
+- **SocialProof**: 3 depoimentos nome+bairro sem rating, stats com iTero e "100% Casos com Test Drive"
+- **FAQ**: 6 perguntas factuais (remover "excelencia", "perfeito")
+- **CTA**: "Quer Ver Como Seu Sorriso Pode Ficar?" sem urgency
 
-- **Linha 80**: Ajustar opacidade do radial-gradient
-  - De: `rgba(179,149,95,0.03)`
-  - Para: `rgba(179,149,95,0.05)`
+---
 
-- **Linha 107**: Trocar benefits para grid 2x2 centralizado
-  - De: `<div className="flex flex-wrap justify-center gap-3 mb-10">`
-  - Para: `<div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10 max-w-lg mx-auto">`
+### Alteracao 3: `src/config/landingPageConfigs.ts`
 
-**3. `src/components/performance/CriticalCSSInline.tsx`**
+Substituir arquivo inteiro por export vazio com comentario explicativo. Remove lentesConfig e implantesConfig (codigo morto com WhatsApp errado, ratings, stats inventadas, "consulta gratuita").
 
-- **Linha 12**: Trocar cor de fundo do `.hero-section`
-  - De: `background: #CFCBB4;`
-  - Para: `background: #FAF7F2;`
+Tambem atualizar `src/pages/LandingPageTemplate.tsx` linha 4: remover import de lentesConfig e usar um fallback inline ou importar de outro config. Como LandingPageTemplate nao e usado em nenhuma rota (confirmado: nao aparece no App.tsx), a solucao mais simples e:
+- Remover o import de lentesConfig (linha 4)
+- Trocar `const pageConfig = config || lentesConfig;` por `const pageConfig = config!;` (o componente so funciona com config passado via props)
 
-- **Linha 131**: Trocar `.bg-accent`
-  - De: `background: #CFCBB4;`
-  - Para: `background: #FAF7F2;`
+---
+
+### Alteracao 4: Mencao a materiais de primeira linha em 4 configs
+
+**4A: `src/config/implantesDentariosConfig.ts`** (linha 52)
+- Step 5 description: trocar final de `"planejada para encaixar com precisao e parecer natural."` para `"com materiais de primeira linha selecionados individualmente para cada caso."`
+
+**4B: `src/config/especialistaProteseConfig.ts`** (linha 49)
+- Step 3 description: trocar `"usando materiais selecionados"` por `"usando somente materiais de primeira linha"`
+
+**4C: `src/config/clareamentoConfig.ts`** (linha 49)
+- Step 3 description: adicionar ao final `" Utilizamos somente geis clareadores de primeira linha."`
+
+**4D: `src/config/lentesPorcelanaAcolhedorConfig.ts`** (linha 49)
+- Step 3 description: trocar `"Porcelana que reproduz a cor e translucidez dos dentes naturais."` por `"somente materiais de primeira linha. Reproduz a cor e o brilho dos dentes naturais."`
+
+---
+
+### Arquivos modificados (total: 7)
+1. `src/config/consultaInicialConfig.ts` — benefits + problem
+2. `src/config/lentesPorcelanaProfissionalConfig.ts` — hero, benefits, problem, guide, socialProof, faq, cta
+3. `src/config/landingPageConfigs.ts` — substituir por export vazio
+4. `src/pages/LandingPageTemplate.tsx` — remover import de lentesConfig
+5. `src/config/implantesDentariosConfig.ts` — step 5 description
+6. `src/config/especialistaProteseConfig.ts` — step 3 description
+7. `src/config/clareamentoConfig.ts` — step 3 description
+8. `src/config/lentesPorcelanaAcolhedorConfig.ts` — step 3 description
 
 ### O que NAO muda
-- Conteudo dos configs
+- Campos campaign, messageMatch, whatsapp, seo, tracking, contact
+- Nenhum componente React visual
+- App.tsx e rotas
+- backgroundImage de qualquer config
 - Tracking (GTM, GCLID, Google Ads)
-- Foto da doutora e badge flutuante
-- Tipografia (headline, subtitulo)
-- handleWhatsAppClick / handleCTAClick
 
