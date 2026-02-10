@@ -1,98 +1,56 @@
 
 
-## Bio Canonica, Depoimentos e Limpeza de Cliches
+## Reescrever Conteudo das 3 LPs Prioritarias
 
 ### Resumo
-Aplicar tres melhorias simultaneas: (A) padronizar a bio da Dra. Carla com paragrafos contextuais em 6 paginas, (B) refinar depoimentos removendo estrelas e cliches, (C) eliminar cliches globalmente.
+Atualizar o conteudo de 3 configs de landing pages para eliminar cliches, tornar depoimentos mais naturais (removendo `rating`), e ter textos genuinamente especificos por tratamento. Campos de infraestrutura (campaign, messageMatch, whatsapp, seo, tracking, contact, backgroundImage) permanecem inalterados.
 
----
+### Arquivos alterados
 
-### Parte A -- Bio Canonica (6 arquivos)
+**1. `src/config/implantesDentariosConfig.ts`**
+- Adicionar campo `urgency` no root (nao existia): `"Cada mes sem o dente aumenta a perda ossea -- o momento de agir e agora"`
+- Linhas 16-21: Atualizar hero (headline, subheadline, ctaText) -- manter backgroundImage
+- Linhas 23-28: Substituir benefits por versao especifica (Especialista em Implantodontia, Planejamento com tomografia digital, WhatsApp 24h, 20+ anos)
+- Linhas 30-41: Substituir problem inteiro (novo titulo, descricao e 6 itens)
+- Linhas 43-52: Substituir guide inteiro (novo titulo, subtitulo, 5 steps em vez de 4)
+- Linhas 54-67: Substituir socialProof (novo titulo, 3 depoimentos sem rating com nome+bairro, 4 stats atualizados)
+- Linhas 69-77: Substituir faq (novo titulo, 6 perguntas em vez de 4)
+- Linhas 79-83: Substituir cta (novo titulo, subtitulo, buttonText, adicionar urgency)
 
-Cada arquivo tera o paragrafo 1 identico + paragrafo 2 contextual. Layout, foto, badge e grid de credenciais permanecem inalterados.
+**2. `src/config/lentesPorcelanaAcolhedorConfig.ts`**
+- Linhas 16-21: Atualizar hero (headline, subheadline, ctaText) -- manter backgroundImage
+- Linhas 23-28: Substituir benefits
+- Linhas 30-41: Substituir problem inteiro
+- Linhas 43-52: Substituir guide inteiro
+- Linhas 54-67: Substituir socialProof (remover rating, nomes com bairro, stats atualizados)
+- Linhas 69-77: Substituir faq (6 perguntas em vez de 4)
+- Linhas 79-83: Substituir cta (sem urgency)
 
-**1. `src/components/AboutSection.tsx`** (linhas 68-76)
-- Substituir os 3 paragrafos atuais por:
-  - P1 (core): "Com mais de duas decadas em Ipanema, a Dra. Carla construiu sua reputacao..."
-  - P2 (homepage): "Especialista em Protese Dentaria e Implantodontia, a Dra. Carla utiliza escaneamento digital intraoral..."
+**3. `src/config/clareamentoConfig.ts`**
+- Linha 5: Remover/limpar campo `urgency` do root
+- Linhas 17-22: Atualizar hero (headline, subheadline, ctaText) -- manter backgroundImage
+- Linhas 24-29: Substituir benefits
+- Linhas 31-42: Substituir problem inteiro
+- Linhas 44-69: Substituir guide inteiro
+- Linhas 71-104: Substituir socialProof (remover rating, nomes com bairro, 4 stats)
+- Linhas 106-142: Substituir faq (6 perguntas em vez de 8)
+- Linhas 144-149: Substituir cta (remover urgency)
 
-**2. `src/pages/ClareamentoDental.tsx`** (linhas ~604-614)
-- Substituir os 2 paragrafos da secao da especialista por bio core + paragrafo contextual clareamento
+### Conteudo novo
+Todo o conteudo novo esta especificado no prompt do usuario. Cada config recebe textos unicos e especificos ao tratamento:
+- **Implantes**: Tom focado em funcionalidade, seguranca, perda ossea progressiva. 5 steps no guide (inclui etapa de planejamento digital). Urgencia genuina sobre perda ossea.
+- **Lentes**: Tom acolhedor, foco em naturalidade e Test Drive. Sem urgencia artificial. Stats com "iTero" em vez de percentual generico.
+- **Clareamento**: Tom direto, focado em seguranca e resultado natural. 3 modalidades como stat diferencial. Sem urgencia.
 
-**3. `src/pages/LentesEFacetas.tsx`** (linhas ~704-709)
-- Substituir os 2 paragrafos por bio core + paragrafo contextual lentes/facetas (iTero, Test Drive)
-
-**4. `src/pages/ProteseDentaria.tsx`** (linhas ~544-555)
-- Substituir os 2 paragrafos por bio core + paragrafo contextual protese (reabilitacao oral, casos complexos)
-
-**5. `src/pages/RestaureacoesEsteticas.tsx`** (linhas ~90-96)
-- Substituir os 2 paragrafos por bio core + paragrafo contextual restauracoes (resinas, translucidez natural)
-
-**6. `src/pages/Ortodontia.tsx`** (linhas ~559-571)
-- Substituir os 2 paragrafos da Dra. Carla por bio core + paragrafo contextual ortodontia (parceria com Dr. Bruno)
-- NAO alterar a bio do Dr. Bruno
-
----
-
-### Parte B -- Refinar Depoimentos
-
-**`src/components/TestimonialsSection.tsx`**
-- Remover import de `StarIcon`
-- Remover campos `rating` e `location` dos dados
-- Integrar bairro no campo `name` (ex: "Beatriz M. -- Ipanema")
-- Substituir textos dos 3 depoimentos pelos novos (tom conversacional, especificos, sem cliches)
-- Remover bloco de renderizacao das estrelas (linhas 46-54)
-- Remover `<span>` do location (linha 58)
-
-Novos depoimentos conforme especificado no prompt (Beatriz/lentes, Roberto/reabilitacao, Juliana/acompanhamento).
-
----
-
-### Parte C -- Limpeza de Cliches
-
-**`src/components/Hero.tsx`**
-- H1 (linha 47): "Dra. Carla Christoph: Dentista em Ipanema para um Sorriso Perfeito" → "Dra. Carla Christoph — Dentista Especialista em Ipanema"
-- Subtitulo (linhas 49-50): remover "une a excelencia da odontologia estetica a um atendimento personalizado. Cuidamos do seu sorriso com a dedicacao que ele merece." → "Odontologia estetica e reabilitacao oral com tempo e atencao ao seu caso."
-
-**`src/pages/ServicesPage.tsx`**
-- Adicionar paragrafo introdutorio antes do `<ServicesSection />`: "Cada tratamento e planejado individualmente, com tempo e atencao ao que o seu caso especifico precisa. Conheca as opcoes e agende sua avaliacao."
-
-**`src/pages/Ortodontia.tsx`**
-- Linha 209: "tratamento ortodontico de excelencia" → "tratamento ortodontico especializado"
-- Linhas 246-249: "cuidado personalizado... excelencia nos resultados" → "cuidado individual... precisao nos resultados"
-- Linhas 567-570: "tratamento tecnico de excelencia, mas tambem o cuidado e atencao que merecem durante toda a transformacao do sorriso" → "o tratamento mais indicado, com o tempo e atencao que cada caso exige"
-- Linhas 653-656: "transformar seu sorriso. Tecnologia avancada, expertise comprovada e atendimento personalizado te aguardam" → "alinhar seu sorriso. Scanner iTero 3D, Invisalign e consultas sem pressa te aguardam"
-
-**`src/pages/ProteseDentaria.tsx`**
-- Linha 123 (hero description): "materiais de excelencia" → "materiais de alta qualidade"
-
-**`src/pages/LentesEFacetas.tsx`**
-- Linha 206 (hero description): "Transforme seu sorriso" → "Recupere a confianca no seu sorriso"
-
-**`src/pages/AboutPage.tsx`**
-- Linha 130: "materiais de excelencia para garantir resultados naturais, funcionais e duradouros" → "materiais de alta qualidade para garantir resultados naturais e funcionais"
-- Linha 136: "Cuidado Personalizado e Excelencia em Materiais" → "Atencao Individual e Qualidade em Materiais"
-- Linha 139: substituir "atendimento e totalmente individualizado" e "materiais de excelencia" por versoes sem cliche
-
-**`src/pages/ServiceDetail.tsx`**
-- Linha 14: "Transforme seu sorriso" → "Corrija cor, forma e imperfeicoes"
-- Linha 15: "resultados naturais e duradouros" → "resultado que respeita a aparencia natural dos dentes"
-
-**`src/components/landing/limpeza/LimpezaDentalCTA.tsx`**
-- Linha 141: "Atendimento particular de excelencia" → "Atendimento particular com tempo dedicado"
-
-**`src/components/seo/InternalLinkingOptimizer.tsx`**
-- Linha 53: "Tecnologia de ponta" → "Scanner iTero 3D"
-
----
+### Mudancas no tipo de dados
+- Campo `rating` removido de todos os testimonials (ja e opcional no tipo `LandingPageConfig`)
+- Campo `urgency` do root: adicionado em implantes, mantido undefined/removido em lentes e clareamento
+- Campo `urgency` do cta: adicionado em implantes, removido em lentes e clareamento
 
 ### O que NAO muda
-- Funcionalidades, tracking, componentes de performance, estrutura de rotas
-- Meta tags, structured data, SEO tecnico (exceto onde cliches aparecem em meta descriptions visadas)
-- CTAs WhatsApp, botao flutuante
-- Design system (cores, tipografia, espacamento)
-- Bio do Dr. Bruno na pagina de Ortodontia
-- Paginas ja reescritas nos Prompts 1-3 (Implantes, Canal, Gengiva)
-
-### Total de arquivos editados: ~12
+- Campos campaign, messageMatch, whatsapp, seo, tracking, contact
+- backgroundImage em cada hero
+- Imports e exports
+- Nenhum outro arquivo
+- Estrutura dos componentes que consomem essas configs
 
