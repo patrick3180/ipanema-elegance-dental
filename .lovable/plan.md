@@ -1,113 +1,34 @@
 
+## Corrigir imagens quebradas nos cards de implantes
 
-## Corrigir Tracking: GTM, Conversoes e Limpeza
+### Diagnostico
+As imagens dos 4 cards de modalidades na pagina `/implantes-dentarios` usam nomes de arquivo com **espacos** (ex: `Implante unitario.webp`, `Ponte Implante.webp`, `all in 4.webp`, `Overdenture com clips de retencao.webp`). No preview do Lovable elas funcionam, mas em producao os espacos nos nomes podem causar falhas dependendo de como o CDN codifica as URLs.
 
-### Resumo
-O GTM esta sendo carregado de multiplos lugares (index.html, GTMManager, AsyncScriptManager, useEffect em landing pages), causando duplicacao e potencial perda de conversoes. O delay de 8s no index.html e excessivo. O formulario de contato nao rastreia conversoes do Google Ads. E uma landing page usa sessionStorage para GCLID em vez de localStorage.
+A solucao e **adicionar loading="eager" e tratamento de erro** nas imagens dos cards, e garantir que as URLs estejam corretamente encodadas. Alternativamente, podemos renomear os arquivos para nomes sem espacos (mais robusto).
 
----
+### Solucao: Renomear arquivos + atualizar referencias
 
-### PARTE 1 -- Reduzir delay do GTM (index.html)
+**Abordagem mais robusta:** Copiar os 4 arquivos com nomes sem espacos e atualizar as referencias no codigo.
 
-Substituir o bloco com `setTimeout(..., 8000)` por carregamento com delay de 2s OU primeira interacao (mousedown/touchstart/scroll/keydown).
-
----
-
-### PARTE 2 -- Remover carregamento duplicado do GTM
-
-#### a) GTMManager.tsx -- retornar null
-O componente e usado em 7 landing pages: Ortodontia, ConsultaInicial, Clareamento, Implantes, Limpeza, DorDeDente, DenteQuebrado, Emergencia. Fazer o componente retornar `null` sem remover os imports (seguro).
-
-#### b) LazyScriptLoader.tsx -- pass-through
-Nao e usado em nenhum lugar (so definido). Fazer retornar `<>{children}</>`.
-
-#### c) AsyncScriptManager.tsx -- retornar null
-Usado em 3 landing pages: Profilaxia (sem props de GTM, ja retorna null), Clareamento (com enableTracking=true), Implantes (com enableTracking=true). Fazer retornar `null`.
-
-#### d) Remover carregamento de scripts GTM via useEffect em 10 landing pages
-
-Manter os pushes de `window.dataLayer` (page_view events). Remover APENAS o codigo que cria `<script>` tags e listeners de interacao para GTM/gtag.
-
-| Landing Page | Linhas do useEffect com script GTM |
+#### Arquivos a renomear (copiar com novo nome)
+| Arquivo atual | Novo nome |
 |---|---|
-| DorDeDenteLandingPage.tsx | L59-91 (loadGTM + listeners) |
-| DenteQuebradoLandingPage.tsx | L59-91 (loadGTM + listeners) |
-| EmergenciaOdontologicaLandingPage.tsx | L59-91 (loadGTM + listeners) |
-| LimpezaDentalLandingPage.tsx | L73-105 (loadGTM + listeners) |
-| EspecialistaProteseLandingPage.tsx | L58-84 (deferGTM + listeners) |
-| EsteticaSorrisoLandingPage.tsx | L52-83 (loadGTM + listeners) |
-| LentesDeContatoPorcelanaLandingPage.tsx | L57-92 (loadGTM + listeners) |
-| LentesDeContatoEmPorcelanaProfissionalLandingPage.tsx | L61-100 (loadGTM + listeners) |
-| SaudeGengivalLandingPage.tsx | L60-93 (gtmScript + listeners) |
-| ProfilaxiaLandingPage.tsx | L64-97 (useEffect script) + L164-173 (Helmet inline script) + L210 (noscript iframe) |
-| OrtodontiaLandingPage.tsx | L40-80 (gtag config + listeners -- NAO cria script tag, apenas configura gtag; remover listeners e gtag config, manter dataLayer push) |
-| ConsultaInicialLandingPage.tsx | L40-80 (mesmo padrao que Ortodontia -- remover gtag config + listeners, manter dataLayer push) |
+| `Implante unitario.webp` | `implante-unitario.webp` |
+| `Ponte Implante.webp` | `ponte-implante.webp` |
+| `all in 4.webp` | `all-in-4.webp` |
+| `Overdenture com clips de retenção.webp` | `overdenture-clips-retencao.webp` |
 
----
-
-### PARTE 3 -- Conversao Ads no formulario de contato (ContactSection.tsx)
-
-Adicionar tracking de conversao Google Ads dentro do bloco `if (response.ok)`, apos o push do dataLayer e antes do toast de sucesso:
-
-```text
-if (window.gtag) {
-  window.gtag('event', 'conversion', {
-    'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
-    'event_callback': function() {
-      console.log('Google Ads conversion tracked - Contact Form Submit');
-    }
-  });
-}
-```
-
----
-
-### PARTE 4 -- GCLID: sessionStorage para localStorage
-
-No arquivo `LentesDeContatoEmPorcelanaProfissionalLandingPage.tsx` (unico que usa sessionStorage), substituir:
-```text
-sessionStorage.setItem('gclid', gclid);
-```
-Por:
-```text
-localStorage.setItem('gclid', gclid);
-localStorage.setItem('gclid_timestamp', Date.now().toString());
-localStorage.setItem('gclid_page', window.location.pathname);
-```
-
----
-
-### Resumo de arquivos alterados
-
-| Arquivo | Mudanca |
-|---|---|
-| index.html | GTM delay 8s para 2s + interacao |
-| GTMManager.tsx | return null |
-| LazyScriptLoader.tsx | pass-through |
-| AsyncScriptManager.tsx | return null |
-| ContactSection.tsx | Ads conversion tracking |
-| LentesDeContatoEmPorcelanaProfissionalLandingPage.tsx | sessionStorage para localStorage + remover GTM script |
-| DorDeDenteLandingPage.tsx | Remover GTM script creation |
-| DenteQuebradoLandingPage.tsx | Remover GTM script creation |
-| EmergenciaOdontologicaLandingPage.tsx | Remover GTM script creation |
-| LimpezaDentalLandingPage.tsx | Remover GTM script creation |
-| EspecialistaProteseLandingPage.tsx | Remover GTM script creation |
-| EsteticaSorrisoLandingPage.tsx | Remover GTM script creation |
-| LentesDeContatoPorcelanaLandingPage.tsx | Remover GTM script creation |
-| SaudeGengivalLandingPage.tsx | Remover GTM script creation |
-| ProfilaxiaLandingPage.tsx | Remover GTM script creation + Helmet inline script + noscript |
-| OrtodontiaLandingPage.tsx | Remover gtag config + listeners |
-| ConsultaInicialLandingPage.tsx | Remover gtag config + listeners |
+#### Arquivo a editar
+**`src/pages/ImplantesDentarios.tsx`** — Atualizar os 4 `src` das imagens:
+- Linha 167: `/lovable-uploads/Implante unitario.webp` → `/lovable-uploads/implante-unitario.webp`
+- Linha 218: `/lovable-uploads/Ponte Implante.webp` → `/lovable-uploads/ponte-implante.webp`
+- Linha 269: `/lovable-uploads/all in 4.webp` → `/lovable-uploads/all-in-4.webp`
+- Linha 320: `/lovable-uploads/Overdenture com clips de retenção.webp` → `/lovable-uploads/overdenture-clips-retencao.webp`
 
 ### O que NAO muda
-- Container ID GTM-WZRDNBKQ
-- Conversion action AW-16894364517/OQZvCMXV0foZEOqP7vY9
-- Logica de GCLID em src/utils/gclid.ts
-- Webhook de GCLID
-- window.dataLayer pushes (page_view events preservados)
-- vercel.json
-- Nenhum componente visual ou de layout
+- Nenhum outro arquivo ou componente
+- Layout, gradientes e texto dos cards permanecem identicos
+- Nenhuma outra imagem do projeto e afetada
 
-### Risco
-Baixo-medio. Altera carregamento de scripts mas nao muda logica de negocio. O GTM passara a ser carregado exclusivamente pelo index.html.
-
+### Por que isso resolve
+Nomes de arquivo com espacos e caracteres especiais (como `ç`) dependem de URL encoding correto. Ao usar nomes kebab-case sem acentos, eliminamos essa dependencia e garantimos compatibilidade com qualquer CDN ou servidor.
