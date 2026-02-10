@@ -88,11 +88,11 @@ const RestaureacoesEsteticas = () => {
               </h2>
               
               <p className="text-lg text-dental-gray leading-relaxed mb-4">
-                Minha abordagem combina <span className="font-semibold text-dental-purple">precisão técnica com arte restauradora</span>. Cada caso é único — avalio não apenas o dente comprometido, mas toda a harmonia do sorriso.
+                Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
               </p>
               
               <p className="text-lg text-dental-gray leading-relaxed mb-8">
-                Acredito que restaurar um dente é mais do que preencher uma cavidade: é <span className="font-semibold text-dental-purple">devolver função, estética e confiança</span> com o máximo de conservação da estrutura dental natural.
+                Nas restaurações, utiliza resinas e cerâmicas que reproduzem a translucidez natural do dente. O objetivo é que a restauração passe despercebida — que o dente tratado seja indistinguível dos demais.
               </p>
 
               {/* Grid 2x2 de informações */}

@@ -120,7 +120,7 @@ const ProteseDentaria = () => {
         <TreatmentHero
           title="Prótese Dentária e Reabilitação Oral"
           subtitle="Especialidade da Dra. Carla Christoph"
-          description="Reconstrução completa do sorriso com planejamento personalizado e materiais de excelência. Especialista com mais de 20 anos de experiência em casos de alta complexidade."
+          description="Reconstrução completa do sorriso com planejamento individualizado e materiais de alta qualidade. Especialista com mais de 20 anos de experiência em casos de alta complexidade."
           badges={["20+ anos de experiência", "CRO-RJ 27.509", "Casos Complexos"]}
           doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
           breadcrumbs={[
@@ -543,16 +543,12 @@ const ProteseDentaria = () => {
                   
                   <div className="space-y-4 text-dental-gray leading-relaxed">
                     <p>
-                      Com mais de duas décadas dedicadas à reabilitação oral, a Dra. Carla 
-                      desenvolveu expertise reconhecida em casos de alta complexidade. Sua 
-                      abordagem combina precisão técnica com sensibilidade artística.
+                      Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
                     </p>
                     
-            <p>
-              Cada caso é tratado de forma absolutamente individual. Não existem 
-              sorrisos padronizados - cada prótese é única, planejada para harmonizar 
-              com suas características faciais e estilo de vida.
-            </p>
+                    <p>
+                      Como especialista em Prótese Dentária, reabilitação oral é onde sua formação se aprofunda. Casos complexos são sua rotina — da coroa unitária à reabilitação completa, cada solução é planejada com base em diagnóstico detalhado e planejamento digital.
+                    </p>
                   </div>
                   
                   {/* Credenciais */}

@@ -127,16 +127,16 @@ const AboutPage = () => {
                   Há mais de 20 anos à frente de consultórios odontológicos, a Dra. Carla Christoph dedica sua carreira a transformar sorrisos e vidas em Ipanema. Com títulos de especialista em Prótese Dental e Implantodontia, e uma busca constante por aperfeiçoamento através de diversos cursos, sua prática é focada em oferecer soluções de reabilitação oral e odontologia estética da mais alta qualidade.
                 </p>
                 <p>
-                  A Dra. Carla combina sua vasta experiência com uma abordagem que prioriza a individualidade de cada paciente, utilizando somente materiais de excelência para garantir resultados naturais, funcionais e duradouros.
+                  A Dra. Carla combina sua vasta experiência com uma abordagem que prioriza a individualidade de cada paciente, utilizando somente materiais de alta qualidade para garantir resultados naturais e funcionais.
                 </p>
               </div>
             </div>
 
             <div className="max-w-3xl mx-auto mb-16">
-              <h2 className="heading-md mb-6 text-center">Nossa Filosofia: Cuidado Personalizado e Excelência em Materiais</h2>
+              <h2 className="heading-md mb-6 text-center">Atenção Individual e Qualidade em Materiais</h2>
               <div className="prose mx-auto">
                 <p>
-                  Acreditamos que cada paciente é único. Por isso, nosso atendimento é totalmente individualizado, desde o diagnóstico preciso até a finalização do tratamento. A Dra. Carla Christoph faz questão de utilizar somente materiais de excelência disponíveis no mercado, assegurando não apenas a estética refinada, mas também a longevidade e a biocompatibilidade dos tratamentos realizados em nossa clínica odontológica em Ipanema.
+                  Cada paciente é tratado de forma individual, desde o diagnóstico até a finalização do tratamento. A Dra. Carla Christoph utiliza materiais de alta qualidade, assegurando estética, longevidade e biocompatibilidade nos tratamentos realizados em nossa clínica em Ipanema.
                 </p>
               </div>
             </div>

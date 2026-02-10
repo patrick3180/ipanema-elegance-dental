@@ -21,6 +21,11 @@ const ServicesPage = () => {
           {/* Breadcrumb navigation */}
           <ServiceBreadcrumb serviceName="Tratamentos Odontológicos" />
           
+          {/* Texto introdutório */}
+          <p className="text-lg text-dental-gray mb-8 max-w-3xl">
+            Cada tratamento é planejado individualmente, com tempo e atenção ao que o seu caso específico precisa. Conheça as opções e agende sua avaliação.
+          </p>
+
           {/* Using the services section component */}
           <ServicesSection />
         </div>

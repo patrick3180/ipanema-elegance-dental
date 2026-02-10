@@ -50,7 +50,7 @@ export const InternalLinkingOptimizer: React.FC<InternalLinkingOptimizerProps> =
       'lentes-de-contato-dental-e-facetas-de-porcelana': [
         { title: 'Clareamento Dental', url: '/clareamento-dental', description: 'Prepare-se antes das lentes', category: 'service' },
         { title: 'Restaurações Estéticas', url: '/restauracoes-esteticas', description: 'Outros tratamentos estéticos', category: 'service' },
-        { title: 'Nossos Diferenciais', url: '/diferenciais', description: 'Tecnologia de ponta', category: 'info' }
+        { title: 'Nossos Diferenciais', url: '/diferenciais', description: 'Scanner iTero 3D', category: 'info' }
       ],
       'implantes-dentarios': [
         { title: 'Prótese Dentária', url: '/protese-dentaria', description: 'Complemento aos implantes', category: 'service' },
