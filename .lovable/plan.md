@@ -1,55 +1,65 @@
 
 
-## Reescrever LPs de Urgencia: Emergencia, Dor de Dente e Dente Quebrado
+## Reescrever LPs: Estetica Dental, Limpeza, Profilaxia e Saude Gengival
 
 ### Resumo
-Atualizar o conteudo de 3 configs de landing pages de urgencia seguindo o padrao estabelecido: eliminar cliches, refinar depoimentos (remover `rating` e profissoes, formato "Nome I. -- Bairro"), textos diretos e urgentes sem sensacionalismo. Campos de infraestrutura permanecem inalterados.
+Ultimas 4 configs de landing pages para reescrever. Mesmo padrao dos prompts anteriores: eliminar cliches (especialmente dados inventados na LP de Limpeza), remover `rating` dos depoimentos, formato "Nome I. -- Bairro", sem urgencia artificial. Campos de infraestrutura permanecem inalterados.
 
 ---
 
 ### Arquivos alterados
 
-**1. `src/config/emergenciaOdontologicaConfig.ts`**
-- Linhas 17-19: Atualizar hero (headline, subheadline, ctaText) -- manter backgroundImage
-- Linhas 23-28: Substituir benefits (WhatsApp 24h, Encaixe prioritario, Diagnostico mesmo dia, 20+ anos)
-- Linhas 30-41: Substituir problem (titulo "Imprevistos Dentais Nao Esperam", nova descricao direta, 6 itens especificos)
-- Linhas 43-53: Substituir guide (4 steps em vez de 5: WhatsApp Imediato, Encaixe Prioritario, Diagnostico e Tratamento, Orientacao de Continuidade)
-- Linhas 55-68: Substituir socialProof (remover rating e profissoes, 3 depoimentos com nome+bairro, stats com "Mesmo dia" em vez de "1 hora")
-- Linhas 70-78: Substituir faq (4 perguntas em vez de 4, novo titulo "Duvidas sobre Emergencias")
-- Linhas 80-84: Substituir cta (titulo "Precisa de Atendimento Agora?", adicionar urgency)
+**1. `src/config/esteticaSorrisoGenericaConfig.ts`**
+- Hero: headline "Estetica Dental em Ipanema -- Sorriso que Combina com Voce", subheadline listando tratamentos, ctaText "Agendar Avaliacao Estetica"
+- Benefits: Visao integrada, Test Drive, WhatsApp 24h, 20+ anos
+- Problem: titulo "Quer Melhorar Seu Sorriso mas Nao Sabe por Onde Comecar?", 6 itens especificos
+- Guide: 4 steps (Conversa e Analise, Diagnostico das Opcoes, Simulacao quando indicado, Voce Decide o Caminho)
+- SocialProof: remover rating, 3 depoimentos com nome+bairro (Marina P., Fernanda G., Thiago R.), stats com iTero
+- FAQ: 5 perguntas (qual tratamento, lentes artificiais, combinar tratamentos, resultado permanente, convenios)
+- CTA: "Quer Saber o que Faz Sentido para Seu Sorriso?", sem urgency
 
-**2. `src/config/dorDeDenteConfig.ts`**
-- Linhas 17-19: Atualizar hero (headline mais direto, subheadline com causas possiveis)
-- Linhas 23-28: Substituir benefits (WhatsApp 24h, Encaixe prioritario, Diagnostico preciso, 20+ anos)
-- Linhas 30-41: Substituir problem (titulo "Dor de Dente Nao E para Aguentar", descricao com consequencia de ignorar, 6 itens sobre tipos de dor)
-- Linhas 43-53: Substituir guide (4 steps em vez de 5: Contato WhatsApp, Diagnostico da Causa, Alivio Imediato, Tratamento Definitivo)
-- Linhas 55-68: Substituir socialProof (remover rating e profissoes, 3 novos depoimentos com nome+bairro, stats com "Mesmo dia")
-- Linhas 70-80: Substituir faq (4 perguntas em vez de 6, novo titulo, incluindo orientacao sobre analgesico e "dor que passa sozinha")
-- Linhas 82-86: Substituir cta (titulo "Nao Aguente a Dor", adicionar urgency factual)
+**2. `src/config/limpezaDentalConfig.ts`**
+- Remover urgency do root (era "Cada dia de adiamento...")
+- Hero: headline "Limpeza Dental Profissional em Ipanema", subheadline sem dados inventados, ctaText "Agendar Minha Limpeza"
+- Benefits: remover dados falsos ("30% mais biofilme", "8-50x mais caro"), substituir por factuais
+- Problem: titulo "Ha Quanto Tempo Voce Nao Faz uma Limpeza Profissional?", 6 itens simples e honestos (remover "90% dos problemas", "R$50 por real investido")
+- Guide: 4 steps em vez de 5 (Avaliacao, Remocao com Ultrassom, Polimento, Orientacao)
+- SocialProof: remover rating e profissoes, 3 novos depoimentos com nome+bairro, stats com "1h+" e "20+" em vez de percentuais inventados
+- FAQ: 5 perguntas em vez de 7, titulo simplificado
+- CTA: "Sua Boca Merece esse Cuidado", sem urgency
 
-**3. `src/config/denteQuebradoConfig.ts`**
-- Linhas 17-19: Atualizar hero (headline focado em restauracao natural, subheadline com materiais)
-- Linhas 23-28: Substituir benefits (WhatsApp 24h, Encaixe prioritario, Restauracao natural, 20+ anos em estetica)
-- Linhas 30-41: Substituir problem (titulo "Dente Quebrado e Urgente -- E Constrangedor", descricao com cenarios reais, 6 itens mais especificos)
-- Linhas 43-72: Substituir guide (4 steps em vez de 5: WhatsApp com foto, Encaixe, Avaliacao+Radiografia, Restauracao)
-- Linhas 75-100: Substituir socialProof (remover rating e profissoes, 3 novos depoimentos conversacionais, stats com "Mesmo dia" e "Anos em Estetica Dental")
-- Linhas 102-134: Substituir faq (5 perguntas em vez de 7, incluindo "o que fazer agora", colagem de fragmento, visibilidade)
-- Linhas 136-140: Substituir cta (titulo "Nao Espere -- Quanto Antes, Mais Simples", adicionar urgency)
+**3. `src/config/profilaxiaConfig.ts`**
+- Remover urgency do root
+- Hero: headline "Profilaxia Dental em Ipanema -- Prevencao que Funciona", subheadline honesta
+- Benefits: remover checkmarks e dados falsos, 4 itens factuais
+- Problem: titulo "Prevencao e o Investimento Mais Inteligente", 6 itens sem percentuais inventados
+- Guide: 4 steps em vez de 5 (Exame Clinico, Remocao de Tartaro e Placa, Polimento e Fluor, Plano Preventivo)
+- SocialProof: remover rating, 3 novos depoimentos com nome+bairro (Fernanda L., Lucas T., Ana Maria B.), stats com "1h+" e "20+"
+- FAQ: 4 perguntas em vez de 7, incluindo "profilaxia e limpeza sao a mesma coisa?"
+- CTA: "Prevencao e o Melhor Tratamento", sem urgency
+
+**4. `src/config/saudeGengivalConfig.ts`**
+- Hero: headline "Saude da Gengiva em Ipanema -- Sangramento e Retracao Merecem Atencao", subheadline direta
+- Benefits: Tratamento integrado com periodontista, Acompanhamento continuo, WhatsApp 24h, 20+ anos
+- Problem: titulo "Sinais na Gengiva que Voce Nao Deveria Ignorar", 6 itens incluindo "tratar gengiva antes de implantar"
+- Guide: 4 steps (Avaliacao Detalhada, Tratamento Periodontal, Reavaliacao, Manutencao Periodica)
+- SocialProof: remover rating, 3 novos depoimentos com nome+bairro, stats com "Integrado / Cuidado com Periodontista"
+- FAQ: 5 perguntas (sangramento normal?, periodontite tem cura?, lentes/implantes com problema gengival?, mau halito?, convenios?)
+- CTA: "Gengiva Saudavel e a Base de Tudo", sem urgency
 
 ---
 
-### Conteudo novo
-Todo o conteudo esta especificado no prompt do usuario (arquivo uploaded). Cada config recebe textos unicos:
-- **Emergencia**: Tom direto e organizado. "Do contato a resolucao". Stats com "Mesmo dia" como encaixe prioritario. Depoimentos: lente que soltou no sabado, dor forte com encaixe no dia, dente quebrado em acidente.
-- **Dor de Dente**: Tom empatico mas factual. Guia "Do Alivio ao Tratamento Definitivo". FAQ inclui orientacao sobre analgesico e alerta sobre dor que passa sozinha (nervo morto). Depoimentos: infeccao diagnosticada, arrependimento de adiar, restauracao infiltrada simples.
-- **Dente Quebrado**: Tom urgente com foco estetico. Guia inclui "mande foto pelo WhatsApp". FAQ orienta guardar fragmento em leite. Depoimentos: azeitona, treino do filho, evento em 2 dias.
+### Destaques desta rodada
+- **Limpeza e Profilaxia**: Remoção de todos os dados percentuais inventados ("30% mais biofilme", "95% biofilme removido", "60% reducao", "8-50x mais caro", "R$50 por real investido"). Substituicao por stats factuais da clinica (20+ anos, 4.000+ pacientes, 1h+ por consulta, 24h WhatsApp).
+- **Estetica**: LP generica ganha tom de "triagem" — ajuda o paciente a descobrir qual tratamento e indicado, sem empurrar uma opcao.
+- **Gengiva**: Destaque para integracao com periodontista e o conceito de "tratar a gengiva antes de investir em estetica ou implantes".
 
 ### Mudancas nos dados
-- Campo `rating` removido de todos os testimonials (3 configs)
-- Profissoes removidas dos nomes, substituidas por bairro
-- Campo `urgency` adicionado ao cta nas 3 configs (urgencia factual, nao artificial)
-- Steps reduzidos de 5 para 4 nas 3 configs
-- Stats "1 hora / Minimo por Agendamento" substituido por "Mesmo dia / Encaixe Prioritario"
+- Campo `rating` removido de todos os testimonials (4 configs)
+- Campo `urgency` do root: removido em limpeza e profilaxia (era "Cada dia de adiamento...")
+- Campo `urgency` do cta: removido em todas as 4 configs
+- Checkmarks (caractere especial) removidos dos benefits da profilaxia
+- Stats com percentuais inventados substituidos por dados factuais da clinica
 
 ### O que NAO muda
 - Campos campaign, messageMatch, whatsapp, seo, tracking, contact
