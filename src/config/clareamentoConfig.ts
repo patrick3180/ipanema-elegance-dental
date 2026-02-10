@@ -2,7 +2,6 @@ import { LandingPageConfig } from "@/types/LandingPageConfig";
 
 export const clareamentoConfig: LandingPageConfig = {
   campaign: "clareamento_dental_ipanema",
-  urgency: "Transforme seu sorriso com técnicas seguras e resultados naturais",
 
   messageMatch: {
     adGroup: "clareamento_dental",
@@ -15,137 +14,74 @@ export const clareamentoConfig: LandingPageConfig = {
   },
 
   hero: {
-    headline: "Clareamento Dental Profissional para um Sorriso Naturalmente Mais Branco em Ipanema",
-    subheadline: "Resultados visíveis e duradouros com técnicas seguras de consultório ou caseiras supervisionadas, personalizadas para seu caso",
-    ctaText: "Quero Meu Sorriso Mais Branco",
+    headline: 'Clareamento Dental que Respeita a Naturalidade do Seu Sorriso',
+    subheadline: 'Protocolos seguros e personalizados para um sorriso mais claro — sem o risco de ficar artificial. Mais de 20 anos de experiência em estética dental.',
+    ctaText: 'Quero Clarear Meu Sorriso',
     backgroundImage: "/lovable-uploads/doutora-em-pe-jaleco.webp"
   },
 
   benefits: [
-    "Resultado natural e harmônico",
-    "WhatsApp 24 horas", 
-    "Atendimento particular exclusivo",
-    "20+ anos de experiência"
+    'Protocolo personalizado por caso',
+    'Resultado natural, sem "dente de chiclete"',
+    'WhatsApp 24h',
+    '20+ anos de experiência'
   ],
 
   problem: {
-    title: "Sabemos Como Dentes Amarelados Podem Afetar Sua Confiança",
-    description: "Um sorriso amarelado pode fazer você evitar fotos, cobrir a boca ao sorrir ou sentir-se inseguro em momentos importantes. Entendemos essa frustração e estamos aqui para transformar essa realidade.",
+    title: 'Dentes Amarelados Incomodam Mais do que Parece',
+    description: 'Café, vinho, chá, cigarro — o amarelamento vai acontecendo aos poucos até que um dia você percebe na foto. Se você se identifica, saiba que clareamento profissional é seguro e os resultados são reais.',
     problems: [
-      "Constrangimento ao sorrir em fotos ou reuniões importantes",
-      "Manchas persistentes de café, vinho ou cigarro que não saem",
-      "Frustração com produtos caseiros que não entregam resultado",
-      "Medo de um clareamento artificial tipo 'dentes de chiclete'",
-      "Receio da sensibilidade extrema pós-clareamento",
-      "Dúvida se o resultado será duradouro ou temporário"
+      'Evitar sorrir em fotos ou cobrir a boca ao rir.',
+      'Manchas de café, vinho ou cigarro que não saem com pasta clareadora.',
+      'Já tentou clareamento caseiro por conta própria e não funcionou.',
+      'Receio de que o clareamento deixe os dentes com aspecto artificial.',
+      'Medo de sensibilidade extrema durante o tratamento.',
+      'Dúvida se o resultado vai durar ou se é temporário.'
     ]
   },
 
   guide: {
-    title: "Sua Dentista Especialista em Sorrisos Naturalmente Brancos",
-    subtitle: "Com a Dra. Carla Christoph, você tem a segurança de mais de 20 anos de experiência em transformações que respeitam sua individualidade",
+    title: 'Como a Dra. Carla Christoph Conduz o Clareamento',
+    subtitle: 'Protocolos individualizados — cada caso tem sua indicação específica.',
     steps: [
-      {
-        number: "1",
-        title: "Avaliação Personalizada",
-        description: "Análise completa do seu caso para definir a melhor abordagem"
-      },
-      {
-        number: "2", 
-        title: "Proteção e Preparação",
-        description: "Preparação cuidadosa para máxima segurança e conforto"
-      },
-      {
-        number: "3",
-        title: "Aplicação do Gel Clareador (45-60 min)",
-        description: "Procedimento profissional com monitoramento contínuo"
-      },
-      {
-        number: "4",
-        title: "Acompanhamento Contínuo",
-        description: "Suporte completo para manutenção dos resultados"
-      }
+      { number: '1', title: 'Avaliação e Diagnóstico', description: 'Análise da causa do escurecimento, condição dos dentes e gengiva. Definição do protocolo mais adequado para o seu caso.' },
+      { number: '2', title: 'Preparação Cuidadosa', description: 'Proteção dos tecidos gengivais e avaliação da sensibilidade para garantir segurança e conforto durante o procedimento.' },
+      { number: '3', title: 'Aplicação Profissional', description: 'Clareamento de consultório (sessão de 45-60 min) ou moldeiras para clareamento caseiro supervisionado — depende do caso.' },
+      { number: '4', title: 'Acompanhamento dos Resultados', description: 'Monitoramento do progresso e orientações para manutenção. A cor estabiliza ao longo de 2 semanas após o término.' }
     ]
   },
 
   socialProof: {
-    title: "Sorrisos Transformados, Confiança Renovada",
+    title: 'O Que Nossos Pacientes Contam',
     testimonials: [
-      {
-        name: "Juliana M.",
-        text: "Estava insegura para meu casamento por causa do amarelamento. A Dra. Carla fez um clareamento com aspecto 100% natural, exatamente como eu queria. Recomendo muito!",
-        rating: 5
-      },
-      {
-        name: "Roberto S.",
-        text: "Mais de 20 anos de café e cigarro deixaram meus dentes amarelos. Em poucas sessões, voltei a ter dentes brancos sem nenhuma sensibilidade.",
-        rating: 5
-      },
-      {
-        name: "Ana Paula R.",
-        text: "Tentei clareamentos caseiros alternativos sem sucesso. Com a Dra. Carla, tive o resultado que busquei por anos. Fiquei bastante satisfeita!",
-        rating: 5
-      }
+      { name: 'Juliana M. — Leblon', text: 'Fiz o clareamento antes do meu casamento. Tinha medo de ficar artificial, mas ficou tão natural que ninguém percebeu que clareou — só elogiaram o sorriso.' },
+      { name: 'André P. — Ipanema', text: 'Anos tomando café pesado. Achei que não tinha solução. Três sessões depois, a diferença é visível e ficou natural.' },
+      { name: 'Beatriz C. — Gávea', text: 'O que me surpreendeu foi o pouco desconforto. A Dra. Carla monitorou a sensibilidade em cada etapa. Valeu cada consulta.' }
     ],
     stats: [
-      {
-        number: "4.000+",
-        label: "Pacientes Atendidos"
-      },
-      {
-        number: "20+",
-        label: "Anos de Experiência"
-      },
-      {
-        number: "2-3 anos",
-        label: "Durabilidade Média"
-      }
+      { number: '20+', label: 'Anos de Experiência' },
+      { number: '4.000+', label: 'Pacientes Atendidos' },
+      { number: '3', label: 'Modalidades de Clareamento' },
+      { number: '24h', label: 'WhatsApp Disponível' }
     ]
   },
 
   faq: {
-    title: "Suas Dúvidas Sobre Clareamento Dental Esclarecidas",
+    title: 'Dúvidas Sobre Clareamento Dental',
     questions: [
-      {
-        question: "Qual a diferença entre clareamento caseiro e de consultório?",
-        answer: "O clareamento de consultório é mais rápido e potente, feito em 1-2 sessões com gel de alta concentração. O caseiro é mais gradual, usando moldeiras personalizadas por 14-21 dias. Ambos são supervisionados pela Dra. Carla para garantir segurança e eficácia."
-      },
-      {
-        question: "O clareamento dental causa sensibilidade?",
-        answer: "Com as técnicas modernas e supervisão adequada, a sensibilidade é mínima e temporária. Utilizamos protocolos específicos e produtos dessensibilizantes para maximizar seu conforto durante todo o processo."
-      },
-      {
-        question: "Quanto tempo dura o resultado do clareamento?",
-        answer: "Com os cuidados adequados, o resultado pode durar de 2 a 3 anos. Fornecemos orientações completas sobre alimentação e higiene para prolongar ao máximo seus resultados."
-      },
-      {
-        question: "O clareamento funciona em todos os tipos de manchas?",
-        answer: "O clareamento é muito eficaz para manchas de alimentos, bebidas e idade. Manchas por medicamentos ou fluorose podem ter resultados variados, sendo necessária avaliação específica."
-      },
-      {
-        question: "Posso fazer clareamento tendo restaurações ou facetas?",
-        answer: "Sim, mas é importante saber que apenas os dentes naturais clareiam. Restaurações e facetas podem precisar ser substituídas após o clareamento para manter a harmonia do sorriso."
-      },
-      {
-        question: "Quais cuidados são necessários após o clareamento?",
-        answer: "Nas primeiras 48h, evite alimentos e bebidas pigmentados (café, vinho, refrigerantes escuros). Mantenha boa higiene oral e use creme dental específico. Fornecemos um guia completo de cuidados."
-      },
-      {
-        question: "Vocês atendem convênios odontológicos?",
-        answer: "Oferecemos atendimento exclusivamente particular, o que nos permite dedicar tempo adequado a cada paciente, utilizar os melhores materiais disponíveis e personalizar completamente seu tratamento. Facilitamos o pagamento com parcelamento facilitado."
-      },
-      {
-        question: "Como funciona o atendimento por WhatsApp?",
-        answer: "Nosso WhatsApp funciona 24 horas por dia, 7 dias por semana. Você pode enviar mensagem a qualquer hora para agendar sua consulta, tirar dúvidas sobre tratamentos ou solicitar informações. Respondemos rapidamente, inclusive fins de semana e feriados. É a forma mais rápida e conveniente de entrar em contato conosco."
-      }
+      { question: 'Clareamento dental estraga o esmalte?', answer: 'Não. O clareamento profissional com concentração e tempo controlados não danifica o esmalte. O gel age na estrutura interna do dente (dentina), clareando sem desgastar.' },
+      { question: 'A sensibilidade é muito forte?', answer: 'Pode haver sensibilidade transitória, especialmente nos primeiros dias. A Dra. Carla ajusta o protocolo (concentração, tempo de aplicação) para minimizar esse efeito. Dessensibilizantes são usados quando necessário.' },
+      { question: 'Qual a diferença entre clareamento de consultório e caseiro?', answer: 'O de consultório usa gel mais concentrado e dá resultado mais rápido (1-3 sessões). O caseiro usa moldeiras com gel de menor concentração por algumas semanas. Em muitos casos, a combinação dos dois é a abordagem mais eficaz.' },
+      { question: 'O resultado é permanente?', answer: 'O clareamento é duradouro, mas não permanente. O dente pode escurecer novamente ao longo dos anos, especialmente com café, vinho e cigarro. Sessões de manutenção (a cada 1-2 anos) preservam o resultado.' },
+      { question: 'Posso fazer clareamento se tenho restaurações?', answer: 'O clareamento age nos dentes naturais e não altera a cor de restaurações existentes. Se necessário, as restaurações podem ser trocadas após o clareamento para harmonizar com a nova cor.' },
+      { question: 'Vocês atendem convênios?', answer: 'Nosso atendimento é particular, o que nos permite dedicar o tempo necessário e usar protocolos individualizados. Na consulta de avaliação, apresentamos as opções para o seu caso.' }
     ]
   },
 
   cta: {
-    title: "Pronto para Revelar um Sorriso Mais Branco e Confiante?",
-    subtitle: "Agende sua avaliação personalizada e descubra como transformar seu sorriso sem dor e com resultado natural",
-    buttonText: "Iniciar Minha Transformação",
-    urgency: "O melhor momento para investir no seu sorriso é quando você decide que merece sorrir com confiança"
+    title: 'Quer Saber Qual Clareamento é Indicado para Você?',
+    subtitle: 'Na avaliação, analisamos a causa do escurecimento e definimos o protocolo mais adequado.',
+    buttonText: 'Agendar Minha Avaliação'
   },
 
   contact: {
