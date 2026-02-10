@@ -37,7 +37,6 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
   });
 
   useEffect(() => {
-    // Capture GCLID and store in localStorage (consistent with gclid.ts)
     const urlParams = new URLSearchParams(window.location.search);
     const gclid = urlParams.get('gclid');
     
@@ -47,7 +46,6 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
       localStorage.setItem('gclid_page', window.location.pathname);
     }
 
-    // Data layer push for page view event
     if (typeof window !== 'undefined' && window.dataLayer) {
       window.dataLayer.push({
         event: 'page_view',
@@ -59,8 +57,6 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
         custom_parameter_campaign: lentesPorcelanaProfissionalConfig.campaign
       });
     }
-
-    // GTM is now loaded via index.html - no duplicate loading needed
   }, []);
 
   useScrollTracking({ 
@@ -92,7 +88,6 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
         <meta name="keywords" content={lentesPorcelanaProfissionalConfig.seo.keywords?.join(', ')} />
         <link rel="canonical" href="https://www.dracarlachristoph.com/lp/lentes-porcelana-profissional-ipanema" />
         
-        {/* Open Graph Tags */}
         <meta property="og:title" content={lentesPorcelanaProfissionalConfig.seo.title} />
         <meta property="og:description" content={lentesPorcelanaProfissionalConfig.seo.description} />
         <meta property="og:type" content="website" />
@@ -104,44 +99,22 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
         <meta property="og:locale" content="pt_BR" />
         <meta property="og:site_name" content="Dra. Carla Christoph" />
 
-        {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={lentesPorcelanaProfissionalConfig.seo.title} />
         <meta name="twitter:description" content={lentesPorcelanaProfissionalConfig.seo.description} />
         <meta name="twitter:image" content="https://www.dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
         <meta name="twitter:image:alt" content="Dra. Carla Christoph - Especialista em Lentes de Contato de Porcelana" />
 
-        {/* Resource Hints for Performance */}
         <link rel="dns-prefetch" href="//www.google.com" />
         <link rel="dns-prefetch" href="//api.whatsapp.com" />
         <link rel="dns-prefetch" href="//www.googletagmanager.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
-        {/* Preload Critical Fonts */}
-        <link 
-          rel="preload" 
-          href="/fonts/montserrat-400.woff2" 
-          as="font" 
-          type="font/woff2" 
-          crossOrigin="anonymous"
-        />
-        <link 
-          rel="preload" 
-          href="/fonts/montserrat-500.woff2" 
-          as="font" 
-          type="font/woff2" 
-          crossOrigin="anonymous"
-        />
-        <link 
-          rel="preload" 
-          href="/fonts/playfair-display-400.woff2" 
-          as="font" 
-          type="font/woff2" 
-          crossOrigin="anonymous"
-        />
+        <link rel="preload" href="/fonts/montserrat-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/montserrat-500.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/playfair-display-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
 
-        {/* Preload Critical Images */}
         <link 
           rel="preload" 
           href={lentesPorcelanaProfissionalConfig.hero.backgroundImage} 
@@ -149,7 +122,6 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
           type="image/webp"
         />
 
-        {/* Structured Data for Local Business */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -171,9 +143,7 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
               "latitude": "-22.9849",
               "longitude": "-43.2003"
             },
-            "openingHours": [
-              "Mo-Fr 08:00-18:00"
-            ],
+            "openingHours": ["Mo-Fr 08:00-18:00"],
             "priceRange": "$$$",
             "serviceArea": {
               "@type": "GeoCircle",
@@ -187,7 +157,6 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
           })}
         </script>
 
-        {/* Structured Data for Medical Procedure */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -206,7 +175,6 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
       </Helmet>
 
       <ErrorBoundary>
-        {/* Critical Above-The-Fold Content */}
         <ConsultaInicialHeader 
           whatsappNumber={lentesPorcelanaProfissionalConfig.whatsapp.number}
           whatsappMessage={lentesPorcelanaProfissionalConfig.whatsapp.message}
@@ -223,65 +191,54 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
           whatsappMessage={lentesPorcelanaProfissionalConfig.whatsapp.message}
         />
 
-        {/* Lazy-loaded Below-The-Fold Content */}
-        <Suspense fallback={<div className="min-h-screen"><div className="h-96 bg-gray-100 animate-pulse" /></div>}>
-          <div className="min-h-screen">
-            <ConsultaInicialProblem 
-              title={lentesPorcelanaProfissionalConfig.problem.title}
-              description={lentesPorcelanaProfissionalConfig.problem.description}
-              problems={lentesPorcelanaProfissionalConfig.problem.problems}
-            />
-          </div>
+        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+          <ConsultaInicialProblem 
+            title={lentesPorcelanaProfissionalConfig.problem.title}
+            description={lentesPorcelanaProfissionalConfig.problem.description}
+            problems={lentesPorcelanaProfissionalConfig.problem.problems}
+          />
         </Suspense>
 
-        <Suspense fallback={<div className="min-h-screen"><div className="h-96 bg-gray-100 animate-pulse" /></div>}>
-          <div className="min-h-screen">
-            <ConsultaInicialGuide 
-              title={lentesPorcelanaProfissionalConfig.guide.title}
-              subtitle={lentesPorcelanaProfissionalConfig.guide.subtitle}
-              steps={lentesPorcelanaProfissionalConfig.guide.steps}
-            />
-          </div>
+        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+          <ConsultaInicialGuide 
+            title={lentesPorcelanaProfissionalConfig.guide.title}
+            subtitle={lentesPorcelanaProfissionalConfig.guide.subtitle}
+            steps={lentesPorcelanaProfissionalConfig.guide.steps}
+          />
         </Suspense>
 
-        <Suspense fallback={<div className="min-h-screen"><div className="h-96 bg-gray-100 animate-pulse" /></div>}>
-          <div className="min-h-screen">
-            <ConsultaInicialSocialProof 
-              title={lentesPorcelanaProfissionalConfig.socialProof.title}
-              testimonials={lentesPorcelanaProfissionalConfig.socialProof.testimonials}
-              stats={lentesPorcelanaProfissionalConfig.socialProof.stats}
-            />
-          </div>
+        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+          <ConsultaInicialSocialProof 
+            title={lentesPorcelanaProfissionalConfig.socialProof.title}
+            testimonials={lentesPorcelanaProfissionalConfig.socialProof.testimonials}
+            stats={lentesPorcelanaProfissionalConfig.socialProof.stats}
+          />
         </Suspense>
 
-        <Suspense fallback={<div className="min-h-screen"><div className="h-96 bg-gray-100 animate-pulse" /></div>}>
-          <div className="min-h-screen">
-            <ConsultaInicialFAQ 
-              title={lentesPorcelanaProfissionalConfig.faq.title}
-              questions={lentesPorcelanaProfissionalConfig.faq.questions}
-            />
-          </div>
+        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+          <ConsultaInicialFAQ 
+            title={lentesPorcelanaProfissionalConfig.faq.title}
+            questions={lentesPorcelanaProfissionalConfig.faq.questions}
+          />
         </Suspense>
 
-        <Suspense fallback={<div className="min-h-screen"><div className="h-96 bg-gray-100 animate-pulse" /></div>}>
-          <div className="min-h-screen">
-            <ConsultaInicialCTA 
-              title={lentesPorcelanaProfissionalConfig.cta.title}
-              subtitle={lentesPorcelanaProfissionalConfig.cta.subtitle}
-              buttonText={lentesPorcelanaProfissionalConfig.cta.buttonText}
-              whatsappNumber={lentesPorcelanaProfissionalConfig.whatsapp.number}
-              whatsappMessage={lentesPorcelanaProfissionalConfig.whatsapp.message}
-              campaign={lentesPorcelanaProfissionalConfig.campaign}
-              messageMatch={lentesPorcelanaProfissionalConfig.messageMatch}
-            />
-          </div>
+        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+          <ConsultaInicialCTA 
+            title={lentesPorcelanaProfissionalConfig.cta.title}
+            subtitle={lentesPorcelanaProfissionalConfig.cta.subtitle}
+            buttonText={lentesPorcelanaProfissionalConfig.cta.buttonText}
+            whatsappNumber={lentesPorcelanaProfissionalConfig.whatsapp.number}
+            whatsappMessage={lentesPorcelanaProfissionalConfig.whatsapp.message}
+            campaign={lentesPorcelanaProfissionalConfig.campaign}
+            messageMatch={lentesPorcelanaProfissionalConfig.messageMatch}
+          />
         </Suspense>
 
         <Suspense fallback={<div className="h-32 bg-gray-100 animate-pulse" />}>
           <ClareamentoFooter />
         </Suspense>
 
-        <Suspense fallback={<div />}>
+        <Suspense fallback={null}>
           <FloatingWhatsApp 
             phoneNumber={lentesPorcelanaProfissionalConfig.whatsapp.number}
             message={lentesPorcelanaProfissionalConfig.whatsapp.message}

@@ -202,80 +202,61 @@ const DenteQuebradoLandingPage: React.FC = () => {
         whatsappMessage={denteQuebradoConfig.whatsapp.message}
       />
 
-      {/* Problem section */}
-      <div className="min-h-screen">
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialProblem
-            title={denteQuebradoConfig.problem.title}
-            description={denteQuebradoConfig.problem.description}
-            problems={denteQuebradoConfig.problem.problems}
-          />
-        </Suspense>
-      </div>
+      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+        <ConsultaInicialProblem
+          title={denteQuebradoConfig.problem.title}
+          description={denteQuebradoConfig.problem.description}
+          problems={denteQuebradoConfig.problem.problems}
+        />
+      </Suspense>
 
-      {/* Guide section */}
-      <div className="min-h-screen">
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialGuide
-            title={denteQuebradoConfig.guide.title}
-            subtitle={denteQuebradoConfig.guide.subtitle}
-            steps={denteQuebradoConfig.guide.steps}
-          />
-        </Suspense>
-      </div>
+      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+        <ConsultaInicialGuide
+          title={denteQuebradoConfig.guide.title}
+          subtitle={denteQuebradoConfig.guide.subtitle}
+          steps={denteQuebradoConfig.guide.steps}
+        />
+      </Suspense>
 
-      {/* Social Proof section */}
-      <div className="min-h-screen">
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialSocialProof
-            title={denteQuebradoConfig.socialProof.title}
-            testimonials={denteQuebradoConfig.socialProof.testimonials}
-            stats={denteQuebradoConfig.socialProof.stats}
-          />
-        </Suspense>
-      </div>
+      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+        <ConsultaInicialSocialProof
+          title={denteQuebradoConfig.socialProof.title}
+          testimonials={denteQuebradoConfig.socialProof.testimonials}
+          stats={denteQuebradoConfig.socialProof.stats}
+        />
+      </Suspense>
 
-      {/* FAQ section */}
-      <div className="min-h-screen">
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialFAQ
-            title={denteQuebradoConfig.faq.title}
-            questions={denteQuebradoConfig.faq.questions}
-          />
-        </Suspense>
-      </div>
+      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+        <ConsultaInicialFAQ
+          title={denteQuebradoConfig.faq.title}
+          questions={denteQuebradoConfig.faq.questions}
+        />
+      </Suspense>
 
-      {/* CTA section */}
-      <div className="min-h-screen">
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialCTA
-            title={denteQuebradoConfig.cta.title}
-            subtitle={denteQuebradoConfig.cta.subtitle}
-            buttonText={denteQuebradoConfig.cta.buttonText}
-            whatsappNumber={denteQuebradoConfig.whatsapp.number}
-            whatsappMessage={denteQuebradoConfig.whatsapp.message}
-            campaign={denteQuebradoConfig.campaign}
-            messageMatch={denteQuebradoConfig.messageMatch}
-          />
-        </Suspense>
-      </div>
+      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+        <ConsultaInicialCTA
+          title={denteQuebradoConfig.cta.title}
+          subtitle={denteQuebradoConfig.cta.subtitle}
+          buttonText={denteQuebradoConfig.cta.buttonText}
+          whatsappNumber={denteQuebradoConfig.whatsapp.number}
+          whatsappMessage={denteQuebradoConfig.whatsapp.message}
+          campaign={denteQuebradoConfig.campaign}
+          messageMatch={denteQuebradoConfig.messageMatch}
+        />
+      </Suspense>
 
-      <div>
-        <Suspense fallback={<div className="h-32 bg-gray-100 animate-pulse" />}>
-          <ClareamentoFooter />
-        </Suspense>
-      </div>
+      <Suspense fallback={<div className="h-32 bg-gray-100 animate-pulse" />}>
+        <ClareamentoFooter />
+      </Suspense>
 
-      <div>
-        <Suspense fallback={<div className="h-16 bg-gray-100 animate-pulse" />}>
-          <FloatingWhatsApp
-            phoneNumber={denteQuebradoConfig.whatsapp.number}
-            message={denteQuebradoConfig.whatsapp.message}
-            campaign={denteQuebradoConfig.campaign}
-            messageMatch={denteQuebradoConfig.messageMatch}
-          />
-        </Suspense>
-      </div>
+      <Suspense fallback={null}>
+        <FloatingWhatsApp
+          phoneNumber={denteQuebradoConfig.whatsapp.number}
+          message={denteQuebradoConfig.whatsapp.message}
+          campaign={denteQuebradoConfig.campaign}
+          messageMatch={denteQuebradoConfig.messageMatch}
+        />
+      </Suspense>
       </ErrorBoundary>
     </>
   );

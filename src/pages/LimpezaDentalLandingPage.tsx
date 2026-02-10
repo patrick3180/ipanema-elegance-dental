@@ -9,11 +9,11 @@ import HeroImagePreloader from '@/components/performance/HeroImagePreloader';
 import ErrorBoundary from '@/components/performance/ErrorBoundary';
 import { GTMManager } from '@/components/performance/GTMManager';
 
-// Critical components (loaded immediately) - REUTILIZANDO COMPONENTES DA CONSULTA INICIAL
+// Critical components (loaded immediately)
 import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
 import ConsultaInicialHero from '@/components/landing/consulta/ConsultaInicialHero';
 
-// Lazy loaded components - REUTILIZANDO COMPONENTES DA CONSULTA INICIAL
+// Lazy loaded components
 const ConsultaInicialProblem = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialProblem'));
 const ConsultaInicialGuide = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialGuide'));
 const ConsultaInicialSocialProof = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialSocialProof'));
@@ -23,7 +23,6 @@ const ClareamentoFooter = React.lazy(() => import('@/components/landing/clareame
 const FloatingWhatsApp = React.lazy(() => import('@/components/landing/FloatingWhatsApp'));
 
 const LimpezaDentalLandingPage: React.FC = () => {
-  // Critical images for LCP optimization with fetchpriority="high"
   const criticalImages = [
     {
       src: '/lovable-uploads/vertical-de-jaleco-480.avif',
@@ -50,16 +49,12 @@ const LimpezaDentalLandingPage: React.FC = () => {
     }
   ];
 
-  // Fallback preload for LCP
   useCriticalImagePreload({ images: [{ src: limpezaDentalConfig.hero.backgroundImage }] });
 
   useEffect(() => {
-    // Debug mount
     console.debug('[LP Limpeza] Mounted at', new Date().toISOString());
-    // Capture GCLID immediately
     captureGCLID();
 
-    // Push page view event
     if (typeof window !== 'undefined') {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
@@ -69,11 +64,8 @@ const LimpezaDentalLandingPage: React.FC = () => {
         campaign: limpezaDentalConfig.campaign
       });
     }
-
-    // GTM is now loaded via index.html - no duplicate loading needed
   }, []);
 
-  // Scroll tracking for production analytics
   useScrollTracking({ 
     pagePath: '/lp/limpeza-dental-ipanema', 
     enabled: process.env.NODE_ENV === 'production' 
@@ -82,7 +74,6 @@ const LimpezaDentalLandingPage: React.FC = () => {
   return (
     <>
       <GTMManager gtmId={limpezaDentalConfig.tracking.gtmId} />
-      {/* Critical performance optimizations */}
       <CriticalCSSInliner />
       <HeroImagePreloader images={criticalImages} />
       
@@ -93,20 +84,17 @@ const LimpezaDentalLandingPage: React.FC = () => {
         <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href="https://dracarlachristoph.com/lp/limpeza-dental-ipanema" />
 
-        {/* Open Graph tags */}
         <meta property="og:title" content={limpezaDentalConfig.seo.title} />
         <meta property="og:description" content={limpezaDentalConfig.seo.description} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dracarlachristoph.com/lp/limpeza-dental-ipanema" />
         <meta property="og:image" content={`https://dracarlachristoph.com${limpezaDentalConfig.hero.backgroundImage}`} />
 
-        {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={limpezaDentalConfig.seo.title} />
         <meta name="twitter:description" content={limpezaDentalConfig.seo.description} />
         <meta name="twitter:image" content={`https://dracarlachristoph.com${limpezaDentalConfig.hero.backgroundImage}`} />
 
-        {/* Preload critical fonts com display=swap */}
         <link 
           rel="preload" 
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" 
@@ -117,7 +105,6 @@ const LimpezaDentalLandingPage: React.FC = () => {
           }}
         />
 
-        {/* Preload critical hero images com fetchpriority="high" */}
         <link 
           rel="preload" 
           href="/lovable-uploads/vertical-de-jaleco-1024.avif"
@@ -134,37 +121,15 @@ const LimpezaDentalLandingPage: React.FC = () => {
           fetchPriority="high"
         />
 
-        {/* Preload self-hosted critical fonts */}
-        <link 
-          rel="preload" 
-          href="/fonts/montserrat-400.woff2" 
-          as="font" 
-          type="font/woff2" 
-          crossOrigin="anonymous" 
-        />
-        <link 
-          rel="preload" 
-          href="/fonts/montserrat-500.woff2" 
-          as="font" 
-          type="font/woff2" 
-          crossOrigin="anonymous" 
-        />
-        <link 
-          rel="preload" 
-          href="/fonts/playfair-display-400.woff2" 
-          as="font" 
-          type="font/woff2" 
-          crossOrigin="anonymous" 
-        />
+        <link rel="preload" href="/fonts/montserrat-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/montserrat-500.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/playfair-display-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
 
-        {/* DNS Prefetch */}
         <link rel="dns-prefetch" href="//www.googletagmanager.com" />
         <link rel="dns-prefetch" href="//wa.me" />
 
-        {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
 
-        {/* Defer non-critical CSS */}
         <link 
           rel="preload" 
           href="/css/non-critical.css" 
@@ -172,8 +137,6 @@ const LimpezaDentalLandingPage: React.FC = () => {
           onLoad={() => {}}
         />
 
-
-        {/* Structured Data - Local Business */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -195,7 +158,6 @@ const LimpezaDentalLandingPage: React.FC = () => {
           })}
         </script>
 
-        {/* Structured Data - Medical Procedure */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -207,8 +169,6 @@ const LimpezaDentalLandingPage: React.FC = () => {
           })}
         </script>
       </Helmet>
-
-      {/* Critical above-the-fold content - HEADER E HERO IGUAIS À CONSULTA INICIAL */}
 
       <ErrorBoundary>
       <ConsultaInicialHeader
@@ -228,80 +188,61 @@ const LimpezaDentalLandingPage: React.FC = () => {
         whatsappMessage={limpezaDentalConfig.whatsapp.message}
       />
 
-      {/* Problem section - MESMO COMPONENTE E LAYOUT */}
-      <div className="min-h-screen">
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialProblem
-            title={limpezaDentalConfig.problem.title}
-            description={limpezaDentalConfig.problem.description}
-            problems={limpezaDentalConfig.problem.problems}
-          />
-        </Suspense>
-      </div>
+      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+        <ConsultaInicialProblem
+          title={limpezaDentalConfig.problem.title}
+          description={limpezaDentalConfig.problem.description}
+          problems={limpezaDentalConfig.problem.problems}
+        />
+      </Suspense>
 
-      {/* Guide section - MESMO COMPONENTE E LAYOUT */}
-      <div className="min-h-screen">
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialGuide
-            title={limpezaDentalConfig.guide.title}
-            subtitle={limpezaDentalConfig.guide.subtitle}
-            steps={limpezaDentalConfig.guide.steps}
-          />
-        </Suspense>
-      </div>
+      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+        <ConsultaInicialGuide
+          title={limpezaDentalConfig.guide.title}
+          subtitle={limpezaDentalConfig.guide.subtitle}
+          steps={limpezaDentalConfig.guide.steps}
+        />
+      </Suspense>
 
-      {/* Social Proof section - MESMO COMPONENTE E LAYOUT */}
-      <div className="min-h-screen">
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialSocialProof
-            title={limpezaDentalConfig.socialProof.title}
-            testimonials={limpezaDentalConfig.socialProof.testimonials}
-            stats={limpezaDentalConfig.socialProof.stats}
-          />
-        </Suspense>
-      </div>
+      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+        <ConsultaInicialSocialProof
+          title={limpezaDentalConfig.socialProof.title}
+          testimonials={limpezaDentalConfig.socialProof.testimonials}
+          stats={limpezaDentalConfig.socialProof.stats}
+        />
+      </Suspense>
 
-      {/* FAQ section - MESMO COMPONENTE E LAYOUT */}
-      <div className="min-h-screen">
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialFAQ
-            title={limpezaDentalConfig.faq.title}
-            questions={limpezaDentalConfig.faq.questions}
-          />
-        </Suspense>
-      </div>
+      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+        <ConsultaInicialFAQ
+          title={limpezaDentalConfig.faq.title}
+          questions={limpezaDentalConfig.faq.questions}
+        />
+      </Suspense>
 
-      {/* CTA section - MESMO COMPONENTE E LAYOUT */}
-      <div className="min-h-screen">
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialCTA
-            title={limpezaDentalConfig.cta.title}
-            subtitle={limpezaDentalConfig.cta.subtitle}
-            buttonText={limpezaDentalConfig.cta.buttonText}
-            whatsappNumber={limpezaDentalConfig.whatsapp.number}
-            whatsappMessage={limpezaDentalConfig.whatsapp.message}
-            campaign={limpezaDentalConfig.campaign}
-            messageMatch={limpezaDentalConfig.messageMatch}
-          />
-        </Suspense>
-      </div>
+      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+        <ConsultaInicialCTA
+          title={limpezaDentalConfig.cta.title}
+          subtitle={limpezaDentalConfig.cta.subtitle}
+          buttonText={limpezaDentalConfig.cta.buttonText}
+          whatsappNumber={limpezaDentalConfig.whatsapp.number}
+          whatsappMessage={limpezaDentalConfig.whatsapp.message}
+          campaign={limpezaDentalConfig.campaign}
+          messageMatch={limpezaDentalConfig.messageMatch}
+        />
+      </Suspense>
 
-      <div>
-        <Suspense fallback={<div className="h-32 bg-gray-100 animate-pulse" />}>
-          <ClareamentoFooter />
-        </Suspense>
-      </div>
+      <Suspense fallback={<div className="h-32 bg-gray-100 animate-pulse" />}>
+        <ClareamentoFooter />
+      </Suspense>
 
-      <div>
-        <Suspense fallback={<div className="h-16 bg-gray-100 animate-pulse" />}>
-          <FloatingWhatsApp
-            phoneNumber={limpezaDentalConfig.whatsapp.number}
-            message={limpezaDentalConfig.whatsapp.message}
-            campaign={limpezaDentalConfig.campaign}
-            messageMatch={limpezaDentalConfig.messageMatch}
-          />
-        </Suspense>
-      </div>
+      <Suspense fallback={null}>
+        <FloatingWhatsApp
+          phoneNumber={limpezaDentalConfig.whatsapp.number}
+          message={limpezaDentalConfig.whatsapp.message}
+          campaign={limpezaDentalConfig.campaign}
+          messageMatch={limpezaDentalConfig.messageMatch}
+        />
+      </Suspense>
       </ErrorBoundary>
     </>
   );

@@ -20,10 +20,10 @@ interface SocialProofSectionProps {
 
 const SocialProofSection = ({ title, testimonials, stats }: SocialProofSectionProps) => {
   const defaultStats = [
-    { number: "500+", label: "Pacientes Atendidos" },
-    { number: "15+", label: "Anos de Experiência" },
-    { number: "98%", label: "Satisfação dos Pacientes" },
-    { number: "24h", label: "Atendimento WhatsApp" }
+    { number: "20+", label: "Anos de Experiência" },
+    { number: "WhatsApp", label: "Atendimento 24h" },
+    { number: "Particular", label: "Atendimento Personalizado" },
+    { number: "Ipanema", label: "Zona Sul — Rio de Janeiro" }
   ];
 
   const displayStats = stats || defaultStats;
