@@ -1,116 +1,104 @@
 
 
-## Prompt 12 — Correcoes Pos-Execucao do Prompt 11
+## Prompt 13 — Issues Pendentes da Fase 2
 
 ### Resumo
-3 alteracoes: corrigir grid adaptativo do Guide, reescrever tom da LP Dente Quebrado, e reestruturar LPLentesPorcelana com secoes padrao.
+4 alteracoes: remover min-h-screen de 4 LPs, limpar config de facetas, corrigir defaultStats do SocialProofSection, e migrar FacetasResinaDiretaLandingPage para componentes ConsultaInicial*.
 
 ---
 
-### Alteracao 1: `src/components/landing/consulta/ConsultaInicialGuide.tsx`
+### Alteracao 1: Remover min-h-screen wrappers (4 arquivos)
 
-Substituir o grid fixo `grid-cols-1 md:grid-cols-2 lg:grid-cols-3` (linha 37) por logica condicional baseada no numero de steps:
+Seguindo o padrao de `EspecialistaProteseLandingPage.tsx` (referencia sem min-h-screen):
 
-```tsx
-const getGridClass = (count: number) => {
-  if (count === 3 || count === 6) return 'grid grid-cols-1 md:grid-cols-3 gap-8';
-  return 'grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto';
-};
+**1a: `src/pages/DenteQuebradoLandingPage.tsx`**
+- Linhas 206, 214: remover `<div className="min-h-screen">` e `</div>` wrapper do Problem
+- Linhas 217, 225: remover wrapper do Guide
+- Linhas 228, 236: remover wrapper do SocialProof
+- Linhas 239, 246: remover wrapper do FAQ
+- Linhas 249, 261: remover wrapper do CTA
+
+**1b: `src/pages/DorDeDenteLandingPage.tsx`**
+- Mesma estrutura — remover min-h-screen wrappers das linhas 206, 217, 228, 239, 249
+
+**1c: `src/pages/LimpezaDentalLandingPage.tsx`**
+- Remover min-h-screen wrappers das linhas 232, 243, 254, 265, 275
+
+**1d: `src/pages/LentesDeContatoEmPorcelanaProfissionalLandingPage.tsx`**
+- Remover min-h-screen wrappers E os min-h-screen nos fallbacks das linhas 227-234, 237-244, 247-254, 257-263, 266-277
+- Estrutura final: `<Suspense fallback={...}>` diretamente com o componente, sem div wrapper
+
+---
+
+### Alteracao 2: Limpeza do `src/config/facetasResinaDiretaConfig.ts`
+
+5 correcoes pontuais:
+
+**2a** Linhas 57-59: Remover `rating: 5` dos 3 depoimentos
+
+**2b** Linha 63: Trocar `'Pacientes Satisfeitos'` por `'Pacientes Atendidos'`
+
+**2c** Linha 64: Trocar `{ number: '100%', label: 'Foco na Naturalidade' }` por `{ number: '1 Dia', label: 'Resultado no Mesmo Dia' }`
+
+**2d** Linha 48 (step 2): Trocar `"esta perfeito!"` por `"esta do seu agrado"`
+
+**2e** Linha 50 (step 4): Trocar `"sorriso radiante no mesmo dia"` por `"resultado natural e duradouro no mesmo dia"`
+
+---
+
+### Alteracao 3: `src/components/landing/SocialProofSection.tsx`
+
+Linhas 25-30: Substituir defaultStats:
 ```
-
-- 3 steps: `md:grid-cols-3` (1 linha)
-- 4 steps: `sm:grid-cols-2` (2x2 simetrico)
-- 5 steps: `sm:grid-cols-2` (2+2+1, ultimo centralizado via col-span hack ou simplesmente centralizado pelo max-w + mx-auto)
-- 6 steps: `md:grid-cols-3` (2x3)
-
-Para centralizar o ultimo card quando impar (5 steps), adicionar logica no map:
-
-```tsx
-{steps.map((step, index) => {
-  const isOddLast = steps.length % 2 !== 0 && index === steps.length - 1 
-    && steps.length !== 3 && steps.length !== 6;
-  return (
-    <div key={index} className={`bg-white rounded-lg p-6 ... ${isOddLast ? 'sm:col-span-2 sm:max-w-sm sm:mx-auto' : ''}`}>
-      ...
-    </div>
-  );
-})}
+const defaultStats = [
+  { number: "20+", label: "Anos de Experiencia" },
+  { number: "WhatsApp", label: "Atendimento 24h" },
+  { number: "Particular", label: "Atendimento Personalizado" },
+  { number: "Ipanema", label: "Zona Sul — Rio de Janeiro" }
+];
 ```
 
 ---
 
-### Alteracao 2: `src/config/denteQuebradoConfig.ts`
+### Alteracao 4: `src/pages/FacetasResinaDiretaLandingPage.tsx`
 
-Substituir 3 campos apenas:
+Reescrever para seguir o padrao de `EspecialistaProteseLandingPage.tsx`:
 
-**hero.subheadline** (linha 18): Remover "ninguem vai perceber" (promessa exagerada). Novo texto:
-```
-'Encaixe prioritario para resolver rapido. A Dra. Carla Christoph restaura dentes fraturados com materiais que reproduzem a aparencia natural do dente original.'
-```
+**Remover imports:**
+- `HeroSection`, `ProblemSection`, `GuideSection`, `SocialProofSection`, `FAQSection`, `CTASection` (genericos)
+- `CoreWebVitalsOptimizer`, `ResourceHintsOptimizer`, `CriticalCSSInliner`, `SimpleLCPOptimizer`
+- `FAQSkeleton`, `SocialProofSkeleton`, `FooterSkeleton`, `WhatsAppSkeleton`
+- `useParams`
 
-**problem** (linhas 30-41): Reescrever inteiro — remover "Constrangedor", "Constrangimento em reunioes", "afeta a confianca em qualquer situacao social". Novo:
-- title: "Dente Quebrou — E Agora?"
-- description factual sem manipulacao emocional
-- 6 problems focados no problema clinico, nao no constrangimento
-
-**socialProof.title** (linha 55): De "Quem Precisou, Conta" para "Quem Ja Passou por Isso"
-
-Campos intactos: campaign, messageMatch, whatsapp, hero.headline, hero.ctaText, hero.backgroundImage, benefits, guide, faq, cta, contact, seo, tracking.
-
----
-
-### Alteracao 3: `src/pages/LPLentesPorcelana.tsx`
-
-Reestruturacao major — manter hero (linhas 87-140) e cards de indicacoes (linhas 142-217), remover accordions (linhas 219-397), adicionar secoes padrao.
+**Manter imports:**
+- `facetasResinaDiretaConfig`
+- `ConsultaInicialHeader`, `ConsultaInicialHero` (diretos)
+- `useCriticalImagePreload`, `useScrollTracking`
 
 **Adicionar imports:**
-- `lentesPorcelanaAcolhedorConfig` de `@/config/lentesPorcelanaAcolhedorConfig`
-- `ConsultaInicialHeader` (import direto)
-- Lazy imports: `ConsultaInicialProblem`, `ConsultaInicialGuide`, `ConsultaInicialSocialProof`, `ConsultaInicialFAQ`, `ConsultaInicialCTA`, `ClareamentoFooter`, `FloatingWhatsApp`
-- `React, { Suspense }` e `useEffect`
+- `captureGCLID` de `@/utils/gclid`
+- Performance: `CriticalCSSInline`, `ResourceHintsOptimizer`, `SmartContentfulCache`, `CoreWebVitalsMonitor`, `HeroImagePreloader`, `ErrorBoundary`
+- Lazy: `ConsultaInicialProblem`, `ConsultaInicialGuide`, `ConsultaInicialSocialProof`, `ConsultaInicialFAQ`, `ConsultaInicialCTA`, `ClareamentoFooter`, `FloatingWhatsApp`
 
-**Remover imports nao mais usados:**
-- `Accordion`, `AccordionContent`, `AccordionItem`, `AccordionTrigger`
+**Corpo JSX:** Seguir estrutura identica a EspecialistaProteseLandingPage — secoes diretamente em `<Suspense>` sem min-h-screen, usando props individuais da config.
 
-**Atualizar handleWhatsAppClick:**
-- Usar `lentesPorcelanaAcolhedorConfig.whatsapp.number` e `.message` em vez de strings hardcoded
-
-**Adicionar antes do hero:**
-- `ConsultaInicialHeader` com props da config
-
-**Manter intacto:**
-- Hero section (linhas 87-140)
-- Cards de indicacoes (linhas 142-217)
-
-**Substituir accordions (linhas 219-397) por:**
-```
-<Suspense fallback={...}>
-  <ConsultaInicialProblem ... />
-  <ConsultaInicialGuide ... />
-  <ConsultaInicialSocialProof ... />
-  <ConsultaInicialFAQ ... />
-  <ConsultaInicialCTA ... />
-  <ClareamentoFooter />
-  <FloatingWhatsApp ... />
-</Suspense>
-```
-
-Todas as props vem de `lentesPorcelanaAcolhedorConfig`.
-
-**Adicionar useEffect** para GCLID capture e dataLayer push (mesmo padrao de LentesDeContatoPorcelanaLandingPage.tsx).
+**useEffect:** Simplificar para usar `captureGCLID()` + dataLayer push (padrao).
 
 ---
 
-### Arquivos modificados (total: 3)
-1. `src/components/landing/consulta/ConsultaInicialGuide.tsx` — grid adaptativo
-2. `src/config/denteQuebradoConfig.ts` — subheadline, problem, socialProof.title
-3. `src/pages/LPLentesPorcelana.tsx` — reestruturacao com secoes padrao
+### Arquivos modificados (total: 6)
+1. `src/pages/DenteQuebradoLandingPage.tsx` — remover min-h-screen
+2. `src/pages/DorDeDenteLandingPage.tsx` — remover min-h-screen
+3. `src/pages/LimpezaDentalLandingPage.tsx` — remover min-h-screen
+4. `src/pages/LentesDeContatoEmPorcelanaProfissionalLandingPage.tsx` — remover min-h-screen
+5. `src/config/facetasResinaDiretaConfig.ts` — remover rating, stats, palavras banidas
+6. `src/components/landing/SocialProofSection.tsx` — corrigir defaultStats
+7. `src/pages/FacetasResinaDiretaLandingPage.tsx` — migrar para componentes ConsultaInicial*
 
 ### O que NAO muda
 - Campos campaign, messageMatch, whatsapp, seo, tracking
 - App.tsx e rotas
-- Hero customizado e cards de indicacoes do LPLentesPorcelana
-- Tracking (GTM, GCLID, Google Ads conversion)
 - backgroundImage de qualquer config
-- Nenhuma palavra proibida adicionada
+- Helmet/SEO de cada pagina (mantidos intactos)
+- Tracking (GTM, GCLID, Google Ads)
 
