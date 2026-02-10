@@ -602,15 +602,11 @@ const ClareamentoDental = () => {
                   
                   <div className="space-y-4 text-dental-gray leading-relaxed">
                     <p>
-                      Com mais de duas décadas dedicadas à estética dental, a Dra. Carla 
-                      desenvolveu expertise reconhecida em clareamento dental. Sua 
-                      abordagem combina precisão técnica com sensibilidade ao conforto do paciente.
+                      Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
                     </p>
                     
                     <p>
-                      Cada caso é tratado de forma absolutamente individual. Não existem 
-                      protocolos padronizados - cada tratamento é único, planejado para 
-                      harmonizar com suas características dentais e estilo de vida.
+                      Nos protocolos de clareamento, prioriza segurança e resultado natural — cada caso tem sua indicação específica. A escolha entre clareamento de consultório, caseiro supervisionado ou combinado é definida na avaliação, considerando a condição dos dentes e a expectativa do paciente.
                     </p>
                   </div>
                   

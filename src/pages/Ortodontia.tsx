@@ -206,7 +206,7 @@ const Ortodontia = () => {
               </h1>
               <p className="text-xl text-dental-gray mb-8 leading-relaxed">
                 No consultório da Dra. Carla Christoph, oferecemos tratamento 
-                ortodôntico de excelência com o Dr. Bruno Moreira das Neves, 
+                ortodôntico especializado com o Dr. Bruno Moreira das Neves, 
                 ortodontista com doutorado pela UERJ. Utilizamos tecnologia 
                 avançada como scanner iTero Element 5D e Invisalign® para 
                 transformar seu sorriso com conforto e precisão.
@@ -243,9 +243,9 @@ const Ortodontia = () => {
                 Um sorriso alinhado vai além da estética - melhora a mastigação, 
                 facilita a higiene, previne problemas articulares e eleva a 
                 autoestima. Nossa abordagem une a expertise acadêmica do Dr. Bruno, 
-                com formação sólida e experiência clínica, ao cuidado personalizado 
+                com formação sólida e experiência clínica, ao cuidado individual 
                 que é marca registrada do consultório da Dra. Carla. Cada caso é 
-                planejado digitalmente, garantindo previsibilidade e excelência nos 
+                planejado digitalmente, garantindo previsibilidade e precisão nos 
                 resultados.
               </p>
             </div>
@@ -557,17 +557,11 @@ const Ortodontia = () => {
                   
                   <div className="space-y-4 text-dental-gray">
                     <p>
-                      A Dra. Carla acompanha toda a jornada do paciente, desde 
-                      a primeira consulta até a contenção final, garantindo 
-                      atendimento integrado e personalizado que é marca 
-                      registrada do consultório.
+                      Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
                     </p>
                     
                     <p>
-                      Trabalhando em conjunto com o Dr. Bruno, ela assegura 
-                      que cada paciente receba não apenas tratamento técnico 
-                      de excelência, mas também o cuidado e atenção que 
-                      merecem durante toda a transformação do sorriso.
+                      Em parceria com o Dr. Bruno, Doutor em Ortodontia pela UERJ, acompanha cada paciente do início à contenção final. A integração entre ortodontia e os demais tratamentos do consultório garante uma visão completa do caso.
                     </p>
                     
                     <div className="pt-4">
@@ -651,9 +645,8 @@ const Ortodontia = () => {
               </h2>
               <p className="text-lg text-dental-gray mb-8">
                 Agende sua avaliação com o Dr. Bruno e descubra como a 
-                ortodontia moderna pode transformar seu sorriso. Tecnologia 
-                avançada, expertise comprovada e atendimento personalizado 
-                te aguardam.
+                ortodontia moderna pode alinhar seu sorriso. Scanner iTero 3D, 
+                Invisalign e consultas sem pressa te aguardam.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

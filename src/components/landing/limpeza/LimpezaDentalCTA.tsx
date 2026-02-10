@@ -138,7 +138,7 @@ const LimpezaDentalCTA: React.FC<LimpezaDentalCTAProps> = ({
 
               <div className="mt-6 text-center">
                 <p className="text-white/60 text-sm">
-                  Localizado em Ipanema • Atendimento particular de excelência
+                  Localizado em Ipanema • Atendimento particular com tempo dedicado
                 </p>
               </div>
             </div>

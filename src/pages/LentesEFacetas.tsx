@@ -203,7 +203,7 @@ const LentesEFacetas = () => {
         <TreatmentHero
           title="Lentes de Contato Dental e Facetas de Porcelana"
           subtitle="Estética Dental com a Dra. Carla Christoph"
-          description="Transforme seu sorriso com técnicas minimamente invasivas e resultados naturais. Scanner iTero 3D, Test Drive do Sorriso e planejamento personalizado. Mais de 20 anos de experiência em estética dental."
+          description="Recupere a confiança no seu sorriso com técnicas minimamente invasivas e resultados naturais. Scanner iTero 3D, Test Drive do Sorriso e planejamento individualizado. Mais de 20 anos de experiência em estética dental."
           badges={["20+ anos de experiência", "Test Drive do Sorriso", "CRO-RJ 27.509"]}
           doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
           breadcrumbs={[
@@ -702,10 +702,10 @@ const LentesEFacetas = () => {
                   CRO-RJ 27.509 | Especialista em Prótese Dentária
                 </p>
                 <p className="text-dental-gray text-lg leading-relaxed">
-                  Com mais de duas décadas dedicadas à estética dental em Ipanema, desenvolvi expertise reconhecida em casos de alta complexidade. Minha abordagem combina precisão técnica com sensibilidade artística, sempre respeitando a individualidade de cada pessoa.
+                  Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
                 </p>
                 <p className="text-dental-gray text-lg leading-relaxed mt-4">
-                  Cada caso é tratado de forma absolutamente individual. Não existem sorrisos padronizados - cada tratamento é único, planejado para harmonizar com suas características faciais e estilo de vida.
+                  Em estética dental, utiliza escaneamento iTero e o Test Drive do Sorriso para que o paciente visualize o resultado antes de começar. Cada lente e cada faceta é planejada para harmonizar com as características faciais e o estilo do paciente.
                 </p>
               </div>
 
