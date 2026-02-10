@@ -2,7 +2,6 @@ import { LandingPageConfig } from "@/types/LandingPageConfig";
 
 export const profilaxiaConfig: LandingPageConfig = {
   campaign: "profilaxia-dental",
-  urgency: "Cada dia de adiamento aumenta o acúmulo de bactérias nocivas",
 
   messageMatch: {
     adGroup: "profilaxia-ipanema-exato",
@@ -15,129 +14,109 @@ export const profilaxiaConfig: LandingPageConfig = {
   },
 
   hero: {
-    headline: "Profilaxia Dental Sem Desconforto em Ipanema - Tecnologia Avançada Para Sua Saúde Bucal",
-    subheadline: "Profilaxia profissional com tecnologia de vibração ultrassônica que remove 30% mais biofilme que métodos tradicionais. Experiência confortável com Dra. Carla Christoph, especialista com mais de 20 anos.",
-    ctaText: "Agendar Minha Profilaxia Profissional",
+    headline: "Profilaxia Dental em Ipanema — Prevenção que Funciona",
+    subheadline: "Limpeza profissional completa com avaliação detalhada. Prevenir é mais simples, mais rápido e custa menos do que tratar.",
+    ctaText: "Agendar Minha Profilaxia",
     backgroundImage: "/lovable-uploads/vertical-de-jaleco.webp"
   },
 
   benefits: [
-    "✓ Tecnologia ultrassônica confortável - sensação suave, sem pressão dolorosa",
-    "✓ Remove até 95% do biofilme causador de cáries e mau hálito",
-    "✓ Previne problemas que custariam 8-50x mais para tratar",
-    "✓ WhatsApp 24h para agendamentos e dúvidas"
+    "Limpeza completa com ultrassom",
+    "Avaliação preventiva incluída",
+    "WhatsApp 24h",
+    "20+ anos de experiência"
   ],
 
   problem: {
-    title: "90% dos Problemas Bucais Podem Ser Prevenidos com Profilaxia Regular",
-    description: "Estudos científicos comprovam que a profilaxia profissional semestral reduz em até 60% o risco de doenças periodontais e em 40% a incidência de cáries. Na clínica da Dra. Carla Christoph, transformamos este cuidado essencial em uma experiência confortável e eficaz.",
+    title: "Prevenção é o Investimento Mais Inteligente em Saúde Bucal",
+    description: "A maioria dos problemas dentários pode ser evitada com profilaxia regular. Quando identificados cedo, tratamentos são mais simples e menos invasivos.",
     problems: [
-      "Tártaro acumulado que não sai com escovação",
-      "Mau hálito persistente mesmo com boa higiene",
-      "Manchas nos dentes causadas por café e vinho",
-      "Sangramento gengival durante a escovação",
-      "Sensibilidade dental crescente",
-      "Medo de procedimentos dolorosos"
+      "Faz tempo que não vai ao dentista para uma revisão.",
+      "Gengiva que sangra — sinal de inflamação que precisa de atenção.",
+      "Sensibilidade em algum dente que não sabe a causa.",
+      "Acúmulo de tártaro visível, especialmente nos dentes de baixo.",
+      "Quer manter a saúde bucal em dia mas não sabe a frequência ideal.",
+      "Prefere prevenir do que tratar problemas mais complexos depois."
     ]
   },
 
   guide: {
-    title: "Como Funciona Sua Profilaxia Profissional",
-    subtitle: "Processo completo em 5 etapas para sua saúde bucal",
+    title: "O Que Inclui a Profilaxia",
+    subtitle: "Mais do que uma limpeza — uma avaliação preventiva completa.",
     steps: [
       {
         number: "1",
-        title: "Avaliação Inicial Completa",
-        description: "Exame clínico detalhado com câmera intraoral de alta definição. Identificamos áreas de acúmulo de placa, início de cáries e condições gengivais."
+        title: "Exame Clínico",
+        description: "Avaliação de dentes, gengiva e mucosa. Identificação de problemas em estágio inicial — cáries, gengivite, desgaste."
       },
       {
         number: "2",
-        title: "Remoção Ultrassônica do Biofilme",
-        description: "Aplicação da tecnologia ultrassônica com irrigação simultânea. Remove tártaro, placa bacteriana e manchas superficiais com máximo conforto."
+        title: "Remoção de Tártaro e Placa",
+        description: "Limpeza com ultrassom e instrumentos adequados. Remoção do que a escovação diária não alcança."
       },
       {
         number: "3",
-        title: "Polimento Profissional",
-        description: "Polimento seletivo com pastas especializadas que deixam seus dentes lisos e brilhantes, dificultando novo acúmulo de placa."
+        title: "Polimento e Aplicação de Flúor",
+        description: "Polimento para remover manchas. Aplicação de flúor quando indicado para fortalecer o esmalte."
       },
       {
         number: "4",
-        title: "Aplicação de Flúor (Quando Indicado)",
-        description: "Fortalecimento do esmalte com flúor de alta concentração para proteção adicional contra cáries."
-      },
-      {
-        number: "5",
-        title: "Orientação Personalizada",
-        description: "Técnicas específicas de higiene para seu caso, recomendação de produtos adequados e agendamento do retorno."
+        title: "Plano Preventivo",
+        description: "Orientações personalizadas de higiene e definição do intervalo ideal para o próximo retorno."
       }
     ]
   },
 
   socialProof: {
-    title: "O Que Nossos Pacientes Dizem Sobre a Profilaxia",
+    title: "O Que Nossos Pacientes Contam",
     testimonials: [
       {
-        name: "Juliana Costa",
-        text: "Fazia anos que não fazia profilaxia por trauma de experiências anteriores. Na Dra. Carla foi completamente diferente - zero dor, ambiente calmo e ela explica tudo o que está fazendo. Virei paciente fiel!",
-        rating: 5
+        name: "Fernanda L. — Ipanema",
+        text: "Faço profilaxia a cada 6 meses. A Dra. Carla sempre identifica coisas que eu nem sentia. Prefiro prevenir do que remediar."
       },
       {
-        name: "André Oliveira",
-        text: "Como executivo, valorizo profissionais que respeitam meu tempo. A profilaxia foi rápida, eficiente e sem aquela sensação horrível de raspagem. O WhatsApp 24h facilita muito o agendamento na minha agenda corrida.",
-        rating: 5
+        name: "Lucas T. — Leblon",
+        text: "Fui para a profilaxia de rotina e a Dra. Carla identificou uma cárie inicial que nem doía. Resolveu na hora com uma restauração pequena. Se esperasse, seria um canal."
       },
       {
-        name: "Beatriz Mendes",
-        text: "Minha filha de 12 anos tinha pavor de dentista. A Dra. Carla foi tão gentil e a tecnologia é tão suave que ela saiu pedindo quando seria a próxima! Recomendo para toda família.",
-        rating: 5
+        name: "Ana Maria B. — Copacabana",
+        text: "O que valorizo é que ela não faz só a limpeza — ela examina tudo com calma. Saio sabendo exatamente como está minha boca."
       }
     ],
     stats: [
-      { number: "95%", label: "Biofilme Removido" },
-      { number: "30%", label: "Mais Eficaz que Métodos Tradicionais" },
-      { number: "60%", label: "Redução de Doenças Gengivais" },
-      { number: "4.000+", label: "Pacientes Atendidos" }
+      { number: "20+", label: "Anos de Experiência" },
+      { number: "4.000+", label: "Pacientes Atendidos" },
+      { number: "1h+", label: "Mínimo por Consulta" },
+      { number: "24h", label: "WhatsApp Disponível" }
     ]
   },
 
   faq: {
-    title: "Perguntas Frequentes sobre Profilaxia",
+    title: "Dúvidas sobre Profilaxia",
     questions: [
       {
-        question: "A profilaxia com ultrassom dói?",
-        answer: "Não. A tecnologia ultrassônica é significativamente mais confortável que a raspagem manual. Pacientes descrevem a sensação como 'cócegas suaves' ou uma 'vibração agradável'. Mesmo pessoas com sensibilidade dental relatam conforto durante todo o procedimento."
+        question: "Profilaxia e limpeza são a mesma coisa?",
+        answer: "Na prática, sim. Profilaxia é o termo técnico para a limpeza profissional preventiva. Inclui remoção de tártaro, polimento e, quando indicado, aplicação de flúor."
       },
       {
-        question: "Com que frequência devo fazer a profilaxia profissional?",
-        answer: "Para a maioria dos pacientes, o intervalo ideal é de 6 meses. Esse período baseia-se no ciclo de formação do biofilme bacteriano e desenvolvimento de lesões iniciais. Pacientes com maior risco (diabetes, doenças gengivais) podem necessitar intervalos de 3-4 meses."
+        question: "Com que frequência devo fazer?",
+        answer: "Para a maioria das pessoas, a cada 6 meses. Quem tem propensão a gengivite ou acúmulo rápido de tártaro pode precisar a cada 3-4 meses."
       },
       {
-        question: "Por que não posso fazer apenas a higiene em casa?",
-        answer: "A escovação e fio dental removem apenas 60% da placa bacteriana. O tártaro (placa calcificada) não sai com escovação - apenas com instrumentos profissionais. Além disso, existem áreas de difícil acesso que acumulam bactérias causadoras de cáries e mau hálito."
+        question: "Mesmo sem dor preciso ir ao dentista?",
+        answer: "Sim. A maioria dos problemas dentários não dói no início — cáries iniciais, gengivite, desgaste. Quando começa a doer, o tratamento tende a ser mais complexo."
       },
       {
-        question: "A profilaxia clareia os dentes?",
-        answer: "A profilaxia remove manchas superficiais causadas por café, chá, vinho e cigarro, revelando a cor natural dos seus dentes - que fica visivelmente mais clara. Para clareamento além da cor natural, oferecemos tratamentos específicos."
-      },
-      {
-        question: "Quanto tempo dura a consulta?",
-        answer: "O procedimento de profilaxia em si, entre 30-45 minutos, dependendo da quantidade de tártaro acumulado. Diferente do atendimento 'em linha de produção', dedicamos o tempo que for necessário para um tratamento completo e confortável."
-      },
-      {
-        question: "Posso comer normalmente após a profilaxia?",
-        answer: "Sim, você pode se alimentar normalmente logo após o procedimento. Se houver aplicação de flúor, recomendamos aguardar 30 minutos antes de comer ou beber."
-      },
-      {
-        question: "A profilaxia profissional substitui o tratamento de gengiva?",
-        answer: "A profilaxia é preventiva e trata gengivites leves. Casos de periodontite (doença gengival avançada) requerem tratamento específico. Durante a avaliação, identificamos se há necessidade de cuidados adicionais."
+        question: "Vocês atendem convênios?",
+        answer: "Nosso atendimento é particular, o que nos permite dedicar tempo à avaliação completa, não apenas à limpeza."
       }
     ]
   },
 
   cta: {
-    title: "Invista na Sua Saúde Bucal Hoje",
-    subtitle: "Agende sua profilaxia profissional e experimente o padrão de excelência em odontologia preventiva de Ipanema",
-    buttonText: "Quero Agendar Minha Profilaxia"
+    title: "Prevenção é o Melhor Tratamento",
+    subtitle: "Agende sua profilaxia e mantenha sua saúde bucal em dia.",
+    buttonText: "Agendar Minha Profilaxia"
   },
 
   contact: {
