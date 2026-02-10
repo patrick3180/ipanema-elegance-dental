@@ -46,7 +46,7 @@ export const lentesPorcelanaAcolhedorConfig: LandingPageConfig = {
     steps: [
       { number: '1', title: 'Consulta e Análise Facial', description: 'Conversa sobre suas expectativas. Análise facial, fotografias e escaneamento digital para entender o que combina com você.' },
       { number: '2', title: 'Test Drive do Sorriso', description: 'Você experimenta um modelo provisório na sua boca antes de iniciar. Vê, sente e aprova. Se não gostar, ajustamos até ficar do seu jeito.' },
-      { number: '3', title: 'Confecção das Lentes', description: 'Com o projeto aprovado, cada lente é feita em laboratório. Porcelana que reproduz a cor e translucidez dos dentes naturais.' },
+      { number: '3', title: 'Confecção das Lentes', description: 'Com o projeto aprovado, cada lente é confeccionada em porcelana de alta translucidez — somente materiais de primeira linha. Reproduz a cor e o brilho dos dentes naturais.' },
       { number: '4', title: 'Aplicação e Finalização', description: 'As lentes são cimentadas com precisão. O processo é confortável e o resultado é imediato — você sai sorrindo.' }
     ]
   },

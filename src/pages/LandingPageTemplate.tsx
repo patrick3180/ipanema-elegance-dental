@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { LandingPageConfig } from "@/types/LandingPageConfig";
-import { lentesConfig } from "@/config/landingPageConfigs";
+
 
 // Landing Page Components
 import HeroSection from "@/components/landing/HeroSection";
@@ -25,7 +25,7 @@ const LandingPageTemplate = ({ config }: LandingPageTemplateProps) => {
   const { template } = useParams<{ template: string }>();
   
   // Get config - use passed config or default to lentes
-  const pageConfig = config || lentesConfig;
+  const pageConfig = config!;
   
   // Scroll depth tracking
   useEffect(() => {
