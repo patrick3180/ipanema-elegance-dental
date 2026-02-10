@@ -2,6 +2,7 @@ import { LandingPageConfig } from "@/types/LandingPageConfig";
 
 export const implantesDentariosConfig: LandingPageConfig = {
   campaign: 'Pesquisa - Implantes Dentários - Zona Sul',
+  urgency: 'Cada mês sem o dente aumenta a perda óssea — o momento de agir é agora',
   
   messageMatch: {
     adGroup: 'Implantes',
@@ -14,72 +15,76 @@ export const implantesDentariosConfig: LandingPageConfig = {
   },
   
   hero: {
-    headline: "Recupere a Confiança de Sorrir e o Prazer de Comer sem Preocupações",
-    subheadline: "Com os implantes dentários, oferecemos uma solução segura e definitiva para a perda de dentes. Volte a viver com a segurança de um sorriso fixo, funcional e de aparência natural.",
-    ctaText: "Agendar Minha Consulta de Planejamento",
-    backgroundImage: "/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+    headline: 'Recupere a Segurança de um Sorriso Fixo e o Prazer de Mastigar sem Preocupação',
+    subheadline: 'Implantes dentários com planejamento individualizado. Volte a comer, falar e sorrir com a confiança de quem tem dentes que funcionam de verdade.',
+    ctaText: 'Agendar Consulta de Planejamento',
+    backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
   
   benefits: [
-    'Solução fixa e definitiva para a perda dentária',
-    'Segurança total para mastigar e falar',
-    'Resultado estético natural e harmonioso',
-    'Tecnologia que garante um tratamento preciso'
+    'Especialista em Implantodontia',
+    'Planejamento com tomografia digital',
+    'WhatsApp 24h',
+    '20+ anos de experiência'
   ],
   
   problem: {
-    title: 'A ausência de um ou mais dentes afeta a sua qualidade de vida?',
-    description: 'A perda dentária vai muito além da estética. Ela impacta a mastigação, a fala e, principalmente, a autoconfiança. Entendemos o seu desconforto e temos a solução para devolver a sua segurança.',
+    title: 'A Falta de um Dente Afeta Muito Mais do que Você Imagina',
+    description: 'Perder um dente não é só uma questão estética. A mastigação muda, a fala pode ser afetada, e o osso onde o dente estava começa a ser reabsorvido. Quanto mais tempo passa, mais complexo pode se tornar.',
     problems: [
-      'Vergonha ou constrangimento ao sorrir em público.',
-      'Dificuldade e insegurança para mastigar os alimentos que você mais gosta.',
-      'Uso de próteses removíveis que são desconfortáveis, instáveis ou machucam.',
-      'Medo de que a situação piore ou afete outros dentes.',
-      'O sonho de ter dentes fixos novamente, como se fossem seus.',
-      'Busca por um tratamento seguro, previsível e com alta taxa de sucesso.'
+      'Insegurança ao sorrir, especialmente em situações sociais e profissionais.',
+      'Dificuldade para mastigar — evitar alimentos que gosta por medo de morder.',
+      'Prótese removível que solta, machuca ou limita o que pode comer.',
+      'Perda óssea progressiva que altera o contorno do rosto com o tempo.',
+      'Preocupação com os dentes vizinhos que começam a se deslocar para o espaço vazio.',
+      'Vontade de ter dentes fixos novamente — que funcionem e pareçam naturais.'
     ]
   },
   
   guide: {
-    title: 'Sua Jornada para um Novo Sorriso: Segura e Planejada em Detalhes',
-    subtitle: 'Utilizamos a mais moderna tecnologia de planejamento para garantir um procedimento preciso, seguro e com o mínimo de desconforto.',
+    title: 'Como a Dra. Carla Christoph Planeja Seu Tratamento com Implantes',
+    subtitle: 'Especialista em Implantodontia, a Dra. Carla conduz cada etapa com base em diagnóstico preciso e planejamento digital.',
     steps: [
-      { number: '1', title: 'Consulta de Planejamento com Tomografia', description: 'O primeiro passo é a segurança. Solicitamos uma tomografia computadorizada para avaliar a estrutura óssea com precisão milimétrica e planejar a posição ideal do implante.' },
-      { number: '2', title: 'Cirurgia Guiada: Precisão e Conforto', description: 'Realizamos o procedimento de forma minimamente invasiva, muitas vezes sem a necessidade de cortes extensos. A tecnologia guia o processo, tornando-o mais rápido e a recuperação mais tranquila.' },
-      { number: '3', title: 'Período de Osseointegração', description: 'Aguardamos o período em que o implante se integra de forma segura ao osso. Durante essa fase, você pode utilizar uma prótese provisória para manter a estética.' },
-      { number: '4', title: 'A Coroa Definitiva: Seu Novo Dente', description: 'Com o implante totalmente integrado, confeccionamos e instalamos a coroa de porcelana, o seu novo dente. Ela é desenhada para ter a aparência, cor e formato idênticos aos seus dentes naturais.' }
+      { number: '1', title: 'Consulta e Tomografia', description: 'Avaliação clínica detalhada e tomografia computadorizada para mapear a estrutura óssea com precisão.' },
+      { number: '2', title: 'Planejamento Digital do Caso', description: 'Definição da posição, angulação e tipo de implante mais adequado — tudo planejado antes da cirurgia.' },
+      { number: '3', title: 'Cirurgia de Instalação', description: 'Procedimento com anestesia local, de forma tranquila. Na maioria dos casos, o pós é mais simples do que se imagina.' },
+      { number: '4', title: 'Cicatrização e Integração', description: 'O implante se integra ao osso ao longo de alguns meses. Durante esse período, você pode usar uma prótese provisória.' },
+      { number: '5', title: 'Prótese Definitiva pela Dra. Carla', description: 'Moldagem digital e confecção da coroa ou prótese final — planejada para encaixar com precisão e parecer natural.' }
     ]
   },
 
   socialProof: {
-    title: 'Pacientes que Voltaram a Sorrir com Total Confiança',
+    title: 'O Que Nossos Pacientes Contam Sobre o Tratamento',
     testimonials: [
-        { name: 'José C.', text: 'Eu não aguentava mais usar prótese removível. O implante mudou minha vida. Voltar a comer de tudo e sorrir sem medo não tem preço. A Dra. Carla me passou uma segurança enorme.', rating: 5 },
-        { name: 'Maria L.', text: 'Perdi um dente da frente e tinha muita vergonha. O processo foi muito mais tranquilo do que eu imaginava. O resultado ficou tão perfeito e natural que ninguém percebe que é um implante.', rating: 5 },
-        { name: 'Antônio S.', text: 'O planejamento com a tomografia fez toda a diferença. Senti que estava no lugar certo, com uma profissional que domina o assunto. Hoje tenho meu sorriso completo de novo. Recomendo!', rating: 5 }
+      { name: 'Ricardo M. — Ipanema', text: 'Adiei anos por medo da cirurgia. Quando finalmente fiz, me arrependi de não ter feito antes. O pós-operatório foi tranquilo e hoje como de tudo normalmente.' },
+      { name: 'Sandra L. — Leblon', text: 'Usava dentadura há 8 anos. Depois dos implantes com a Dra. Carla, voltei a sentir segurança para comer e conversar. Muda a vida.' },
+      { name: 'Paulo H. — Copacabana', text: 'O planejamento foi o que me deu confiança. Ela mostrou exatamente o que seria feito, passo a passo, antes de começar.' }
     ],
     stats: [
-        { number: '20+', label: 'Anos de Experiência' },
-        { number: '4000+', label: 'Pacientes Atendidos' },
-        { number: '100%', label: 'Foco no Planejamento e Segurança' },
-        { number: '24h', label: 'Atendimento WhatsApp' }
+      { number: '20+', label: 'Anos de Experiência' },
+      { number: '4.000+', label: 'Pacientes Atendidos' },
+      { number: 'Implantodontia', label: 'Especialidade Formal' },
+      { number: '24h', label: 'WhatsApp Disponível' }
     ]
   },
   
   faq: {
-    title: 'Dúvidas Comuns sobre Implantes Dentários',
+    title: 'Dúvidas Sobre Implantes Dentários',
     questions: [
-        { question: 'O tratamento com implantes dentários dói?', answer: 'Não. A cirurgia é realizada com anestesia local potente, e o paciente não sente dor durante o procedimento. O pós-operatório é controlado com medicação, sendo geralmente muito mais tranquilo do que se imagina.' },
-        { question: 'Qualquer pessoa pode fazer um implante?', answer: 'A maioria das pessoas com boa saúde geral pode receber implantes. A tomografia inicial é fundamental para avaliar a quantidade e qualidade do osso. Em casos de osso insuficiente, existem técnicas de enxerto para viabilizar o tratamento.' },
-        { question: 'Quanto tempo dura todo o processo?', answer: 'O tempo varia a depender do caso, principalmente do período de osseointegração (a união do implante ao osso), que leva de 3 a 6 meses. O planejamento detalhado na primeira consulta te dará uma previsão precisa de todas as etapas.' },
-        { question: 'O implante parece um dente natural?', answer: 'Sim. A coroa de porcelana que é colocada sobre o implante é feita sob medida para ter a mesma cor, formato e translucidez dos seus dentes vizinhos, garantindo um resultado estético imperceptível e totalmente natural.' }
+      { question: 'Implante dentário dói?', answer: 'A cirurgia é feita com anestesia local e a maioria dos pacientes relata menos desconforto do que esperava. O pós costuma ser tranquilo — muitos voltam às atividades normais no dia seguinte, com medicação simples.' },
+      { question: 'Existe risco de rejeição?', answer: 'O termo correto é falha de osseointegração, que ocorre em menos de 3% dos casos. Implantes são feitos de titânio, material que o corpo aceita bem. Fatores como tabagismo e diabetes não controlada podem aumentar o risco.' },
+      { question: 'Quanto tempo leva todo o tratamento?', answer: 'Depende do caso. Em situações convencionais, de 4 a 8 meses. Casos que necessitam de enxerto ósseo podem levar mais. Em casos selecionados, é possível instalar implante e dente provisório no mesmo dia.' },
+      { question: 'Implante é indicado para qualquer idade?', answer: 'Para adultos, sim. Não há limite superior de idade. O que importa é a condição de saúde geral e a disponibilidade de osso. A avaliação clínica e a tomografia definem a viabilidade.' },
+      { question: 'Vou ficar sem dente durante o tratamento?', answer: 'Não. Existem soluções provisórias para manter a estética e a função durante todo o período de tratamento.' },
+      { question: 'Vocês atendem convênios?', answer: 'Nosso atendimento é particular, o que nos permite dedicar o tempo necessário a cada caso e trabalhar com materiais selecionados. Na consulta de avaliação, apresentamos o planejamento detalhado.' }
     ]
   },
   
   cta: {
-    title: 'Pronto(a) para Voltar a Viver sem Limitações?',
-    subtitle: 'Agende sua consulta de planejamento e dê o primeiro passo para recuperar a função, a estética e, acima de tudo, a sua qualidade de vida.',
-    buttonText: 'Quero Agendar meu Planejamento'
+    title: 'Recupere a Segurança de Mastigar e Sorrir',
+    subtitle: 'Agende sua consulta de planejamento. Quanto antes o diagnóstico, mais simples tende a ser o tratamento.',
+    buttonText: 'Agendar Minha Consulta',
+    urgency: 'A perda óssea é progressiva — cada mês conta'
   },
   
   contact: {

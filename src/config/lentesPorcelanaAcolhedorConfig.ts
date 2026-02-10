@@ -14,72 +14,74 @@ export const lentesPorcelanaAcolhedorConfig: LandingPageConfig = {
   },
   
   hero: {
-    headline: 'Redescubra a Confiança e a Alegria em Cada Sorriso',
-    subheadline: 'Sinta-se à vontade para sorrir abertamente. Com a delicadeza e a arte das lentes de contato de porcelana, criamos um sorriso luminoso que reflete a sua verdadeira essência.',
-    ctaText: 'Quero Renovar Meu Sorriso',
+    headline: 'Sinta-se à Vontade para Sorrir — De Verdade',
+    subheadline: 'Lentes de porcelana que respeitam a individualidade do seu rosto. Com planejamento digital e Test Drive do Sorriso, você visualiza e aprova o resultado antes de começar.',
+    ctaText: 'Quero Conhecer as Possibilidades',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
   
   benefits: [
-    'Resultado natural que harmoniza com você',
-    'Material resistente que não mancha com o tempo',
-    'Aumento da autoestima e bem-estar',
-    'Processo cuidadoso e minimamente invasivo'
+    'Test Drive do Sorriso antes de começar',
+    'Resultado natural que combina com seu rosto',
+    'WhatsApp 24h',
+    '20+ anos em estética dental'
   ],
   
   problem: {
-    title: 'O sorriso que você vê no espelho reflete a felicidade que sente?',
-    description: 'Muitas vezes, pequenas imperfeições podem ter um impacto desproporcional na nossa autoconfiança. Compreendemos que o seu desejo não é apenas por dentes mais bonitos, mas por se sentir livre para se expressar.',
+    title: 'Quando o Sorriso Não Acompanha a Confiança que Você Tem',
+    description: 'Às vezes, não é sobre ter dentes "perfeitos". É sobre se sentir confortável para sorrir sem pensar duas vezes. Se você se identifica com alguma dessas situações, lentes de porcelana podem ser o caminho.',
     problems: [
-      'Vergonha de sorrir em fotos com amigos e família.',
-      'Dentes escurecidos que não respondem a clareamentos.',
-      'Pequenos desgastes, lascas ou espaços que tiram a harmonia do sorriso.',
-      'Sensação de que seu sorriso não combina mais com sua personalidade.',
-      'O sonho de ter um sorriso naturalmente branco e alinhado.',
-      'Vontade de investir em si mesma e na sua felicidade.'
+      'Cobrir a boca ao rir ou evitar fotos por causa do sorriso.',
+      'Dentes com manchas ou escurecimento que clareamento não resolve.',
+      'Espaços entre os dentes que incomodam esteticamente.',
+      'Dentes com formato irregular ou lascados que tiram a harmonia.',
+      'Desejo de um sorriso mais uniforme e claro, sem parecer artificial.',
+      'Já pesquisou sobre o assunto mas tem receio de não ficar natural.'
     ]
   },
   
   guide: {
-    title: 'Sua Jornada para um Sorriso que Inspira Confiança',
-    subtitle: 'Nosso processo é focado na previsibilidade e no seu conforto. Você participa de cada decisão e aprova o resultado antes de iniciarmos.',
+    title: 'Como Funciona o Tratamento com a Dra. Carla Christoph',
+    subtitle: 'Mais de 20 anos em estética dental, com escaneamento iTero e planejamento digital do sorriso.',
     steps: [
-      { number: '1', title: 'Consulta de Design do Sorriso', description: 'Uma conversa acolhedora para entender seus sonhos e desejos. Realizamos uma análise facial e fotografias para planejar o sorriso ideal para você.' },
-      { number: '2', title: '"Test Drive" do Sorriso (Mock-up)', description: 'Nosso grande diferencial. Você não apenas imagina, você experimenta seu novo sorriso na própria boca com um modelo provisório. É a garantia de que o resultado final será exatamente como você sempre quis.' },
-      { number: '3', title: 'Criação Artesanal das Lentes', description: 'Com o plano aprovado por você, cada lente é esculpida em porcelana de alta tecnologia, garantindo um resultado único, com a cor e translucidez de um dente natural.' },
-      { number: '4', title: 'O Dia da Transformação', description: 'Com cuidado e precisão, as lentes são aplicadas. O resultado é um sorriso renovado que não só transforma sua aparência, mas, principalmente, a forma como você se sente.' }
+      { number: '1', title: 'Consulta e Análise Facial', description: 'Conversa sobre suas expectativas. Análise facial, fotografias e escaneamento digital para entender o que combina com você.' },
+      { number: '2', title: 'Test Drive do Sorriso', description: 'Você experimenta um modelo provisório na sua boca antes de iniciar. Vê, sente e aprova. Se não gostar, ajustamos até ficar do seu jeito.' },
+      { number: '3', title: 'Confecção das Lentes', description: 'Com o projeto aprovado, cada lente é feita em laboratório. Porcelana que reproduz a cor e translucidez dos dentes naturais.' },
+      { number: '4', title: 'Aplicação e Finalização', description: 'As lentes são cimentadas com precisão. O processo é confortável e o resultado é imediato — você sai sorrindo.' }
     ]
   },
 
   socialProof: {
-    title: 'Pacientes que Redescobriram o Prazer de Sorrir',
+    title: 'O Que Nossas Pacientes Contam',
     testimonials: [
-        { name: 'Ana Carolina S.', text: 'Eu não imaginava o impacto que um sorriso novo teria na minha vida. Sinto-me mais bonita, mais jovem e muito mais segura. A Dra. Carla e sua equipe foram incríveis em todo o processo.', rating: 5 },
-        { name: 'Mariana F.', text: 'O medo de parecer artificial era minha maior preocupação. O resultado ficou tão natural que as pessoas comentam que estou mais radiante, mas não sabem dizer o porquê. Era exatamente isso que eu queria.', rating: 5 },
-        { name: 'Luciana M.', text: 'Poder testar o sorriso com o mock-up foi fundamental. Me deu a tranquilidade que eu precisava para fazer o tratamento. Hoje, sorrio sem medo e sem vergonha. Recomendo de olhos fechados!', rating: 5 }
+      { name: 'Fernanda R. — Ipanema', text: 'O Test Drive foi o que me convenceu. Pude ver como ficaria antes de decidir. Quando vi o resultado provisório, já sabia que era isso que queria.' },
+      { name: 'Camila S. — Barra', text: 'Tinha medo de ficar com cara de que fez lentes. Ficou tão natural que as pessoas elogiam meu sorriso mas não percebem que são lentes.' },
+      { name: 'Mariana T. — Leblon', text: 'Fiz as lentes depois de anos pensando. O processo foi mais tranquilo do que imaginava. Hoje sorrio nas fotos sem pensar.' }
     ],
     stats: [
-        { number: '20+', label: 'Anos de Experiência' },
-        { number: '4.000+', label: 'Sorrisos Renovados' },
-        { number: '100%', label: 'Foco no seu Bem-Estar' },
-        { number: '24h', label: 'Atendimento WhatsApp' }
+      { number: '20+', label: 'Anos em Estética Dental' },
+      { number: '4.000+', label: 'Pacientes Atendidos' },
+      { number: 'iTero', label: 'Scanner Digital 3D' },
+      { number: '24h', label: 'WhatsApp Disponível' }
     ]
   },
   
   faq: {
-    title: 'Suas Dúvidas, Respondidas com Carinho',
+    title: 'Dúvidas Sobre Lentes de Porcelana',
     questions: [
-        { question: 'Lentes de cerâmica e porcelana são a mesma coisa?', answer: 'Sim. Na odontologia estética, "cerâmica" e "porcelana" são usados como sinônimos para o material de alta tecnologia que usamos. A porcelana é um tipo nobre de cerâmica, escolhida por sua beleza e resistência.' },
-        { question: 'O tratamento com lentes de porcelana dói?', answer: 'Não. Todo o procedimento é realizado com anestesia local para garantir o seu conforto absoluto. Nossa prioridade é que sua experiência seja tranquila e sem dor.' },
-        { question: 'As lentes podem parecer artificiais?', answer: 'Este é um dos maiores medos, e a nossa maior preocupação é evitá-lo. Usamos porcelanas de última geração que mimetizam perfeitamente a beleza do dente natural. O resultado é um sorriso elogiado pela naturalidade.' },
-        { question: 'É necessário desgastar muito os meus dentes?', answer: 'Não. A filosofia da nossa clínica é a máxima preservação da estrutura dentária. O preparo necessário é mínimo, apenas o suficiente para garantir uma adaptação perfeita e um resultado estético impecável.' }
+      { question: 'As lentes ficam naturais ou parecem artificiais?', answer: 'A porcelana moderna reproduz a translucidez do dente natural. Com planejamento adequado, o resultado passa despercebido — as pessoas notam que o sorriso está bonito, mas não identificam que são lentes.' },
+      { question: 'Precisa desgastar muito o dente?', answer: 'Depende do caso. Lentes de porcelana exigem um desgaste mínimo. Em alguns casos selecionados (chamados de "no-prep"), é possível sem nenhum desgaste. A avaliação clínica define o que é melhor para a sua situação.' },
+      { question: 'Quanto tempo duram as lentes?', answer: 'Com materiais de qualidade e cuidados normais (escovação, fio dental, consultas regulares), lentes de porcelana duram de 15 a 20 anos ou mais.' },
+      { question: 'O que é o Test Drive do Sorriso?', answer: 'É um mock-up (modelo provisório em resina) aplicado sobre os seus dentes para que você veja e sinta como ficará o resultado final. Funciona como uma prévia — você aprova antes de iniciar.' },
+      { question: 'Posso fazer lentes se tenho problema gengival?', answer: 'Primeiro é necessário tratar a gengiva. Lentes exigem uma base gengival saudável para funcionar e durar. A Dra. Carla avalia o caso completo antes de indicar qualquer procedimento estético.' },
+      { question: 'Vocês atendem convênios?', answer: 'Nosso atendimento é particular, o que nos permite dedicar o tempo necessário ao planejamento e trabalhar com materiais selecionados. Na consulta de avaliação, apresentamos o plano completo.' }
     ]
   },
   
   cta: {
-    title: 'Pronta para se Olhar no Espelho e Amar o Sorriso que Vê?',
-    subtitle: 'Dê o primeiro passo para uma nova fase de autoestima e felicidade. Estamos aqui para guiar você nessa jornada.',
-    buttonText: 'Quero Agendar Minha Avaliação'
+    title: 'Quer Saber se Lentes São Indicadas para Você?',
+    subtitle: 'Na consulta de avaliação, analisamos seu caso e mostramos as possibilidades — sem compromisso.',
+    buttonText: 'Agendar Minha Avaliação'
   },
   
   contact: {
