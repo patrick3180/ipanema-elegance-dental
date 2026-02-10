@@ -23,7 +23,7 @@ const ServicesPage = () => {
           
           {/* Texto introdutório */}
           <p className="text-lg text-dental-gray mb-8 max-w-3xl">
-            Cada tratamento é planejado individualmente, com tempo e atenção ao que o seu caso específico precisa. Conheça as opções e agende sua avaliação.
+            Cada tratamento é planejado individualmente, com tempo e atenção ao que o seu caso específico precisa. Conheça os serviços oferecidos pela Dra. Carla Christoph em Ipanema.
           </p>
 
           {/* Using the services section component */}

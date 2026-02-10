@@ -6,13 +6,13 @@ import { ArrowRight } from "lucide-react";
 const services = [
   {
     title: "Lentes de Contato Dental e Facetas de Porcelana",
-    description: "Transforme seu sorriso com finas lâminas de porcelana, corrigindo cor, forma e imperfeições com naturalidade e precisão estética.",
+    description: "Lâminas ultrafinas de porcelana que corrigem cor, forma e pequenas imperfeições. Resultado natural e duradouro, planejado digitalmente com scanner iTero.",
     image: "/Lentes.webp",
     slug: "lentes-de-contato-dental-e-facetas-de-porcelana"
   },
   {
     title: "Clareamento Dental Profissional",
-    description: "Conquiste dentes visivelmente mais brancos e um sorriso radiante com nossas técnicas de clareamento seguras e eficazes, realizadas em consultório ou supervisionadas em casa.",
+    description: "Dentes mais brancos com segurança. Protocolo em consultório ou supervisionado em casa, com controle de sensibilidade e resultado natural.",
     image: "/Clareamento.webp",
     slug: "clareamento-dental"
   },
@@ -24,13 +24,13 @@ const services = [
   },
   {
     title: "Implantes Dentários",
-    description: "A solução definitiva para a perda de dentes. Implantes seguros e duradouros para restaurar seu sorriso e qualidade de vida em Ipanema.",
+    description: "Reabilitação de dentes perdidos com implantes que devolvem função mastigatória e estética. Planejamento digital para casos unitários ou reabilitações completas.",
     image: "/Implante.webp",
     slug: "implantes-dentarios"
   },
   {
     title: "Ortodontia",
-    description: "Correção de problemas de alinhamento dental e mordida com aparelhos modernos e discretos, proporcionando um sorriso harmônico e funcional.",
+    description: "Alinhamento dental e correção de mordida com aparelhos fixos, estéticos ou alinhadores Invisalign\u00ae. Parceria com o Dr. Bruno, Doutor em Ortodontia pela UERJ.",
     image: "/Ortodontia.webp",
     slug: "ortodontia"
   },
@@ -42,13 +42,13 @@ const services = [
   },
   {
     title: "Restaurações Estéticas",
-    description: "Tratamento de cáries e reconstrução de dentes fraturados ou trincados com materiais modernos que imitam a cor natural dos seus dentes.",
+    description: "Tratamento de cáries e reconstrução de dentes fraturados com resinas e cerâmicas que reproduzem a cor e translucidez natural do dente.",
     image: "/Restarações.webp",
     slug: "restauracoes-esteticas"
   },
   {
     title: "Tratamento de Canal (Endodontia)",
-    description: "Alivie a dor e preserve seu dente natural com nosso tratamento de canal realizado com técnicas avançadas e foco no seu conforto.",
+    description: "Tratamento de canal para eliminar dor e preservar o dente natural. Procedimento realizado por endodontista especializado, com acompanhamento da Dra. Carla do início ao fim.",
     image: "/Endodontia.webp",
     slug: "tratamento-de-canal"
   },
