@@ -14,75 +14,73 @@ export const dorDeDenteConfig: LandingPageConfig = {
   },
   
   hero: {
-    headline: 'Dor de Dente Forte? Atendimento Prioritário para Alívio da Dor em Ipanema',
-    subheadline: 'Não ignore a dor. Faremos o possível para encaixá-lo no primeiro horário disponível e investigar a causa do seu desconforto. Dra. Carla Christoph, especialista há mais de 20 anos.',
-    ctaText: 'Quero Aliviar Minha Dor',
+    headline: 'Dor de Dente em Ipanema? Atendimento Prioritário',
+    subheadline: 'Dor de dente pode ter várias causas — cárie profunda, infecção, fratura. O diagnóstico correto é o primeiro passo para o alívio. Encaixe prioritário pelo WhatsApp.',
+    ctaText: 'Pedir Atendimento Agora',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
   
   benefits: [
-    'Atendimento prioritário - nos esforçamos para investigar a causa no mesmo dia',
-    'Alívio rápido e seguro para o seu desconforto',
-    'Diagnóstico preciso para tratar a origem da dor, não apenas o sintoma',
-    'WhatsApp 24h para agendamentos e orientações urgentes'
+    'WhatsApp 24h — orientação imediata',
+    'Encaixe prioritário na agenda',
+    'Diagnóstico preciso da causa',
+    '20+ anos de experiência'
   ],
   
   problem: {
-    title: 'Sabemos Como a Dor de Dente Pode Ser Insuportável',
-    description: 'Uma dor de dente intensa não espera. Ela afeta seu sono, sua concentração, seu trabalho e seu bem-estar. Na clínica da Dra. Carla Christoph, tratamos urgências com a prioridade que merecem, focando em diagnosticar a causa e aliviar sua dor o mais rápido possível.',
+    title: 'Dor de Dente Não É para Aguentar',
+    description: 'Dor persistente é sinal de que algo precisa de atenção. Ignorar pode transformar um problema tratável em algo mais complexo e mais caro.',
     problems: [
-      'Dor latejante que não passa com analgésicos comuns',
-      'Noites mal dormidas por causa do incômodo',
-      'Dificuldade para se concentrar nas tarefas do dia a dia',
-      'Medo de que seja um problema sério, como um canal',
-      'Sensibilidade extrema que impede de comer ou beber',
-      'Urgência para resolver antes de um compromisso importante'
+      'Dor ao morder ou mastigar — pulsante, latejante.',
+      'Dor que piora com bebida quente ou gelada.',
+      'Dor que acorda de madrugada e não passa com analgésico.',
+      'Inchaço no rosto ou na gengiva perto do dente que dói.',
+      'Sensação de pressão ou pulsação dentro do dente.',
+      'Não sabe a causa — só sabe que precisa resolver.'
     ]
   },
   
   guide: {
-    title: 'Sua Jornada Rumo ao Alívio da Dor',
-    subtitle: 'Nosso processo para diagnosticar e tratar sua dor com agilidade e precisão',
+    title: 'Do Alívio ao Tratamento Definitivo',
+    subtitle: 'Resolver a dor é prioridade. Depois, tratamos a causa.',
     steps: [
-      { number: '1', title: 'Contato Imediato via WhatsApp', description: 'Entre em contato e descreva sua dor. Nossa equipe responde 24h e já orienta sobre os primeiros cuidados.' },
-      { number: '2', title: 'Agendamento Prioritário', description: 'Faremos o máximo para encaixá-lo no primeiro horário vago, muitas vezes no mesmo dia.' },
-      { number: '3', title: 'Avaliação e Diagnóstico Preciso', description: 'Análise clínica detalhada e exames de imagem (se necessário) para identificar a causa exata da dor.' },
-      { number: '4', title: 'Ação Imediata para Alívio', description: 'Dependendo do diagnóstico (cárie profunda, canal, inflamação), iniciamos o procedimento para remover a dor ou aplicamos uma medicação local e agendamos a continuação do tratamento.' },
-      { number: '5', title: 'Plano de Tratamento', description: 'Você sai da consulta com alívio da dor, clareza sobre o problema e com os próximos passos do tratamento definitivo já definidos.' }
+      { number: '1', title: 'Contato pelo WhatsApp', description: 'Descreva a dor. Orientamos os primeiros cuidados (o que tomar, o que evitar) enquanto agenda o encaixe.' },
+      { number: '2', title: 'Diagnóstico da Causa', description: 'Exame clínico e radiografia para identificar a origem exata da dor — cárie, fratura, infecção, problema gengival.' },
+      { number: '3', title: 'Alívio Imediato', description: 'Tratamento para eliminar a dor. Pode ser medicação, drenagem de abscesso, restauração ou encaminhamento para canal.' },
+      { number: '4', title: 'Tratamento Definitivo', description: 'Com a dor resolvida, planejamos o tratamento da causa para evitar recorrência.' }
     ]
   },
   
   socialProof: {
-    title: 'O Que Nossos Pacientes Dizem Sobre o Atendimento de Urgência',
+    title: 'Quem Precisou, Conta',
     testimonials: [
-      { name: 'Marcelo C.., Jornalista', text: 'Acordei com uma dor de dente terrível no domingo. Mandei um WhatsApp e consegui um encaixe para segunda de manhã. A Dra. Carla foi incrível, diagnosticou o problema e o alívio foi imediato. Salvo pela agilidade e competência!', rating: 5 },
-      { name: 'Maria L., Aposentada', text: 'Meu dente começou a doer de forma insuportável. A Dra. Carla me encaixou no mesmo dia. Foi extremamente cuidadosa, me explicou tudo sobre o tratamento de canal que eu precisava. O atendimento humanizado fez toda a diferença.', rating: 5 },
-      { name: 'Roberto P., Contador', text: 'Estava com uma dor que irradiava para o rosto todo. O atendimento foi focado em resolver a dor primeiro. Saí de lá muito melhor e com o tratamento já encaminhado. Recomendo pela seriedade e eficiência.', rating: 5 }
+      { name: 'Felipe G. — Ipanema', text: 'Estava com uma dor que não me deixava dormir. Consegui encaixe no dia seguinte. A Dra. Carla identificou a infecção, resolveu a urgência e depois planejou o restante.' },
+      { name: 'Laura M. — Leblon', text: 'Tomei analgésico por 3 dias antes de ligar. Me arrependo de não ter ido antes — a solução foi simples quando diagnosticada.' },
+      { name: 'Roberto C. — Copacabana', text: 'Achei que ia precisar de canal. A Dra. Carla avaliou com calma e na verdade era só uma restauração infiltrada. Resolveu na hora.' }
     ],
     stats: [
+      { number: '24h', label: 'WhatsApp Disponível' },
       { number: '20+', label: 'Anos de Experiência' },
       { number: '4.000+', label: 'Pacientes Atendidos' },
-      { number: '1 hora', label: 'Mínimo por Agendamento' },
-      { number: '24h', label: 'Atendimento WhatsApp' }
+      { number: 'Mesmo dia', label: 'Encaixe Prioritário' }
     ]
   },
   
   faq: {
-    title: 'Dúvidas Frequentes Sobre Dor de Dente',
+    title: 'Dúvidas sobre Dor de Dente',
     questions: [
-        { question: 'Consigo atendimento no mesmo dia?', answer: 'Sim, faremos todo o possível. Urgências com dor são sempre priorizadas em nossa agenda para garantir seu alívio o quanto antes.' },
-        { question: 'O tratamento para dor vai doer?', answer: 'Não. Utilizamos as mais modernas técnicas de anestesia para garantir que o procedimento seja o mais confortável possível. Nosso foco é eliminar a sua dor, não causar mais.' },
-        { question: 'O que pode ser a minha dor de dente?', answer: 'As causas são variadas, de cáries profundas a problemas de canal ou inflamações na gengiva. Somente uma avaliação clínica e, se necessário, radiográfica, pode determinar a causa exata.' },
-        { question: 'Posso tomar algum remédio antes de ir?', answer: 'Não podemos prescrever medicamentos sem uma avaliação. Evite a automedicação. Entre em contato pelo WhatsApp que iremos acelerar seu agendamento para resolver a causa da dor de forma segura.' },
-        { question: 'E se a dor começar no fim de semana?', answer: 'Nosso WhatsApp 24h permite que você entre em contato imediatamente. Você receberá orientações e agendaremos seu atendimento para o primeiro horário útil disponível.' },
-        { question: 'Quanto tempo dura a consulta de urgência?', answer: 'Geralmente entre 45 e 90 minutos. Reservamos tempo suficiente para diagnosticar corretamente e realizar o procedimento necessário para o alívio da sua dor.' }
+        { question: 'Posso tomar analgésico enquanto espero a consulta?', answer: 'Sim. Analgésicos comuns (dipirona, paracetamol, ibuprofeno) podem aliviar temporariamente. Evite aspirina se houver sangramento. Na dúvida, pergunte pelo WhatsApp antes de medicar.' },
+        { question: 'Dor de dente sempre significa canal?', answer: 'Não. A dor pode ter várias causas — cárie, restauração infiltrada, fratura, problema gengival. Muitas vezes a solução é mais simples do que canal. O diagnóstico correto é fundamental.' },
+        { question: 'E se a dor passar sozinha?', answer: 'Dor que passa sozinha não significa que o problema foi resolvido. Pode significar que o nervo do dente morreu, o que é pior. Se teve dor intensa que desapareceu repentinamente, procure avaliação.' },
+        { question: 'Vocês atendem convênios?', answer: 'Nosso atendimento é particular. Na consulta de urgência, diagnosticamos a causa e apresentamos as opções de tratamento.' }
     ]
   },
   
   cta: {
-    title: 'Não Sofra com Dor - Resolva a Causa do Problema',
-    subtitle: 'Entre em contato imediatamente pelo WhatsApp 24h. Faremos o possível para atendê-lo ainda hoje.',
-    buttonText: 'Quero Agendar Minha Urgência'
+    title: 'Não Aguente a Dor — Procure Atendimento',
+    subtitle: 'Mande mensagem pelo WhatsApp. Respondemos 24h e encaixamos o mais rápido possível.',
+    buttonText: 'Falar no WhatsApp Agora',
+    urgency: 'Dor ignorada hoje vira tratamento mais complexo amanhã.'
   },
   
   contact: {
