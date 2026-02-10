@@ -1,11 +1,10 @@
 import React from "react";
-import { Star, Users, Award, Clock } from "lucide-react";
+import { Users, Award, Clock, Heart } from "lucide-react";
 
 interface Testimonial {
   name: string;
   text: string;
   avatar?: string;
-  rating?: number;
 }
 
 interface Stat {
@@ -20,15 +19,6 @@ interface SocialProofSectionProps {
 }
 
 const SocialProofSection = ({ title, testimonials, stats }: SocialProofSectionProps) => {
-  const renderStars = (rating: number = 5) => {
-    return Array.from({ length: 5 }, (_, i) => (
-      <Star 
-        key={i} 
-        className={`w-4 h-4 ${i < rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} 
-      />
-    ));
-  };
-
   const defaultStats = [
     { number: "500+", label: "Pacientes Atendidos" },
     { number: "15+", label: "Anos de Experiência" },
@@ -52,7 +42,7 @@ const SocialProofSection = ({ title, testimonials, stats }: SocialProofSectionPr
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
             {displayStats.map((stat, index) => {
-              const icons = [Users, Award, Star, Clock];
+              const icons = [Users, Award, Heart, Clock];
               const IconComponent = icons[index % icons.length];
               
               return (
@@ -78,11 +68,6 @@ const SocialProofSection = ({ title, testimonials, stats }: SocialProofSectionPr
                 key={index}
                 className="bg-dental-beige/30 rounded-xl p-6 border border-dental-purple/10"
               >
-                {/* Stars */}
-                <div className="flex gap-1 mb-4">
-                  {renderStars(testimonial.rating)}
-                </div>
-                
                 {/* Text */}
                 <p className="text-dental-purple/80 mb-6 leading-relaxed">
                   "{testimonial.text}"
@@ -103,13 +88,8 @@ const SocialProofSection = ({ title, testimonials, stats }: SocialProofSectionPr
                       </span>
                     </div>
                   )}
-                  <div>
-                    <div className="font-semibold text-dental-purple">
-                      {testimonial.name}
-                    </div>
-                    <div className="text-sm text-dental-purple/60">
-                      Paciente verificado
-                    </div>
+                  <div className="font-semibold text-dental-purple">
+                    {testimonial.name}
                   </div>
                 </div>
               </div>
