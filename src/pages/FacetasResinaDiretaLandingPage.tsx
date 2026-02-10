@@ -1,76 +1,57 @@
-import React, { Suspense, useEffect } from "react";
-import { Helmet } from "react-helmet-async";
-import { useParams } from "react-router-dom";
-import { facetasResinaDiretaConfig } from "@/config/facetasResinaDiretaConfig";
-import { useCriticalImagePreload } from "@/hooks/useCriticalImagePreload";
-import { useScrollTracking } from "@/hooks/useScrollTracking";
+import React, { useEffect, lazy, Suspense } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { facetasResinaDiretaConfig } from '@/config/facetasResinaDiretaConfig';
+import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
+import { useScrollTracking } from '@/hooks/useScrollTracking';
+import { captureGCLID } from '@/utils/gclid';
 
-// Lazy import landing page components
-const HeroSection = React.lazy(() => import("@/components/landing/HeroSection"));
-const ProblemSection = React.lazy(() => import("@/components/landing/ProblemSection"));
-const GuideSection = React.lazy(() => import("@/components/landing/GuideSection"));
-const SocialProofSection = React.lazy(() => import("@/components/landing/SocialProofSection"));
-const FAQSection = React.lazy(() => import("@/components/landing/FAQSection"));
-const CTASection = React.lazy(() => import("@/components/landing/CTASection"));
-const ClareamentoFooter = React.lazy(() => import('@/components/landing/clareamento/ClareamentoFooter'));
-const FloatingWhatsApp = React.lazy(() => import("@/components/landing/FloatingWhatsApp"));
+// Performance components
+import CriticalCSSInline from '@/components/performance/CriticalCSSInline';
+import ResourceHintsOptimizer from '@/components/performance/ResourceHintsOptimizer';
+import SmartContentfulCache from '@/components/performance/SmartContentfulCache';
+import CoreWebVitalsMonitor from '@/components/performance/CoreWebVitalsMonitor';
+import HeroImagePreloader from '@/components/performance/HeroImagePreloader';
+import ErrorBoundary from '@/components/performance/ErrorBoundary';
 
-// Lazy import performance components
-const CoreWebVitalsOptimizer = React.lazy(() => import("@/components/performance/CoreWebVitalsOptimizer"));
-const ResourceHintsOptimizer = React.lazy(() => import("@/components/performance/ResourceHintsOptimizer"));
-const CriticalCSSInliner = React.lazy(() => import("@/components/performance/CriticalCSSInliner"));
-const SimpleLCPOptimizer = React.lazy(() => import("@/components/performance/SimpleLCPOptimizer"));
+// Critical components (above the fold)
+import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
+import ConsultaInicialHero from '@/components/landing/consulta/ConsultaInicialHero';
 
-// Generic header component imports
-import ConsultaInicialHeader from "@/components/landing/consulta/ConsultaInicialHeader";
-import ConsultaInicialHero from "@/components/landing/consulta/ConsultaInicialHero";
-import ConsultaInicialCTA from "@/components/landing/consulta/ConsultaInicialCTA";
-
-// Skeleton components
-import FAQSkeleton from "@/components/skeleton/FAQSkeleton";
-import SocialProofSkeleton from "@/components/skeleton/SocialProofSkeleton";
-import FooterSkeleton from "@/components/skeleton/FooterSkeleton";
-import WhatsAppSkeleton from "@/components/skeleton/WhatsAppSkeleton";
+// Lazy loaded components (below the fold)
+const ConsultaInicialProblem = lazy(() => import('@/components/landing/consulta/ConsultaInicialProblem'));
+const ConsultaInicialGuide = lazy(() => import('@/components/landing/consulta/ConsultaInicialGuide'));
+const ConsultaInicialSocialProof = lazy(() => import('@/components/landing/consulta/ConsultaInicialSocialProof'));
+const ConsultaInicialFAQ = lazy(() => import('@/components/landing/consulta/ConsultaInicialFAQ'));
+const ConsultaInicialCTA = lazy(() => import('@/components/landing/consulta/ConsultaInicialCTA'));
+const ClareamentoFooter = lazy(() => import('@/components/landing/clareamento/ClareamentoFooter'));
+const FloatingWhatsApp = lazy(() => import('@/components/landing/FloatingWhatsApp'));
 
 const FacetasResinaDiretaLandingPage = () => {
   const pageConfig = facetasResinaDiretaConfig;
 
-  // Critical image preloading
-  useCriticalImagePreload({
-    images: [
-      { src: pageConfig.hero.backgroundImage || '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp', width: 1920 }
-    ],
-    enabled: true
-  });
+  // Performance hooks
+  useCriticalImagePreload({ images: [{ src: pageConfig.hero.backgroundImage }] });
+  useScrollTracking({ pagePath: '/lp/facetas-resina-ipanema' });
 
-  // Scroll depth tracking
-  useScrollTracking({
-    pagePath: '/lp/facetas-resina-ipanema',
-    enabled: true
-  });
-
-  // Page view tracking
   useEffect(() => {
-    if (window.dataLayer) {
+    captureGCLID();
+
+    if (typeof window !== 'undefined' && window.dataLayer) {
       window.dataLayer.push({
-        event: 'page_view_landing',
+        event: 'page_view',
         page_title: pageConfig.seo.title,
         page_location: window.location.href,
-        page_path: '/lp/facetas-resina-ipanema',
-        campaign: pageConfig.campaign,
-        ad_group: pageConfig.messageMatch.adGroup,
-        keyword: pageConfig.messageMatch.keyword,
-        landing_page_type: 'facetas_resina_direta'
+        campaign: pageConfig.campaign
       });
     }
-  }, [pageConfig]);
+  }, []);
 
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
     "name": "Consultório Odontológico Dra. Carla Christoph",
     "description": pageConfig.seo.description,
-    "url": `https://dracarlachristoph.com/lp/facetas-resina-ipanema`,
+    "url": "https://dracarlachristoph.com/lp/facetas-resina-ipanema",
     "telephone": "+5521993304045",
     "address": {
       "@type": "PostalAddress",
@@ -96,6 +77,7 @@ const FacetasResinaDiretaLandingPage = () => {
         <title>{pageConfig.seo.title}</title>
         <meta name="description" content={pageConfig.seo.description} />
         <meta name="keywords" content={pageConfig.seo.keywords?.join(", ")} />
+        <meta name="robots" content="noindex, nofollow" />
         
         {/* Open Graph Tags */}
         <meta property="og:title" content={pageConfig.seo.title} />
@@ -112,96 +94,112 @@ const FacetasResinaDiretaLandingPage = () => {
         
         {/* Canonical URL */}
         <link rel="canonical" href="https://dracarlachristoph.com/lp/facetas-resina-ipanema" />
+
+        {/* Preload fonts */}
+        <link rel="preload" href="/fonts/montserrat-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/montserrat-500.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/playfair-display-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+
+        {/* Critical Image Preload */}
+        <link rel="preload" href="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" as="image" type="image/webp" fetchPriority="high" />
+
+        {/* DNS Prefetch */}
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://api.whatsapp.com" />
         
         {/* Structured Data */}
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
         </script>
-
-        {/* GTM is loaded via index.html */}
       </Helmet>
 
-      {/* Performance optimizers */}
-      <Suspense fallback={null}>
-        <CoreWebVitalsOptimizer />
-        <ResourceHintsOptimizer />
-        <CriticalCSSInliner />
-        <SimpleLCPOptimizer />
-      </Suspense>
-
-      {/* Header */}
-      <ConsultaInicialHeader 
-        whatsappNumber={pageConfig.whatsapp.number}
-        whatsappMessage={pageConfig.whatsapp.message}
-        campaign={pageConfig.campaign}
-        messageMatch={pageConfig.messageMatch}
+      {/* Performance Optimization Components */}
+      <CriticalCSSInline />
+      <ResourceHintsOptimizer />
+      <SmartContentfulCache />
+      <CoreWebVitalsMonitor />
+      <HeroImagePreloader 
+        images={[{
+          src: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
+          type: 'webp',
+          priority: true
+        }]} 
       />
 
-      {/* Hero Section */}
-      <ConsultaInicialHero 
-        headline={pageConfig.hero.headline}
-        subheadline={pageConfig.hero.subheadline}
-        ctaText={pageConfig.hero.ctaText}
-        backgroundImage={pageConfig.hero.backgroundImage}
-        benefits={pageConfig.benefits}
-        whatsappNumber={pageConfig.whatsapp.number}
-        whatsappMessage={pageConfig.whatsapp.message}
-      />
-
-      {/* Landing Page Sections */}
-      <Suspense fallback={<div className="h-96 bg-dental-beige/30" />}>
-        <ProblemSection 
-          title={pageConfig.problem.title}
-          description={pageConfig.problem.description}
-          problems={pageConfig.problem.problems}
-        />
-      </Suspense>
-
-      <Suspense fallback={<div className="h-96 bg-dental-beige/20" />}>
-        <GuideSection 
-          title={pageConfig.guide.title}
-          subtitle={pageConfig.guide.subtitle}
-          steps={pageConfig.guide.steps}
-        />
-      </Suspense>
-
-      <Suspense fallback={<SocialProofSkeleton />}>
-        <SocialProofSection 
-          title={pageConfig.socialProof.title}
-          testimonials={pageConfig.socialProof.testimonials}
-          stats={pageConfig.socialProof.stats}
-        />
-      </Suspense>
-
-      <Suspense fallback={<FAQSkeleton />}>
-        <FAQSection 
-          title={pageConfig.faq.title}
-          questions={pageConfig.faq.questions}
-        />
-      </Suspense>
-
-      <ConsultaInicialCTA 
-        title={pageConfig.cta.title}
-        subtitle={pageConfig.cta.subtitle}
-        buttonText={pageConfig.cta.buttonText}
-        whatsappNumber={pageConfig.whatsapp.number}
-        whatsappMessage={pageConfig.whatsapp.message}
-        campaign={pageConfig.campaign}
-        messageMatch={pageConfig.messageMatch}
-      />
-
-      <Suspense fallback={<FooterSkeleton />}>
-        <ClareamentoFooter />
-      </Suspense>
-
-      <Suspense fallback={<WhatsAppSkeleton />}>
-        <FloatingWhatsApp 
-          phoneNumber={pageConfig.whatsapp.number}
-          message={pageConfig.whatsapp.message}
+      <ErrorBoundary>
+        <ConsultaInicialHeader 
+          whatsappNumber={pageConfig.whatsapp.number}
+          whatsappMessage={pageConfig.whatsapp.message}
           campaign={pageConfig.campaign}
           messageMatch={pageConfig.messageMatch}
         />
-      </Suspense>
+        
+        <ConsultaInicialHero 
+          headline={pageConfig.hero.headline}
+          subheadline={pageConfig.hero.subheadline}
+          ctaText={pageConfig.hero.ctaText}
+          backgroundImage={pageConfig.hero.backgroundImage}
+          whatsappNumber={pageConfig.whatsapp.number}
+          whatsappMessage={pageConfig.whatsapp.message}
+          benefits={pageConfig.benefits}
+        />
+
+        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+          <ConsultaInicialProblem 
+            title={pageConfig.problem.title}
+            description={pageConfig.problem.description}
+            problems={pageConfig.problem.problems}
+          />
+        </Suspense>
+
+        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+          <ConsultaInicialGuide 
+            title={pageConfig.guide.title}
+            subtitle={pageConfig.guide.subtitle}
+            steps={pageConfig.guide.steps}
+          />
+        </Suspense>
+
+        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+          <ConsultaInicialSocialProof 
+            title={pageConfig.socialProof.title}
+            testimonials={pageConfig.socialProof.testimonials}
+            stats={pageConfig.socialProof.stats}
+          />
+        </Suspense>
+
+        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+          <ConsultaInicialFAQ 
+            title={pageConfig.faq.title}
+            questions={pageConfig.faq.questions}
+          />
+        </Suspense>
+
+        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+          <ConsultaInicialCTA 
+            title={pageConfig.cta.title}
+            subtitle={pageConfig.cta.subtitle}
+            buttonText={pageConfig.cta.buttonText}
+            whatsappNumber={pageConfig.whatsapp.number}
+            whatsappMessage={pageConfig.whatsapp.message}
+            campaign={pageConfig.campaign}
+            messageMatch={pageConfig.messageMatch}
+          />
+        </Suspense>
+
+        <Suspense fallback={<div className="h-32 bg-gray-100 animate-pulse" />}>
+          <ClareamentoFooter />
+        </Suspense>
+
+        <Suspense fallback={null}>
+          <FloatingWhatsApp 
+            phoneNumber={pageConfig.whatsapp.number}
+            message={pageConfig.whatsapp.message}
+            campaign={pageConfig.campaign}
+            messageMatch={pageConfig.messageMatch}
+          />
+        </Suspense>
+      </ErrorBoundary>
     </>
   );
 };

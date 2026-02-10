@@ -45,23 +45,23 @@ export const facetasResinaDiretaConfig: LandingPageConfig = {
     subtitle: 'Nosso grande diferencial é o processo colaborativo. Você participa ativamente do design, garantindo total satisfação com o resultado final.',
     steps: [
       { number: '1', title: 'Consulta e Planejamento de Cor', description: 'Iniciamos com uma conversa para entender seus desejos e selecionamos juntos a cor ideal da resina para um resultado natural e harmônico.' },
-      { number: '2', title: 'Escultura ao Vivo (Test Drive)', description: 'Aplicamos a resina sobre seus dentes SEM adesivo. Esculpimos a nova forma, ajustamos o tamanho e o contorno ao vivo, até você dizer: "está perfeito!".' },
+      { number: '2', title: 'Escultura ao Vivo (Test Drive)', description: 'Aplicamos a resina sobre seus dentes SEM adesivo. Esculpimos a nova forma, ajustamos o tamanho e o contorno ao vivo, até você dizer: "está do seu agrado".' },
       { number: '3', title: 'Aplicação Definitiva', description: 'Com o design 100% aprovado por você, removemos o "test drive" e aplicamos a resina de alta performance de forma definitiva, com toda a técnica e cuidado.' },
-      { number: '4', title: 'Acabamento e Polimento', description: 'Finalizamos com um polimento minucioso, que reproduz a textura e o brilho de um dente natural, entregando um sorriso radiante no mesmo dia.' }
+      { number: '4', title: 'Acabamento e Polimento', description: 'Finalizamos com um polimento minucioso, que reproduz a textura e o brilho de um dente natural, entregando um resultado natural e duradouro no mesmo dia.' }
     ]
   },
 
   socialProof: {
     title: 'A Felicidade de um Sorriso Renovado no Mesmo Dia',
     testimonials: [
-        { name: 'Camila R.', text: 'Tinha um casamento em duas semanas e estava infeliz com meus dentes. A Dra. Carla fez as facetas de resina e o resultado foi incrível e super rápido! Me senti muito mais confiante nas fotos.', rating: 5 },
-        { name: 'Pedro N.', text: 'O processo de ver como ia ficar antes de fazer foi sensacional. Me deu muita segurança. O resultado ficou extremamente natural, ninguém diz que é resina. Excelente custo-benefício.', rating: 5 },
-        { name: 'Sofia L.', text: 'Eu queria fazer pequenos ajustes, mas tinha medo de desgastar os dentes. Com a resina não precisou de nenhum desgaste e o resultado ficou lindo e delicado. Amei a praticidade.', rating: 5 }
+        { name: 'Camila R.', text: 'Tinha um casamento em duas semanas e estava infeliz com meus dentes. A Dra. Carla fez as facetas de resina e o resultado foi incrível e super rápido! Me senti muito mais confiante nas fotos.' },
+        { name: 'Pedro N.', text: 'O processo de ver como ia ficar antes de fazer foi sensacional. Me deu muita segurança. O resultado ficou extremamente natural, ninguém diz que é resina. Excelente custo-benefício.' },
+        { name: 'Sofia L.', text: 'Eu queria fazer pequenos ajustes, mas tinha medo de desgastar os dentes. Com a resina não precisou de nenhum desgaste e o resultado ficou lindo e delicado. Amei a praticidade.' }
     ],
     stats: [
         { number: '20+', label: 'Anos de Experiência' },
-        { number: '4.000+', label: 'Pacientes Satisfeitos' },
-        { number: '100%', label: 'Foco na Naturalidade' },
+        { number: '4.000+', label: 'Pacientes Atendidos' },
+        { number: '1 Dia', label: 'Resultado no Mesmo Dia' },
         { number: '24h', label: 'Atendimento WhatsApp' }
     ]
   },
