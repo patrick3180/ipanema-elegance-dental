@@ -28,21 +28,19 @@ export const clareamentoConfig: LandingPageConfig = {
   ],
 
   problem: {
-    title: 'Dentes Amarelados Incomodam Mais do que Parece',
-    description: 'Café, vinho, chá, cigarro — o amarelamento vai acontecendo aos poucos até que um dia você percebe na foto. Se você se identifica, saiba que clareamento profissional é seguro e os resultados são reais.',
+    title: 'Você se identifica com alguma dessas situações?',
+    description: 'O amarelamento é gradual — você nem percebe até ver uma foto antiga ou comparar. Se isso incomoda, saiba que clareamento profissional é seguro e os resultados são reais.',
     problems: [
-      'Evitar sorrir em fotos ou cobrir a boca ao rir.',
-      'Manchas de café, vinho ou cigarro que não saem com pasta clareadora.',
-      'Já tentou clareamento caseiro por conta própria e não funcionou.',
-      'Receio de que o clareamento deixe os dentes com aspecto artificial.',
-      'Medo de sensibilidade extrema durante o tratamento.',
-      'Dúvida se o resultado vai durar ou se é temporário.'
+      'Dentes amarelados por café, vinho ou chá — o escurecimento é gradual e você só percebe quando compara com uma foto antiga.',
+      'Clareamento caseiro que não funciona — fitas, géis de farmácia ou receitas da internet com resultados fracos, irregulares ou que desaparecem em semanas.',
+      'Medo de sensibilidade — já ouviu que clareamento dá muita dor, mas com protocolo individualizado e acompanhamento profissional, isso é controlável.',
+      'Medo de ficar artificial — não querer dentes "branco azulejo". O objetivo é recuperar a cor natural, não exagerar.'
     ]
   },
 
   guide: {
     title: 'Como a Dra. Carla Christoph Conduz o Clareamento',
-    subtitle: 'Protocolos individualizados — cada caso tem sua indicação específica.',
+    subtitle: 'Protocolo individualizado — CRO-RJ 27.509. Cada caso tem sua indicação específica.',
     steps: [
       { number: '1', title: 'Avaliação e Diagnóstico', description: 'Análise da causa do escurecimento, condição dos dentes e gengiva. Definição do protocolo mais adequado para o seu caso.' },
       { number: '2', title: 'Preparação Cuidadosa', description: 'Proteção dos tecidos gengivais e avaliação da sensibilidade para garantir segurança e conforto durante o procedimento.' },
@@ -54,9 +52,9 @@ export const clareamentoConfig: LandingPageConfig = {
   socialProof: {
     title: 'O Que Nossos Pacientes Contam',
     testimonials: [
-      { name: 'Juliana M. — Leblon', text: 'Fiz o clareamento antes do meu casamento. Tinha medo de ficar artificial, mas ficou tão natural que ninguém percebeu que clareou — só elogiaram o sorriso.' },
-      { name: 'André P. — Ipanema', text: 'Anos tomando café pesado. Achei que não tinha solução. Três sessões depois, a diferença é visível e ficou natural.' },
-      { name: 'Beatriz C. — Gávea', text: 'O que me surpreendeu foi o pouco desconforto. A Dra. Carla monitorou a sensibilidade em cada etapa. Valeu cada consulta.' }
+      { name: 'Juliana M. — Leblon', text: 'Fiz o clareamento antes do meu casamento. Estava com medo de ficar artificial, mas ficou tão natural que ninguém percebeu que era clareamento — só elogiaram o sorriso.' },
+      { name: 'Ricardo T. — Ipanema', text: 'Tomei café a vida inteira e meus dentes foram amarelando sem eu perceber. Depois do clareamento, minha filha disse que eu parecia 10 anos mais novo.' },
+      { name: 'Beatriz A. — Copacabana', text: 'Já tinha tentado clareamento de farmácia duas vezes sem resultado. Na clínica foi completamente diferente — resultado uniforme e sem a sensibilidade que eu esperava.' }
     ],
     stats: [
       { number: '20+', label: 'Anos de Experiência' },
@@ -69,18 +67,18 @@ export const clareamentoConfig: LandingPageConfig = {
   faq: {
     title: 'Dúvidas Sobre Clareamento Dental',
     questions: [
-      { question: 'Clareamento dental estraga o esmalte?', answer: 'Não. O clareamento profissional com concentração e tempo controlados não danifica o esmalte. O gel age na estrutura interna do dente (dentina), clareando sem desgastar.' },
-      { question: 'A sensibilidade é muito forte?', answer: 'Pode haver sensibilidade transitória, especialmente nos primeiros dias. A Dra. Carla ajusta o protocolo (concentração, tempo de aplicação) para minimizar esse efeito. Dessensibilizantes são usados quando necessário.' },
-      { question: 'Qual a diferença entre clareamento de consultório e caseiro?', answer: 'O de consultório usa gel mais concentrado e dá resultado mais rápido (1-3 sessões). O caseiro usa moldeiras com gel de menor concentração por algumas semanas. Em muitos casos, a combinação dos dois é a abordagem mais eficaz.' },
-      { question: 'O resultado é permanente?', answer: 'O clareamento é duradouro, mas não permanente. O dente pode escurecer novamente ao longo dos anos, especialmente com café, vinho e cigarro. Sessões de manutenção (a cada 1-2 anos) preservam o resultado.' },
-      { question: 'Posso fazer clareamento se tenho restaurações?', answer: 'O clareamento age nos dentes naturais e não altera a cor de restaurações existentes. Se necessário, as restaurações podem ser trocadas após o clareamento para harmonizar com a nova cor.' },
-      { question: 'Vocês atendem convênios?', answer: 'Nosso atendimento é particular, o que nos permite dedicar o tempo necessário e usar protocolos individualizados. Na consulta de avaliação, apresentamos as opções para o seu caso.' }
+      { question: 'Clareamento dental estraga o esmalte?', answer: 'Não. O clareamento profissional supervisionado não causa danos ao esmalte. O gel clareador age nos pigmentos internos do dente sem comprometer a estrutura.' },
+      { question: 'Clareamento caseiro de farmácia funciona?', answer: 'Produtos de farmácia têm concentração muito baixa de agente clareador. O resultado é limitado, irregular e temporário. O clareamento profissional usa concentração adequada com supervisão, o que dá resultado uniforme e duradouro.' },
+      { question: 'Quanto tempo dura o resultado do clareamento?', answer: 'Em média 2 a 3 anos, dependendo dos hábitos alimentares. Café, vinho e chá escurecem os dentes gradualmente. Manutenções periódicas são simples e mantêm o resultado.' },
+      { question: 'Clareamento dá muita sensibilidade?', answer: 'Pode haver sensibilidade leve e temporária durante o tratamento, que dura de 24 a 48 horas. Com protocolo personalizado e dessensibilizante, a maioria dos pacientes relata desconforto mínimo.' },
+      { question: 'Posso fazer clareamento se tenho restaurações?', answer: 'As restaurações existentes não clareiam — mantêm a cor original. Após o clareamento, avaliamos se alguma restauração precisa ser trocada para ficar na mesma cor dos dentes clareados.' },
+      { question: 'Clareamento funciona em todas as manchas?', answer: 'Manchas por café, chá, vinho e tabaco respondem muito bem. Manchas internas por medicamento (tetraciclina) ou flúor têm resposta variável — nesses casos, avaliamos alternativas como lentes de porcelana.' }
     ]
   },
 
   cta: {
     title: 'Quer Saber Qual Clareamento é Indicado para Você?',
-    subtitle: 'Na avaliação, analisamos a causa do escurecimento e definimos o protocolo mais adequado.',
+    subtitle: 'O clareamento é um dos tratamentos mais simples da odontologia estética. Uma avaliação inicial mostra qual protocolo é indicado para a cor e o tipo dos seus dentes.',
     buttonText: 'Agendar Minha Avaliação'
   },
 

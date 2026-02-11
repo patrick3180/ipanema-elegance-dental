@@ -10,7 +10,7 @@ export const lentesPorcelanaProfissionalConfig: LandingPageConfig = {
   
   whatsapp: {
     number: '5521993304045',
-    message: 'Olá! Vi o site sobre lentes de porcelana e gostaria de agendar uma avaliação para transformar meu sorriso.'
+    message: 'Olá! Vi o site sobre lentes de porcelana e gostaria de agendar uma avaliação para renovar meu sorriso.'
   },
   
   hero: {
@@ -28,21 +28,19 @@ export const lentesPorcelanaProfissionalConfig: LandingPageConfig = {
   ],
   
   problem: {
-    title: 'Quer Transformar Seu Sorriso mas Tem Receio do Resultado?',
-    description: 'Lentes de porcelana são um investimento de longo prazo. É natural querer ter certeza de que o resultado vai combinar com você — e não parecer artificial.',
+    title: 'Você se identifica com alguma dessas situações?',
+    description: 'Não é sobre ter dentes "perfeitos". É sobre se sentir confortável para sorrir sem pensar duas vezes.',
     problems: [
-      'Incomoda cobrir a boca ao rir ou evitar fotos por causa do sorriso.',
-      'Dentes com manchas, lascas ou desalinhamento que clareamento não resolve.',
-      'Já pesquisou sobre lentes mas tem receio de ficar com aspecto artificial.',
-      'Quer um resultado que dure anos sem precisar de manutenções frequentes.',
-      'Busca uma solução definitiva mas precisa ver antes como vai ficar.',
-      'Não sabe se lentes são indicadas para o seu caso ou se existe alternativa melhor.'
+      'Evitar sorrir de boca aberta em fotos, tapar a boca com a mão ou deletar fotos por causa dos dentes.',
+      'Dentes com manchas internas, escurecimento por medicamento na infância ou cor irregular que nenhum clareamento consegue uniformizar.',
+      'Dentes com tamanhos diferentes, pequenos espaços, bordas irregulares ou leves desalinhamentos que incomodam esteticamente.',
+      'Receio de ficar com aspecto artificial — branco demais ou todos iguais. Querer melhorar sem que pareça que fez alguma coisa.'
     ]
   },
   
   guide: {
     title: 'Como a Dra. Carla Christoph Planeja Suas Lentes',
-    subtitle: 'Especialista em Prótese Dentária com mais de 20 anos em estética dental. Escaneamento digital iTero e Test Drive do Sorriso em todos os casos.',
+    subtitle: '20+ anos em Estética Dental — CRO-RJ 27.509. Escaneamento digital iTero e Test Drive do Sorriso em todos os casos.',
     steps: [
       { number: '1', title: 'Consulta e Análise Facial', description: 'Conversa sobre suas expectativas. Análise facial, fotografias e escaneamento digital para entender o que combina com o seu rosto.' },
       { number: '2', title: 'Test Drive do Sorriso', description: 'Você experimenta um modelo provisório na boca antes de iniciar. Vê, sente e aprova. Se não gostar, ajustamos até ficar do seu jeito.' },
@@ -54,9 +52,9 @@ export const lentesPorcelanaProfissionalConfig: LandingPageConfig = {
   socialProof: {
     title: 'O Que Nossas Pacientes Contam',
     testimonials: [
-      { name: 'Camila R. — Ipanema', text: 'O Test Drive foi o que me convenceu. Vi como ia ficar antes de fazer qualquer coisa. Fiz 8 lentes e ninguém percebe que não são meus dentes naturais.' },
-      { name: 'Beatriz L. — Leblon', text: 'Pesquisei muito antes de decidir. A Dra. Carla foi a única que disse que eu não precisava de lentes em todos os dentes — só em 4. Resultado natural e honesto.' },
-      { name: 'Mariana S. — Barra', text: 'Sempre tive vergonha dos meus dentes nas fotos. Depois das lentes, é a primeira coisa que elogiam. E já fazem 3 anos — continuam impecáveis.' }
+      { name: 'Fernanda R. — Ipanema', text: 'Eu tinha pavor de ficar com aquele sorriso todo igual, artificial. A Dra. Carla fez questão de ajustar dente por dente. Ninguém percebe que são lentes — só elogiam o sorriso.' },
+      { name: 'Cristina M. — Leblon', text: 'Fiz o Test Drive antes e vi exatamente como ia ficar. Isso me deu segurança para seguir. O resultado ficou tão natural que minha irmã quis fazer também.' },
+      { name: 'André L. — Barra da Tijuca', text: 'Sempre tive os dentes manchados desde criança por causa de antibiótico. Nenhum clareamento resolvia. Com as lentes, finalmente tenho um sorriso que não preciso esconder.' }
     ],
     stats: [
       { number: '20+', label: 'Anos em Estética Dental' },
@@ -69,12 +67,12 @@ export const lentesPorcelanaProfissionalConfig: LandingPageConfig = {
   faq: {
     title: 'Dúvidas Frequentes sobre Lentes de Porcelana',
     questions: [
-      { question: 'As lentes de porcelana ficam naturais?', answer: 'Sim. A porcelana de alta translucidez reproduz a cor e o brilho dos dentes naturais. O planejamento digital e o Test Drive garantem que o resultado combine com o seu rosto.' },
-      { question: 'Precisa desgastar muito os dentes?', answer: 'Na maioria dos casos, o desgaste é mínimo — frações de milímetro. Em alguns casos específicos, nenhum desgaste é necessário. A Dra. Carla avalia cada situação individualmente.' },
-      { question: 'Quanto tempo duram?', answer: 'Com os cuidados adequados, lentes de porcelana duram mais de 15 anos. A durabilidade depende de hábitos como não morder objetos duros e manter a higiene em dia.' },
-      { question: 'Como funciona o Test Drive do Sorriso?', answer: 'Aplicamos um modelo provisório em resina sobre os seus dentes para que você visualize o resultado final. Você sai do consultório usando o mock-up e pode mostrar para quem quiser antes de aprovar.' },
-      { question: 'Lentes servem para qualquer caso?', answer: 'Nem sempre. Lentes são indicadas para correções estéticas específicas. Em alguns casos, clareamento, restaurações ou facetas podem ser mais adequados. A avaliação define o melhor caminho.' },
-      { question: 'Vocês atendem convênios?', answer: 'Nosso atendimento é particular, o que nos permite dedicar o tempo necessário a cada caso e utilizar somente materiais de primeira linha.' }
+      { question: 'Lente de contato dental dura quanto tempo?', answer: 'Lentes de porcelana bem cuidadas duram em média 15 a 20 anos. A durabilidade depende dos hábitos do paciente — ranger os dentes e morder objetos duros são os principais fatores que reduzem a vida útil.' },
+      { question: 'Qual a diferença entre lente de contato e faceta de porcelana?', answer: 'A lente é mais fina (0,3 a 0,5mm) e exige pouco ou nenhum desgaste do dente. A faceta é levemente mais espessa e indicada quando há necessidade de correções maiores. Na consulta, avaliamos qual é a melhor opção para o seu caso.' },
+      { question: 'Lente de porcelana estraga o dente?', answer: 'Não. Na maioria dos casos, o preparo é mínimo ou até inexistente. O dente natural é preservado ao máximo. A porcelana é colada sobre o esmalte de forma permanente e segura.' },
+      { question: 'Como funciona o Test Drive do Sorriso?', answer: 'Antes de fazer qualquer desgaste, montamos uma simulação em resina sobre os seus dentes para você ver, tocar e aprovar o resultado. Se quiser ajustar formato, tamanho ou proporção, fazemos na hora.' },
+      { question: 'Posso fazer lentes só nos dentes da frente?', answer: 'Sim, a maioria dos casos envolve de 6 a 10 dentes superiores — os que aparecem no sorriso. A quantidade exata depende da largura do seu sorriso e do resultado desejado.' },
+      { question: 'Dentes com restauração antiga podem receber lentes?', answer: 'Depende do tamanho e estado da restauração. Em muitos casos, a lente pode cobrir e substituir restaurações escurecidas. Avaliamos caso a caso na consulta.' }
     ]
   },
   
@@ -87,21 +85,21 @@ export const lentesPorcelanaProfissionalConfig: LandingPageConfig = {
   
   contact: {
     whatsappNumber: '5521993304045',
-    whatsappMessage: 'Olá! Vi o site sobre lentes de porcelana e gostaria de agendar uma avaliação para transformar meu sorriso.',
+    whatsappMessage: 'Olá! Vi o site sobre lentes de porcelana e gostaria de agendar uma avaliação para renovar meu sorriso.',
     doctorName: 'Dra. Carla Christoph',
     clinicName: 'Consultório Odontológico'
   },
   
   seo: {
     title: 'Lentes de Contato Dental Porcelana Ipanema | Estética do Sorriso',
-    description: 'Transforme sua imagem profissional com lentes de contato de porcelana em Ipanema. Resultado natural e duradouro. Agende sua avaliação estratégica.',
+    description: 'Lentes de porcelana em Ipanema com resultado natural e duradouro. Planejamento digital com scanner iTero. Agende sua avaliação.',
     keywords: [
       'lentes de contato dental porcelana ipanema',
       'facetas de porcelana ipanema',
       'estética do sorriso rio de janeiro',
-      'transformação do sorriso ipanema',
+      'estética do sorriso ipanema',
       'dentista estético ipanema',
-      'sorriso perfeito',
+      'sorriso natural porcelana',
       'lentes de porcelana preço',
       'clínica de estética dental ipanema'
     ]

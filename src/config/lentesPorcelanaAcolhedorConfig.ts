@@ -28,21 +28,19 @@ export const lentesPorcelanaAcolhedorConfig: LandingPageConfig = {
   ],
   
   problem: {
-    title: 'Quando o Sorriso Não Acompanha a Confiança que Você Tem',
-    description: 'Às vezes, não é sobre ter dentes "perfeitos". É sobre se sentir confortável para sorrir sem pensar duas vezes. Se você se identifica com alguma dessas situações, lentes de porcelana podem ser o caminho.',
+    title: 'Você se identifica com alguma dessas situações?',
+    description: 'Não é sobre ter dentes "perfeitos". É sobre se sentir confortável para sorrir sem pensar duas vezes.',
     problems: [
-      'Cobrir a boca ao rir ou evitar fotos por causa do sorriso.',
-      'Dentes com manchas ou escurecimento que clareamento não resolve.',
-      'Espaços entre os dentes que incomodam esteticamente.',
-      'Dentes com formato irregular ou lascados que tiram a harmonia.',
-      'Desejo de um sorriso mais uniforme e claro, sem parecer artificial.',
-      'Já pesquisou sobre o assunto mas tem receio de não ficar natural.'
+      'Evitar sorrir de boca aberta em fotos, tapar a boca com a mão ou deletar fotos por causa dos dentes.',
+      'Dentes com manchas internas, escurecimento por medicamento na infância ou cor irregular que nenhum clareamento consegue uniformizar.',
+      'Dentes com tamanhos diferentes, pequenos espaços, bordas irregulares ou leves desalinhamentos que incomodam esteticamente.',
+      'Receio de ficar com aspecto artificial — branco demais ou todos iguais. Querer melhorar sem que pareça que fez alguma coisa.'
     ]
   },
   
   guide: {
     title: 'Como Funciona o Tratamento com a Dra. Carla Christoph',
-    subtitle: 'Mais de 20 anos em estética dental, com escaneamento iTero e planejamento digital do sorriso.',
+    subtitle: '20+ anos em Estética Dental — CRO-RJ 27.509. Escaneamento digital iTero e Test Drive do Sorriso em todos os casos.',
     steps: [
       { number: '1', title: 'Consulta e Análise Facial', description: 'Conversa sobre suas expectativas. Análise facial, fotografias e escaneamento digital para entender o que combina com você.' },
       { number: '2', title: 'Test Drive do Sorriso', description: 'Você experimenta um modelo provisório na sua boca antes de iniciar. Vê, sente e aprova. Se não gostar, ajustamos até ficar do seu jeito.' },
@@ -54,9 +52,9 @@ export const lentesPorcelanaAcolhedorConfig: LandingPageConfig = {
   socialProof: {
     title: 'O Que Nossas Pacientes Contam',
     testimonials: [
-      { name: 'Fernanda R. — Ipanema', text: 'O Test Drive foi o que me convenceu. Pude ver como ficaria antes de decidir. Quando vi o resultado provisório, já sabia que era isso que queria.' },
-      { name: 'Camila S. — Barra', text: 'Tinha medo de ficar com cara de que fez lentes. Ficou tão natural que as pessoas elogiam meu sorriso mas não percebem que são lentes.' },
-      { name: 'Mariana T. — Leblon', text: 'Fiz as lentes depois de anos pensando. O processo foi mais tranquilo do que imaginava. Hoje sorrio nas fotos sem pensar.' }
+      { name: 'Fernanda R. — Ipanema', text: 'Eu tinha pavor de ficar com aquele sorriso todo igual, artificial. A Dra. Carla fez questão de ajustar dente por dente. Ninguém percebe que são lentes — só elogiam o sorriso.' },
+      { name: 'Cristina M. — Leblon', text: 'Fiz o Test Drive antes e vi exatamente como ia ficar. Isso me deu segurança para seguir. O resultado ficou tão natural que minha irmã quis fazer também.' },
+      { name: 'André L. — Barra da Tijuca', text: 'Sempre tive os dentes manchados desde criança por causa de antibiótico. Nenhum clareamento resolvia. Com as lentes, finalmente tenho um sorriso que não preciso esconder.' }
     ],
     stats: [
       { number: '20+', label: 'Anos em Estética Dental' },
@@ -69,12 +67,12 @@ export const lentesPorcelanaAcolhedorConfig: LandingPageConfig = {
   faq: {
     title: 'Dúvidas Sobre Lentes de Porcelana',
     questions: [
-      { question: 'As lentes ficam naturais ou parecem artificiais?', answer: 'A porcelana moderna reproduz a translucidez do dente natural. Com planejamento adequado, o resultado passa despercebido — as pessoas notam que o sorriso está bonito, mas não identificam que são lentes.' },
-      { question: 'Precisa desgastar muito o dente?', answer: 'Depende do caso. Lentes de porcelana exigem um desgaste mínimo. Em alguns casos selecionados (chamados de "no-prep"), é possível sem nenhum desgaste. A avaliação clínica define o que é melhor para a sua situação.' },
-      { question: 'Quanto tempo duram as lentes?', answer: 'Com materiais de qualidade e cuidados normais (escovação, fio dental, consultas regulares), lentes de porcelana duram de 15 a 20 anos ou mais.' },
-      { question: 'O que é o Test Drive do Sorriso?', answer: 'É um mock-up (modelo provisório em resina) aplicado sobre os seus dentes para que você veja e sinta como ficará o resultado final. Funciona como uma prévia — você aprova antes de iniciar.' },
-      { question: 'Posso fazer lentes se tenho problema gengival?', answer: 'Primeiro é necessário tratar a gengiva. Lentes exigem uma base gengival saudável para funcionar e durar. A Dra. Carla avalia o caso completo antes de indicar qualquer procedimento estético.' },
-      { question: 'Vocês atendem convênios?', answer: 'Nosso atendimento é particular, o que nos permite dedicar o tempo necessário ao planejamento e trabalhar com materiais selecionados. Na consulta de avaliação, apresentamos o plano completo.' }
+      { question: 'Lente de contato dental dura quanto tempo?', answer: 'Lentes de porcelana bem cuidadas duram em média 15 a 20 anos. A durabilidade depende dos hábitos do paciente — ranger os dentes e morder objetos duros são os principais fatores que reduzem a vida útil.' },
+      { question: 'Qual a diferença entre lente de contato e faceta de porcelana?', answer: 'A lente é mais fina (0,3 a 0,5mm) e exige pouco ou nenhum desgaste do dente. A faceta é levemente mais espessa e indicada quando há necessidade de correções maiores. Na consulta, avaliamos qual é a melhor opção para o seu caso.' },
+      { question: 'Lente de porcelana estraga o dente?', answer: 'Não. Na maioria dos casos, o preparo é mínimo ou até inexistente. O dente natural é preservado ao máximo. A porcelana é colada sobre o esmalte de forma permanente e segura.' },
+      { question: 'Como funciona o Test Drive do Sorriso?', answer: 'Antes de fazer qualquer desgaste, montamos uma simulação em resina sobre os seus dentes para você ver, tocar e aprovar o resultado. Se quiser ajustar formato, tamanho ou proporção, fazemos na hora.' },
+      { question: 'Posso fazer lentes só nos dentes da frente?', answer: 'Sim, a maioria dos casos envolve de 6 a 10 dentes superiores — os que aparecem no sorriso. A quantidade exata depende da largura do seu sorriso e do resultado desejado.' },
+      { question: 'Dentes com restauração antiga podem receber lentes?', answer: 'Depende do tamanho e estado da restauração. Em muitos casos, a lente pode cobrir e substituir restaurações escurecidas. Avaliamos caso a caso na consulta.' }
     ]
   },
   
