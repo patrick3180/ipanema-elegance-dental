@@ -1,154 +1,113 @@
 
 
-## Prompt 17 — Bio Canonica em Implantes + Varredura de Cliches
+## Prompts 18, 19, 20 — LPs Top 3: Implantes, Lentes e Clareamento
 
 ### Resumo
-4 alteracoes: substituir bio generica em ImplantesDentarios.tsx, corrigir cliches em ImplantesDentarios.tsx e ProteseDentaria.tsx, e limpar palavras banidas em Ortodontia.tsx, ClinicaGeralPrevencao.tsx e AboutSection.tsx.
+
+Atualizar o conteudo das 4 configs de landing pages (implantes, 2x lentes, clareamento) com textos mais especificos, depoimentos no formato correto e FAQs em linguagem natural. Tambem limpar palavras banidas residuais.
+
+**Nota tecnica:** O tipo `LandingPageConfig` usa `title`, `description` e `problems: string[]` na secao problem — NAO `sectionTitle`/`painPoints`. O conteudo do prompt sera adaptado para a estrutura real dos campos.
 
 ---
 
-### Alteracao 1: Bio canonica em `src/pages/ImplantesDentarios.tsx`
+### Prompt 18: `src/config/implantesDentariosConfig.ts`
 
-**Secao Especialista (linhas 506-553)**
+**18a) Secao problem (linhas 31-41) — substituir conteudo:**
+- `title`: "Voce se identifica com alguma dessas situacoes?"
+- `description`: "Perder um dente afeta a mastigacao, a confianca e ate a saude ossea. Quanto mais tempo sem reposicao, mais complexo pode se tornar o tratamento."
+- `problems`: 4 itens especificos (dificuldade mastigar, inseguranca com espaco, protese removivel incomoda, perda ossea avancando) — adaptados como strings simples pois o tipo nao suporta icon/title/description
 
-**1a) Subtitulo da bio (linha 510):**
-- De: `Especialista em Reabilitação Oral e Implantodontia`
-- Para: `CRO-RJ 27.509 | Especialista em Prótese Dentária e Implantodontia`
+**18b) Secao guide subtitle (linha 46):**
+- De: texto atual generico
+- Para: "Especialista em Implantodontia — CRO-RJ 27.509. Do diagnostico a protese final, todo o tratamento com a mesma profissional."
 
-**1b) Paragrafo 1 (linha 514):**
-- De: `Com mais de 20 anos de experiência, a Dra. Carla é especialista em implantodontia e próteses no Rio de Janeiro. Atualização constante em congressos nacionais e internacionais, domínio de técnicas modernas de cirurgia e planejamento digital 3D.`
-- Para: `Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.`
+**18c) Depoimentos (linhas 58-61) — substituir os 3:**
+- Roberto S. — Copacabana (protese removivel -> implante)
+- Marcia L. — Ipanema (medo da cirurgia -> acompanhamento)
+- Paulo H. — Leblon (reabilitacao completa arcada superior)
 
-**1c) Paragrafo 2 (linha 518):**
-- De: `Cada tratamento é meticulosamente planejado considerando anatomia individual, expectativas estéticas e qualidade de vida. O objetivo é sempre devolver não apenas dentes, mas confiança e bem-estar.`
-- Para: `Sua formação em Implantodontia permite planejar desde casos unitários até reabilitações completas com segurança e previsibilidade. Cada implante é posicionado com base em planejamento digital, considerando estética e função a longo prazo.`
+**18d) FAQ (linhas 73-79) — substituir as 6 perguntas:**
+- "Implante dentario doi muito?" / "Pode ser rejeitado?" / "Quanto tempo leva?" / "Existe idade maxima?" / "Implante ou protese removivel?" / "Preciso fazer enxerto osseo?"
+- Remover pergunta sobre convenios (ja contemplada nas outras)
 
-**1d) Credenciais grid 2x2 (linhas 521-553):**
-- Card 1: "CRO-RJ 27.509" / "Mais de 20 anos de atuação" -> "Formacao" / "Especialista em Protese Dentaria e Implantodontia"
-- Card 2: "Especializacao" / "Protese, Implantodontia e Estetica" -> "Experiencia" / "20+ anos, incluindo 8 na Marinha"
-- Card 3: "Tecnologia" / "Scanner digital 3D, planejamento avancado" -> "Tecnologia" / "Scanner iTero, planejamento digital do sorriso"
-- Card 4: "Experiencia" / "Centenas de casos complexos resolvidos" -> "Abordagem" / "Consultas individualizadas, minimo de 1 hora"
+**18e) Urgency (linha 5) — ajustar tom:**
+- De: "Cada mes sem o dente aumenta a perda ossea — o momento de agir e agora"
+- Para: "A perda ossea e progressiva — quanto antes o implante, mais simples tende a ser o procedimento"
 
----
-
-### Alteracao 2: Cliches em `src/pages/ImplantesDentarios.tsx`
-
-**2a) Subtitulo "Diferenciais" (linha 380):**
-- De: `Tecnologia de ponta e cuidado personalizado para resultados excepcionais`
-- Para: `Como trabalhamos para oferecer segurança e previsibilidade`
-
-**2b) Card "Implantes Premium" (linha 405):**
-- De: `Implantes Premium`
-- Para: `Implantes de Referência`
-
-**2c) Texto do card (linhas 407-408):**
-- De: `Utilizamos apenas implantes de marcas líderes mundiais com superfície tratada que favorece a osseointegração e garante longevidade.`
-- Para: `Trabalhamos com marcas de referência mundial, com superfície tratada que favorece a osseointegração e comprovação científica de longo prazo.`
-
-**2d) Comentario "Secao Diferencial Premium" (linha 372):**
-- De: `{/* Seção Diferencial Premium */}`
-- Para: `{/* Seção Diferenciais */}`
-
-**2e) FAQ convenios (linha 673):**
-- De: `Nosso atendimento é exclusivamente particular, o que nos permite dedicar tempo adequado a cada paciente e utilizar materiais premium. Oferecemos orçamento detalhado e transparente na primeira consulta.`
-- Para: `Nosso atendimento é particular, o que nos permite dedicar o tempo necessário a cada paciente e utilizar somente materiais de primeira linha. Na primeira consulta, apresentamos um orçamento detalhado e transparente.`
-
-**2f) Timeline etapa 4 (linha 470):**
-- De: `...Instalação e ajustes finais para conforto e estética impecáveis.`
-- Para: `...Instalação e ajustes finais para conforto e estética natural.`
-
-**2g) Accordion "Implante Unitario" (linha 190):**
-- De: `Solução definitiva para substituir um único dente...`
-- Para: `Reposição permanente de um único dente...`
-
-**2h) Accordion "Implante Unitario" vantagens (linha 206):**
-- De: `...estética impecável com aspecto de dente natural...`
-- Para: `...estética natural com aspecto de dente real...`
+**18f) SEO description (linha 99) — remover "solucao definitiva":**
+- De: "Solucao definitiva para a perda de dentes com seguranca e tecnologia."
+- Para: "Reabilitacao com implantes para devolver funcao mastigatoria e estetica. Planejamento digital e acompanhamento completo."
 
 ---
 
-### Alteracao 3: Cliches em `src/pages/ProteseDentaria.tsx`
+### Prompt 19: `src/config/lentesPorcelanaAcolhedorConfig.ts`
 
-**3a) Titulo secao cards (linha 140):**
-- De: `Reabilitação Oral que Transforma Vidas`
-- Para: `Reabilitação Oral Completa`
+**19a) Secao problem (linhas 30-41) — substituir conteudo:**
+- `title`: "Voce se identifica com alguma dessas situacoes?"
+- `description`: "Nao e sobre ter dentes 'perfeitos'. E sobre se sentir confortavel para sorrir sem pensar duas vezes."
+- `problems`: 4 itens (sorriso que incomoda nas fotos, manchas que clareamento nao resolve, desnivel/espacamento, medo de resultado artificial)
 
-**3b) Card "Ceramicas premium importadas" (linha 489):**
-- De: `Cerâmicas premium importadas`
-- Para: `Cerâmicas de alta qualidade`
+**19b) Depoimentos (linhas 56-59) — substituir os 3:**
+- Fernanda R. — Ipanema (medo de artificial, ajuste dente por dente)
+- Cristina M. — Leblon (Test Drive deu seguranca)
+- Andre L. — Barra da Tijuca (manchas de antibiotico na infancia)
 
-**3c) FAQ porcelana vs resina (linha 54):**
-- De: `...É nossa escolha para casos definitivos. A resina pode ser usada em provisórios ou situações específicas. Utilizamos apenas materiais premium importados para garantir o melhor resultado.`
-- Para: `...É nossa escolha para casos de longa duração. A resina pode ser usada em provisórios ou situações específicas. Utilizamos materiais de primeira linha para garantir durabilidade e resultado natural.`
-
-**3d) Comentario "PREMIUM" (linha 314):**
-- De: `{/* Protocolo All-on-4/6 - PREMIUM */}`
-- Para: `{/* Protocolo All-on-4/6 */}`
-
-**3e) Card All-on-4 texto (linha 329):**
-- De: `...com prótese fixa para transformação completa do sorriso.`
-- Para: `...com prótese fixa para reabilitação completa da arcada.`
-
-**3f) Badge "Transformacao Total" (linha 333):**
-- De: `Transformação Total`
-- Para: `Reabilitação Completa`
-
-**3g) Timeline etapa 5 (linha 418):**
-- De: `...cria sua prótese com cerâmicas premium, estratificando cores...`
-- Para: `...cria sua prótese com cerâmicas de alta qualidade, estratificando cores...`
-
-**3h) Timeline subtitulo (linha 382):**
-- De: `...precisão e resultados excepcionais`
-- Para: `...precisão e resultados naturais e previsíveis`
+**19c) FAQ (linhas 71-78) — substituir as 6 perguntas:**
+- "Dura quanto tempo?" / "Diferenca lente vs faceta?" / "Estraga o dente?" / "Test Drive do Sorriso?" / "So nos dentes da frente?" / "Restauracao antiga pode receber?"
 
 ---
 
-### Alteracao 4: Varredura geral — outros arquivos
+### Prompt 19 (continuacao): `src/config/lentesPorcelanaProfissionalConfig.ts`
 
-**4a) `src/pages/Ortodontia.tsx` (linha 137):**
-- OG description: De `Transforme seu sorriso com ortodontia moderna...`
-- Para: `Ortodontia moderna em Ipanema com Dr. Bruno Moreira, especialista com doutorado UERJ. Invisalign® e tecnologia iTero no consultório da Dra. Carla.`
+**19d) Secao problem (linhas 30-40) — substituir conteudo:**
+- Mesmo conteudo do acolhedor (4 itens)
+- Remover "Quer Transformar Seu Sorriso" do title (palavra banida)
+- Remover "solucao definitiva" dos problems
 
-**4b) `src/pages/Ortodontia.tsx` (linha 212):**
-- De: `...transformar seu sorriso com conforto e precisão.`
-- Para: `...alinhar seu sorriso com conforto e precisão.`
+**19e) Depoimentos (linhas 56-59) — substituir os 3:**
+- Mesmos 3 depoimentos do acolhedor
 
-**4c) `src/pages/Ortodontia.tsx` (linha 270):**
-- De: `<span className="text-xs ml-2 text-dental-gold">PREMIUM</span>`
-- Para: remover esta span inteira
+**19f) FAQ (linhas 71-78) — substituir as 6 perguntas:**
+- Mesmas 6 perguntas do acolhedor
 
-**4d) `src/pages/Ortodontia.tsx` (linha 441):**
-- De: `Sua Jornada para um Sorriso Perfeito`
-- Para: `Sua Jornada para um Sorriso Alinhado`
-
-**4e) `src/pages/Ortodontia.tsx` (linha 469):**
-- De: `Ajustes finais para perfeição do resultado.`
-- Para: `Ajustes finais para precisão do resultado.`
-
-**4f) `src/components/AboutSection.tsx` (linha 55):**
-- De: `Uma trajetória de paixão pela odontologia e dedicação em transformar sorrisos em Ipanema`
-- Para: `Mais de 20 anos dedicados à reabilitação oral e odontologia estética em Ipanema`
-
-**4g) `src/pages/ClinicaGeralPrevencao.tsx` (linha 431):**
-- De: `Tecnologia de ponta, atendimento humanizado e protocolos personalizados aguardam você em Ipanema.`
-- Para: `Scanner digital, protocolos personalizados e tempo para cuidar da sua saúde bucal aguardam você em Ipanema.`
-
-**4h) `src/pages/SaudeDaGengiva.tsx`:**
-- Verificado: nenhuma palavra banida encontrada. Nenhuma alteracao necessaria.
+**19g) Limpeza de palavras banidas:**
+- Linha 13 whatsapp message: "transformar meu sorriso" -> "renovar meu sorriso"
+- Linha 38: "solucao definitiva" -> removida (substituida pelos novos problems)
+- Linha 97 SEO description: "Transforme sua imagem profissional" -> "Lentes de porcelana em Ipanema com resultado natural e duradouro. Planejamento digital com scanner iTero."
+- Linha 97: "avaliacao estrategica" -> "Agende sua avaliacao."
+- Linha 102 keyword: "transformacao do sorriso" -> "estetica do sorriso ipanema"
+- Linha 104 keyword: "sorriso perfeito" -> "sorriso natural porcelana"
 
 ---
 
-### Arquivos modificados (total: 5)
-1. `src/pages/ImplantesDentarios.tsx` — bio canonica + cliches removidos
-2. `src/pages/ProteseDentaria.tsx` — "premium", "transforma", "excepcionais" removidos
-3. `src/pages/Ortodontia.tsx` — "transforme", "premium", "perfeito" removidos
-4. `src/components/AboutSection.tsx` — "transformar" removido do subtitulo
-5. `src/pages/ClinicaGeralPrevencao.tsx` — "humanizado" removido
+### Prompt 20: `src/config/clareamentoConfig.ts`
+
+**20a) Secao problem (linhas 30-41) — substituir conteudo:**
+- `title`: "Voce se identifica com alguma dessas situacoes?"
+- `description`: "O amarelamento e gradual — voce nem percebe ate ver uma foto ou comparar. Se isso incomoda, saiba que clareamento profissional e seguro e os resultados sao reais."
+- `problems`: 4 itens (cafe/vinho/cha, caseiro que nao funciona, medo de sensibilidade, medo de artificial)
+
+**20b) Depoimentos (linhas 56-59) — substituir os 3:**
+- Juliana M. — Leblon (casamento, medo de artificial)
+- Ricardo T. — Ipanema (cafe a vida inteira, filha elogiou)
+- Beatriz A. — Copacabana (farmacia nao funcionou, resultado uniforme)
+
+**20c) FAQ (linhas 71-78) — substituir as 6 perguntas:**
+- "Estraga o esmalte?" / "Caseiro de farmacia funciona?" / "Quanto tempo dura?" / "Da muita sensibilidade?" / "Se tenho restauracoes?" / "Funciona em todas as manchas?"
+
+---
+
+### Arquivos modificados (total: 4)
+1. `src/config/implantesDentariosConfig.ts` — problem, guide subtitle, depoimentos, FAQ, urgency, SEO
+2. `src/config/lentesPorcelanaAcolhedorConfig.ts` — problem, depoimentos, FAQ
+3. `src/config/lentesPorcelanaProfissionalConfig.ts` — problem, depoimentos, FAQ, limpeza de banidas (whatsapp, SEO)
+4. `src/config/clareamentoConfig.ts` — problem, depoimentos, FAQ
 
 ### O que NAO muda
-- Landing pages, configs, componentes ConsultaInicial*
-- AboutPage, ContactPage, ContactSection, Hero, ServicesSection, TestimonialsSection
-- Clareamento, Lentes/Facetas, Restauracoes, Canal (bio ja correta)
-- SaudeDaGengiva (limpo, sem cliches)
-- Structured data / schema markup
-- Tracking (GTM, Google Ads, GCLID)
+- Hero sections (headline, subheadline, CTA, imagem)
+- Steps/guide structure (apenas subtitle do guide em implantes)
+- Componentes React (nenhum)
+- Rotas, App.tsx
+- Benefits, stats, tracking, contact
+- CTA sections
+- Nenhum outro config fora dos 4 listados
