@@ -1,8 +1,9 @@
 # Sprint 2 - Status de Implementação
 
 **Data de Início:** 12 de Fevereiro de 2026
-**Status Geral:** 🔄 EM ANDAMENTO
-**Última Atualização:** 13 de Fevereiro de 2026 - 10:15
+**Data de Conclusão:** 13 de Fevereiro de 2026
+**Status Geral:** ✅ COMPLETO
+**Última Atualização:** 13 de Fevereiro de 2026 - 14:30
 
 ---
 
@@ -134,11 +135,13 @@
 
 **#9 - Test Drive = #1 Headline** ✅
 - **Status:** COMPLETO
-- **Commit:** (próximo commit)
+- **Commits:** `409748a`, `0ae8fb8`
 - **Arquivos modificados:**
-  - `LentesEFacetas.tsx`: Headline "Lentes de Porcelana que Não Parecem Lentes — Test Drive do Sorriso"
+  - `LentesEFacetas.tsx`: Headline "Estética Dental que Não Parece Artificial — Test Drive do Sorriso"
+    - Corrigido para cobrir AMBOS lentes E facetas (não só lentes)
+    - Description menciona explicitamente: "Lentes de porcelana ou facetas de resina — cada caso tem sua indicação"
   - `LPLentesPorcelana.tsx`: Headline "Test Drive do Sorriso — Veja o Resultado Antes de Começar"
-- **Abordagem:** Opção 2 (anti-artificial) + Opção 1 (direto)
+- **Abordagem:** Opção 1 (genérica "Estética Dental") para cobrir ambos tratamentos
 - **Compliance:** 100% com BRAND.md, luxo silencioso, sem palavras banidas
 - **Impacto:** +20-25% conversão estética dental
 - **Revenue:** R$ 18-30k/mês
@@ -236,8 +239,8 @@ Todos os itens Priority 1-2 do Top 20 foram concluídos!
 
 ---
 
-**Última Atualização:** 13/02/2026 - 12:00 (Item #9 Completo)
-**Próxima Revisão:** Após conclusão dos próximos 3 itens
+**Última Atualização:** 13/02/2026 - 14:30 (Sprint 2 COMPLETO)
+**Próxima Etapa:** Sprint 3 - Itens #14-20 (ver SPRINT-3-PLAN.md)
 
 ---
 
