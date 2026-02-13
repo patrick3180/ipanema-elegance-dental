@@ -117,12 +117,11 @@ const LPLentesPorcelana = () => {
             {/* Coluna Esquerda - Texto */}
             <div className="order-1">
               <h1 className="text-4xl md:text-5xl font-display font-bold text-dental-purple mb-4">
-                Lentes de Contato Dental em Porcelana
+                Test Drive do Sorriso — Veja o Resultado Antes de Começar
               </h1>
-              
+
               <p className="text-lg md:text-xl text-dental-gray mb-6 leading-relaxed">
-                Sorria com confiança total. Dentes naturalmente brancos, harmônicos e que nunca mancham. 
-                Veja seu novo sorriso antes de começar com nosso Test Drive exclusivo.
+                Scanner iTero 3D e simulação em resina provisória na sua boca. Você aprova cada detalhe antes de qualquer desgaste. Lentes de porcelana com especialista em Ipanema — CRO-RJ 27.509.
               </p>
               
               {/* Badges Grid 2x2 */}

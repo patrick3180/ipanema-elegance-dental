@@ -202,9 +202,9 @@ const LentesEFacetas = () => {
       <PageLayout>
         {/* Hero Section */}
         <TreatmentHero
-          title="Lentes de Contato Dental e Facetas de Porcelana"
+          title="Lentes de Porcelana que Não Parecem Lentes — Test Drive do Sorriso"
           subtitle="Estética Dental com a Dra. Carla Christoph"
-          description="Recupere a confiança no seu sorriso com técnicas minimamente invasivas e resultados naturais. Scanner iTero 3D, Test Drive do Sorriso e planejamento individualizado. Mais de 20 anos de experiência em estética dental."
+          description="Simulação provisória na sua boca antes de começar. Você vê, sente e aprova. Natural ao ponto de passar despercebido. Escaneamento digital iTero e cerâmica de alta translucidez."
           badges={["20+ anos de experiência", "Test Drive do Sorriso", "CRO-RJ 27.509"]}
           doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
           breadcrumbs={[
