@@ -39,3 +39,4 @@ Thumbs.db
 
 # Firecrawl
 .firecrawl/
+bigquery-credentials.json
