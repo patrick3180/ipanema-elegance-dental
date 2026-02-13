@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -41,8 +42,30 @@ const TreatmentHero = ({
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
+  // Generate BreadcrumbList schema if breadcrumbs exist
+  const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.label,
+      "item": item.href ? `https://dracarlachristoph.com${item.href}` : undefined
+    }))
+  } : null;
+
   return (
-    <section
+    <>
+      {/* BreadcrumbList Schema for Google Search */}
+      {breadcrumbSchema && (
+        <Helmet>
+          <script type="application/ld+json">
+            {JSON.stringify(breadcrumbSchema)}
+          </script>
+        </Helmet>
+      )}
+
+      <section
       className="bg-gradient-purple-soft animate-fade-in"
       aria-label="Hero do tratamento"
     >
@@ -140,6 +163,7 @@ const TreatmentHero = ({
         </div>
       </div>
     </section>
+    </>
   );
 };
 

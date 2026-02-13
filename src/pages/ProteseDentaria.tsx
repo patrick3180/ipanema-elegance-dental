@@ -81,14 +81,14 @@ const ProteseDentaria = () => {
       <Helmet>
         <title>Prótese Dentária em Ipanema: Recupere Função e Estética do Sorriso</title>
         <meta name="description" content="Prótese dentária em Ipanema com especialista. Coroas, pontes e próteses sobre implante. Reabilitação oral completa com 20+ anos de experiência." />
-        <link rel="canonical" href="https://www.dracarlachristoph.com/protese-dentaria" />
+        <link rel="canonical" href="https://dracarlachristoph.com/protese-dentaria" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Prótese Dentária em Ipanema | Reabilitação Oral" />
         <meta property="og:description" content="Recupere função e estética do sorriso com prótese dentária de alta qualidade em Ipanema." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.dracarlachristoph.com/protese-dentaria" />
-        <meta property="og:image" content="https://www.dracarlachristoph.com/dra-carla-protese.jpg" />
+        <meta property="og:url" content="https://dracarlachristoph.com/protese-dentaria" />
+        <meta property="og:image" content="https://dracarlachristoph.com/dra-carla-protese.jpg" />
         
         {/* Schema Markup */}
         <script type="application/ld+json">

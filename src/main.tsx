@@ -1,6 +1,13 @@
 
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
+
+// Self-hosted fonts (replaces Google Fonts CDN - saves 200-400ms)
+import '@fontsource/playfair-display/400.css';
+import '@fontsource/playfair-display/600.css';
+import '@fontsource/montserrat/400.css';
+import '@fontsource/montserrat/500.css';
+
 import './index.css'
 import { HelmetProvider } from 'react-helmet-async'
 

@@ -88,12 +88,12 @@ const SaudeDaGengiva = () => {
         <title>Saúde da Gengiva em Ipanema | Dra. Carla Christoph</title>
         <meta name="description" content="Tratamento periodontal em Ipanema com acompanhamento integrado. Gengivite, periodontite e retração gengival. Dra. Carla Christoph, CRO-RJ 27.509." />
         <meta name="keywords" content="saúde da gengiva ipanema, periodontia rio de janeiro, gengivite tratamento, periodontite zona sul, gengiva sangrando dentista ipanema" />
-        <link rel="canonical" href="https://www.dracarlachristoph.com/saude-da-gengiva" />
+        <link rel="canonical" href="https://dracarlachristoph.com/saude-da-gengiva" />
         
         <meta property="og:title" content="Saúde da Gengiva em Ipanema | Periodontia com Acompanhamento" />
         <meta property="og:description" content="Tratamento periodontal com acompanhamento integrado da Dra. Carla Christoph em Ipanema." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.dracarlachristoph.com/saude-da-gengiva" />
+        <meta property="og:url" content="https://dracarlachristoph.com/saude-da-gengiva" />
         
         <script type="application/ld+json">
           {JSON.stringify({

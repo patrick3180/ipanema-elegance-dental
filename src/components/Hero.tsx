@@ -70,11 +70,18 @@ const Hero = () => {
           <div className="relative">
             <div className="w-[320px] md:w-[420px] h-[500px] md:h-[600px] bg-dental-purple/10 rounded-2xl flex items-center justify-center overflow-hidden">
               <picture>
-                <source 
-                  srcSet="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp" 
+                {/* AVIF first - best compression (50-70% smaller than PNG) */}
+                <source
+                  srcSet="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.avif"
+                  type="image/avif"
+                />
+                {/* WebP fallback - good compression, wide support */}
+                <source
+                  srcSet="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp"
                   type="image/webp"
                 />
-                <img 
+                {/* PNG fallback - legacy browsers */}
+                <img
                   src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png"
                   alt="Dra. Carla Christoph, dentista especialista em Ipanema"
                   className="w-full h-full object-cover"

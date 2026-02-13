@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="google-site-verification" content="mufiI1fRvsBjdZpIg6V7PCLlw12pjd4d-zd5dzoIkN8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Pre-rendering hints for crawlers and AI bots -->
+    <meta name="fragment" content="!" />
+    <meta name="prerender-status-code" content="200" />
+
     <title>Dentista em Ipanema | Clínica Odontológica Dra. Carla Christoph</title>
     <meta name="description" content="Procurando dentista em Ipanema? A Dra. Carla Christoph oferece odontologia estética e reabilitação oral com atendimento personalizado. Agende sua consulta!" />
     
@@ -79,20 +84,10 @@
       .font-sans{font-family:Montserrat,system-ui,sans-serif}
     </style>
     
-    <!-- Preconnects otimizados -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Preload hero image WebP -->
-    <link rel="preload" href="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" as="image" type="image/webp" fetchpriority="high">
-    
-    <!-- Fonts com display swap - DEFER loading -->
-    <link rel="preload" 
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@400;500&display=swap" 
-          as="style"
-          onload="this.onload=null;this.rel='stylesheet'">
-    
-    
+    <!-- Fonts agora são self-hosted via @fontsource (main.tsx) - economiza 200-400ms -->
+
+    <!-- Hero image preload removido: cada página faz seu próprio preload da imagem correta -->
+
     <!-- Meta tags -->
     <meta property="og:title" content="Dentista em Ipanema | Dra. Carla Christoph" />
     <meta property="og:description" content="Odontologia estética e reabilitação oral em Ipanema" />

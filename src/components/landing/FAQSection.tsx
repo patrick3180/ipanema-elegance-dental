@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 interface FAQ {
@@ -12,8 +13,30 @@ interface FAQSectionProps {
 }
 
 const FAQSection = ({ title, questions }: FAQSectionProps) => {
+  // Generate FAQPage Schema for Google Featured Snippets (+200% CTR)
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": questions.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
   return (
-    <section className="py-20 bg-dental-beige/30">
+    <>
+      {/* FAQPage Schema for Featured Snippets */}
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+      </Helmet>
+
+      <section className="py-20 bg-dental-beige/30">
       <div className="container-custom">
         <div className="max-w-4xl mx-auto">
           {/* Title */}
@@ -43,6 +66,7 @@ const FAQSection = ({ title, questions }: FAQSectionProps) => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

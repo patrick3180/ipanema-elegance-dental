@@ -95,13 +95,13 @@ const TratamentoDeCanal = () => {
         <title>Tratamento de Canal em Ipanema | Dra. Carla Christoph</title>
         <meta name="description" content="Tratamento de canal em Ipanema com acompanhamento completo. Endodontista especializado e finalização pela Dra. Carla Christoph. CRO-RJ 27.509." />
         <meta name="keywords" content="tratamento de canal ipanema, endodontia rio de janeiro, canal dentário zona sul, dor de dente ipanema, dentista canal ipanema" />
-        <link rel="canonical" href="https://www.dracarlachristoph.com/tratamento-de-canal" />
+        <link rel="canonical" href="https://dracarlachristoph.com/tratamento-de-canal" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Tratamento de Canal em Ipanema | Acompanhamento Completo" />
         <meta property="og:description" content="Tratamento de canal com acompanhamento individualizado e finalização pela Dra. Carla Christoph em Ipanema." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.dracarlachristoph.com/tratamento-de-canal" />
+        <meta property="og:url" content="https://dracarlachristoph.com/tratamento-de-canal" />
         
         {/* Schema MedicalProcedure */}
         <script type="application/ld+json">

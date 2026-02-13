@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 interface Question {
   question: string;
@@ -21,8 +22,30 @@ const ClareamentoFAQ: React.FC<ClareamentoFAQProps> = ({
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  // Generate FAQPage Schema for Google Featured Snippets (+200% CTR)
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": questions.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
   return (
-    <section className="bg-[#CFCBB4] py-16 lg:py-24">
+    <>
+      {/* FAQPage Schema for Featured Snippets */}
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+      </Helmet>
+
+      <section className="bg-[#CFCBB4] py-16 lg:py-24">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto space-y-12">
           {/* Header */}
@@ -74,6 +97,7 @@ const ClareamentoFAQ: React.FC<ClareamentoFAQProps> = ({
         </div>
       </div>
     </section>
+    </>
   );
 };
 

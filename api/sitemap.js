@@ -2,9 +2,9 @@ export default async function handler(req, res) {
   // Função para buscar posts - SEM console.log que possa vazar para o output
   async function getBlogPosts() {
     try {
-      const spaceId = 'g8ip8odd5vbl';
-      const accessToken = 'cr6Ra2NQPO9jz2qTWmAK2ykLy0I_4bIqVCyepF8ix-k';
-      
+      const spaceId = process.env.VITE_CONTENTFUL_SPACE_ID;
+      const accessToken = process.env.VITE_CONTENTFUL_ACCESS_TOKEN;
+
       // Usar token como query parameter (método comprovado)
       const url = `https://cdn.contentful.com/spaces/${spaceId}/environments/master/entries?content_type=blogCarla&limit=200&access_token=${accessToken}`;
       

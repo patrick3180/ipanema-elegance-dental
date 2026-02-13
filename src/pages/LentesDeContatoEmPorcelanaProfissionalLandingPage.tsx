@@ -86,13 +86,13 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
         <title>{lentesPorcelanaProfissionalConfig.seo.title}</title>
         <meta name="description" content={lentesPorcelanaProfissionalConfig.seo.description} />
         <meta name="keywords" content={lentesPorcelanaProfissionalConfig.seo.keywords?.join(', ')} />
-        <link rel="canonical" href="https://www.dracarlachristoph.com/lp/lentes-porcelana-profissional-ipanema" />
+        <link rel="canonical" href="https://dracarlachristoph.com/lp/lentes-porcelana-profissional-ipanema" />
         
         <meta property="og:title" content={lentesPorcelanaProfissionalConfig.seo.title} />
         <meta property="og:description" content={lentesPorcelanaProfissionalConfig.seo.description} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.dracarlachristoph.com/lp/lentes-porcelana-profissional-ipanema" />
-        <meta property="og:image" content="https://www.dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
+        <meta property="og:url" content="https://dracarlachristoph.com/lp/lentes-porcelana-profissional-ipanema" />
+        <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="600" />
         <meta property="og:image:alt" content="Dra. Carla Christoph - Especialista em Lentes de Contato de Porcelana" />
@@ -102,7 +102,7 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={lentesPorcelanaProfissionalConfig.seo.title} />
         <meta name="twitter:description" content={lentesPorcelanaProfissionalConfig.seo.description} />
-        <meta name="twitter:image" content="https://www.dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
+        <meta name="twitter:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
         <meta name="twitter:image:alt" content="Dra. Carla Christoph - Especialista em Lentes de Contato de Porcelana" />
 
         <link rel="dns-prefetch" href="//www.google.com" />
@@ -128,7 +128,7 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
             "@type": "Dentist",
             "name": "Dra. Carla Christoph",
             "description": "Especialista em Lentes de Contato de Porcelana em Ipanema",
-            "url": "https://www.dracarlachristoph.com",
+            "url": "https://dracarlachristoph.com",
             "telephone": "+5521993304045",
             "address": {
               "@type": "PostalAddress",

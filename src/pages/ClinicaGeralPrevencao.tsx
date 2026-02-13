@@ -84,7 +84,7 @@ const ClinicaGeralPrevencao = () => {
           name="keywords" 
           content="dentista ipanema, check-up dental, prevenção odontológica, limpeza dental, profilaxia, clínica geral odontologia, dra carla christoph" 
         />
-        <link rel="canonical" href="https://dracarlaodontologia.com.br/clinica-geral-e-prevencao" />
+        <link rel="canonical" href="https://dracarlachristoph.com/clinica-geral-e-prevencao" />
       </Helmet>
 
       <TreatmentHero

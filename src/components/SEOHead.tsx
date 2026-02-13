@@ -213,15 +213,12 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       {/* Language alternatives */}
       <link rel="alternate" hrefLang="pt-br" href={currentUrl} />
       <link rel="alternate" hrefLang="x-default" href={currentUrl} />
-      
-      {/* DNS prefetch for performance */}
-      <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+
+      {/* DNS prefetch for performance - Google Analytics/GTM only */}
       <link rel="dns-prefetch" href="//www.google-analytics.com" />
       <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-      
-      {/* Preconnect for critical resources */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+      {/* Fonts are now self-hosted via @fontsource - no external connections needed */}
     </Helmet>
   );
 };

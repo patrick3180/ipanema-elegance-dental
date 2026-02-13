@@ -2,14 +2,17 @@ import { lazy, Suspense, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { Skeleton } from "@/components/ui/skeleton";
+import BlogLayout from "@/layouts/BlogLayout";
 
 // COMPONENTES DE PERFORMANCE - CRÍTICOS
 import ContentfulBlockerForNonBlogPages from '@/components/performance/ContentfulBlockerForNonBlogPages';
 import SimpleLCPOptimizer from '@/components/performance/SimpleLCPOptimizer';
+
+// SEO - Schema.org markup global
+import GlobalSchemas from '@/components/seo/GlobalSchemas';
 
 // Páginas principais
 const Index = lazy(() => import("./pages/Index"));
@@ -48,16 +51,6 @@ const Ortodontia = lazy(() => import("./pages/Ortodontia"));
 const GonePage = lazy(() => import("./pages/GonePage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 5 * 60 * 1000,
-      refetchOnWindowFocus: false,
-      retry: 1,
-    },
-  },
-});
-
 // Loading fallback component
 const PageLoadingFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-dental-beige">
@@ -95,23 +88,29 @@ const App = () => {
 
   return (
     <HelmetProvider>
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <BrowserRouter>
-            {/* BLOQUEADORES DE PERFORMANCE - ORDEM IMPORTA! */}
-            <ContentfulBlockerForNonBlogPages />
-            <SimpleLCPOptimizer />
-            
-            <Toaster />
-            <Sonner />
-            
-            <Suspense fallback={<PageLoadingFallback />}>
-              <Routes>
-                {/* Rotas principais */}
-                <Route path="/" element={<Index />} />
-                <Route path="/servicos" element={<ServicesPage />} />
+      {/* SEO - Global Schema.org markup for Organization + LocalBusiness */}
+      <GlobalSchemas />
+
+      <TooltipProvider>
+        <BrowserRouter>
+          {/* BLOQUEADORES DE PERFORMANCE - ORDEM IMPORTA! */}
+          <ContentfulBlockerForNonBlogPages />
+          <SimpleLCPOptimizer />
+
+          <Toaster />
+          <Sonner />
+
+          <Suspense fallback={<PageLoadingFallback />}>
+            <Routes>
+              {/* Rotas principais */}
+              <Route path="/" element={<Index />} />
+              <Route path="/servicos" element={<ServicesPage />} />
+
+              {/* Blog routes with React Query scoped */}
+              <Route element={<BlogLayout />}>
                 <Route path="/blog" element={<BlogPage />} />
                 <Route path="/blog/:slug" element={<BlogPost />} />
+              </Route>
                 
                 {/* Landing pages - TODAS ATIVAS */}
                 <Route path="/lp/limpeza-dental-ipanema" element={<LimpezaDentalLandingPage />} />
@@ -152,11 +151,10 @@ const App = () => {
                 
                 {/* Catch all - 404 page */}
                 <Route path="*" element={<NotFoundPage />} />
-              </Routes>
-            </Suspense>
-          </BrowserRouter>
-        </TooltipProvider>
-      </QueryClientProvider>
+            </Routes>
+          </Suspense>
+        </BrowserRouter>
+      </TooltipProvider>
     </HelmetProvider>
   );
 };

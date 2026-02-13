@@ -40,13 +40,13 @@ const ClareamentoDental = () => {
           name="keywords" 
           content="clareamento dental ipanema, clareamento profissional, clareamento caseiro supervisionado, dentista ipanema" 
         />
-        <link rel="canonical" href="https://www.dracarlachristoph.com/clareamento-dental" />
+        <link rel="canonical" href="https://dracarlachristoph.com/clareamento-dental" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Clareamento Dental em Ipanema | Dra. Carla Christoph" />
         <meta property="og:description" content="Clareamento dental profissional com técnicas de consultório e caseiro supervisionado em Ipanema." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.dracarlachristoph.com/clareamento-dental" />
+        <meta property="og:url" content="https://dracarlachristoph.com/clareamento-dental" />
         
         {/* Schema Markup */}
         <script type="application/ld+json">

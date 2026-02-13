@@ -27,7 +27,7 @@ const RestaureacoesEsteticas = () => {
       <Helmet>
         <title>Restaurações Estéticas em Ipanema | Dra. Carla Christoph</title>
         <meta name="description" content="Restauração dental estética em Ipanema com resina de alta qualidade. Tratamento de cáries, dentes quebrados e trincados. Resultado natural e duradouro. Dra. Carla Christoph CRO-RJ 27.509." />
-        <link rel="canonical" href="https://www.dracarlachristoph.com/restauracoes-esteticas" />
+        <link rel="canonical" href="https://dracarlachristoph.com/restauracoes-esteticas" />
       </Helmet>
 
       <TreatmentHero

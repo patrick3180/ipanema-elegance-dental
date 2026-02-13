@@ -1,9 +1,9 @@
 
 import { createClient } from 'contentful';
 
-// Contentful credentials
-const SPACE_ID = 'g8ip8odd5vbl';
-const ACCESS_TOKEN = 'cr6Ra2NQPO9jz2qTWmAK2ykLy0I_4bIqVCyepF8ix-k';
+// Contentful credentials from environment variables
+const SPACE_ID = import.meta.env.VITE_CONTENTFUL_SPACE_ID;
+const ACCESS_TOKEN = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
 
 // Default locale for the application set to pt-BR
 export const DEFAULT_LOCALE = 'pt-BR';

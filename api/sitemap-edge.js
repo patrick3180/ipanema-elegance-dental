@@ -11,9 +11,9 @@ export default async function handler(request) {
   // Função para buscar posts do blog
   async function getBlogPosts() {
     try {
-      const spaceId = 'g8ip8odd5vbl';
-      const accessToken = 'cr6Ra2NQPO9jz2qTWmAK2ykLy0I_4bIqVCyepF8ix-k';
-      
+      const spaceId = process.env.VITE_CONTENTFUL_SPACE_ID;
+      const accessToken = process.env.VITE_CONTENTFUL_ACCESS_TOKEN;
+
       const url = `https://cdn.contentful.com/spaces/${spaceId}/environments/master/entries?content_type=blogCarla&limit=100`;
       
       const response = await fetch(url, {
