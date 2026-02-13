@@ -119,7 +119,7 @@ const LentesEFacetas = () => {
     },
     {
       question: "Como funciona a consulta de planejamento?",
-      answer: "É uma conversa aprofundada para entendermos seus desejos e expectativas. Realizamos fotografias profissionais, escaneamento digital com iTero 3D e uma análise completa do seu sorriso e face. Juntos, definimos o melhor plano de tratamento, explicando os prós e contras de cada opção (lentes vs facetas). Você sairá da consulta com todas as informações necessárias para tomar uma decisão informada."
+      answer: "É uma conversa aprofundada para entendermos seus desejos e expectativas. Realizamos escaneamento digital com iTero 3D e uma análise completa do seu sorriso e face. Juntos, definimos o melhor plano de tratamento, explicando os prós e contras de cada opção (lentes vs facetas). Você sairá da consulta com todas as informações necessárias para tomar uma decisão informada."
     }
   ];
 
@@ -1443,17 +1443,17 @@ const LentesEFacetas = () => {
 
             {/* Título */}
             <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-6">
-              Pronto(a) Para Transformar Seu Sorriso?
+              Ver se Lentes São Indicadas para o Seu Caso
             </h2>
 
             {/* Texto */}
             <p className="text-lg md:text-xl text-white/90 mb-10 leading-relaxed max-w-3xl mx-auto">
-              Agende uma avaliação completa e conheça seu potencial de transformação. Na consulta, vamos analisar seu caso, realizar um checkup da sua saúde bucal, tirar fotografias profissionais e apresentar todas as possibilidades para o seu sorriso.
+              Na consulta de avaliação, analisamos seu caso com escaneamento digital iTero 3D, realizamos um checkup completo da saúde bucal e apresentamos as possibilidades — lentes, facetas ou outros tratamentos mais adequados.
             </p>
 
             {/* Botão WhatsApp */}
             <a
-              href="https://wa.me/5521993304045?text=Olá!%20Vi%20a%20página%20sobre%20Lentes%20e%20Facetas%20e%20gostaria%20de%20agendar%20uma%20avaliação%20para%20transformar%20meu%20sorriso."
+              href="https://wa.me/5521993304045?text=Olá!%20Vi%20a%20página%20sobre%20Lentes%20e%20Facetas%20e%20gostaria%20de%20agendar%20uma%20avaliação."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-dental-gold hover:bg-dental-gold/90 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 group"
@@ -1469,15 +1469,15 @@ const LentesEFacetas = () => {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-white/80 text-sm">
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-dental-gold" />
-                <span>Resposta em até 24h</span>
+                <span>WhatsApp 24h</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-dental-gold" />
-                <span>Localização privilegiada em Ipanema</span>
+                <span>Ipanema, Rio de Janeiro</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-dental-gold" />
-                <span>Atendimento personalizado</span>
+                <span>CRO-RJ 27.509</span>
               </div>
             </div>
           </div>

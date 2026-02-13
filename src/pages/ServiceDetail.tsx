@@ -12,7 +12,7 @@ const serviceData = {
   "lentes-e-facetas": {
     title: "Lentes de Contato Dental e Facetas de Porcelana",
     description: "Corrija cor, forma e imperfeições com finas lâminas de porcelana, com naturalidade e precisão estética.",
-    fullContent: "As lentes de contato dental e facetas de porcelana são lâminas ultrafinas que são aplicadas sobre a superfície visível dos dentes para transformar completamente o sorriso. Este tratamento é ideal para corrigir dentes manchados, desgastados, quebrados, desalinhados ou com espaçamentos. Na clínica da Dra. Carla Christoph em Ipanema, utilizamos materiais de alta qualidade e técnicas modernas para um resultado que respeita a aparência natural dos dentes.",
+    fullContent: "As lentes de contato dental e facetas de porcelana são lâminas ultrafinas aplicadas sobre a superfície visível dos dentes para corrigir cor, forma e imperfeições. Este tratamento é ideal para corrigir dentes manchados, desgastados, quebrados, desalinhados ou com espaçamentos. Na clínica da Dra. Carla Christoph em Ipanema, utilizamos materiais de alta qualidade e técnicas modernas para um resultado que respeita a aparência natural dos dentes.",
     detailPageUrl: "/lentes-de-contato-dental-e-facetas-de-porcelana"
   },
   "clareamento-dental": {

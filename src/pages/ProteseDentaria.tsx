@@ -687,13 +687,11 @@ const ProteseDentaria = () => {
             <div className="flex items-center justify-center gap-3 mb-4">
               <Award className="w-8 h-8 text-dental-gold" />
               <h2 className="heading-lg">
-                Pronto para Reconstruir seu Sorriso?
+                Recuperar Função e Estética com Prótese Dentária
               </h2>
             </div>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Agende sua consulta de planejamento e descubra como a prótese dentária 
-              pode transformar sua qualidade de vida. Tecnologia, experiência e 
-              cuidado personalizado aguardam você em Ipanema.
+              Na consulta de planejamento, analisamos seu caso e definimos o tipo de prótese mais adequado — fixa, removível ou sobre implantes. A prótese dentária devolve função mastigatória completa e pode melhorar significativamente sua qualidade de vida.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
