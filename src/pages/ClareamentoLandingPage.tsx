@@ -99,10 +99,8 @@ const ClareamentoLandingPage: React.FC = () => {
         
         {/* Preload critical WebP hero image with highest priority */}
         <link rel="preload" as="image" href="/lovable-uploads/doutora-em-pe-jaleco.webp" type="image/webp" fetchPriority="high" />
-        
-        {/* DNS prefetch and preconnect for external resources */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+
+        {/* DNS prefetch for external resources (fonts are self-hosted) */}
         <link rel="dns-prefetch" href="//api.whatsapp.com" />
         <link rel="dns-prefetch" href="//web.whatsapp.com" />
         <link rel="dns-prefetch" href="//www.googletagmanager.com" />

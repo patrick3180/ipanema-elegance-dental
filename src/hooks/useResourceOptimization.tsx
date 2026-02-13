@@ -46,24 +46,8 @@ export const useResourceOptimization = (options: ResourceOptimizationOptions = {
   const preloadCriticalResources = useCallback(() => {
     if (!enablePrefetching) return;
 
-    // Preload critical CSS
-    const criticalStyles = [
-      'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap'
-    ];
-
-    criticalStyles.forEach((href) => {
-      const existingLink = document.querySelector(`link[href="${href}"]`);
-      if (!existingLink) {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'style';
-        link.href = href;
-        link.onload = () => {
-          link.rel = 'stylesheet';
-        };
-        document.head.appendChild(link);
-      }
-    });
+    // Fonts are now self-hosted in /fonts/ and loaded via @font-face in index.css
+    // No external font CDN needed
 
     // Preload hero image
     const heroImage = '/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp';
