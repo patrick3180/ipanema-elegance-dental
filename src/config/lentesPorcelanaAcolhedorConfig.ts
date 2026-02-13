@@ -77,8 +77,8 @@ export const lentesPorcelanaAcolhedorConfig: LandingPageConfig = {
   },
   
   cta: {
-    title: 'Quer Saber se Lentes São Indicadas para Você?',
-    subtitle: 'Na consulta de avaliação, analisamos seu caso e mostramos as possibilidades — sem compromisso.',
+    title: 'Cada Lente é Planejada Individualmente',
+    subtitle: 'Nem todos os casos se beneficiam de lentes. Na avaliação, vemos se é a melhor opção para o seu sorriso.',
     buttonText: 'Agendar Minha Avaliação'
   },
   

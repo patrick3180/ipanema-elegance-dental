@@ -753,17 +753,17 @@ const ClareamentoDental = () => {
         <section className="py-16 bg-gradient-purple-gold">
           <div className="container-custom text-center">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
-              Agendar Avaliação
+              Ver Qual Protocolo é Indicado para Mim
             </h2>
             <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-              Análise personalizada para definição do protocolo mais adequado ao seu caso. Atendimento em Ipanema com a Dra. Carla Christoph.
+              Cada caso tem sua indicação específica. Na avaliação, analisamos o tipo de mancha e definimos se consultório, caseiro ou combinado é mais adequado.
             </p>
-            
+
             <button
               onClick={() => handleWhatsAppClick("Olá! Gostaria de agendar uma avaliação para clareamento dental com a Dra. Carla Christoph.")}
               className="bg-white hover:bg-dental-beige text-dental-purple px-8 py-4 text-lg rounded-lg font-semibold inline-flex items-center gap-2 transition-colors shadow-lg hover:shadow-xl"
             >
-              Agendar no WhatsApp
+              Ver Qual Protocolo é Indicado para Mim
             </button>
             
             <div className="flex flex-wrap justify-center gap-6 mt-8 text-white/80 text-sm">

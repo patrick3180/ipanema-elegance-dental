@@ -79,9 +79,9 @@ export const implantesDentariosConfig: LandingPageConfig = {
   },
   
   cta: {
-    title: 'Recupere a Segurança de Mastigar e Sorrir',
-    subtitle: 'Agende sua consulta de planejamento. Quanto antes o diagnóstico, mais simples tende a ser o tratamento.',
-    buttonText: 'Agendar Minha Consulta',
+    title: 'A Perda Óssea é Progressiva',
+    subtitle: 'Quanto mais cedo o diagnóstico, menos complexo tende a ser o procedimento.',
+    buttonText: 'Ver Meu Caso',
     urgency: 'A perda óssea é progressiva — cada mês conta'
   },
   

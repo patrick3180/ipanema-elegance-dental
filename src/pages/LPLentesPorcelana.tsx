@@ -150,7 +150,7 @@ const LPLentesPorcelana = () => {
                 onClick={handleWhatsAppClick}
                 className="bg-gradient-to-r from-dental-purple to-dental-gold hover:opacity-90 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all shadow-lg hover:shadow-xl inline-flex items-center gap-2 w-full md:w-auto justify-center"
               >
-                Quero Agendar Minha Avaliação
+                Conhecer o Test Drive do Sorriso
               </button>
             </div>
             

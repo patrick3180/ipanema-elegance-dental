@@ -44,7 +44,7 @@ const WhatsAppButton = () => {
     >
       <MessageCircle size={20} className="animate-pulse" />
       <div className="hidden md:flex flex-col text-left leading-tight">
-        <span className="font-medium">Agendar minha consulta</span>
+        <span className="font-medium">Conversar sobre meu caso</span>
         <span className="text-xs text-white/80">WhatsApp 24h</span>
       </div>
     </button>
