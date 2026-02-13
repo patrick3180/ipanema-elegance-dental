@@ -93,7 +93,9 @@
 
 ---
 
-## ⚠️ Itens PENDENTES (8/20)
+## ⚠️ Itens PENDENTES (7/20)
+
+**Nota:** Item #8 (Military Background) foi CANCELADO por decisão do cliente.
 
 ### 🔥 Priority 1: Critical Path (Alto Impacto, Baixo Esforço)
 
@@ -113,23 +115,22 @@
 - **Revenue:** R$ 25-40k/mês
 - **Impacto:** +25-30% tráfego orgânico
 
-**#8 - Military Background Reframe** ⏳
-- **Status:** PENDENTE
-- **Ação:** Reescrever bio: "Formada em precisão: 8 anos na Marinha — padrão militar de excelência"
-- **Arquivos:** Bio canônica em todas as páginas
-- **Effort:** 1 dia
-- **Revenue:** R$ 10-15k/mês
-- **Impacto:** Diferencial ÚNICO
+**#8 - Military Background Reframe** ❌ CANCELADO
+- **Status:** NÃO IMPLEMENTAR
+- **Decisão:** Manter sutil como está. Nem todos valorizam background militar como premium.
+- **Arquivos:** Bio atual já menciona de forma moderada
+- **Nota:** Diferencial existe, mas sem necessidade de amplificar
 
 ### 🔥 Priority 2: High ROI (Médio Impacto, Baixo Esforço)
 
 **#9 - Test Drive = #1 Headline** ⏳
 - **Status:** PARCIALMENTE IMPLEMENTADO
-- **Evidência:** Test Drive mencionado em múltiplas páginas
-- **Pendente:** Tornar o #1 headline em homepage, service pages, LPs
-- **Effort:** 1 dia
+- **Evidência:** Test Drive mencionado em 3 páginas (LentesEFacetas, LPLentesPorcelana, AboutPage)
+- **Escopo:** **APENAS lentes e facetas** (não se aplica a outros tratamentos)
+- **Pendente:** Tornar o #1 headline em páginas de lentes/facetas
+- **Effort:** 2-3 horas
 - **Revenue:** R$ 18-30k/mês
-- **Impacto:** +20-25% conversão (estética)
+- **Impacto:** +20-25% conversão (estética dental)
 
 **#11 - Create sitemap.xml** ⏳
 - **Status:** PARCIALMENTE IMPLEMENTADO
@@ -149,10 +150,12 @@
 
 **#13 (doc) - "1-Hour Minimum" Headlines** ⏳
 - **Status:** PENDENTE
-- **Ação:** "Mínimo 1h por consulta — sem pressa, sem linha de produção"
-- **Effort:** 1 dia
+- **O que é:** Destacar que consultas têm mínimo de 1 hora (vs. 15-30 min da concorrência)
+- **Ação:** Headlines em homepage/about: "Mínimo 1h por consulta — sem pressa, sem linha de produção"
+- **Diferencial:** Concorrência NÃO comunica tempo dedicado explicitamente
+- **Effort:** 2-3 horas
 - **Revenue:** R$ 8-12k/mês
-- **Impacto:** Diferenciação premium
+- **Impacto:** Diferenciação premium clara
 
 ### 🔥 Priority 3: Outros Itens do Top 20
 
@@ -181,36 +184,35 @@
    - Gerar sitemap com todas as páginas
    - Submit Google Search Console
 
-2. **Military Background Reframe** (2h)
-   - Reescrever bio canônica
-   - Aplicar em todas as páginas
-
-3. **"1-Hour Minimum" Headlines** (1h)
-   - Homepage subheadline
+2. **"1-Hour Minimum" Headlines** (2-3h)
+   - Homepage subheadline: "Mínimo 1h por consulta"
    - About page destaque
+   - Diferencial: Concorrência faz 15-30 min
 
-**Revenue Impact:** R$ 23-35k/mês
-**Time Investment:** 4 horas
+**Revenue Impact:** R$ 13-20k/mês
+**Time Investment:** 3-4 horas
+
+**Nota:** Item #2 original (Military Background) foi CANCELADO.
 
 ### Médio Prazo (Esta Semana - 2 dias)
 
-4. **Test Drive = #1 Headline** (1 dia)
-   - Homepage hero
-   - Service pages headlines
-   - Landing pages headlines
-   - Google Ads copy
+3. **Test Drive = #1 Headline** (2-3h)
+   - **ESCOPO:** Apenas lentes e facetas
+   - LentesEFacetas.tsx hero
+   - LPLentesPorcelana.tsx hero
+   - AboutPage menção
 
-5. **Google 5-Star Rating Badge** (1 dia)
+4. **Google 5-Star Rating Badge** (1 dia)
    - Verificar GBP rating
    - Adicionar widget se ≥4.8
 
 **Revenue Impact:** R$ 30-50k/mês
-**Time Investment:** 2 dias
+**Time Investment:** 1 dia
 
 ### Longo Prazo (Próximas 2-3 Semanas)
 
-6. **Comprehensive FAQ Expansion** (3 dias)
-7. **Patient Testimonials Collection** (2-3 semanas)
+5. **Comprehensive FAQ Expansion** (3 dias)
+6. **Patient Testimonials Collection** (2-3 semanas)
 
 ---
 
