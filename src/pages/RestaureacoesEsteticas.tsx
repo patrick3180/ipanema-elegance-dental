@@ -4,6 +4,7 @@ import PageLayout from "@/components/PageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
 import SectionDivider from "@/components/treatment/SectionDivider";
 import ProcessTimeline from "@/components/treatment/ProcessTimeline";
+import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { sendGCLIDToWebhook } from "@/utils/gclid";
 import { Sparkles, Shield, Heart, Award, Search, Scan, CheckCircle, HelpCircle, ArrowRight, Clock, Link, Ban, Target, Wrench, Stethoscope, Syringe, Scissors, HeartPulse, Layers, Focus, Gem } from "lucide-react";
@@ -38,6 +39,15 @@ const RestaureacoesEsteticas = () => {
         doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
         breadcrumbs={[{label: "Início", href: "/"}, {label: "Tratamentos", href: "/servicos"}, {label: "Restaurações Estéticas"}]}
       />
+
+      {/* Quick Answer Box */}
+      <section className="py-8 bg-white">
+        <div className="container-custom">
+          <QuickAnswerBox
+            answer="Restaurações estéticas são tratamentos que recuperam dentes comprometidos por cáries, fraturas ou trincas usando resinas ou cerâmicas de alta qualidade. Na clínica da Dra. Carla Christoph em Ipanema (CRO-RJ 27.509), utilizamos materiais de última geração com estratificação de cor que reproduzem perfeitamente a translucidez natural dos dentes. O tratamento é conservador, preservando ao máximo a estrutura dentária, e o resultado é indistinguível dos dentes naturais. Com 20+ anos de experiência, realizamos desde pequenas restaurações até reconstruções complexas em uma ou poucas sessões."
+          />
+        </div>
+      </section>
 
       {/* SEÇÃO 2: INTRODUÇÃO EMPÁTICA */}
       <section className="py-16 bg-white">

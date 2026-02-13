@@ -7,6 +7,7 @@ import ProcessTimeline from "@/components/treatment/ProcessTimeline";
 
 import ComparisonTable from "@/components/blog/ComparisonTable";
 import OptimizedImage from "@/components/OptimizedImage";
+import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import { ComparisonTableItem } from "@/types/BlogPost";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CheckCircle, Star, ArrowRight, Play, Sparkles, Shield, Heart, Award, Search, HelpCircle, Droplet, Maximize2, Ruler, Palette, AlertCircle } from "lucide-react";
@@ -212,6 +213,15 @@ const LentesEFacetas = () => {
             {label: "Lentes e Facetas"}
           ]}
         />
+
+        {/* Quick Answer Box */}
+        <section className="py-8 bg-white">
+          <div className="container-custom">
+            <QuickAnswerBox
+              answer="Lentes de contato dental são lâminas ultrafinas de porcelana (0,2-0,5mm) aplicadas sobre os dentes com preparo mínimo, ideais para transformações estéticas duradouras. Facetas de resina são restaurações mais espessas (0,7-1,5mm) feitas diretamente no consultório. No consultório da Dra. Carla Christoph em Ipanema, oferecemos Test Drive do Sorriso (mock-up) para você visualizar o resultado antes. Lentes duram 15-20 anos e não mancham; facetas duram 5-8 anos. O tratamento leva de 2-3 consultas (15-20 dias) para lentes e 1-2 consultas para facetas."
+            />
+          </div>
+        </section>
 
         {/* Section Divider */}
         <SectionDivider variant="with-icon" icon={<Sparkles size={20} />} />

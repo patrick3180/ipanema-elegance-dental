@@ -5,8 +5,8 @@ import TreatmentHero from "@/components/treatment/TreatmentHero";
 import SectionDivider from "@/components/treatment/SectionDivider";
 import ProcessTimeline from "@/components/treatment/ProcessTimeline";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { 
-  Cpu, Scan, Shield, Heart, Activity, Clock, CheckCircle, 
+import {
+  Cpu, Scan, Shield, Heart, Activity, Clock, CheckCircle,
   Award, HelpCircle, Smile, Sparkles
 } from "lucide-react";
 import { sendGCLIDToWebhook } from "@/utils/gclid";
@@ -14,6 +14,7 @@ import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
 import { useScrollTracking } from '@/hooks/useScrollTracking';
 import FastServerResponseOptimizer from '@/components/performance/FastServerResponseOptimizer';
 import CriticalCSSOptimizer from '@/components/performance/CriticalCSSOptimizer';
+import QuickAnswerBox from '@/components/blog/QuickAnswerBox';
 
 const ImplantesDentarios = () => {
   // Critical image preload
@@ -144,6 +145,15 @@ const ImplantesDentarios = () => {
             { label: "Implantes Dentários" }
           ]}
         />
+
+        {/* Quick Answer Box */}
+        <section className="py-8 bg-white">
+          <div className="container-custom">
+            <QuickAnswerBox
+              answer="Implantes dentários são raízes artificiais de titânio biocompatível instaladas no osso para substituir dentes perdidos. Na clínica da Dra. Carla Christoph em Ipanema, realizamos planejamento digital 3D com scanner intraoral, técnicas minimamente invasivas e próteses personalizadas. Com mais de 20 anos de experiência (CRO-RJ 27.509), oferecemos desde implantes unitários até reabilitações completas como All-on-4 e protocolo fixo, com tratamentos que duram de 3 a 6 meses conforme o caso."
+            />
+          </div>
+        </section>
 
         <SectionDivider variant="with-icon" icon={<Cpu className="w-5 h-5" />} />
 

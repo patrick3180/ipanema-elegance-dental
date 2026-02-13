@@ -43,6 +43,16 @@ const GlobalSchemas = () => {
       "alumniOf": {
         "@type": "EducationalOrganization",
         "name": "Universidade Federal do Rio de Janeiro"
+      },
+      "hasCredential": {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "professional license",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "Conselho Regional de Odontologia do Rio de Janeiro",
+          "alternateName": "CRO-RJ"
+        },
+        "identifier": "27509"
       }
     }
   };
@@ -58,6 +68,13 @@ const GlobalSchemas = () => {
     "telephone": "+552199330-4045",
     "email": "contato@dracarlachristoph.com",
     "priceRange": "$$-$$$",
+
+    // Professional Credentials
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "CRO-RJ",
+      "value": "27509"
+    },
 
     // Address & Location
     "address": {

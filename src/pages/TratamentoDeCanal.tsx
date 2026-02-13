@@ -4,9 +4,10 @@ import PageLayout from "@/components/PageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
 import SectionDivider from "@/components/treatment/SectionDivider";
 import ProcessTimeline from "@/components/treatment/ProcessTimeline";
+import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { 
-  Shield, AlertCircle, Zap, Sparkles, Heart, Search, 
+import {
+  Shield, AlertCircle, Zap, Sparkles, Heart, Search,
   HelpCircle, CheckCircle, ArrowRight
 } from "lucide-react";
 import { sendGCLIDToWebhook } from "@/utils/gclid";
@@ -166,6 +167,15 @@ const TratamentoDeCanal = () => {
             { label: "Tratamento de Canal" }
           ]}
         />
+
+        {/* Quick Answer Box */}
+        <section className="py-8 bg-white">
+          <div className="container-custom">
+            <QuickAnswerBox
+              answer="Tratamento de canal (endodontia) remove a polpa infectada do dente, aliviando a dor e salvando o dente da extração. No consultório da Dra. Carla Christoph em Ipanema (CRO-RJ 27.509), o tratamento é realizado com endodontista especializado e finalizado pela Dra. Carla. O procedimento é indolor com anestesia moderna, geralmente completado em 1-2 sessões. Após o canal, recomenda-se restauração adequada ou coroa para proteger o dente, que pode durar muitos anos com os cuidados corretos."
+            />
+          </div>
+        </section>
 
         {/* 2. SectionDivider */}
         <SectionDivider variant="with-icon" icon={<Shield size={20} />} />

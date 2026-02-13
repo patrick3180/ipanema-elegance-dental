@@ -4,13 +4,14 @@ import PageLayout from "@/components/PageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
 import SectionDivider from "@/components/treatment/SectionDivider";
 import ProcessTimeline from "@/components/treatment/ProcessTimeline";
-import { 
-  Accordion, 
-  AccordionContent, 
-  AccordionItem, 
-  AccordionTrigger 
+import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
 } from "@/components/ui/accordion";
-import { 
+import {
   Shield,
   Scan,
   Heart,
@@ -99,6 +100,15 @@ const ClinicaGeralPrevencao = () => {
           { label: "Clínica Geral e Prevenção" }
         ]}
       />
+
+      {/* Quick Answer Box */}
+      <section className="py-8 bg-white">
+        <div className="container-custom">
+          <QuickAnswerBox
+            answer="Clínica geral e prevenção odontológica oferece check-up completo para manter a saúde bucal e evitar problemas futuros. Na clínica da Dra. Carla Christoph em Ipanema (CRO-RJ 27.509), o check-up inclui exame clínico detalhado, limpeza profissional com ultrassom, scanner digital 3D e avaliação de risco personalizada. Com 20+ anos de experiência, criamos protocolos preventivos individualizados. Recomenda-se consultas a cada 6-8 meses para baixo risco e 3-4 meses para alto risco. Prevenir é sempre mais econômico e confortável do que tratar problemas avançados."
+          />
+        </div>
+      </section>
 
       <SectionDivider variant="with-icon" icon={<Shield size={20} />} />
 

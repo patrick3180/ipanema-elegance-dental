@@ -5,6 +5,7 @@ import TreatmentHero from "@/components/treatment/TreatmentHero";
 import SectionDivider from "@/components/treatment/SectionDivider";
 import ProcessTimeline from "@/components/treatment/ProcessTimeline";
 import ComparisonTable from "@/components/blog/ComparisonTable";
+import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Sparkles, Award, HelpCircle, Search, FileText, Scan, Zap, Heart, CheckCircle } from "lucide-react";
 
@@ -87,6 +88,15 @@ const ClareamentoDental = () => {
             {label: "Clareamento Dental"}
           ]}
         />
+
+        {/* Quick Answer Box */}
+        <section className="py-8 bg-white">
+          <div className="container-custom">
+            <QuickAnswerBox
+              answer="Clareamento dental é um procedimento estético que clareia os dentes usando gel à base de peróxido. No consultório da Dra. Carla Christoph em Ipanema, oferecemos técnicas de consultório (1-3 sessões de 60-90 minutos) e caseiro supervisionado. Com mais de 20 anos de experiência (CRO-RJ 27.509), trabalhamos com protocolos personalizados que clareiam de 4 a 9 tons com segurança, preservando a saúde dos dentes e gengivas. O tratamento dura de 7 a 21 dias conforme a modalidade escolhida."
+            />
+          </div>
+        </section>
 
         <SectionDivider variant="with-icon" icon={<Sparkles className="w-5 h-5" />} />
 

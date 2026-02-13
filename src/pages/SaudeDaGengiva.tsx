@@ -4,9 +4,10 @@ import PageLayout from "@/components/PageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
 import SectionDivider from "@/components/treatment/SectionDivider";
 import ProcessTimeline from "@/components/treatment/ProcessTimeline";
+import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { 
-  Shield, AlertCircle, Activity, ArrowRight, Heart, Search, 
+import {
+  Shield, AlertCircle, Activity, ArrowRight, Heart, Search,
   HelpCircle, CheckCircle
 } from "lucide-react";
 import { sendGCLIDToWebhook } from "@/utils/gclid";
@@ -156,6 +157,15 @@ const SaudeDaGengiva = () => {
             { label: "Saúde da Gengiva" }
           ]}
         />
+
+        {/* Quick Answer Box */}
+        <section className="py-8 bg-white">
+          <div className="container-custom">
+            <QuickAnswerBox
+              answer="Saúde da gengiva (periodontia) trata doenças gengivais como gengivite e periodontite, que causam sangramento, retração e mau hálito. No consultório da Dra. Carla Christoph em Ipanema (CRO-RJ 27.509), realizamos avaliação periodontal, limpeza profissional e tratamento das bolsas gengivais. Gengivite é reversível; periodontite é controlável com tratamento e manutenções periódicas. Para pacientes de baixo risco, recomenda-se limpeza a cada 6 meses; em casos de doença periodontal, a cada 3-4 meses para manter estabilidade."
+            />
+          </div>
+        </section>
 
         {/* 2. SectionDivider */}
         <SectionDivider variant="with-icon" icon={<AlertCircle size={20} />} />
