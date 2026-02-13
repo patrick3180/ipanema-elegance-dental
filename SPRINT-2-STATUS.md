@@ -2,14 +2,14 @@
 
 **Data de Início:** 12 de Fevereiro de 2026
 **Status Geral:** 🔄 EM ANDAMENTO
-**Última Atualização:** 12 de Fevereiro de 2026 - 18:30
+**Última Atualização:** 13 de Fevereiro de 2026 - 10:15
 
 ---
 
 ## 📊 Resumo Executivo
 
-**Progresso Geral:** 12/20 itens completos (60%)
-**Commits desta sessão:** 3 (`cd4d33a`, `189f48e`, `b70d3b1`)
+**Progresso Geral:** 13/20 itens completos (65%)
+**Commits desta sessão:** 4 (`cd4d33a`, `189f48e`, `b70d3b1`, mais recente)
 
 ### Impacto dos Itens Completos
 - **Performance:** FCP -16%, LCP -50%
@@ -91,9 +91,20 @@
   - `ServiceDetail.tsx`: "transformar completamente" → "corrigir cor, forma e imperfeições"
   - `ProteseDentaria.tsx`: "Pronto para Reconstruir" → "Recuperar Função e Estética"
 
+**#11 - Create sitemap.xml** ✅
+- **Status:** COMPLETO
+- **Commit:** (próximo commit)
+- **Evidência:**
+  - Script criado: `scripts/generate-sitemap.js`
+  - Arquivo gerado: `public/sitemap.xml`
+  - Total de URLs: 95 (5 main + 9 service + 14 landing + 65 blog + 2 legal)
+  - package.json atualizado com script `build:sitemap`
+- **Impacto:** 2-3x indexing speed
+- **Revenue:** R$ 5-8k/mês
+
 ---
 
-## ⚠️ Itens PENDENTES (7/20)
+## ⚠️ Itens PENDENTES (6/20)
 
 **Nota:** Item #8 (Military Background) foi CANCELADO por decisão do cliente.
 
@@ -132,14 +143,6 @@
 - **Revenue:** R$ 18-30k/mês
 - **Impacto:** +20-25% conversão (estética dental)
 
-**#11 - Create sitemap.xml** ⏳
-- **Status:** PARCIALMENTE IMPLEMENTADO
-- **Evidência:** `api/sitemap-edge.js` existe (API dinâmica)
-- **Problema:** `public/sitemap.xml` não existe (robots.txt referencia)
-- **Ação:** Criar sitemap estático + submit Google Search Console
-- **Effort:** 1 hora
-- **Revenue:** R$ 5-8k/mês
-- **Impacto:** 2-3x indexing speed
 
 **#12 - Collect 10-15 Patient Testimonials** ⏳
 - **Status:** PENDENTE
@@ -165,11 +168,11 @@
 
 ## 📈 Revenue Impact Total
 
-### Completos (12 itens)
-**R$ 108,000 - 183,000/mês** em revenue adicional estimado
+### Completos (13 itens)
+**R$ 113,000 - 191,000/mês** em revenue adicional estimado
 
-### Pendentes (8 itens Priority 1-2)
-**R$ 88,000 - 140,000/mês** em revenue adicional potencial
+### Pendentes (7 itens Priority 1-2)
+**R$ 83,000 - 132,000/mês** em revenue adicional potencial
 
 ### Total Addressable (20 itens)
 **R$ 150,000 - 300,000+/mês** conforme audit original
@@ -178,19 +181,16 @@
 
 ## 🎯 Próximas Ações Recomendadas
 
-### Quick Wins (Hoje/Amanhã - 4h total)
+### Quick Wins (Hoje - 2-3h)
 
-1. **sitemap.xml estático** (1h)
-   - Gerar sitemap com todas as páginas
-   - Submit Google Search Console
+1. **"1-Hour Minimum" Headlines** (2-3h) - REQUER REVISÃO
+   - **IMPORTANTE:** Não pode implicar que outras clínicas são "linha de produção"
+   - **Escopo:** APENAS consulta inicial e limpeza/profilaxia
+   - Deve usar copywriting skills e consultar BRAND.md
+   - Requer aprovação do cliente antes de implementar
 
-2. **"1-Hour Minimum" Headlines** (2-3h)
-   - Homepage subheadline: "Mínimo 1h por consulta"
-   - About page destaque
-   - Diferencial: Concorrência faz 15-30 min
-
-**Revenue Impact:** R$ 13-20k/mês
-**Time Investment:** 3-4 horas
+**Revenue Impact:** R$ 8-12k/mês (se aprovado)
+**Time Investment:** 2-3 horas
 
 **Nota:** Item #2 original (Military Background) foi CANCELADO.
 
@@ -226,5 +226,20 @@
 
 ---
 
-**Última Atualização:** 12/02/2026 - 18:30
+**Última Atualização:** 13/02/2026 - 10:15
 **Próxima Revisão:** Após conclusão dos próximos 3 itens
+
+---
+
+## 📝 Notas de Implementação Recente
+
+### Item #11 - Sitemap.xml (COMPLETO)
+- Script Node.js criado para gerar sitemap estático
+- Integrado ao build process (`npm run build:sitemap`)
+- Gera 95 URLs totais:
+  - 5 páginas principais (homepage, serviços, blog, sobre, contato)
+  - 9 service pages (tratamentos)
+  - 14 landing pages (baixa prioridade no sitemap)
+  - 65 posts do blog via Contentful API
+  - 2 páginas legais (privacidade, termos)
+- Próximo passo: Submit no Google Search Console
