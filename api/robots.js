@@ -11,12 +11,23 @@ Disallow: /assets/*.map
 
 Sitemap: https://dracarlachristoph.com/sitemap.xml
 
+# AI Search bots allowed for AI Search Optimization (Pilar 3)
 User-agent: GPTBot
-Disallow: /
+Allow: /
 
 User-agent: ChatGPT-User
-Disallow: /
+Allow: /
 
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# Block scraper bots
 User-agent: CCBot
 Disallow: /`;
   

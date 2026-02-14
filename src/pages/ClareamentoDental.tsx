@@ -48,7 +48,13 @@ const ClareamentoDental = () => {
         <meta property="og:description" content="Clareamento dental profissional com técnicas de consultório e caseiro supervisionado em Ipanema." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dracarlachristoph.com/clareamento-dental" />
-        
+        <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/Clareamento_de_consultorio.webp" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Clareamento Dental em Ipanema | Dra. Carla Christoph" />
+        <meta name="twitter:description" content="Clareamento dental profissional com técnicas de consultório e caseiro supervisionado em Ipanema." />
+        <meta name="twitter:image" content="https://dracarlachristoph.com/lovable-uploads/Clareamento_de_consultorio.webp" />
+
         {/* Schema Markup */}
         <script type="application/ld+json">
           {JSON.stringify({
@@ -70,6 +76,24 @@ const ClareamentoDental = () => {
                 "addressCountry": "BR"
               }
             }
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {"@type": "Question", "name": "Qual a diferença entre as modalidades?", "acceptedAnswer": {"@type": "Answer", "text": "O clareamento de consultório utiliza gel de maior concentração (35-37%), com resultados em 1-3 sessões. O caseiro usa concentração menor (10-20%), aplicada gradualmente em 14-21 dias com moldeiras personalizadas. O combinado inicia em consultório e mantém resultado com aplicações caseiras. A indicação depende da análise individual."}},
+              {"@type": "Question", "name": "O clareamento causa sensibilidade?", "acceptedAnswer": {"@type": "Answer", "text": "Sensibilidade temporária pode ocorrer, mas protocolos modernos minimizam esse desconforto. Utilizamos dessensibilizantes, ajustamos concentrações conforme necessário e aplicamos laser terapêutico quando indicado. A maioria dos pacientes relata pouco ou nenhum desconforto."}},
+              {"@type": "Question", "name": "Quanto tempo dura o resultado?", "acceptedAnswer": {"@type": "Answer", "text": "Com cuidados adequados, os resultados mantêm-se por 2-3 anos. A durabilidade varia conforme hábitos alimentares e higiene. Protocolo de manutenção com sessões anuais prolonga significativamente os resultados."}},
+              {"@type": "Question", "name": "Posso fazer clareamento com restaurações?", "acceptedAnswer": {"@type": "Answer", "text": "Sim, mas apenas dentes naturais respondem ao clareamento. Restaurações e próteses mantêm sua cor original. Analisamos seu caso para determinar a melhor estratégia, considerando se há necessidade de substituição posterior das restaurações visíveis."}},
+              {"@type": "Question", "name": "O clareamento é seguro para o esmalte?", "acceptedAnswer": {"@type": "Answer", "text": "Quando realizado com protocolos adequados, não causa danos ao esmalte. Os géis modernos têm pH balanceado e não provocam desmineralização. Utilizamos produtos com agentes remineralizantes que preservam a integridade dental."}},
+              {"@type": "Question", "name": "Quais cuidados após o clareamento?", "acceptedAnswer": {"@type": "Answer", "text": "Nas primeiras 48 horas, evitar alimentos e bebidas pigmentados. Manter higiene oral adequada com escovação após refeições. Uso de canudos para bebidas escuras. Consultas semestrais para manutenção profissional."}},
+              {"@type": "Question", "name": "Clareamento funciona em todos os tipos de manchas?", "acceptedAnswer": {"@type": "Answer", "text": "A eficácia varia conforme o tipo de mancha. Manchas por alimentos e idade respondem muito bem. Manchas por medicamentos têm resposta variável. Na avaliação, analisamos seu caso específico e estabelecemos expectativas realistas."}},
+              {"@type": "Question", "name": "Clareamento e limpeza são diferentes?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. A limpeza remove tártaro e manchas superficiais, devolvendo a cor natural. O clareamento altera quimicamente a cor interna do dente, clareando além da cor natural. Frequentemente realizamos limpeza antes do clareamento para otimizar resultados."}},
+              {"@type": "Question", "name": "Produtos de farmácia têm o mesmo efeito?", "acceptedAnswer": {"@type": "Answer", "text": "Produtos sem prescrição contêm concentrações muito baixas devido a regulamentação, oferecendo resultados limitados. O clareamento profissional usa concentrações terapêuticas sob supervisão, garantindo eficácia superior e segurança."}},
+              {"@type": "Question", "name": "Como é feita a escolha da modalidade?", "acceptedAnswer": {"@type": "Answer", "text": "Na consulta de avaliação, analiso suas características individuais, tipo de mancha, sensibilidade prévia, rotina e expectativas. A indicação considera todos esses fatores para definir o protocolo mais adequado ao seu caso."}}
+            ]
           })}
         </script>
       </Helmet>

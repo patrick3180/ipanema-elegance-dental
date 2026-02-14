@@ -40,3 +40,7 @@ Thumbs.db
 # Firecrawl
 .firecrawl/
 bigquery-credentials.json
+
+# Analytics data exports
+*.csv
+ga4*.csv

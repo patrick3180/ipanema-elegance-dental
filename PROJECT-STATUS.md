@@ -1,399 +1,164 @@
-# PROJECT STATUS - Dra. Carla Christoph Website Optimization
+# PROJECT STATUS — Dra. Carla Christoph (Ipanema Elegance Dental)
 
-**Última Atualização:** 2026-02-13
-**Projeto:** Otimização e Marketing Digital para dracarlachristoph.com
-**Responsável:** Patrick + Claude Code
-
----
-
-## 📋 COMO USAR ESTE ARQUIVO
-
-**Este é o arquivo MESTRE do projeto.** Qualquer LLM/agente que começar a trabalhar DEVE ler este arquivo PRIMEIRO.
-
-**Estrutura de Documentação:**
-```
-/
-├── PROJECT-STATUS.md           ← VOCÊ ESTÁ AQUI (arquivo mestre)
-├── PLANO-REVISAO-COMPLETA.md  ← Plano estratégico de 13 semanas
-├── README.md                    ← Informações técnicas do projeto
-│
-├── /docs/
-│   ├── /sprints/               ← Documentação de cada sprint
-│   ├── /analysis/              ← Análises de dados (BigQuery, competitors)
-│   ├── /guides/                ← Guias técnicos (SEO, sitemap, etc.)
-│   └── /archive/               ← Documentos antigos/obsoletos
-│
-├── BRAND.md                    ← Diretrizes de marca (CRÍTICO - ler antes de escrever)
-├── BUSINESS.md                 ← Contexto de negócio
-├── CONTENT.md                  ← Regras de conteúdo e SEO
-├── TECH.md                     ← Arquitetura técnica
-└── TRACKING.md                 ← Sistema de tracking (GCLID, GA4, Ads)
-```
+**Última atualização:** 13 de Fevereiro de 2026 (Quick Wins implementados)
+**Status Geral:** 🚀 EXECUÇÃO INICIADA — Fase 1 Discovery
+**Fase Atual:** Discovery & Analyze (Semanas 1-3)
 
 ---
 
-## 🎯 ESTADO ATUAL DO PROJETO
+## 📊 DADOS FINANCEIROS (VALIDADOS)
 
-### Sprint Atual: **FASE 0 CONCLUÍDA → Aguardando Sprint 3**
+| Métrica | Valor |
+|---------|-------|
+| **Google Ads mensal** | ~R$ 9.000/mês |
+| **Google Ads 90 dias** | ~R$ 27.000 |
+| **Ticket médio paciente** | R$ 800–1.000 |
+| **Campanhas ativas** | 6 |
+| **Landing pages** | 13+ |
+| **Melhor campanha** | Urgências (4.5x mais eficiente) |
+| **Pior campanha** | Lentes (4.5x menos eficiente) |
 
-**Última Sessão:** 2026-02-13
-**Status:** ✅ Análise de dados BigQuery completa, aguardando decisões do cliente
-
-### Progresso Geral
-
-| Fase | Status | Completo | Próximo Passo |
-|------|--------|----------|---------------|
-| **Sprint 0** | ✅ COMPLETO | 16/20 itens | Revisar itens #14-20 |
-| **Sprint 1** | ✅ COMPLETO | 100% | - |
-| **Sprint 2** | ✅ COMPLETO | 100% | - |
-| **FASE 0** | ✅ COMPLETO | 100% | Validar análise BigQuery |
-| **Sprint 3** | ⏳ PLANEJADO | 0% | Aguardando definição de prioridades |
+> **Nota:** Valores originais do BigQuery estavam inflacionados (soma incorreta). Rankings relativos entre campanhas são válidos. Valores absolutos de cost/conv sendo revalidados com dados frescos.
 
 ---
 
-## ✅ O QUE JÁ FOI IMPLEMENTADO
+## 🎯 PROJETO ATUAL: Revisão 360° do Funil de Marketing
 
-### Performance & SEO (100% completo)
+### Objetivo
+Revisão profunda de 10 pilares do funil de marketing para otimizar conversões, reduzir custo por aquisição e abrir canais novos (AI Search, blog orgânico).
 
-- ✅ **React Query** (blog only) - FCP -16%
-- ✅ **WebP/AVIF images** (68 arquivos) - LCP -50%
-- ✅ **Self-hosted fonts** (Montserrat, Playfair Display)
-- ✅ **AI Search bots** desbloqueados (robots.txt)
-- ✅ **Schema markup completo:**
-  - Organization schema
-  - LocalBusiness schema
-  - FAQPage schema
-  - Breadcrumb schema
-- ✅ **QuickAnswerBox** em 10 páginas (AI Search optimization)
-- ✅ **Sitemap.xml** gerado e atualizado
-- ✅ **URLs canônicas** implementadas
-- ✅ **Blog pre-rendering** (static HTML)
+### Fases
 
-### UI/UX & Conversão (100% completo)
+| Fase | Status | Timeline |
+|------|--------|----------|
+| **Fase 1: Discovery & Analyze** | 🟡 EM ANDAMENTO | Semanas 1-3 (13 Feb – 5 Mar) |
+| **Fase 2: Brainstorm & Align** | ⏳ Pendente | Semana 4 (10-14 Mar) |
+| **Fase 3: Execute** | ⏳ Pendente | Semanas 5-12 (17 Mar – 16 May) |
+| **Fase 4: Measure & Iterate** | ⏳ Pendente | Contínuo |
 
-- ✅ **Google 5-star rating badge** no header (4.9 ⭐, 23 reviews)
-- ✅ **CTAs aprimoradas** (luxo silencioso, consultivas)
-- ✅ **FAQ sections** completas (10-12 perguntas em 6 páginas)
-- ✅ **Remoção de clichês** ("transformar sorriso", etc.)
-- ✅ **Test Drive do Sorriso** como headline #1
+### Pilares — Status Rápido
 
-### Páginas Existentes
+| # | Pilar | Status | Relatório |
+|---|-------|--------|-----------|
+| 1 | Revisão Técnica | ✅ COMPLETO (72/100) | [PILAR-1](docs/analysis/PILAR-1-REVISAO-TECNICA.md) |
+| 2 | SEO (Busca Orgânica) | 🔴 Pendente | -- |
+| 3 | AI Search Optimization | 🔴 Pendente | -- |
+| 4 | Brand Compliance | 🔴 Pendente | -- |
+| 5 | Google Analytics & Data | ✅ COMPLETO | [PILAR-5](docs/analysis/PILAR-5-GA4-ANALYSIS.md) |
+| 6 | Google Ads & Paid | ✅ COMPLETO | [PILAR-6](docs/analysis/PILAR-6-GOOGLE-ADS-AUDIT.md) |
+| 7 | Design & UX | 🔴 Pendente | -- |
+| 8 | Marketing Psychology | 🔴 Pendente | -- |
+| 9 | Landing Pages | 🔴 Pendente | -- |
+| 10 | Blog & Content | 🔴 Pendente | -- |
 
-**Service Pages (9):**
-1. Clareamento Dental
-2. Implantes Dentários
-3. Lentes e Facetas
-4. Prótese Dentária
-5. Ortodontia
-6. Saúde da Gengiva
-7. Tratamento de Canal
-8. Restaurações Estéticas
-9. Clínica Geral e Prevenção
-
-**Landing Pages (14+):**
-1. Lentes de Contato Porcelana
-2. Implantes Dentários
-3. Clareamento
-4. Emergência Odontológica
-5. Especialista Prótese
-6. Ortodontia
-7. Dor de Dente
-8. Dente Quebrado
-9. Facetas Resina Direta
-10. Estética do Sorriso
-11. Saúde Gengival
-12. Limpeza Dental
-13. Profilaxia
-14. Consulta Inicial
+### Status Detalhado
+Para acompanhamento detalhado pilar por pilar: **[STATUS-REVISAO-2026.md](docs/STATUS-REVISAO-2026.md)**
 
 ---
 
-## 📊 ÚLTIMA ANÁLISE DE DADOS (FASE 0 - 2026-02-13)
+## 📁 DOCUMENTAÇÃO DO PROJETO
 
-### Dados BigQuery - Google Ads (90 dias)
-
-**Campanhas Ativas:** 7
-- Clínica Geral - Zona Sul (melhor volume)
-- Urgências Odontológicas (melhor ROI: R$ 23.73/conversão) ⭐
-- Prótese Dental
-- Clareamento Dental
-- Implantes Dentários
-- Lentes de Contato (pior ROI: R$ 107.17/conversão) ⚠️
-
-**Total Gasto:** R$ 1,041,825.60 (90 dias)
-
-**Keywords Top Performers:**
-- emergency/urgência keywords (R$ 7-30/conversão)
-- local geo keywords (R$ 32-37/conversão)
-- restauração dental (R$ 24.79/conversão)
-
-**Keywords Problem:**
-- "especialista em prótese dentária" (R$ 186/conversão - PAUSAR)
-- "clareamento dental ipanema" (CPC R$ 66.42 - ABSURDO)
-- Quality Score 0-1 em várias keywords de prótese
-
-### Dados GA4 (90 dias)
-
-**Top 5 Páginas:**
-1. Homepage - 257 views, 39.66s engajamento
-2. Blog: Cárie Oculta - 45 views
-3. /servicos - 36 views
-4. Lentes/Facetas - 34 views
-5. Blog: Jejum Intermitente - 25 views, **542s engajamento** ⭐
-
-**WhatsApp Conversions:** 38 eventos trackados (90 dias)
-
-**Insights:**
-- Blog posts estão funcionando (5 dos top 10 são blog)
-- Mobile domina tráfego
-- Engagement time muito bom em posts técnicos/health
-
-### Análise Competitiva (5 competitors)
-
-**Forças Únicas da Dra. Carla:**
-- ✅ Test Drive do Sorriso (nenhum competitor tem)
-- ✅ iTero Element 5D scanner (específico)
-- ✅ 1 hora mínima de consulta (quantificado)
-- ✅ 20+ anos em Ipanema (longest tenure)
-- ✅ Background militar (trust signal único)
-
-**Fraquezas vs. Competitors:**
-- ❌ Reviews: Tem 23, competitors têm 15-50+
-- ❌ Testimonials: Poucos vs. 6-10+ detalhados dos competitors
-- ❌ International training claims: 0 vs. competitors destacam
-- ❌ Blog volume: Baixo vs. competitors mais ativos
-
-**Arquivo completo:** `docs/sprints/SPRINT-0-COMPETITIVE-ANALYSIS.md`
+| Documento | Descrição | Para quem |
+|-----------|-----------|-----------|
+| [RESUMO-EXECUTIVO-2026.md](docs/RESUMO-EXECUTIVO-2026.md) | Overview + decisões para Dra. Carla | Dra. Carla |
+| [PLANO-REVISAO-COMPLETO-2026.md](docs/PLANO-REVISAO-COMPLETO-2026.md) | Blueprint técnico (10 pilares) | Patrick + IA |
+| [STATUS-REVISAO-2026.md](docs/STATUS-REVISAO-2026.md) | Tracking semanal detalhado | Todos |
+| [BRAINSTORM-OPORTUNIDADES-2026.md](docs/BRAINSTORM-OPORTUNIDADES-2026.md) | Insights e oportunidades ranqueadas | Todos |
+| [GUIA-NAVEGACAO-2026.md](docs/GUIA-NAVEGACAO-2026.md) | Como usar a documentação | Todos |
+| [BRAND.md](BRAND.md) | Tom de voz, palavras banidas | Antes de escrever conteúdo |
+| [BUSINESS.md](BUSINESS.md) | Contexto de negócio | Referência |
+| [CONTENT.md](CONTENT.md) | Regras de conteúdo/SEO | Referência |
+| [TECH.md](TECH.md) | Arquitetura técnica | Referência |
 
 ---
 
-## 🎯 OPORTUNIDADES IDENTIFICADAS (Aguardando Decisão)
+## ✅ O QUE JÁ FOI FEITO
 
-### Top 6 Oportunidades do BigQuery
+### Sprints 0-2 (Antes da Revisão 2026)
+- 16/20 itens implementados
+- Análise BigQuery completa
+- Landing pages criadas (14+)
+- Schema markup implementado
+- Badge reviews no Header
+- Tracking GTM + GCLID pipeline
+- Blog com Contentful integrado
 
-| # | Oportunidade | Esforço | ROI | Status |
-|---|--------------|---------|-----|--------|
-| 1 | Realocação Budget Google Ads | 30min | Médio | ⏸️ Depois de #6 |
-| 2 | **Keywords: Pausar ruins** | **20min** | **Altíssimo** | ✅ **FAZER JÁ** |
-| 3 | Quality Score (Prótese) | 4-5h | Alto | ⏸️ Não prioritário |
-| 4 | Blog Content (escalar) | 1-2h/sem | Médio-Alto | 🤔 Se tem tempo |
-| 5 | **Social Proof (reviews)** | **30min** | **Alto** | ✅ **FAZER JÁ** |
-| 6 | **Landing Pages Optimization** | **10-12h** | **Altíssimo** | ✅ **PRIORIDADE #1** |
-
-**Nota:** Campanha de Urgências será escalada apenas em Março (decisão do cliente).
-
-**Detalhes completos:** `docs/analysis/FASE-0-OPORTUNIDADES-DETALHADAS.md`
-
----
-
-## 📁 DOCUMENTAÇÃO IMPORTANTE
-
-### DEVE LER ANTES DE COMEÇAR
-
-1. **PROJECT-STATUS.md** (este arquivo) - Status geral
-2. **PLANO-REVISAO-COMPLETA.md** - Estratégia de 13 semanas, 6 sprints
-3. **BRAND.md** - ⚠️ CRÍTICO: palavras banidas, tom de voz, posicionamento
-4. **BUSINESS.md** - Contexto do negócio, target, diferenciais
-5. **CONTENT.md** - Regras de conteúdo, SEO, compliance CRO/CFO
-
-### Documentação Técnica
-
-- **TECH.md** - Arquitetura (React, Vite, Tailwind, Contentful)
-- **TRACKING.md** - GCLID tracking, GA4, Google Ads setup
-- **README.md** - Setup do projeto
-
-### Sprints & Análises
-
-- **docs/sprints/SPRINT-2-STATUS.md** - Último sprint concluído
-- **docs/sprints/SPRINT-3-PLAN.md** - Próximo sprint (planejado)
-- **docs/analysis/FASE-0-DATA-ANALYSIS-EXECUTIVE-SUMMARY.md** - Análise BigQuery
-- **docs/analysis/FASE-0-OPORTUNIDADES-DETALHADAS.md** - 6 oportunidades detalhadas
-
-### Guias Técnicos
-
-- **docs/guides/BLOG-SEO-SETUP.md** - Como otimizar blog posts
-- **docs/guides/SITEMAP_SUBMISSION_GUIDE.md** - Submissão de sitemap
-- **docs/guides/SOFT_404_RESOLUTION_GUIDE.md** - Resolver erros 404
+### Revisão 2026 — Progresso
+- [x] Plano de 10 pilares criado e aprovado
+- [x] Documentação completa (5 docs novos)
+- [x] Dados financeiros corrigidos (R$ 9k/mês confirmado)
+- [x] Oportunidades mapeadas e ranqueadas
+- [x] **Pilar 1: Revisão Técnica — COMPLETO** (Score 72/100)
+- [x] **Pilar 5: GA4 Analysis — COMPLETO** (com dados frescos CSV)
+- [x] **Pilar 6: Google Ads Audit — COMPLETO** (plano 90 dias)
+- [x] **Quick Wins Técnicos — 9/9 IMPLEMENTADOS** (build OK)
+  - og:image absolute URL em ImplantesDentarios.tsx
+  - og:image + Twitter Cards em ClareamentoDental.tsx
+  - FAQPage schema em ImplantesDentarios.tsx (12 FAQs)
+  - FAQPage schema em ClareamentoDental.tsx (10 FAQs)
+  - reviewCount unificado (127) em GlobalSchemas.tsx
+  - robots.js permite AI bots (GPTBot, PerplexityBot, ClaudeBot, Google-Extended)
+  - Security headers em vercel.json (X-Frame-Options, X-Content-Type-Options, etc.)
+  - Opening hours unificados em SEOHead.tsx e Index.tsx (OpeningHoursSpecification)
+  - BlogCTA.tsx componente criado e integrado ao BlogPost.tsx
+- [ ] Pilares 2, 3, 4, 7, 8, 9, 10 — Pendentes (Semanas 2-3)
 
 ---
 
-## 🚫 ARMADILHAS COMUNS (Leia Isso!)
+## ⚠️ ERROS COMUNS (NÃO COMETER!)
 
-### ERROS QUE JÁ ACONTECERAM
+### 1. Sugerir implementar o que JÁ EXISTE
+- Landing pages JÁ EXISTEM (14+)
+- Badge reviews JÁ ESTÁ no Header.tsx
+- Schema markup JÁ ESTÁ completo
+- **SEMPRE verificar** com Glob/Grep antes de sugerir
 
-1. **❌ Sugerir "criar landing pages"**
-   - **ERRADO:** Landing pages JÁ EXISTEM (14+)
-   - **CORRETO:** "Otimizar landing pages existentes"
+### 2. Ignorar BRAND.md
+- Palavras banidas: "transformar", "excelência", "referência", "sorriso perfeito", "premium"
+- Ler BRAND.md Seção 5 ANTES de escrever qualquer conteúdo
 
-2. **❌ Sugerir "implementar badge de reviews"**
-   - **ERRADO:** Badge JÁ ESTÁ no Header.tsx
-   - **CORRETO:** "Atualizar review count se desatualizado"
+### 3. Usar dados financeiros errados
+- Google Ads: ~R$ 9k/mês (NÃO R$ 1M em 90 dias)
+- Ticket médio: R$ 800–1.000 por paciente
+- Conversões do BigQuery estavam inflacionadas por agregação
 
-3. **❌ Sugerir "implementar Schema markup"**
-   - **ERRADO:** Schemas JÁ ESTÃO completos (Organization, LocalBusiness, FAQ)
-   - **CORRETO:** "Adicionar schema X específico que falta"
-
-4. **❌ Ignorar BRAND.md**
-   - **ERRADO:** Usar palavras banidas ("transformar", "excelência", "referência")
-   - **CORRETO:** Ler BRAND.md Section 5 antes de escrever QUALQUER conteúdo
-
-5. **❌ Não verificar o que já existe**
-   - **ERRADO:** Fazer recomendações sem ler sprints anteriores
-   - **CORRETO:** LER este arquivo + Sprints 0-2 ANTES de qualquer sugestão
-
-### REGRAS OBRIGATÓRIAS
-
-✅ **SEMPRE ler PROJECT-STATUS.md primeiro**
-✅ **SEMPRE verificar o que JÁ foi implementado** (seção "O QUE JÁ FOI IMPLEMENTADO")
-✅ **SEMPRE ler BRAND.md** antes de escrever conteúdo
-✅ **SEMPRE usar Glob/Grep** para verificar se componente/página já existe
-✅ **NUNCA** fazer recomendações genéricas sem dados
+### 4. Não verificar status atual
+- Sempre ler este arquivo primeiro
+- Depois docs/STATUS-REVISAO-2026.md para detalhes
 
 ---
 
-## 🔄 WORKFLOW RECOMENDADO
+## 🔗 PRÓXIMOS PASSOS
 
-### Para Qualquer Nova Tarefa:
+### Para Patrick (ações manuais esta semana):
+1. **Google Ads (45 min):** Pausar 3 keywords QS 0 de Prótese + adicionar negative keywords + verificar budget Urgências
+2. **PageSpeed Insights:** Rodar em 3 URLs (homepage, implantes, prótese)
+3. **Android UX:** Testar WhatsApp button em 2-3 dispositivos Android
+4. **Domínio:** Confirmar redirect 301 (dracarla.com.br vs dracarlachristoph.com)
 
-**FASE 1: CONTEXTO (15-30 min)**
-1. ✅ Ler PROJECT-STATUS.md (este arquivo)
-2. ✅ Ler seção relevante do PLANO-REVISAO-COMPLETA.md
-3. ✅ Ler docs/sprints/ para ver o que JÁ foi feito
-4. ✅ Ler BRAND.md se for criar/editar conteúdo
+### Para IA (próxima sessão):
+1. ~~**Quick wins técnicos:**~~ ✅ FEITO (9/9 implementados, build OK)
+2. ~~**CTA Blog:**~~ ✅ FEITO (BlogCTA.tsx criado e integrado)
+3. **Pilares 2, 3, 4, 8:** Continuar discovery (SEO, AI Search, Brand, Psychology)
+4. **Landing pages openingHours:** Corrigir formato em ~7 landing pages (baixa prioridade)
 
-**FASE 2: INVESTIGAÇÃO (10-20 min)**
-1. ✅ Usar Glob para ver quais páginas/componentes JÁ EXISTEM
-2. ✅ Usar Grep para verificar implementações existentes
-3. ✅ Ler código dos componentes relevantes
-
-**FASE 3: PROPOSTA**
-1. ✅ Apresentar o que JÁ existe vs. o que falta
-2. ✅ Explicar esforço, impacto, ROI de cada ação
-3. ✅ Perguntar ao cliente qual prioridade
-
-**FASE 4: EXECUÇÃO**
-1. ✅ Implementar conforme aprovado
-2. ✅ Atualizar PROJECT-STATUS.md
-3. ✅ Documentar no sprint atual
+### Milestone:
+- **20 Fev:** Friday sync — review dos 3 pilares completos + quick wins executados
 
 ---
 
-## 📞 DECISÕES PENDENTES (Aguardando Patrick)
+## 🏆 PRINCIPAIS FINDINGS (Pilares 1, 5, 6)
 
-### Sprint 3 - Próximas Ações
-
-**Cliente precisa decidir:**
-
-1. **Keywords Google Ads (#2):**
-   - ✅ Posso pausar 3 keywords ruins agora? (20 min)
-   - ✅ Adicionar negative keywords? (20 min)
-
-2. **Landing Pages Optimization (#6):**
-   - ✅ Começar com Lentes + Implantes? (4-6h)
-   - ✅ Fazer todas 6 páginas em Sprint 3? (10-12h)
-
-3. **Reviews (#5):**
-   - ✅ Verificar badge no código? (30 min)
-   - ✅ Iniciar campanha de coleta? (2-3h setup)
-
-4. **Blog Content (#4):**
-   - ✅ Claude escreve 1 post/semana, Patrick revisa? (1-2h/semana)
-   - ✅ Ou deixar para depois?
-
-5. **Priorização:**
-   - ✅ Fazer #2 + #5 + #6 agora? (quick wins + alto impacto)
-   - ✅ Ou escolher outra combinação?
-
-6. **Urgências Odontológicas:**
-   - ✅ CONFIRMADO: Deixar para Março (não mexer em budget agora)
+1. ~~**robots.txt BLOQUEIA AI bots**~~ ✅ CORRIGIDO — AI bots agora permitidos
+2. **Blog não converte** — 460 usuários orgânicos/trimestre com 0% conversão (exceto Probióticos: 28,57%) — ✅ BlogCTA.tsx adicionado
+3. **iOS converte 2,4x mais que Android** — possível problema de UX mobile
+4. **Urgências recebe apenas 7% do budget** sendo a campanha mais eficiente (4,5x melhor)
+5. **4 keywords com QS ZERO** na Prótese — pagando prêmio de 50-400% no CPC
+6. ~~**FAQPage schema ausente**~~ ✅ CORRIGIDO — FAQPage em Implantes (12 FAQs) e Clareamento (10 FAQs)
+7. ~~**Security headers ausentes**~~ ✅ CORRIGIDO — 5 headers adicionados no vercel.json
+8. **LP Saúde Gengival** tem engagement excepcional (212s) — modelo a replicar
 
 ---
 
-## 📈 MÉTRICAS DE SUCESSO
-
-### Targets do Projeto
-
-**Revenue:**
-- **Atual:** ~R$ 25k/mês
-- **Target:** R$ 50-75k/mês (Sprint 6)
-- **Incremental:** +R$ 150-300k/mês conforme Top 20 implementado
-
-**Performance:**
-- **FCP:** 3.1s → <1.8s ✅ (já atingido: -16%)
-- **LCP:** 3.6s → <2.5s ✅ (já atingido: -50%)
-- **CLS:** Target <0.1 (a medir)
-
-**Conversões:**
-- **Atual:** ~1,390/mês (estimativa de 530 em 14 dias)
-- **Target:** +20-30% (1,670-1,807/mês)
-
-**SEO:**
-- **AI Search:** 0% → 100% ✅ (já atingido)
-- **Reviews:** 23 → 50+ (target Sprint 4-5)
-- **Blog posts:** 8-10 → 30+ (target Sprint 5-6)
-
----
-
-## 🔧 SETUP TÉCNICO
-
-### Tecnologias
-
-- **Frontend:** React 18 + TypeScript + Vite
-- **Styling:** Tailwind CSS
-- **CMS:** Contentful
-- **Analytics:** Google Analytics 4
-- **Ads:** Google Ads (AW-16894364517)
-- **Tracking:** GTM (GTM-WZRDNBKQ) + n8n + Supabase
-- **Deployment:** Lovable (auto-deploy on push)
-
-### Dados
-
-- **BigQuery:** make-para-carla (datasets: analytics_477782713, clinica_dra_carla_ads)
-- **Supabase:** oqszkriirsodegxpfazz (GCLID tracking, offline conversions)
-
-### Acesso
-
-- **Service Account:** agente-claude-code-site-carla@make-para-carla.iam.gserviceaccount.com
-- **Credentials:** bigquery-credentials.json (no repositório)
-
----
-
-## 📝 PRÓXIMA SESSÃO - O QUE FAZER
-
-### Se Você é um Novo LLM/Agente:
-
-1. ✅ **LER este arquivo TODO** (você está aqui)
-2. ✅ **Perguntar ao Patrick:** "Qual a prioridade para hoje?"
-3. ✅ **Verificar decisões pendentes** (seção acima)
-4. ✅ **Seguir workflow recomendado** (seção "WORKFLOW RECOMENDADO")
-
-### Se Patrick Disser "Continue de Onde Parou":
-
-1. ✅ Ler seção "DECISÕES PENDENTES"
-2. ✅ Ler última análise: `docs/analysis/FASE-0-OPORTUNIDADES-DETALHADAS.md`
-3. ✅ Perguntar quais das 6 oportunidades ele quer implementar
-
-### Se Patrick Disser "Vamos Fazer Sprint 3":
-
-1. ✅ Ler `docs/sprints/SPRINT-3-PLAN.md`
-2. ✅ Confirmar prioridades com Patrick
-3. ✅ Implementar conforme planejado
-4. ✅ Atualizar este arquivo ao concluir
-
----
-
-## 🗂️ CHANGELOG DESTE ARQUIVO
-
-**2026-02-13 - 13:30:**
-- ✅ Arquivo criado
-- ✅ Estrutura de documentação organizada
-- ✅ Movidos arquivos para docs/{sprints,analysis,guides}
-- ✅ Consolidado status de Sprints 0-2
-- ✅ Documentado FASE 0 (BigQuery analysis)
-- ✅ Listado armadilhas comuns e erros já cometidos
-- ✅ Definido workflow recomendado
-
----
-
-**Última atualização:** 2026-02-13 13:30
-**Próxima atualização:** Quando Sprint 3 iniciar ou quando houver mudanças significativas no status
+**Responsável:** Patrick + IA
+**Próximo sync:** 20 de Fevereiro (Fim de Semana 1)

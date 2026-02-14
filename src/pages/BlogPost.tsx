@@ -19,6 +19,7 @@ import ComparisonTable from '@/components/blog/ComparisonTable';
 import FAQSectionBlog from '@/components/blog/FAQSectionBlog';
 import PeopleAlsoAsk from '@/components/blog/PeopleAlsoAsk';
 import AuthorBio from '@/components/blog/AuthorBio';
+import BlogCTA from '@/components/blog/BlogCTA';
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>(); // Fixed: changed from postSlug to slug
@@ -228,6 +229,11 @@ const BlogPost = () => {
                   </div>
                 </div>
               )}
+            </div>
+
+            {/* Blog CTA - WhatsApp conversion */}
+            <div className="max-w-3xl mx-auto">
+              <BlogCTA category={post.category} />
             </div>
 
             {/* Comparison Table */}

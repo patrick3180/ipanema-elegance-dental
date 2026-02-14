@@ -73,7 +73,7 @@ const ImplantesDentarios = () => {
         <meta property="og:title" content="Implantes Dentários em Ipanema | Dra. Carla Christoph" />
         <meta property="og:description" content="Implantes dentários em Ipanema com planejamento digital 3D e técnicas minimamente invasivas. Mais de 20 anos de experiência em reabilitação oral." />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="/lovable-uploads/Implante unitario.webp" />
+        <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/Implante unitario.webp" />
         <meta property="og:url" content="https://dracarlachristoph.com/implantes-dentarios" />
         
         <meta name="twitter:card" content="summary_large_image" />
@@ -125,6 +125,26 @@ const ImplantesDentarios = () => {
                 "addressCountry": "BR"
               }
             }
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {"@type": "Question", "name": "O que são implantes dentários?", "acceptedAnswer": {"@type": "Answer", "text": "São pinos de titânio biocompatível instalados cirurgicamente no osso da mandíbula ou maxila, substituindo a raiz do dente perdido. Sobre estes pinos, fixamos coroas, pontes ou próteses completas, restaurando função mastigatória, estética e fonética."}},
+              {"@type": "Question", "name": "O procedimento é doloroso?", "acceptedAnswer": {"@type": "Answer", "text": "A cirurgia é realizada sob anestesia local, sem dor durante o procedimento. O pós-operatório é geralmente tranquilo, com desconforto leve controlado por medicação. A maioria dos pacientes retorna às atividades normais em 2 a 3 dias."}},
+              {"@type": "Question", "name": "Quanto tempo dura o tratamento completo?", "acceptedAnswer": {"@type": "Answer", "text": "O tempo varia conforme o caso. Em média, de 4 a 6 meses desde a instalação do implante até a prótese definitiva, incluindo o período de osseointegração (3 a 6 meses). Em casos com carga imediata selecionados, a prótese provisória é instalada conforme planejamento."}},
+              {"@type": "Question", "name": "Qualquer pessoa pode colocar implantes?", "acceptedAnswer": {"@type": "Answer", "text": "A maioria dos adultos saudáveis é candidata. Avaliamos saúde geral, quantidade e qualidade óssea, hábitos (tabagismo) e condições sistêmicas (diabetes controlado). Em casos de osso insuficiente, enxertos ósseos podem viabilizar o tratamento."}},
+              {"@type": "Question", "name": "Quanto tempo duram os implantes?", "acceptedAnswer": {"@type": "Answer", "text": "Com higiene adequada e manutenções regulares, implantes podem durar décadas ou a vida toda. Estudos mostram taxa de sucesso acima de 95% em 10 anos. A coroa protética pode precisar ser substituída após 10 a 15 anos dependendo do desgaste."}},
+              {"@type": "Question", "name": "Como é a manutenção dos implantes?", "acceptedAnswer": {"@type": "Answer", "text": "Higienização rigorosa com escova, fio dental e escovas interdentais específicas. Retornos semestrais para controle profissional, radiografias periódicas e avaliação da saúde peri-implantar. Evitar sobrecarga excessiva e trauma."}},
+              {"@type": "Question", "name": "Existe rejeição de implantes?", "acceptedAnswer": {"@type": "Answer", "text": "O titânio é biocompatível e não causa rejeição imunológica. Falhas ocorrem por infecção, sobrecarga precoce, tabagismo ou higiene inadequada, não por rejeição. Taxa de sucesso é superior a 95% quando protocolos são seguidos."}},
+              {"@type": "Question", "name": "Posso fazer se tiver pouco osso?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Técnicas de enxerto ósseo (autógeno, biomaterial) ou levantamento de seio maxilar podem aumentar volume ósseo. Implantes curtos ou angulados também são alternativas. Os exames de imagem permitem planejar a melhor solução para cada caso."}},
+              {"@type": "Question", "name": "Qual a diferença entre implante e prótese?", "acceptedAnswer": {"@type": "Answer", "text": "O implante é o pino de titânio fixado no osso (substitui a raiz). A prótese é a parte visível (coroa, ponte ou dentadura) que se conecta ao implante. O conjunto completo restaura função e estética."}},
+              {"@type": "Question", "name": "Fumantes podem fazer implantes?", "acceptedAnswer": {"@type": "Answer", "text": "Sim, mas o tabagismo reduz a taxa de sucesso (de 95% para aproximadamente 85%) por prejudicar cicatrização e osseointegração. Recomendamos parar de fumar pelo menos 2 semanas antes da cirurgia e durante a cicatrização. Avaliação individual é essencial."}},
+              {"@type": "Question", "name": "Diabéticos podem colocar implantes?", "acceptedAnswer": {"@type": "Answer", "text": "Sim, desde que o diabetes esteja controlado (hemoglobina glicada abaixo de 7%). Avaliação médica prévia é importante. O controle glicêmico adequado garante cicatrização normal e taxa de sucesso equivalente a não-diabéticos."}},
+              {"@type": "Question", "name": "Vocês atendem convênios odontológicos?", "acceptedAnswer": {"@type": "Answer", "text": "Nosso atendimento é particular, o que nos permite dedicar o tempo necessário a cada paciente e utilizar somente materiais de primeira linha. Na primeira consulta, apresentamos um orçamento detalhado e transparente."}}
+            ]
           })}
         </script>
       </Helmet>
