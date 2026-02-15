@@ -1,8 +1,8 @@
 # PROJECT STATUS — Dra. Carla Christoph (Ipanema Elegance Dental)
 
-**Última atualização:** 15 de Fevereiro de 2026 (Sprint 3 COMPLETO — Brand Compliance)
-**Status Geral:** 🚀 SPRINT 3 COMPLETO — Sprint 4 próximo
-**Fase Atual:** Implementação (Sprint 3 done → Sprint 4 próximo)
+**Última atualização:** 15 de Fevereiro de 2026 (Sprint 4 COMPLETO — SEO Quick Wins)
+**Status Geral:** 🚀 SPRINT 4 COMPLETO — Sprint 5 próximo
+**Fase Atual:** Implementação (Sprint 4 done → Sprint 5 próximo)
 
 ---
 
@@ -118,8 +118,15 @@ Para acompanhamento detalhado pilar por pilar: **[STATUS-REVISAO-2026.md](docs/S
   - console.log removido de api/robots.js
   - Build OK + Playwright smoke tests: 12/12 passed
   - **Score estimado: 68 → 92/100**
+- [x] **Sprint 4: SEO Quick Wins — COMPLETO** (8 files, 20/20 tests, 15 Fev)
+  - MedicalProcedure + FAQPage schemas em RestaureacoesEsteticas.tsx (8 FAQs)
+  - MedicalProcedure + FAQPage schemas em ClinicaGeralPrevencao.tsx (10 FAQs)
+  - FAQPage schema em ProteseDentaria.tsx (12 FAQs) + brand name no title
+  - og:image absolute URLs corrigidas em 3 LPs (ConsultaInicial, Ortodontia, Profilaxia)
+  - /sobre e /contato adicionados ao sitemap.xml
+  - SEODashboard com noindex,nofollow
+  - Build OK + Playwright smoke tests: 20/20 passed
 - [ ] Pilares 7, 9, 10 — Pendentes (discovery em paralelo com sprints)
-- [ ] Sprint 4: SEO Quick Wins (~2-3h)
 - [ ] Sprint 5: AI Search Pre-rendering (~2-3 dias — MAIOR ROI)
 - [ ] Sprint 6: Psychology & Conversao (~1-2 dias)
 - [ ] Sprint 7: Internal Linking (~1 dia)
@@ -163,7 +170,7 @@ Para acompanhamento detalhado pilar por pilar: **[STATUS-REVISAO-2026.md](docs/S
 3. ~~**Pilar 8: Psychology:**~~ ✅ FEITO (Score 72/100, 14 quick wins identificados)
 4. ~~**Pilares 2, 3, 4:**~~ ✅ FEITO (3 relatórios completos)
 5. ~~**SPRINT 3: Brand Compliance**~~ ✅ FEITO (62 fixes, 15 arquivos, build+test OK)
-6. **SPRINT 4: SEO Quick Wins** — Schemas + Sitemap + og:image (~2-3h)
+6. ~~**SPRINT 4: SEO Quick Wins**~~ ✅ FEITO (schemas + sitemap + og:image + noindex, 20/20 tests)
 7. **SPRINT 5: AI Search Pre-rendering** — Expandir generate-static-meta.cjs (~2-3 dias)
 8. **Pilares 7, 9, 10:** Discovery em paralelo com sprints
 
@@ -187,11 +194,13 @@ Para acompanhamento detalhado pilar por pilar: **[STATUS-REVISAO-2026.md](docs/S
 8. ~~**62 violações BRAND.md**~~ ✅ CORRIGIDO — 15 arquivos editados, 0 violações restantes
 9. ~~**LentesEFacetas.tsx**~~ ✅ CORRIGIDO — 13 violações corrigidas
 
-### Pendentes — SEO (Sprint 4)
-10. **RestaureacoesEsteticas + ClinicaGeral: ZERO schemas** — Paginas criticas sem JSON-LD
-11. **Internal linking 35/100** — ZERO links contextuais entre service pages
-12. **Sitemap incompleto** — Faltam /sobre e /contato
-13. **SEO Dashboard indexavel** — Pagina interna sem noindex
+### Corrigidos (Sprint 4 — SEO Quick Wins, 15 Fev)
+10. ~~**RestaureacoesEsteticas + ClinicaGeral: ZERO schemas**~~ ✅ CORRIGIDO — MedicalProcedure + FAQPage em ambas
+11. **Internal linking 35/100** — ZERO links contextuais entre service pages (Sprint 7)
+12. ~~**Sitemap incompleto**~~ ✅ CORRIGIDO — /sobre e /contato adicionados
+13. ~~**SEO Dashboard indexavel**~~ ✅ CORRIGIDO — noindex,nofollow aplicado
+14. ~~**ProteseDentaria sem FAQPage schema**~~ ✅ CORRIGIDO — 12 FAQs + brand name no title
+15. ~~**og:image relativas em 3 LPs**~~ ✅ CORRIGIDO — ConsultaInicial, Ortodontia, Profilaxia
 
 ### Pendentes — AI Search (Sprint 5 — MAIOR ROI)
 14. **SPA INVISIVEL para AI bots** — Score 52/100, bots veem `<div id="root"></div>` vazio

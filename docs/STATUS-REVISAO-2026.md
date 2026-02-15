@@ -3,12 +3,12 @@
 **Projeto:** Revisão 360° do Funil de Marketing  
 **Duração:** 12 semanas  
 **Data de Início:** 13 de Fevereiro de 2026  
-**Status Geral:** 🔜 DISCOVERY PHASE  
-**Próximo Milestone:** Síntese de Findings (Fim da Semana 3)  
+**Status Geral:** 🚀 SPRINT 4 COMPLETO — Sprint 5 próximo
+**Próximo Milestone:** Sprint 5 AI Search Pre-rendering (MAIOR ROI)
 
 ---
 
-## 📊 PROGRESS SUMMARY (Atual — 14 Fev 2026)
+## 📊 PROGRESS SUMMARY (Atual — 15 Fev 2026)
 
 ```
 FASE 1: DISCOVER & ANALYZE (Semanas 1-3)
@@ -16,7 +16,7 @@ FASE 1: DISCOVER & ANALYZE (Semanas 1-3)
 Pilar 1 (Técnico):    [██████████] 100% ✅ COMPLETO (72/100)
 Pilar 2 (SEO):        [██████████] 100% ✅ COMPLETO (68/100)
 Pilar 3 (AI Search):  [██████████] 100% ✅ COMPLETO (52/100) ⚠️ LOWEST
-Pilar 4 (Brand):      [██████████] 100% ✅ COMPLETO (68/100)
+Pilar 4 (Brand):      [██████████] 100% ✅ COMPLETO (68→92/100 após Sprint 3)
 Pilar 5 (GA4):        [██████████] 100% ✅ COMPLETO
 Pilar 6 (Google Ads): [██████████] 100% ✅ COMPLETO
 Pilar 7 (Design):     [░░░░░░░░░░] 0%
@@ -26,9 +26,18 @@ Pilar 10 (Blog):      [░░░░░░░░░░] 0%
 ─────────────────────────────────────────
 TOTAL: [███████░░░] 70% (Fase 1)
 
-Fase 2-4: [░░░░░░░░░░] 0%
+SPRINTS DE IMPLEMENTAÇÃO
+─────────────────────────────────────────
+Sprint 3 (Brand):     [██████████] 100% ✅ COMPLETO (62 fixes)
+Sprint 4 (SEO):       [██████████] 100% ✅ COMPLETO (8 files, 20/20 tests)
+Sprint 5 (AI Search): [░░░░░░░░░░] 0% ← PRÓXIMO (MAIOR ROI)
+Sprint 6 (Psychology):[░░░░░░░░░░] 0%
+Sprint 7 (Linking):   [░░░░░░░░░░] 0%
+─────────────────────────────────────────
+SPRINTS: [████░░░░░░] 40% (2/5 completos)
+
 ═════════════════════════════════════════
-PROJECT OVERALL: [███████░░░░░░░░░░░░░░░░] 35%
+PROJECT OVERALL: [████████░░░░░░░░░░░░░░░] 42%
 ```
 
 ---
@@ -314,6 +323,15 @@ PROJECT OVERALL: [███████░░░░░░░░░░░░░�
   - console.log removido de api/robots.js
   - Build OK + Playwright smoke tests: 12/12 passed
   - Score estimado Brand Compliance: 68 → 92/100
+- [x] **Sprint 4: SEO Quick Wins COMPLETO** (15 Fev)
+  - MedicalProcedure + FAQPage schemas em RestaureacoesEsteticas.tsx (8 FAQs)
+  - MedicalProcedure + FAQPage schemas em ClinicaGeralPrevencao.tsx (10 FAQs)
+  - FAQPage schema em ProteseDentaria.tsx (12 FAQs) + brand name no title
+  - og:image absolute URLs em 3 LPs (ConsultaInicial, Ortodontia, Profilaxia)
+  - /sobre e /contato adicionados ao sitemap.xml
+  - SEODashboard com noindex,nofollow
+  - Build OK + Playwright smoke tests: 20/20 passed
+  - **Score estimado SEO: 68 → 82/100**
 
 ---
 
@@ -322,7 +340,7 @@ PROJECT OVERALL: [███████░░░░░░░░░░░░░�
 | Sprint | Foco | Itens | Tempo | Status |
 |--------|------|:-----:|:-----:|:------:|
 | **Sprint 3** | Brand Compliance & Fixes Críticos | 62 | ~90 min | ✅ COMPLETO (15 Fev) |
-| **Sprint 4** | SEO Quick Wins (Schema + Sitemap) | ~10 | ~2-3h | ⏳ Pendente |
+| **Sprint 4** | SEO Quick Wins (Schema + Sitemap) | 8 | ~1h | ✅ COMPLETO (15 Fev) |
 | **Sprint 5** | AI Search Pre-rendering (MAIOR ROI) | 3 | ~2-3 dias | ⏳ Pendente |
 | **Sprint 6** | Psychology & Conversão (CTAs, Hero) | ~8 | ~1-2 dias | ⏳ Pendente |
 | **Sprint 7** | Internal Linking & Conteúdo | ~5 | ~1 dia | ⏳ Pendente |
@@ -353,10 +371,11 @@ SEMANA 1 (13-19 Fev) — EM ANDAMENTO
 ├── ✅ Pilares 1, 5, 6, 8 COMPLETOS + Quick Wins (9/9)
 ├── ✅ Pilares 2, 3, 4 COMPLETOS (14 Fev)
 ├── 🔴 Patrick: Quick wins no Google Ads (45 min)
-└── ✅ IA: Sprint 3 (Brand Compliance — COMPLETO 15 Fev)
+├── ✅ IA: Sprint 3 (Brand Compliance — COMPLETO 15 Fev)
+└── ✅ IA: Sprint 4 (SEO Quick Wins — COMPLETO 15 Fev)
 
 SEMANA 2 (20-26 Fev)
-├── 🤖 IA: Sprint 4 (SEO Quick Wins)
+├── 🤖 IA: Sprint 5 (AI Search Pre-rendering — MAIOR ROI)
 ├── 🤖 IA: Pilares 7, 9, 10 (discovery em paralelo)
 ├── 🔴 Patrick: PageSpeed + Android test
 └── 📊 Friday sync: Review sprints 3-4
@@ -453,5 +472,5 @@ MAY-JUN
 ---
 
 **Criado:** 13 de Fevereiro 2026, 15:00  
-**Última atualização:** 15 de Fevereiro 2026 (Sprint 3 COMPLETO)
+**Última atualização:** 15 de Fevereiro 2026 (Sprint 4 COMPLETO)
 **Próximo sync:** 20 de Fevereiro (Fim de Semana 1)
