@@ -39,6 +39,8 @@ export default async function handler(req, res) {
       { url: '/restauracoes-esteticas', priority: '0.8', changefreq: 'monthly' },
       { url: '/tratamento-de-canal', priority: '0.8', changefreq: 'monthly' },
       { url: '/saude-da-gengiva', priority: '0.8', changefreq: 'monthly' },
+      { url: '/sobre', priority: '0.6', changefreq: 'monthly' },
+      { url: '/contato', priority: '0.7', changefreq: 'monthly' },
       { url: '/politica-de-privacidade', priority: '0.3', changefreq: 'yearly' },
       { url: '/termos-de-uso', priority: '0.3', changefreq: 'yearly' },
     ];

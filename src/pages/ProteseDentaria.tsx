@@ -80,7 +80,7 @@ const ProteseDentaria = () => {
   return (
     <>
       <Helmet>
-        <title>Prótese Dentária em Ipanema: Recupere Função e Estética do Sorriso</title>
+        <title>Prótese Dentária em Ipanema | Dra. Carla Christoph</title>
         <meta name="description" content="Prótese dentária em Ipanema com especialista. Coroas, pontes e próteses sobre implante. Reabilitação oral completa com 20+ anos de experiência." />
         <link rel="canonical" href="https://dracarlachristoph.com/protese-dentaria" />
         
@@ -112,6 +112,110 @@ const ProteseDentaria = () => {
                 "addressCountry": "BR"
               }
             }
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Qual tipo de prótese é melhor para meu caso?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Cada caso é único e requer avaliação individualizada. A escolha depende de fatores como quantidade de dentes perdidos, condição óssea, saúde gengival, expectativas estéticas e estilo de vida."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Quanto tempo dura uma prótese bem feita?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Com materiais de qualidade e cuidados adequados, uma coroa ou ponte pode durar de 15 a 20 anos. Próteses sobre implante tendem a durar ainda mais, podendo ultrapassar 20 anos."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Prótese sobre implante vale o investimento?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Para muitos pacientes, sim. A prótese sobre implante oferece preservação óssea total, não desgasta dentes vizinhos, maior durabilidade e sensação natural. Representa excelente custo-benefício a longo prazo."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Como é a manutenção das próteses?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Próteses fixas são higienizadas como dentes naturais, com escovação e fio dental. Próteses removíveis devem ser retiradas para limpeza com produtos específicos. Visitas semestrais ao dentista são essenciais."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Vou ficar sem dentes durante o tratamento?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Nunca! Sempre providenciamos uma prótese provisória para que você mantenha estética e função durante todo o tratamento. Você não passará nenhum momento sem dentes."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Prótese pode parecer natural?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Absolutamente! Utilizamos técnicas como estratificação de cerâmica, caracterização individualizada e ajuste de cor personalizado. O resultado são dentes com translucidez, textura e aparência indistinguíveis dos dentes naturais."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Qual a diferença entre porcelana e resina?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A porcelana oferece superior estética, durabilidade e resistência a manchas. É a escolha para casos de longa duração. A resina pode ser usada em provisórios ou situações específicas."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "É possível fazer prótese com pouco osso?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sim! Para próteses convencionais, a quantidade óssea não é limitante. Para próteses sobre implante, técnicas como enxerto ósseo ou implantes zigomáticos podem viabilizar o tratamento mesmo com pouco osso."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Quando trocar uma prótese antiga?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sinais de que é hora de trocar: desgaste visível, mudança de cor, infiltrações, desadaptação, desconforto ao mastigar ou problemas gengivais ao redor da prótese."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "O procedimento é doloroso?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Os procedimentos são realizados com anestesia local eficaz e técnicas que priorizam o conforto. A maioria dos pacientes relata menos desconforto do que esperavam."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Qual a vantagem de um especialista?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "O especialista tem formação específica de 2-3 anos em prótese, domina técnicas avançadas, trabalha com os melhores laboratórios e tem experiência em casos complexos."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Prótese fixa ou removível: como escolher?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A prótese fixa oferece maior conforto, segurança e sensação natural, mas requer condições específicas. A removível é uma opção quando não há suporte para fixa. Avaliamos todos os fatores para indicar a melhor solução."
+                }
+              }
+            ]
           })}
         </script>
       </Helmet>

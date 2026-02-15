@@ -118,7 +118,7 @@ const ProfilaxiaLandingPage: React.FC = () => {
         {/* Open Graph meta tags */}
         <meta property="og:title" content={profilaxiaConfig.seo.title} />
         <meta property="og:description" content={profilaxiaConfig.seo.description} />
-        <meta property="og:image" content="/lovable-uploads/vertical-de-jaleco.webp" />
+        <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/vertical-de-jaleco.webp" />
         <meta property="og:url" content={typeof window !== 'undefined' ? window.location.href : ''} />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="pt_BR" />

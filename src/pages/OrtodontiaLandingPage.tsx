@@ -87,7 +87,7 @@ const OrtodontiaLandingPage = () => {
         <meta property="og:url" content="https://dracarlachristoph.com/lp/ortodontia-ipanema" />
         <meta property="og:title" content={ortodontiaConfig.seo.title} />
         <meta property="og:description" content={ortodontiaConfig.seo.description} />
-        <meta property="og:image" content="/lovable-uploads/DrBruno_site.webp" />
+        <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/DrBruno_site.webp" />
         <meta property="og:site_name" content="Dra. Carla Christoph" />
         <meta property="og:locale" content="pt_BR" />
 

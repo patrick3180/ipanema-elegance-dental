@@ -29,6 +29,105 @@ const RestaureacoesEsteticas = () => {
         <title>Restaurações Estéticas em Ipanema | Dra. Carla Christoph</title>
         <meta name="description" content="Restauração dental estética em Ipanema com resina nanoparticulada. Tratamento de cáries, dentes quebrados e trincados. Resultado natural e duradouro. Dra. Carla Christoph CRO-RJ 27.509." />
         <link rel="canonical" href="https://dracarlachristoph.com/restauracoes-esteticas" />
+        <meta property="og:title" content="Restaurações Estéticas em Ipanema | Dra. Carla Christoph" />
+        <meta property="og:description" content="Restauração dental estética em Ipanema com resina nanoparticulada. Resultado natural e duradouro." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dracarlachristoph.com/restauracoes-esteticas" />
+        <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "MedicalProcedure",
+            "name": "Restauração Dental Estética",
+            "description": "Restauração dental estética com resina nanoparticulada para tratamento de cáries, fraturas e trincas com resultado natural",
+            "procedureType": "Dental",
+            "provider": {
+              "@type": "Dentist",
+              "name": "Dra. Carla Christoph",
+              "telephone": "+5521993304045",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
+                "addressLocality": "Ipanema",
+                "addressRegion": "RJ",
+                "postalCode": "22410-002",
+                "addressCountry": "BR"
+              }
+            }
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "O que é uma restauração dental estética?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "É um procedimento que reconstrói dentes comprometidos por cáries, fraturas ou trincas utilizando materiais de última geração (resina composta ou porcelana) que mimetizam perfeitamente a cor, brilho e textura dos dentes naturais. Diferente das antigas obturações escuras de amálgama, as restaurações estéticas são praticamente invisíveis."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Quando uma restauração é necessária?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Restaurações são indicadas em diversas situações: presença de cáries, fraturas dentais por trauma ou desgaste, trincas que causam sensibilidade, substituição de restaurações antigas escurecidas, correção de formato ou fechamento de pequenos espaços, e reconstrução após tratamento de canal."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Qual material é usado nas restaurações estéticas?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Utilizamos resinas compostas de última geração com nanotecnologia, que oferecem alta resistência, estética natural e durabilidade. Para casos que exigem máxima longevidade, indicamos porcelanas ou resinas laboratoriais (inlay/onlay), confeccionadas em laboratório para ainda mais resistência."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Fazer restauração dói?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Não. Utilizamos anestesia local com técnica confortável. A maioria dos pacientes relata não sentir desconforto durante o procedimento. Após o término do efeito anestésico, pode haver sensibilidade leve por 24-48h, facilmente controlada com analgésicos comuns."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Quanto tempo dura uma restauração estética?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Restaurações diretas em resina duram de 5 a 8 anos em média. Restaurações indiretas (inlay/onlay de porcelana) duram 12 a 15 anos ou mais. Fatores que prolongam a vida útil: boa higiene oral, check-ups regulares e uso de placa para bruxismo quando indicado."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Posso trocar minhas restaurações antigas escuras?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sim! A substituição de restaurações antigas de amálgama por restaurações estéticas em resina é um dos procedimentos mais procurados. Além do benefício estético, eliminamos o risco de microinfiltrações comuns em restaurações antigas. A troca é feita de forma conservadora, preservando o máximo de estrutura dental sadia."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Restauração em resina mancha com o tempo?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "As resinas compostas modernas apresentam excelente estabilidade de cor. Com cuidados adequados (boa higiene, polimentos periódicos e moderação no consumo de alimentos muito pigmentados como café, vinho tinto e açaí), as restaurações mantêm sua cor original por muitos anos."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Qual a diferença entre restauração e obturação?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Na prática odontológica moderna, os termos são sinônimos — ambos se referem ao preenchimento de uma cavidade dental. Obturação é um termo mais antigo, frequentemente associado às restaurações em amálgama. Restauração é o termo técnico correto e mais abrangente. Hoje, priorizamos sempre restaurações estéticas em materiais da cor do dente."
+                }
+              }
+            ]
+          })}
+        </script>
       </Helmet>
 
       <TreatmentHero

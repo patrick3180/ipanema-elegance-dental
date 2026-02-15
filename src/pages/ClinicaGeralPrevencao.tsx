@@ -77,15 +77,130 @@ const ClinicaGeralPrevencao = () => {
     <PageLayout>
       <Helmet>
         <title>Clínica Geral e Prevenção Odontológica em Ipanema | Dra. Carla Christoph</title>
-        <meta 
-          name="description" 
-          content="Check-up digital e prevenção odontológica em Ipanema. Scanner 3D, ultrassom, protocolo personalizado. Dra. Carla Christoph CRO-RJ 27.509 - 20+ anos de experiência." 
+        <meta
+          name="description"
+          content="Check-up digital e prevenção odontológica em Ipanema. Scanner 3D, ultrassom, protocolo personalizado. Dra. Carla Christoph CRO-RJ 27.509 - 20+ anos de experiência."
         />
-        <meta 
-          name="keywords" 
-          content="dentista ipanema, check-up dental, prevenção odontológica, limpeza dental, profilaxia, clínica geral odontologia, dra carla christoph" 
+        <meta
+          name="keywords"
+          content="dentista ipanema, check-up dental, prevenção odontológica, limpeza dental, profilaxia, clínica geral odontologia, dra carla christoph"
         />
         <link rel="canonical" href="https://dracarlachristoph.com/clinica-geral-e-prevencao" />
+        <meta property="og:title" content="Clínica Geral e Prevenção Odontológica em Ipanema | Dra. Carla Christoph" />
+        <meta property="og:description" content="Check-up digital e prevenção odontológica em Ipanema. Scanner 3D, ultrassom, protocolo personalizado." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dracarlachristoph.com/clinica-geral-e-prevencao" />
+        <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "MedicalProcedure",
+            "name": "Check-up Digital e Prevenção Odontológica",
+            "description": "Check-up dental completo com scanner digital 3D, limpeza profissional e protocolo preventivo personalizado",
+            "procedureType": "Dental",
+            "provider": {
+              "@type": "Dentist",
+              "name": "Dra. Carla Christoph",
+              "telephone": "+5521993304045",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
+                "addressLocality": "Ipanema",
+                "addressRegion": "RJ",
+                "postalCode": "22410-002",
+                "addressCountry": "BR"
+              }
+            }
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "O que está incluído no check-up preventivo?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "O check-up completo inclui exame clínico detalhado, limpeza profissional (profilaxia), avaliação de risco de cáries e doenças gengivais, orientação personalizada de higiene e, quando necessário, solicitação de radiografias."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Com que frequência devo fazer consultas preventivas?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Pacientes de baixo risco podem vir a cada 6-8 meses, enquanto quem tem maior predisposição a cáries ou problemas gengivais deve retornar a cada 3-4 meses. Na primeira consulta, criamos um cronograma personalizado."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "A limpeza profissional dói?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A limpeza com ultrassom é muito confortável. A maioria dos pacientes relata apenas uma leve sensação de vibração. Em casos de muita sensibilidade, podemos usar anestesia tópica para garantir conforto total."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Por que prevenir é mais econômico que tratar?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Uma consulta preventiva custa uma fração do valor de tratamentos como canal, implantes ou enxertos gengivais. Além disso, você evita dor, desconforto e tempo longe do trabalho."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Scanner digital 3D substitui as moldagens tradicionais?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sim! O scanner captura imagens digitais precisas da sua boca em poucos minutos, sem o desconforto das moldeiras com massa. É mais rápido, mais preciso e muito mais confortável."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Como vocês identificam cáries no estágio inicial?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Usamos câmeras de alta definição com magnificação e radiografias digitais. Conseguimos identificar lesões de cárie ainda reversíveis, que podem ser tratadas apenas com aplicação de flúor, sem necessidade de restauração."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "O que fazer para prevenir mau hálito?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Primeiro identificamos a causa - que em 90% dos casos está na boca. Depois criamos um protocolo específico que pode incluir limpeza profissional, tratamento gengival, orientação sobre limpeza da língua e indicação de produtos adequados."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Aplicação de flúor é só para crianças?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Não! Adultos com alto risco de cáries, sensibilidade dental, boca seca ou exposição de raízes também se beneficiam muito da aplicação profissional de flúor. É um procedimento preventivo simples que fortalece o esmalte."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Qual a diferença entre limpeza em casa e profissional?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A escovação e fio dental diários removem a placa bacteriana fresca. Mas o tártaro (placa mineralizada) só pode ser removido com instrumentos profissionais. Além disso, conseguimos limpar áreas que você não alcança em casa, como abaixo da linha da gengiva."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Quando devo procurar prevenção e não tratamento?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sempre que não houver dor ou problema ativo! Se faz mais de 6 meses desde sua última consulta, se percebe sangramento gengival, mau hálito ou sensibilidade, é hora de uma avaliação preventiva - antes que vire tratamento complexo."
+                }
+              }
+            ]
+          })}
+        </script>
       </Helmet>
 
       <TreatmentHero

@@ -5,10 +5,11 @@ import SEOHead from '@/components/SEOHead';
 const SEODashboardPage: React.FC = () => {
   return (
     <>
-      <SEOHead 
+      <SEOHead
         title="SEO Dashboard - Dra. Carla Christoph"
         description="Comprehensive SEO monitoring and optimization dashboard"
         canonicalUrl="https://dracarlachristoph.com/seo-dashboard"
+        noIndex={true}
       />
       <div className="min-h-screen bg-background">
         <SEODashboardOptimized />
