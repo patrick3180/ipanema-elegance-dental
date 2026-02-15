@@ -14,7 +14,7 @@ export const facetasResinaDiretaConfig: LandingPageConfig = {
   },
   
   hero: {
-    headline: 'Transformação Imediata: O Sorriso que Você Deseja, no Tempo que Você Precisa',
+    headline: 'Resultado no Mesmo Dia: O Sorriso que Você Deseja, no Tempo que Você Precisa',
     subheadline: 'Com a arte das facetas de resina direta, corrigimos imperfeições e criamos um sorriso harmônico e natural em uma única sessão. Ideal para quem busca um resultado rápido e de alto impacto.',
     ctaText: 'Quero Agendar Minha Consulta',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
@@ -69,15 +69,15 @@ export const facetasResinaDiretaConfig: LandingPageConfig = {
   faq: {
     title: 'Dúvidas Comuns sobre Facetas de Resina',
     questions: [
-        { question: 'Qual a durabilidade das facetas de resina?', answer: 'Com os devidos cuidados e manutenções anuais (polimento), as facetas de resina de alta qualidade podem durar em média de 5 a 7 anos, mantendo a estética e o brilho.' },
+        { question: 'Qual a durabilidade das facetas de resina?', answer: 'Com os devidos cuidados e manutenções anuais (polimento), as facetas de resina compostas nanoparticuladas podem durar em média de 5 a 7 anos, mantendo a estética e o brilho.' },
         { question: 'A resina mancha com o tempo?', answer: 'Resinas de alta performance, como as que utilizamos, têm alta resistência a manchas. No entanto, cuidados com alimentos muito pigmentados e o polimento anual são importantes para manter a cor estável por mais tempo.' },
         { question: 'Qual a principal diferença para a porcelana?', answer: 'A resina é uma solução mais rápida (feita em 1 dia) e com um investimento mais acessível. A porcelana, feita em laboratório, oferece maior durabilidade (15+ anos) e resistência total a manchas, sendo um investimento a longo prazo.' },
-        { question: 'Como saberei como ficará o resultado final?', answer: 'Antes de qualquer trabalho definitivo, a doutora faz os dentes com resina não adesiva, até que o resultado desejado seja atingido. Uma vez que esteja tudo aprovado, ela faz o trabalho com a resina definitiva, de alta qualidade. Portanto o paciente pode ver na prática, na própria boca, como ficará o trabalho antes dele ser feito' }
+        { question: 'Como saberei como ficará o resultado final?', answer: 'Antes de qualquer trabalho definitivo, a doutora faz os dentes com resina não adesiva, até que o resultado desejado seja atingido. Uma vez que esteja tudo aprovado, ela faz o trabalho com a resina definitiva, de alta performance. Portanto o paciente pode ver na prática, na própria boca, como ficará o trabalho antes dele ser feito' }
     ]
   },
   
   cta: {
-    title: 'Pronto para a Sua Transformação Imediata?',
+    title: 'Pronto para o Seu Resultado no Mesmo Dia?',
     subtitle: 'Agende sua avaliação e descubra como a arte das facetas de resina pode te dar o sorriso que você deseja, de forma rápida e acessível.',
     buttonText: 'Quero Agendar Minha Avaliação'
   },
@@ -91,7 +91,7 @@ export const facetasResinaDiretaConfig: LandingPageConfig = {
   
   seo: {
     title: 'Facetas de Resina Direta Ipanema | Sorriso Novo em 1 Dia',
-    description: 'Transforme seu sorriso em uma única sessão com facetas de resina em Ipanema. Resultado estético, rápido, sem desgaste e com investimento acessível.',
+    description: 'Renove seu sorriso em uma única sessão com facetas de resina em Ipanema. Resultado estético, rápido, sem desgaste e com investimento acessível.',
     keywords: [
       'facetas de resina ipanema',
       'lentes de resina preço',

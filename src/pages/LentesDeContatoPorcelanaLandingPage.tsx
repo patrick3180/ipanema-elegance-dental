@@ -144,7 +144,7 @@ const LentesDeContatoPorcelanaLandingPage = () => {
             "@context": "https://schema.org",
             "@type": "MedicalProcedure",
             "name": "Lentes de Contato de Porcelana",
-            "description": "Tratamento estético dental com lentes ultrafinas de porcelana para transformação do sorriso",
+            "description": "Tratamento estético dental com lentes ultrafinas de porcelana e planejamento digital",
             "procedureType": "Cosmetic Dentistry",
             "bodyLocation": "Mouth",
             "preparation": "Consulta de avaliação e planejamento digital do sorriso",
@@ -161,7 +161,7 @@ const LentesDeContatoPorcelanaLandingPage = () => {
         {/* Additional Open Graph tags */}
         <meta property="article:author" content="Dra. Carla Christoph" />
         <meta property="article:section" content="Odontologia Estética" />
-        <meta property="article:tag" content="lentes de porcelana, estética dental, sorriso perfeito" />
+        <meta property="article:tag" content="lentes de porcelana, estética dental, sorriso natural" />
       </Helmet>
 
       <ErrorBoundary>

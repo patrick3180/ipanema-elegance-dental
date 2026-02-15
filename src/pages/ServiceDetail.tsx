@@ -12,25 +12,25 @@ const serviceData = {
   "lentes-e-facetas": {
     title: "Lentes de Contato Dental e Facetas de Porcelana",
     description: "Corrija cor, forma e imperfeições com finas lâminas de porcelana, com naturalidade e precisão estética.",
-    fullContent: "As lentes de contato dental e facetas de porcelana são lâminas ultrafinas aplicadas sobre a superfície visível dos dentes para corrigir cor, forma e imperfeições. Este tratamento é ideal para corrigir dentes manchados, desgastados, quebrados, desalinhados ou com espaçamentos. Na clínica da Dra. Carla Christoph em Ipanema, utilizamos materiais de alta qualidade e técnicas modernas para um resultado que respeita a aparência natural dos dentes.",
+    fullContent: "As lentes de contato dental e facetas de porcelana são lâminas ultrafinas aplicadas sobre a superfície visível dos dentes para corrigir cor, forma e imperfeições. Este tratamento é ideal para corrigir dentes manchados, desgastados, quebrados, desalinhados ou com espaçamentos. Na clínica da Dra. Carla Christoph em Ipanema, utilizamos cerâmicas de alta translucidez e técnicas de estratificação para um resultado que respeita a aparência natural dos dentes.",
     detailPageUrl: "/lentes-de-contato-dental-e-facetas-de-porcelana"
   },
   "clareamento-dental": {
     title: "Clareamento Dental Profissional",
     description: "Conquiste dentes visivelmente mais brancos e um sorriso radiante com nossas técnicas de clareamento seguras e eficazes.",
-    fullContent: "O clareamento dental profissional é um procedimento rápido e eficaz para remover manchas e clarear o tom natural dos seus dentes. Em nossa clínica odontológica em Ipanema, oferecemos tanto o clareamento em consultório quanto o supervisionado para uso em casa. A Dra. Carla Christoph utiliza produtos de alta qualidade que clareiam os dentes sem danificar o esmalte dental, proporcionando um sorriso mais branco e radiante com segurança.",
+    fullContent: "O clareamento dental profissional é um procedimento rápido e eficaz para remover manchas e clarear o tom natural dos seus dentes. Em nossa clínica odontológica em Ipanema, oferecemos tanto o clareamento em consultório quanto o supervisionado para uso em casa. A Dra. Carla Christoph utiliza géis clareadores com concentração controlada que clareiam os dentes sem danificar o esmalte dental, proporcionando um sorriso mais branco e radiante com segurança.",
     detailPageUrl: "/clareamento-dental"
   },
   "proteses-dentarias": {
     title: "Próteses Dentárias",
     description: "Recupere a função mastigatória e a estética do seu sorriso com próteses dentárias personalizadas.",
-    fullContent: "As próteses dentárias são soluções personalizadas para substituir dentes perdidos, restaurando tanto a função mastigatória quanto a estética do sorriso. Como especialista em Prótese Dental, a Dra. Carla Christoph projeta próteses fixas (coroas e pontes) e removíveis que se integram perfeitamente à sua boca. Utilizamos materiais modernos que garantem conforto, durabilidade e aparência natural.",
+    fullContent: "As próteses dentárias são soluções personalizadas para substituir dentes perdidos, restaurando tanto a função mastigatória quanto a estética do sorriso. Como especialista em Prótese Dental, a Dra. Carla Christoph projeta próteses fixas (coroas e pontes) e removíveis que se integram perfeitamente à sua boca. Trabalhamos com cerâmicas E-max e zircônia que proporcionam conforto, durabilidade e aparência natural.",
     detailPageUrl: "/protese-dentaria"
   },
   "implantes-dentarios": {
     title: "Implantes Dentários",
-    description: "A solução definitiva para a perda de dentes. Implantes seguros e duradouros para restaurar seu sorriso.",
-    fullContent: "Os implantes dentários são a solução mais avançada para substituir dentes perdidos. Eles funcionam como raízes artificiais, proporcionando uma base sólida para dentes fixos ou removíveis. Com profundo conhecimento em Implantodontia, a Dra. Carla Christoph oferece implantes de alta qualidade que se integram naturalmente ao osso maxilar, garantindo durabilidade e função idêntica à dos dentes naturais. Este tratamento não apenas restaura seu sorriso, mas também previne a perda óssea e mantém a estrutura facial intacta.",
+    description: "Reabilitação permanente para a perda de dentes. Implantes seguros e duradouros para restaurar seu sorriso.",
+    fullContent: "Os implantes dentários são a solução mais avançada para substituir dentes perdidos. Eles funcionam como raízes artificiais, proporcionando uma base sólida para dentes fixos ou removíveis. Com profundo conhecimento em Implantodontia, a Dra. Carla Christoph utiliza implantes de titânio com superfície tratada que se integram naturalmente ao osso maxilar, proporcionando durabilidade e função idêntica à dos dentes naturais. Este tratamento não apenas restaura seu sorriso, mas também previne a perda óssea e mantém a estrutura facial intacta.",
     detailPageUrl: "/implantes-dentarios"
   },
   "clinica-geral-e-prevencao": {
@@ -42,7 +42,7 @@ const serviceData = {
   "restauracoes-esteticas": {
     title: "Restaurações Estéticas",
     description: "Tratamento de cáries e reconstrução de dentes com materiais que imitam a cor natural dos dentes.",
-    fullContent: "As restaurações estéticas são tratamentos que reparam dentes danificados por cáries, fraturas ou desgastes, devolvendo tanto a função quanto a beleza natural. A Dra. Carla Christoph utiliza resinas compostas da mais alta qualidade, que imitam perfeitamente a cor e a translucidez dos dentes naturais. O resultado são restaurações praticamente invisíveis, que se integram harmoniosamente ao seu sorriso enquanto devolvem a força e a função aos dentes afetados.",
+    fullContent: "As restaurações estéticas são tratamentos que reparam dentes danificados por cáries, fraturas ou desgastes, devolvendo tanto a função quanto a beleza natural. A Dra. Carla Christoph utiliza resinas compostas nanoparticuladas com estratificação de cor, que imitam perfeitamente a cor e a translucidez dos dentes naturais. O resultado são restaurações praticamente invisíveis, que se integram harmoniosamente ao seu sorriso enquanto devolvem a força e a função aos dentes afetados.",
     detailPageUrl: "/restauracoes-esteticas"
   },
   "tratamento-de-canal": {

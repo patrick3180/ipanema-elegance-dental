@@ -97,7 +97,7 @@ const LPLentesPorcelana = () => {
             "@context": "https://schema.org",
             "@type": "MedicalProcedure",
             "name": "Lentes de Contato Dental em Porcelana",
-            "description": "Transformação estética com lentes ultrafinas de porcelana",
+            "description": "Estética dental com lentes ultrafinas de porcelana",
             "procedureType": "Dental Cosmetic Procedure"
           })}
         </script>

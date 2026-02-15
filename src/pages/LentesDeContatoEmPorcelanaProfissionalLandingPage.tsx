@@ -162,7 +162,7 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
             "@context": "https://schema.org",
             "@type": "MedicalProcedure",
             "name": "Lentes de Contato de Porcelana",
-            "description": "Transformação do sorriso com lentes de contato de porcelana ultrafinas",
+            "description": "Estética dental com lentes de contato de porcelana ultrafinas",
             "procedureType": "Estética Dental",
             "bodyLocation": "Dentes",
             "preparation": "Consulta de avaliação e planejamento digital do sorriso",

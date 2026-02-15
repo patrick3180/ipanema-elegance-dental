@@ -22,7 +22,7 @@ const SocialProofSection = ({ title, testimonials, stats }: SocialProofSectionPr
   const defaultStats = [
     { number: "20+", label: "Anos de Experiência" },
     { number: "WhatsApp", label: "Atendimento 24h" },
-    { number: "Particular", label: "Atendimento Personalizado" },
+    { number: "Particular", label: "Mínimo 1h por Consulta" },
     { number: "Ipanema", label: "Zona Sul — Rio de Janeiro" }
   ];
 

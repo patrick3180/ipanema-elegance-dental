@@ -1,8 +1,8 @@
 # PROJECT STATUS — Dra. Carla Christoph (Ipanema Elegance Dental)
 
-**Última atualização:** 13 de Fevereiro de 2026 (Quick Wins implementados)
-**Status Geral:** 🚀 EXECUÇÃO INICIADA — Fase 1 Discovery
-**Fase Atual:** Discovery & Analyze (Semanas 1-3)
+**Última atualização:** 15 de Fevereiro de 2026 (Sprint 3 COMPLETO — Brand Compliance)
+**Status Geral:** 🚀 SPRINT 3 COMPLETO — Sprint 4 próximo
+**Fase Atual:** Implementação (Sprint 3 done → Sprint 4 próximo)
 
 ---
 
@@ -38,18 +38,18 @@ Revisão profunda de 10 pilares do funil de marketing para otimizar conversões,
 
 ### Pilares — Status Rápido
 
-| # | Pilar | Status | Relatório |
-|---|-------|--------|-----------|
-| 1 | Revisão Técnica | ✅ COMPLETO (72/100) | [PILAR-1](docs/analysis/PILAR-1-REVISAO-TECNICA.md) |
-| 2 | SEO (Busca Orgânica) | 🔴 Pendente | -- |
-| 3 | AI Search Optimization | 🔴 Pendente | -- |
-| 4 | Brand Compliance | 🔴 Pendente | -- |
-| 5 | Google Analytics & Data | ✅ COMPLETO | [PILAR-5](docs/analysis/PILAR-5-GA4-ANALYSIS.md) |
-| 6 | Google Ads & Paid | ✅ COMPLETO | [PILAR-6](docs/analysis/PILAR-6-GOOGLE-ADS-AUDIT.md) |
-| 7 | Design & UX | 🔴 Pendente | -- |
-| 8 | Marketing Psychology | 🔴 Pendente | -- |
-| 9 | Landing Pages | 🔴 Pendente | -- |
-| 10 | Blog & Content | 🔴 Pendente | -- |
+| # | Pilar | Status | Score | Relatório |
+|---|-------|--------|:-----:|-----------|
+| 1 | Revisão Técnica | ✅ COMPLETO | 72/100 | [PILAR-1](docs/analysis/PILAR-1-REVISAO-TECNICA.md) |
+| 2 | SEO (Busca Orgânica) | ✅ COMPLETO | 68/100 | [PILAR-2](docs/analysis/PILAR-2-SEO-AUDIT.md) |
+| 3 | AI Search Optimization | ✅ COMPLETO | **52/100** | [PILAR-3](docs/analysis/PILAR-3-AI-SEARCH-AUDIT.md) |
+| 4 | Brand Compliance | ✅ COMPLETO | 68/100 | [PILAR-4](docs/analysis/PILAR-4-BRAND-COMPLIANCE.md) |
+| 5 | Google Analytics & Data | ✅ COMPLETO | -- | [PILAR-5](docs/analysis/PILAR-5-GA4-ANALYSIS.md) |
+| 6 | Google Ads & Paid | ✅ COMPLETO | -- | [PILAR-6](docs/analysis/PILAR-6-GOOGLE-ADS-AUDIT.md) |
+| 7 | Design & UX | 🔴 Pendente | -- | -- |
+| 8 | Marketing Psychology | ✅ COMPLETO | 72/100 | [PILAR-8](docs/analysis/PILAR-8-MARKETING-PSYCHOLOGY.md) |
+| 9 | Landing Pages | 🔴 Pendente | -- | -- |
+| 10 | Blog & Content | 🔴 Pendente | -- | -- |
 
 ### Status Detalhado
 Para acompanhamento detalhado pilar por pilar: **[STATUS-REVISAO-2026.md](docs/STATUS-REVISAO-2026.md)**
@@ -101,7 +101,28 @@ Para acompanhamento detalhado pilar por pilar: **[STATUS-REVISAO-2026.md](docs/S
   - Security headers em vercel.json (X-Frame-Options, X-Content-Type-Options, etc.)
   - Opening hours unificados em SEOHead.tsx e Index.tsx (OpeningHoursSpecification)
   - BlogCTA.tsx componente criado e integrado ao BlogPost.tsx
-- [ ] Pilares 2, 3, 4, 7, 8, 9, 10 — Pendentes (Semanas 2-3)
+- [x] **Pilar 8: Marketing Psychology — COMPLETO** (Score 72/100)
+- [x] **Pilar 2: SEO Audit — COMPLETO** (Score 68/100, internal linking 35/100)
+- [x] **Pilar 3: AI Search — COMPLETO** (Score 52/100, SPA rendering CRITICO)
+- [x] **Pilar 4: Brand Compliance — COMPLETO** (Score 68/100, 43 violacoes)
+- [x] **Plano de Execucao Sprints 3-7 definido** (5 sprints priorizados)
+- [x] **Sprint 3: Brand Compliance — COMPLETO** (62 fixes across 15 files, 15 Fev)
+  - 62 violações corrigidas (transforme, premium, excelência, indolor, alta qualidade, etc.)
+  - LandingFooter.tsx: CRO 27.509, horários, serviços, anos, copyright dinâmico
+  - Footer.tsx: CRO adicionado, palavras banidas removidas
+  - LentesEFacetas.tsx: 13 violações (maior ofensor)
+  - RestaureacoesEsteticas.tsx: 13 violações
+  - ProteseDentaria.tsx: 6 violações
+  - ServiceDetail.tsx: 5 violações
+  - + 8 outros arquivos (configs, LPs, componentes)
+  - console.log removido de api/robots.js
+  - Build OK + Playwright smoke tests: 12/12 passed
+  - **Score estimado: 68 → 92/100**
+- [ ] Pilares 7, 9, 10 — Pendentes (discovery em paralelo com sprints)
+- [ ] Sprint 4: SEO Quick Wins (~2-3h)
+- [ ] Sprint 5: AI Search Pre-rendering (~2-3 dias — MAIOR ROI)
+- [ ] Sprint 6: Psychology & Conversao (~1-2 dias)
+- [ ] Sprint 7: Internal Linking (~1 dia)
 
 ---
 
@@ -139,24 +160,54 @@ Para acompanhamento detalhado pilar por pilar: **[STATUS-REVISAO-2026.md](docs/S
 ### Para IA (próxima sessão):
 1. ~~**Quick wins técnicos:**~~ ✅ FEITO (9/9 implementados, build OK)
 2. ~~**CTA Blog:**~~ ✅ FEITO (BlogCTA.tsx criado e integrado)
-3. **Pilares 2, 3, 4, 8:** Continuar discovery (SEO, AI Search, Brand, Psychology)
-4. **Landing pages openingHours:** Corrigir formato em ~7 landing pages (baixa prioridade)
+3. ~~**Pilar 8: Psychology:**~~ ✅ FEITO (Score 72/100, 14 quick wins identificados)
+4. ~~**Pilares 2, 3, 4:**~~ ✅ FEITO (3 relatórios completos)
+5. ~~**SPRINT 3: Brand Compliance**~~ ✅ FEITO (62 fixes, 15 arquivos, build+test OK)
+6. **SPRINT 4: SEO Quick Wins** — Schemas + Sitemap + og:image (~2-3h)
+7. **SPRINT 5: AI Search Pre-rendering** — Expandir generate-static-meta.cjs (~2-3 dias)
+8. **Pilares 7, 9, 10:** Discovery em paralelo com sprints
 
 ### Milestone:
-- **20 Fev:** Friday sync — review dos 3 pilares completos + quick wins executados
+- **20 Fev:** Friday sync — review Sprints 3-4 implementados + 7/10 pilares completos
 
 ---
 
-## 🏆 PRINCIPAIS FINDINGS (Pilares 1, 5, 6)
+## 🏆 PRINCIPAIS FINDINGS (Pilares 1-6, 8)
 
+### Corrigidos (Sprints 0-2)
 1. ~~**robots.txt BLOQUEIA AI bots**~~ ✅ CORRIGIDO — AI bots agora permitidos
-2. **Blog não converte** — 460 usuários orgânicos/trimestre com 0% conversão (exceto Probióticos: 28,57%) — ✅ BlogCTA.tsx adicionado
-3. **iOS converte 2,4x mais que Android** — possível problema de UX mobile
-4. **Urgências recebe apenas 7% do budget** sendo a campanha mais eficiente (4,5x melhor)
-5. **4 keywords com QS ZERO** na Prótese — pagando prêmio de 50-400% no CPC
-6. ~~**FAQPage schema ausente**~~ ✅ CORRIGIDO — FAQPage em Implantes (12 FAQs) e Clareamento (10 FAQs)
-7. ~~**Security headers ausentes**~~ ✅ CORRIGIDO — 5 headers adicionados no vercel.json
-8. **LP Saúde Gengival** tem engagement excepcional (212s) — modelo a replicar
+2. ~~**FAQPage schema ausente em Implantes/Clareamento**~~ ✅ CORRIGIDO
+3. ~~**Security headers ausentes**~~ ✅ CORRIGIDO — 5 headers no vercel.json
+4. ~~**og:image relativas em Implantes/Clareamento**~~ ✅ CORRIGIDO
+5. ~~**reviewCount inconsistente**~~ ✅ CORRIGIDO — Unificado para 127
+
+### Corrigidos (Sprint 3 — Brand Compliance, 15 Fev)
+6. ~~**LandingFooter.tsx CRO ERRADO**~~ ✅ CORRIGIDO — CRO 27.509, horários, serviços, anos, copyright
+7. ~~**Footer.tsx palavras banidas**~~ ✅ CORRIGIDO — CRO adicionado, linguagem atualizada
+8. ~~**62 violações BRAND.md**~~ ✅ CORRIGIDO — 15 arquivos editados, 0 violações restantes
+9. ~~**LentesEFacetas.tsx**~~ ✅ CORRIGIDO — 13 violações corrigidas
+
+### Pendentes — SEO (Sprint 4)
+10. **RestaureacoesEsteticas + ClinicaGeral: ZERO schemas** — Paginas criticas sem JSON-LD
+11. **Internal linking 35/100** — ZERO links contextuais entre service pages
+12. **Sitemap incompleto** — Faltam /sobre e /contato
+13. **SEO Dashboard indexavel** — Pagina interna sem noindex
+
+### Pendentes — AI Search (Sprint 5 — MAIOR ROI)
+14. **SPA INVISIVEL para AI bots** — Score 52/100, bots veem `<div id="root"></div>` vazio
+15. **Blog pre-rendering NAO esta no build** — generate-blog-html.js existe mas nao roda
+
+### Pendentes — Psychology (Sprint 6)
+16. **Service pages: 1 CTA no final** vs 3-4 nas LPs (gap de conversao)
+17. **Homepage hero generico** (48/100) — nao endereca dor nem aspiracao
+18. **Urgencia etica 45/100** — consequencias medicas de adiar nao mencionadas nas SPs
+19. **Saude da Gengiva e o MODELO** — 85/100 + 212s engagement, replicar nas demais
+
+### Dados de Performance
+20. **Blog nao converte** — 460 usuarios/tri com 0% conversao (exceto Probioticos: 28,57%)
+21. **iOS converte 2,4x mais que Android** — possivel problema UX mobile
+22. **Urgencias: 7% do budget, 4,5x mais eficiente** — realocar budget
+23. **4 keywords QS ZERO** na Protese — pagando premio de 50-400% no CPC
 
 ---
 

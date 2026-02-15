@@ -143,7 +143,7 @@ const GlobalSchemas = () => {
           "itemOffered": {
             "@type": "MedicalProcedure",
             "name": "Implantes Dentários",
-            "description": "Implantes dentários com tecnologia de ponta"
+            "description": "Implantes dentários com planejamento digital 3D"
           }
         },
         {

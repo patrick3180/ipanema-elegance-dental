@@ -91,12 +91,12 @@ export const esteticaSorrisoGenericaConfig: LandingPageConfig = {
   },
   
   seo: {
-    title: 'Estética Dental Ipanema | Transforme seu Sorriso com Especialista',
+    title: 'Estética Dental Ipanema | Renove seu Sorriso com Especialista',
     description: 'Especialista em estética do sorriso em Ipanema. Avaliamos seu caso e indicamos a melhor solução: facetas de resina ou lentes de porcelana. Agende!',
     keywords: [
       'estetica dental ipanema',
       'melhorar sorriso rio de janeiro',
-      'transformação do sorriso',
+      'estética do sorriso',
       'dentista estético ipanema',
       'lentes de contato dental',
       'facetas de resina',

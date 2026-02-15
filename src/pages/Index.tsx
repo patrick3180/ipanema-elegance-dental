@@ -84,7 +84,7 @@ const Index = () => {
           "itemOffered": {
             "@type": "MedicalProcedure",
             "name": "Lentes de Contato Dental e Facetas",
-            "description": "Transformação do sorriso com lentes ultrafinas e facetas de porcelana"
+            "description": "Planejamento digital do sorriso com lentes ultrafinas e facetas de porcelana"
           }
         },
         {
@@ -142,7 +142,7 @@ const Index = () => {
     <>
       <SEOHead
         title="Dentista em Ipanema | Clínica Odontológica Dra. Carla Christoph"
-        description="Procurando dentista em Ipanema? A Dra. Carla Christoph oferece odontologia estética e reabilitação oral com atendimento personalizado. Agende sua consulta!"
+        description="Procurando dentista em Ipanema? A Dra. Carla Christoph oferece odontologia estética e reabilitação oral com mínimo de 1 hora por consulta. Agende sua avaliação!"
         keywords="dentista Ipanema, clínica odontológica Ipanema, odontologia estética Ipanema, implantes dentários Ipanema, lentes de contato dental, facetas de porcelana, clareamento dental, prótese dentária, Dra. Carla Christoph, dentista especialista Rio de Janeiro"
         canonicalUrl="https://dracarlachristoph.com/"
         structuredData={structuredData}

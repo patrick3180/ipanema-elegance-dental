@@ -27,7 +27,7 @@ export const InternalLinkingOptimizer: React.FC<InternalLinkingOptimizerProps> =
         { title: 'Blog Odontológico', url: '/blog', description: 'Dicas e informações sobre saúde bucal', category: 'blog' }
       ],
       'servicos': [
-        { title: 'Lentes de Contato Dental', url: '/lentes-de-contato-dental-e-facetas-de-porcelana', description: 'Transformação do sorriso com lentes', category: 'service' },
+        { title: 'Lentes de Contato Dental', url: '/lentes-de-contato-dental-e-facetas-de-porcelana', description: 'Estética dental com lentes de porcelana', category: 'service' },
         { title: 'Clareamento Dental', url: '/clareamento-dental', description: 'Deixe seu sorriso mais branco', category: 'service' },
         { title: 'Implantes Dentários', url: '/implantes-dentarios', description: 'Reposição de dentes perdidos', category: 'service' },
         { title: 'Nossos Diferenciais', url: '/diferenciais', description: 'O que nos torna únicos', category: 'info' }

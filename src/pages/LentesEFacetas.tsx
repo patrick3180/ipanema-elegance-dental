@@ -61,7 +61,7 @@ const LentesEFacetas = () => {
     },
     {
       "Criterio": "Investimento",
-      "Rótulo coluna A": "Premium",
+      "Rótulo coluna A": "Maior investimento",
       "Rótulo coluna B": "Acessível"
     },
     {
@@ -75,7 +75,7 @@ const LentesEFacetas = () => {
   const faqs = [
     {
       question: "Qual a diferença entre lente de contato dental e faceta de resina?",
-      answer: "Lentes de contato dental são lâminas ultrafinas de porcelana (0,2-0,5mm) que exigem preparo mínimo do dente, ideais para transformações duradouras com máxima naturalidade. Facetas de resina são restaurações mais espessas (0,7-1,5mm) feitas diretamente no consultório, com custo mais acessível. Lentes duram 15-20 anos e não mancham, enquanto facetas de resina duram 5-8 anos e podem necessitar polimento periódico."
+      answer: "Lentes de contato dental são lâminas ultrafinas de porcelana (0,2-0,5mm) que exigem preparo mínimo do dente, ideais para mudanças estéticas duradouras com máxima naturalidade. Facetas de resina são restaurações mais espessas (0,7-1,5mm) feitas diretamente no consultório, com custo mais acessível. Lentes duram 15-20 anos e não mancham, enquanto facetas de resina duram 5-8 anos e podem necessitar polimento periódico."
     },
     {
       question: "É necessário desgastar muito os meus dentes?",
@@ -87,11 +87,11 @@ const LentesEFacetas = () => {
     },
     {
       question: "O tratamento para melhorar a estética do sorriso dói?",
-      answer: "Não. Todos os procedimentos estéticos são realizados com o máximo de conforto, utilizando anestesia local sempre que necessário. A cimentação das lentes é um processo delicado que não causa dor. Pode haver sensibilidade leve nos primeiros dias, facilmente controlada com analgésicos simples se necessário. A prioridade é uma experiência tranquila e indolor."
+      answer: "Não. Todos os procedimentos estéticos são realizados com o máximo de conforto, utilizando anestesia local sempre que necessário. A cimentação das lentes é um processo delicado que não causa dor. Pode haver sensibilidade leve nos primeiros dias, facilmente controlada com analgésicos simples se necessário. A prioridade é uma experiência tranquila e confortável."
     },
     {
       question: "O que é o Test Drive do Sorriso (mock-up)?",
-      answer: "É uma técnica onde criamos seu novo sorriso com resina provisória não adesiva diretamente na sua boca, sem desgastar os dentes. Você pode se olhar no espelho, tirar fotos, vídeos, falar, sorrir. É uma experiência transformadora! Ajustamos juntos até ficar perfeito. Só depois de você aprovar 100% é que partimos para o tratamento definitivo. Este é um dos nossos maiores diferenciais."
+      answer: "É uma técnica onde criamos seu novo sorriso com resina provisória não adesiva diretamente na sua boca, sem desgastar os dentes. Você pode se olhar no espelho, tirar fotos, vídeos, falar, sorrir. É uma experiência única! Ajustamos juntos até ficar do seu jeito. Só depois de você aprovar 100% é que partimos para o tratamento definitivo. Este é um dos nossos maiores diferenciais."
     },
     {
       question: "As lentes podem parecer artificiais?",
@@ -107,7 +107,7 @@ const LentesEFacetas = () => {
     },
     {
       question: "Qual o investimento para lentes de contato dental e facetas em Ipanema?",
-      answer: "O investimento varia conforme o número de dentes tratados, complexidade do caso e tipo de material escolhido. Lentes de contato dental requerem maior investimento devido ao material cerâmico premium e durabilidade superior (15-20 anos). Facetas de resina oferecem excelente custo-benefício para quem busca resultado imediato com investimento mais acessível. Oferecemos planos de pagamento facilitados. O valor reflete toda a experiência, tecnologia avançada e acompanhamento personalizado. Consulte valores detalhados na avaliação."
+      answer: "O investimento varia conforme o número de dentes tratados, complexidade do caso e tipo de material escolhido. Lentes de contato dental requerem maior investimento devido ao material cerâmico importado e durabilidade superior (15-20 anos). Facetas de resina oferecem excelente custo-benefício para quem busca resultado imediato com investimento mais acessível. Oferecemos planos de pagamento facilitados. O valor reflete toda a experiência, tecnologia avançada e acompanhamento personalizado. Consulte valores detalhados na avaliação."
     },
     {
       question: "Lentes podem manchar com café, vinho ou cigarro?",
@@ -218,7 +218,7 @@ const LentesEFacetas = () => {
         <section className="py-8 bg-white">
           <div className="container-custom">
             <QuickAnswerBox
-              answer="Lentes de contato dental são lâminas ultrafinas de porcelana (0,2-0,5mm) aplicadas sobre os dentes com preparo mínimo, ideais para transformações estéticas duradouras. Facetas de resina são restaurações mais espessas (0,7-1,5mm) feitas diretamente no consultório. No consultório da Dra. Carla Christoph em Ipanema, oferecemos Test Drive do Sorriso (mock-up) para você visualizar o resultado antes. Lentes duram 15-20 anos e não mancham; facetas duram 5-8 anos. O tratamento leva de 2-3 consultas (15-20 dias) para lentes e 1-2 consultas para facetas."
+              answer="Lentes de contato dental são lâminas ultrafinas de porcelana (0,2-0,5mm) aplicadas sobre os dentes com preparo mínimo, ideais para mudanças estéticas duradouras. Facetas de resina são restaurações mais espessas (0,7-1,5mm) feitas diretamente no consultório. No consultório da Dra. Carla Christoph em Ipanema, oferecemos Test Drive do Sorriso (mock-up) para você visualizar o resultado antes. Lentes duram 15-20 anos e não mancham; facetas duram 5-8 anos. O tratamento leva de 2-3 consultas (15-20 dias) para lentes e 1-2 consultas para facetas."
             />
           </div>
         </section>
@@ -234,7 +234,7 @@ const LentesEFacetas = () => {
                 Por Que Escolher Lentes ou Facetas?
               </h2>
               <p className="text-lg text-dental-gray">
-                Transformação que vai além da estética
+                Resultados que vão além da estética
               </p>
             </div>
 
@@ -252,7 +252,7 @@ const LentesEFacetas = () => {
                 <ul className="space-y-2 text-dental-gray text-sm">
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
-                    <span>Transforme a forma como você se vê e é visto</span>
+                    <span>Mude a forma como você se vê e é visto</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
@@ -375,7 +375,7 @@ const LentesEFacetas = () => {
                       Lentes de Contato Dental em Cerâmica
                     </h3>
                     <p className="text-sm text-white/90 mb-4">
-                      As lentes de contato dental são lâminas ultra-finas de cerâmica (0,2-0,5mm) que se aderem à superfície frontal dos dentes. Indicadas para quem busca transformação significativa com máxima conservação da estrutura dental original.
+                      As lentes de contato dental são lâminas ultra-finas de cerâmica (0,2-0,5mm) que se aderem à superfície frontal dos dentes. Indicadas para quem busca mudança estética significativa com máxima conservação da estrutura dental original.
                     </p>
                   </div>
                 </div>
@@ -490,7 +490,7 @@ const LentesEFacetas = () => {
                       <AccordionContent>
                         <div className="bg-blue-50 p-4 rounded-lg">
                           <p className="text-dental-gray text-sm">
-                            Quem busca o máximo em estética e durabilidade, deseja preservar ao máximo os dentes naturais e está disposto a investir em um tratamento premium de longa duração.
+                            Quem busca o máximo em estética e durabilidade, deseja preservar ao máximo os dentes naturais e está disposto a investir em um tratamento de cerâmica de longa duração.
                           </p>
                         </div>
                       </AccordionContent>
@@ -814,7 +814,7 @@ const LentesEFacetas = () => {
                     </div>
                     <div>
                       <h3 className="text-2xl font-display font-bold mb-2">
-                        A Experiência Transformadora
+                        A Experiência do Test Drive
                       </h3>
                       <p className="text-white/90">
                         Você experimenta seu novo sorriso antes de qualquer procedimento definitivo!
@@ -1137,7 +1137,7 @@ const LentesEFacetas = () => {
                 <h3 className="text-2xl font-semibold text-dental-purple mb-3">
                   Nossa Abordagem Diferenciada
                 </h3>
-                <p className="text-dental-gray">Quatro pilares da excelência técnica</p>
+                <p className="text-dental-gray">Quatro pilares da precisão técnica</p>
               </div>
               
               <div className="space-y-5 max-w-4xl mx-auto">
@@ -1238,7 +1238,7 @@ const LentesEFacetas = () => {
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-transparent via-dental-gold to-transparent mx-auto mb-6"></div>
               <p className="text-lg md:text-xl text-dental-gray max-w-3xl mx-auto leading-relaxed">
-                Descubra se lentes ou facetas são a solução ideal para transformar o seu sorriso
+                Descubra se lentes ou facetas são a solução ideal para renovar o seu sorriso
               </p>
             </div>
 
@@ -1333,7 +1333,7 @@ const LentesEFacetas = () => {
               {
                 number: "2",
                 title: "Test Drive do Sorriso (Mock-up)",
-                description: "O GRANDE DIFERENCIAL! Criação do seu novo sorriso com resina provisória não adesiva. Você vê, sente e aprova o resultado ANTES do tratamento definitivo. Tire fotos, vídeos, sorria, fale naturalmente. Ajustamos juntos até alcançar a perfeição. Momento emocionante de visualizar sua transformação real.",
+                description: "O GRANDE DIFERENCIAL! Criação do seu novo sorriso com resina provisória não adesiva. Você vê, sente e aprova o resultado ANTES do tratamento definitivo. Tire fotos, vídeos, sorria, fale naturalmente. Ajustamos juntos até alcançar o resultado ideal. Momento emocionante de visualizar seu novo sorriso ao vivo.",
                 icon: <Star className="w-6 h-6" />
               },
               {
@@ -1364,7 +1364,7 @@ const LentesEFacetas = () => {
           <section className="py-12 bg-white">
             <div className="container-custom">
               <h2 className="heading-lg mb-8 text-center text-dental-purple">
-                Transformações Reais de Nossos Pacientes
+                Resultados Reais de Nossos Pacientes
               </h2>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">

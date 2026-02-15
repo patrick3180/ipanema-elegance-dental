@@ -12,8 +12,9 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           <div>
             <h3 className="text-xl font-display mb-4">Dra. Carla Christoph</h3>
+            <p className="text-white/60 text-sm mb-1">CRO-RJ 27.509</p>
             <p className="text-white/70 mb-4">
-              Odontologia estética de excelência em Ipanema, focada em resultados naturais e atendimento personalizado.
+              Odontologia estética em Ipanema com tempo para ouvir, explicar e planejar — mínimo de 1 hora por consulta.
             </p>
             <div className="flex gap-4">
               <a

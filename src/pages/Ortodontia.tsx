@@ -620,7 +620,7 @@ const Ortodontia = () => {
           <section className="py-12 bg-white">
             <div className="container-custom">
               <h2 className="heading-lg mb-8 text-center text-dental-purple">
-                Transformações Reais de Nossos Pacientes
+                Resultados Reais de Nossos Pacientes
               </h2>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">

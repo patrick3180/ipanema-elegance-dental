@@ -20,7 +20,7 @@ const LandingFooter = ({ doctorName, clinicName, phoneNumber }: LandingFooterPro
                 {clinicName}
               </h3>
               <p className="text-white/80 mb-4">
-                {doctorName} - CRO-RJ 12345
+                {doctorName} - CRO-RJ 27.509
               </p>
               <div className="flex items-center gap-2 text-white/70 mb-2">
                 <MapPin size={16} />
@@ -32,7 +32,7 @@ const LandingFooter = ({ doctorName, clinicName, phoneNumber }: LandingFooterPro
               </div>
               <div className="flex items-center gap-2 text-white/70">
                 <Clock size={16} />
-                <span className="text-sm">Seg-Sex: 8h-18h | Sáb: 8h-14h</span>
+                <span className="text-sm">Seg-Sex: 9h-19h | Sáb: 9h-14h</span>
               </div>
             </div>
             
@@ -45,7 +45,7 @@ const LandingFooter = ({ doctorName, clinicName, phoneNumber }: LandingFooterPro
                 <li>Lentes de Contato Dental</li>
                 <li>Implantes Dentários</li>
                 <li>Clareamento Dental</li>
-                <li>Harmonização Facial</li>
+                <li>Próteses Dentárias</li>
                 <li>Ortodontia Invisível</li>
               </ul>
             </div>
@@ -70,7 +70,7 @@ const LandingFooter = ({ doctorName, clinicName, phoneNumber }: LandingFooterPro
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-dental-gold rounded-full flex items-center justify-center">
-                    <span className="text-xs font-bold">15+</span>
+                    <span className="text-xs font-bold">20+</span>
                   </div>
                   <span className="text-white/80 text-sm">Anos de Experiência</span>
                 </div>
@@ -82,7 +82,7 @@ const LandingFooter = ({ doctorName, clinicName, phoneNumber }: LandingFooterPro
           <div className="border-t border-white/20 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-white/60 text-sm text-center md:text-left">
-                © 2024 {clinicName}. Todos os direitos reservados.
+                © {new Date().getFullYear()} {clinicName}. Todos os direitos reservados.
               </p>
               <div className="flex gap-6 text-white/60 text-sm">
                 <a href="#" className="hover:text-white transition-colors">

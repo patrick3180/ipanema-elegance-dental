@@ -27,14 +27,14 @@ const RestaureacoesEsteticas = () => {
     <PageLayout>
       <Helmet>
         <title>Restaurações Estéticas em Ipanema | Dra. Carla Christoph</title>
-        <meta name="description" content="Restauração dental estética em Ipanema com resina de alta qualidade. Tratamento de cáries, dentes quebrados e trincados. Resultado natural e duradouro. Dra. Carla Christoph CRO-RJ 27.509." />
+        <meta name="description" content="Restauração dental estética em Ipanema com resina nanoparticulada. Tratamento de cáries, dentes quebrados e trincados. Resultado natural e duradouro. Dra. Carla Christoph CRO-RJ 27.509." />
         <link rel="canonical" href="https://dracarlachristoph.com/restauracoes-esteticas" />
       </Helmet>
 
       <TreatmentHero
         title="Restaurações Estéticas em Ipanema"
         subtitle="Beleza e Função para seu Sorriso"
-        description="Recupere dentes comprometidos por cáries, fraturas ou trincas com materiais de excelência que imitam perfeitamente a cor e textura natural."
+        description="Recupere dentes comprometidos por cáries, fraturas ou trincas com resinas compostas de última geração que imitam perfeitamente a cor e textura natural."
         badges={["Resinas de Alta Performance", "Resultado Natural", "Técnica Conservadora"]}
         doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
         breadcrumbs={[{label: "Início", href: "/"}, {label: "Tratamentos", href: "/servicos"}, {label: "Restaurações Estéticas"}]}
@@ -44,7 +44,7 @@ const RestaureacoesEsteticas = () => {
       <section className="py-8 bg-white">
         <div className="container-custom">
           <QuickAnswerBox
-            answer="Restaurações estéticas são tratamentos que recuperam dentes comprometidos por cáries, fraturas ou trincas usando resinas ou cerâmicas de alta qualidade. Na clínica da Dra. Carla Christoph em Ipanema (CRO-RJ 27.509), utilizamos materiais de última geração com estratificação de cor que reproduzem perfeitamente a translucidez natural dos dentes. O tratamento é conservador, preservando ao máximo a estrutura dentária, e o resultado é indistinguível dos dentes naturais. Com 20+ anos de experiência, realizamos desde pequenas restaurações até reconstruções complexas em uma ou poucas sessões."
+            answer="Restaurações estéticas são tratamentos que recuperam dentes comprometidos por cáries, fraturas ou trincas usando resinas nanoparticuladas ou cerâmicas de última geração. Na clínica da Dra. Carla Christoph em Ipanema (CRO-RJ 27.509), utilizamos materiais de última geração com estratificação de cor que reproduzem perfeitamente a translucidez natural dos dentes. O tratamento é conservador, preservando ao máximo a estrutura dentária, e o resultado é indistinguível dos dentes naturais. Com 20+ anos de experiência, realizamos desde pequenas restaurações até reconstruções complexas em uma ou poucas sessões."
           />
         </div>
       </section>
@@ -140,7 +140,7 @@ const RestaureacoesEsteticas = () => {
                     <h3 className="text-xl font-display font-bold text-dental-purple">Atualização</h3>
                   </div>
                   <p className="text-dental-gray">Formação contínua em técnicas avançadas</p>
-                  <p className="text-sm text-dental-gold font-semibold mt-2">Estratificação e polimento premium</p>
+                  <p className="text-sm text-dental-gold font-semibold mt-2">Estratificação e polimento de alto acabamento</p>
                 </div>
 
                 {/* Card 4: Tecnologia */}
@@ -195,7 +195,7 @@ const RestaureacoesEsteticas = () => {
               {/* Conteúdo do card */}
               <div className="p-6">
                 <p className="text-dental-gray leading-relaxed mb-6">
-                  Realizada em uma única sessão, onde a resina de alta qualidade é aplicada e esculpida diretamente no dente comprometido.
+                  Realizada em uma única sessão, onde a resina nanoparticulada é aplicada e esculpida diretamente no dente comprometido.
                 </p>
 
                 {/* Indicações */}
@@ -480,7 +480,7 @@ const RestaureacoesEsteticas = () => {
               </div>
               <h3 className="text-xl font-display font-bold text-dental-purple mb-3">Durabilidade Comprovada</h3>
               <p className="text-dental-gray leading-relaxed">
-                Materiais de alta resistência que garantem longevidade ao tratamento.
+                Materiais de alta resistência que proporcionam longevidade ao tratamento.
               </p>
             </div>
           </div>
@@ -514,7 +514,7 @@ const RestaureacoesEsteticas = () => {
               {
                 number: 2,
                 title: "Anestesia e Conforto",
-                description: "Técnica de anestesia indolor • Isolamento absoluto do campo operatório • Ambiente tranquilo e acolhedor • Acompanhamento contínuo durante todo o procedimento",
+                description: "Técnica de anestesia confortável • Isolamento absoluto do campo operatório • Ambiente tranquilo e acolhedor • Acompanhamento contínuo durante todo o procedimento",
                 icon: <Syringe size={24} />,
                 duration: "Início do procedimento"
               },
@@ -582,7 +582,7 @@ const RestaureacoesEsteticas = () => {
                   <Award className="w-6 h-6 text-dental-gold" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-display font-bold text-dental-purple mb-2">Materiais Premium</h3>
+                  <h3 className="text-xl font-display font-bold text-dental-purple mb-2">Materiais Certificados</h3>
                   <p className="text-dental-gray leading-relaxed">
                     Resinas compostas com certificação internacional, nanotecnologia e ampla paleta de cores para mimetização perfeita.
                   </p>
@@ -627,7 +627,7 @@ const RestaureacoesEsteticas = () => {
                   <Gem className="w-6 h-6 text-pink-600" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-display font-bold text-dental-purple mb-2">Acabamento Premium</h3>
+                  <h3 className="text-xl font-display font-bold text-dental-purple mb-2">Acabamento de Alto Brilho</h3>
                   <p className="text-dental-gray leading-relaxed">
                     Polimento de alta performance que confere brilho vítreo e textura que imitam perfeitamente o esmalte dental natural.
                   </p>
@@ -760,7 +760,7 @@ const RestaureacoesEsteticas = () => {
                 O que é uma restauração dental estética?
               </AccordionTrigger>
               <AccordionContent className="text-dental-gray leading-relaxed pb-6">
-                É um procedimento que reconstrói dentes comprometidos por cáries, fraturas ou trincas utilizando materiais de alta qualidade (resina composta ou porcelana) que mimetizam perfeitamente a cor, brilho e textura dos dentes naturais. Diferente das antigas "obturações" escuras de amálgama, as restaurações estéticas são praticamente invisíveis.
+                É um procedimento que reconstrói dentes comprometidos por cáries, fraturas ou trincas utilizando materiais de última geração (resina composta ou porcelana) que mimetizam perfeitamente a cor, brilho e textura dos dentes naturais. Diferente das antigas "obturações" escuras de amálgama, as restaurações estéticas são praticamente invisíveis.
               </AccordionContent>
             </AccordionItem>
 
@@ -798,7 +798,7 @@ const RestaureacoesEsteticas = () => {
                 Fazer restauração dói?
               </AccordionTrigger>
               <AccordionContent className="text-dental-gray leading-relaxed pb-6">
-                Não. Utilizamos anestesia local de alta qualidade com técnica indolor. A maioria dos pacientes relata não sentir desconforto durante o procedimento. Após o término do efeito anestésico, pode haver sensibilidade leve por 24-48h, facilmente controlada com analgésicos comuns se necessário.
+                Não. Utilizamos anestesia local com técnica confortável. A maioria dos pacientes relata não sentir desconforto durante o procedimento. Após o término do efeito anestésico, pode haver sensibilidade leve por 24-48h, facilmente controlada com analgésicos comuns se necessário.
               </AccordionContent>
             </AccordionItem>
 
@@ -833,7 +833,7 @@ const RestaureacoesEsteticas = () => {
                 Restauração em resina mancha com o tempo?
               </AccordionTrigger>
               <AccordionContent className="text-dental-gray leading-relaxed pb-6">
-                As resinas modernas de alta qualidade apresentam excelente estabilidade de cor. Com os cuidados adequados (boa higiene, polimentos periódicos no dentista e moderação no consumo de alimentos muito pigmentados como café, vinho tinto e açaí), as restaurações mantêm sua cor original por muitos anos. Quando necessário, é possível fazer polimento profissional para renovar o brilho.
+                As resinas compostas modernas apresentam excelente estabilidade de cor. Com os cuidados adequados (boa higiene, polimentos periódicos no dentista e moderação no consumo de alimentos muito pigmentados como café, vinho tinto e açaí), as restaurações mantêm sua cor original por muitos anos. Quando necessário, é possível fazer polimento profissional para renovar o brilho.
               </AccordionContent>
             </AccordionItem>
 
@@ -864,7 +864,7 @@ const RestaureacoesEsteticas = () => {
           </div>
           
           <p className="text-xl md:text-2xl mb-8 leading-relaxed text-white/90">
-            Restaurações estéticas que unem precisão técnica, materiais de excelência e resultado natural.
+            Restaurações estéticas que unem precisão técnica, resinas compostas nanoparticuladas e resultado natural.
           </p>
 
           <button

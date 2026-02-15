@@ -86,7 +86,7 @@ const ProteseDentaria = () => {
         
         {/* Open Graph */}
         <meta property="og:title" content="Prótese Dentária em Ipanema | Reabilitação Oral" />
-        <meta property="og:description" content="Recupere função e estética do sorriso com prótese dentária de alta qualidade em Ipanema." />
+        <meta property="og:description" content="Recupere função e estética do sorriso com prótese dentária personalizada em Ipanema." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dracarlachristoph.com/protese-dentaria" />
         <meta property="og:image" content="https://dracarlachristoph.com/dra-carla-protese.jpg" />
@@ -121,7 +121,7 @@ const ProteseDentaria = () => {
         <TreatmentHero
           title="Prótese Dentária e Reabilitação Oral"
           subtitle="Especialidade da Dra. Carla Christoph"
-          description="Reconstrução completa do sorriso com planejamento individualizado e materiais de alta qualidade. Especialista com mais de 20 anos de experiência em casos de alta complexidade."
+          description="Reconstrução completa do sorriso com planejamento individualizado e cerâmicas E-max e zircônia. Especialista com mais de 20 anos de experiência em casos de alta complexidade."
           badges={["20+ anos de experiência", "CRO-RJ 27.509", "Casos Complexos"]}
           doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
           breadcrumbs={[
@@ -135,7 +135,7 @@ const ProteseDentaria = () => {
         <section className="py-8 bg-white">
           <div className="container-custom">
             <QuickAnswerBox
-              answer="Prótese dentária é uma estrutura artificial que substitui dentes perdidos, restaurando função mastigatória e estética. Na clínica da Dra. Carla Christoph em Ipanema, oferecemos coroas, pontes e próteses sobre implante em porcelana premium. Com mais de 20 anos de experiência (CRO-RJ 27.509) em reabilitação oral, trabalhamos com materiais de alta qualidade que duram de 15 a 20 anos. O tratamento varia conforme a complexidade, incluindo planejamento, moldagens digitais e próteses provisórias para você nunca ficar sem dentes."
+              answer="Prótese dentária é uma estrutura artificial que substitui dentes perdidos, restaurando função mastigatória e estética. Na clínica da Dra. Carla Christoph em Ipanema, oferecemos coroas, pontes e próteses sobre implante em porcelana de alta translucidez. Com mais de 20 anos de experiência (CRO-RJ 27.509) em reabilitação oral, trabalhamos com cerâmicas E-max e zircônia que duram de 15 a 20 anos. O tratamento varia conforme a complexidade, incluindo planejamento, moldagens digitais e próteses provisórias para você nunca ficar sem dentes."
             />
           </div>
         </section>
@@ -284,7 +284,7 @@ const ProteseDentaria = () => {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">
-                    Aspecto 100% natural
+                    Aspecto natural
                   </span>
                   <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">
                     Máxima Estabilidade
@@ -425,7 +425,7 @@ const ProteseDentaria = () => {
                 {
                   number: 5,
                   title: "Confecção Artesanal",
-                  description: "Nosso laboratório parceiro cria sua prótese com cerâmicas de alta qualidade, estratificando cores e texturas para um resultado indistinguível de dentes naturais.",
+                  description: "Nosso laboratório parceiro cria sua prótese com cerâmicas E-max e zircônia, estratificando cores e texturas para um resultado indistinguível de dentes naturais.",
                   icon: <Sparkles size={24} />,
                   duration: "1-2 semanas"
                 },
@@ -496,7 +496,7 @@ const ProteseDentaria = () => {
                   <ul className="space-y-2 text-sm text-dental-gray">
                     <li className="flex items-start gap-2">
                       <ArrowRight className="text-dental-gold mt-0.5" size={16} />
-                      <span>Cerâmicas de alta qualidade</span>
+                      <span>Cerâmicas E-max e zircônia</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <ArrowRight className="text-dental-gold mt-0.5" size={16} />

@@ -2,8 +2,6 @@
 // Gera o robots.txt dinamicamente
 
 export default function handler(req, res) {
-  console.log('Robots.txt API called!');
-  
   const robotsTxt = `User-agent: *
 Allow: /
 Disallow: /api/
