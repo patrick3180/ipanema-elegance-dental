@@ -359,6 +359,35 @@ const Ortodontia = () => {
           </div>
         </section>
 
+        {/* Seção Empática - Sprint 6 #3 */}
+        <section className="py-12 bg-dental-beige/30">
+          <div className="max-w-4xl mx-auto px-4">
+            <h2 className="text-2xl md:text-3xl font-display font-bold text-dental-purple mb-6 text-center">
+              Você acha que "já passou da idade" para alinhar os dentes?
+            </h2>
+            <div className="space-y-4">
+              <div className="bg-white p-6 rounded-lg shadow-soft">
+                <p className="text-dental-gray">
+                  <strong className="text-dental-purple">Profissionais de Zona Sul</strong> que precisam de Invisalign® discreto para não atrapalhar reuniões e apresentações.
+                </p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-soft">
+                <p className="text-dental-gray">
+                  <strong className="text-dental-purple">Adultos que sentem vergonha de dentes tortos</strong> em contextos profissionais e sociais, mas evitam aparelho metálico.
+                </p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-soft">
+                <p className="text-dental-gray">
+                  <strong className="text-dental-purple">Não há idade limite</strong> para ortodontia. Temos pacientes acima de 60 anos com resultados excelentes.
+                </p>
+              </div>
+            </div>
+            <p className="text-center text-dental-gray mt-6">
+              Ortodontia adulta é uma das especialidades que mais cresce. Alinhar seus dentes melhora estética, mastigação e saúde bucal.
+            </p>
+          </div>
+        </section>
+
         {/* Tabela Comparativa */}
         <section className="py-8 bg-gray-50">
           <div className="container-custom">

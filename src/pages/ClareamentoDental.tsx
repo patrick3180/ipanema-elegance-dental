@@ -122,6 +122,23 @@ const ClareamentoDental = () => {
           </div>
         </section>
 
+        {/* Seção Empática - Sprint 6 #2 */}
+        <section className="py-12 bg-dental-beige/30">
+          <div className="max-w-4xl mx-auto px-4">
+            <h2 className="text-2xl md:text-3xl font-display font-bold text-dental-purple mb-6 text-center">
+              Seu sorriso pede um clareamento? Descubra a modalidade certa para o seu caso
+            </h2>
+            <div className="bg-white p-8 rounded-lg shadow-soft">
+              <p className="text-dental-gray leading-relaxed mb-4">
+                Você evita sorrir em fotos porque sente que seus dentes estão amarelados? Já tentou pastas "clareadoras" de farmácia e não viu resultado?
+              </p>
+              <p className="text-dental-gray leading-relaxed">
+                O clareamento dental profissional usa concentrações terapêuticas sob supervisão, garantindo resultado real e seguro. Vamos encontrar a técnica ideal para você — sem sensibilidade desnecessária e com acompanhamento em cada etapa.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <SectionDivider variant="with-icon" icon={<Sparkles className="w-5 h-5" />} />
 
         {/* Três Cards de Modalidades com Accordion */}

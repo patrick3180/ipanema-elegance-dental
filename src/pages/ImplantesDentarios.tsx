@@ -175,6 +175,35 @@ const ImplantesDentarios = () => {
           </div>
         </section>
 
+        {/* Se\u00e7\u00e3o Emp\u00e1tica - Sprint 6 #1 */}
+        <section className="py-12 bg-dental-beige/30">
+          <div className="max-w-4xl mx-auto px-4">
+            <h2 className="text-2xl md:text-3xl font-display font-bold text-dental-purple mb-6 text-center">
+              Você se identifica com alguma dessas situações?
+            </h2>
+            <div className="space-y-4">
+              <div className="bg-white p-6 rounded-lg shadow-soft">
+                <p className="text-dental-gray">
+                  <strong className="text-dental-purple">Você evita certos alimentos duros</strong> por medo de machucar a gengiva ou de que a prótese móvel saia do lugar?
+                </p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-soft">
+                <p className="text-dental-gray">
+                  <strong className="text-dental-purple">Sente insegurança com prótese móvel que solta ao falar</strong> ou que precisa de adesivo diariamente?
+                </p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-soft">
+                <p className="text-dental-gray">
+                  <strong className="text-dental-purple">Percebe perda óssea progressiva</strong> e teme que a situação piore com o tempo, dificultando o tratamento no futuro?
+                </p>
+              </div>
+            </div>
+            <p className="text-center text-dental-gray mt-6">
+              Implantes dentários devolvem segurança para comer, falar e sorrir sem preocupação. Vamos avaliar a melhor solução para o seu caso.
+            </p>
+          </div>
+        </section>
+
         <SectionDivider variant="with-icon" icon={<Cpu className="w-5 h-5" />} />
 
         {/* 4 Cards de Modalidades */}
@@ -394,6 +423,22 @@ const ImplantesDentarios = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* CTA Intermediário - Sprint 6 #5 */}
+        <section className="py-8 bg-white">
+          <div className="max-w-3xl mx-auto px-4 text-center">
+            <p className="text-xl text-dental-gray mb-6">
+              Quer saber qual modalidade se encaixa no seu caso?
+            </p>
+            <button
+              onClick={handleWhatsAppClick}
+              className="inline-flex items-center justify-center px-8 py-4 bg-dental-gold hover:bg-dental-gold/90 text-white font-semibold rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
+            >
+              Agendar Avaliação
+              <ArrowRight size={20} className="ml-2" />
+            </button>
           </div>
         </section>
 
