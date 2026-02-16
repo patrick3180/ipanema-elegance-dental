@@ -227,11 +227,36 @@
 
 ## PILAR 10 — BLOG & CONTENT STRATEGY
 
-**Score:** [AGUARDANDO GERAÇÃO]
+**Score:** 64/100
 **Relatório:** [PILAR-10-BLOG-CONTENT-STRATEGY.md](analysis/PILAR-10-BLOG-CONTENT-STRATEGY.md)
-**Data:** [AGUARDANDO]
+**Data:** 16 Fev 2026
 
-**Status:** 🔄 Agente ainda gerando relatório
+### Recomendações
+
+| # | Recomendação | Status | Resolvido Em | Detalhes |
+|---|--------------|--------|--------------|----------|
+| 10.1 | Links internos contextuais para service pages | 🔴 PENDENTE | -- | Top 20 posts: +5-15% conversão |
+| 10.2 | Investigar post Probióticos (28.57% conversão outlier) | 🔴 PENDENTE | -- | Quick Win: 30 min |
+| 10.3 | Criar ServiceSuggestionBox component | 🔴 PENDENTE | -- | Inline CTA para SPs |
+| 10.4 | BreadcrumbList schema em BlogPost.tsx | 🔴 PENDENTE | -- | Quick Win: 30 min |
+| 10.5 | Criar 7 posts críticos alinhados com Google Ads | 🔴 PENDENTE | -- | Canal, Gengiva, Lentes vs Resina |
+| 10.6 | Auditar/reescrever posts curiosidade (Egito, Roma) | 🔴 PENDENTE | -- | Não conectam com serviços |
+| 10.7 | Tracking GA4: scroll_depth, cta_view, internal_link_click | 🔴 PENDENTE | -- | Quick Win: 30 min |
+| 10.8 | Sticky CTA mobile (FloatingWhatsApp para blog) | 🔴 PENDENTE | -- | +3-5% conversão mobile |
+| 10.9 | BlogPostRelated: adicionar 1 service page | 🔴 PENDENTE | -- | Quick Win: 30 min |
+| 10.10 | Content upgrade: PDFs em troca de email | 🔴 PENDENTE | -- | Lead generation |
+
+### Insights Críticos
+
+| # | Insight | Status | Detalhes |
+|---|---------|--------|----------|
+| 10.A | Blog NÃO converte: 460 users/tri, ~0% conversão | ℹ️ INFO | Exceto Probióticos: 28.57% |
+| 10.B | Top post: Jejum Intermitente (542s engagement) | ℹ️ INFO | Mas não linkado a serviço |
+| 10.C | ZERO links internos no corpo dos posts | ℹ️ INFO | Crítico para conversão |
+| 10.D | 40% posts desalinhados (Egito, Roma, Jejum) | ℹ️ INFO | Não conectam com serviços |
+| 10.E | 7 posts críticos faltando (Canal dói?, Gengiva sangra?) | ℹ️ INFO | Gaps de conteúdo |
+
+**Progresso:** 0/10 resolvidos (0%) — 5 Quick Wins disponíveis (< 1h cada)
 
 ---
 
@@ -241,11 +266,13 @@
 
 | Status | Quantidade | % |
 |--------|------------|---|
-| ✅ RESOLVIDO | 25 | ~60% |
-| 🔴 PENDENTE | 13 | ~30% |
-| ℹ️ INFO | 4 | ~10% |
+| ✅ RESOLVIDO | 26 | 50% |
+| 🔴 PENDENTE | 33 | 63% |
+| ℹ️ INFO | 9 | -- |
 | 🟡 PARCIAL | 0 | 0% |
 | ⏸️ PAUSADO | 1 (#19 do Sprint 6) | -- |
+
+**Total de recomendações:** 52 (10 pilares completos)
 
 ### Por Sprint
 
@@ -255,20 +282,24 @@
 | **Sprint 4 (SEO Quick Wins)** | 6 (#1.1, #2.2, #2.6, #3.5, etc.) |
 | **Sprint 5 (AI Search)** | 11 (#3.1-3.4, #1.4, #2.1, etc.) |
 | **Sprint 6 (Psychology)** | 0 (planejado: 16 ações) |
+| **Sprint 7 (Design & UX)** | 0 (12 pendentes) |
+| **Sprint 10 (Blog)** | 0 (10 pendentes + 5 quick wins) |
 
-**Total resolvido:** ~25 recomendações (60%)
-**Sprint 6 vai resolver:** +16 adicionais → 41/42 (98%)
+**Total resolvido:** 26/52 recomendações (50%)
+**Sprint 6 vai resolver:** +16 adicionais → 42/52 (81%)
 
 ---
 
 ## PRÓXIMOS PASSOS
 
-1. ✅ Revisar Pilares 7 e 9 (recém-gerados)
-2. ⏳ Aguardar Pilar 10
-3. 🔄 Iniciar Sprint 6 (Fase 2: Homepage)
-4. 📝 Atualizar este documento após cada fase do Sprint 6
+1. ✅ Revisar Pilares 7, 9, 10 (todos completos)
+2. 🔄 Decidir próximo Sprint:
+   - **Opção A:** Sprint 6 (Psychology) — 16 ações planejadas
+   - **Opção B:** Sprint 7 (Design & UX) — 12 quick wins
+   - **Opção C:** Sprint 10 (Blog Quick Wins) — 5 ações < 1h cada
+3. 📝 Atualizar este documento após cada sprint
 
 ---
 
-**Última atualização:** 16/02/2026 16:00
-**Status:** 🔄 EM CONSTRUÇÃO (Pilares 7, 9, 10 pendentes de revisão)
+**Última atualização:** 16/02/2026 17:15
+**Status:** ✅ COMPLETO — Todos os 10 pilares analisados e documentados
