@@ -140,11 +140,33 @@
 
 ## PILAR 7 — DESIGN & UX
 
-**Score:** [AGUARDANDO REVISÃO]
+**Score:** 68/100
 **Relatório:** [PILAR-7-DESIGN-UX-AUDIT.md](analysis/PILAR-7-DESIGN-UX-AUDIT.md)
 **Data:** 16 Fev 2026 (NOVO)
 
-**Status:** 🔄 Relatório recém-gerado, revisão pendente
+### Top 5 Problemas Críticos
+
+| # | Problema | Status | Sprint | Detalhes |
+|---|----------|--------|--------|----------|
+| 7.1 | Service pages: 1 CTA (hero+final) vs LPs: 4 CTAs | 🔴 PENDENTE | Sprint 6 | Ações #5-8 do Sprint 6 |
+| 7.2 | Homepage hero genérico (sem dor/aspiração) | 🔴 PENDENTE | Sprint 6 | Ações #13-14 do Sprint 6 |
+| 7.3 | ContactSection: "NÃO TRABALHAMOS COM PLANOS" vermelho negrito | 🔴 PENDENTE | -- | Anti-padrão de conversão |
+| 7.4 | WhatsApp mobile: apenas ícone (vs desktop com texto) | 🔴 PENDENTE | -- | iOS converte 2.4x, precisa destaque |
+| 7.5 | Ortodontia: layout custom quebra consistência | 🔴 PENDENTE | -- | Não usa TreatmentHero padrão |
+
+### Top 10 Quick Wins
+
+| # | Recomendação | Status | Sprint | Impacto |
+|---|--------------|--------|--------|---------|
+| 7.6 | CTA Verde WhatsApp acessível em LPs | 🔴 PENDENTE | -- | #25D366 falha WCAG AA (2.8:1) |
+| 7.7 | Footer links quebrados (anchors #inicio, #sobre) | 🔴 PENDENTE | -- | UX básica |
+| 7.8 | Alt text genérico em imagens de serviços | 🔴 PENDENTE | -- | SEO + acessibilidade |
+| 7.9 | Faux bold (fonts 600/700 não carregados) | 🔴 PENDENTE | -- | Qualidade tipográfica |
+| 7.10 | Indicar página ativa no header nav | 🔴 PENDENTE | -- | Wayfinding |
+| 7.11 | WhatsApp no menu mobile | 🔴 PENDENTE | -- | Conversão mobile |
+| 7.12 | Google Rating badge invisível mobile | 🔴 PENDENTE | -- | Trust signal mobile |
+
+**Progresso:** 0/12 resolvidos (0%) — Overlap com Sprint 6: #7.1, #7.2
 
 ---
 
@@ -174,11 +196,32 @@
 
 ## PILAR 9 — LANDING PAGES
 
-**Score:** [AGUARDANDO REVISÃO]
+**Score:** 76/100 (média das 14 LPs)
 **Relatório:** [PILAR-9-LANDING-PAGES-AUDIT.md](analysis/PILAR-9-LANDING-PAGES-AUDIT.md)
 **Data:** 16 Fev 2026 (NOVO)
 
-**Status:** 🔄 Relatório recém-gerado, revisão pendente
+### Ranking das 14 LPs (Melhor → Pior)
+
+| Rank | LP | Score | Status | Nota |
+|------|-----|-------|--------|------|
+| 1 | Limpeza Dental | 90/100 | ✅ MODELO | Estrutura completa, urgência ética |
+| 2 | Urgências (3 LPs) | 88/100 | ✅ MODELO | Campanha mais eficiente (R$ 23/conv) |
+| 3 | Consulta Inicial | 85/100 | ✅ MODELO | Match perfeito intent → headline |
+| 4 | Implantes | 82/100 | 🟡 BOM | -- |
+| 5-8 | Ortodontia, Clareamento, Prótese, Lentes | 78-80/100 | 🟡 BOM | -- |
+| 9-14 | Facetas Resina, Estética, Gengiva, Profilaxia | 65-72/100 | 🔴 OPORTUNIDADE | Gaps estruturais |
+
+### Principais Achados
+
+| # | Achado | Status | Ação |
+|---|--------|--------|------|
+| 9.1 | LP /lp/facetas-resina-ipanema 404 (Google Ads!) | ✅ RESOLVIDO | 16 Fev, commit 8a6daac |
+| 9.2 | Apenas 4/14 LPs têm urgência ética | 🔴 PENDENTE | Adicionar às 10 restantes |
+| 9.3 | Correlação: urgência ética = top 4 ranking | ℹ️ INFO | Replicar padrão |
+| 9.4 | LPs modelo: Limpeza, Urgências, Consulta | ℹ️ INFO | Template ideal identificado |
+| 9.5 | Top 5 LPs com maior oportunidade | ℹ️ INFO | Priorizar: Facetas Resina, Estética, Gengiva, Profilaxia, Lentes Porcelana |
+
+**Progresso:** 1/14 LPs com gaps críticos (facetas-resina 404 resolvida)
 
 ---
 
