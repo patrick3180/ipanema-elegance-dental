@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build && node scripts/generate-static-meta.cjs",
+  "buildCommand": "npm run build && node scripts/generate-static-meta.cjs && node scripts/generate-blog-html.js",
   "outputDirectory": "dist",
   "framework": "vite",
   "regions": ["gru1"],

@@ -31,11 +31,28 @@ const SPACE_ID = process.env.VITE_CONTENTFUL_SPACE_ID;
 const ACCESS_TOKEN = process.env.VITE_CONTENTFUL_ACCESS_TOKEN;
 const BASE_URL = 'https://dracarlachristoph.com';
 
+// Helper to extract plain text from Contentful rich text
+function extractPlainTextFromRichText(richText) {
+  if (!richText || typeof richText === 'string') return richText || '';
+  if (!richText.content || !Array.isArray(richText.content)) return '';
+
+  function extractTextFromNode(node) {
+    if (!node) return '';
+    if (node.nodeType === 'text') return node.value || '';
+    if (node.content && Array.isArray(node.content)) {
+      return node.content.map(extractTextFromNode).join(' ');
+    }
+    return '';
+  }
+
+  return richText.content.map(extractTextFromNode).join('\n\n').trim();
+}
+
 // HTML template for blog posts
 const generateBlogPostHTML = (post) => {
   const title = post.fields?.titulo || post.fields?.title || 'Blog Post';
   const excerpt = post.fields?.resumo || post.fields?.excerpt || '';
-  const content = post.fields?.conteudo || post.fields?.content || '';
+  const content = extractPlainTextFromRichText(post.fields?.conteudo || post.fields?.content) || '';
   const imageUrl = post.fields?.imagemPrincipal?.fields?.file?.url || '';
   const author = post.fields?.autor || 'Dra. Carla Christoph';
   const date = post.sys?.createdAt || new Date().toISOString();
@@ -90,7 +107,29 @@ const generateBlogPostHTML = (post) => {
     "dateModified": "${date}",
     "author": {
       "@type": "Person",
-      "name": "${author}"
+      "name": "${author}",
+      "jobTitle": "Dentista Especialista em Prótese Dental",
+      "hasCredential": {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "CRO-RJ",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "Conselho Regional de Odontologia do Rio de Janeiro"
+        },
+        "identifier": "27.509"
+      },
+      "worksFor": {
+        "@type": "Dentist",
+        "name": "Clínica Dra. Carla Christoph",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
+          "addressLocality": "Ipanema",
+          "addressRegion": "RJ",
+          "postalCode": "22410-002",
+          "addressCountry": "BR"
+        }
+      }
     },
     "publisher": {
       "@type": "Organization",
@@ -108,10 +147,6 @@ const generateBlogPostHTML = (post) => {
     "inLanguage": "pt-BR"
   }
   </script>
-
-  <!-- Redirect to React app -->
-  <meta http-equiv="refresh" content="0;url=${BASE_URL}/blog/${slug}" />
-  <script>window.location.href = "${BASE_URL}/blog/${slug}";</script>
 
   <style>
     body {
@@ -174,12 +209,12 @@ const generateBlogPostHTML = (post) => {
       ${imageUrl ? `<img src="https:${imageUrl}" alt="${title}" />` : ''}
       <div class="excerpt">${excerpt}</div>
       <div class="content">
-        ${content.substring(0, 500)}...
+        ${content.substring(0, 1500)}${content.length > 1500 ? '...' : ''}
       </div>
     </article>
-    <div class="loading">
-      <p>Carregando versão completa do artigo...</p>
-      <p><a href="${BASE_URL}/blog/${slug}">Clique aqui se não for redirecionado automaticamente</a></p>
+    <div style="margin-top: 32px; padding: 24px; background: #f9f9f9; border-radius: 8px; text-align: center;">
+      <p style="margin: 0 0 16px 0; font-size: 1.1em;">Leia o artigo completo com imagens e recursos interativos:</p>
+      <a href="${BASE_URL}/blog/${slug}" style="display: inline-block; padding: 12px 24px; background: #553c6b; color: white; text-decoration: none; border-radius: 6px; font-weight: 600;">Ver artigo completo no site</a>
     </div>
   </div>
 </body>
