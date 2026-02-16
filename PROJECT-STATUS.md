@@ -1,8 +1,8 @@
 # PROJECT STATUS — Dra. Carla Christoph (Ipanema Elegance Dental)
 
-**Última atualização:** 15 de Fevereiro de 2026 (Sprint 4 COMPLETO — SEO Quick Wins)
-**Status Geral:** 🚀 SPRINT 4 COMPLETO — Sprint 5 próximo
-**Fase Atual:** Implementação (Sprint 4 done → Sprint 5 próximo)
+**Última atualização:** 16 de Fevereiro de 2026 (Sprint 5 COMPLETO — AI Search Optimization)
+**Status Geral:** 🚀 SPRINT 5 COMPLETO — Sprint 6 próximo
+**Fase Atual:** Implementação (Sprint 5 done → Sprint 6 próximo)
 
 ---
 
@@ -126,8 +126,16 @@ Para acompanhamento detalhado pilar por pilar: **[STATUS-REVISAO-2026.md](docs/S
   - /sobre e /contato adicionados ao sitemap.xml
   - SEODashboard com noindex,nofollow
   - Build OK + Playwright smoke tests: 20/20 passed
+- [x] **Sprint 5: AI Search Optimization — COMPLETO** (4 files, 11/11 tests, 16 Fev)
+  - generate-static-meta.cjs expandido (202→950 linhas) com 88 FAQs extraídas manualmente
+  - 28 páginas estáticas (10 service + 5 info + 13 landing) com schemas JSON-LD + fallback HTML
+  - generate-blog-html.js melhorado (author schema enriquecido, redirects removidos)
+  - 65 posts de blog pré-renderizados com BlogPosting + enriched author schema
+  - vercel.json integra ambos scripts no buildCommand
+  - tests/sprint5_smoke.py criado (11 testes: schemas, fallback, noindex, semântica)
+  - Build OK + Playwright smoke tests: 11/11 passed
+  - **Score estimado: 52 → 78/100** (visibilidade 100% para AI bots)
 - [ ] Pilares 7, 9, 10 — Pendentes (discovery em paralelo com sprints)
-- [ ] Sprint 5: AI Search Pre-rendering (~2-3 dias — MAIOR ROI)
 - [ ] Sprint 6: Psychology & Conversao (~1-2 dias)
 - [ ] Sprint 7: Internal Linking (~1 dia)
 
@@ -171,8 +179,9 @@ Para acompanhamento detalhado pilar por pilar: **[STATUS-REVISAO-2026.md](docs/S
 4. ~~**Pilares 2, 3, 4:**~~ ✅ FEITO (3 relatórios completos)
 5. ~~**SPRINT 3: Brand Compliance**~~ ✅ FEITO (62 fixes, 15 arquivos, build+test OK)
 6. ~~**SPRINT 4: SEO Quick Wins**~~ ✅ FEITO (schemas + sitemap + og:image + noindex, 20/20 tests)
-7. **SPRINT 5: AI Search Pre-rendering** — Expandir generate-static-meta.cjs (~2-3 dias)
-8. **Pilares 7, 9, 10:** Discovery em paralelo com sprints
+7. ~~**SPRINT 5: AI Search Optimization**~~ ✅ FEITO (pre-rendering completo, 28 páginas + 65 posts, 11/11 tests)
+8. **SPRINT 6: Psychology & Conversão** — Replicar modelo Saúde Gengiva (~1-2 dias)
+9. **Pilares 7, 9, 10:** Discovery em paralelo com sprints
 
 ### Milestone:
 - **20 Fev:** Friday sync — review Sprints 3-4 implementados + 7/10 pilares completos
@@ -202,9 +211,10 @@ Para acompanhamento detalhado pilar por pilar: **[STATUS-REVISAO-2026.md](docs/S
 14. ~~**ProteseDentaria sem FAQPage schema**~~ ✅ CORRIGIDO — 12 FAQs + brand name no title
 15. ~~**og:image relativas em 3 LPs**~~ ✅ CORRIGIDO — ConsultaInicial, Ortodontia, Profilaxia
 
-### Pendentes — AI Search (Sprint 5 — MAIOR ROI)
-14. **SPA INVISIVEL para AI bots** — Score 52/100, bots veem `<div id="root"></div>` vazio
-15. **Blog pre-rendering NAO esta no build** — generate-blog-html.js existe mas nao roda
+### Corrigidos (Sprint 5 — AI Search Optimization, 16 Fev)
+16. ~~**SPA INVISIVEL para AI bots**~~ ✅ CORRIGIDO — 28 páginas com fallback HTML semântico + schemas
+17. ~~**Blog pre-rendering NAO esta no build**~~ ✅ CORRIGIDO — Integrado no vercel.json buildCommand
+18. ~~**65 blog posts invisíveis para AI**~~ ✅ CORRIGIDO — BlogPosting schema + enriched author + sem redirects
 
 ### Pendentes — Psychology (Sprint 6)
 16. **Service pages: 1 CTA no final** vs 3-4 nas LPs (gap de conversao)
