@@ -85,7 +85,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.9",
-      "reviewCount": "127",
+      "reviewCount": "23",
       "bestRating": "5",
       "worstRating": "1"
     },
