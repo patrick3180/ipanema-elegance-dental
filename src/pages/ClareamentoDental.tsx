@@ -7,7 +7,7 @@ import ProcessTimeline from "@/components/treatment/ProcessTimeline";
 import ComparisonTable from "@/components/blog/ComparisonTable";
 import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Sparkles, Award, HelpCircle, Search, FileText, Scan, Zap, Heart, CheckCircle, ArrowRight } from "lucide-react";
+import { Sparkles, Award, HelpCircle, Search, FileText, Scan, Zap, Heart, CheckCircle, ArrowRight, Droplet, AlertCircle } from "lucide-react";
 
 const ClareamentoDental = () => {
   const handleWhatsAppClick = (message: string) => {
@@ -123,19 +123,43 @@ const ClareamentoDental = () => {
         </section>
 
         {/* Seção Empática - Sprint 6 #2 */}
-        <section className="py-12 bg-dental-beige/30">
+        <section className="py-16 bg-gradient-to-br from-dental-beige/20 via-white to-dental-beige/10">
           <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-display font-bold text-dental-purple mb-6 text-center">
-              Seu sorriso pede um clareamento? Descubra a modalidade certa para o seu caso
+            <h2 className="text-2xl md:text-3xl font-display font-bold text-dental-purple mb-10 text-center">
+              Seu sorriso pede um clareamento?
             </h2>
-            <div className="bg-white p-8 rounded-lg shadow-soft">
-              <p className="text-dental-gray leading-relaxed mb-4">
-                Você evita sorrir em fotos porque sente que seus dentes estão amarelados? Já tentou pastas "clareadoras" de farmácia e não viu resultado?
-              </p>
-              <p className="text-dental-gray leading-relaxed">
-                O clareamento dental profissional usa concentrações terapêuticas sob supervisão, garantindo resultado real e seguro. Vamos encontrar a técnica ideal para você — sem sensibilidade desnecessária e com acompanhamento em cada etapa.
-              </p>
+            <div className="space-y-5">
+              <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-purple shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center group-hover:bg-dental-purple/20 transition-colors">
+                  <Sparkles className="w-6 h-6 text-dental-purple" />
+                </div>
+                <div>
+                  <strong className="block text-dental-purple font-semibold mb-1">Você evita sorrir em fotos</strong>
+                  <span className="text-dental-gray leading-relaxed">porque sente que seus dentes estão amarelados ou mais escuros do que gostaria?</span>
+                </div>
+              </div>
+              <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-gold shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-gold/10 flex items-center justify-center group-hover:bg-dental-gold/20 transition-colors">
+                  <Droplet className="w-6 h-6 text-dental-gold" />
+                </div>
+                <div>
+                  <strong className="block text-dental-purple font-semibold mb-1">Já tentou pastas "clareadoras" de farmácia</strong>
+                  <span className="text-dental-gray leading-relaxed">e não viu resultado ou sentiu sensibilidade sem melhora real?</span>
+                </div>
+              </div>
+              <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-purple-soft shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center group-hover:bg-dental-purple/20 transition-colors">
+                  <AlertCircle className="w-6 h-6 text-dental-purple-soft" />
+                </div>
+                <div>
+                  <strong className="block text-dental-purple font-semibold mb-1">Quer resultado real e seguro</strong>
+                  <span className="text-dental-gray leading-relaxed">com acompanhamento profissional e sem arriscar a saúde do seu esmalte?</span>
+                </div>
+              </div>
             </div>
+            <p className="text-center text-dental-gray mt-10 text-lg leading-relaxed">
+              O clareamento profissional usa concentrações terapêuticas sob supervisão.<br className="hidden md:block" /> Vamos encontrar a técnica ideal para você — com acompanhamento em cada etapa.
+            </p>
           </div>
         </section>
 

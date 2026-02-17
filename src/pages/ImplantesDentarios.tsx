@@ -7,7 +7,7 @@ import ProcessTimeline from "@/components/treatment/ProcessTimeline";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
   Cpu, Scan, Shield, Heart, Activity, Clock, CheckCircle,
-  Award, HelpCircle, Smile, Sparkles, ArrowRight
+  Award, HelpCircle, Smile, Sparkles, ArrowRight, AlertCircle
 } from "lucide-react";
 import { sendGCLIDToWebhook } from "@/utils/gclid";
 import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
@@ -176,35 +176,59 @@ const ImplantesDentarios = () => {
         </section>
 
         {/* Se\u00e7\u00e3o Emp\u00e1tica - Sprint 6 #1 */}
-        <section className="py-12 bg-dental-beige/30">
+        <section className="py-16 bg-gradient-to-br from-dental-beige/20 via-white to-dental-beige/10">
           <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-display font-bold text-dental-purple mb-6 text-center">
+            <h2 className="text-2xl md:text-3xl font-display font-bold text-dental-purple mb-10 text-center">
               Você se identifica com alguma dessas situações?
             </h2>
-            <div className="space-y-4">
-              <div className="bg-white p-6 rounded-lg shadow-soft">
-                <p className="text-dental-gray">
-                  <strong className="text-dental-purple">Você evita certos alimentos duros</strong> por medo de machucar a gengiva ou de que a prótese móvel saia do lugar?
-                </p>
+            <div className="space-y-5">
+              <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-purple shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center group-hover:bg-dental-purple/20 transition-colors">
+                  <Shield className="w-6 h-6 text-dental-purple" />
+                </div>
+                <div>
+                  <strong className="block text-dental-purple font-semibold mb-1">Você evita certos alimentos duros</strong>
+                  <span className="text-dental-gray leading-relaxed">por medo de machucar a gengiva ou de que a prótese móvel saia do lugar?</span>
+                </div>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-soft">
-                <p className="text-dental-gray">
-                  <strong className="text-dental-purple">Sente insegurança com prótese móvel que solta ao falar</strong> ou que precisa de adesivo diariamente?
-                </p>
+              <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-gold shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-gold/10 flex items-center justify-center group-hover:bg-dental-gold/20 transition-colors">
+                  <AlertCircle className="w-6 h-6 text-dental-gold" />
+                </div>
+                <div>
+                  <strong className="block text-dental-purple font-semibold mb-1">Sente insegurança com prótese móvel que solta ao falar</strong>
+                  <span className="text-dental-gray leading-relaxed">ou que precisa de adesivo diariamente?</span>
+                </div>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-soft">
-                <p className="text-dental-gray">
-                  <strong className="text-dental-purple">Percebe perda óssea progressiva</strong> e teme que a situação piore com o tempo, dificultando o tratamento no futuro?
-                </p>
+              <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-purple-soft shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center group-hover:bg-dental-purple/20 transition-colors">
+                  <Activity className="w-6 h-6 text-dental-purple-soft" />
+                </div>
+                <div>
+                  <strong className="block text-dental-purple font-semibold mb-1">Percebe perda óssea progressiva</strong>
+                  <span className="text-dental-gray leading-relaxed">e teme que a situação piore com o tempo, dificultando o tratamento no futuro?</span>
+                </div>
               </div>
             </div>
-            <p className="text-center text-dental-gray mt-6">
-              Implantes dentários devolvem segurança para comer, falar e sorrir sem preocupação. Vamos avaliar a melhor solução para o seu caso.
+
+            <p className="text-center text-dental-gray mt-10 text-lg leading-relaxed">
+              Implantes dentários devolvem segurança para comer, falar e sorrir sem preocupação.<br className="hidden md:block" /> Vamos avaliar a melhor solução para o seu caso.
             </p>
-            <div className="max-w-2xl mx-auto mt-6 bg-dental-beige/30 p-6 rounded-lg border-l-4 border-dental-gold">
-              <p className="text-dental-gray text-center">
-                <strong className="text-dental-purple">Importante:</strong> A perda óssea acelera após extração — quanto mais tempo sem dente, mais osso é perdido, podendo exigir enxerto. Tratar cedo preserva sua estrutura óssea natural.
-              </p>
+
+            <div className="max-w-2xl mx-auto mt-8">
+              <div className="bg-white p-6 rounded-xl border-2 border-dental-gold shadow-elegant">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-dental-gold/15 flex items-center justify-center">
+                    <Clock className="w-5 h-5 text-dental-gold" />
+                  </div>
+                  <div>
+                    <p className="text-dental-purple font-semibold mb-2">Importante</p>
+                    <p className="text-dental-gray leading-relaxed text-sm">
+                      A perda óssea acelera após extração — quanto mais tempo sem dente, mais osso é perdido, podendo exigir enxerto. Tratar cedo preserva sua estrutura óssea natural.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>

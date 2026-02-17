@@ -360,30 +360,42 @@ const Ortodontia = () => {
         </section>
 
         {/* Seção Empática - Sprint 6 #3 */}
-        <section className="py-12 bg-dental-beige/30">
+        <section className="py-16 bg-gradient-to-br from-dental-beige/20 via-white to-dental-beige/10">
           <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-display font-bold text-dental-purple mb-6 text-center">
+            <h2 className="text-2xl md:text-3xl font-display font-bold text-dental-purple mb-10 text-center">
               Você acha que "já passou da idade" para alinhar os dentes?
             </h2>
-            <div className="space-y-4">
-              <div className="bg-white p-6 rounded-lg shadow-soft">
-                <p className="text-dental-gray">
-                  <strong className="text-dental-purple">Profissionais de Zona Sul</strong> que precisam de Invisalign® discreto para não atrapalhar reuniões e apresentações.
-                </p>
+            <div className="space-y-5">
+              <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-purple shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center group-hover:bg-dental-purple/20 transition-colors">
+                  <Star className="w-6 h-6 text-dental-purple" />
+                </div>
+                <div>
+                  <strong className="block text-dental-purple font-semibold mb-1">Profissionais que precisam de discrição</strong>
+                  <span className="text-dental-gray leading-relaxed">O Invisalign® não atrapalha reuniões, apresentações ou situações sociais — quase invisível no dia a dia.</span>
+                </div>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-soft">
-                <p className="text-dental-gray">
-                  <strong className="text-dental-purple">Adultos que sentem vergonha de dentes tortos</strong> em contextos profissionais e sociais, mas evitam aparelho metálico.
-                </p>
+              <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-gold shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-gold/10 flex items-center justify-center group-hover:bg-dental-gold/20 transition-colors">
+                  <Heart className="w-6 h-6 text-dental-gold" />
+                </div>
+                <div>
+                  <strong className="block text-dental-purple font-semibold mb-1">Adultos que evitam aparelho metálico</strong>
+                  <span className="text-dental-gray leading-relaxed">mas sentem desconforto com dentes tortos em situações profissionais e sociais.</span>
+                </div>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-soft">
-                <p className="text-dental-gray">
-                  <strong className="text-dental-purple">Não há idade limite</strong> para ortodontia. Temos pacientes acima de 60 anos com resultados excelentes.
-                </p>
+              <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-purple-soft shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center group-hover:bg-dental-purple/20 transition-colors">
+                  <CheckCircle className="w-6 h-6 text-dental-purple-soft" />
+                </div>
+                <div>
+                  <strong className="block text-dental-purple font-semibold mb-1">Não há idade limite para ortodontia</strong>
+                  <span className="text-dental-gray leading-relaxed">Tratamos pacientes acima de 60 anos com resultados funcionais e estéticos consistentes.</span>
+                </div>
               </div>
             </div>
-            <p className="text-center text-dental-gray mt-6">
-              Ortodontia adulta é uma das especialidades que mais cresce. Alinhar seus dentes melhora estética, mastigação e saúde bucal.
+            <p className="text-center text-dental-gray mt-10 text-lg leading-relaxed">
+              Ortodontia adulta é uma das especialidades que mais cresce.<br className="hidden md:block" /> Alinhar seus dentes melhora estética, mastigação e saúde bucal.
             </p>
           </div>
         </section>

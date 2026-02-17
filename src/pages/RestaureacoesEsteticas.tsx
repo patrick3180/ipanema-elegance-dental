@@ -148,21 +148,49 @@ const RestaureacoesEsteticas = () => {
         </div>
       </section>
 
-      {/* SEÇÃO 2: INTRODUÇÃO EMPÁTICA */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <p className="text-lg text-dental-gray leading-relaxed mb-6">
-            Você já passou pela frustração de esconder o sorriso ao notar um dente quebrado, manchado ou com aquela restauração escura que denuncia o tratamento?
-          </p>
-          <p className="text-lg text-dental-gray leading-relaxed mb-6">
-            Cáries, fraturas e trincas são mais comuns do que imagina — e o impacto vai além da estética. Dentes comprometidos afetam a mastigação, podem causar sensibilidade e, se não tratados, evoluem para problemas mais sérios.
-          </p>
-          <p className="text-lg text-dental-gray leading-relaxed mb-6">
-            A boa notícia: a odontologia estética moderna oferece restaurações que devolvem forma, função e beleza de forma praticamente invisível.
-          </p>
-          <p className="text-lg text-dental-gray leading-relaxed">
-            Na clínica da <span className="font-semibold text-dental-purple">Dra. Carla Christoph em Ipanema</span>, cada restauração é executada com precisão técnica e sensibilidade artística, utilizando materiais de última geração que mimetizam perfeitamente seus dentes naturais. Não são "obturações" — são <span className="font-semibold text-dental-purple">reconstruções que respeitam a anatomia e individualidade do seu sorriso</span>.
-          </p>
+      {/* SEÇÃO 2: INTRODUÇÃO EMPÁTICA — REDESIGNED */}
+      <section className="py-16 bg-gradient-to-br from-dental-beige/20 via-white to-dental-beige/10">
+        <div className="max-w-4xl mx-auto px-4">
+          {/* Quote empático */}
+          <div className="text-center mb-12">
+            <p className="text-xl text-dental-gray leading-relaxed mb-4 max-w-2xl mx-auto">
+              Você já escondeu o sorriso ao notar um dente quebrado, manchado ou com aquela restauração escura que denuncia o tratamento?
+            </p>
+            <p className="text-dental-gray leading-relaxed max-w-2xl mx-auto">
+              Cáries, fraturas e trincas são mais comuns do que imagina — e o impacto vai além da estética.
+            </p>
+          </div>
+
+          {/* 3 diferenciais visuais */}
+          <div className="space-y-5">
+            <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-purple shadow-soft hover:shadow-elegant transition-all duration-300">
+              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center group-hover:bg-dental-purple/20 transition-colors">
+                <Gem className="w-6 h-6 text-dental-purple" />
+              </div>
+              <div>
+                <strong className="block text-dental-purple font-semibold mb-1">Restaurações que passam despercebidas</strong>
+                <span className="text-dental-gray leading-relaxed">Usamos resinas e cerâmicas estratificadas que reproduzem a translucidez e textura natural do seu dente — não são obturações, são reconstruções.</span>
+              </div>
+            </div>
+            <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-gold shadow-soft hover:shadow-elegant transition-all duration-300">
+              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-gold/10 flex items-center justify-center group-hover:bg-dental-gold/20 transition-colors">
+                <Shield className="w-6 h-6 text-dental-gold" />
+              </div>
+              <div>
+                <strong className="block text-dental-purple font-semibold mb-1">Técnica conservadora — preservamos o máximo</strong>
+                <span className="text-dental-gray leading-relaxed">Cada restauração é planejada para remover apenas o necessário. Quanto mais estrutura natural preservada, melhor o resultado a longo prazo.</span>
+              </div>
+            </div>
+            <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-purple-soft shadow-soft hover:shadow-elegant transition-all duration-300">
+              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center group-hover:bg-dental-purple/20 transition-colors">
+                <Heart className="w-6 h-6 text-dental-purple-soft" />
+              </div>
+              <div>
+                <strong className="block text-dental-purple font-semibold mb-1">Cada caso planejado individualmente</strong>
+                <span className="text-dental-gray leading-relaxed">A Dra. Carla reserva tempo para entender seu histórico antes de qualquer procedimento — sem pressa, sem protocolo padrão.</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
