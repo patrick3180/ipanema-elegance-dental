@@ -7,7 +7,7 @@ import ProcessTimeline from "@/components/treatment/ProcessTimeline";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
   Cpu, Scan, Shield, Heart, Activity, Clock, CheckCircle,
-  Award, HelpCircle, Smile, Sparkles
+  Award, HelpCircle, Smile, Sparkles, ArrowRight
 } from "lucide-react";
 import { sendGCLIDToWebhook } from "@/utils/gclid";
 import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';

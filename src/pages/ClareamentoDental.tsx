@@ -7,7 +7,7 @@ import ProcessTimeline from "@/components/treatment/ProcessTimeline";
 import ComparisonTable from "@/components/blog/ComparisonTable";
 import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Sparkles, Award, HelpCircle, Search, FileText, Scan, Zap, Heart, CheckCircle } from "lucide-react";
+import { Sparkles, Award, HelpCircle, Search, FileText, Scan, Zap, Heart, CheckCircle, ArrowRight } from "lucide-react";
 
 const ClareamentoDental = () => {
   const handleWhatsAppClick = (message: string) => {
