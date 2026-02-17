@@ -201,6 +201,11 @@ const ImplantesDentarios = () => {
             <p className="text-center text-dental-gray mt-6">
               Implantes dentários devolvem segurança para comer, falar e sorrir sem preocupação. Vamos avaliar a melhor solução para o seu caso.
             </p>
+            <div className="max-w-2xl mx-auto mt-6 bg-dental-beige/30 p-6 rounded-lg border-l-4 border-dental-gold">
+              <p className="text-dental-gray text-center">
+                <strong className="text-dental-purple">Importante:</strong> A perda óssea acelera após extração — quanto mais tempo sem dente, mais osso é perdido, podendo exigir enxerto. Tratar cedo preserva sua estrutura óssea natural.
+              </p>
+            </div>
           </div>
         </section>
 

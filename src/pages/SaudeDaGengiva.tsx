@@ -187,6 +187,11 @@ const SaudeDaGengiva = () => {
               <p>
                 Se você percebe sangramento, mau hálito persistente, gengiva retraída ou dentes que parecem "mais longos" do que antes, vale agendar uma avaliação.
               </p>
+              <div className="mt-6 bg-dental-beige/30 p-6 rounded-lg border-l-4 border-dental-gold">
+                <p className="text-dental-gray">
+                  <strong className="text-dental-purple">Importante:</strong> A periodontite leva de 2 a 5 anos para evoluir de gengivite, mas uma vez instalada, a perda óssea é irreversível. O tratamento interrompe a progressão, mas não recupera osso perdido — por isso a detecção precoce é fundamental.
+                </p>
+              </div>
             </div>
           </div>
         </section>

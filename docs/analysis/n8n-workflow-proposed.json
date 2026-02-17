@@ -1,0 +1,431 @@
+{
+  "name": "Blog Creation Pipeline v2 (Brand-Compliant)",
+  "nodes": [
+    {
+      "parameters": {
+        "topic": "={{ $json.topic }}",
+        "keywords": "={{ $json.keywords }}"
+      },
+      "name": "Manual Trigger - Blog Topic",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "notes": "Start workflow manually with topic input"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.perplexity.ai/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $credentials.perplexityApi.apiKey }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "sonar-pro"
+            },
+            {
+              "name": "messages",
+              "value": [
+                {
+                  "role": "system",
+                  "content": "You are a dental expert researcher. Provide comprehensive, evidence-based information in Portuguese (Brazil)."
+                },
+                {
+                  "role": "user",
+                  "content": "Research topic: {{ $json.topic }}. Provide: 1) Key facts, 2) Common patient questions, 3) Treatment approaches, 4) Scientific sources."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "name": "Perplexity Research",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [450, 300],
+      "credentials": {
+        "perplexityApi": {
+          "id": "1",
+          "name": "Perplexity API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "={{ $credentials.anthropicApi.apiKey }}"
+            },
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "claude-opus-4-6"
+            },
+            {
+              "name": "max_tokens",
+              "value": 4000
+            },
+            {
+              "name": "messages",
+              "value": [
+                {
+                  "role": "user",
+                  "content": "Write a comprehensive blog post about: {{ $('Manual Trigger - Blog Topic').item.json.topic }}\n\nCRITICAL RULES — NEVER USE THESE WORDS:\n- sorriso perfeito\n- transforme seu sorriso\n- premium, excelência, humanizado\n- tecnologia de ponta\n- solução definitiva\n- resultados excepcionais\n- 100% natural\n- atendimento personalizado\n- materiais de alta qualidade\n- recomendo, incrível, perfeita\n\nREQUIRED STYLE:\n- Write in first person from Dra. Carla's perspective\n- Mention \"no meu consultório em Ipanema\" in first 2 paragraphs\n- Reference \"20 anos de experiência\" and \"8 anos como dentista militar na Marinha\"\n- Use specific, concrete language (not generic marketing speak)\n- Educate, don't sell\n\nSTRUCTURE:\n1. Hook (personal anecdote or common patient question)\n2. Problem explanation (technical but accessible)\n3. Solutions (specific to this clinic)\n4. Patient considerations\n5. Next steps\n\nTarget length: 1,500-2,000 words\nTone: Confident expert having a conversation, not marketing copy\n\nResearch data:\n{{ $json.choices[0].message.content }}"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "name": "Content Generation (Claude)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [650, 300],
+      "credentials": {
+        "anthropicApi": {
+          "id": "2",
+          "name": "Anthropic API"
+        }
+      },
+      "notes": "Generate brand-compliant content with personal tone"
+    },
+    {
+      "parameters": {
+        "functionCode": "const bannedWords = [\n  'sorriso perfeito',\n  'transforme seu sorriso',\n  'premium',\n  'excelência',\n  'humanizado',\n  'tecnologia de ponta',\n  'profissionais altamente qualificados',\n  'solução definitiva',\n  'resultados excepcionais',\n  '100% natural',\n  'atendimento personalizado',\n  'materiais de alta qualidade',\n  'agende agora',\n  'não perca',\n  'recomendo',\n  'incrível',\n  'perfeita',\n  'perfeito'\n];\n\nconst content = $input.first().json.content[0].text;\nconst fullText = content.toLowerCase();\n\nconst violations = [];\nbannedWords.forEach(word => {\n  if (fullText.includes(word.toLowerCase())) {\n    violations.push(word);\n  }\n});\n\nif (violations.length > 0) {\n  return [{\n    json: {\n      status: 'REJECTED',\n      violations: violations,\n      content: content,\n      message: `Brand violations found: ${violations.join(', ')}`\n    }\n  }];\n} else {\n  return [{\n    json: {\n      status: 'APPROVED',\n      content: content\n    }\n  }];\n}"
+      },
+      "name": "Brand Validation",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [850, 300],
+      "notes": "Validate against BRAND.md banned words"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.status }}",
+              "operation": "equals",
+              "value2": "APPROVED"
+            }
+          ]
+        }
+      },
+      "name": "IF Approved",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [1050, 300],
+      "notes": "Route based on validation result"
+    },
+    {
+      "parameters": {
+        "functionCode": "const content = $input.first().json.content;\nconst topic = $('Manual Trigger - Blog Topic').item.json.topic.toLowerCase();\n\nconst serviceMap = {\n  'implante': '/implantes-dentarios',\n  'clareamento': '/clareamento-dental',\n  'lente': '/lentes-de-contato-dental-e-facetas',\n  'faceta': '/lentes-de-contato-dental-e-facetas',\n  'prótese': '/protese-dentaria',\n  'ortodontia': '/ortodontia',\n  'canal': '/tratamento-de-canal',\n  'restauração': '/restauracoes-esteticas',\n  'gengiva': '/saude-da-gengiva',\n  'periodontite': '/saude-da-gengiva',\n  'prevenção': '/clinica-geral-e-prevencao',\n  'limpeza': '/clinica-geral-e-prevencao'\n};\n\nconst relevantServices = [];\nObject.entries(serviceMap).forEach(([keyword, url]) => {\n  if (content.toLowerCase().includes(keyword)) {\n    relevantServices.push({ keyword, url });\n  }\n});\n\nif (relevantServices.length === 0) {\n  relevantServices.push({ keyword: 'check-up', url: '/clinica-geral-e-prevencao' });\n}\n\nlet linkedContent = content;\n\nrelevantServices.slice(0, 2).forEach(service => {\n  const regex = new RegExp(`\\\\b${service.keyword}\\\\b`, 'i');\n  const match = linkedContent.match(regex);\n\n  if (match && !linkedContent.includes(`[${match[0]}]`)) {\n    linkedContent = linkedContent.replace(\n      regex,\n      `[${match[0]}](${service.url})`\n    );\n  }\n});\n\nconst cta = `\\n\\n## Agende sua avaliação\\n\\nSe você tem dúvidas sobre ${topic}, agende uma avaliação pelo WhatsApp. Respondemos inclusive nos fins de semana.\\n\\n[Falar com a Dra. Carla →](https://wa.me/5521999999999?text=Olá! Gostaria de agendar uma avaliação sobre ${encodeURIComponent(topic)})`;\n\nlinkedContent += cta;\n\nreturn [{\n  json: {\n    content: linkedContent,\n    linksAdded: relevantServices.map(s => s.url),\n    linkCount: relevantServices.length\n  }\n}];"
+      },
+      "name": "Add Internal Links",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1250, 200],
+      "notes": "Auto-insert 1-2 contextual links to service pages"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "={{ $credentials.anthropicApi.apiKey }}"
+            },
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "claude-opus-4-6"
+            },
+            {
+              "name": "max_tokens",
+              "value": 1000
+            },
+            {
+              "name": "messages",
+              "value": [
+                {
+                  "role": "user",
+                  "content": "Based on this blog post, generate:\\n\\n1. QUICK ANSWER (1 sentence, 80-120 chars) - Direct answer to main question\\n2. KEY TAKEAWAYS (3-5 bullet points) - Actionable insights\\n3. FAQs (3-5 Q&A pairs) - Common patient questions\\n\\nBLOG POST:\\n{{ $json.content }}\\n\\nRETURN AS JSON:\\n{\\n  \\\"quickAnswer\\\": \\\"...\\\",\\n  \\\"keyTakeaways\\\": [\\\"...\\\", \\\"...\\\", \\\"...\\\"],\\n  \\\"faqs\\\": [\\n    { \\\"question\\\": \\\"...\\\", \\\"answer\\\": \\\"...\\\" }\\n  ]\\n}"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "name": "Generate Advanced Fields",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1450, 200],
+      "credentials": {
+        "anthropicApi": {
+          "id": "2",
+          "name": "Anthropic API"
+        }
+      },
+      "notes": "Auto-generate Quick Answer, FAQs, Key Takeaways"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://hooks.slack.com/services/YOUR_WEBHOOK_URL",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "New blog post ready for review:\\n\\n*Title:* {{ $('Manual Trigger - Blog Topic').item.json.topic }}\\n*Links added:* {{ $json.linksAdded }}\\n*Brand status:* APPROVED\\n\\nReview in Contentful before publishing."
+            }
+          ]
+        }
+      },
+      "name": "Notify for Review",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1650, 200],
+      "notes": "Optional: Send to Slack for human review"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.contentful.com/spaces/{{ $credentials.contentful.spaceId }}/environments/master/entries",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $credentials.contentful.managementToken }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/vnd.contentful.management.v1+json"
+            },
+            {
+              "name": "X-Contentful-Content-Type",
+              "value": "blogCarla"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": {
+                "title": {
+                  "pt-BR": "{{ $('Manual Trigger - Blog Topic').item.json.topic }}"
+                },
+                "slug": {
+                  "pt-BR": "{{ $('Manual Trigger - Blog Topic').item.json.topic.toLowerCase().replace(/[^a-z0-9]+/g, '-') }}"
+                },
+                "content": {
+                  "pt-BR": "{{ $('Add Internal Links').item.json.content }}"
+                },
+                "quickAnswer": {
+                  "pt-BR": "{{ $json.content[0].text.quickAnswer }}"
+                },
+                "keyTakeaways": {
+                  "pt-BR": "{{ $json.content[0].text.keyTakeaways }}"
+                },
+                "faqStructured": {
+                  "pt-BR": "{{ $json.content[0].text.faqs }}"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "name": "Create Contentful Entry",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1850, 200],
+      "credentials": {
+        "contentful": {
+          "id": "3",
+          "name": "Contentful Management API"
+        }
+      },
+      "notes": "Create draft entry in Contentful (manual publish)"
+    },
+    {
+      "parameters": {
+        "operation": "sendMessage",
+        "channel": "#blog-alerts",
+        "text": "⚠️ BRAND VIOLATION DETECTED\\n\\nPost rejected: {{ $('Manual Trigger - Blog Topic').item.json.topic }}\\n\\nViolations: {{ $json.violations.join(', ') }}\\n\\nContent needs manual review before publishing."
+      },
+      "name": "Alert on Rejection",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [1250, 400],
+      "credentials": {
+        "slackApi": {
+          "id": "4",
+          "name": "Slack"
+        }
+      },
+      "notes": "Alert team if brand violations detected"
+    }
+  ],
+  "connections": {
+    "Manual Trigger - Blog Topic": {
+      "main": [
+        [
+          {
+            "node": "Perplexity Research",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Perplexity Research": {
+      "main": [
+        [
+          {
+            "node": "Content Generation (Claude)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Content Generation (Claude)": {
+      "main": [
+        [
+          {
+            "node": "Brand Validation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Brand Validation": {
+      "main": [
+        [
+          {
+            "node": "IF Approved",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Approved": {
+      "main": [
+        [
+          {
+            "node": "Add Internal Links",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Alert on Rejection",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add Internal Links": {
+      "main": [
+        [
+          {
+            "node": "Generate Advanced Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Advanced Fields": {
+      "main": [
+        [
+          {
+            "node": "Notify for Review",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify for Review": {
+      "main": [
+        [
+          {
+            "node": "Create Contentful Entry",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "Blog Automation",
+      "createdAt": "2026-02-16T00:00:00.000Z",
+      "updatedAt": "2026-02-16T00:00:00.000Z",
+      "id": "1"
+    },
+    {
+      "name": "Brand Compliance",
+      "createdAt": "2026-02-16T00:00:00.000Z",
+      "updatedAt": "2026-02-16T00:00:00.000Z",
+      "id": "2"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-02-16T00:00:00.000Z",
+  "versionId": "1"
+}

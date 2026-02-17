@@ -483,6 +483,22 @@ const ClareamentoDental = () => {
           </div>
         </section>
 
+        {/* CTA Intermediário - Sprint 6 #7 */}
+        <section className="py-8 bg-white">
+          <div className="max-w-3xl mx-auto px-4 text-center">
+            <p className="text-xl text-dental-gray mb-6">
+              Não sabe qual modalidade escolher?
+            </p>
+            <button
+              onClick={() => handleWhatsAppClick("Olá! Gostaria de saber qual modalidade de clareamento dental é a mais adequada para o meu caso.")}
+              className="inline-flex items-center justify-center px-8 py-4 bg-dental-gold hover:bg-dental-gold/90 text-white font-semibold rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
+            >
+              Vamos Avaliar Juntos
+              <ArrowRight size={20} className="ml-2" />
+            </button>
+          </div>
+        </section>
+
         <SectionDivider variant="with-icon" icon={<Sparkles className="w-5 h-5" />} />
 
         {/* Tabela Comparativa */}

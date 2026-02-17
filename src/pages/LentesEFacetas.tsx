@@ -916,6 +916,24 @@ const LentesEFacetas = () => {
           </div>
         </section>
 
+        {/* CTA Intermediário - Sprint 6 #6 */}
+        <section className="py-8 bg-dental-beige/30">
+          <div className="max-w-3xl mx-auto px-4 text-center">
+            <p className="text-xl text-dental-gray mb-6">
+              Quer fazer seu Test Drive do Sorriso?
+            </p>
+            <a
+              href="https://wa.me/5521993304045?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20para%20fazer%20o%20Test%20Drive%20do%20Sorriso"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-8 py-4 bg-dental-gold hover:bg-dental-gold/90 text-white font-semibold rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
+            >
+              Agendar Primeira Consulta
+              <ArrowRight size={20} className="ml-2" />
+            </a>
+          </div>
+        </section>
+
         {/* Tecnologia Digital - Scanner iTero */}
         <section className="py-16 bg-white">
           <div className="max-w-4xl mx-auto px-4">

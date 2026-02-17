@@ -197,6 +197,11 @@ const TratamentoDeCanal = () => {
               <p>
                 No consultório da Dra. Carla Christoph, você tem a segurança de um acompanhamento completo: do diagnóstico inicial à restauração final, passando pelo tratamento com endodontista especializado.
               </p>
+              <div className="mt-6 bg-dental-beige/30 p-6 rounded-lg border-l-4 border-dental-gold">
+                <p className="text-dental-gray">
+                  <strong className="text-dental-purple">Importante:</strong> Adiar o tratamento pode levar a infecção que se espalha para outras áreas, podendo exigir extração do dente. Quanto antes tratado, maior a chance de preservar o dente natural.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -254,6 +259,24 @@ const TratamentoDeCanal = () => {
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* CTA Intermediário - Sprint 6 #8 */}
+        <section className="py-8 bg-dental-beige/30">
+          <div className="max-w-3xl mx-auto px-4 text-center">
+            <p className="text-xl text-dental-gray mb-6">
+              Está com um desses sintomas?
+            </p>
+            <a
+              href="https://wa.me/5521993304045?text=Olá!%20Estou%20com%20sintomas%20que%20podem%20indicar%20necessidade%20de%20tratamento%20de%20canal.%20Gostaria%20de%20agendar%20uma%20avaliação%20de%20urgência."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
+            >
+              Agendar Avaliação de Urgência
+              <ArrowRight size={20} className="ml-2" />
+            </a>
           </div>
         </section>
 
