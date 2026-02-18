@@ -15,6 +15,7 @@ import AggressiveLCPOptimizer from '@/components/performance/AggressiveLCPOptimi
 import LCPOptimizer from '@/components/performance/LCPOptimizer';
 import CriticalResourcePreloader from '@/components/performance/CriticalResourcePreloader';
 import ErrorBoundary from '@/components/performance/ErrorBoundary';
+import LazySection from '@/components/performance/LazySection';
 
 // Critical components (above the fold)
 import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
@@ -26,7 +27,7 @@ const ConsultaInicialGuide = lazy(() => import('@/components/landing/consulta/Co
 const ConsultaInicialSocialProof = lazy(() => import('@/components/landing/consulta/ConsultaInicialSocialProof'));
 const ConsultaInicialFAQ = lazy(() => import('@/components/landing/consulta/ConsultaInicialFAQ'));
 const ConsultaInicialCTA = lazy(() => import('@/components/landing/consulta/ConsultaInicialCTA'));
-const ClareamentoFooter = lazy(() => import('@/components/landing/clareamento/ClareamentoFooter'));
+const LandingFooter = lazy(() => import('@/components/landing/LandingFooter'));
 const FloatingWhatsApp = lazy(() => import('@/components/landing/FloatingWhatsApp'));
 
 // Fallback components
@@ -51,7 +52,7 @@ const EspecialistaProteseLandingPage = () => {
         page_location: window.location.href,
         campaign: especialistaProteseConfig.campaign
       });
-      
+
       console.log('[LP Especialista Prótese] Page view tracked');
     }
 
@@ -90,12 +91,12 @@ const EspecialistaProteseLandingPage = () => {
         <link rel="preload" href="/fonts/montserrat-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/montserrat-500.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/playfair-display-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        
+
         {/* Critical Image Preload */}
-        <link 
-          rel="preload" 
-          href="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" 
-          as="image" 
+        <link
+          rel="preload"
+          href="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+          as="image"
           type="image/webp"
           fetchPriority="high"
         />
@@ -105,7 +106,7 @@ const EspecialistaProteseLandingPage = () => {
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://api.whatsapp.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
+
         {/* Additional Meta Tags */}
         <meta name="robots" content="noindex, nofollow" />
         <meta name="language" content="Portuguese" />
@@ -170,14 +171,14 @@ const EspecialistaProteseLandingPage = () => {
       <ResourceHintsOptimizer />
       <SmartContentfulCache />
       <CoreWebVitalsMonitor />
-      <HeroImagePreloader 
+      <HeroImagePreloader
         images={[
           {
             src: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
             type: 'webp',
             priority: true
           }
-        ]} 
+        ]}
       />
       <AggressiveLCPOptimizer />
       <LCPOptimizer />
@@ -185,10 +186,10 @@ const EspecialistaProteseLandingPage = () => {
 
       {/* GTM NoScript Fallback */}
       <noscript>
-        <iframe 
+        <iframe
           src={`https://www.googletagmanager.com/ns.html?id=${especialistaProteseConfig.tracking.gtmId}`}
-          height="0" 
-          width="0" 
+          height="0"
+          width="0"
           style={{ display: 'none', visibility: 'hidden' }}
           title="Google Tag Manager"
         />
@@ -197,14 +198,14 @@ const EspecialistaProteseLandingPage = () => {
       <ErrorBoundary>
         <div className="min-h-screen bg-background">
           {/* Critical Above the Fold Content */}
-          <ConsultaInicialHeader 
+          <ConsultaInicialHeader
             whatsappNumber={especialistaProteseConfig.whatsapp.number}
             whatsappMessage={especialistaProteseConfig.whatsapp.message}
             campaign={especialistaProteseConfig.campaign}
             messageMatch={especialistaProteseConfig.messageMatch}
           />
-          
-          <ConsultaInicialHero 
+
+          <ConsultaInicialHero
             headline={especialistaProteseConfig.hero.headline}
             subheadline={especialistaProteseConfig.hero.subheadline}
             ctaText={especialistaProteseConfig.hero.ctaText}
@@ -215,61 +216,75 @@ const EspecialistaProteseLandingPage = () => {
           />
 
           {/* Lazy Loaded Below the Fold Content */}
-          <Suspense fallback={<SectionFallback />}>
-            <ConsultaInicialProblem 
-              title={especialistaProteseConfig.problem.title}
-              description={especialistaProteseConfig.problem.description}
-              problems={especialistaProteseConfig.problem.problems}
-            />
-          </Suspense>
+          <LazySection fallback={<SectionFallback />} threshold={0.1} rootMargin="100px">
+            <Suspense fallback={<SectionFallback />}>
+              <ConsultaInicialProblem
+                title={especialistaProteseConfig.problem.title}
+                description={especialistaProteseConfig.problem.description}
+                problems={especialistaProteseConfig.problem.problems}
+              />
+            </Suspense>
+          </LazySection>
 
-          <Suspense fallback={<SectionFallback />}>
-            <ConsultaInicialGuide 
-              title={especialistaProteseConfig.guide.title}
-              subtitle={especialistaProteseConfig.guide.subtitle}
-              steps={especialistaProteseConfig.guide.steps}
-            />
-          </Suspense>
+          <LazySection fallback={<SectionFallback />} threshold={0.1} rootMargin="100px">
+            <Suspense fallback={<SectionFallback />}>
+              <ConsultaInicialGuide
+                title={especialistaProteseConfig.guide.title}
+                subtitle={especialistaProteseConfig.guide.subtitle}
+                steps={especialistaProteseConfig.guide.steps}
+              />
+            </Suspense>
+          </LazySection>
 
-          <Suspense fallback={<SectionFallback />}>
-            <ConsultaInicialSocialProof 
-              title={especialistaProteseConfig.socialProof.title}
-              testimonials={especialistaProteseConfig.socialProof.testimonials}
-              stats={especialistaProteseConfig.socialProof.stats}
-            />
-          </Suspense>
+          <LazySection fallback={<SectionFallback />} threshold={0.1} rootMargin="50px">
+            <Suspense fallback={<SectionFallback />}>
+              <ConsultaInicialSocialProof
+                title={especialistaProteseConfig.socialProof.title}
+                testimonials={especialistaProteseConfig.socialProof.testimonials}
+                stats={especialistaProteseConfig.socialProof.stats}
+              />
+            </Suspense>
+          </LazySection>
 
-          <Suspense fallback={<SectionFallback />}>
-            <ConsultaInicialFAQ 
-              title={especialistaProteseConfig.faq.title}
-              questions={especialistaProteseConfig.faq.questions}
-            />
-          </Suspense>
+          <LazySection fallback={<SectionFallback />} threshold={0.1} rootMargin="50px">
+            <Suspense fallback={<SectionFallback />}>
+              <ConsultaInicialFAQ
+                title={especialistaProteseConfig.faq.title}
+                questions={especialistaProteseConfig.faq.questions}
+              />
+            </Suspense>
+          </LazySection>
 
-          <Suspense fallback={<SectionFallback />}>
-            <ConsultaInicialCTA 
-              title={especialistaProteseConfig.cta.title}
-              subtitle={especialistaProteseConfig.cta.subtitle}
-              buttonText={especialistaProteseConfig.cta.buttonText}
-              whatsappNumber={especialistaProteseConfig.whatsapp.number}
-              whatsappMessage={especialistaProteseConfig.whatsapp.message}
-              messageMatch={especialistaProteseConfig.messageMatch}
-              campaign={especialistaProteseConfig.campaign}
-            />
-          </Suspense>
+          <LazySection fallback={<div className="h-32 bg-[#381F47] animate-pulse" />} threshold={0.1}>
+            <Suspense fallback={<SectionFallback />}>
+              <ConsultaInicialCTA
+                title={especialistaProteseConfig.cta.title}
+                subtitle={especialistaProteseConfig.cta.subtitle}
+                buttonText={especialistaProteseConfig.cta.buttonText}
+                whatsappNumber={especialistaProteseConfig.whatsapp.number}
+                whatsappMessage={especialistaProteseConfig.whatsapp.message}
+                messageMatch={especialistaProteseConfig.messageMatch}
+                campaign={especialistaProteseConfig.campaign}
+              />
+            </Suspense>
+          </LazySection>
 
-          <Suspense fallback={<SectionFallback />}>
-            <ClareamentoFooter />
-          </Suspense>
+          <LazySection fallback={<div className="h-64 bg-[#381F47] animate-pulse" />} threshold={0.1}>
+            <Suspense fallback={<SectionFallback />}>
+              <LandingFooter doctorName="Dra. Carla Christoph" clinicName="Ipanema Elegance Dental" phoneNumber="(21) 99330-4045" />
+            </Suspense>
+          </LazySection>
 
-          <Suspense fallback={<div />}>
-            <FloatingWhatsApp 
-              phoneNumber={especialistaProteseConfig.whatsapp.number}
-              message={especialistaProteseConfig.whatsapp.message}
-              messageMatch={especialistaProteseConfig.messageMatch}
-              campaign={especialistaProteseConfig.campaign}
-            />
-          </Suspense>
+          <LazySection fallback={null} threshold={0} rootMargin="0px">
+            <Suspense fallback={null}>
+              <FloatingWhatsApp
+                phoneNumber={especialistaProteseConfig.whatsapp.number}
+                message={especialistaProteseConfig.whatsapp.message}
+                messageMatch={especialistaProteseConfig.messageMatch}
+                campaign={especialistaProteseConfig.campaign}
+              />
+            </Suspense>
+          </LazySection>
         </div>
       </ErrorBoundary>
     </>

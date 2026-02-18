@@ -16,26 +16,27 @@ import CriticalCSSOptimizer from '@/components/performance/CriticalCSSOptimizer'
 import AsyncScriptManager from '@/components/performance/AsyncScriptManager';
 import FastServerResponseOptimizer from '@/components/performance/FastServerResponseOptimizer';
 import ErrorBoundary from '@/components/performance/ErrorBoundary';
+import LazySection from '@/components/performance/LazySection';
 
 // Aggressive lazy loading for better LCP performance
-const ClareamentoSocialProof = React.lazy(() => 
-  import('@/components/landing/clareamento/ClareamentoSocialProof').then(module => ({ 
-    default: module.default 
+const ClareamentoSocialProof = React.lazy(() =>
+  import('@/components/landing/clareamento/ClareamentoSocialProof').then(module => ({
+    default: module.default
   }))
 );
-const ClareamentoFAQ = React.lazy(() => 
-  import('@/components/landing/clareamento/ClareamentoFAQ').then(module => ({ 
-    default: module.default 
+const ClareamentoFAQ = React.lazy(() =>
+  import('@/components/landing/clareamento/ClareamentoFAQ').then(module => ({
+    default: module.default
   }))
 );
-const ClareamentoFooter = React.lazy(() => 
-  import('@/components/landing/clareamento/ClareamentoFooter').then(module => ({ 
-    default: module.default 
+const LandingFooter = React.lazy(() =>
+  import('@/components/landing/LandingFooter').then(module => ({
+    default: module.default
   }))
 );
-const FloatingWhatsApp = React.lazy(() => 
-  import('@/components/landing/FloatingWhatsApp').then(module => ({ 
-    default: module.default 
+const FloatingWhatsApp = React.lazy(() =>
+  import('@/components/landing/FloatingWhatsApp').then(module => ({
+    default: module.default
   }))
 );
 
@@ -59,7 +60,7 @@ const ClareamentoLandingPage: React.FC = () => {
     console.debug('[LP Clareamento] Mounted at', new Date().toISOString());
     // Capture GCLID if present
     captureGCLID();
-    
+
     // Track page view
     if (window.dataLayer) {
       window.dataLayer.push({
@@ -73,7 +74,7 @@ const ClareamentoLandingPage: React.FC = () => {
   }, []);
 
   // Use optimized scroll tracking
-  useScrollTracking({ 
+  useScrollTracking({
     pagePath: '/lp/clareamento-dental',
     enabled: process.env.NODE_ENV === 'production'
   });
@@ -86,7 +87,7 @@ const ClareamentoLandingPage: React.FC = () => {
         <meta name="description" content={clareamentoConfig.seo.description} />
         <meta name="keywords" content={clareamentoConfig.seo.keywords?.join(', ')} />
         <meta name="robots" content="noindex, nofollow" />
-        
+
         {/* Single critical font preload */}
         <link
           rel="preload"
@@ -96,7 +97,7 @@ const ClareamentoLandingPage: React.FC = () => {
           crossOrigin="anonymous"
         />
 
-        
+
         {/* Preload critical WebP hero image with highest priority */}
         <link rel="preload" as="image" href="/lovable-uploads/doutora-em-pe-jaleco.webp" type="image/webp" fetchPriority="high" />
 
@@ -104,10 +105,11 @@ const ClareamentoLandingPage: React.FC = () => {
         <link rel="dns-prefetch" href="//api.whatsapp.com" />
         <link rel="dns-prefetch" href="//web.whatsapp.com" />
         <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-        
-        
+
+
         {/* Font CSS with font-display: swap */}
-        <style dangerouslySetInnerHTML={{ __html: `
+        <style dangerouslySetInnerHTML={{
+          __html: `
           @font-face {
             font-family: 'Playfair Display';
             font-display: swap;
@@ -123,31 +125,31 @@ const ClareamentoLandingPage: React.FC = () => {
             unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
           }
         ` }} />
-        
+
         {/* Non-critical resources loading is handled globally */}
-        
+
         {/* Open Graph */}
         <meta property="og:title" content={clareamentoConfig.seo.title} />
         <meta property="og:description" content={clareamentoConfig.seo.description} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={clareamentoConfig.hero.backgroundImage} />
-        
+
       </Helmet>
 
       {/* Performance optimization components */}
       <FastServerResponseOptimizer />
-      <CriticalCSSOptimizer 
+      <CriticalCSSOptimizer
         inlineStyles=""
       />
-      <AsyncScriptManager 
+      <AsyncScriptManager
         gtmId={clareamentoConfig.tracking.gtmId}
         enableTracking={true}
         loadDelay={2000}
       />
-      
+
       <ErrorBoundary><div className="min-h-screen">
         {/* Header */}
-        <ConsultaInicialHeader 
+        <ConsultaInicialHeader
           whatsappNumber={clareamentoConfig.whatsapp.number}
           whatsappMessage={clareamentoConfig.whatsapp.message}
           campaign={clareamentoConfig.campaign}
@@ -209,24 +211,28 @@ const ClareamentoLandingPage: React.FC = () => {
         </main>
 
         {/* Footer - Lazy Loaded */}
-        <Suspense fallback={<FooterSkeleton />}>
-          <ClareamentoFooter />
-        </Suspense>
+        <LazySection fallback={<FooterSkeleton />} threshold={0.1}>
+          <Suspense fallback={<FooterSkeleton />}>
+            <LandingFooter doctorName="Dra. Carla Christoph" clinicName="Ipanema Elegance Dental" phoneNumber="(21) 99330-4045" />
+          </Suspense>
+        </LazySection>
 
         {/* Floating WhatsApp - Lazy Loaded */}
-        <Suspense fallback={<WhatsAppSkeleton />}>
-          <FloatingWhatsApp
-            phoneNumber={clareamentoConfig.whatsapp.number}
-            message={clareamentoConfig.whatsapp.message}
-            campaign={clareamentoConfig.campaign}
-            messageMatch={clareamentoConfig.messageMatch}
-          />
-        </Suspense>
+        <LazySection fallback={null} threshold={0} rootMargin="0px">
+          <Suspense fallback={null}>
+            <FloatingWhatsApp
+              phoneNumber={clareamentoConfig.whatsapp.number}
+              message={clareamentoConfig.whatsapp.message}
+              campaign={clareamentoConfig.campaign}
+              messageMatch={clareamentoConfig.messageMatch}
+            />
+          </Suspense>
+        </LazySection>
 
         {/* Load non-critical CSS after initial render */}
-        <NonCriticalCSSLoader 
-          delay={500} 
-          enabled={false} 
+        <NonCriticalCSSLoader
+          delay={500}
+          enabled={false}
         />
       </div></ErrorBoundary>
     </>

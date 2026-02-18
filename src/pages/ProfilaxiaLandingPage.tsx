@@ -15,6 +15,7 @@ import CriticalCSSOptimizer from "@/components/performance/CriticalCSSOptimizer"
 import AsyncScriptManager from "@/components/performance/AsyncScriptManager";
 import NonCriticalCSSLoader from "@/components/performance/NonCriticalCSSLoader";
 import ErrorBoundary from "@/components/performance/ErrorBoundary";
+import LazySection from "@/components/performance/LazySection";
 
 // Lazy Components for better performance
 const ConsultaInicialProblem = React.lazy(() => import("@/components/landing/consulta/ConsultaInicialProblem"));
@@ -22,7 +23,7 @@ const ConsultaInicialGuide = React.lazy(() => import("@/components/landing/consu
 const ConsultaInicialSocialProof = React.lazy(() => import("@/components/landing/consulta/ConsultaInicialSocialProof"));
 const ConsultaInicialFAQ = React.lazy(() => import("@/components/landing/consulta/ConsultaInicialFAQ"));
 const ConsultaInicialCTA = React.lazy(() => import("@/components/landing/consulta/ConsultaInicialCTA"));
-const ClareamentoFooter = React.lazy(() => import("@/components/landing/clareamento/ClareamentoFooter"));
+const LandingFooter = React.lazy(() => import("@/components/landing/LandingFooter"));
 const FloatingWhatsApp = React.lazy(() => import("@/components/landing/FloatingWhatsApp"));
 
 // Skeleton Components for Loading States
@@ -41,7 +42,7 @@ const criticalImages = [
 const ProfilaxiaLandingPage: React.FC = () => {
   // Preload critical images for LCP
   useCriticalImagePreload({ images: criticalImages });
-  
+
   // Track scroll events for analytics
   useScrollTracking({ pagePath: '/lp/profilaxia-dental-ipanema' });
 
@@ -69,14 +70,14 @@ const ProfilaxiaLandingPage: React.FC = () => {
       <FastServerResponseOptimizer />
       <CriticalCSSOptimizer inlineStyles="" />
       <AsyncScriptManager />
-      
+
       <Helmet>
         <title>{profilaxiaConfig.seo.title}</title>
         <meta name="description" content={profilaxiaConfig.seo.description} />
         <meta name="keywords" content={profilaxiaConfig.seo.keywords?.join(', ')} />
         <meta name="robots" content="noindex, nofollow" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        
+
         {/* Critical CSS inline for above-the-fold content */}
         <style>
           {`
@@ -102,10 +103,10 @@ const ProfilaxiaLandingPage: React.FC = () => {
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="" />
 
         {/* Defer non-critical CSS */}
-        <link 
-          rel="preload" 
-          href="/css/non-critical.css" 
-          as="style" 
+        <link
+          rel="preload"
+          href="/css/non-critical.css"
+          as="style"
           onLoad={() => {
             const link = document.createElement('link');
             link.rel = 'stylesheet';
@@ -170,14 +171,14 @@ const ProfilaxiaLandingPage: React.FC = () => {
 
       <ErrorBoundary><div className="min-h-screen bg-white">
         {/* Critical Above-the-fold Content */}
-        <ConsultaInicialHeader 
+        <ConsultaInicialHeader
           whatsappNumber={profilaxiaConfig.whatsapp.number}
           whatsappMessage={profilaxiaConfig.whatsapp.message}
           campaign={profilaxiaConfig.campaign}
           messageMatch={profilaxiaConfig.messageMatch}
         />
-        
-        <ConsultaInicialHero 
+
+        <ConsultaInicialHero
           headline={profilaxiaConfig.hero.headline}
           subheadline={profilaxiaConfig.hero.subheadline}
           ctaText={profilaxiaConfig.hero.ctaText}
@@ -187,63 +188,76 @@ const ProfilaxiaLandingPage: React.FC = () => {
           whatsappMessage={profilaxiaConfig.whatsapp.message}
         />
 
-        {/* Lazy-loaded sections with Suspense boundaries */}
-        <Suspense fallback={<div className="h-96 bg-gray-50 animate-pulse" />}>
-          <ConsultaInicialProblem 
-            title={profilaxiaConfig.problem.title}
-            description={profilaxiaConfig.problem.description}
-            problems={profilaxiaConfig.problem.problems}
-          />
-        </Suspense>
+        <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.1} rootMargin="100px">
+          <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+            <ConsultaInicialProblem
+              title={profilaxiaConfig.problem.title}
+              description={profilaxiaConfig.problem.description}
+              problems={profilaxiaConfig.problem.problems}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<div className="h-96 bg-white animate-pulse" />}>
-          <ConsultaInicialGuide 
-            title={profilaxiaConfig.guide.title}
-            subtitle={profilaxiaConfig.guide.subtitle}
-            steps={profilaxiaConfig.guide.steps}
-          />
-        </Suspense>
+        <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.1} rootMargin="100px">
+          <Suspense fallback={<div className="h-96 bg-white" />}>
+            <ConsultaInicialGuide
+              title={profilaxiaConfig.guide.title}
+              subtitle={profilaxiaConfig.guide.subtitle}
+              steps={profilaxiaConfig.guide.steps}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<SocialProofSkeleton />}>
-          <ConsultaInicialSocialProof 
-            title={profilaxiaConfig.socialProof.title}
-            testimonials={profilaxiaConfig.socialProof.testimonials}
-            stats={profilaxiaConfig.socialProof.stats}
-          />
-        </Suspense>
+        <LazySection fallback={<SocialProofSkeleton />} threshold={0.1} rootMargin="50px">
+          <Suspense fallback={<SocialProofSkeleton />}>
+            <ConsultaInicialSocialProof
+              title={profilaxiaConfig.socialProof.title}
+              testimonials={profilaxiaConfig.socialProof.testimonials}
+              stats={profilaxiaConfig.socialProof.stats}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<FAQSkeleton />}>
-          <ConsultaInicialFAQ 
-            title={profilaxiaConfig.faq.title}
-            questions={profilaxiaConfig.faq.questions}
-          />
-        </Suspense>
+        <LazySection fallback={<FAQSkeleton />} threshold={0.1} rootMargin="50px">
+          <Suspense fallback={<FAQSkeleton />}>
+            <ConsultaInicialFAQ
+              title={profilaxiaConfig.faq.title}
+              questions={profilaxiaConfig.faq.questions}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<div className="h-64 bg-[#381F47] animate-pulse" />}>
-          <ConsultaInicialCTA 
-            title={profilaxiaConfig.cta.title}
-            subtitle={profilaxiaConfig.cta.subtitle}
-            buttonText={profilaxiaConfig.cta.buttonText}
-            whatsappNumber={profilaxiaConfig.whatsapp.number}
-            whatsappMessage={profilaxiaConfig.whatsapp.message}
-            campaign={profilaxiaConfig.campaign}
-            messageMatch={profilaxiaConfig.messageMatch}
-            urgency={profilaxiaConfig.cta.urgency}
-          />
-        </Suspense>
+        <LazySection fallback={<div className="h-64 bg-[#381F47] animate-pulse" />} threshold={0.1}>
+          <Suspense fallback={<div className="h-64 bg-[#381F47]" />}>
+            <ConsultaInicialCTA
+              title={profilaxiaConfig.cta.title}
+              subtitle={profilaxiaConfig.cta.subtitle}
+              buttonText={profilaxiaConfig.cta.buttonText}
+              whatsappNumber={profilaxiaConfig.whatsapp.number}
+              whatsappMessage={profilaxiaConfig.whatsapp.message}
+              campaign={profilaxiaConfig.campaign}
+              messageMatch={profilaxiaConfig.messageMatch}
+              urgency={profilaxiaConfig.cta.urgency}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<FooterSkeleton />}>
-          <ClareamentoFooter />
-        </Suspense>
+        <LazySection fallback={<FooterSkeleton />} threshold={0.1}>
+          <Suspense fallback={<FooterSkeleton />}>
+            <LandingFooter doctorName="Dra. Carla Christoph" clinicName="Ipanema Elegance Dental" phoneNumber="(21) 99330-4045" />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<WhatsAppSkeleton />}>
-          <FloatingWhatsApp
-            phoneNumber={profilaxiaConfig.whatsapp.number}
-            message={profilaxiaConfig.whatsapp.message}
-            campaign={profilaxiaConfig.campaign}
-            messageMatch={profilaxiaConfig.messageMatch}
-          />
-        </Suspense>
+        <LazySection fallback={null} threshold={0} rootMargin="0px">
+          <Suspense fallback={null}>
+            <FloatingWhatsApp
+              phoneNumber={profilaxiaConfig.whatsapp.number}
+              message={profilaxiaConfig.whatsapp.message}
+              campaign={profilaxiaConfig.campaign}
+              messageMatch={profilaxiaConfig.messageMatch}
+            />
+          </Suspense>
+        </LazySection>
 
         {/* Load non-critical CSS after a delay */}
         <NonCriticalCSSLoader delay={2000} enabled={false} />

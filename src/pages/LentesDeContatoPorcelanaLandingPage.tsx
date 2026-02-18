@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { useCriticalImagePreload } from "@/hooks/useCriticalImagePreload";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
 import ErrorBoundary from "@/components/performance/ErrorBoundary";
+import LazySection from "@/components/performance/LazySection";
 import ResourceHintsOptimizer from "@/components/performance/ResourceHintsOptimizer";
 import CriticalCSSInliner from "@/components/performance/CriticalCSSInliner";
 import SimpleLCPOptimizer from "@/components/performance/SimpleLCPOptimizer";
@@ -16,7 +17,7 @@ const ConsultaInicialGuide = React.lazy(() => import("@/components/landing/consu
 const ConsultaInicialSocialProof = React.lazy(() => import("@/components/landing/consulta/ConsultaInicialSocialProof"));
 const ConsultaInicialFAQ = React.lazy(() => import("@/components/landing/consulta/ConsultaInicialFAQ"));
 const ConsultaInicialCTA = React.lazy(() => import("@/components/landing/consulta/ConsultaInicialCTA"));
-const ClareamentoFooter = React.lazy(() => import("@/components/landing/clareamento/ClareamentoFooter"));
+const LandingFooter = React.lazy(() => import("@/components/landing/LandingFooter"));
 const FloatingWhatsApp = React.lazy(() => import("@/components/landing/FloatingWhatsApp"));
 
 const LentesDeContatoPorcelanaLandingPage = () => {
@@ -98,11 +99,11 @@ const LentesDeContatoPorcelanaLandingPage = () => {
         <link rel="dns-prefetch" href="//www.google-analytics.com" />
         <link rel="dns-prefetch" href="//www.googletagmanager.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
+
         {/* Critical resource preloads */}
-        <link 
-          rel="preload" 
-          href="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" 
+        <link
+          rel="preload"
+          href="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
           as="image"
           type="image/webp"
         />
@@ -157,7 +158,7 @@ const LentesDeContatoPorcelanaLandingPage = () => {
         <meta name="author" content="Dra. Carla Christoph" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta httpEquiv="content-language" content="pt-BR" />
-        
+
         {/* Additional Open Graph tags */}
         <meta property="article:author" content="Dra. Carla Christoph" />
         <meta property="article:section" content="Odontologia Estética" />
@@ -167,14 +168,14 @@ const LentesDeContatoPorcelanaLandingPage = () => {
       <ErrorBoundary>
         <div className="min-h-screen bg-white">
           {/* Critical above-the-fold content */}
-          <ConsultaInicialHeader 
+          <ConsultaInicialHeader
             whatsappNumber={lentesPorcelanaAcolhedorConfig.whatsapp.number}
             whatsappMessage={lentesPorcelanaAcolhedorConfig.whatsapp.message}
             campaign={lentesPorcelanaAcolhedorConfig.campaign}
             messageMatch={lentesPorcelanaAcolhedorConfig.messageMatch}
           />
-          
-          <ConsultaInicialHero 
+
+          <ConsultaInicialHero
             headline={lentesPorcelanaAcolhedorConfig.hero.headline}
             subheadline={lentesPorcelanaAcolhedorConfig.hero.subheadline}
             ctaText={lentesPorcelanaAcolhedorConfig.hero.ctaText}
@@ -184,57 +185,75 @@ const LentesDeContatoPorcelanaLandingPage = () => {
             whatsappMessage={lentesPorcelanaAcolhedorConfig.whatsapp.message}
           />
 
-          {/* Below-the-fold content with Suspense for better performance */}
-          <Suspense fallback={
-            <div className="min-h-screen flex items-center justify-center bg-dental-beige/30">
-              <div className="text-center">
-                <div className="w-16 h-16 border-4 border-dental-purple border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                <p className="text-dental-purple font-medium">Carregando informações sobre lentes de porcelana...</p>
-              </div>
-            </div>
-          }>
-            <ConsultaInicialProblem 
-              title={lentesPorcelanaAcolhedorConfig.problem.title}
-              description={lentesPorcelanaAcolhedorConfig.problem.description}
-              problems={lentesPorcelanaAcolhedorConfig.problem.problems}
-            />
-            
-            <ConsultaInicialGuide 
-              title={lentesPorcelanaAcolhedorConfig.guide.title}
-              subtitle={lentesPorcelanaAcolhedorConfig.guide.subtitle}
-              steps={lentesPorcelanaAcolhedorConfig.guide.steps}
-            />
-            
-            <ConsultaInicialSocialProof 
-              title={lentesPorcelanaAcolhedorConfig.socialProof.title}
-              testimonials={lentesPorcelanaAcolhedorConfig.socialProof.testimonials}
-              stats={lentesPorcelanaAcolhedorConfig.socialProof.stats}
-            />
-            
-            <ConsultaInicialFAQ 
-              title={lentesPorcelanaAcolhedorConfig.faq.title}
-              questions={lentesPorcelanaAcolhedorConfig.faq.questions}
-            />
-            
-            <ConsultaInicialCTA 
-              title={lentesPorcelanaAcolhedorConfig.cta.title}
-              subtitle={lentesPorcelanaAcolhedorConfig.cta.subtitle}
-              buttonText={lentesPorcelanaAcolhedorConfig.cta.buttonText}
-              whatsappNumber={lentesPorcelanaAcolhedorConfig.whatsapp.number}
-              whatsappMessage={lentesPorcelanaAcolhedorConfig.whatsapp.message}
-              campaign={lentesPorcelanaAcolhedorConfig.campaign}
-              messageMatch={lentesPorcelanaAcolhedorConfig.messageMatch}
-            />
-            
-            <ClareamentoFooter />
-            
-            <FloatingWhatsApp 
-              phoneNumber={lentesPorcelanaAcolhedorConfig.whatsapp.number}
-              message={lentesPorcelanaAcolhedorConfig.whatsapp.message}
-              campaign={lentesPorcelanaAcolhedorConfig.campaign}
-              messageMatch={lentesPorcelanaAcolhedorConfig.messageMatch}
-            />
-          </Suspense>
+          <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.1} rootMargin="100px">
+            <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+              <ConsultaInicialProblem
+                title={lentesPorcelanaAcolhedorConfig.problem.title}
+                description={lentesPorcelanaAcolhedorConfig.problem.description}
+                problems={lentesPorcelanaAcolhedorConfig.problem.problems}
+              />
+            </Suspense>
+          </LazySection>
+
+          <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.1} rootMargin="100px">
+            <Suspense fallback={<div className="h-96 bg-white" />}>
+              <ConsultaInicialGuide
+                title={lentesPorcelanaAcolhedorConfig.guide.title}
+                subtitle={lentesPorcelanaAcolhedorConfig.guide.subtitle}
+                steps={lentesPorcelanaAcolhedorConfig.guide.steps}
+              />
+            </Suspense>
+          </LazySection>
+
+          <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.1} rootMargin="50px">
+            <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+              <ConsultaInicialSocialProof
+                title={lentesPorcelanaAcolhedorConfig.socialProof.title}
+                testimonials={lentesPorcelanaAcolhedorConfig.socialProof.testimonials}
+                stats={lentesPorcelanaAcolhedorConfig.socialProof.stats}
+              />
+            </Suspense>
+          </LazySection>
+
+          <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.1} rootMargin="50px">
+            <Suspense fallback={<div className="h-96 bg-white" />}>
+              <ConsultaInicialFAQ
+                title={lentesPorcelanaAcolhedorConfig.faq.title}
+                questions={lentesPorcelanaAcolhedorConfig.faq.questions}
+              />
+            </Suspense>
+          </LazySection>
+
+          <LazySection fallback={<div className="h-32 bg-[#381F47] animate-pulse" />} threshold={0.1}>
+            <Suspense fallback={<div className="h-32 bg-[#381F47]" />}>
+              <ConsultaInicialCTA
+                title={lentesPorcelanaAcolhedorConfig.cta.title}
+                subtitle={lentesPorcelanaAcolhedorConfig.cta.subtitle}
+                buttonText={lentesPorcelanaAcolhedorConfig.cta.buttonText}
+                whatsappNumber={lentesPorcelanaAcolhedorConfig.whatsapp.number}
+                whatsappMessage={lentesPorcelanaAcolhedorConfig.whatsapp.message}
+                campaign={lentesPorcelanaAcolhedorConfig.campaign}
+                messageMatch={lentesPorcelanaAcolhedorConfig.messageMatch}
+              />
+            </Suspense>
+          </LazySection>
+
+          <LazySection fallback={<div className="h-64 bg-[#381F47] animate-pulse" />} threshold={0.1}>
+            <Suspense fallback={<div className="h-64 bg-[#381F47]" />}>
+              <LandingFooter doctorName="Dra. Carla Christoph" clinicName="Ipanema Elegance Dental" phoneNumber="(21) 99330-4045" />
+            </Suspense>
+          </LazySection>
+
+          <LazySection fallback={null} threshold={0} rootMargin="0px">
+            <Suspense fallback={null}>
+              <FloatingWhatsApp
+                phoneNumber={lentesPorcelanaAcolhedorConfig.whatsapp.number}
+                message={lentesPorcelanaAcolhedorConfig.whatsapp.message}
+                campaign={lentesPorcelanaAcolhedorConfig.campaign}
+                messageMatch={lentesPorcelanaAcolhedorConfig.messageMatch}
+              />
+            </Suspense>
+          </LazySection>
         </div>
       </ErrorBoundary>
     </>

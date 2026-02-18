@@ -12,6 +12,7 @@ import SmartContentfulCache from '@/components/performance/SmartContentfulCache'
 import CoreWebVitalsMonitor from '@/components/performance/CoreWebVitalsMonitor';
 import HeroImagePreloader from '@/components/performance/HeroImagePreloader';
 import ErrorBoundary from '@/components/performance/ErrorBoundary';
+import LazySection from '@/components/performance/LazySection';
 
 // Critical Above-The-Fold Components (not lazy-loaded)
 import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
@@ -23,7 +24,7 @@ const ConsultaInicialGuide = lazy(() => import('@/components/landing/consulta/Co
 const ConsultaInicialSocialProof = lazy(() => import('@/components/landing/consulta/ConsultaInicialSocialProof'));
 const ConsultaInicialFAQ = lazy(() => import('@/components/landing/consulta/ConsultaInicialFAQ'));
 const ConsultaInicialCTA = lazy(() => import('@/components/landing/consulta/ConsultaInicialCTA'));
-const ClareamentoFooter = lazy(() => import('@/components/landing/clareamento/ClareamentoFooter'));
+const LandingFooter = lazy(() => import('@/components/landing/LandingFooter'));
 const FloatingWhatsApp = lazy(() => import('@/components/landing/FloatingWhatsApp'));
 
 const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
@@ -39,7 +40,7 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const gclid = urlParams.get('gclid');
-    
+
     if (gclid) {
       localStorage.setItem('gclid', gclid);
       localStorage.setItem('gclid_timestamp', Date.now().toString());
@@ -59,7 +60,7 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
     }
   }, []);
 
-  useScrollTracking({ 
+  useScrollTracking({
     pagePath: '/lp/lentes-porcelana-profissional-ipanema',
     enabled: process.env.NODE_ENV === 'production'
   });
@@ -72,14 +73,14 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
       <NonCriticalCSSLoader />
       <SmartContentfulCache enableBlocking={true} />
       <CoreWebVitalsMonitor />
-      <HeroImagePreloader 
+      <HeroImagePreloader
         images={[
-          { 
-            src: lentesPorcelanaProfissionalConfig.hero.backgroundImage || '', 
-            type: 'webp', 
-            priority: true 
+          {
+            src: lentesPorcelanaProfissionalConfig.hero.backgroundImage || '',
+            type: 'webp',
+            priority: true
           }
-        ]} 
+        ]}
       />
 
       <Helmet>
@@ -87,7 +88,7 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
         <meta name="description" content={lentesPorcelanaProfissionalConfig.seo.description} />
         <meta name="keywords" content={lentesPorcelanaProfissionalConfig.seo.keywords?.join(', ')} />
         <link rel="canonical" href="https://dracarlachristoph.com/lp/lentes-porcelana-profissional-ipanema" />
-        
+
         <meta property="og:title" content={lentesPorcelanaProfissionalConfig.seo.title} />
         <meta property="og:description" content={lentesPorcelanaProfissionalConfig.seo.description} />
         <meta property="og:type" content="website" />
@@ -115,10 +116,10 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
         <link rel="preload" href="/fonts/montserrat-500.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/playfair-display-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
 
-        <link 
-          rel="preload" 
-          href={lentesPorcelanaProfissionalConfig.hero.backgroundImage} 
-          as="image" 
+        <link
+          rel="preload"
+          href={lentesPorcelanaProfissionalConfig.hero.backgroundImage}
+          as="image"
           type="image/webp"
         />
 
@@ -175,13 +176,13 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
       </Helmet>
 
       <ErrorBoundary>
-        <ConsultaInicialHeader 
+        <ConsultaInicialHeader
           whatsappNumber={lentesPorcelanaProfissionalConfig.whatsapp.number}
           whatsappMessage={lentesPorcelanaProfissionalConfig.whatsapp.message}
           campaign={lentesPorcelanaProfissionalConfig.campaign}
           messageMatch={lentesPorcelanaProfissionalConfig.messageMatch}
         />
-        <ConsultaInicialHero 
+        <ConsultaInicialHero
           headline={lentesPorcelanaProfissionalConfig.hero.headline}
           subheadline={lentesPorcelanaProfissionalConfig.hero.subheadline}
           ctaText={lentesPorcelanaProfissionalConfig.hero.ctaText}
@@ -191,61 +192,75 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
           whatsappMessage={lentesPorcelanaProfissionalConfig.whatsapp.message}
         />
 
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialProblem 
-            title={lentesPorcelanaProfissionalConfig.problem.title}
-            description={lentesPorcelanaProfissionalConfig.problem.description}
-            problems={lentesPorcelanaProfissionalConfig.problem.problems}
-          />
-        </Suspense>
+        <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.1} rootMargin="100px">
+          <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+            <ConsultaInicialProblem
+              title={lentesPorcelanaProfissionalConfig.problem.title}
+              description={lentesPorcelanaProfissionalConfig.problem.description}
+              problems={lentesPorcelanaProfissionalConfig.problem.problems}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialGuide 
-            title={lentesPorcelanaProfissionalConfig.guide.title}
-            subtitle={lentesPorcelanaProfissionalConfig.guide.subtitle}
-            steps={lentesPorcelanaProfissionalConfig.guide.steps}
-          />
-        </Suspense>
+        <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.1} rootMargin="100px">
+          <Suspense fallback={<div className="h-96 bg-white" />}>
+            <ConsultaInicialGuide
+              title={lentesPorcelanaProfissionalConfig.guide.title}
+              subtitle={lentesPorcelanaProfissionalConfig.guide.subtitle}
+              steps={lentesPorcelanaProfissionalConfig.guide.steps}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialSocialProof 
-            title={lentesPorcelanaProfissionalConfig.socialProof.title}
-            testimonials={lentesPorcelanaProfissionalConfig.socialProof.testimonials}
-            stats={lentesPorcelanaProfissionalConfig.socialProof.stats}
-          />
-        </Suspense>
+        <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.1} rootMargin="50px">
+          <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+            <ConsultaInicialSocialProof
+              title={lentesPorcelanaProfissionalConfig.socialProof.title}
+              testimonials={lentesPorcelanaProfissionalConfig.socialProof.testimonials}
+              stats={lentesPorcelanaProfissionalConfig.socialProof.stats}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialFAQ 
-            title={lentesPorcelanaProfissionalConfig.faq.title}
-            questions={lentesPorcelanaProfissionalConfig.faq.questions}
-          />
-        </Suspense>
+        <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.1} rootMargin="50px">
+          <Suspense fallback={<div className="h-96 bg-white" />}>
+            <ConsultaInicialFAQ
+              title={lentesPorcelanaProfissionalConfig.faq.title}
+              questions={lentesPorcelanaProfissionalConfig.faq.questions}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialCTA 
-            title={lentesPorcelanaProfissionalConfig.cta.title}
-            subtitle={lentesPorcelanaProfissionalConfig.cta.subtitle}
-            buttonText={lentesPorcelanaProfissionalConfig.cta.buttonText}
-            whatsappNumber={lentesPorcelanaProfissionalConfig.whatsapp.number}
-            whatsappMessage={lentesPorcelanaProfissionalConfig.whatsapp.message}
-            campaign={lentesPorcelanaProfissionalConfig.campaign}
-            messageMatch={lentesPorcelanaProfissionalConfig.messageMatch}
-          />
-        </Suspense>
+        <LazySection fallback={<div className="h-32 bg-[#381F47] animate-pulse" />} threshold={0.1}>
+          <Suspense fallback={<div className="h-32 bg-[#381F47]" />}>
+            <ConsultaInicialCTA
+              title={lentesPorcelanaProfissionalConfig.cta.title}
+              subtitle={lentesPorcelanaProfissionalConfig.cta.subtitle}
+              buttonText={lentesPorcelanaProfissionalConfig.cta.buttonText}
+              whatsappNumber={lentesPorcelanaProfissionalConfig.whatsapp.number}
+              whatsappMessage={lentesPorcelanaProfissionalConfig.whatsapp.message}
+              campaign={lentesPorcelanaProfissionalConfig.campaign}
+              messageMatch={lentesPorcelanaProfissionalConfig.messageMatch}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<div className="h-32 bg-gray-100 animate-pulse" />}>
-          <ClareamentoFooter />
-        </Suspense>
+        <LazySection fallback={<div className="h-64 bg-[#381F47] animate-pulse" />} threshold={0.1}>
+          <Suspense fallback={<div className="h-64 bg-[#381F47]" />}>
+            <LandingFooter doctorName="Dra. Carla Christoph" clinicName="Ipanema Elegance Dental" phoneNumber="(21) 99330-4045" />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={null}>
-          <FloatingWhatsApp 
-            phoneNumber={lentesPorcelanaProfissionalConfig.whatsapp.number}
-            message={lentesPorcelanaProfissionalConfig.whatsapp.message}
-            campaign={lentesPorcelanaProfissionalConfig.campaign}
-            messageMatch={lentesPorcelanaProfissionalConfig.messageMatch}
-          />
-        </Suspense>
+        <LazySection fallback={null} threshold={0} rootMargin="0px">
+          <Suspense fallback={null}>
+            <FloatingWhatsApp
+              phoneNumber={lentesPorcelanaProfissionalConfig.whatsapp.number}
+              message={lentesPorcelanaProfissionalConfig.whatsapp.message}
+              campaign={lentesPorcelanaProfissionalConfig.campaign}
+              messageMatch={lentesPorcelanaProfissionalConfig.messageMatch}
+            />
+          </Suspense>
+        </LazySection>
       </ErrorBoundary>
     </>
   );

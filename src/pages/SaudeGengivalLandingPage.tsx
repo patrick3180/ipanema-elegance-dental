@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { saudeGengivalConfig } from "@/config/saudeGengivalConfig";
 import { useCriticalImagePreload } from "@/hooks/useCriticalImagePreload";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
+import LazySection from '@/components/performance/LazySection';
 
 // Lazy load components for better performance
 const ConsultaInicialHeader = lazy(() => import("@/components/landing/consulta/ConsultaInicialHeader"));
@@ -12,7 +13,7 @@ const GuideSection = lazy(() => import("@/components/landing/GuideSection"));
 const SocialProofSection = lazy(() => import("@/components/landing/SocialProofSection"));
 const FAQSection = lazy(() => import("@/components/landing/FAQSection"));
 const CTASection = lazy(() => import("@/components/landing/CTASection"));
-const ClareamentoFooter = React.lazy(() => import('@/components/landing/clareamento/ClareamentoFooter'));
+const LandingFooter = lazy(() => import('@/components/landing/LandingFooter'));
 const FloatingWhatsApp = lazy(() => import("@/components/landing/FloatingWhatsApp"));
 
 // Performance optimizers
@@ -37,9 +38,9 @@ const SaudeGengivalLandingPage = () => {
   });
 
   // Track scroll depth
-  useScrollTracking({ 
+  useScrollTracking({
     pagePath: '/lp/saude-gengival-ipanema',
-    enabled: true 
+    enabled: true
   });
 
   useEffect(() => {
@@ -104,36 +105,36 @@ const SaudeGengivalLandingPage = () => {
         <meta name="description" content={config.seo.description} />
         <meta name="keywords" content={config.seo.keywords?.join(", ")} />
         <meta name="robots" content="noindex, nofollow" />
-        
+
         {/* Open Graph tags */}
         <meta property="og:title" content={config.seo.title} />
         <meta property="og:description" content={config.seo.description} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dracarlachristoph.com/lp/saude-gengival-ipanema" />
         <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
-        
+
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={config.seo.title} />
         <meta name="twitter:description" content={config.seo.description} />
         <meta name="twitter:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
-        
+
         {/* Canonical URL */}
         <link rel="canonical" href="https://dracarlachristoph.com/lp/saude-gengival-ipanema" />
-        
+
         {/* Preload critical image */}
-        <link 
-          rel="preload" 
-          as="image" 
+        <link
+          rel="preload"
+          as="image"
           href="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
           type="image/webp"
         />
-        
+
         {/* Structured Data */}
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
         </script>
-        
+
         {/* Enhanced GTM Script */}
         {config.tracking.gtmId && (
           <script type="text/javascript">
@@ -158,17 +159,17 @@ const SaudeGengivalLandingPage = () => {
           {/* Performance Optimizers */}
           <SimpleLCPOptimizer />
           <CoreWebVitalsOptimizer />
-          
+
           {/* Header */}
-          <ConsultaInicialHeader 
+          <ConsultaInicialHeader
             whatsappNumber={config.whatsapp.number}
             whatsappMessage={config.whatsapp.message}
             campaign={config.campaign}
             messageMatch={config.messageMatch}
           />
-          
+
           {/* Hero Section */}
-          <ConsultaInicialHero 
+          <ConsultaInicialHero
             headline={config.hero.headline}
             subheadline={config.hero.subheadline}
             ctaText={config.hero.ctaText}
@@ -177,63 +178,83 @@ const SaudeGengivalLandingPage = () => {
             backgroundImage={config.hero.backgroundImage}
             benefits={config.benefits}
           />
-          
+
           {/* Problem Section */}
-          <ProblemSection 
-            title={config.problem.title}
-            description={config.problem.description}
-            problems={config.problem.problems}
-          />
-          
+          <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.1} rootMargin="100px">
+            <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+              <ProblemSection
+                title={config.problem.title}
+                description={config.problem.description}
+                problems={config.problem.problems}
+              />
+            </Suspense>
+          </LazySection>
+
           {/* Guide Section */}
-          <GuideSection 
-            title={config.guide.title}
-            subtitle={config.guide.subtitle}
-            steps={config.guide.steps}
-          />
-          
+          <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.1} rootMargin="100px">
+            <Suspense fallback={<div className="h-96 bg-white" />}>
+              <GuideSection
+                title={config.guide.title}
+                subtitle={config.guide.subtitle}
+                steps={config.guide.steps}
+              />
+            </Suspense>
+          </LazySection>
+
           {/* Social Proof Section */}
-          <Suspense fallback={<SocialProofSkeleton />}>
-            <SocialProofSection 
-              title={config.socialProof.title}
-              testimonials={config.socialProof.testimonials}
-              stats={config.socialProof.stats}
-            />
-          </Suspense>
-          
+          <LazySection fallback={<SocialProofSkeleton />} threshold={0.1} rootMargin="50px">
+            <Suspense fallback={<SocialProofSkeleton />}>
+              <SocialProofSection
+                title={config.socialProof.title}
+                testimonials={config.socialProof.testimonials}
+                stats={config.socialProof.stats}
+              />
+            </Suspense>
+          </LazySection>
+
           {/* FAQ Section */}
-          <Suspense fallback={<FAQSkeleton />}>
-            <FAQSection 
-              title={config.faq.title}
-              questions={config.faq.questions}
-            />
-          </Suspense>
-          
+          <LazySection fallback={<FAQSkeleton />} threshold={0.1} rootMargin="50px">
+            <Suspense fallback={<FAQSkeleton />}>
+              <FAQSection
+                title={config.faq.title}
+                questions={config.faq.questions}
+              />
+            </Suspense>
+          </LazySection>
+
           {/* CTA Section */}
-          <CTASection 
-            title={config.cta.title}
-            subtitle={config.cta.subtitle}
-            buttonText={config.cta.buttonText}
-            campaign={config.campaign}
-            phoneNumber={config.whatsapp.number}
-            whatsappMessage={config.whatsapp.message}
-            messageMatch={config.messageMatch}
-          />
-          
+          <LazySection fallback={<div className="h-32 bg-[#381F47] animate-pulse" />} threshold={0.1}>
+            <Suspense fallback={<div className="h-32 bg-[#381F47]" />}>
+              <CTASection
+                title={config.cta.title}
+                subtitle={config.cta.subtitle}
+                buttonText={config.cta.buttonText}
+                campaign={config.campaign}
+                phoneNumber={config.whatsapp.number}
+                whatsappMessage={config.whatsapp.message}
+                messageMatch={config.messageMatch}
+              />
+            </Suspense>
+          </LazySection>
+
           {/* Footer */}
-          <Suspense fallback={<FooterSkeleton />}>
-            <ClareamentoFooter />
-          </Suspense>
-          
+          <LazySection fallback={<FooterSkeleton />} threshold={0.1}>
+            <Suspense fallback={<FooterSkeleton />}>
+              <LandingFooter doctorName="Dra. Carla Christoph" clinicName="Ipanema Elegance Dental" phoneNumber="(21) 99330-4045" />
+            </Suspense>
+          </LazySection>
+
           {/* Floating WhatsApp */}
-          <Suspense fallback={<WhatsAppSkeleton />}>
-            <FloatingWhatsApp 
-              phoneNumber={config.whatsapp.number}
-              message={config.whatsapp.message}
-              campaign={config.campaign}
-              messageMatch={config.messageMatch}
-            />
-          </Suspense>
+          <LazySection fallback={null} threshold={0} rootMargin="0px">
+            <Suspense fallback={null}>
+              <FloatingWhatsApp
+                phoneNumber={config.whatsapp.number}
+                message={config.whatsapp.message}
+                campaign={config.campaign}
+                messageMatch={config.messageMatch}
+              />
+            </Suspense>
+          </LazySection>
         </ErrorBoundary>
       </Suspense>
     </>

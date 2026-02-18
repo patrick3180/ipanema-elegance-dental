@@ -11,6 +11,7 @@ import SmartContentfulCache from '@/components/performance/SmartContentfulCache'
 import CoreWebVitalsMonitor from '@/components/performance/CoreWebVitalsMonitor';
 import HeroImagePreloader from '@/components/performance/HeroImagePreloader';
 import ErrorBoundary from '@/components/performance/ErrorBoundary';
+import LazySection from '@/components/performance/LazySection';
 import { GTMManager } from '@/components/performance/GTMManager';
 
 // Critical components (loaded immediately)
@@ -23,7 +24,7 @@ const ConsultaInicialGuide = React.lazy(() => import('@/components/landing/consu
 const ConsultaInicialSocialProof = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialSocialProof'));
 const ConsultaInicialFAQ = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialFAQ'));
 const ConsultaInicialCTA = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialCTA'));
-const ClareamentoFooter = React.lazy(() => import('@/components/landing/clareamento/ClareamentoFooter'));
+const LandingFooter = React.lazy(() => import('@/components/landing/LandingFooter'));
 const FloatingWhatsApp = React.lazy(() => import('@/components/landing/FloatingWhatsApp'));
 
 const DorDeDenteLandingPage: React.FC = () => {
@@ -52,9 +53,9 @@ const DorDeDenteLandingPage: React.FC = () => {
     }
   }, []);
 
-  useScrollTracking({ 
-    pagePath: '/lp/dor-de-dente-urgencia-ipanema', 
-    enabled: process.env.NODE_ENV === 'production' 
+  useScrollTracking({
+    pagePath: '/lp/dor-de-dente-urgencia-ipanema',
+    enabled: process.env.NODE_ENV === 'production'
   });
 
   return (
@@ -65,7 +66,7 @@ const DorDeDenteLandingPage: React.FC = () => {
       <SmartContentfulCache />
       <CoreWebVitalsMonitor />
       <HeroImagePreloader images={criticalImages} />
-      
+
       <Helmet>
         <title>{dorDeDenteConfig.seo.title}</title>
         <meta name="description" content={dorDeDenteConfig.seo.description} />
@@ -84,20 +85,20 @@ const DorDeDenteLandingPage: React.FC = () => {
         <meta name="twitter:description" content={dorDeDenteConfig.seo.description} />
         <meta name="twitter:image" content={`https://dracarlachristoph.com${dorDeDenteConfig.hero.backgroundImage}`} />
 
-        <link 
-          rel="preload" 
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" 
-          as="style" 
-          onLoad={(e: any) => { 
-            e.target.rel = 'stylesheet'; 
-            e.target.onload = null; 
+        <link
+          rel="preload"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
+          as="style"
+          onLoad={(e: any) => {
+            e.target.rel = 'stylesheet';
+            e.target.onload = null;
           }}
         />
 
-        <link 
-          rel="preload" 
+        <link
+          rel="preload"
           href="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
-          as="image" 
+          as="image"
           type="image/webp"
           fetchPriority="high"
         />
@@ -166,61 +167,75 @@ const DorDeDenteLandingPage: React.FC = () => {
           whatsappMessage={dorDeDenteConfig.whatsapp.message}
         />
 
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialProblem
-            title={dorDeDenteConfig.problem.title}
-            description={dorDeDenteConfig.problem.description}
-            problems={dorDeDenteConfig.problem.problems}
-          />
-        </Suspense>
+        <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.1} rootMargin="100px">
+          <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+            <ConsultaInicialProblem
+              title={dorDeDenteConfig.problem.title}
+              description={dorDeDenteConfig.problem.description}
+              problems={dorDeDenteConfig.problem.problems}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialGuide
-            title={dorDeDenteConfig.guide.title}
-            subtitle={dorDeDenteConfig.guide.subtitle}
-            steps={dorDeDenteConfig.guide.steps}
-          />
-        </Suspense>
+        <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.1} rootMargin="100px">
+          <Suspense fallback={<div className="h-96 bg-white" />}>
+            <ConsultaInicialGuide
+              title={dorDeDenteConfig.guide.title}
+              subtitle={dorDeDenteConfig.guide.subtitle}
+              steps={dorDeDenteConfig.guide.steps}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialSocialProof
-            title={dorDeDenteConfig.socialProof.title}
-            testimonials={dorDeDenteConfig.socialProof.testimonials}
-            stats={dorDeDenteConfig.socialProof.stats}
-          />
-        </Suspense>
+        <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.1} rootMargin="50px">
+          <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+            <ConsultaInicialSocialProof
+              title={dorDeDenteConfig.socialProof.title}
+              testimonials={dorDeDenteConfig.socialProof.testimonials}
+              stats={dorDeDenteConfig.socialProof.stats}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialFAQ
-            title={dorDeDenteConfig.faq.title}
-            questions={dorDeDenteConfig.faq.questions}
-          />
-        </Suspense>
+        <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.1} rootMargin="50px">
+          <Suspense fallback={<div className="h-96 bg-white" />}>
+            <ConsultaInicialFAQ
+              title={dorDeDenteConfig.faq.title}
+              questions={dorDeDenteConfig.faq.questions}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialCTA
-            title={dorDeDenteConfig.cta.title}
-            subtitle={dorDeDenteConfig.cta.subtitle}
-            buttonText={dorDeDenteConfig.cta.buttonText}
-            whatsappNumber={dorDeDenteConfig.whatsapp.number}
-            whatsappMessage={dorDeDenteConfig.whatsapp.message}
-            campaign={dorDeDenteConfig.campaign}
-            messageMatch={dorDeDenteConfig.messageMatch}
-          />
-        </Suspense>
+        <LazySection fallback={<div className="h-32 bg-[#381F47] animate-pulse" />} threshold={0.1}>
+          <Suspense fallback={<div className="h-32 bg-[#381F47]" />}>
+            <ConsultaInicialCTA
+              title={dorDeDenteConfig.cta.title}
+              subtitle={dorDeDenteConfig.cta.subtitle}
+              buttonText={dorDeDenteConfig.cta.buttonText}
+              whatsappNumber={dorDeDenteConfig.whatsapp.number}
+              whatsappMessage={dorDeDenteConfig.whatsapp.message}
+              campaign={dorDeDenteConfig.campaign}
+              messageMatch={dorDeDenteConfig.messageMatch}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<div className="h-32 bg-gray-100 animate-pulse" />}>
-          <ClareamentoFooter />
-        </Suspense>
+        <LazySection fallback={<div className="h-64 bg-[#381F47] animate-pulse" />} threshold={0.1}>
+          <Suspense fallback={<div className="h-64 bg-[#381F47]" />}>
+            <LandingFooter doctorName="Dra. Carla Christoph" clinicName="Ipanema Elegance Dental" phoneNumber="(21) 99330-4045" />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={null}>
-          <FloatingWhatsApp
-            phoneNumber={dorDeDenteConfig.whatsapp.number}
-            message={dorDeDenteConfig.whatsapp.message}
-            campaign={dorDeDenteConfig.campaign}
-            messageMatch={dorDeDenteConfig.messageMatch}
-          />
-        </Suspense>
+        <LazySection fallback={null} threshold={0} rootMargin="0px">
+          <Suspense fallback={null}>
+            <FloatingWhatsApp
+              phoneNumber={dorDeDenteConfig.whatsapp.number}
+              message={dorDeDenteConfig.whatsapp.message}
+              campaign={dorDeDenteConfig.campaign}
+              messageMatch={dorDeDenteConfig.messageMatch}
+            />
+          </Suspense>
+        </LazySection>
       </ErrorBoundary>
     </>
   );

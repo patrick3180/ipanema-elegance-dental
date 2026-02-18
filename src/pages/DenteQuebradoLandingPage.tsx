@@ -11,6 +11,7 @@ import SmartContentfulCache from '@/components/performance/SmartContentfulCache'
 import CoreWebVitalsMonitor from '@/components/performance/CoreWebVitalsMonitor';
 import HeroImagePreloader from '@/components/performance/HeroImagePreloader';
 import ErrorBoundary from '@/components/performance/ErrorBoundary';
+import LazySection from '@/components/performance/LazySection';
 import { GTMManager } from '@/components/performance/GTMManager';
 
 // Critical components (loaded immediately)
@@ -23,7 +24,7 @@ const ConsultaInicialGuide = React.lazy(() => import('@/components/landing/consu
 const ConsultaInicialSocialProof = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialSocialProof'));
 const ConsultaInicialFAQ = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialFAQ'));
 const ConsultaInicialCTA = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialCTA'));
-const ClareamentoFooter = React.lazy(() => import('@/components/landing/clareamento/ClareamentoFooter'));
+const LandingFooter = React.lazy(() => import('@/components/landing/LandingFooter'));
 const FloatingWhatsApp = React.lazy(() => import('@/components/landing/FloatingWhatsApp'));
 
 const DenteQuebradoLandingPage: React.FC = () => {
@@ -60,9 +61,9 @@ const DenteQuebradoLandingPage: React.FC = () => {
   }, []);
 
   // Scroll tracking for production analytics
-  useScrollTracking({ 
-    pagePath: '/lp/dente-quebrado-urgencia-ipanema', 
-    enabled: process.env.NODE_ENV === 'production' 
+  useScrollTracking({
+    pagePath: '/lp/dente-quebrado-urgencia-ipanema',
+    enabled: process.env.NODE_ENV === 'production'
   });
 
   return (
@@ -73,7 +74,7 @@ const DenteQuebradoLandingPage: React.FC = () => {
       <SmartContentfulCache enableBlocking={true} />
       <CoreWebVitalsMonitor enabled={true} />
       <HeroImagePreloader images={criticalImages} />
-      
+
       <Helmet>
         <title>{denteQuebradoConfig.seo.title}</title>
         <meta name="description" content={denteQuebradoConfig.seo.description} />
@@ -95,46 +96,46 @@ const DenteQuebradoLandingPage: React.FC = () => {
         <meta name="twitter:image" content={`https://dracarlachristoph.com${denteQuebradoConfig.hero.backgroundImage}`} />
 
         {/* Preload critical fonts com display=swap */}
-        <link 
-          rel="preload" 
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" 
-          as="style" 
-          onLoad={(e: any) => { 
-            e.target.rel = 'stylesheet'; 
-            e.target.onload = null; 
+        <link
+          rel="preload"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
+          as="style"
+          onLoad={(e: any) => {
+            e.target.rel = 'stylesheet';
+            e.target.onload = null;
           }}
         />
 
         {/* Preload critical hero images com fetchpriority="high" */}
-        <link 
-          rel="preload" 
+        <link
+          rel="preload"
           href="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
-          as="image" 
+          as="image"
           type="image/webp"
           fetchPriority="high"
         />
 
         {/* Preload self-hosted critical fonts */}
-        <link 
-          rel="preload" 
-          href="/fonts/montserrat-400.woff2" 
-          as="font" 
-          type="font/woff2" 
-          crossOrigin="anonymous" 
+        <link
+          rel="preload"
+          href="/fonts/montserrat-400.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
         />
-        <link 
-          rel="preload" 
-          href="/fonts/montserrat-500.woff2" 
-          as="font" 
-          type="font/woff2" 
-          crossOrigin="anonymous" 
+        <link
+          rel="preload"
+          href="/fonts/montserrat-500.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
         />
-        <link 
-          rel="preload" 
-          href="/fonts/playfair-display-400.woff2" 
-          as="font" 
-          type="font/woff2" 
-          crossOrigin="anonymous" 
+        <link
+          rel="preload"
+          href="/fonts/playfair-display-400.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
         />
 
         {/* DNS Prefetch and Preconnect optimizations */}
@@ -185,78 +186,92 @@ const DenteQuebradoLandingPage: React.FC = () => {
 
       {/* Critical above-the-fold content */}
       <ErrorBoundary>
-      <ConsultaInicialHeader
-        whatsappNumber={denteQuebradoConfig.whatsapp.number}
-        whatsappMessage={denteQuebradoConfig.whatsapp.message}
-        campaign={denteQuebradoConfig.campaign}
-        messageMatch={denteQuebradoConfig.messageMatch}
-      />
-
-      <ConsultaInicialHero
-        headline={denteQuebradoConfig.hero.headline}
-        subheadline={denteQuebradoConfig.hero.subheadline}
-        ctaText={denteQuebradoConfig.hero.ctaText}
-        benefits={denteQuebradoConfig.benefits}
-        backgroundImage={denteQuebradoConfig.hero.backgroundImage}
-        whatsappNumber={denteQuebradoConfig.whatsapp.number}
-        whatsappMessage={denteQuebradoConfig.whatsapp.message}
-      />
-
-      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-        <ConsultaInicialProblem
-          title={denteQuebradoConfig.problem.title}
-          description={denteQuebradoConfig.problem.description}
-          problems={denteQuebradoConfig.problem.problems}
-        />
-      </Suspense>
-
-      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-        <ConsultaInicialGuide
-          title={denteQuebradoConfig.guide.title}
-          subtitle={denteQuebradoConfig.guide.subtitle}
-          steps={denteQuebradoConfig.guide.steps}
-        />
-      </Suspense>
-
-      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-        <ConsultaInicialSocialProof
-          title={denteQuebradoConfig.socialProof.title}
-          testimonials={denteQuebradoConfig.socialProof.testimonials}
-          stats={denteQuebradoConfig.socialProof.stats}
-        />
-      </Suspense>
-
-      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-        <ConsultaInicialFAQ
-          title={denteQuebradoConfig.faq.title}
-          questions={denteQuebradoConfig.faq.questions}
-        />
-      </Suspense>
-
-      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-        <ConsultaInicialCTA
-          title={denteQuebradoConfig.cta.title}
-          subtitle={denteQuebradoConfig.cta.subtitle}
-          buttonText={denteQuebradoConfig.cta.buttonText}
+        <ConsultaInicialHeader
           whatsappNumber={denteQuebradoConfig.whatsapp.number}
           whatsappMessage={denteQuebradoConfig.whatsapp.message}
           campaign={denteQuebradoConfig.campaign}
           messageMatch={denteQuebradoConfig.messageMatch}
         />
-      </Suspense>
 
-      <Suspense fallback={<div className="h-32 bg-gray-100 animate-pulse" />}>
-        <ClareamentoFooter />
-      </Suspense>
-
-      <Suspense fallback={null}>
-        <FloatingWhatsApp
-          phoneNumber={denteQuebradoConfig.whatsapp.number}
-          message={denteQuebradoConfig.whatsapp.message}
-          campaign={denteQuebradoConfig.campaign}
-          messageMatch={denteQuebradoConfig.messageMatch}
+        <ConsultaInicialHero
+          headline={denteQuebradoConfig.hero.headline}
+          subheadline={denteQuebradoConfig.hero.subheadline}
+          ctaText={denteQuebradoConfig.hero.ctaText}
+          benefits={denteQuebradoConfig.benefits}
+          backgroundImage={denteQuebradoConfig.hero.backgroundImage}
+          whatsappNumber={denteQuebradoConfig.whatsapp.number}
+          whatsappMessage={denteQuebradoConfig.whatsapp.message}
         />
-      </Suspense>
+
+        <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.1} rootMargin="100px">
+          <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+            <ConsultaInicialProblem
+              title={denteQuebradoConfig.problem.title}
+              description={denteQuebradoConfig.problem.description}
+              problems={denteQuebradoConfig.problem.problems}
+            />
+          </Suspense>
+        </LazySection>
+
+        <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.1} rootMargin="100px">
+          <Suspense fallback={<div className="h-96 bg-white" />}>
+            <ConsultaInicialGuide
+              title={denteQuebradoConfig.guide.title}
+              subtitle={denteQuebradoConfig.guide.subtitle}
+              steps={denteQuebradoConfig.guide.steps}
+            />
+          </Suspense>
+        </LazySection>
+
+        <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.1} rootMargin="50px">
+          <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+            <ConsultaInicialSocialProof
+              title={denteQuebradoConfig.socialProof.title}
+              testimonials={denteQuebradoConfig.socialProof.testimonials}
+              stats={denteQuebradoConfig.socialProof.stats}
+            />
+          </Suspense>
+        </LazySection>
+
+        <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.1} rootMargin="50px">
+          <Suspense fallback={<div className="h-96 bg-white" />}>
+            <ConsultaInicialFAQ
+              title={denteQuebradoConfig.faq.title}
+              questions={denteQuebradoConfig.faq.questions}
+            />
+          </Suspense>
+        </LazySection>
+
+        <LazySection fallback={<div className="h-32 bg-[#381F47] animate-pulse" />} threshold={0.1}>
+          <Suspense fallback={<div className="h-32 bg-[#381F47]" />}>
+            <ConsultaInicialCTA
+              title={denteQuebradoConfig.cta.title}
+              subtitle={denteQuebradoConfig.cta.subtitle}
+              buttonText={denteQuebradoConfig.cta.buttonText}
+              whatsappNumber={denteQuebradoConfig.whatsapp.number}
+              whatsappMessage={denteQuebradoConfig.whatsapp.message}
+              campaign={denteQuebradoConfig.campaign}
+              messageMatch={denteQuebradoConfig.messageMatch}
+            />
+          </Suspense>
+        </LazySection>
+
+        <LazySection fallback={<div className="h-64 bg-[#381F47] animate-pulse" />} threshold={0.1}>
+          <Suspense fallback={<div className="h-64 bg-[#381F47]" />}>
+            <LandingFooter doctorName="Dra. Carla Christoph" clinicName="Ipanema Elegance Dental" phoneNumber="(21) 99330-4045" />
+          </Suspense>
+        </LazySection>
+
+        <LazySection fallback={null} threshold={0} rootMargin="0px">
+          <Suspense fallback={null}>
+            <FloatingWhatsApp
+              phoneNumber={denteQuebradoConfig.whatsapp.number}
+              message={denteQuebradoConfig.whatsapp.message}
+              campaign={denteQuebradoConfig.campaign}
+              messageMatch={denteQuebradoConfig.messageMatch}
+            />
+          </Suspense>
+        </LazySection>
       </ErrorBoundary>
     </>
   );

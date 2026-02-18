@@ -16,22 +16,23 @@ import CriticalCSSOptimizer from '@/components/performance/CriticalCSSOptimizer'
 import AsyncScriptManager from '@/components/performance/AsyncScriptManager';
 import FastServerResponseOptimizer from '@/components/performance/FastServerResponseOptimizer';
 import ErrorBoundary from '@/components/performance/ErrorBoundary';
+import LazySection from '@/components/performance/LazySection';
 
 // Aggressive lazy loading for better LCP performance
-const ConsultaInicialSocialProof = React.lazy(() => 
-  import('@/components/landing/consulta/ConsultaInicialSocialProof').then(module => ({ 
-    default: module.default 
+const ConsultaInicialSocialProof = React.lazy(() =>
+  import('@/components/landing/consulta/ConsultaInicialSocialProof').then(module => ({
+    default: module.default
   }))
 );
-const ConsultaInicialFAQ = React.lazy(() => 
-  import('@/components/landing/consulta/ConsultaInicialFAQ').then(module => ({ 
-    default: module.default 
+const ConsultaInicialFAQ = React.lazy(() =>
+  import('@/components/landing/consulta/ConsultaInicialFAQ').then(module => ({
+    default: module.default
   }))
 );
-const ClareamentoFooter = React.lazy(() => import('@/components/landing/clareamento/ClareamentoFooter'));
-const FloatingWhatsApp = React.lazy(() => 
-  import('@/components/landing/FloatingWhatsApp').then(module => ({ 
-    default: module.default 
+const LandingFooter = React.lazy(() => import('@/components/landing/LandingFooter'));
+const FloatingWhatsApp = React.lazy(() =>
+  import('@/components/landing/FloatingWhatsApp').then(module => ({
+    default: module.default
   }))
 );
 
@@ -57,7 +58,7 @@ const ImplantesDentariosLandingPage: React.FC = () => {
     console.debug('[LP Implantes Dentários] Mounted at', new Date().toISOString());
     // Capture GCLID if present
     captureGCLID();
-    
+
     // Track page view
     if (window.dataLayer) {
       window.dataLayer.push({
@@ -71,7 +72,7 @@ const ImplantesDentariosLandingPage: React.FC = () => {
   }, []);
 
   // Use optimized scroll tracking
-  useScrollTracking({ 
+  useScrollTracking({
     pagePath: '/lp/implantes-dentarios-ipanema',
     enabled: process.env.NODE_ENV === 'production'
   });
@@ -85,7 +86,7 @@ const ImplantesDentariosLandingPage: React.FC = () => {
         <meta name="keywords" content={implantesDentariosConfig.seo.keywords?.join(', ')} />
         <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href="https://dracarlachristoph.com/lp/implantes-dentarios-ipanema" />
-        
+
         {/* Single critical font preload */}
         <link
           rel="preload"
@@ -111,19 +112,20 @@ const ImplantesDentariosLandingPage: React.FC = () => {
           .text-white{color:#fff}.w-full{width:100%}
           .transition-all{transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
         `}</style>
-        
+
         {/* Preload critical AVIF hero image with highest priority */}
         <link rel="preload" as="image" href="/lovable-uploads/vertical-de-jaleco-1024.avif" type="image/avif" fetchPriority="high" />
-        
+
         {/* DNS prefetch and preconnect for external resources */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="dns-prefetch" href="//api.whatsapp.com" />
         <link rel="dns-prefetch" href="//web.whatsapp.com" />
         <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-        
+
         {/* Font CSS with font-display: swap */}
-        <style dangerouslySetInnerHTML={{ __html: `
+        <style dangerouslySetInnerHTML={{
+          __html: `
           @font-face {
             font-family: 'Playfair Display';
             font-display: swap;
@@ -139,54 +141,56 @@ const ImplantesDentariosLandingPage: React.FC = () => {
             unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
           }
         ` }} />
-        
+
         {/* Open Graph */}
         <meta property="og:title" content={implantesDentariosConfig.seo.title} />
         <meta property="og:description" content={implantesDentariosConfig.seo.description} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dracarlachristoph.com/lp/implantes-dentarios-ipanema" />
         <meta property="og:image" content={implantesDentariosConfig.hero.backgroundImage} />
-        
+
         {/* JSON-LD Structured Data */}
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "MedicalBusiness",
-          "name": "Dra. Carla Christoph - Implantes Dentários",
-          "description": implantesDentariosConfig.seo.description,
-          "url": "https://dracarlachristoph.com/lp/implantes-dentarios-ipanema",
-          "telephone": "+5521993304045",
-          "medicalSpecialty": "Implantologia",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
-            "addressLocality": "Ipanema",
-            "addressRegion": "RJ",
-            "postalCode": "22410-002",
-            "addressCountry": "BR"
-          },
-          "offers": {
-            "@type": "MedicalService",
-            "name": "Implantes Dentários",
-            "category": "Implantologia"
-          }
-        }) }} />
-        
+        <script type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "MedicalBusiness",
+            "name": "Dra. Carla Christoph - Implantes Dentários",
+            "description": implantesDentariosConfig.seo.description,
+            "url": "https://dracarlachristoph.com/lp/implantes-dentarios-ipanema",
+            "telephone": "+5521993304045",
+            "medicalSpecialty": "Implantologia",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
+              "addressLocality": "Ipanema",
+              "addressRegion": "RJ",
+              "postalCode": "22410-002",
+              "addressCountry": "BR"
+            },
+            "offers": {
+              "@type": "MedicalService",
+              "name": "Implantes Dentários",
+              "category": "Implantologia"
+            }
+          })
+        }} />
+
       </Helmet>
 
       {/* Performance optimization components */}
       <FastServerResponseOptimizer />
-      <CriticalCSSOptimizer 
+      <CriticalCSSOptimizer
         inlineStyles=""
       />
-      <AsyncScriptManager 
+      <AsyncScriptManager
         gtmId={implantesDentariosConfig.tracking.gtmId}
         enableTracking={true}
         loadDelay={2000}
       />
-      
+
       <ErrorBoundary><div className="min-h-screen">
         {/* Header */}
-        <ConsultaInicialHeader 
+        <ConsultaInicialHeader
           whatsappNumber={implantesDentariosConfig.whatsapp.number}
           whatsappMessage={implantesDentariosConfig.whatsapp.message}
           campaign={implantesDentariosConfig.campaign}
@@ -207,67 +211,81 @@ const ImplantesDentariosLandingPage: React.FC = () => {
           />
 
           {/* Problem Section */}
-          <ConsultaInicialProblem
-            title={implantesDentariosConfig.problem.title}
-            description={implantesDentariosConfig.problem.description}
-            problems={implantesDentariosConfig.problem.problems}
-          />
+          <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.1} rootMargin="100px">
+            <ConsultaInicialProblem
+              title={implantesDentariosConfig.problem.title}
+              description={implantesDentariosConfig.problem.description}
+              problems={implantesDentariosConfig.problem.problems}
+            />
+          </LazySection>
 
           {/* Guide Section */}
-          <ConsultaInicialGuide
-            title={implantesDentariosConfig.guide.title}
-            subtitle={implantesDentariosConfig.guide.subtitle}
-            steps={implantesDentariosConfig.guide.steps}
-          />
+          <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.1} rootMargin="100px">
+            <ConsultaInicialGuide
+              title={implantesDentariosConfig.guide.title}
+              subtitle={implantesDentariosConfig.guide.subtitle}
+              steps={implantesDentariosConfig.guide.steps}
+            />
+          </LazySection>
 
           {/* Social Proof Section - Lazy Loaded */}
-          <Suspense fallback={<SocialProofSkeleton />}>
-            <ConsultaInicialSocialProof
-              title={implantesDentariosConfig.socialProof.title}
-              testimonials={implantesDentariosConfig.socialProof.testimonials}
-              stats={implantesDentariosConfig.socialProof.stats!}
-            />
-          </Suspense>
+          <LazySection fallback={<SocialProofSkeleton />} threshold={0.1} rootMargin="50px">
+            <Suspense fallback={<SocialProofSkeleton />}>
+              <ConsultaInicialSocialProof
+                title={implantesDentariosConfig.socialProof.title}
+                testimonials={implantesDentariosConfig.socialProof.testimonials}
+                stats={implantesDentariosConfig.socialProof.stats!}
+              />
+            </Suspense>
+          </LazySection>
 
           {/* FAQ Section - Lazy Loaded */}
-          <Suspense fallback={<FAQSkeleton />}>
-            <ConsultaInicialFAQ
-              title={implantesDentariosConfig.faq.title}
-              questions={implantesDentariosConfig.faq.questions}
-            />
-          </Suspense>
+          <LazySection fallback={<FAQSkeleton />} threshold={0.1} rootMargin="50px">
+            <Suspense fallback={<FAQSkeleton />}>
+              <ConsultaInicialFAQ
+                title={implantesDentariosConfig.faq.title}
+                questions={implantesDentariosConfig.faq.questions}
+              />
+            </Suspense>
+          </LazySection>
 
           {/* CTA Section */}
-          <ConsultaInicialCTA
-            title={implantesDentariosConfig.cta.title}
-            subtitle={implantesDentariosConfig.cta.subtitle}
-            buttonText={implantesDentariosConfig.cta.buttonText}
-            whatsappNumber={implantesDentariosConfig.whatsapp.number}
-            whatsappMessage={implantesDentariosConfig.whatsapp.message}
-            campaign={implantesDentariosConfig.campaign}
-            messageMatch={implantesDentariosConfig.messageMatch}
-          />
+          <LazySection fallback={<div className="h-32 bg-[#381F47] animate-pulse" />} threshold={0.1}>
+            <ConsultaInicialCTA
+              title={implantesDentariosConfig.cta.title}
+              subtitle={implantesDentariosConfig.cta.subtitle}
+              buttonText={implantesDentariosConfig.cta.buttonText}
+              whatsappNumber={implantesDentariosConfig.whatsapp.number}
+              whatsappMessage={implantesDentariosConfig.whatsapp.message}
+              campaign={implantesDentariosConfig.campaign}
+              messageMatch={implantesDentariosConfig.messageMatch}
+            />
+          </LazySection>
         </main>
 
         {/* Footer - Lazy Loaded */}
-        <Suspense fallback={<FooterSkeleton />}>
-          <ClareamentoFooter />
-        </Suspense>
+        <LazySection fallback={<FooterSkeleton />} threshold={0.1}>
+          <Suspense fallback={<FooterSkeleton />}>
+            <LandingFooter doctorName="Dra. Carla Christoph" clinicName="Ipanema Elegance Dental" phoneNumber="(21) 99330-4045" />
+          </Suspense>
+        </LazySection>
 
         {/* Floating WhatsApp - Lazy Loaded */}
-        <Suspense fallback={<WhatsAppSkeleton />}>
-          <FloatingWhatsApp
-            phoneNumber={implantesDentariosConfig.whatsapp.number}
-            message={implantesDentariosConfig.whatsapp.message}
-            campaign={implantesDentariosConfig.campaign}
-            messageMatch={implantesDentariosConfig.messageMatch}
-          />
-        </Suspense>
+        <LazySection fallback={null} threshold={0} rootMargin="0px">
+          <Suspense fallback={null}>
+            <FloatingWhatsApp
+              phoneNumber={implantesDentariosConfig.whatsapp.number}
+              message={implantesDentariosConfig.whatsapp.message}
+              campaign={implantesDentariosConfig.campaign}
+              messageMatch={implantesDentariosConfig.messageMatch}
+            />
+          </Suspense>
+        </LazySection>
 
         {/* Load non-critical CSS after initial render */}
-        <NonCriticalCSSLoader 
-          delay={500} 
-          enabled={false} 
+        <NonCriticalCSSLoader
+          delay={500}
+          enabled={false}
         />
       </div></ErrorBoundary>
     </>

@@ -11,6 +11,7 @@ import SmartContentfulCache from '@/components/performance/SmartContentfulCache'
 import CoreWebVitalsMonitor from '@/components/performance/CoreWebVitalsMonitor';
 import HeroImagePreloader from '@/components/performance/HeroImagePreloader';
 import ErrorBoundary from '@/components/performance/ErrorBoundary';
+import LazySection from '@/components/performance/LazySection';
 import { GTMManager } from '@/components/performance/GTMManager';
 
 // Critical components (loaded immediately)
@@ -23,7 +24,7 @@ const ConsultaInicialGuide = React.lazy(() => import('@/components/landing/consu
 const ConsultaInicialSocialProof = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialSocialProof'));
 const ConsultaInicialFAQ = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialFAQ'));
 const ConsultaInicialCTA = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialCTA'));
-const ClareamentoFooter = React.lazy(() => import('@/components/landing/clareamento/ClareamentoFooter'));
+const LandingFooter = React.lazy(() => import('@/components/landing/LandingFooter'));
 const FloatingWhatsApp = React.lazy(() => import('@/components/landing/FloatingWhatsApp'));
 
 const EmergenciaOdontologicaLandingPage: React.FC = () => {
@@ -60,9 +61,9 @@ const EmergenciaOdontologicaLandingPage: React.FC = () => {
   }, []);
 
   // Scroll tracking for production analytics
-  useScrollTracking({ 
-    pagePath: '/lp/emergencia-odontologica-ipanema', 
-    enabled: process.env.NODE_ENV === 'production' 
+  useScrollTracking({
+    pagePath: '/lp/emergencia-odontologica-ipanema',
+    enabled: process.env.NODE_ENV === 'production'
   });
 
   return (
@@ -73,7 +74,7 @@ const EmergenciaOdontologicaLandingPage: React.FC = () => {
       <SmartContentfulCache enableBlocking={true} />
       <CoreWebVitalsMonitor enabled={true} />
       <HeroImagePreloader images={criticalImages} />
-      
+
       <Helmet>
         <title>{emergenciaOdontologicaConfig.seo.title}</title>
         <meta name="description" content={emergenciaOdontologicaConfig.seo.description} />
@@ -95,46 +96,46 @@ const EmergenciaOdontologicaLandingPage: React.FC = () => {
         <meta name="twitter:image" content={`https://dracarlachristoph.com${emergenciaOdontologicaConfig.hero.backgroundImage}`} />
 
         {/* Preload critical fonts com display=swap */}
-        <link 
-          rel="preload" 
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" 
-          as="style" 
-          onLoad={(e: any) => { 
-            e.target.rel = 'stylesheet'; 
-            e.target.onload = null; 
+        <link
+          rel="preload"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
+          as="style"
+          onLoad={(e: any) => {
+            e.target.rel = 'stylesheet';
+            e.target.onload = null;
           }}
         />
 
         {/* Preload critical hero images com fetchpriority="high" */}
-        <link 
-          rel="preload" 
+        <link
+          rel="preload"
           href="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
-          as="image" 
+          as="image"
           type="image/webp"
           fetchPriority="high"
         />
 
         {/* Preload self-hosted critical fonts */}
-        <link 
-          rel="preload" 
-          href="/fonts/montserrat-400.woff2" 
-          as="font" 
-          type="font/woff2" 
-          crossOrigin="anonymous" 
+        <link
+          rel="preload"
+          href="/fonts/montserrat-400.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
         />
-        <link 
-          rel="preload" 
-          href="/fonts/montserrat-500.woff2" 
-          as="font" 
-          type="font/woff2" 
-          crossOrigin="anonymous" 
+        <link
+          rel="preload"
+          href="/fonts/montserrat-500.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
         />
-        <link 
-          rel="preload" 
-          href="/fonts/playfair-display-400.woff2" 
-          as="font" 
-          type="font/woff2" 
-          crossOrigin="anonymous" 
+        <link
+          rel="preload"
+          href="/fonts/playfair-display-400.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
         />
 
         {/* DNS Prefetch and Preconnect optimizations */}
@@ -185,97 +186,97 @@ const EmergenciaOdontologicaLandingPage: React.FC = () => {
 
       {/* Critical above-the-fold content */}
       <ErrorBoundary>
-      <ConsultaInicialHeader
-        whatsappNumber={emergenciaOdontologicaConfig.whatsapp.number}
-        whatsappMessage={emergenciaOdontologicaConfig.whatsapp.message}
-        campaign={emergenciaOdontologicaConfig.campaign}
-        messageMatch={emergenciaOdontologicaConfig.messageMatch}
-      />
+        <ConsultaInicialHeader
+          whatsappNumber={emergenciaOdontologicaConfig.whatsapp.number}
+          whatsappMessage={emergenciaOdontologicaConfig.whatsapp.message}
+          campaign={emergenciaOdontologicaConfig.campaign}
+          messageMatch={emergenciaOdontologicaConfig.messageMatch}
+        />
 
-      <ConsultaInicialHero
-        headline={emergenciaOdontologicaConfig.hero.headline}
-        subheadline={emergenciaOdontologicaConfig.hero.subheadline}
-        ctaText={emergenciaOdontologicaConfig.hero.ctaText}
-        benefits={emergenciaOdontologicaConfig.benefits}
-        backgroundImage={emergenciaOdontologicaConfig.hero.backgroundImage}
-        whatsappNumber={emergenciaOdontologicaConfig.whatsapp.number}
-        whatsappMessage={emergenciaOdontologicaConfig.whatsapp.message}
-      />
+        <ConsultaInicialHero
+          headline={emergenciaOdontologicaConfig.hero.headline}
+          subheadline={emergenciaOdontologicaConfig.hero.subheadline}
+          ctaText={emergenciaOdontologicaConfig.hero.ctaText}
+          benefits={emergenciaOdontologicaConfig.benefits}
+          backgroundImage={emergenciaOdontologicaConfig.hero.backgroundImage}
+          whatsappNumber={emergenciaOdontologicaConfig.whatsapp.number}
+          whatsappMessage={emergenciaOdontologicaConfig.whatsapp.message}
+        />
 
-      {/* Problem section */}
-      <div className="min-h-screen">
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialProblem
-            title={emergenciaOdontologicaConfig.problem.title}
-            description={emergenciaOdontologicaConfig.problem.description}
-            problems={emergenciaOdontologicaConfig.problem.problems}
-          />
-        </Suspense>
-      </div>
+        {/* Problem section */}
+        <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.1} rootMargin="100px">
+          <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+            <ConsultaInicialProblem
+              title={emergenciaOdontologicaConfig.problem.title}
+              description={emergenciaOdontologicaConfig.problem.description}
+              problems={emergenciaOdontologicaConfig.problem.problems}
+            />
+          </Suspense>
+        </LazySection>
 
-      {/* Guide section */}
-      <div className="min-h-screen">
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialGuide
-            title={emergenciaOdontologicaConfig.guide.title}
-            subtitle={emergenciaOdontologicaConfig.guide.subtitle}
-            steps={emergenciaOdontologicaConfig.guide.steps}
-          />
-        </Suspense>
-      </div>
+        {/* Guide section */}
+        <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.1} rootMargin="100px">
+          <Suspense fallback={<div className="h-96 bg-white" />}>
+            <ConsultaInicialGuide
+              title={emergenciaOdontologicaConfig.guide.title}
+              subtitle={emergenciaOdontologicaConfig.guide.subtitle}
+              steps={emergenciaOdontologicaConfig.guide.steps}
+            />
+          </Suspense>
+        </LazySection>
 
-      {/* Social Proof section */}
-      <div className="min-h-screen">
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialSocialProof
-            title={emergenciaOdontologicaConfig.socialProof.title}
-            testimonials={emergenciaOdontologicaConfig.socialProof.testimonials}
-            stats={emergenciaOdontologicaConfig.socialProof.stats}
-          />
-        </Suspense>
-      </div>
+        {/* Social Proof section */}
+        <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.1} rootMargin="50px">
+          <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+            <ConsultaInicialSocialProof
+              title={emergenciaOdontologicaConfig.socialProof.title}
+              testimonials={emergenciaOdontologicaConfig.socialProof.testimonials}
+              stats={emergenciaOdontologicaConfig.socialProof.stats}
+            />
+          </Suspense>
+        </LazySection>
 
-      {/* FAQ section */}
-      <div className="min-h-screen">
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialFAQ
-            title={emergenciaOdontologicaConfig.faq.title}
-            questions={emergenciaOdontologicaConfig.faq.questions}
-          />
-        </Suspense>
-      </div>
+        {/* FAQ section */}
+        <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.1} rootMargin="50px">
+          <Suspense fallback={<div className="h-96 bg-white" />}>
+            <ConsultaInicialFAQ
+              title={emergenciaOdontologicaConfig.faq.title}
+              questions={emergenciaOdontologicaConfig.faq.questions}
+            />
+          </Suspense>
+        </LazySection>
 
-      {/* CTA section */}
-      <div className="min-h-screen">
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialCTA
-            title={emergenciaOdontologicaConfig.cta.title}
-            subtitle={emergenciaOdontologicaConfig.cta.subtitle}
-            buttonText={emergenciaOdontologicaConfig.cta.buttonText}
-            whatsappNumber={emergenciaOdontologicaConfig.whatsapp.number}
-            whatsappMessage={emergenciaOdontologicaConfig.whatsapp.message}
-            campaign={emergenciaOdontologicaConfig.campaign}
-            messageMatch={emergenciaOdontologicaConfig.messageMatch}
-          />
-        </Suspense>
-      </div>
+        {/* CTA section */}
+        <LazySection fallback={<div className="h-32 bg-[#381F47] animate-pulse" />} threshold={0.1}>
+          <Suspense fallback={<div className="h-32 bg-[#381F47]" />}>
+            <ConsultaInicialCTA
+              title={emergenciaOdontologicaConfig.cta.title}
+              subtitle={emergenciaOdontologicaConfig.cta.subtitle}
+              buttonText={emergenciaOdontologicaConfig.cta.buttonText}
+              whatsappNumber={emergenciaOdontologicaConfig.whatsapp.number}
+              whatsappMessage={emergenciaOdontologicaConfig.whatsapp.message}
+              campaign={emergenciaOdontologicaConfig.campaign}
+              messageMatch={emergenciaOdontologicaConfig.messageMatch}
+            />
+          </Suspense>
+        </LazySection>
 
-      <div>
-        <Suspense fallback={<div className="h-32 bg-gray-100 animate-pulse" />}>
-          <ClareamentoFooter />
-        </Suspense>
-      </div>
+        <LazySection fallback={<div className="h-64 bg-[#381F47] animate-pulse" />} threshold={0.1}>
+          <Suspense fallback={<div className="h-64 bg-[#381F47]" />}>
+            <LandingFooter doctorName="Dra. Carla Christoph" clinicName="Ipanema Elegance Dental" phoneNumber="(21) 99330-4045" />
+          </Suspense>
+        </LazySection>
 
-      <div>
-        <Suspense fallback={<div className="h-16 bg-gray-100 animate-pulse" />}>
-          <FloatingWhatsApp
-            phoneNumber={emergenciaOdontologicaConfig.whatsapp.number}
-            message={emergenciaOdontologicaConfig.whatsapp.message}
-            campaign={emergenciaOdontologicaConfig.campaign}
-            messageMatch={emergenciaOdontologicaConfig.messageMatch}
-          />
-        </Suspense>
-      </div>
+        <LazySection fallback={null} threshold={0} rootMargin="0px">
+          <Suspense fallback={null}>
+            <FloatingWhatsApp
+              phoneNumber={emergenciaOdontologicaConfig.whatsapp.number}
+              message={emergenciaOdontologicaConfig.whatsapp.message}
+              campaign={emergenciaOdontologicaConfig.campaign}
+              messageMatch={emergenciaOdontologicaConfig.messageMatch}
+            />
+          </Suspense>
+        </LazySection>
       </ErrorBoundary>
     </>
   );

@@ -12,6 +12,7 @@ import SmartContentfulCache from '@/components/performance/SmartContentfulCache'
 import CoreWebVitalsMonitor from '@/components/performance/CoreWebVitalsMonitor';
 import HeroImagePreloader from '@/components/performance/HeroImagePreloader';
 import ErrorBoundary from '@/components/performance/ErrorBoundary';
+import LazySection from '@/components/performance/LazySection';
 
 // Critical components (above the fold)
 import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
@@ -23,7 +24,7 @@ const ConsultaInicialGuide = lazy(() => import('@/components/landing/consulta/Co
 const ConsultaInicialSocialProof = lazy(() => import('@/components/landing/consulta/ConsultaInicialSocialProof'));
 const ConsultaInicialFAQ = lazy(() => import('@/components/landing/consulta/ConsultaInicialFAQ'));
 const ConsultaInicialCTA = lazy(() => import('@/components/landing/consulta/ConsultaInicialCTA'));
-const ClareamentoFooter = lazy(() => import('@/components/landing/clareamento/ClareamentoFooter'));
+const LandingFooter = lazy(() => import('@/components/landing/LandingFooter'));
 const FloatingWhatsApp = lazy(() => import('@/components/landing/FloatingWhatsApp'));
 
 const FacetasResinaDiretaLandingPage = () => {
@@ -78,20 +79,20 @@ const FacetasResinaDiretaLandingPage = () => {
         <meta name="description" content={pageConfig.seo.description} />
         <meta name="keywords" content={pageConfig.seo.keywords?.join(", ")} />
         <meta name="robots" content="noindex, nofollow" />
-        
+
         {/* Open Graph Tags */}
         <meta property="og:title" content={pageConfig.seo.title} />
         <meta property="og:description" content={pageConfig.seo.description} />
         <meta property="og:url" content="https://dracarlachristoph.com/lp/facetas-resina-ipanema" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
-        
+
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageConfig.seo.title} />
         <meta name="twitter:description" content={pageConfig.seo.description} />
         <meta name="twitter:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
-        
+
         {/* Canonical URL */}
         <link rel="canonical" href="https://dracarlachristoph.com/lp/facetas-resina-ipanema" />
 
@@ -106,7 +107,7 @@ const FacetasResinaDiretaLandingPage = () => {
         {/* DNS Prefetch */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://api.whatsapp.com" />
-        
+
         {/* Structured Data */}
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
@@ -118,23 +119,23 @@ const FacetasResinaDiretaLandingPage = () => {
       <ResourceHintsOptimizer />
       <SmartContentfulCache />
       <CoreWebVitalsMonitor />
-      <HeroImagePreloader 
+      <HeroImagePreloader
         images={[{
           src: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
           type: 'webp',
           priority: true
-        }]} 
+        }]}
       />
 
       <ErrorBoundary>
-        <ConsultaInicialHeader 
+        <ConsultaInicialHeader
           whatsappNumber={pageConfig.whatsapp.number}
           whatsappMessage={pageConfig.whatsapp.message}
           campaign={pageConfig.campaign}
           messageMatch={pageConfig.messageMatch}
         />
-        
-        <ConsultaInicialHero 
+
+        <ConsultaInicialHero
           headline={pageConfig.hero.headline}
           subheadline={pageConfig.hero.subheadline}
           ctaText={pageConfig.hero.ctaText}
@@ -144,61 +145,75 @@ const FacetasResinaDiretaLandingPage = () => {
           benefits={pageConfig.benefits}
         />
 
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialProblem 
-            title={pageConfig.problem.title}
-            description={pageConfig.problem.description}
-            problems={pageConfig.problem.problems}
-          />
-        </Suspense>
+        <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.1} rootMargin="100px">
+          <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+            <ConsultaInicialProblem
+              title={pageConfig.problem.title}
+              description={pageConfig.problem.description}
+              problems={pageConfig.problem.problems}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialGuide 
-            title={pageConfig.guide.title}
-            subtitle={pageConfig.guide.subtitle}
-            steps={pageConfig.guide.steps}
-          />
-        </Suspense>
+        <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.1} rootMargin="100px">
+          <Suspense fallback={<div className="h-96 bg-white" />}>
+            <ConsultaInicialGuide
+              title={pageConfig.guide.title}
+              subtitle={pageConfig.guide.subtitle}
+              steps={pageConfig.guide.steps}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialSocialProof 
-            title={pageConfig.socialProof.title}
-            testimonials={pageConfig.socialProof.testimonials}
-            stats={pageConfig.socialProof.stats}
-          />
-        </Suspense>
+        <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.1} rootMargin="50px">
+          <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+            <ConsultaInicialSocialProof
+              title={pageConfig.socialProof.title}
+              testimonials={pageConfig.socialProof.testimonials}
+              stats={pageConfig.socialProof.stats}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialFAQ 
-            title={pageConfig.faq.title}
-            questions={pageConfig.faq.questions}
-          />
-        </Suspense>
+        <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.1} rootMargin="50px">
+          <Suspense fallback={<div className="h-96 bg-white" />}>
+            <ConsultaInicialFAQ
+              title={pageConfig.faq.title}
+              questions={pageConfig.faq.questions}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
-          <ConsultaInicialCTA 
-            title={pageConfig.cta.title}
-            subtitle={pageConfig.cta.subtitle}
-            buttonText={pageConfig.cta.buttonText}
-            whatsappNumber={pageConfig.whatsapp.number}
-            whatsappMessage={pageConfig.whatsapp.message}
-            campaign={pageConfig.campaign}
-            messageMatch={pageConfig.messageMatch}
-          />
-        </Suspense>
+        <LazySection fallback={<div className="h-32 bg-[#381F47] animate-pulse" />} threshold={0.1}>
+          <Suspense fallback={<div className="h-32 bg-[#381F47]" />}>
+            <ConsultaInicialCTA
+              title={pageConfig.cta.title}
+              subtitle={pageConfig.cta.subtitle}
+              buttonText={pageConfig.cta.buttonText}
+              whatsappNumber={pageConfig.whatsapp.number}
+              whatsappMessage={pageConfig.whatsapp.message}
+              campaign={pageConfig.campaign}
+              messageMatch={pageConfig.messageMatch}
+            />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={<div className="h-32 bg-gray-100 animate-pulse" />}>
-          <ClareamentoFooter />
-        </Suspense>
+        <LazySection fallback={<div className="h-64 bg-[#381F47] animate-pulse" />} threshold={0.1}>
+          <Suspense fallback={<div className="h-64 bg-[#381F47]" />}>
+            <LandingFooter doctorName="Dra. Carla Christoph" clinicName="Ipanema Elegance Dental" phoneNumber="(21) 99330-4045" />
+          </Suspense>
+        </LazySection>
 
-        <Suspense fallback={null}>
-          <FloatingWhatsApp 
-            phoneNumber={pageConfig.whatsapp.number}
-            message={pageConfig.whatsapp.message}
-            campaign={pageConfig.campaign}
-            messageMatch={pageConfig.messageMatch}
-          />
-        </Suspense>
+        <LazySection fallback={null} threshold={0} rootMargin="0px">
+          <Suspense fallback={null}>
+            <FloatingWhatsApp
+              phoneNumber={pageConfig.whatsapp.number}
+              message={pageConfig.whatsapp.message}
+              campaign={pageConfig.campaign}
+              messageMatch={pageConfig.messageMatch}
+            />
+          </Suspense>
+        </LazySection>
       </ErrorBoundary>
     </>
   );

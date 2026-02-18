@@ -21,7 +21,7 @@ const ConsultaInicialGuide = lazy(() => import('@/components/landing/consulta/Co
 const ConsultaInicialSocialProof = lazy(() => import('@/components/landing/consulta/ConsultaInicialSocialProof'));
 const ConsultaInicialFAQ = lazy(() => import('@/components/landing/consulta/ConsultaInicialFAQ'));
 const ConsultaInicialCTA = lazy(() => import('@/components/landing/consulta/ConsultaInicialCTA'));
-const ClareamentoFooter = lazy(() => import('@/components/landing/clareamento/ClareamentoFooter'));
+const LandingFooter = lazy(() => import('@/components/landing/LandingFooter'));
 const FloatingWhatsApp = lazy(() => import('@/components/landing/FloatingWhatsApp'));
 
 const ConsultaInicialLandingPage = () => {
@@ -36,7 +36,7 @@ const ConsultaInicialLandingPage = () => {
   useEffect(() => {
     // Capture GCLID for conversion tracking
     captureGCLID();
-    
+
     // Push page_view event (GTM is loaded via index.html)
     if (typeof window !== 'undefined') {
       window.dataLayer = window.dataLayer || [];
@@ -53,7 +53,7 @@ const ConsultaInicialLandingPage = () => {
   }, []);
 
   // Production scroll tracking
-  useScrollTracking({ 
+  useScrollTracking({
     pagePath: '/lp/consulta-inicial',
     enabled: process.env.NODE_ENV === 'production'
   });
@@ -75,13 +75,13 @@ const ConsultaInicialLandingPage = () => {
         <link rel="dns-prefetch" href="//api.whatsapp.com" />
 
         {/* Optimized font loading - load asynchronously */}
-        <link 
-          rel="stylesheet" 
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" 
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
           media="print"
           onLoad={(e: any) => { e.target.media = 'all'; }}
         />
-        
+
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dracarlachristoph.com/lp/consulta-inicial" />
@@ -97,7 +97,7 @@ const ConsultaInicialLandingPage = () => {
         <meta property="twitter:title" content={consultaInicialConfig.seo.title} />
         <meta property="twitter:description" content={consultaInicialConfig.seo.description} />
         <meta property="twitter:image" content="/lovable-uploads/RIT08058-vertical-doutora-site.webp" />
-        
+
         {/* Schema.org structured data */}
         <script type="application/ld+json">
           {JSON.stringify({
@@ -128,13 +128,13 @@ const ConsultaInicialLandingPage = () => {
       {/* Page Content */}
       <main className="min-h-screen bg-white">
         {/* Critical Above-the-fold Content */}
-        <ConsultaInicialHeader 
+        <ConsultaInicialHeader
           whatsappNumber={consultaInicialConfig.whatsapp.number}
           whatsappMessage={consultaInicialConfig.whatsapp.message}
           campaign={consultaInicialConfig.campaign}
           messageMatch={consultaInicialConfig.messageMatch}
         />
-        
+
         <ConsultaInicialHero
           headline={consultaInicialConfig.hero.headline}
           subheadline={consultaInicialConfig.hero.subheadline}
@@ -146,7 +146,7 @@ const ConsultaInicialLandingPage = () => {
         />
 
         {/* Lazy-loaded Below-the-fold Content with Intersection Observer */}
-        <LazySection 
+        <LazySection
           fallback={<div className="h-96 bg-gray-50 animate-pulse" />}
           threshold={0.1}
           rootMargin="100px"
@@ -160,7 +160,7 @@ const ConsultaInicialLandingPage = () => {
           </Suspense>
         </LazySection>
 
-        <LazySection 
+        <LazySection
           fallback={<div className="h-96 bg-white animate-pulse" />}
           threshold={0.1}
           rootMargin="100px"
@@ -174,7 +174,7 @@ const ConsultaInicialLandingPage = () => {
           </Suspense>
         </LazySection>
 
-        <LazySection 
+        <LazySection
           fallback={<div className="h-96 bg-gray-50 animate-pulse" />}
           threshold={0.1}
           rootMargin="50px"
@@ -188,7 +188,7 @@ const ConsultaInicialLandingPage = () => {
           </Suspense>
         </LazySection>
 
-        <LazySection 
+        <LazySection
           fallback={<div className="h-96 bg-white animate-pulse" />}
           threshold={0.1}
           rootMargin="50px"
@@ -201,7 +201,7 @@ const ConsultaInicialLandingPage = () => {
           </Suspense>
         </LazySection>
 
-        <LazySection 
+        <LazySection
           fallback={<div className="h-32 bg-[#381F47] animate-pulse" />}
           threshold={0.1}
         >
@@ -219,17 +219,17 @@ const ConsultaInicialLandingPage = () => {
           </Suspense>
         </LazySection>
 
-        <LazySection 
+        <LazySection
           fallback={<div className="h-64 bg-[#381F47] animate-pulse" />}
           threshold={0.1}
         >
           <Suspense fallback={<div className="h-64 bg-[#381F47]" />}>
-            <ClareamentoFooter />
+            <LandingFooter doctorName="Dra. Carla Christoph" clinicName="Ipanema Elegance Dental" phoneNumber="(21) 99330-4045" />
           </Suspense>
         </LazySection>
 
         {/* Mobile Floating WhatsApp - Load after user interaction */}
-        <LazySection 
+        <LazySection
           fallback={null}
           threshold={0}
           rootMargin="0px"

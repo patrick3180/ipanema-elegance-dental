@@ -36,6 +36,7 @@ const EmergenciaOdontologicaLandingPage = lazy(() => import("./pages/EmergenciaO
 const EspecialistaProteseLandingPage = lazy(() => import("./pages/EspecialistaProteseLandingPage"));
 const ImplantesDentariosLandingPage = lazy(() => import("./pages/ImplantesDentariosLandingPage"));
 const LPLentesPorcelana = lazy(() => import("./pages/LPLentesPorcelana"));
+const LentesDeContatoEmPorcelanaProfissionalLandingPage = lazy(() => import("./pages/LentesDeContatoEmPorcelanaProfissionalLandingPage"));
 const FacetasResinaDiretaLandingPage = lazy(() => import("./pages/FacetasResinaDiretaLandingPage"));
 
 // Service pages - TODAS AS PÁGINAS DE TRATAMENTO
@@ -66,13 +67,13 @@ const App = () => {
   useEffect(() => {
     const currentPath = window.location.pathname;
     console.log('🚀 App initialized at path:', currentPath);
-    
+
     // Debug para encontrar chamadas do Contentful
     if (process.env.NODE_ENV === 'development') {
       const originalFetch = window.fetch;
       window.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
         const url = typeof input === 'string' ? input : input.toString();
-        
+
         if (url.includes('contentful')) {
           console.warn('📍 Contentful call detected:', {
             url: url.substring(0, 100),
@@ -80,7 +81,7 @@ const App = () => {
             stack: new Error().stack?.split('\n').slice(2, 5)
           });
         }
-        
+
         return originalFetch(input, init);
       };
     }
@@ -111,46 +112,47 @@ const App = () => {
                 <Route path="/blog" element={<BlogPage />} />
                 <Route path="/blog/:slug" element={<BlogPost />} />
               </Route>
-                
-                {/* Landing pages - TODAS ATIVAS */}
-                <Route path="/lp/limpeza-dental-ipanema" element={<LimpezaDentalLandingPage />} />
-                <Route path="/lp/profilaxia-dental-ipanema" element={<ProfilaxiaLandingPage />} />
-                <Route path="/lp/estetica-dental-ipanema" element={<EsteticaSorrisoLandingPage />} />
-                <Route path="/lp/saude-gengival-ipanema" element={<SaudeGengivalLandingPage />} />
-                <Route path="/lp/clareamento-dental" element={<ClareamentoLandingPage />} />
-                <Route path="/lp/consulta-inicial" element={<ConsultaInicialLandingPage />} />
-                <Route path="/lp/ortodontia-ipanema" element={<OrtodontiaLandingPage />} />
-                <Route path="/lp/dor-de-dente-urgencia-ipanema" element={<DorDeDenteLandingPage />} />
-                <Route path="/lp/dente-quebrado-urgencia-ipanema" element={<DenteQuebradoLandingPage />} />
-                <Route path="/lp/emergencia-odontologica-ipanema" element={<EmergenciaOdontologicaLandingPage />} />
-            <Route path="/lp/especialista-protese-ipanema" element={<EspecialistaProteseLandingPage />} />
-            <Route path="/lp/implantes-dentarios-ipanema" element={<ImplantesDentariosLandingPage />} />
-            <Route path="/lp/lentes-porcelana-ipanema" element={<LPLentesPorcelana />} />
-                <Route path="/lp/facetas-resina-ipanema" element={<FacetasResinaDiretaLandingPage />} />
-                
-                {/* Service pages - TODAS AS PÁGINAS DE TRATAMENTO */}
-                <Route path="/saude-da-gengiva" element={<SaudeDaGengiva />} />
-                <Route path="/clareamento-dental" element={<ClareamentoDental />} />
-                <Route path="/implantes-dentarios" element={<ImplantesDentarios />} />
-                <Route path="/lentes-de-contato-dental-e-facetas-de-resina" element={<LentesEFacetas />} />
-                {/* Redirect from old URL to new one */}
-                <Route path="/lentes-de-contato-dental-e-facetas-de-porcelana" element={<Navigate to="/lentes-de-contato-dental-e-facetas-de-resina" replace />} />
-                <Route path="/protese-dentaria" element={<ProteseDentaria />} />
-                <Route path="/restauracoes-esteticas" element={<RestaureacoesEsteticas />} />
-                <Route path="/tratamento-de-canal" element={<TratamentoDeCanal />} />
-                <Route path="/clinica-geral-e-prevencao" element={<ClinicaGeralPrevencao />} />
-                <Route path="/ortodontia" element={<Ortodontia />} />
-                
-                {/* Rotas temporárias - redirecionam para home */}
-                <Route path="/sobre" element={<AboutPage />} />
-                <Route path="/contato" element={<ContactPage />} />
-                <Route path="/diferenciais" element={<Navigate to="/" replace />} />
-                
-                {/* Gone page for 410 redirects */}
-                <Route path="/gone" element={<GonePage />} />
-                
-                {/* Catch all - 404 page */}
-                <Route path="*" element={<NotFoundPage />} />
+
+              {/* Landing pages - TODAS ATIVAS */}
+              <Route path="/lp/limpeza-dental-ipanema" element={<LimpezaDentalLandingPage />} />
+              <Route path="/lp/profilaxia-dental-ipanema" element={<Navigate to="/lp/limpeza-dental-ipanema" replace />} />
+              <Route path="/lp/estetica-dental-ipanema" element={<EsteticaSorrisoLandingPage />} />
+              <Route path="/lp/saude-gengival-ipanema" element={<SaudeGengivalLandingPage />} />
+              <Route path="/lp/clareamento-dental" element={<ClareamentoLandingPage />} />
+              <Route path="/lp/consulta-inicial" element={<ConsultaInicialLandingPage />} />
+              <Route path="/lp/ortodontia-ipanema" element={<OrtodontiaLandingPage />} />
+              <Route path="/lp/dor-de-dente-urgencia-ipanema" element={<DorDeDenteLandingPage />} />
+              <Route path="/lp/dente-quebrado-urgencia-ipanema" element={<DenteQuebradoLandingPage />} />
+              <Route path="/lp/emergencia-odontologica-ipanema" element={<EmergenciaOdontologicaLandingPage />} />
+              <Route path="/lp/especialista-protese-ipanema" element={<EspecialistaProteseLandingPage />} />
+              <Route path="/lp/implantes-dentarios-ipanema" element={<ImplantesDentariosLandingPage />} />
+              <Route path="/lp/lentes-porcelana-ipanema" element={<LPLentesPorcelana />} />
+              <Route path="/lp/lentes-profissional-ipanema" element={<LentesDeContatoEmPorcelanaProfissionalLandingPage />} />
+              <Route path="/lp/facetas-resina-ipanema" element={<FacetasResinaDiretaLandingPage />} />
+
+              {/* Service pages - TODAS AS PÁGINAS DE TRATAMENTO */}
+              <Route path="/saude-da-gengiva" element={<SaudeDaGengiva />} />
+              <Route path="/clareamento-dental" element={<ClareamentoDental />} />
+              <Route path="/implantes-dentarios" element={<ImplantesDentarios />} />
+              <Route path="/lentes-de-contato-dental-e-facetas-de-resina" element={<LentesEFacetas />} />
+              {/* Redirect from old URL to new one */}
+              <Route path="/lentes-de-contato-dental-e-facetas-de-porcelana" element={<Navigate to="/lentes-de-contato-dental-e-facetas-de-resina" replace />} />
+              <Route path="/protese-dentaria" element={<ProteseDentaria />} />
+              <Route path="/restauracoes-esteticas" element={<RestaureacoesEsteticas />} />
+              <Route path="/tratamento-de-canal" element={<TratamentoDeCanal />} />
+              <Route path="/clinica-geral-e-prevencao" element={<ClinicaGeralPrevencao />} />
+              <Route path="/ortodontia" element={<Ortodontia />} />
+
+              {/* Rotas temporárias - redirecionam para home */}
+              <Route path="/sobre" element={<AboutPage />} />
+              <Route path="/contato" element={<ContactPage />} />
+              <Route path="/diferenciais" element={<Navigate to="/" replace />} />
+
+              {/* Gone page for 410 redirects */}
+              <Route path="/gone" element={<GonePage />} />
+
+              {/* Catch all - 404 page */}
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>
         </BrowserRouter>
