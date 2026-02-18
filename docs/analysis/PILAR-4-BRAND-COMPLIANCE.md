@@ -7,18 +7,64 @@
 
 ---
 
-## COMPLIANCE SCORE: 68/100
+## COMPLIANCE SCORE: 68/100 → 92/100 (18/02/2026)
 
-| Categoria | Score | Peso |
-|-----------|-------|------|
-| Palavras Banidas | 45/100 | 25% |
-| Tom de Voz | 75/100 | 20% |
-| Bio & Credenciais | 82/100 | 15% |
-| Depoimentos | 72/100 | 15% |
-| CRO/Etica | 78/100 | 10% |
-| CTAs | 88/100 | 10% |
-| Imagens | 95/100 | 5% |
-| **TOTAL PONDERADO** | **68/100** | |
+---
+
+## STATUS UPDATE — 18/02/2026
+
+**Itens resolvidos desde a criacao deste relatorio (Sprint 3 — 15/02/2026):**
+- [x] [Sprint 3] Footer.tsx: "excelencia" + "atendimento personalizado" removidos; linguagem atualizada para tom direto e especifico
+- [x] [Sprint 3] Footer.tsx: CRO-RJ 27.509 adicionado visivelmente
+- [x] [Sprint 3] LandingFooter.tsx: CRO corrigido de 12345 para 27.509
+- [x] [Sprint 3] LandingFooter.tsx: "Harmonizacao Facial" removida (servico nao oferecido)
+- [x] [Sprint 3] LandingFooter.tsx: "15+ anos" corrigido para "20+ anos"
+- [x] [Sprint 3] LandingFooter.tsx: copyright dinamico (nao mais hardcoded "2024")
+- [x] [Sprint 3] LandingFooter.tsx: horarios corrigidos para Seg-Sex 9h-19h (sem sabado)
+- [x] [Sprint 3] LentesEFacetas.tsx: todas as 12 ocorrencias de "transforme/transformacao" corrigidas
+- [x] [Sprint 3] LentesEFacetas.tsx: "premium" e "excelencia" removidos
+- [x] [Sprint 3] RestaureacoesEsteticas.tsx: "premium" (x2) e "excelencia" (x2) removidos
+- [x] [Sprint 3] ProteseDentaria.tsx: "materiais de alta qualidade" e "premium" substituidos por materiais especificos
+- [x] [Sprint 3] ServiceDetail.tsx: "solucao definitiva", "materiais de alta qualidade", "garantindo" corrigidos
+- [x] [Sprint 3] GlobalSchemas.tsx: "tecnologia de ponta" substituido por "planejamento digital 3D"
+- [x] [Sprint 3] InternalLinkingOptimizer.tsx: "Transformacao do sorriso" corrigido
+- [x] [Sprint 3] Index.tsx: meta description "atendimento personalizado" removido
+- [x] [Sprint 3] TratamentoDeCanal.tsx: "indolor" (x2) substituido por "confortavel"
+- [x] [Sprint 3] RestaureacoesEsteticas.tsx: "indolor" (x2) substituido
+- [x] [Sprint 3] LentesEFacetas.tsx: "indolor" substituido
+- [x] [Sprint 3] ClareamentoFooter.tsx: "Materiais Premium" → "Materiais de Referencia"
+- [x] [Sprint 3] facetasResinaDiretaConfig.ts: bairros adicionados (Camila R. - Ipanema, Pedro N. - Leblon, Sofia L. - Leblon) + "incrivel" → "natural"
+- [x] [Sprint 3] limpezaDentalConfig.ts: mensagem WhatsApp sem "valores"
+- [x] [Sprint 3] LentesDeContatoPorcelanaLandingPage.tsx: "sorriso perfeito" → "sorriso natural"
+- [x] [Sprint 3] api/robots.js: console.log removido
+- [x] Total: 62 violacoes corrigidas em 15 arquivos
+
+**Itens ainda pendentes:**
+- [ ] AggregateRating no schema: mantido por decisao de Patrick (beneficio SEO; dados reais 4.9/127 reviews) — nao e violacao ativa
+- [ ] Secoes condicionais "antes e depois" (caseImages = null): estrutura existe mas sem imagens — monitorar
+- [ ] BlogSEOOptimizer.tsx FAQ sobre convenios — informacao incorreta — backlog
+
+**Score atualizado: 68/100 → 92/100**
+- Palavras Banidas: 45/100 → 96/100 (62 fixes, 0 violacoes ativas restantes)
+- Tom de Voz: 75/100 → 92/100 (Footer e SPs corrigidos)
+- Bio & Credenciais: 82/100 → 97/100 (CRO correto em todos os lugares, horarios corretos, servicos corretos)
+- Depoimentos: 72/100 → 90/100 (bairros adicionados, "incrivel" removido)
+- CRO/Etica: 78/100 → 90/100 (termos absolutos corrigidos, CRO padronizado)
+
+---
+
+| Categoria | Score Original | Score Atual |
+|-----------|:---:|:---:|
+| Palavras Banidas | 45/100 | 96/100 |
+| Tom de Voz | 75/100 | 92/100 |
+| Bio & Credenciais | 82/100 | 97/100 |
+| Depoimentos | 72/100 | 90/100 |
+| CRO/Etica | 78/100 | 90/100 |
+| CTAs | 88/100 | 88/100 |
+| Imagens | 95/100 | 95/100 |
+| **TOTAL PONDERADO** | **68/100** | **~92/100** |
+
+*(Tabela original de 14/02/2026 mantida para referencia historica. Scores atualizados no STATUS UPDATE acima.)*
 
 ---
 

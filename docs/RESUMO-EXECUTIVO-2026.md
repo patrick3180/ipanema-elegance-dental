@@ -7,7 +7,54 @@
 
 ---
 
-## 📊 SITUAÇÃO ATUAL — EM UMA PÁGINA
+## O QUE FIZEMOS ATE AGORA (18/02/2026)
+
+Esta secao foi adicionada para manter a Dra. Carla atualizada sobre o que ja foi implementado desde a criacao deste documento.
+
+### Sprints Concluidos (13–18 Fev 2026)
+
+**Sprint 3 — Brand Compliance (15/02):**
+- 62 violacoes do BRAND.md corrigidas em 15 arquivos
+- Palavras banidas eliminadas: "transforme", "excelencia", "premium", "indolor", "alta qualidade", "sorriso perfeito"
+- LandingFooter.tsx corrigido: CRO 27.509 (estava 12345), horarios corretos, "Harmonizacao Facial" removida, 20+ anos
+- Footer.tsx: CRO-RJ 27.509 adicionado, texto atualizado
+
+**Sprint 4 — SEO Quick Wins (15/02):**
+- Schemas de FAQ adicionados em 3 paginas que estavam sem eles (Restauracoes, Clinica Geral, Protese)
+- /sobre e /contato adicionados ao sitemap do Google
+- 3 imagens de landing pages corrigidas para aparecerem corretamente no WhatsApp/redes sociais
+
+**Sprint 5 — AI Search Optimization (16/02):**
+- O site passou a ser visivel para GPT, Perplexity e outros buscadores de IA
+- 28 paginas agora tem conteudo e schemas no HTML (antes so o React via JavaScript)
+- 65 posts do blog pre-renderizados com schema completo
+- Score AI Search: 52/100 → 78/100
+
+**Sprint 6 — Psicologia & Conversao (18/02):**
+- Headline da homepage atualizada: "Dentista em Ipanema Especializada em Reabilitacao Oral e Estetica Natural"
+- Subheadline: "Para quem busca tratamento odontologico sem pressa, sem dor desnecessaria e com resultado que parece natural"
+- Secoes empaticas adicionadas em 4 paginas (Implantes, Clareamento, Lentes, Canal)
+- Botoes de agendamento adicionados no meio das paginas (nao so no final)
+- Urgencia etica adicionada em 3 paginas (Canal, Gengiva, Implantes)
+
+**Sprint 7 — Internal Linking (18/02):**
+- Todas as 9 paginas de tratamento agora sugerem outros tratamentos relacionados
+- 10 posts do blog com links para as paginas de tratamento relevantes
+
+**Pilar 10 — Blog (18/02):**
+- 6 posts antigos despublicados (nao agregavam valor)
+- Links internos injetados em 10 posts via plataforma Contentful
+
+**Decisao sobre Ortodontia:**
+- A pagina de Ortodontia NAO sera modificada nos proximos sprints (decisao confirmada 18/02)
+
+### Proximo passo: Sprint 8
+4 paginas ainda sem a secao empatica: Saude da Gengiva, Protese, Restauracoes, Clinica Geral.
+Mais ajustes de UX: WhatsApp com texto no mobile, badge Google visivel no mobile, texto "nao trabalhamos com planos" menos agressivo visualmente.
+
+---
+
+## SITUACAO ATUAL — EM UMA PAGINA
 
 ### Números do Negócio
 
@@ -35,15 +82,15 @@ Lentes          █████░░░░░░░░░░░░░░░ 22%
 
 ### Diagnóstico Rápido
 
-| Área | Status | Prioridade |
-|------|--------|-----------|
-| **Google Ads** | Mal otimizado, oportunidades grandes | 🔴 CRÍTICO |
-| **Design** | OK, mas hero pode melhorar | 🟡 ALTO |
-| **SEO** | Fundação boa, mas blog needs love | 🟡 ALTO |
-| **Brand Compliance** | Muito bem documentado, conformidade boa | 🟢 OK |
-| **Mobile** | Performance não ideal (FCP/LCP) | 🟡 ALTO |
-| **AI Search** | Não otimizado, grande oportunidade | 🟡 ALTO |
-| **Content** | Blog drives tráfego, mas não linkado | 🟡 ALTO |
+| Area | Status (18/02/2026) | Situacao |
+|------|-----------|-----------|
+| **Google Ads** | Analise completa, quick wins identificados | Aguarda Patrick executar (Google Ads) |
+| **Design / UX** | Hero atualizado, CTAs melhorados (Sprint 6) | Sprint 8 completa (4 SPs + UX mobile) |
+| **SEO** | Schemas completos, sitemap corrigido, linking ativo | 68→84/100 — bom nivel |
+| **Brand Compliance** | 62 violacoes corrigidas (Sprint 3) | 68→92/100 — excelente |
+| **Mobile** | Performance nao ideal (FCP/LCP) | Pendente (PageSpeed Insights real) |
+| **AI Search** | Pre-rendering implementado (Sprint 5) | 52→78/100 — resolvido |
+| **Content/Blog** | Links internos, posts despublicados, pre-rendering | Fase basica concluida |
 
 ---
 
@@ -266,7 +313,8 @@ Saberemos que esta revisão foi bem-sucedida quando:
 
 ---
 
-**Preparado por:** Patrick + IA  
-**Data:** 13 de Fevereiro 2026  
-**Status:** 🚀 Pronto para aprovação de Dra. Carla
+**Preparado por:** Patrick + IA
+**Data original:** 13 de Fevereiro 2026
+**Ultima atualizacao:** 18 de Fevereiro 2026 (Sprints 3-7 + Pilar 10 completos)
+**Status:** EM EXECUCAO — Sprint 8 proximo
 

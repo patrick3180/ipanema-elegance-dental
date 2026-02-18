@@ -26,7 +26,7 @@ const SaudeDaGengiva = () => {
     enabled: true
   });
 
-  useScrollTracking({ 
+  useScrollTracking({
     pagePath: '/saude-da-gengiva',
     enabled: process.env.NODE_ENV === 'production'
   });
@@ -41,18 +41,18 @@ const SaudeDaGengiva = () => {
         page_type: 'service_page'
       });
     }
-    
+
     if (window.gtag) {
       window.gtag('event', 'conversion', {
         'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
-        'event_callback': function() {
+        'event_callback': function () {
           console.log('Google Ads conversion tracked - Gengiva Service Page');
         }
       });
     }
 
     await sendGCLIDToWebhook('gengiva_service_page_cta');
-    
+
     const phone = "5521993304045";
     const message = "Olá! Vi a página sobre saúde da gengiva e gostaria de agendar uma avaliação periodontal com a Dra. Carla Christoph.";
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
@@ -92,12 +92,12 @@ const SaudeDaGengiva = () => {
         <meta name="description" content="Tratamento periodontal em Ipanema com acompanhamento integrado. Gengivite, periodontite e retração gengival. Dra. Carla Christoph, CRO-RJ 27.509." />
         <meta name="keywords" content="saúde da gengiva ipanema, periodontia rio de janeiro, gengivite tratamento, periodontite zona sul, gengiva sangrando dentista ipanema" />
         <link rel="canonical" href="https://dracarlachristoph.com/saude-da-gengiva" />
-        
+
         <meta property="og:title" content="Saúde da Gengiva em Ipanema | Periodontia com Acompanhamento" />
         <meta property="og:description" content="Tratamento periodontal com acompanhamento integrado da Dra. Carla Christoph em Ipanema." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dracarlachristoph.com/saude-da-gengiva" />
-        
+
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -172,27 +172,59 @@ const SaudeDaGengiva = () => {
         {/* 2. SectionDivider */}
         <SectionDivider variant="with-icon" icon={<AlertCircle size={20} />} />
 
-        {/* 3. Seção empática */}
-        <section className="py-16 bg-white">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              Sinais que Muita Gente Ignora
+        {/* 3. Seção empática — Sprint 8 Redesign (Elegante Minimalista) */}
+        <section className="py-16 bg-gradient-to-br from-dental-beige/20 via-white to-dental-beige/10">
+          <div className="max-w-4xl mx-auto px-4">
+            <h2 className="text-2xl md:text-3xl font-display font-bold text-dental-purple mb-10 text-center">
+              Você se identifica com alguma dessas situações?
             </h2>
-            
-            <div className="max-w-3xl mx-auto space-y-6 text-dental-gray leading-relaxed">
-              <p>
-                Gengiva que sangra ao escovar ou passar o fio dental não é normal. Muita gente convive com isso por anos achando que é "assim mesmo", mas sangramento gengival é sinal de inflamação — e quando não tratada, pode evoluir para perda óssea e até perda de dentes.
-              </p>
-              <p>
-                A periodontite é silenciosa. Não costuma doer nos estágios iniciais, o que faz com que muitos pacientes só procurem ajuda quando o problema já está avançado. A boa notícia: quando identificada cedo, é tratável e controlável.
-              </p>
-              <p>
-                Se você percebe sangramento, mau hálito persistente, gengiva retraída ou dentes que parecem "mais longos" do que antes, vale agendar uma avaliação.
-              </p>
-              <div className="mt-6 bg-dental-beige/30 p-6 rounded-lg border-l-4 border-dental-gold">
-                <p className="text-dental-gray">
-                  <strong className="text-dental-purple">Importante:</strong> A periodontite leva de 2 a 5 anos para evoluir de gengivite, mas uma vez instalada, a perda óssea é irreversível. O tratamento interrompe a progressão, mas não recupera osso perdido — por isso a detecção precoce é fundamental.
-                </p>
+            <div className="space-y-5">
+              <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-purple shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center group-hover:bg-dental-purple/20 transition-colors">
+                  <Activity className="w-6 h-6 text-dental-purple" />
+                </div>
+                <div>
+                  <strong className="block text-dental-purple font-semibold mb-1">Gengiva que sangra ao escovar ou passar o fio dental</strong>
+                  <span className="text-dental-gray leading-relaxed">e você convive com isso há anos achando que é "assim mesmo"?</span>
+                </div>
+              </div>
+              <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-gold shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-gold/10 flex items-center justify-center group-hover:bg-dental-gold/20 transition-colors">
+                  <AlertCircle className="w-6 h-6 text-dental-gold" />
+                </div>
+                <div>
+                  <strong className="block text-dental-purple font-semibold mb-1">Mau hálito persistente mesmo com boa escovação</strong>
+                  <span className="text-dental-gray leading-relaxed">que causa desconforto nas relações sociais e profissionais?</span>
+                </div>
+              </div>
+              <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-purple-soft shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center group-hover:bg-dental-purple/20 transition-colors">
+                  <Heart className="w-6 h-6 text-dental-purple-soft" />
+                </div>
+                <div>
+                  <strong className="block text-dental-purple font-semibold mb-1">Gengiva retraída ou dentes que parecem "mais longos"</strong>
+                  <span className="text-dental-gray leading-relaxed">com sensibilidade ao gelado que vem piorando com o tempo?</span>
+                </div>
+              </div>
+            </div>
+
+            <p className="text-center text-dental-gray mt-10 text-lg leading-relaxed">
+              A doença periodontal é silenciosa — não costuma doer nos estágios iniciais.<br className="hidden md:block" /> Quando identificada cedo, é tratável e controlável.
+            </p>
+
+            <div className="max-w-2xl mx-auto mt-8">
+              <div className="bg-white p-6 rounded-xl border-2 border-dental-gold shadow-elegant">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-dental-gold/15 flex items-center justify-center">
+                    <AlertCircle className="w-5 h-5 text-dental-gold" />
+                  </div>
+                  <div>
+                    <p className="text-dental-purple font-semibold mb-2">Importante</p>
+                    <p className="text-dental-gray leading-relaxed text-sm">
+                      A periodontite leva de 2 a 5 anos para evoluir de gengivite, mas uma vez instalada, a perda óssea é irreversível. O tratamento interrompe a progressão — por isso a detecção precoce é fundamental.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -272,7 +304,7 @@ const SaudeDaGengiva = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="bg-white p-8 rounded-2xl shadow-soft">
                   <div className="mb-6">
                     <h3 className="text-3xl font-display font-semibold text-dental-purple mb-2">
@@ -282,7 +314,7 @@ const SaudeDaGengiva = () => {
                       CRO-RJ 27.509 | Especialista em Prótese Dentária e Implantodontia
                     </p>
                   </div>
-                  
+
                   <div className="space-y-4 text-dental-gray leading-relaxed">
                     <p>
                       Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
@@ -295,7 +327,7 @@ const SaudeDaGengiva = () => {
                       sobre uma gengiva comprometida. O tratamento periodontal é feito em parceria com periodontista especializado, e a Dra. Carla acompanha toda a evolução para integrar o cuidado gengival ao plano de tratamento completo do paciente.
                     </p>
                   </div>
-                  
+
                   <div className="mt-6 pt-6 border-t border-dental-gray/20">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="flex items-start gap-3">
@@ -305,7 +337,7 @@ const SaudeDaGengiva = () => {
                           <p className="text-sm text-dental-gray">Saúde gengival como base para qualquer tratamento estético</p>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-start gap-3">
                         <CheckCircle className="text-dental-gold mt-1" size={20} />
                         <div>
@@ -313,7 +345,7 @@ const SaudeDaGengiva = () => {
                           <p className="text-sm text-dental-gray">Tratamento com periodontista e acompanhamento da Dra. Carla</p>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-start gap-3">
                         <CheckCircle className="text-dental-gold mt-1" size={20} />
                         <div>
@@ -321,7 +353,7 @@ const SaudeDaGengiva = () => {
                           <p className="text-sm text-dental-gray">20+ anos, incluindo 8 na Marinha</p>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-start gap-3">
                         <CheckCircle className="text-dental-gold mt-1" size={20} />
                         <div>
@@ -345,7 +377,7 @@ const SaudeDaGengiva = () => {
             <h2 className="heading-lg mb-4 text-center text-dental-purple">
               Como Cuidamos da Saúde da Sua Gengiva
             </h2>
-            
+
             <div className="max-w-4xl mx-auto">
               <ProcessTimeline
                 steps={[
@@ -389,7 +421,7 @@ const SaudeDaGengiva = () => {
             <h2 className="heading-lg mb-8 text-center text-dental-purple">
               A Relação entre Gengiva e Saúde Geral
             </h2>
-            
+
             <div className="max-w-3xl mx-auto space-y-6 text-dental-gray leading-relaxed">
               <p>
                 A saúde da gengiva está conectada à saúde do corpo como um todo. Estudos mostram associação entre doença periodontal e condições como diabetes, doenças cardiovasculares e complicações na gestação. Tratar a gengiva não é apenas uma questão estética — é um cuidado com a saúde sistêmica.
@@ -409,12 +441,12 @@ const SaudeDaGengiva = () => {
             <h2 className="heading-lg mb-8 text-center text-dental-purple">
               Dúvidas sobre Saúde da Gengiva
             </h2>
-            
+
             <div className="max-w-4xl mx-auto">
               <Accordion type="single" collapsible className="w-full space-y-4">
                 {faqs.map((faq, index) => (
-                  <AccordionItem 
-                    value={`item-${index + 1}`} 
+                  <AccordionItem
+                    value={`item-${index + 1}`}
                     key={index}
                     className="bg-white rounded-lg border border-dental-purple/20 px-6"
                   >
@@ -443,9 +475,9 @@ const SaudeDaGengiva = () => {
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
               Agende sua avaliação periodontal. Tratamento precoce faz toda a diferença.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button 
+              <button
                 onClick={handleWhatsAppClick}
                 className="bg-dental-gold text-dental-purple px-8 py-4 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-all inline-flex items-center gap-2"
               >
@@ -453,14 +485,14 @@ const SaudeDaGengiva = () => {
                 Agendar Avaliação
               </button>
             </div>
-            
+
             <p className="mt-6 text-sm opacity-75">
               WhatsApp: (21) 99330-4045 | Atendimento 24h
             </p>
           </div>
         </section>
-            <InternalLinkingOptimizer currentPage="saude-da-gengiva" />
-</PageLayout>
+        <InternalLinkingOptimizer currentPage="saude-da-gengiva" />
+      </PageLayout>
     </>
   );
 };

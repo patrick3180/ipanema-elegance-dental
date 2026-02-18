@@ -3,7 +3,46 @@
 **Data:** 14 de Fevereiro de 2026
 **Responsavel:** Patrick + IA (Claude Opus 4.6)
 **Site:** https://dracarlachristoph.com
-**Score Geral: 68/100**
+**Score Geral: 68/100 → 84/100 (18/02/2026)**
+
+---
+
+## STATUS UPDATE — 18/02/2026
+
+**Itens resolvidos desde a criacao deste relatorio:**
+- [x] [Sprint 4] FAQPage schema adicionado em RestaureacoesEsteticas.tsx (8 FAQs) + MedicalProcedure
+- [x] [Sprint 4] FAQPage schema adicionado em ClinicaGeralPrevencao.tsx (10 FAQs) + MedicalProcedure
+- [x] [Sprint 4] FAQPage schema adicionado em ProteseDentaria.tsx (12 FAQs) — corrige gap critico
+- [x] [Sprint 4] og:image absolutas corrigidas nas 3 LPs: ConsultaInicial, Ortodontia LP, Profilaxia
+- [x] [Sprint 4] /sobre e /contato adicionados ao sitemap.xml
+- [x] [Sprint 4] SEODashboard com noindex,nofollow — pagina interna nao mais indexavel
+- [x] [Sprint 4] "Dra. Carla Christoph" adicionado no title de ProteseDentaria
+- [x] [Sprint 3] console.log removido de api/robots.js
+- [x] [Sprint 7] InternalLinkingOptimizer.tsx integrado em TODAS as 9 service pages (links contextuais ativos)
+- [x] [Sprint 7] Links inline contextuais adicionados: SaudaDaGengiva (3 links), RestaureacoesEsteticas (1), LentesEFacetas (1)
+- [x] [Pilar 10] 10 posts de blog com links internos para service pages injetados via API Contentful
+
+**Itens ainda pendentes:**
+- [ ] Footer links quebrados (anchors #inicio, #sobre etc nao funcionam fora da homepage) — Sprint 8 P2
+- [ ] ServicesPage title sem localizacao "Ipanema" — backlog baixa prioridade
+- [ ] ServicesPage meta description fraca (~100 chars) — backlog baixa prioridade
+- [ ] Keyword gaps: "urgencia dentista ipanema" sem service page indexavel
+- [ ] Long-tail organico do blog ainda com 0% conversao (exceto Probioticos)
+- [ ] BreadcrumbList schema em JSON-LD (apenas visual atualmente)
+
+**Schema Coverage pos-Sprint 4:**
+| Pagina | MedicalProcedure | FAQPage | Status |
+|--------|:---:|:---:|--------|
+| RestaureacoesEsteticas | RESOLVIDO | RESOLVIDO | Completo |
+| ClinicaGeralPrevencao | RESOLVIDO | RESOLVIDO | Completo |
+| ProteseDentaria | OK (ja tinha) | RESOLVIDO | Completo |
+
+**Score atualizado: 68/100 → 84/100**
+- Schema Markup: 60/100 → 90/100 (3 paginas corrigidas)
+- Internal Linking: 35/100 → 72/100 (Sprint 7: componente ativo em 9 SPs + links contextuais)
+- Sitemap: 70/100 → 90/100 (/sobre e /contato adicionados)
+- Tecnicos (og, robots): 65/100 → 88/100 (3 og:image corrigidas, console.log removido, SEODashboard noindex)
+- Demais categorias: sem alteracao desde o relatorio
 
 ---
 

@@ -20,7 +20,7 @@ const ContactPage = () => {
     if (window.gtag) {
       window.gtag('event', 'conversion', {
         'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
-        'event_callback': function() {
+        'event_callback': function () {
           console.log('Google Ads conversion tracked - Contact page button');
         }
       });
@@ -51,8 +51,8 @@ const ContactPage = () => {
               <p className="text-dental-gray mb-4">
                 Entre em contato conosco para agendar sua consulta
               </p>
-              <p className="text-red-600 font-bold text-lg">
-                NÃO TRABALHAMOS COM PLANOS E CONVÊNIOS
+              <p className="text-dental-gray text-sm">
+                Atendimento particular.
               </p>
             </div>
 

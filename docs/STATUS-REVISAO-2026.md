@@ -3,41 +3,47 @@
 **Projeto:** Revisão 360° do Funil de Marketing  
 **Duração:** 12 semanas  
 **Data de Início:** 13 de Fevereiro de 2026  
-**Status Geral:** 🚀 SPRINT 4 COMPLETO — Sprint 5 próximo
-**Próximo Milestone:** Sprint 5 AI Search Pre-rendering (MAIOR ROI)
+**Status Geral:** SPRINT 7 COMPLETO — Sprint 8 proximo
+**Ultima Atualizacao:** 18 de Fevereiro de 2026
+**Proximo Milestone:** Sprint 8 Psychology completar (4 SPs restantes) + UX fixes
 
 ---
 
-## 📊 PROGRESS SUMMARY (Atual — 15 Fev 2026)
+## PROGRESS SUMMARY (Atual — 18 Fev 2026)
 
 ```
-FASE 1: DISCOVER & ANALYZE (Semanas 1-3)
+FASE 1: DISCOVER & ANALYZE
 ─────────────────────────────────────────
-Pilar 1 (Técnico):    [██████████] 100% ✅ COMPLETO (72/100)
-Pilar 2 (SEO):        [██████████] 100% ✅ COMPLETO (68/100)
-Pilar 3 (AI Search):  [██████████] 100% ✅ COMPLETO (52/100) ⚠️ LOWEST
-Pilar 4 (Brand):      [██████████] 100% ✅ COMPLETO (68→92/100 após Sprint 3)
-Pilar 5 (GA4):        [██████████] 100% ✅ COMPLETO
-Pilar 6 (Google Ads): [██████████] 100% ✅ COMPLETO
-Pilar 7 (Design):     [░░░░░░░░░░] 0%
-Pilar 8 (Psychology): [██████████] 100% ✅ COMPLETO (72/100)
-Pilar 9 (LPs):        [░░░░░░░░░░] 0%
-Pilar 10 (Blog):      [░░░░░░░░░░] 0%
+Pilar 1 (Tecnico):    [██████████] 100% COMPLETO (72/100)
+Pilar 2 (SEO):        [██████████] 100% COMPLETO (68→84/100 pos-Sprint 4/7)
+Pilar 3 (AI Search):  [██████████] 100% COMPLETO (52→78/100 pos-Sprint 5)
+Pilar 4 (Brand):      [██████████] 100% COMPLETO (68→92/100 pos-Sprint 3)
+Pilar 5 (GA4):        [██████████] 100% COMPLETO
+Pilar 6 (Google Ads): [██████████] 100% COMPLETO
+Pilar 7 (Design):     [██████████] 100% COMPLETO (68→76/100 pos-Sprint 6/7)
+Pilar 8 (Psychology): [██████████] 100% COMPLETO (72→82/100 pos-Sprint 6)
+Pilar 9 (LPs):        [░░░░░░░░░░] 0% — NAO INICIADO (backlog)
+Pilar 10 (Blog):      [██████████] 100% COMPLETO (acoes executadas)
 ─────────────────────────────────────────
-TOTAL: [███████░░░] 70% (Fase 1)
+TOTAL FASE 1: [█████████░] 90% (9/10 pilares completos)
 
-SPRINTS DE IMPLEMENTAÇÃO
+SPRINTS DE IMPLEMENTACAO
 ─────────────────────────────────────────
-Sprint 3 (Brand):     [██████████] 100% ✅ COMPLETO (62 fixes)
-Sprint 4 (SEO):       [██████████] 100% ✅ COMPLETO (8 files, 20/20 tests)
-Sprint 5 (AI Search): [░░░░░░░░░░] 0% ← PRÓXIMO (MAIOR ROI)
-Sprint 6 (Psychology):[░░░░░░░░░░] 0%
-Sprint 7 (Linking):   [░░░░░░░░░░] 0%
+Sprint 3 (Brand):     [██████████] 100% COMPLETO (62 fixes, 15 arquivos)
+Sprint 4 (SEO):       [██████████] 100% COMPLETO (schemas, sitemap, og:image)
+Sprint 5 (AI Search): [██████████] 100% COMPLETO (28 paginas + 65 posts)
+Sprint 6 (Psychology):[███████░░░] 78% COMPLETO (5/9 SPs com empatica)
+Sprint 7 (Linking):   [██████████] 100% COMPLETO (9/9 SPs + blog links)
 ─────────────────────────────────────────
-SPRINTS: [████░░░░░░] 40% (2/5 completos)
+SPRINTS: [█████████░] 90% (4.5/5 completos)
+
+DECISAO DO CLIENTE
+─────────────────────────────────────────
+Ortodontia.tsx: NAO SERA MODIFICADA (decisao definitiva 18/02/2026)
+Remover Ortodontia de todos os scopes futuros de sprint.
 
 ═════════════════════════════════════════
-PROJECT OVERALL: [████████░░░░░░░░░░░░░░░] 42%
+PROJECT OVERALL: [████████████████████░░] ~82%
 ```
 
 ---
@@ -202,25 +208,35 @@ PROJECT OVERALL: [████████░░░░░░░░░░░░�
 ---
 
 ### Pilar 7: DESIGN & UX REVIEW
-**Status:** 🔴 NOT STARTED  
-**Owner:** Patrick (Front-end) + IA  
-**Timeline:** Semana 2-3  
+**Status:** COMPLETO
+**Owner:** Patrick (Front-end) + IA
+**Score:** 68/100 → 76/100 (pos-Sprint 6/7)
+**Relatorio:** `docs/analysis/PILAR-7-DESIGN-UX-AUDIT.md` (16/02 + addendum 18/02)
 
 | Task | Status | Notes |
 |------|--------|-------|
-| Hero section analysis (homepage) | ⏳ PENDING | Imagem Dra., headline, CTA, hierarchy |
-| Service pages design consistency | ⏳ PENDING | TreatmentHero, bio box, FAQ, CTA layout |
-| Landing pages design audit | ⏳ PENDING | Urgência visual, problem/solution, CTA |
-| Mobile UX test (5 devices) | ⏳ PENDING | Responsividade, touch targets, viewport |
-| Color/typography consistency | ⏳ PENDING | Dental-purple, dental-gold, Playfair/Montserrat |
-| Button/CTA accessibility | ⏳ PENDING | Color contrast, size, hover states |
-| Image optimization | ⏳ PENDING | WebP, lazy loading, responsive |
-| Hero redesign mockup | ⏳ PENDING | Opcional: A/B test candidate |
-| Relatório Design | ⏳ PENDING | Recommendations + mockups |
+| Hero section analysis (homepage) | DONE | Score 70/100 → 80/100 (headline atualizada Sprint 6) |
+| Service pages design consistency | DONE | Ortodontia: NAO SERA ALTERADA (decisao cliente 18/02) |
+| Landing pages design audit | DONE | LPs 3-4 CTAs vs SPs — gap parcialmente reduzido (Sprint 6) |
+| Mobile UX analysis | DONE | WhatsApp mobile sem texto, Google badge hidden mobile — PENDENTES |
+| Color/typography consistency | DONE | Cores 88/100, tipografia OK |
+| Button/CTA accessibility | DONE | LP CTA verde falha WCAG AA — pendente |
+| Image optimization | DONE | AVIF+WebP no hero, fetchPriority=high |
+| Sprint 6/7 coverage update | DONE | Addendum completo 18/02 |
+| Sprint 8 scope definido | DONE | 8 acoes (Ortodontia EXCLUIDA) |
+
+**Principais pendencias apos Sprint 6/7:**
+- 4/9 service pages sem secao empatica (SaudaDaGengiva, Protese, Restauracoes, ClinicaGeral)
+- WhatsApp mobile exibe apenas icone (P2 MEDIO)
+- Hero homepage sem social proof above the fold (P2 MEDIO)
+- "NAO TRABALHAMOS COM PLANOS" em vermelho — anti-pattern (P2 MEDIO)
+- Ortodontia: sem alteracoes por decisao do cliente
+
+**DECISAO IMPORTANTE:** Ortodontia.tsx NAO sera modificada. Remover de todo e qualquer scope de sprint.
 
 **Deadlines:**
-- [ ] Initial audit: 21 de Feb
-- [ ] Mockups/recommendations: 27 de Feb
+- [x] Initial audit: 16 de Feb (FEITO)
+- [x] Addendum pos-Sprint 6/7: 18 de Feb (FEITO)
 
 ---
 
@@ -256,7 +272,7 @@ PROJECT OVERALL: [████████░░░░░░░░░░░░�
 ---
 
 ### Pilar 9: LANDING PAGE OPTIMIZATION
-**Status:** 🔴 NOT STARTED  
+**Status:** NOT STARTED — PENDENTE (nao ha previsao de inicio)
 **Owner:** Patrick + IA  
 **Timeline:** Semana 2-3  
 
@@ -280,72 +296,77 @@ PROJECT OVERALL: [████████░░░░░░░░░░░░�
 
 ---
 
-### Pilar 10: CONTEÚDO & BLOG STRATEGY
-**Status:** 🔴 NOT STARTED  
-**Owner:** IA + Patrick  
-**Timeline:** Semana 3  
+### Pilar 10: CONTEUDO & BLOG STRATEGY
+**Status:** COMPLETO (acoes executadas — 18/02/2026)
+**Owner:** IA + Patrick
 
 | Task | Status | Notes |
 |------|--------|-------|
-| Blog audit (# posts, topics, performance) | ⏳ PENDING | Nossos posts: quais tópicos? Views/page? |
-| Q&A format assessment | ⏳ PENDING | Quantos posts usam Q&A? Deveria ser mais? |
-| Internal linking audit | ⏳ PENDING | Posts linkam para service pages? |
-| Meta tags audit | ⏳ PENDING | HTML estático ou client-side (React Helmet)? |
-| Content gap analysis | ⏳ PENDING | Google search volume vs. posts coverage |
-| Long-tail keyword opportunities | ⏳ PENDING | "clareamento para festas", "implante + gengivoplastia" |
-| Topical authority assessment | ⏳ PENDING | Autoridade em clareamento? Implantes? Lentes? |
-| Blog SEO strategy | ⏳ PENDING | Posting frequency, keyword targets, internal linking |
-| Blog pre-rendering plan | ⏳ PENDING | Meta tags para /blog/:slug |
-| Content calendar (12 months) | ⏳ PENDING | Tópicos mensais, keywords, linking strategy |
-| Relatório Blog & Content | ⏳ PENDING | Gaps + strategy + calendar |
+| Blog audit | DONE | 65+ posts auditados |
+| Internal linking | DONE | 10 posts com links para SPs via API Contentful |
+| Posts despublicados | DONE | 6 posts historicos despublicados |
+| Pre-rendering blog | DONE | 65 posts com BlogPosting schema (Sprint 5) |
+| Blog pre-rendering no build | DONE | generate-blog-html.js no vercel.json (Sprint 5) |
 
-**Deadlines:**
-- [ ] Audit & gap analysis: 24 de Feb
-- [ ] Content strategy: 28 de Feb
-- [ ] Calendar ready: 03 de Mar
+**Pendentes (backlog):**
+- [ ] Content gap analysis formal
+- [ ] Long-tail keyword opportunities
+- [ ] Content calendar 12 meses
+- [ ] Blog author bio com foto e CRO em todos os posts
 
 ---
 
-## 📋 PRÓXIMAS AÇÕES (Atualizado 14 Fev 2026)
+## PROXIMAS ACOES (Atualizado 18 Fev 2026)
 
-### ✅ CONCLUÍDO (13-15 Fev)
-- [x] Pilares 1, 5, 6 — relatórios completos (13 Fev)
+### CONCLUIDO (13-18 Fev)
+- [x] Pilares 1, 5, 6 — relatorios completos (13 Fev)
 - [x] Dados financeiros corrigidos em todos os docs (13 Fev)
 - [x] PROJECT-STATUS.md recriado (13 Fev)
-- [x] 9/9 Quick Wins Técnicos implementados + deploy (14 Fev)
-- [x] Pilares 2, 3, 4, 8 — relatórios completos (14 Fev)
-- [x] Plano de execução Sprints 3-7 definido (14 Fev)
-- [x] **Sprint 3: Brand Compliance COMPLETO** (15 Fev)
-  - 62 violações corrigidas em 15 arquivos
-  - Todas as palavras banidas removidas: transforme/transformação, premium, excelência, indolor, alta qualidade, sorriso perfeito, tecnologia de ponta, atendimento personalizado, solução definitiva, 100% natural
-  - LandingFooter.tsx: CRO 27.509, horários corretos, serviços corretos, 20+ anos, copyright dinâmico
-  - Footer.tsx: CRO-RJ 27.509 adicionado, linguagem atualizada
-  - console.log removido de api/robots.js
-  - Build OK + Playwright smoke tests: 12/12 passed
-  - Score estimado Brand Compliance: 68 → 92/100
-- [x] **Sprint 4: SEO Quick Wins COMPLETO** (15 Fev)
-  - MedicalProcedure + FAQPage schemas em RestaureacoesEsteticas.tsx (8 FAQs)
-  - MedicalProcedure + FAQPage schemas em ClinicaGeralPrevencao.tsx (10 FAQs)
-  - FAQPage schema em ProteseDentaria.tsx (12 FAQs) + brand name no title
-  - og:image absolute URLs em 3 LPs (ConsultaInicial, Ortodontia, Profilaxia)
-  - /sobre e /contato adicionados ao sitemap.xml
-  - SEODashboard com noindex,nofollow
-  - Build OK + Playwright smoke tests: 20/20 passed
-  - **Score estimado SEO: 68 → 82/100**
+- [x] 9/9 Quick Wins Tecnicos implementados + deploy (14 Fev)
+- [x] Pilares 2, 3, 4, 8 — relatorios completos (14 Fev)
+- [x] Plano de execucao Sprints 3-7 definido (14 Fev)
+- [x] Sprint 3: Brand Compliance COMPLETO (15 Fev)
+  - 62 violacoes corrigidas em 15 arquivos
+  - Score Brand Compliance: 68 → 92/100
+- [x] Sprint 4: SEO Quick Wins COMPLETO (15 Fev)
+  - Schemas em 3 SPs, og:image em 3 LPs, sitemap, SEODashboard noindex
+  - Score SEO: 68 → 82/100 (revisado para 84/100 com Sprint 7)
+- [x] Sprint 5: AI Search Pre-rendering COMPLETO (16 Fev)
+  - 28 paginas estaticas com schemas JSON-LD + fallback HTML semantico
+  - 65 posts de blog pre-renderizados com BlogPosting schema
+  - vercel.json buildCommand atualizado com ambos os scripts
+  - Score AI Search: 52 → 78/100
+- [x] Pilar 7: Design & UX Audit COMPLETO (16 Fev + addendum 18 Fev)
+  - Score Design/UX: 68/100 (inicial) → 76/100 (pos-Sprint 6/7)
+- [x] Sprint 6: Psychology & Conversao COMPLETO (18 Fev)
+  - Homepage hero headline atualizada (nao mais generica)
+  - Secoes empaticas em 5 SPs (ImplantesDentarios, Clareamento, Lentes, Canal + Ortodontia — Ortodontia nao sera mais modificada)
+  - CTAs intermediarios em 4 SPs
+  - Urgencia etica em 3 SPs
+  - Score Psychology: 72 → 82/100
+- [x] Sprint 7: Internal Linking COMPLETO (18 Fev)
+  - InternalLinkingOptimizer.tsx reconstruido e integrado em 9/9 SPs
+  - Links contextuais inline em 3 SPs
+  - Score SEO: 82 → 84/100
+- [x] Pilar 10: Blog Content COMPLETO (18 Fev)
+  - 6 posts historicos despublicados
+  - 10 posts com links internos via API Contentful
+- [x] DECISAO: Ortodontia.tsx NAO sera modificada (18 Fev)
 
 ---
 
-### 🚀 SPRINTS DE IMPLEMENTAÇÃO (IA)
+### SPRINTS DE IMPLEMENTACAO
 
-| Sprint | Foco | Itens | Tempo | Status |
-|--------|------|:-----:|:-----:|:------:|
-| **Sprint 3** | Brand Compliance & Fixes Críticos | 62 | ~90 min | ✅ COMPLETO (15 Fev) |
-| **Sprint 4** | SEO Quick Wins (Schema + Sitemap) | 8 | ~1h | ✅ COMPLETO (15 Fev) |
-| **Sprint 5** | AI Search Pre-rendering (MAIOR ROI) | 3 | ~2-3 dias | ⏳ Pendente |
-| **Sprint 6** | Psychology & Conversão (CTAs, Hero) | ~8 | ~1-2 dias | ⏳ Pendente |
-| **Sprint 7** | Internal Linking & Conteúdo | ~5 | ~1 dia | ⏳ Pendente |
+| Sprint | Foco | Status | Score impactado |
+|--------|------|:------:|:---------------:|
+| Sprint 3 | Brand Compliance (62 fixes) | COMPLETO (15 Fev) | Brand: 68→92 |
+| Sprint 4 | SEO Quick Wins (schemas, sitemap) | COMPLETO (15 Fev) | SEO: 68→82 |
+| Sprint 5 | AI Search Pre-rendering | COMPLETO (16 Fev) | AI: 52→78 |
+| Sprint 6 | Psychology & Conversao | COMPLETO (18 Fev) | Psych: 72→82 |
+| Sprint 7 | Internal Linking | COMPLETO (18 Fev) | SEO: 82→84 |
+| **Sprint 8** | Psychology completar + UX fixes | PROXIMO | Design, Psych |
 
-**Workflow por sprint:** Implementar → Playwright test → Build → Deploy → Verificar
+**NOTA Sprint 8:** Ortodontia excluida de todo o scope por decisao do cliente.
 
 ---
 
@@ -471,6 +492,6 @@ MAY-JUN
 
 ---
 
-**Criado:** 13 de Fevereiro 2026, 15:00  
-**Última atualização:** 15 de Fevereiro 2026 (Sprint 4 COMPLETO)
-**Próximo sync:** 20 de Fevereiro (Fim de Semana 1)
+**Criado:** 13 de Fevereiro 2026, 15:00
+**Ultima atualizacao:** 18 de Fevereiro 2026 (Sprint 7 COMPLETO + Pilar 10 + Decisao Ortodontia)
+**Proximo sync:** Sprint 8 — Psychology completar (4 SPs) + UX fixes

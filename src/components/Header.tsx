@@ -27,7 +27,7 @@ const Header = () => {
   // Function to handle section navigation
   const handleSectionNavigation = (sectionId: string) => {
     setIsMenuOpen(false);
-    
+
     if (location.pathname === '/') {
       // If already on homepage, scroll to section
       const element = document.getElementById(sectionId);
@@ -72,19 +72,19 @@ const Header = () => {
           Dra. Carla Christoph
         </Link>
 
-        {/* Google Rating Badge - Desktop Only (High CTR +15-25%) */}
+        {/* Google Rating Badge - All Screens (Sprint 8 - High CTR +15-25%) */}
         <a
           href="https://g.page/r/CYsX3fOl2dljEAI/review"
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden lg:flex items-center gap-2 px-3 py-1.5 bg-white/50 backdrop-blur-sm rounded-full border border-dental-gold/20 hover:border-dental-gold/40 transition-all hover:shadow-sm group"
+          className="flex items-center gap-1.5 px-2 py-1 lg:px-3 lg:py-1.5 bg-white/50 backdrop-blur-sm rounded-full border border-dental-gold/20 hover:border-dental-gold/40 transition-all hover:shadow-sm group"
           aria-label="Veja nossas avaliações no Google - 4.9 estrelas com 23 avaliações"
         >
           <div className="flex items-center gap-1">
-            <Star size={16} className="fill-dental-gold text-dental-gold" />
-            <span className="text-sm font-semibold text-dental-purple">4.9</span>
+            <Star size={14} className="fill-dental-gold text-dental-gold lg:w-4 lg:h-4" />
+            <span className="text-xs lg:text-sm font-semibold text-dental-purple">4.9</span>
           </div>
-          <span className="text-xs text-dental-purple/70 group-hover:text-dental-purple transition-colors">
+          <span className="hidden md:inline text-xs text-dental-purple/70 group-hover:text-dental-purple transition-colors">
             (23 avaliações)
           </span>
         </a>

@@ -63,7 +63,7 @@ const ContactSection = () => {
         if (window.gtag) {
           window.gtag('event', 'conversion', {
             'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
-            'event_callback': function() {
+            'event_callback': function () {
               console.log('Google Ads conversion tracked - Contact Form Submit');
             }
           });
@@ -107,9 +107,9 @@ const ContactSection = () => {
           <p className="text-dental-gray mb-4">
             Agende sua Consulta em Ipanema
           </p>
-          {/* Warning about insurance plans */}
-          <p className="text-red-600 font-bold text-lg mb-6">
-            NÃO TRABALHAMOS COM PLANOS E CONVÊNIOS
+          {/* Insurance plans notice — Sprint 8 */}
+          <p className="text-dental-gray text-sm mb-6">
+            Atendimento particular.
           </p>
         </div>
 

@@ -43,9 +43,10 @@ const WhatsAppButton = () => {
       aria-label="Converse pelo WhatsApp"
     >
       <MessageCircle size={20} className="animate-pulse" />
-      <div className="hidden md:flex flex-col text-left leading-tight">
-        <span className="font-medium">Conversar sobre meu caso</span>
-        <span className="text-xs text-white/80">WhatsApp 24h</span>
+      <div className="flex flex-col text-left leading-tight">
+        <span className="font-medium hidden md:inline">Conversar sobre meu caso</span>
+        <span className="font-medium md:hidden">Agendar</span>
+        <span className="text-xs text-white/80 hidden md:inline">WhatsApp 24h</span>
       </div>
     </button>
   );

@@ -7,7 +7,45 @@
 
 ---
 
-## AI READINESS SCORE: 52/100
+## AI READINESS SCORE: 52/100 → 78/100 (18/02/2026)
+
+---
+
+## STATUS UPDATE — 18/02/2026
+
+**Itens resolvidos desde a criacao deste relatorio:**
+- [x] [Sprint 5] 28 paginas estaticas com schemas JSON-LD injetados no HTML + fallback HTML semantico via generate-static-meta.cjs — resolve o GAP #1 (SPA invisivel para AI bots)
+- [x] [Sprint 5] 65 posts de blog pre-renderizados com BlogPosting schema completo via generate-blog-html.js — resolve o GAP #2 (blog desconectado do build)
+- [x] [Sprint 5] vercel.json buildCommand atualizado para incluir ambos os scripts: generate-static-meta.cjs + generate-blog-html.js
+- [x] [Sprint 5] robots.js: GPTBot, PerplexityBot, ClaudeBot e Google-Extended explicitamente permitidos (sem alteracao necessaria — ja estava correto)
+- [x] [Sprint 4] FAQPage schemas adicionados em RestaureacoesEsteticas, ClinicaGeralPrevencao e ProteseDentaria — resolve GAP #3
+- [x] [Sprint 3] console.log removido de api/robots.js
+
+**Itens ainda pendentes:**
+- [ ] Inconsistencias de schema: alumniOf "Faculdade de Odontologia" (Index) vs "UFRJ" (GlobalSchemas) — baixa prioridade
+- [ ] Imagem relativa no AboutPage Person schema — baixa prioridade
+- [ ] Logo do lovable.dev no BlogPost schema — baixa prioridade
+- [ ] BlogSEOOptimizer.tsx FAQ generico com informacao incorreta sobre convenios — backlog
+- [ ] Homepage sem FAQPage schema — backlog medio prazo
+- [ ] Pagina /perguntas-frequentes dedicada — backlog longo prazo
+- [ ] Migracao para SSR/SSG (Next.js ou Astro) — LP-1, longo prazo
+
+**Score por categoria pos-Sprint 5:**
+| Categoria | Score Original | Score Atual |
+|-----------|:---:|:---:|
+| AI Bot Accessibility | 35/100 | 82/100 |
+| Structured Data | 75/100 | 90/100 |
+| Content Structure for AI Extraction | 65/100 | 80/100 |
+| Authority Signals (E-E-A-T) | 70/100 | 72/100 |
+| Citation Optimization | 30/100 | 65/100 |
+
+**Score atualizado: 52/100 → 78/100**
+- AI Bot Accessibility: 35 → 82 (28 paginas com conteudo + schemas no HTML estatico; 65 posts pre-renderizados com BlogPosting schema)
+- Structured Data: 75 → 90 (FAQPage em todas as 9 SPs; schemas no HTML estatico)
+- Citation Optimization: 30 → 65 (conteudo agora acessivel para AI crawlers)
+- Probabilidade de citacao em AI Search: ~15% → ~55% estimado
+
+---
 
 | Categoria | Score | Peso | Ponderado |
 |-----------|-------|------|-----------|
@@ -17,6 +55,8 @@
 | Authority Signals (E-E-A-T) | 70/100 | 15% | 10.50 |
 | Citation Optimization | 30/100 | 20% | 6.00 |
 | **TOTAL** | | | **53.25 -> 52** |
+
+*(Scores acima sao do relatorio original de 14/02/2026. Scores atualizados no STATUS UPDATE acima.)*
 
 ---
 

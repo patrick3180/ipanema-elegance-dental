@@ -1,7 +1,7 @@
 # PROJECT STATUS — Dra. Carla Christoph (Ipanema Elegance Dental)
 
-**Última atualização:** 18 de Fevereiro de 2026 (Sprint 7 COMPLETO — Internal Linking)
-**Status Geral:** 🚀 SPRINT 7 COMPLETO — Pilares 7 e 9 pendentes
+**Última atualização:** 18 de Fevereiro de 2026 (Pilar 7 COMPLETO — Design & UX Audit)
+**Status Geral:** 🚀 SPRINT 7 COMPLETO — Pilar 7 completo — Pilar 9 pendente
 **Fase Atual:** Implementação (Sprints 3-7 COMPLETOS)
 
 ---
@@ -46,7 +46,7 @@ Revisão profunda de 10 pilares do funil de marketing para otimizar conversões,
 | 4 | Brand Compliance | ✅ COMPLETO | 68/100 | [PILAR-4](docs/analysis/PILAR-4-BRAND-COMPLIANCE.md) |
 | 5 | Google Analytics & Data | ✅ COMPLETO | -- | [PILAR-5](docs/analysis/PILAR-5-GA4-ANALYSIS.md) |
 | 6 | Google Ads & Paid | ✅ COMPLETO | -- | [PILAR-6](docs/analysis/PILAR-6-GOOGLE-ADS-AUDIT.md) |
-| 7 | Design & UX | 🔴 Pendente | -- | -- |
+| 7 | Design & UX | ✅ COMPLETO | 68/100 | [PILAR-7](docs/analysis/PILAR-7-DESIGN-UX-AUDIT.md) |
 | 8 | Marketing Psychology | ✅ COMPLETO | 72/100 | [PILAR-8](docs/analysis/PILAR-8-MARKETING-PSYCHOLOGY.md) |
 | 9 | Landing Pages | 🔴 Pendente | -- | -- |
 | 10 | Blog & Content | ✅ COMPLETO | 65/100 | [PILAR-10](docs/analysis/PILAR-10-BLOG-CONTENT-STRATEGY-V2.md) |
@@ -163,7 +163,11 @@ Para acompanhamento detalhado pilar por pilar: **[STATUS-REVISAO-2026.md](docs/S
   - 6 posts históricos despublicados (sem conversão)
   - 10 posts prioritários com links internos para service pages
   - Script add-blog-links.py criado para automação Contentful API
-- [ ] Pilar 7: Design & UX — Discovery pendente
+- [x] **Pilar 7: Design & UX — COMPLETO** (Score 68/100, addendum pos-Sprint 6/7, 18 Fev)
+  - Relatorio original (16/02) + addendum (18/02) com novos achados criticos
+  - P0: Ortodontia sem GCLID/GTM tracking (hrefs hardcoded)
+  - P1: 4 pages sem secao empatica (SaudaDaGengiva, Protese, Restauracoes, ClinicaGeral)
+  - Sprint 8 scope definido (10 acoes priorizadas)
 - [ ] Pilar 9: Landing Pages — Discovery pendente
 - [ ] Fase 6 Trust Signals — Aguardando 50+ reviews Google (atual: 23)
 

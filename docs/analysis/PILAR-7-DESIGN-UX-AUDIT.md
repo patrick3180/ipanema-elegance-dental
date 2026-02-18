@@ -420,3 +420,90 @@ Os itens 2, 3, 4, 5, 6, 8, 9 sao rapidos e podem ser feitos em 1 dia de sprint d
 **Auditor:** Analise via codigo-fonte (39 paginas, 197 componentes, CSS/Tailwind config, index.html)
 **Metodologia:** Leitura de todos os componentes de UI criticos, analise de padroes de CTA, verificacao de acessibilidade e consistencia visual, cross-reference com Pilares 1 e 8
 **Limitacao:** Sem acesso a dados reais de PageSpeed Insights ou heatmaps de usuario. Scores de CWV sao estimativas baseadas no codigo.
+
+---
+
+## ADDENDUM — Revisao pos-Sprint 6/7 (18/02/2026)
+
+**Contexto:** Sprint 6 (Psychology) e Sprint 7 (Internal Linking) foram implementados apos este relatorio inicial. Esta secao atualiza o status dos achados e identifica novos gaps.
+
+### STATUS UPDATE — 18/02/2026
+
+**Itens resolvidos desde a criacao deste relatorio:**
+- [x] [Sprint 6] Homepage hero headline ATUALIZADA: "Dentista em Ipanema Especializada em Reabilitacao Oral e Estetica Natural" — nao mais generico (problema #2 desta auditoria: RESOLVIDO)
+- [x] [Sprint 6] Homepage hero subheadline: "Para quem busca tratamento odontologico sem pressa, sem dor desnecessaria e com resultado que parece natural" — comunica diferencial
+- [x] [Sprint 6] Secao empatica adicionada em ImplantesDentarios, ClareamentoDental, LentesEFacetas, TratamentoDeCanal (4 paginas)
+- [x] [Sprint 6] CTAs intermediarios adicionados em ImplantesDentarios, ClareamentoDental, LentesEFacetas, TratamentoDeCanal (4 paginas) — reduz gap de CTAs
+- [x] [Sprint 6] Urgencia etica adicionada em TratamentoDeCanal, SaudaDaGengiva, ImplantesDentarios (3 paginas)
+- [x] [Sprint 7] InternalLinkingOptimizer.tsx reconstruido completamente (URLs corrigidas, emojis removidos, brand styling) e integrado em TODAS as 9 service pages
+
+**Decisao do cliente — Ortodontia:**
+- **DECISAO FINAL (18/02/2026):** Pagina Ortodontia.tsx NAO sera modificada por decisao do usuario
+- Remover Ortodontia de qualquer scope de sprint futuro (incluindo Sprint 8)
+- O achado de tracking (handleWhatsAppClick ausente) fica documentado para referencia futura, mas nao sera implementado
+
+**Itens ainda pendentes (Sprint 8 ou posterior):**
+- [ ] SaudaDaGengiva: adicionar secao empatica (sem CTA intermediario — conteudo ja forte)
+- [ ] ProteseDentaria: adicionar secao empatica + CTA intermediario
+- [ ] RestaureacoesEsteticas: adicionar secao empatica + CTA intermediario
+- [ ] ClinicaGeralPrevencao: adicionar secao empatica + CTA intermediario
+- [ ] Hero homepage: adicionar social proof badges visiveis no primeiro fold (23 reviews, CRO, anos) — ainda pendente
+- [ ] WhatsApp floating button mobile: exibe apenas icone (sem texto)
+- [ ] Google Rating badge: oculto em mobile (hidden lg:flex)
+- [ ] "NAO TRABALHAMOS COM PLANOS E CONVENIOS": texto em vermelho — anti-padrao de conversao
+- [ ] Hero.tsx: imagem com order-1 em mobile (texto abaixo da imagem — prejudica LCP)
+- [ ] Footer links quebrados (anchors em vez de rotas) — baixa prioridade
+
+**Score atualizado:** 68/100 → ~76/100 (estimado pos-Sprint 6/7)
+- Proposta de valor (hero): 5/10 → 7/10 (headline atualizada com diferencial claro)
+- CTAs: 5/10 → 7/10 (CTAs intermediarios em 4 SPs)
+- Consistencia: 6/10 → 6/10 (Ortodontia permanece diferente — decisao do cliente)
+- Jornada do usuario: 6/10 → 7/10 (internal linking ativo)
+
+---
+
+### O que foi implementado (Sprint 6)
+
+Secao empatica ("Voce se identifica...") adicionada em **5/9 service pages** (Ortodontia incluida no Sprint 6 mas NAO sera alterada em sprints futuros):
+
+| Page | Secao Empatica | CTA Intermediario | Notas |
+|------|:--------------:|:-----------------:|-------|
+| ImplantesDentarios | ✅ | ✅ | Concluido Sprint 6 |
+| ClareamentoDental | ✅ | ✅ | Concluido Sprint 6 |
+| LentesEFacetas | ✅ | ✅ | Concluido Sprint 6 |
+| TratamentoDeCanal | ✅ | ✅ | Concluido Sprint 6 |
+| Ortodontia | ✅ (Sprint 6) | — | **NAO ALTERAR MAIS — Decisao do cliente** |
+| **SaudeDaGengiva** | **Pendente Sprint 8** | — | |
+| **ProteseDentaria** | **Pendente Sprint 8** | **Pendente Sprint 8** | |
+| **RestaureacoesEsteticas** | **Pendente Sprint 8** | **Pendente Sprint 8** | |
+| **ClinicaGeralPrevencao** | **Pendente Sprint 8** | **Pendente Sprint 8** | |
+
+### O que foi implementado (Sprint 7)
+
+`InternalLinkingOptimizer` reconstruido e adicionado em todas as 9 service pages ✅
+
+### Nota sobre Ortodontia — tracking de conversao
+
+**DOCUMENTADO MAS NAO SERA IMPLEMENTADO:**
+
+A pagina `Ortodontia.tsx` usa `<a href="https://wa.me/...">` hardcoded em vez de `handleWhatsAppClick()`. Isso significa que cliques no WhatsApp desta pagina nao sao contabilizados no GTM/Google Ads. Este achado fica documentado para referencia futura, mas o usuario decidiu nao modificar a pagina Ortodontia por enquanto.
+
+### Sprint 8 — Scope atualizado (Ortodontia EXCLUIDA)
+
+Com base nos gaps identificados apos Sprint 6/7 e na decisao sobre Ortodontia:
+
+**Bloco A — Alto impacto (P1):**
+1. SaudeDaGengiva: adicionar secao empatica
+2. ProteseDentaria: adicionar secao empatica + CTA intermediario
+3. RestaureacoesEsteticas: adicionar secao empatica + CTA intermediario
+4. ClinicaGeralPrevencao: adicionar secao empatica + CTA intermediario
+
+**Bloco B — Medio impacto (P2):**
+5. Hero homepage: adicionar social proof badges (reviews, CRO, anos)
+6. WhatsApp mobile: adicionar texto ao botao (remover `hidden md:flex` do label)
+7. Google Rating badge: tornar visivel em mobile (remover `hidden lg:flex`)
+8. "NAO TRABALHAMOS COM PLANOS": trocar vermelho por cinza discreto
+
+**Estimativa Sprint 8:** 1 sessao de 3-4h
+
+**Ultima atualizacao:** 18/02/2026

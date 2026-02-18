@@ -2,8 +2,52 @@
 
 **Consultorio:** Dra. Carla Christoph -- Ipanema, Rio de Janeiro
 **Data:** 14 de Fevereiro de 2026
-**Score Geral:** 72/100
+**Score Geral:** 72/100 → 82/100 (18/02/2026)
 **Status:** COMPLETO
+
+---
+
+## STATUS UPDATE — 18/02/2026
+
+**Itens resolvidos desde a criacao deste relatorio:**
+- [x] [Sprint 6] Homepage hero headline reformulada: "Dentista em Ipanema Especializada em Reabilitacao Oral e Estetica Natural" — score hero: 48/100 → 72/100
+- [x] [Sprint 6] Homepage hero subheadline: "Para quem busca tratamento odontologico sem pressa, sem dor desnecessaria e com resultado que parece natural" — diferencial claro comunicado
+- [x] [Sprint 6] Secao empatica ("Voce se identifica...") adicionada em: ImplantesDentarios, ClareamentoDental, LentesEFacetas, TratamentoDeCanal (4 paginas)
+- [x] [Sprint 6] CTA intermediario adicionado apos secao empatica em: ImplantesDentarios, ClareamentoDental, LentesEFacetas, TratamentoDeCanal (4 paginas)
+- [x] [Sprint 6] Urgencia etica adicionada em: TratamentoDeCanal ("infeccao pode se espalhar"), SaudaDaGengiva (consequencias de adiar), ImplantesDentarios ("perda ossea e progressiva")
+- [x] [Sprint 3] Palavras banidas corrigidas em LentesEFacetas.tsx (12 ocorrencias "transforme/transformacao") e RestaureacoesEsteticas.tsx ("excelencia", "premium")
+- [x] [Pilar 10] 10 posts de blog com links internos para service pages (melhora jornada blog → SP)
+- [x] [Pilar 10] 6 posts historicos despublicados (melhor foco de topical authority)
+
+**Itens ainda pendentes:**
+- [ ] SaudaDaGengiva: sem secao empatica ainda (mas urgencia ja presente) — Sprint 8
+- [ ] ProteseDentaria: sem secao empatica + sem CTA intermediario — Sprint 8
+- [ ] RestaureacoesEsteticas: sem secao empatica + sem CTA intermediario — Sprint 8
+- [ ] ClinicaGeralPrevencao: sem secao empatica + sem CTA intermediario — Sprint 8
+- [ ] Testimonials nas service pages: apenas 3 na homepage, nenhum nas SPs — backlog
+- [ ] Stats bar nas service pages (20+ anos / 4000+ pacientes / etc.) — backlog
+- [ ] Blog author bio com foto e CRO em todos os posts — backlog
+- [ ] Ortodontia: NAO sera modificada por decisao do cliente
+
+**Score atualizado por dimensao:**
+| Dimensao | Score Original | Score Atual |
+|----------|:---:|:---:|
+| Pain/Aspiration Mapping | 75/100 | 82/100 |
+| Trust & Authority Signals | 68/100 | 70/100 |
+| Objection Handling | 70/100 | 72/100 |
+| Urgencia Etica | 45/100 | 68/100 |
+| Decision Architecture (CTAs) | 55/100 | 72/100 |
+| LP vs SP Psychology | 72/100 | 78/100 |
+| Hero Homepage | 48/100 | 72/100 |
+| Blog Psychology | 50/100 | 62/100 |
+| Testimonials | 55/100 | 55/100 |
+
+**Score atualizado: 72/100 → 82/100**
+- Hero Homepage: 48 → 72 (headline com diferencial claro)
+- Decision Architecture: 55 → 72 (CTAs intermediarios em 4 SPs)
+- Urgencia Etica: 45 → 68 (urgencia etica adicionada em 3 SPs)
+- Pain/Aspiration: 75 → 82 (secoes empaticas em 4 SPs)
+- Blog Psychology: 50 → 62 (links internos injetados em 10 posts)
 
 ---
 

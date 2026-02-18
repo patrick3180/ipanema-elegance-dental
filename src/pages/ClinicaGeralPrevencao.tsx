@@ -20,7 +20,9 @@ import {
   Calendar,
   ClipboardCheck,
   HelpCircle,
-  ArrowRight
+  ArrowRight,
+  AlertCircle,
+  Clock
 } from "lucide-react";
 import { InternalLinkingOptimizer } from '@/components/seo/InternalLinkingOptimizer';
 
@@ -226,6 +228,80 @@ const ClinicaGeralPrevencao = () => {
         </div>
       </section>
 
+      {/* Seção Empática — Sprint 8 */}
+      <section className="py-16 bg-gradient-to-br from-dental-beige/20 via-white to-dental-beige/10">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-2xl md:text-3xl font-display font-bold text-dental-purple mb-10 text-center">
+            Você se identifica com alguma dessas situações?
+          </h2>
+          <div className="space-y-5">
+            <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-purple shadow-soft hover:shadow-elegant transition-all duration-300">
+              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center group-hover:bg-dental-purple/20 transition-colors">
+                <Calendar className="w-6 h-6 text-dental-purple" />
+              </div>
+              <div>
+                <strong className="block text-dental-purple font-semibold mb-1">Faz mais de 1 ano sem ir ao dentista</strong>
+                <span className="text-dental-gray leading-relaxed">e sente que pode ter algum problema acumulando sem saber?</span>
+              </div>
+            </div>
+            <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-gold shadow-soft hover:shadow-elegant transition-all duration-300">
+              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-gold/10 flex items-center justify-center group-hover:bg-dental-gold/20 transition-colors">
+                <AlertCircle className="w-6 h-6 text-dental-gold" />
+              </div>
+              <div>
+                <strong className="block text-dental-purple font-semibold mb-1">Sente sensibilidade ao comer ou beber gelado</strong>
+                <span className="text-dental-gray leading-relaxed">que vem piorando e você não sabe o que pode ser?</span>
+              </div>
+            </div>
+            <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-purple-soft shadow-soft hover:shadow-elegant transition-all duration-300">
+              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center group-hover:bg-dental-purple/20 transition-colors">
+                <Heart className="w-6 h-6 text-dental-purple-soft" />
+              </div>
+              <div>
+                <strong className="block text-dental-purple font-semibold mb-1">Quer cuidar da saúde bucal mas não sabe por onde começar</strong>
+                <span className="text-dental-gray leading-relaxed">e prefere um acompanhamento preventivo personalizado?</span>
+              </div>
+            </div>
+          </div>
+
+          <p className="text-center text-dental-gray mt-10 text-lg leading-relaxed">
+            Prevenir é sempre mais simples, mais confortável e mais econômico do que tratar.<br className="hidden md:block" /> Um check-up cuidadoso pode evitar tratamentos complexos no futuro.
+          </p>
+
+          <div className="max-w-2xl mx-auto mt-8">
+            <div className="bg-white p-6 rounded-xl border-2 border-dental-gold shadow-elegant">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-dental-gold/15 flex items-center justify-center">
+                  <Clock className="w-5 h-5 text-dental-gold" />
+                </div>
+                <div>
+                  <p className="text-dental-purple font-semibold mb-2">Importante</p>
+                  <p className="text-dental-gray leading-relaxed text-sm">
+                    Pequenos problemas como cáries iniciais e gengivite são reversíveis quando detectados cedo. Sem acompanhamento, podem evoluir para canal, perda óssea ou extração.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Intermediário — Sprint 8 */}
+      <section className="py-8 bg-white">
+        <div className="max-w-3xl mx-auto px-4 text-center">
+          <p className="text-xl text-dental-gray mb-6">
+            Quer cuidar antes que precise tratar?
+          </p>
+          <button
+            onClick={() => handleWhatsAppClick('Olá! Gostaria de agendar um check-up preventivo com a Dra. Carla Christoph.')}
+            className="inline-flex items-center justify-center px-8 py-4 bg-dental-gold hover:bg-dental-gold/90 text-white font-semibold rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
+          >
+            Agendar Check-up
+            <ArrowRight size={20} className="ml-2" />
+          </button>
+        </div>
+      </section>
+
       <SectionDivider variant="with-icon" icon={<Shield size={20} />} />
 
       <section className="py-16 bg-white">
@@ -289,18 +365,18 @@ const ClinicaGeralPrevencao = () => {
               Cada consulta é planejada para identificar e prevenir problemas antes que apareçam
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
               <div className="aspect-[4/3] relative">
-                <img 
+                <img
                   src="/lovable-uploads/scanner + intraoral.webp"
                   alt="Check-up Digital Completo com Scanner 3D"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
               </div>
-              
+
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <h3 className="text-2xl font-display font-bold mb-2 group-hover:text-dental-gold transition-colors">
                   Check-up Digital Completo
@@ -313,14 +389,14 @@ const ClinicaGeralPrevencao = () => {
 
             <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
               <div className="aspect-[4/3] relative">
-                <img 
+                <img
                   src="/lovable-uploads/ulrassom.webp"
                   alt="Limpeza Profissional com Ultrassom"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
               </div>
-              
+
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <h3 className="text-2xl font-display font-bold mb-2 group-hover:text-dental-gold transition-colors">
                   Limpeza Profissional
@@ -333,14 +409,14 @@ const ClinicaGeralPrevencao = () => {
 
             <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
               <div className="aspect-[4/3] relative">
-                <img 
+                <img
                   src="/lovable-uploads/Fluor.webp"
                   alt="Prevenção de Cáries com Flúor"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
               </div>
-              
+
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <h3 className="text-2xl font-display font-bold mb-2 group-hover:text-dental-gold transition-colors">
                   Prevenção de Cáries
@@ -353,14 +429,14 @@ const ClinicaGeralPrevencao = () => {
 
             <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
               <div className="aspect-[4/3] relative">
-                <img 
+                <img
                   src="/lovable-uploads/Periodontal.webp"
                   alt="Saúde Gengival e Prevenção Periodontal"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
               </div>
-              
+
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <h3 className="text-2xl font-display font-bold mb-2 group-hover:text-dental-gold transition-colors">
                   Cuidado com a Gengiva
@@ -373,14 +449,14 @@ const ClinicaGeralPrevencao = () => {
 
             <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
               <div className="aspect-[4/3] relative">
-                <img 
+                <img
                   src="/lovable-uploads/mau halito.webp"
                   alt="Controle de Mau Hálito"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
               </div>
-              
+
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <h3 className="text-2xl font-display font-bold mb-2 group-hover:text-dental-gold transition-colors">
                   Controle de Mau Hálito
@@ -393,14 +469,14 @@ const ClinicaGeralPrevencao = () => {
 
             <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
               <div className="aspect-[4/3] relative">
-                <img 
+                <img
                   src="/lovable-uploads/planejamento.webp"
                   alt="Plano Preventivo Personalizado"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
               </div>
-              
+
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <h3 className="text-2xl font-display font-bold mb-2 group-hover:text-dental-gold transition-colors">
                   Seu Plano Preventivo
@@ -419,7 +495,7 @@ const ClinicaGeralPrevencao = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
             <div className="relative">
               <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-elegant">
-                <img 
+                <img
                   src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
                   alt="Dra. Carla Christoph - Especialista em Saúde Bucal"
                   className="w-full h-full object-cover"
@@ -432,15 +508,15 @@ const ClinicaGeralPrevencao = () => {
               <h2 className="heading-lg mb-6 text-dental-purple">
                 Sua Parceira na Saúde Bucal
               </h2>
-              
+
               <div className="space-y-4 text-dental-gray leading-relaxed">
                 <p>
-                  Com mais de 20 anos de experiência, aprendi que cada sorriso conta uma história única. 
+                  Com mais de 20 anos de experiência, aprendi que cada sorriso conta uma história única.
                   Não existe protocolo padrão - existe o cuidado que você precisa, no momento que você precisa.
                 </p>
-                
+
                 <p>
-                  Minha abordagem combina scanner digital e planejamento individualizado com tempo dedicado para entender suas necessidades reais. 
+                  Minha abordagem combina scanner digital e planejamento individualizado com tempo dedicado para entender suas necessidades reais.
                   Porque prevenir não é só limpar os dentes - é criar uma relação de confiança onde você se sente cuidado.
                 </p>
               </div>
@@ -521,13 +597,13 @@ const ClinicaGeralPrevencao = () => {
           <h2 className="heading-lg mb-8 text-center text-dental-purple">
             Perguntas Frequentes sobre Prevenção
           </h2>
-          
+
           <div className="max-w-4xl mx-auto">
             <Accordion type="single" collapsible className="w-full space-y-4">
               {faqs.map((faq, index) => (
-                <AccordionItem 
-                  key={index} 
-                  value={`item-${index + 1}`} 
+                <AccordionItem
+                  key={index}
+                  value={`item-${index + 1}`}
                   className="bg-white rounded-lg border border-dental-purple/20 px-6"
                 >
                   <AccordionTrigger className="text-left text-base font-semibold text-dental-purple hover:text-dental-gold transition-colors py-6">
@@ -551,14 +627,14 @@ const ClinicaGeralPrevencao = () => {
               Pronto para Investir na Saúde do Seu Sorriso?
             </h2>
           </div>
-          
+
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Agende seu check-up preventivo e descubra como pequenos cuidados fazem toda a diferença. 
+            Agende seu check-up preventivo e descubra como pequenos cuidados fazem toda a diferença.
             Scanner digital, protocolos personalizados e tempo para cuidar da sua saúde bucal aguardam você em Ipanema.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button 
+            <button
               onClick={() => handleWhatsAppClick('Olá! Gostaria de agendar uma consulta preventiva e check-up digital com a Dra. Carla Christoph.')}
               className="bg-dental-gold text-dental-purple px-8 py-4 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-all inline-flex items-center gap-2"
             >
@@ -566,14 +642,14 @@ const ClinicaGeralPrevencao = () => {
               Agendar Minha Consulta Preventiva
             </button>
           </div>
-          
+
           <p className="mt-6 text-sm opacity-75">
             Atendimento de segunda a sexta, das 9h às 19h
           </p>
         </div>
       </section>
-          <InternalLinkingOptimizer currentPage="clinica-geral-e-prevencao" />
-</PageLayout>
+      <InternalLinkingOptimizer currentPage="clinica-geral-e-prevencao" />
+    </PageLayout>
   );
 };
 
