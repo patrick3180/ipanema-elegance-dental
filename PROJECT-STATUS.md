@@ -1,8 +1,8 @@
 # PROJECT STATUS — Dra. Carla Christoph (Ipanema Elegance Dental)
 
-**Última atualização:** 16 de Fevereiro de 2026 (Sprint 5 COMPLETO — AI Search Optimization)
-**Status Geral:** 🚀 SPRINT 5 COMPLETO — Sprint 6 próximo
-**Fase Atual:** Implementação (Sprint 5 done → Sprint 6 próximo)
+**Última atualização:** 18 de Fevereiro de 2026 (Sprint 7 COMPLETO — Internal Linking)
+**Status Geral:** 🚀 SPRINT 7 COMPLETO — Pilares 7 e 9 pendentes
+**Fase Atual:** Implementação (Sprints 3-7 COMPLETOS)
 
 ---
 
@@ -50,6 +50,16 @@ Revisão profunda de 10 pilares do funil de marketing para otimizar conversões,
 | 8 | Marketing Psychology | ✅ COMPLETO | 72/100 | [PILAR-8](docs/analysis/PILAR-8-MARKETING-PSYCHOLOGY.md) |
 | 9 | Landing Pages | 🔴 Pendente | -- | -- |
 | 10 | Blog & Content | ✅ COMPLETO | 65/100 | [PILAR-10](docs/analysis/PILAR-10-BLOG-CONTENT-STRATEGY-V2.md) |
+
+### Sprints de Execução
+
+| Sprint | Status | Escopo | Score Impacto |
+|--------|--------|--------|---------------|
+| Sprint 3: Brand Compliance | ✅ | 62 fixes, 15 arquivos | 68→92/100 |
+| Sprint 4: SEO Quick Wins | ✅ | Schemas, sitemap, og:image | Pilares 1+2 |
+| Sprint 5: AI Search | ✅ | 28 páginas + 65 posts pré-renderizados | 52→78/100 |
+| Sprint 6: Psychology | ✅ | Hero, seções empáticas, CTAs, urgência | 72→85/100 |
+| Sprint 7: Internal Linking | ✅ | 9 pages × 3 related links + 5 inline | 35→65+/100 |
 
 ### Status Detalhado
 Para acompanhamento detalhado pilar por pilar: **[STATUS-REVISAO-2026.md](docs/STATUS-REVISAO-2026.md)**
@@ -135,9 +145,27 @@ Para acompanhamento detalhado pilar por pilar: **[STATUS-REVISAO-2026.md](docs/S
   - tests/sprint5_smoke.py criado (11 testes: schemas, fallback, noindex, semântica)
   - Build OK + Playwright smoke tests: 11/11 passed
   - **Score estimado: 52 → 78/100** (visibilidade 100% para AI bots)
-- [ ] Pilares 7, 9, 10 — Pendentes (discovery em paralelo com sprints)
-- [ ] Sprint 6: Psychology & Conversao (~1-2 dias)
-- [ ] Sprint 7: Internal Linking (~1 dia)
+- [x] **Sprint 6: Psychology & Conversão — COMPLETO** (17/19 ações, 18 Fev)
+  - Headline Hero reformulada ("Especializada em Reabilitação Oral e Estética Natural")
+  - Seções empáticas redesenhadas em 4 páginas (cards com ícones, gradiente, hover states)
+  - CTAs intermediários em 4 páginas (Implantes, Lentes, Clareamento, Canal)
+  - Urgência ética em 3 páginas (Canal, Gengiva, Implantes)
+  - Fase 6 Trust Signals flagged para final do projeto (aguardando 50+ reviews)
+  - Commit fix: ArrowRight import faltando em 2 páginas (erro produção corrigido)
+  - **Score Psychology estimado: 72 → 85/100**
+- [x] **Sprint 7: Internal Linking — COMPLETO** (10 arquivos, 18 Fev)
+  - InternalLinkingOptimizer.tsx reconstruído: 9 pages × 3 links relacionados
+  - URLs corrigidas, emojis removidos, brand styling aplicado
+  - Componente integrado a todas as 9 service pages (estava sem uso)
+  - Links contextuais inline: SaudaDaGengiva (3 links), RestaureacoesEsteticas (1), LentesEFacetas (1)
+  - **Score Internal Linking: 35/100 → estimado 65+/100**
+- [x] **Pilar 10: Blog Content — Discovery COMPLETO** (Score 65/100, 18 Fev)
+  - 6 posts históricos despublicados (sem conversão)
+  - 10 posts prioritários com links internos para service pages
+  - Script add-blog-links.py criado para automação Contentful API
+- [ ] Pilar 7: Design & UX — Discovery pendente
+- [ ] Pilar 9: Landing Pages — Discovery pendente
+- [ ] Fase 6 Trust Signals — Aguardando 50+ reviews Google (atual: 23)
 
 ---
 
@@ -180,8 +208,10 @@ Para acompanhamento detalhado pilar por pilar: **[STATUS-REVISAO-2026.md](docs/S
 5. ~~**SPRINT 3: Brand Compliance**~~ ✅ FEITO (62 fixes, 15 arquivos, build+test OK)
 6. ~~**SPRINT 4: SEO Quick Wins**~~ ✅ FEITO (schemas + sitemap + og:image + noindex, 20/20 tests)
 7. ~~**SPRINT 5: AI Search Optimization**~~ ✅ FEITO (pre-rendering completo, 28 páginas + 65 posts, 11/11 tests)
-8. **SPRINT 6: Psychology & Conversão** — Replicar modelo Saúde Gengiva (~1-2 dias)
-9. **Pilares 7, 9, 10:** Discovery em paralelo com sprints
+8. ~~**SPRINT 6: Psychology & Conversão**~~ ✅ FEITO (17/19 ações, seções empáticas, CTAs, urgência)
+9. ~~**SPRINT 7: Internal Linking**~~ ✅ FEITO (InternalLinkingOptimizer + 5 links contextuais inline)
+10. ~~**Pilar 10: Blog Content**~~ ✅ FEITO (discovery + 10 links + 6 posts despublicados)
+11. **Pilares 7 e 9:** Discovery Design & UX + Landing Pages
 
 ### Milestone:
 - **20 Fev:** Friday sync — review Sprints 3-4 implementados + 7/10 pilares completos
@@ -231,4 +261,4 @@ Para acompanhamento detalhado pilar por pilar: **[STATUS-REVISAO-2026.md](docs/S
 ---
 
 **Responsável:** Patrick + IA
-**Próximo sync:** 20 de Fevereiro (Fim de Semana 1)
+**Próximo sync:** 20 de Fevereiro (Fim de Semana 1) — Sprints 3-7 completos para revisão
