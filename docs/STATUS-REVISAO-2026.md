@@ -3,9 +3,9 @@
 **Projeto:** Revisão 360° do Funil de Marketing  
 **Duração:** 12 semanas  
 **Data de Início:** 13 de Fevereiro de 2026  
-**Status Geral:** SPRINT 8 COMPLETO — Verificação visual pendente
+**Status Geral:** SPRINT 9 EM ANDAMENTO (Phase 1+2 COMPLETO, Phase 3 pendente)
 **Ultima Atualizacao:** 18 de Fevereiro de 2026
-**Proximo Milestone:** Verificação visual Sprint 8 + Pilar 9 (Landing Pages)
+**Proximo Milestone:** Sprint 9 Phase 3 (performance) + Sprint 10 (Google Ads)
 
 ---
 
@@ -22,10 +22,10 @@ Pilar 5 (GA4):        [██████████] 100% COMPLETO
 Pilar 6 (Google Ads): [██████████] 100% COMPLETO
 Pilar 7 (Design):     [██████████] 100% COMPLETO (68→76→80/100 pos-Sprint 8)
 Pilar 8 (Psychology): [██████████] 100% COMPLETO (72→82→86/100 pos-Sprint 8)
-Pilar 9 (LPs):        [░░░░░░░░░░] 0% — NAO INICIADO (backlog)
+Pilar 9 (LPs):        [██████░░░░] 60% — Sprint 9 Phase 1+2 COMPLETO
 Pilar 10 (Blog):      [██████████] 100% COMPLETO (acoes executadas)
 ─────────────────────────────────────────
-TOTAL FASE 1: [█████████░] 90% (9/10 pilares completos)
+TOTAL FASE 1: [█████████░] 96% (9/10 pilares completos, 1 em andamento)
 
 SPRINTS DE IMPLEMENTACAO
 ─────────────────────────────────────────
@@ -35,8 +35,9 @@ Sprint 5 (AI Search): [██████████] 100% COMPLETO (28 paginas
 Sprint 6 (Psychology):[██████████] 100% COMPLETO (5/9 SPs com empatica)
 Sprint 7 (Linking):   [██████████] 100% COMPLETO (9/9 SPs + blog links)
 Sprint 8 (Psych+UX):  [██████████] 100% COMPLETO (3 SPs + 4 UX fixes)
+Sprint 9 (LPs):       [██████░░░░] 60% EM ANDAMENTO (urgency+headlines+brand)
 ─────────────────────────────────────────
-SPRINTS: [██████████] 100% (6/6 completos)
+SPRINTS: [█████████░] 86% (6/7 completos, 1 em andamento)
 
 DECISAO DO CLIENTE
 ─────────────────────────────────────────
@@ -44,7 +45,7 @@ Ortodontia.tsx: NAO SERA MODIFICADA (decisao definitiva 18/02/2026)
 Remover Ortodontia de todos os scopes futuros de sprint.
 
 ═════════════════════════════════════════
-PROJECT OVERALL: [██████████████████████░] ~88%
+PROJECT OVERALL: [███████████████████████] ~92%
 ```
 
 ---
@@ -274,27 +275,23 @@ PROJECT OVERALL: [████████████████████�
 ---
 
 ### Pilar 9: LANDING PAGE OPTIMIZATION
-**Status:** NOT STARTED — PENDENTE (nao ha previsao de inicio)
+**Status:** EM ANDAMENTO — Sprint 9 Phase 1+2 COMPLETO (18 Fev)
 **Owner:** Patrick + IA  
-**Timeline:** Semana 2-3  
+**Score:** 71/100 → ~78/100 (pos-Sprint 9 Phase 1+2)  
+**Relatório:** `docs/analysis/PILAR-9-LANDING-PAGES-AUDIT.md`
 
 | Task | Status | Notes |
 |------|--------|-------|
-| LP portfolio analysis (13 LPs) | ⏳ PENDING | Quais estão ativos? Performance? |
-| Message match audit | ⏳ PENDING | Ad copy vs. LP headline — alinhadas? |
-| LP quality scorecard | ⏳ PENDING | Cada LP: headline, benefits, problem, CTA, mobile |
-| Problem section deep-dive | ⏳ PENDING | Conecta com dor do paciente? |
-| Conversion rate benchmarking | ⏳ PENDING | Current CR? vs. 3-8% benchmark? |
-| Testimonials quality | ⏳ PENDING | Tom real? Bairro correto? Sem profissão? |
-| CTA color/copy testing | ⏳ PENDING | Qual cor funciona? "Agende" vs. "Saiba Mais"? |
-| Mobile LP UX (floating WhatsApp) | ⏳ PENDING | Visible? Usable? |
-| A/B testing recommendations | ⏳ PENDING | Quais elementos testar? |
-| LP optimization document | ⏳ PENDING | Top 3 LPs para quick wins |
-
-**Deadlines:**
-- [ ] Portfolio analysis: 20 de Feb
-- [ ] Quality scoring: 25 de Feb
-- [ ] Recommendations: 28 de Feb
+| LP portfolio analysis (14 LPs) | ✅ DONE | Audit completo com scorecard |
+| Urgency copy in 10 LP CTAs | ✅ DONE | Sprint 9 Phase 1 — tom BRAND.md |
+| Headline rewrites (4 LPs) | ✅ DONE | Limpeza, Clareamento, Estetica, Lentes |
+| BRAND.md compliance (7 fixes) | ✅ DONE | Premium removido, testimonials corrigidos |
+| Facetas contradição headline | ✅ DONE | "Mesmo Dia" → "Primeira Sessão" |
+| Consolidar Limpeza+Profilaxia | ⏳ PENDING | Phase 3 |
+| LazySection migration (12 LPs) | ⏳ PENDING | Phase 3 |
+| AVIF hero images | ⏳ PENDING | Phase 3 |
+| Rename ClareamentoFooter | ⏳ PENDING | Phase 3 |
+| LP Lentes Profissional adapt | ⏳ PENDING | Phase 3 |
 
 ---
 
@@ -364,6 +361,13 @@ PROJECT OVERALL: [████████████████████�
   - ContactSection.tsx + ContactPage.tsx: "Atendimento particular." (cinza sutil)
   - Score Design/UX: 76 → 80/100
   - Score Psychology: 82 → 86/100
+- [/] Sprint 9: LP Optimization EM ANDAMENTO (18 Fev)
+  - Phase 1: Urgencia etica em 10 LP configs (tom BRAND.md aprovado)
+  - Phase 1: Headline rewrites em 4 LPs (Limpeza, Clareamento, Estetica, Lentes)
+  - Phase 2: 7 violacoes BRAND.md corrigidas (Premium, incrivel, bairros)
+  - Phase 2: Facetas contradição "Mesmo Dia" → "Primeira Sessão"
+  - Phase 3: PENDENTE (LazySection, AVIF, consolidação, LP Profissional)
+  - Score LPs: 71 → ~78/100 (estimado)
 
 ---
 
@@ -377,6 +381,7 @@ PROJECT OVERALL: [████████████████████�
 | Sprint 6 | Psychology & Conversao | COMPLETO (18 Fev) | Psych: 72→82 |
 | Sprint 7 | Internal Linking | COMPLETO (18 Fev) | SEO: 82→84 |
 | **Sprint 8** | Psychology completar + UX fixes | ✅ COMPLETO (18 Fev) | Design: 76→80, Psych: 82→86 |
+| **Sprint 9** | LP Optimization (Phase 1+2) | 🔄 EM ANDAMENTO (18 Fev) | LPs: 71→~78, Brand +fixes |
 
 **NOTA:** Ortodontia excluida de todo o scope por decisao do cliente.
 
@@ -505,5 +510,5 @@ MAY-JUN
 ---
 
 **Criado:** 13 de Fevereiro 2026, 15:00
-**Ultima atualizacao:** 18 de Fevereiro 2026, 12:20 (Sprint 8 COMPLETO)
-**Proximo sync:** Verificacao visual Sprint 8 + Pilar 9 (Landing Pages)
+**Ultima atualizacao:** 18 de Fevereiro 2026, 13:15 (Sprint 9 Phase 1+2 COMPLETO)
+**Proximo sync:** Sprint 9 Phase 3 + Sprint 10 (Google Ads)
