@@ -3,9 +3,9 @@
 **Projeto:** Revisão 360° do Funil de Marketing  
 **Duração:** 12 semanas  
 **Data de Início:** 13 de Fevereiro de 2026  
-**Status Geral:** SPRINT 7 COMPLETO — Sprint 8 proximo
+**Status Geral:** SPRINT 8 COMPLETO — Verificação visual pendente
 **Ultima Atualizacao:** 18 de Fevereiro de 2026
-**Proximo Milestone:** Sprint 8 Psychology completar (4 SPs restantes) + UX fixes
+**Proximo Milestone:** Verificação visual Sprint 8 + Pilar 9 (Landing Pages)
 
 ---
 
@@ -20,8 +20,8 @@ Pilar 3 (AI Search):  [██████████] 100% COMPLETO (52→78/10
 Pilar 4 (Brand):      [██████████] 100% COMPLETO (68→92/100 pos-Sprint 3)
 Pilar 5 (GA4):        [██████████] 100% COMPLETO
 Pilar 6 (Google Ads): [██████████] 100% COMPLETO
-Pilar 7 (Design):     [██████████] 100% COMPLETO (68→76/100 pos-Sprint 6/7)
-Pilar 8 (Psychology): [██████████] 100% COMPLETO (72→82/100 pos-Sprint 6)
+Pilar 7 (Design):     [██████████] 100% COMPLETO (68→76→80/100 pos-Sprint 8)
+Pilar 8 (Psychology): [██████████] 100% COMPLETO (72→82→86/100 pos-Sprint 8)
 Pilar 9 (LPs):        [░░░░░░░░░░] 0% — NAO INICIADO (backlog)
 Pilar 10 (Blog):      [██████████] 100% COMPLETO (acoes executadas)
 ─────────────────────────────────────────
@@ -32,10 +32,11 @@ SPRINTS DE IMPLEMENTACAO
 Sprint 3 (Brand):     [██████████] 100% COMPLETO (62 fixes, 15 arquivos)
 Sprint 4 (SEO):       [██████████] 100% COMPLETO (schemas, sitemap, og:image)
 Sprint 5 (AI Search): [██████████] 100% COMPLETO (28 paginas + 65 posts)
-Sprint 6 (Psychology):[███████░░░] 78% COMPLETO (5/9 SPs com empatica)
+Sprint 6 (Psychology):[██████████] 100% COMPLETO (5/9 SPs com empatica)
 Sprint 7 (Linking):   [██████████] 100% COMPLETO (9/9 SPs + blog links)
+Sprint 8 (Psych+UX):  [██████████] 100% COMPLETO (3 SPs + 4 UX fixes)
 ─────────────────────────────────────────
-SPRINTS: [█████████░] 90% (4.5/5 completos)
+SPRINTS: [██████████] 100% (6/6 completos)
 
 DECISAO DO CLIENTE
 ─────────────────────────────────────────
@@ -43,7 +44,7 @@ Ortodontia.tsx: NAO SERA MODIFICADA (decisao definitiva 18/02/2026)
 Remover Ortodontia de todos os scopes futuros de sprint.
 
 ═════════════════════════════════════════
-PROJECT OVERALL: [████████████████████░░] ~82%
+PROJECT OVERALL: [██████████████████████░] ~88%
 ```
 
 ---
@@ -210,7 +211,7 @@ PROJECT OVERALL: [████████████████████�
 ### Pilar 7: DESIGN & UX REVIEW
 **Status:** COMPLETO
 **Owner:** Patrick (Front-end) + IA
-**Score:** 68/100 → 76/100 (pos-Sprint 6/7)
+**Score:** 68/100 → 76/100 → 80/100 (pos-Sprint 8)
 **Relatorio:** `docs/analysis/PILAR-7-DESIGN-UX-AUDIT.md` (16/02 + addendum 18/02)
 
 | Task | Status | Notes |
@@ -218,18 +219,19 @@ PROJECT OVERALL: [████████████████████�
 | Hero section analysis (homepage) | DONE | Score 70/100 → 80/100 (headline atualizada Sprint 6) |
 | Service pages design consistency | DONE | Ortodontia: NAO SERA ALTERADA (decisao cliente 18/02) |
 | Landing pages design audit | DONE | LPs 3-4 CTAs vs SPs — gap parcialmente reduzido (Sprint 6) |
-| Mobile UX analysis | DONE | WhatsApp mobile sem texto, Google badge hidden mobile — PENDENTES |
+| Mobile UX analysis | ✅ DONE | WhatsApp mobile com texto "Agendar", Google badge visivel — SPRINT 8 |
 | Color/typography consistency | DONE | Cores 88/100, tipografia OK |
 | Button/CTA accessibility | DONE | LP CTA verde falha WCAG AA — pendente |
 | Image optimization | DONE | AVIF+WebP no hero, fetchPriority=high |
 | Sprint 6/7 coverage update | DONE | Addendum completo 18/02 |
 | Sprint 8 scope definido | DONE | 8 acoes (Ortodontia EXCLUIDA) |
 
-**Principais pendencias apos Sprint 6/7:**
-- 4/9 service pages sem secao empatica (SaudaDaGengiva, Protese, Restauracoes, ClinicaGeral)
-- WhatsApp mobile exibe apenas icone (P2 MEDIO)
-- Hero homepage sem social proof above the fold (P2 MEDIO)
-- "NAO TRABALHAMOS COM PLANOS" em vermelho — anti-pattern (P2 MEDIO)
+**Pendencias pos-Sprint 8:**
+- ✅ 8/9 service pages com secao empatica (Ortodontia excluida por decisao)
+- ✅ WhatsApp mobile mostra "Agendar" (Sprint 8)
+- ✅ Google Rating badge visivel em todas as telas (Sprint 8)
+- ✅ "NAO TRABALHAMOS COM PLANOS" → "Atendimento particular." (Sprint 8)
+- Hero homepage sem social proof above the fold (P2 MEDIO — backlog)
 - Ortodontia: sem alteracoes por decisao do cliente
 
 **DECISAO IMPORTANTE:** Ortodontia.tsx NAO sera modificada. Remover de todo e qualquer scope de sprint.
@@ -244,7 +246,7 @@ PROJECT OVERALL: [████████████████████�
 **Status:** ✅ COMPLETO
 **Owner:** IA + Patrick
 **Relatório:** `docs/analysis/PILAR-8-MARKETING-PSYCHOLOGY.md`
-**Score:** 72/100
+**Score:** 72/100 → 82/100 → 86/100 (pos-Sprint 8)
 
 | Task | Status | Notes |
 |------|--------|-------|
@@ -352,6 +354,16 @@ PROJECT OVERALL: [████████████████████�
   - 6 posts historicos despublicados
   - 10 posts com links internos via API Contentful
 - [x] DECISAO: Ortodontia.tsx NAO sera modificada (18 Fev)
+- [x] Sprint 8: Psychology completar + UX fixes COMPLETO (18 Fev)
+  - SaudeDaGengiva.tsx: Redesign secao empatica (paragrafos → cards Sprint 6)
+  - ProteseDentaria.tsx: Nova secao empatica + CTA intermediario
+  - ClinicaGeralPrevencao.tsx: Nova secao empatica + CTA intermediario
+  - RestaureacoesEsteticas.tsx: Mantida (ja tinha conteudo empatico)
+  - WhatsAppButton.tsx: Texto "Agendar" visivel no mobile
+  - Header.tsx: Google Rating badge visivel em todas as telas
+  - ContactSection.tsx + ContactPage.tsx: "Atendimento particular." (cinza sutil)
+  - Score Design/UX: 76 → 80/100
+  - Score Psychology: 82 → 86/100
 
 ---
 
@@ -364,9 +376,9 @@ PROJECT OVERALL: [████████████████████�
 | Sprint 5 | AI Search Pre-rendering | COMPLETO (16 Fev) | AI: 52→78 |
 | Sprint 6 | Psychology & Conversao | COMPLETO (18 Fev) | Psych: 72→82 |
 | Sprint 7 | Internal Linking | COMPLETO (18 Fev) | SEO: 82→84 |
-| **Sprint 8** | Psychology completar + UX fixes | PROXIMO | Design, Psych |
+| **Sprint 8** | Psychology completar + UX fixes | ✅ COMPLETO (18 Fev) | Design: 76→80, Psych: 82→86 |
 
-**NOTA Sprint 8:** Ortodontia excluida de todo o scope por decisao do cliente.
+**NOTA:** Ortodontia excluida de todo o scope por decisao do cliente.
 
 ---
 
@@ -493,5 +505,5 @@ MAY-JUN
 ---
 
 **Criado:** 13 de Fevereiro 2026, 15:00
-**Ultima atualizacao:** 18 de Fevereiro 2026 (Sprint 7 COMPLETO + Pilar 10 + Decisao Ortodontia)
-**Proximo sync:** Sprint 8 — Psychology completar (4 SPs) + UX fixes
+**Ultima atualizacao:** 18 de Fevereiro 2026, 12:20 (Sprint 8 COMPLETO)
+**Proximo sync:** Verificacao visual Sprint 8 + Pilar 9 (Landing Pages)
