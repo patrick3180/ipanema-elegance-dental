@@ -15,6 +15,7 @@ import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
 import { useScrollTracking } from '@/hooks/useScrollTracking';
 import FastServerResponseOptimizer from '@/components/performance/FastServerResponseOptimizer';
 import CriticalCSSOptimizer from '@/components/performance/CriticalCSSOptimizer';
+import { InternalLinkingOptimizer } from '@/components/seo/InternalLinkingOptimizer';
 
 const TratamentoDeCanal = () => {
   // Critical image preload
@@ -487,7 +488,8 @@ const TratamentoDeCanal = () => {
             </p>
           </div>
         </section>
-      </PageLayout>
+            <InternalLinkingOptimizer currentPage="tratamento-de-canal" />
+</PageLayout>
     </>
   );
 };

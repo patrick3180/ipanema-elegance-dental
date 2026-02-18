@@ -164,10 +164,14 @@
 
 ---
 
-## FASE 6: TRUST SIGNALS ⏸️
+## FASE 6: TRUST SIGNALS 🚩 AGUARDANDO — FINAL DO PROJETO
+
+> **Flag (17/02/2026):** Fase 6-A e 6-B requerem avaliações reais acumuladas.
+> Executar apenas no FINAL do projeto, quando houver volume suficiente de comentários/avaliações.
+> **Motivo:** Stats e testimonials precisam ser reais — não criar placeholders.
 
 ### #18 — Stats das LPs nas SPs
-- **Status:** ⏸️ Pendente
+- **Status:** 🚩 Aguardando avaliações reais
 - **Arquivos:** Todas as 9 service pages
 
 ### #20 — Testimonials das LPs nas SPs

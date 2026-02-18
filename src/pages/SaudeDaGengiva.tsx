@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
@@ -15,6 +16,7 @@ import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
 import { useScrollTracking } from '@/hooks/useScrollTracking';
 import FastServerResponseOptimizer from '@/components/performance/FastServerResponseOptimizer';
 import CriticalCSSOptimizer from '@/components/performance/CriticalCSSOptimizer';
+import { InternalLinkingOptimizer } from '@/components/seo/InternalLinkingOptimizer';
 
 const SaudeDaGengiva = () => {
   useCriticalImagePreload({
@@ -286,7 +288,11 @@ const SaudeDaGengiva = () => {
                       Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
                     </p>
                     <p>
-                      A Dra. Carla trata a saúde periodontal como base para qualquer procedimento. Não faz sentido investir em lentes, implantes ou prótese sobre uma gengiva comprometida. O tratamento periodontal é feito em parceria com periodontista especializado, e a Dra. Carla acompanha toda a evolução para integrar o cuidado gengival ao plano de tratamento completo do paciente.
+                      A Dra. Carla trata a saúde periodontal como base para qualquer procedimento. Não faz sentido investir em{" "}
+                      <Link to="/lentes-de-contato-dental-e-facetas" className="text-dental-gold hover:text-dental-purple transition-colors font-medium">lentes</Link>,{" "}
+                      <Link to="/implantes-dentarios" className="text-dental-gold hover:text-dental-purple transition-colors font-medium">implantes</Link> ou{" "}
+                      <Link to="/protese-dentaria" className="text-dental-gold hover:text-dental-purple transition-colors font-medium">prótese</Link>{" "}
+                      sobre uma gengiva comprometida. O tratamento periodontal é feito em parceria com periodontista especializado, e a Dra. Carla acompanha toda a evolução para integrar o cuidado gengival ao plano de tratamento completo do paciente.
                     </p>
                   </div>
                   
@@ -453,7 +459,8 @@ const SaudeDaGengiva = () => {
             </p>
           </div>
         </section>
-      </PageLayout>
+            <InternalLinkingOptimizer currentPage="saude-da-gengiva" />
+</PageLayout>
     </>
   );
 };

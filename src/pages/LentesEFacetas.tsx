@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
@@ -11,6 +12,7 @@ import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import { ComparisonTableItem } from "@/types/BlogPost";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CheckCircle, Star, ArrowRight, Play, Sparkles, Shield, Heart, Award, Search, HelpCircle, Droplet, Maximize2, Ruler, Palette, AlertCircle } from "lucide-react";
+import { InternalLinkingOptimizer } from '@/components/seo/InternalLinkingOptimizer';
 
 const LentesEFacetas = () => {
   // Placeholder para controlar exibição de casos
@@ -1169,7 +1171,7 @@ const LentesEFacetas = () => {
                       Avaliação Periodontal Prévia
                     </h4>
                     <p className="text-dental-gray text-sm leading-relaxed">
-                      Saúde gengival é pré-requisito. Tratamos qualquer inflamação antes de iniciar o trabalho estético.
+                      <Link to="/saude-da-gengiva" className="text-dental-gold hover:text-dental-purple transition-colors font-medium">Saúde gengival</Link> é pré-requisito. Tratamos qualquer inflamação antes de iniciar o trabalho estético.
                     </p>
                   </div>
                 </div>
@@ -1500,7 +1502,8 @@ const LentesEFacetas = () => {
             </div>
           </div>
         </section>
-      </PageLayout>
+            <InternalLinkingOptimizer currentPage="lentes-de-contato-dental-e-facetas" />
+</PageLayout>
     </>
   );
 };

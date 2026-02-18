@@ -9,6 +9,7 @@ import { Search, Scan, Star, ArrowRight, Sparkles, Shield, Heart, Award, AlertCi
 import ProcessTimeline from '@/components/treatment/ProcessTimeline';
 import InfoCard from '@/components/treatment/InfoCard';
 import { Card, CardContent } from "@/components/ui/card";
+import { InternalLinkingOptimizer } from '@/components/seo/InternalLinkingOptimizer';
 
 const ProteseDentaria = () => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -813,7 +814,8 @@ const ProteseDentaria = () => {
             </p>
           </div>
         </section>
-      </PageLayout>
+            <InternalLinkingOptimizer currentPage="protese-dentaria" />
+</PageLayout>
     </>
   );
 };

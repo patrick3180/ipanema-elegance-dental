@@ -8,6 +8,7 @@ import OptimizedImage from "@/components/OptimizedImage";
 import { ComparisonTableItem } from "@/types/BlogPost";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CheckCircle, Star, ArrowRight, Clock, Sparkles, Shield, Heart, Award, Zap, Calendar } from "lucide-react";
+import { InternalLinkingOptimizer } from '@/components/seo/InternalLinkingOptimizer';
 
 const Ortodontia = () => {
   // Placeholder para casos futuros
@@ -703,7 +704,8 @@ const Ortodontia = () => {
             </div>
           </div>
         </section>
-      </PageLayout>
+            <InternalLinkingOptimizer currentPage="ortodontia" />
+</PageLayout>
     </>
   );
 };

@@ -15,6 +15,7 @@ import { useScrollTracking } from '@/hooks/useScrollTracking';
 import FastServerResponseOptimizer from '@/components/performance/FastServerResponseOptimizer';
 import CriticalCSSOptimizer from '@/components/performance/CriticalCSSOptimizer';
 import QuickAnswerBox from '@/components/blog/QuickAnswerBox';
+import { InternalLinkingOptimizer } from '@/components/seo/InternalLinkingOptimizer';
 
 const ImplantesDentarios = () => {
   // Critical image preload
@@ -806,7 +807,8 @@ const ImplantesDentarios = () => {
             </p>
           </div>
         </section>
-      </PageLayout>
+            <InternalLinkingOptimizer currentPage="implantes-dentarios" />
+</PageLayout>
     </>
   );
 };

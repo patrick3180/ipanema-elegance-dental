@@ -1,4 +1,5 @@
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
@@ -8,6 +9,7 @@ import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { sendGCLIDToWebhook } from "@/utils/gclid";
 import { Sparkles, Shield, Heart, Award, Search, Scan, CheckCircle, HelpCircle, ArrowRight, Clock, Link, Ban, Target, Wrench, Stethoscope, Syringe, Scissors, HeartPulse, Layers, Focus, Gem } from "lucide-react";
+import { InternalLinkingOptimizer } from '@/components/seo/InternalLinkingOptimizer';
 
 const RestaureacoesEsteticas = () => {
   const handleWhatsAppClick = async (message: string) => {
@@ -904,7 +906,7 @@ const RestaureacoesEsteticas = () => {
                   <li>Trincas que causam sensibilidade</li>
                   <li>Substituição de restaurações antigas escurecidas</li>
                   <li>Correção de formato ou fechamento de pequenos espaços</li>
-                  <li>Reconstrução após tratamento de canal</li>
+                  <li>Reconstrução após <RouterLink to="/tratamento-de-canal" className="text-dental-gold hover:text-dental-purple transition-colors font-medium">tratamento de canal</RouterLink></li>
                 </ul>
               </AccordionContent>
             </AccordionItem>
@@ -1009,7 +1011,8 @@ const RestaureacoesEsteticas = () => {
         </div>
       </section>
 
-    </PageLayout>
+          <InternalLinkingOptimizer currentPage="restauracoes-esteticas" />
+</PageLayout>
   );
 };
 

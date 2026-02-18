@@ -1,104 +1,104 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card, CardContent } from '@/components/ui/card';
+import { ArrowRight } from 'lucide-react';
 
 interface RelatedLink {
   title: string;
   url: string;
   description: string;
-  category: 'service' | 'blog' | 'info';
 }
 
 interface InternalLinkingOptimizerProps {
   currentPage: string;
-  category?: string;
 }
 
-export const InternalLinkingOptimizer: React.FC<InternalLinkingOptimizerProps> = ({ 
-  currentPage, 
-  category 
+export const InternalLinkingOptimizer: React.FC<InternalLinkingOptimizerProps> = ({
+  currentPage,
 }) => {
-  // Define internal linking structure
-  const getRelatedLinks = (page: string, cat?: string): RelatedLink[] => {
-    const allLinks: Record<string, RelatedLink[]> = {
-      'home': [
-        { title: 'Nossos Serviços', url: '/servicos', description: 'Conheça todos os tratamentos disponíveis', category: 'service' },
-        { title: 'Sobre a Dra. Carla', url: '/sobre', description: 'Saiba mais sobre nossa especialista', category: 'info' },
-        { title: 'Blog Odontológico', url: '/blog', description: 'Dicas e informações sobre saúde bucal', category: 'blog' }
-      ],
-      'servicos': [
-        { title: 'Lentes de Contato Dental', url: '/lentes-de-contato-dental-e-facetas-de-porcelana', description: 'Estética dental com lentes de porcelana', category: 'service' },
-        { title: 'Clareamento Dental', url: '/clareamento-dental', description: 'Deixe seu sorriso mais branco', category: 'service' },
-        { title: 'Implantes Dentários', url: '/implantes-dentarios', description: 'Reposição de dentes perdidos', category: 'service' },
-        { title: 'Nossos Diferenciais', url: '/diferenciais', description: 'O que nos torna únicos', category: 'info' }
-      ],
-      'sobre': [
-        { title: 'Nossos Serviços', url: '/servicos', description: 'Tratamentos especializados', category: 'service' },
-        { title: 'Entre em Contato', url: '/contato', description: 'Agende sua consulta', category: 'info' },
-        { title: 'Blog', url: '/blog', description: 'Artigos sobre odontologia', category: 'blog' }
-      ],
-      'blog': [
-        { title: 'Clareamento Dental', url: '/clareamento-dental', description: 'Tratamento para um sorriso mais branco', category: 'service' },
-        { title: 'Estética Dental', url: '/lentes-de-contato-dental-e-facetas-de-porcelana', description: 'Lentes e facetas de porcelana', category: 'service' },
-        { title: 'Implantodontia', url: '/implantes-dentarios', description: 'Especialidade em implantes', category: 'service' }
-      ],
-      'clareamento-dental': [
-        { title: 'Lentes de Contato Dental', url: '/lentes-de-contato-dental-e-facetas-de-porcelana', description: 'Combine com lentes para resultado perfeito', category: 'service' },
-        { title: 'Restaurações Estéticas', url: '/restauracoes-esteticas', description: 'Tratamentos complementares', category: 'service' },
-        { title: 'Blog sobre Estética', url: '/blog', description: 'Dicas de cuidados pós-clareamento', category: 'blog' }
-      ],
-      'lentes-de-contato-dental-e-facetas-de-porcelana': [
-        { title: 'Clareamento Dental', url: '/clareamento-dental', description: 'Prepare-se antes das lentes', category: 'service' },
-        { title: 'Restaurações Estéticas', url: '/restauracoes-esteticas', description: 'Outros tratamentos estéticos', category: 'service' },
-        { title: 'Nossos Diferenciais', url: '/diferenciais', description: 'Scanner iTero 3D', category: 'info' }
-      ],
-      'implantes-dentarios': [
-        { title: 'Prótese Dentária', url: '/protese-dentaria', description: 'Complemento aos implantes', category: 'service' },
-        { title: 'Clínica Geral', url: '/clinica-geral-e-prevencao', description: 'Cuidados preventivos', category: 'service' },
-        { title: 'Blog', url: '/blog', description: 'Tudo sobre implantes', category: 'blog' }
-      ]
-    };
-
-    return allLinks[page] || [];
+  const allLinks: Record<string, RelatedLink[]> = {
+    'implantes-dentarios': [
+      { title: 'Prótese Dentária', url: '/protese-dentaria', description: 'Coroas e próteses fixas sobre implante' },
+      { title: 'Saúde da Gengiva', url: '/saude-da-gengiva', description: 'Base essencial para o sucesso do implante' },
+      { title: 'Clínica Geral e Prevenção', url: '/clinica-geral-e-prevencao', description: 'Avaliação e cuidados preventivos' },
+    ],
+    'clareamento-dental': [
+      { title: 'Lentes de Contato Dental e Facetas', url: '/lentes-de-contato-dental-e-facetas', description: 'Estética completa com lentes de porcelana' },
+      { title: 'Restaurações Estéticas', url: '/restauracoes-esteticas', description: 'Restaurações que acompanham o novo tom' },
+      { title: 'Saúde da Gengiva', url: '/saude-da-gengiva', description: 'Gengiva saudável antes do clareamento' },
+    ],
+    'lentes-de-contato-dental-e-facetas': [
+      { title: 'Clareamento Dental', url: '/clareamento-dental', description: 'Combine clareamento com as lentes' },
+      { title: 'Ortodontia', url: '/ortodontia', description: 'Alinhamento prévio quando necessário' },
+      { title: 'Restaurações Estéticas', url: '/restauracoes-esteticas', description: 'Outros tratamentos estéticos integrados' },
+    ],
+    'ortodontia': [
+      { title: 'Lentes de Contato Dental e Facetas', url: '/lentes-de-contato-dental-e-facetas', description: 'Acabamento estético pós-alinhamento' },
+      { title: 'Clareamento Dental', url: '/clareamento-dental', description: 'Clareamento integrado ao tratamento' },
+      { title: 'Clínica Geral e Prevenção', url: '/clinica-geral-e-prevencao', description: 'Higiene e prevenção durante o uso do aparelho' },
+    ],
+    'tratamento-de-canal': [
+      { title: 'Restaurações Estéticas', url: '/restauracoes-esteticas', description: 'Reconstrução do dente após o canal' },
+      { title: 'Prótese Dentária', url: '/protese-dentaria', description: 'Coroa para proteção pós-tratamento' },
+      { title: 'Implantes Dentários', url: '/implantes-dentarios', description: 'Alternativa se a extração for necessária' },
+    ],
+    'saude-da-gengiva': [
+      { title: 'Implantes Dentários', url: '/implantes-dentarios', description: 'Implantes exigem gengiva saudável' },
+      { title: 'Clínica Geral e Prevenção', url: '/clinica-geral-e-prevencao', description: 'Prevenção e manutenção periodontal' },
+      { title: 'Lentes de Contato Dental e Facetas', url: '/lentes-de-contato-dental-e-facetas', description: 'Estética com base periodontal saudável' },
+    ],
+    'protese-dentaria': [
+      { title: 'Implantes Dentários', url: '/implantes-dentarios', description: 'Implantes como suporte para próteses fixas' },
+      { title: 'Tratamento de Canal', url: '/tratamento-de-canal', description: 'Preservação do dente antes da prótese' },
+      { title: 'Clínica Geral e Prevenção', url: '/clinica-geral-e-prevencao', description: 'Cuidados preventivos após reabilitação' },
+    ],
+    'restauracoes-esteticas': [
+      { title: 'Tratamento de Canal', url: '/tratamento-de-canal', description: 'Reconstrução após tratamento endodôntico' },
+      { title: 'Clareamento Dental', url: '/clareamento-dental', description: 'Harmonize a cor das restaurações' },
+      { title: 'Lentes de Contato Dental e Facetas', url: '/lentes-de-contato-dental-e-facetas', description: 'Estética avançada com porcelana' },
+    ],
+    'clinica-geral-e-prevencao': [
+      { title: 'Saúde da Gengiva', url: '/saude-da-gengiva', description: 'Prevenção e tratamento periodontal' },
+      { title: 'Clareamento Dental', url: '/clareamento-dental', description: 'Estética após os cuidados preventivos' },
+      { title: 'Ortodontia', url: '/ortodontia', description: 'Alinhamento dental integrado à prevenção' },
+    ],
   };
 
-  const relatedLinks = getRelatedLinks(currentPage, category);
-
+  const relatedLinks = allLinks[currentPage] || [];
   if (relatedLinks.length === 0) return null;
 
   return (
-    <div className="my-8">
-      <h3 className="text-xl font-semibold mb-4 text-foreground">
-        Páginas Relacionadas
-      </h3>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {relatedLinks.map((link, index) => (
-          <Card key={index} className="hover:shadow-md transition-shadow">
-            <CardContent className="p-4">
-              <Link 
-                to={link.url}
-                className="block hover:text-primary transition-colors"
-              >
-                <h4 className="font-medium mb-2">{link.title}</h4>
-                <p className="text-sm text-muted-foreground">
-                  {link.description}
-                </p>
-                <span className="inline-block mt-2 text-xs text-primary font-medium">
-                  {link.category === 'service' ? '🦷 Serviço' : 
-                   link.category === 'blog' ? '📝 Artigo' : 'ℹ️ Informação'}
-                </span>
-              </Link>
-            </CardContent>
-          </Card>
-        ))}
+    <section className="py-12 bg-dental-beige/20">
+      <div className="max-w-4xl mx-auto px-4">
+        <h2 className="text-xl font-display font-semibold text-dental-purple mb-6">
+          Tratamentos Relacionados
+        </h2>
+        <div className="grid gap-4 sm:grid-cols-3">
+          {relatedLinks.map((link, index) => (
+            <Link
+              key={index}
+              to={link.url}
+              className="group flex flex-col gap-2 bg-white p-5 rounded-xl border border-dental-beige-light hover:border-dental-purple/30 hover:shadow-md transition-all duration-200"
+            >
+              <span className="font-semibold text-dental-purple text-sm leading-snug group-hover:text-dental-purple-light transition-colors">
+                {link.title}
+              </span>
+              <span className="text-dental-gray text-xs leading-relaxed flex-1">
+                {link.description}
+              </span>
+              <span className="flex items-center gap-1 text-dental-gold text-xs font-medium mt-1">
+                Saiba mais <ArrowRight className="w-3 h-3" />
+              </span>
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
 // Enhanced Breadcrumb component for better navigation
-export const EnhancedBreadcrumb: React.FC<{ 
-  items: Array<{ label: string; href?: string }> 
+export const EnhancedBreadcrumb: React.FC<{
+  items: Array<{ label: string; href?: string }>
 }> = ({ items }) => {
   return (
     <nav aria-label="Breadcrumb" className="mb-6">
@@ -109,7 +109,7 @@ export const EnhancedBreadcrumb: React.FC<{
               <span className="mx-2 text-muted-foreground/50">/</span>
             )}
             {item.href ? (
-              <Link 
+              <Link
                 to={item.href}
                 className="hover:text-primary transition-colors"
               >
@@ -123,8 +123,7 @@ export const EnhancedBreadcrumb: React.FC<{
           </li>
         ))}
       </ol>
-      
-      {/* Structured data for breadcrumbs */}
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -164,8 +163,8 @@ export const ContentCluster: React.FC<{
             <div className="flex items-center justify-between">
               <span className="font-medium">{content.title}</span>
               <span className="text-xs text-muted-foreground">
-                {content.type === 'service' ? 'Serviço' : 
-                 content.type === 'blog' ? 'Artigo' : 'Página'}
+                {content.type === 'service' ? 'Serviço' :
+                  content.type === 'blog' ? 'Artigo' : 'Página'}
               </span>
             </div>
           </Link>

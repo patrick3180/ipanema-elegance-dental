@@ -22,6 +22,7 @@ import {
   HelpCircle,
   ArrowRight
 } from "lucide-react";
+import { InternalLinkingOptimizer } from '@/components/seo/InternalLinkingOptimizer';
 
 const faqs = [
   {
@@ -571,7 +572,8 @@ const ClinicaGeralPrevencao = () => {
           </p>
         </div>
       </section>
-    </PageLayout>
+          <InternalLinkingOptimizer currentPage="clinica-geral-e-prevencao" />
+</PageLayout>
   );
 };
 
