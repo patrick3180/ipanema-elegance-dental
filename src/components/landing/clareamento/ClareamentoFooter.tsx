@@ -15,7 +15,7 @@ const ClareamentoFooter: React.FC = () => {
                 <p className="font-semibold text-lg">Dra. Carla Christoph</p>
                 <p className="text-white/80">CRO-RJ 27509</p>
                 <p className="text-white/80">Especialista em Prótese e Implantodontia</p>
-                
+
               </div>
             </div>
 
@@ -30,27 +30,27 @@ const ClareamentoFooter: React.FC = () => {
                     <p className="text-white/80">Ipanema, Rio de Janeiro - RJ</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center gap-3">
                   <Phone size={18} className="text-[#B3955F]" />
                   <span>(21) 3738-7909</span>
                 </div>
-                
+
                 <div className="flex items-center gap-3">
                   <Smartphone size={18} className="text-[#B3955F]" />
                   <span>(21) 99330-4045 - WhatsApp 24h</span>
                 </div>
-                
+
                 <div className="flex items-center gap-3">
                   <Mail size={18} className="text-[#B3955F]" />
                   <span>contato@dracarlachristoph.com</span>
                 </div>
-                
+
                 <div className="flex items-center gap-3">
                   <Clock size={18} className="text-[#B3955F]" />
                   <span>Consultório: Seg-Sex 9h-19h</span>
                 </div>
-                
+
                 <div className="flex items-center gap-3">
                   <MessageCircle size={18} className="text-[#B3955F]" />
                   <span>WhatsApp: Atendimento 24 horas</span>
@@ -66,23 +66,23 @@ const ClareamentoFooter: React.FC = () => {
                   <CheckCircle size={18} className="text-[#B3955F]" />
                   <span>Atendimento Particular</span>
                 </div>
-                
-                
+
+
                 <div className="flex items-center gap-3">
                   <CheckCircle size={18} className="text-[#B3955F]" />
-                  <span>Materiais Premium</span>
+                  <span>Materiais de Alta Qualidade</span>
                 </div>
-                
+
                 <div className="flex items-center gap-3">
                   <CheckCircle size={18} className="text-[#B3955F]" />
                   <span>Consultas Sem Pressa</span>
                 </div>
-                
+
                 <div className="flex items-center gap-3">
                   <CheckCircle size={18} className="text-[#B3955F]" />
                   <span>Resultado Natural</span>
                 </div>
-                
+
                 <div className="flex items-center gap-3">
                   <CheckCircle size={18} className="text-[#B3955F]" />
                   <span>Acompanhamento Contínuo</span>

@@ -27,7 +27,11 @@ const ClareamentoProblem: React.FC<ClareamentoProblemProps> = ({
           </div>
 
           {/* Pain Points Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className={`grid grid-cols-1 gap-6 ${problems.length === 4 ? 'md:grid-cols-2' :
+              problems.length === 3 || problems.length === 6 ? 'md:grid-cols-2 lg:grid-cols-3' :
+                problems.length === 5 ? 'md:grid-cols-2 lg:grid-cols-3' :
+                  'md:grid-cols-2 lg:grid-cols-3'
+            }`}>
             {problems.map((problem, index) => (
               <div key={index} className="bg-gray-50 rounded-lg p-6 space-y-4 hover:shadow-md transition-shadow duration-300">
                 <div className="flex justify-center">
