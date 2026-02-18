@@ -123,7 +123,7 @@ export const profilaxiaConfig: LandingPageConfig = {
     whatsappNumber: "5521993304045",
     whatsappMessage: "Olá! Vi o site e gostaria de agendar uma profilaxia dental.",
     doctorName: "Dra. Carla Christoph",
-    clinicName: "Clínica Odontológica Premium Ipanema"
+    clinicName: "Consultório Odontológico"
   },
 
   seo: {

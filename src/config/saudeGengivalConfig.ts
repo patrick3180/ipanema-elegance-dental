@@ -2,31 +2,31 @@ import { LandingPageConfig } from "@/types/LandingPageConfig";
 
 export const saudeGengivalConfig: LandingPageConfig = {
   campaign: 'Pesquisa - Clinica Geral - Zona Sul',
-  
+
   messageMatch: {
     adGroup: 'Saúde da Gengiva',
     keyword: 'cuidado com a gengiva'
   },
-  
+
   whatsapp: {
     number: '5521993304045',
     message: 'Olá! Vi o site e gostaria de agendar uma consulta para cuidar da saúde da minha gengiva.'
   },
-  
+
   hero: {
     headline: 'Saúde da Gengiva em Ipanema — Sangramento e Retração Merecem Atenção',
     subheadline: 'Gengiva que sangra não é normal. Tratamento periodontal com acompanhamento individualizado. Dra. Carla Christoph coordena a jornada completa do seu tratamento.',
     ctaText: 'Agendar Avaliação Gengival',
-    backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp' 
+    backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
-  
+
   benefits: [
     'Tratamento integrado com periodontista',
     'Acompanhamento contínuo pela Dra. Carla',
     'WhatsApp 24h',
     '20+ anos de experiência'
   ],
-  
+
   problem: {
     title: 'Sinais na Gengiva que Você Não Deveria Ignorar',
     description: 'Sangramento, inchaço e retração gengival parecem "normais" — mas não são. Quando a gengiva está inflamada, é o corpo pedindo ajuda. Ignorar pode levar a problemas sérios, incluindo perda de dentes.',
@@ -39,7 +39,7 @@ export const saudeGengivalConfig: LandingPageConfig = {
       'Quer tratar a gengiva para depois investir em estética ou implantes.'
     ]
   },
-  
+
   guide: {
     title: 'Como Cuidamos da Sua Gengiva',
     subtitle: 'A Dra. Carla coordena o tratamento com periodontista especializado e acompanha cada etapa.',
@@ -65,7 +65,7 @@ export const saudeGengivalConfig: LandingPageConfig = {
       { number: '24h', label: 'WhatsApp Disponível' }
     ]
   },
-  
+
   faq: {
     title: 'Dúvidas sobre Saúde Gengival',
     questions: [
@@ -76,20 +76,21 @@ export const saudeGengivalConfig: LandingPageConfig = {
       { question: 'Vocês atendem convênios?', answer: 'Nosso atendimento é particular, o que nos permite acompanhar cada caso com o tempo e a atenção necessários.' }
     ]
   },
-  
+
   cta: {
     title: 'Gengiva Saudável é a Base de Tudo',
     subtitle: 'Agende uma avaliação gengival. Tratamento precoce faz toda a diferença.',
-    buttonText: 'Agendar Avaliação Gengival'
+    buttonText: 'Agendar Avaliação Gengival',
+    urgency: 'Sangramento gengival ignorado pode evoluir para problemas que afetam outros tratamentos.'
   },
-  
+
   contact: {
     whatsappNumber: '5521993304045',
     whatsappMessage: 'Olá! Vi o site e gostaria de agendar uma consulta para cuidar da saúde da minha gengiva.',
     doctorName: 'Dra. Carla Christoph',
     clinicName: 'Consultório Odontológico'
   },
-  
+
   seo: {
     title: 'Cuidado Gengival Ipanema | Tratamento para Saúde da Gengiva',
     description: 'Especialista em saúde gengival em Ipanema. Tratamento para sangramento, sensibilidade e prevenção. Agende sua avaliação e recupere seu bem-estar.',
@@ -104,7 +105,7 @@ export const saudeGengivalConfig: LandingPageConfig = {
       'higiene bucal'
     ]
   },
-  
+
   tracking: {
     gtagId: 'AW-16894364517',
     gtmId: 'GTM-WZRDNBKQ'

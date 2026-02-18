@@ -2,31 +2,31 @@ import { LandingPageConfig } from "@/types/LandingPageConfig";
 
 export const ortodontiaConfig: LandingPageConfig = {
   campaign: 'Pesquisa - Ortodontia',
-  
+
   messageMatch: {
     adGroup: 'Ortodontia - Aparelhos',
     keyword: 'ortodontista em ipanema'
   },
-  
+
   whatsapp: {
     number: '5521993304045',
     message: 'Olá! Vi o site e gostaria de agendar uma consulta de planejamento para tratamento ortodôntico.'
   },
-  
+
   hero: {
     headline: 'Ortodontia Conduzida por Doutor em Ortodontia pela UERJ',
     subheadline: 'Dr. Bruno, Doutor em Ortodontia pela UERJ e Professor no IOPUC-Rio, planeja cada caso com escaneamento digital 3D. Opções de alinhadores Invisalign, aparelho estético e convencional.',
     ctaText: 'Agendar Minha Avaliação Ortodôntica',
-    backgroundImage: '/lovable-uploads/DrBruno_site.webp' 
+    backgroundImage: '/lovable-uploads/DrBruno_site.webp'
   },
-  
+
   benefits: [
     'Doutor em Ortodontia (UERJ)',
     'Escaneamento digital com Scanner 3D',
     'Invisalign, estético e convencional',
     'WhatsApp 24h'
   ],
-  
+
   problem: {
     title: 'Dentes Desalinhados Afetam Mais do que a Estética',
     description: 'Dentes tortos ou mal posicionados dificultam a higiene, sobrecarregam a mordida e podem causar desgaste precoce. A ortodontia corrige a posição dos dentes para melhorar função e estética — em qualquer idade.',
@@ -39,7 +39,7 @@ export const ortodontiaConfig: LandingPageConfig = {
       'Querer um tratamento discreto que não interfira na rotina profissional.'
     ]
   },
-  
+
   guide: {
     title: 'Como Funciona o Tratamento Ortodôntico com o Dr. Bruno',
     subtitle: 'Doutor em Ortodontia (UERJ), Mestre em Clínica Odontológica (UFF) e Professor de Ortodontia no IOPUC-Rio.',
@@ -65,7 +65,7 @@ export const ortodontiaConfig: LandingPageConfig = {
       { number: '24h', label: 'WhatsApp Disponível' }
     ]
   },
-  
+
   faq: {
     title: 'Dúvidas Sobre Tratamento Ortodôntico',
     questions: [
@@ -77,20 +77,21 @@ export const ortodontiaConfig: LandingPageConfig = {
       { question: 'Preciso usar contenção depois?', answer: 'Sim. A contenção é parte essencial do tratamento — é o que mantém os dentes na posição corrigida. Pode ser fixa (colada atrás dos dentes) ou removível, dependendo do caso.' }
     ]
   },
-  
+
   cta: {
     title: 'Quer Saber Qual Tratamento Ortodôntico é Indicado para Você?',
     subtitle: 'Na avaliação, o Dr. Bruno analisa seu caso com escaneamento 3D e apresenta as opções mais adequadas.',
-    buttonText: 'Agendar Minha Avaliação'
+    buttonText: 'Agendar Minha Avaliação',
+    urgency: 'Ortodontia é viável em qualquer idade — e o planejamento digital permite prever o resultado antes de começar.'
   },
-  
+
   contact: {
     whatsappNumber: '5521993304045',
     whatsappMessage: 'Olá! Vi o site e gostaria de agendar uma consulta de planejamento para tratamento ortodôntico.',
     doctorName: 'Dra. Carla Christoph & Dr. Bruno Neves',
     clinicName: 'Consultório Odontológico'
   },
-  
+
   seo: {
     title: 'Ortodontista Ipanema | Aparelho Invisalign e Estético',
     description: 'Especialista em Ortodontia em Ipanema. Tratamento com Invisalign, aparelho estético e convencional. Planejamento digital com scanner 3D. Agende!',
@@ -105,7 +106,7 @@ export const ortodontiaConfig: LandingPageConfig = {
       'scanner 3d ortodontia'
     ]
   },
-  
+
   tracking: {
     gtagId: 'AW-16894364517',
     gtmId: 'GTM-WZRDNBKQ'

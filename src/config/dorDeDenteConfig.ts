@@ -2,31 +2,31 @@ import { LandingPageConfig } from "@/types/LandingPageConfig";
 
 export const dorDeDenteConfig: LandingPageConfig = {
   campaign: 'dor-de-dente-urgencia',
-  
+
   messageMatch: {
     adGroup: 'dor-de-dente-ipanema',
     keyword: 'dor de dente ipanema'
   },
-  
+
   whatsapp: {
     number: '5521993304045',
     message: 'Olá! Estou com uma dor de dente forte e preciso de atendimento urgente. Podem me ajudar?'
   },
-  
+
   hero: {
     headline: 'Dor de Dente em Ipanema? Atendimento Prioritário',
     subheadline: 'Dor de dente pode ter várias causas — cárie profunda, infecção, fratura. O diagnóstico correto é o primeiro passo para o alívio. Encaixe prioritário pelo WhatsApp.',
     ctaText: 'Pedir Atendimento Agora',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
-  
+
   benefits: [
     'WhatsApp 24h — orientação imediata',
     'Encaixe prioritário na agenda',
     'Diagnóstico preciso da causa',
     '20+ anos de experiência'
   ],
-  
+
   problem: {
     title: 'Dor de Dente Não É para Aguentar',
     description: 'Dor persistente é sinal de que algo precisa de atenção. Ignorar pode transformar um problema tratável em algo mais complexo e mais caro.',
@@ -39,7 +39,7 @@ export const dorDeDenteConfig: LandingPageConfig = {
       'Não sabe a causa — só sabe que precisa resolver.'
     ]
   },
-  
+
   guide: {
     title: 'Do Alívio ao Tratamento Definitivo',
     subtitle: 'Resolver a dor é prioridade. Depois, tratamos a causa.',
@@ -50,7 +50,7 @@ export const dorDeDenteConfig: LandingPageConfig = {
       { number: '4', title: 'Tratamento Definitivo', description: 'Com a dor resolvida, planejamos o tratamento da causa para evitar recorrência.' }
     ]
   },
-  
+
   socialProof: {
     title: 'Quem Precisou, Conta',
     testimonials: [
@@ -65,31 +65,31 @@ export const dorDeDenteConfig: LandingPageConfig = {
       { number: 'Mesmo dia', label: 'Encaixe Prioritário' }
     ]
   },
-  
+
   faq: {
     title: 'Dúvidas sobre Dor de Dente',
     questions: [
-        { question: 'Posso tomar analgésico enquanto espero a consulta?', answer: 'Sim. Analgésicos comuns (dipirona, paracetamol, ibuprofeno) podem aliviar temporariamente. Evite aspirina se houver sangramento. Na dúvida, pergunte pelo WhatsApp antes de medicar.' },
-        { question: 'Dor de dente sempre significa canal?', answer: 'Não. A dor pode ter várias causas — cárie, restauração infiltrada, fratura, problema gengival. Muitas vezes a solução é mais simples do que canal. O diagnóstico correto é fundamental.' },
-        { question: 'E se a dor passar sozinha?', answer: 'Dor que passa sozinha não significa que o problema foi resolvido. Pode significar que o nervo do dente morreu, o que é pior. Se teve dor intensa que desapareceu repentinamente, procure avaliação.' },
-        { question: 'Vocês atendem convênios?', answer: 'Nosso atendimento é particular. Na consulta de urgência, diagnosticamos a causa e apresentamos as opções de tratamento.' }
+      { question: 'Posso tomar analgésico enquanto espero a consulta?', answer: 'Sim. Analgésicos comuns (dipirona, paracetamol, ibuprofeno) podem aliviar temporariamente. Evite aspirina se houver sangramento. Na dúvida, pergunte pelo WhatsApp antes de medicar.' },
+      { question: 'Dor de dente sempre significa canal?', answer: 'Não. A dor pode ter várias causas — cárie, restauração infiltrada, fratura, problema gengival. Muitas vezes a solução é mais simples do que canal. O diagnóstico correto é fundamental.' },
+      { question: 'E se a dor passar sozinha?', answer: 'Dor que passa sozinha não significa que o problema foi resolvido. Pode significar que o nervo do dente morreu, o que é pior. Se teve dor intensa que desapareceu repentinamente, procure avaliação.' },
+      { question: 'Vocês atendem convênios?', answer: 'Nosso atendimento é particular. Na consulta de urgência, diagnosticamos a causa e apresentamos as opções de tratamento.' }
     ]
   },
-  
+
   cta: {
     title: 'Não Aguente a Dor — Procure Atendimento',
     subtitle: 'Mande mensagem pelo WhatsApp. Respondemos 24h e encaixamos o mais rápido possível.',
     buttonText: 'Falar no WhatsApp Agora',
     urgency: 'Dor ignorada hoje vira tratamento mais complexo amanhã.'
   },
-  
+
   contact: {
     whatsappNumber: '5521993304045',
     whatsappMessage: 'Olá! Estou com uma dor de dente forte e preciso de atendimento urgente.',
     doctorName: 'Dra. Carla Christoph',
-    clinicName: 'Clínica Odontológica Premium Ipanema'
+    clinicName: 'Consultório Odontológico'
   },
-  
+
   seo: {
     title: 'Dor de Dente Urgência Ipanema | Alívio Rápido | Dra. Carla',
     description: 'Dor de dente em Ipanema? Atendimento prioritário para alívio da dor. Diagnóstico preciso e tratamento no mesmo dia. WhatsApp 24h. Dra. Carla Christoph CRO-RJ 27509.',
@@ -104,7 +104,7 @@ export const dorDeDenteConfig: LandingPageConfig = {
       'dente doendo rio de janeiro'
     ]
   },
-  
+
   tracking: {
     gtagId: 'AW-16894364517',
     gtmId: 'GTM-WZRDNBKQ'

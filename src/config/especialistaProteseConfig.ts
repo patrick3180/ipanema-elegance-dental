@@ -2,31 +2,31 @@ import { LandingPageConfig } from "@/types/LandingPageConfig";
 
 export const especialistaProteseConfig: LandingPageConfig = {
   campaign: 'especialista-protese-ipanema',
-  
+
   messageMatch: {
     adGroup: 'especialista-protese-reabilitacao',
     keyword: 'especialista em protese dentaria'
   },
-  
+
   whatsapp: {
     number: '5521993304045',
     message: 'Olá! Vi o site e gostaria de agendar uma consulta de planejamento com a especialista em prótese dentária.'
   },
-  
+
   hero: {
     headline: 'Reabilitação Oral com Especialista em Prótese — Planejamento Preciso para Casos que Exigem Experiência',
     subheadline: 'A Dra. Carla Christoph é especialista em Prótese Dentária com mais de 20 anos de experiência, incluindo 8 anos como dentista militar na Marinha do Brasil. Casos complexos exigem planejamento detalhado — e é isso que ela faz.',
     ctaText: 'Agendar Consulta de Planejamento',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
-  
+
   benefits: [
     'Especialista em Prótese Dentária',
     'Planejamento digital com scanner 3D',
     'WhatsApp 24h',
     '20+ anos de experiência (8 na Marinha)'
   ],
-  
+
   problem: {
     title: 'Quando o Caso Precisa de um Olhar Especializado',
     description: 'Nem todo caso de prótese é simples. Quando há múltiplas ausências, desgaste severo ou tratamentos anteriores que falharam, o resultado depende diretamente da experiência e do planejamento de quem conduz.',
@@ -39,7 +39,7 @@ export const especialistaProteseConfig: LandingPageConfig = {
       'Sensação de que o caso é complexo demais e precisa de alguém com experiência específica.'
     ]
   },
-  
+
   guide: {
     title: 'A Abordagem da Especialista em Prótese',
     subtitle: 'Cada caso de reabilitação é planejado individualmente. A Dra. Carla conduz o processo do diagnóstico à entrega final.',
@@ -65,7 +65,7 @@ export const especialistaProteseConfig: LandingPageConfig = {
       { number: '24h', label: 'WhatsApp Disponível' }
     ]
   },
-  
+
   faq: {
     title: 'Dúvidas Sobre Prótese e Reabilitação Oral',
     questions: [
@@ -76,20 +76,21 @@ export const especialistaProteseConfig: LandingPageConfig = {
       { question: 'Vocês atendem convênios?', answer: 'Nosso atendimento é particular, o que nos permite dedicar o tempo necessário ao planejamento e trabalhar com materiais selecionados. Na consulta, apresentamos o plano completo com valores transparentes.' }
     ]
   },
-  
+
   cta: {
     title: 'Seu Caso Merece Atenção Especializada',
     subtitle: 'Agende sua consulta de planejamento. A avaliação detalhada é o primeiro passo para um tratamento seguro e bem conduzido.',
-    buttonText: 'Agendar Minha Consulta'
+    buttonText: 'Agendar Minha Consulta',
+    urgency: 'Espaços sem dentes causam movimentação dos dentes vizinhos — quanto antes a reposição, mais simples tende a ser.'
   },
-  
+
   contact: {
     whatsappNumber: '5521993304045',
     whatsappMessage: 'Olá! Vi o site e gostaria de agendar uma consulta de planejamento com a especialista em prótese dentária.',
     doctorName: 'Dra. Carla Christoph',
     clinicName: 'Consultório Odontológico'
   },
-  
+
   seo: {
     title: 'Especialista em Prótese Dentária Ipanema | Reabilitação Oral',
     description: 'Reabilitação oral para casos complexos em Ipanema. Dra. Carla Christoph, especialista em prótese dentária, planeja e executa seu novo sorriso com precisão.',
@@ -104,7 +105,7 @@ export const especialistaProteseConfig: LandingPageConfig = {
       'planejamento de sorriso'
     ]
   },
-  
+
   tracking: {
     gtagId: 'AW-16894364517',
     gtmId: 'GTM-WZRDNBKQ'

@@ -14,7 +14,7 @@ export const clareamentoConfig: LandingPageConfig = {
   },
 
   hero: {
-    headline: 'Clareamento Dental que Respeita a Naturalidade do Seu Sorriso',
+    headline: 'Dentes Amarelados? Clareamento com Resultado Natural em Ipanema',
     subheadline: 'Protocolos seguros e personalizados para um sorriso mais claro — sem o risco de ficar artificial. Mais de 20 anos de experiência em estética dental.',
     ctaText: 'Quero Clarear Meu Sorriso',
     backgroundImage: "/lovable-uploads/doutora-em-pe-jaleco.webp"
@@ -79,7 +79,8 @@ export const clareamentoConfig: LandingPageConfig = {
   cta: {
     title: 'Quer Saber Qual Clareamento é Indicado para Você?',
     subtitle: 'O clareamento é um dos tratamentos mais simples da odontologia estética. Uma avaliação inicial mostra qual protocolo é indicado para a cor e o tipo dos seus dentes.',
-    buttonText: 'Agendar Minha Avaliação'
+    buttonText: 'Agendar Minha Avaliação',
+    urgency: 'O escurecimento dental tende a avançar com o tempo — quanto antes o tratamento, mais natural o resultado.'
   },
 
   contact: {

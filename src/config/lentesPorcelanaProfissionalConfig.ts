@@ -2,31 +2,31 @@ import { LandingPageConfig } from "@/types/LandingPageConfig";
 
 export const lentesPorcelanaProfissionalConfig: LandingPageConfig = {
   campaign: 'lentes-porcelana-profissional-ipanema',
-  
+
   messageMatch: {
     adGroup: 'Lentes de contato em porcelana',
     keyword: 'lentes de contato dental porcelana'
   },
-  
+
   whatsapp: {
     number: '5521993304045',
     message: 'Olá! Vi o site sobre lentes de porcelana e gostaria de agendar uma avaliação para renovar meu sorriso.'
   },
-  
+
   hero: {
     headline: 'Lentes de Porcelana em Ipanema — Resultado Natural que Dura mais de 15 Anos',
     subheadline: 'Porcelana de alta translucidez, planejamento digital com scanner iTero e Test Drive do Sorriso antes de começar. Dra. Carla Christoph, especialista com mais de 20 anos em estética dental.',
     ctaText: 'Agendar Minha Avaliação',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
-  
+
   benefits: [
     'Porcelana de alta translucidez',
     'Test Drive do Sorriso antes de começar',
     'WhatsApp 24h',
     '20+ anos em estética dental'
   ],
-  
+
   problem: {
     title: 'Você se identifica com alguma dessas situações?',
     description: 'Não é sobre ter dentes "perfeitos". É sobre se sentir confortável para sorrir sem pensar duas vezes.',
@@ -37,7 +37,7 @@ export const lentesPorcelanaProfissionalConfig: LandingPageConfig = {
       'Receio de ficar com aspecto artificial — branco demais ou todos iguais. Querer melhorar sem que pareça que fez alguma coisa.'
     ]
   },
-  
+
   guide: {
     title: 'Como a Dra. Carla Christoph Planeja Suas Lentes',
     subtitle: '20+ anos em Estética Dental — CRO-RJ 27.509. Escaneamento digital iTero e Test Drive do Sorriso em todos os casos.',
@@ -63,7 +63,7 @@ export const lentesPorcelanaProfissionalConfig: LandingPageConfig = {
       { number: '100%', label: 'Casos com Test Drive' }
     ]
   },
-  
+
   faq: {
     title: 'Dúvidas Frequentes sobre Lentes de Porcelana',
     questions: [
@@ -75,21 +75,21 @@ export const lentesPorcelanaProfissionalConfig: LandingPageConfig = {
       { question: 'Dentes com restauração antiga podem receber lentes?', answer: 'Depende do tamanho e estado da restauração. Em muitos casos, a lente pode cobrir e substituir restaurações escurecidas. Avaliamos caso a caso na consulta.' }
     ]
   },
-  
+
   cta: {
     title: 'Quer Ver Como Seu Sorriso Pode Ficar?',
     subtitle: 'Agende sua avaliação e faça o Test Drive do Sorriso antes de tomar qualquer decisão.',
     buttonText: 'Agendar Avaliação com Test Drive',
-    urgency: undefined
+    urgency: 'Quem busca lentes já sabe o que quer mudar — a avaliação mostra como chegar lá com previsibilidade.'
   },
-  
+
   contact: {
     whatsappNumber: '5521993304045',
     whatsappMessage: 'Olá! Vi o site sobre lentes de porcelana e gostaria de agendar uma avaliação para renovar meu sorriso.',
     doctorName: 'Dra. Carla Christoph',
     clinicName: 'Consultório Odontológico'
   },
-  
+
   seo: {
     title: 'Lentes de Contato Dental Porcelana Ipanema | Estética do Sorriso',
     description: 'Lentes de porcelana em Ipanema com resultado natural e duradouro. Planejamento digital com scanner iTero. Agende sua avaliação.',
@@ -104,7 +104,7 @@ export const lentesPorcelanaProfissionalConfig: LandingPageConfig = {
       'clínica de estética dental ipanema'
     ]
   },
-  
+
   tracking: {
     gtagId: 'AW-16894364517',
     gtmId: 'GTM-WZRDNBKQ'

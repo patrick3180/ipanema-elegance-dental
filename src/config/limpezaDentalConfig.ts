@@ -14,7 +14,7 @@ export const limpezaDentalConfig: LandingPageConfig = {
   },
 
   hero: {
-    headline: "Limpeza Dental Profissional em Ipanema",
+    headline: "Tártaro e Sensibilidade? Limpeza com Ultrassom em Ipanema",
     subheadline: "Profilaxia com ultrassom em consulta sem pressa. Remoção de tártaro, placa bacteriana e manchas. Dra. Carla Christoph, 20+ anos de experiência.",
     ctaText: "Agendar Minha Limpeza",
     backgroundImage: "/lovable-uploads/vertical-de-jaleco.webp"
@@ -120,7 +120,8 @@ export const limpezaDentalConfig: LandingPageConfig = {
   cta: {
     title: "Sua Boca Merece esse Cuidado",
     subtitle: "Agende sua limpeza profissional pelo WhatsApp.",
-    buttonText: "Agendar Minha Limpeza"
+    buttonText: "Agendar Minha Limpeza",
+    urgency: 'Tártaro acumulado evolui para problemas gengivais — a remoção profissional periódica evita complicações.'
   },
 
   contact: {

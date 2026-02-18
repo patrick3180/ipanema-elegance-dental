@@ -80,7 +80,8 @@ export const consultaInicialConfig: LandingPageConfig = {
   cta: {
     title: "Pronto para uma Consulta Diferente?",
     subtitle: "Agende sua avaliação e descubra como é ser atendido com tempo, atenção e transparência.",
-    buttonText: "Agendar Minha Consulta"
+    buttonText: "Agendar Minha Consulta",
+    urgency: 'Pequenos problemas detectados cedo evitam tratamentos complexos.'
   },
 
   contact: {

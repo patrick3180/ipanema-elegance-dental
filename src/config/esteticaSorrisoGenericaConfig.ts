@@ -2,31 +2,31 @@ import { LandingPageConfig } from "@/types/LandingPageConfig";
 
 export const esteticaSorrisoGenericaConfig: LandingPageConfig = {
   campaign: 'Pesquisa - Lentes de Contato - Zona Sul',
-  
+
   messageMatch: {
     adGroup: 'Lentes de Contato',
     keyword: 'estetica dental'
   },
-  
+
   whatsapp: {
     number: '5521993304045',
     message: 'Olá! Vi o site e gostaria de agendar uma consulta para avaliar e melhorar meu sorriso.'
   },
-  
+
   hero: {
-    headline: 'Estética Dental em Ipanema — Sorriso que Combina com Você',
+    headline: 'Não Sabe se Precisa de Lentes, Clareamento ou Facetas? Descubra na Avaliação',
     subheadline: 'Clareamento, lentes, restaurações, facetas. A Dra. Carla Christoph avalia o caso completo e indica o caminho mais adequado para o resultado que você busca.',
     ctaText: 'Agendar Avaliação Estética',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
-  
+
   benefits: [
     'Visão integrada de estética dental',
     'Test Drive do Sorriso disponível',
     'WhatsApp 24h',
     '20+ anos em estética dental'
   ],
-  
+
   problem: {
     title: 'Quer Melhorar Seu Sorriso mas Não Sabe por Onde Começar?',
     description: 'Lentes, clareamento, restauração, faceta — com tantas opções, é normal ficar em dúvida. A avaliação estética serve justamente para isso: entender o que faz sentido para o seu caso.',
@@ -39,7 +39,7 @@ export const esteticaSorrisoGenericaConfig: LandingPageConfig = {
       'Quer uma opinião profissional antes de tomar qualquer decisão.'
     ]
   },
-  
+
   guide: {
     title: 'Como a Dra. Carla Christoph Avalia Seu Caso',
     subtitle: 'Especialista em Prótese Dentária com mais de 20 anos em estética dental.',
@@ -65,7 +65,7 @@ export const esteticaSorrisoGenericaConfig: LandingPageConfig = {
       { number: '24h', label: 'WhatsApp Disponível' }
     ]
   },
-  
+
   faq: {
     title: 'Dúvidas sobre Estética Dental',
     questions: [
@@ -76,20 +76,21 @@ export const esteticaSorrisoGenericaConfig: LandingPageConfig = {
       { question: 'Vocês atendem convênios?', answer: 'Nosso atendimento é particular, o que nos permite dedicar tempo ao planejamento e trabalhar com materiais selecionados.' }
     ]
   },
-  
+
   cta: {
     title: 'Quer Saber o que Faz Sentido para Seu Sorriso?',
     subtitle: 'Na avaliação, analisamos seu caso e mostramos as opções — sem compromisso de iniciar.',
-    buttonText: 'Agendar Avaliação Estética'
+    buttonText: 'Agendar Avaliação Estética',
+    urgency: 'O primeiro passo é entender o que faz sentido para o seu caso — e isso começa com uma avaliação.'
   },
-  
+
   contact: {
     whatsappNumber: '5521993304045',
     whatsappMessage: 'Olá! Vi o site e gostaria de agendar uma consulta para avaliar e melhorar meu sorriso.',
     doctorName: 'Dra. Carla Christoph',
     clinicName: 'Consultório Odontológico'
   },
-  
+
   seo: {
     title: 'Estética Dental Ipanema | Renove seu Sorriso com Especialista',
     description: 'Especialista em estética do sorriso em Ipanema. Avaliamos seu caso e indicamos a melhor solução: facetas de resina ou lentes de porcelana. Agende!',
@@ -104,7 +105,7 @@ export const esteticaSorrisoGenericaConfig: LandingPageConfig = {
       'sorriso bonito'
     ]
   },
-  
+
   tracking: {
     gtagId: 'AW-16894364517',
     gtmId: 'GTM-WZRDNBKQ'
