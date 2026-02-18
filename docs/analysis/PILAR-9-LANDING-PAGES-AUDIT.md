@@ -594,13 +594,23 @@ Todas as LPs devem seguir o `LandingPageConfig` type com campos obrigatórios:
 
 ---
 
-**Próximos passos:**
-1. Corrigir 7 violações BRAND.md (Sprint 3 não cobriu configs)
-2. Implementar urgência ética em 10 LPs (maior impacto em conversão)
-3. Consolidar Limpeza + Profilaxia
-4. Reescrever headlines descritivas
-5. Padronizar performance (LazySection para todas)
+## STATUS UPDATE — 18/02/2026 (Sprint 9)
+
+**Itens resolvidos:**
+- [x] Corrigir 7 violações BRAND.md (Phase 2: "Premium" removido de 3 configs, Facetas corrigidas)
+- [x] Implementar urgência ética em 10 LPs (campo `urgency` adicionado em 10 configs)
+- [x] Reescrever 4 headlines descritivas (Limpeza, Clareamento, Estética, Lentes)
+- [x] Padronizar performance: LazySection em todas as 16 LPs
+- [x] Renomear ClareamentoFooter → LandingFooter (16 LPs)
+- [x] Card asymmetry fix (3+1 → 2×2 para 4 itens)
+- [x] AVIF hero image variants geradas (5 imagens × 3 tamanhos)
+
+**Itens pendentes:**
+- [ ] Consolidar Limpeza + Profilaxia (redirect 301)
+
+**Score atualizado:** 71/100 → ~79/100 (estimativa com urgência, headlines, LazySection + AVIF)
 
 ---
 
 *Relatório gerado por análise manual de código: 14 page components + 15 config files + cruzamento com Pilares 4, 6 e 8.*
+

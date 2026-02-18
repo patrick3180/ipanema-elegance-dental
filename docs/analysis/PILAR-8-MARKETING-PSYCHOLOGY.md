@@ -18,6 +18,9 @@
 - [x] [Sprint 3] Palavras banidas corrigidas em LentesEFacetas.tsx (12 ocorrencias "transforme/transformacao") e RestaureacoesEsteticas.tsx ("excelencia", "premium")
 - [x] [Pilar 10] 10 posts de blog com links internos para service pages (melhora jornada blog → SP)
 - [x] [Pilar 10] 6 posts historicos despublicados (melhor foco de topical authority)
+- [x] [Sprint 9] Urgencia etica nas 10 LPs: campo `urgency` com texto factual em cada config (conversao score +8pts)
+- [x] [Sprint 9] 4 headlines de LP reescritas com dor + solução (Limpeza, Clareamento, Estética, Lentes)
+- [x] [Sprint 9] 7 violações BRAND.md corrigidas nas configs (3x "Premium", facetas "Mesmo Dia", testimonials)
 
 **Itens ainda pendentes:**
 - [ ] SaudaDaGengiva: sem secao empatica ainda (mas urgencia ja presente) — Sprint 8
