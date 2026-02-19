@@ -2,6 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
+import StatsBar from "@/components/treatment/StatsBar";
 import SectionDivider from "@/components/treatment/SectionDivider";
 import ProcessTimeline from "@/components/treatment/ProcessTimeline";
 import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
@@ -27,7 +28,7 @@ const TratamentoDeCanal = () => {
   });
 
   // Scroll tracking
-  useScrollTracking({ 
+  useScrollTracking({
     pagePath: '/tratamento-de-canal',
     enabled: process.env.NODE_ENV === 'production'
   });
@@ -43,12 +44,12 @@ const TratamentoDeCanal = () => {
         page_type: 'service_page'
       });
     }
-    
+
     // Google Ads conversion
     if (window.gtag) {
       window.gtag('event', 'conversion', {
         'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
-        'event_callback': function() {
+        'event_callback': function () {
           console.log('Google Ads conversion tracked - Canal Service Page');
         }
       });
@@ -56,7 +57,7 @@ const TratamentoDeCanal = () => {
 
     // Send GCLID to webhook
     await sendGCLIDToWebhook('canal_service_page_cta');
-    
+
     // Open WhatsApp
     const phone = "5521993304045";
     const message = "Olá! Vi a página sobre tratamento de canal e gostaria de agendar uma avaliação com a Dra. Carla Christoph.";
@@ -98,13 +99,13 @@ const TratamentoDeCanal = () => {
         <meta name="description" content="Tratamento de canal em Ipanema com acompanhamento completo. Endodontista especializado e finalização pela Dra. Carla Christoph. CRO-RJ 27.509." />
         <meta name="keywords" content="tratamento de canal ipanema, endodontia rio de janeiro, canal dentário zona sul, dor de dente ipanema, dentista canal ipanema" />
         <link rel="canonical" href="https://dracarlachristoph.com/tratamento-de-canal" />
-        
+
         {/* Open Graph */}
         <meta property="og:title" content="Tratamento de Canal em Ipanema | Acompanhamento Completo" />
         <meta property="og:description" content="Tratamento de canal com acompanhamento individualizado e finalização pela Dra. Carla Christoph em Ipanema." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dracarlachristoph.com/tratamento-de-canal" />
-        
+
         {/* Schema MedicalProcedure */}
         <script type="application/ld+json">
           {JSON.stringify({
@@ -147,6 +148,7 @@ const TratamentoDeCanal = () => {
       </Helmet>
 
       <FastServerResponseOptimizer />
+      <StatsBar />
       <CriticalCSSOptimizer
         inlineStyles={`
           .treatment-hero { min-height: 60vh; }
@@ -187,7 +189,7 @@ const TratamentoDeCanal = () => {
             <h2 className="heading-lg mb-8 text-center text-dental-purple">
               Tratamento de Canal Não Precisa Ser Assustador
             </h2>
-            
+
             <div className="max-w-3xl mx-auto space-y-6 text-dental-gray leading-relaxed">
               <p>
                 A maioria das pessoas sente apreensão quando ouve "tratamento de canal". É compreensível — durante muito tempo, o procedimento era associado a dor e desconforto. Mas a realidade atual é bem diferente.
@@ -303,7 +305,7 @@ const TratamentoDeCanal = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Conteúdo */}
                 <div className="bg-white p-8 rounded-2xl shadow-soft">
                   <div className="mb-6">
@@ -314,7 +316,7 @@ const TratamentoDeCanal = () => {
                       CRO-RJ 27.509 | Especialista em Prótese Dentária e Implantodontia
                     </p>
                   </div>
-                  
+
                   <div className="space-y-4 text-dental-gray leading-relaxed">
                     <p>
                       Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
@@ -323,7 +325,7 @@ const TratamentoDeCanal = () => {
                       No tratamento de canal, a Dra. Carla acompanha pessoalmente cada etapa e é responsável pela finalização: restauração direta, coroa ou prótese. Você tem uma profissional cuidando de toda a sua jornada — do diagnóstico ao resultado final.
                     </p>
                   </div>
-                  
+
                   {/* Credenciais 2x2 */}
                   <div className="mt-6 pt-6 border-t border-dental-gray/20">
                     <div className="grid md:grid-cols-2 gap-4">
@@ -334,7 +336,7 @@ const TratamentoDeCanal = () => {
                           <p className="text-sm text-dental-gray">Acompanhamento pessoal de toda a jornada do tratamento</p>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-start gap-3">
                         <CheckCircle className="text-dental-gold mt-1" size={20} />
                         <div>
@@ -342,7 +344,7 @@ const TratamentoDeCanal = () => {
                           <p className="text-sm text-dental-gray">Restauração, coroa ou prótese feitas pela Dra. Carla</p>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-start gap-3">
                         <CheckCircle className="text-dental-gold mt-1" size={20} />
                         <div>
@@ -350,7 +352,7 @@ const TratamentoDeCanal = () => {
                           <p className="text-sm text-dental-gray">20+ anos, incluindo 8 na Marinha</p>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-start gap-3">
                         <CheckCircle className="text-dental-gold mt-1" size={20} />
                         <div>
@@ -374,7 +376,7 @@ const TratamentoDeCanal = () => {
             <h2 className="heading-lg mb-4 text-center text-dental-purple">
               Como Funciona o Tratamento de Canal no Consultório
             </h2>
-            
+
             <div className="max-w-4xl mx-auto">
               <ProcessTimeline
                 steps={[
@@ -418,7 +420,7 @@ const TratamentoDeCanal = () => {
             <h2 className="heading-lg mb-8 text-center text-dental-purple">
               O Que Acontece Durante o Procedimento
             </h2>
-            
+
             <div className="max-w-3xl mx-auto space-y-6 text-dental-gray leading-relaxed">
               <p>
                 O tratamento de canal consiste em remover a polpa do dente — o tecido interno que contém nervos e vasos — quando ela está inflamada ou infectada. Com o dente anestesiado, o endodontista acessa o interior, limpa e desinfeta os canais, e os preenche com material biocompatível. O procedimento geralmente leva de 1 a 2 sessões, e o dente é então restaurado pela Dra. Carla para recuperar forma, função e aparência.
@@ -438,12 +440,12 @@ const TratamentoDeCanal = () => {
             <h2 className="heading-lg mb-8 text-center text-dental-purple">
               Dúvidas Sobre Tratamento de Canal
             </h2>
-            
+
             <div className="max-w-4xl mx-auto">
               <Accordion type="single" collapsible className="w-full space-y-4">
                 {faqs.map((faq, index) => (
-                  <AccordionItem 
-                    value={`item-${index + 1}`} 
+                  <AccordionItem
+                    value={`item-${index + 1}`}
                     key={index}
                     className="bg-white rounded-lg border border-dental-purple/20 px-6"
                   >
@@ -472,9 +474,9 @@ const TratamentoDeCanal = () => {
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
               Agende sua avaliação. Quanto antes o diagnóstico, mais simples tende a ser o tratamento.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button 
+              <button
                 onClick={handleWhatsAppClick}
                 className="bg-dental-gold text-dental-purple px-8 py-4 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-all inline-flex items-center gap-2"
               >
@@ -482,14 +484,14 @@ const TratamentoDeCanal = () => {
                 Agendar Avaliação
               </button>
             </div>
-            
+
             <p className="mt-6 text-sm opacity-75">
               WhatsApp: (21) 99330-4045 | Atendimento 24h
             </p>
           </div>
         </section>
-            <InternalLinkingOptimizer currentPage="tratamento-de-canal" />
-</PageLayout>
+        <InternalLinkingOptimizer currentPage="tratamento-de-canal" />
+      </PageLayout>
     </>
   );
 };

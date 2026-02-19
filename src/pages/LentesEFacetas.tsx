@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
+import StatsBar from "@/components/treatment/StatsBar";
 import SectionDivider from "@/components/treatment/SectionDivider";
 import ProcessTimeline from "@/components/treatment/ProcessTimeline";
 
@@ -17,7 +18,7 @@ import { InternalLinkingOptimizer } from '@/components/seo/InternalLinkingOptimi
 const LentesEFacetas = () => {
   // Placeholder para controlar exibição de casos
   const caseImages = null; // Substituir por array de imagens reais quando disponível
-  
+
   // Dados para tabela de comparação
   const comparisonData: ComparisonTableItem[] = [
     {
@@ -131,7 +132,7 @@ const LentesEFacetas = () => {
     if (gclid) {
       localStorage.setItem('gclid', gclid);
     }
-    
+
     // Analytics tracking
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'conversion', {
@@ -140,7 +141,7 @@ const LentesEFacetas = () => {
         'currency': 'BRL'
       });
     }
-    
+
     const defaultMessage = "Olá! Gostaria de conhecer o processo de lentes de contato dental e facetas de porcelana.";
     window.open(`https://wa.me/5521993304045?text=${encodeURIComponent(message || defaultMessage)}`);
   };
@@ -149,41 +150,41 @@ const LentesEFacetas = () => {
     <>
       <Helmet>
         <title>Lentes de Contato Dental e Facetas de Resina em Ipanema | Dra. Carla</title>
-        <meta 
-          name="description" 
-          content="Lentes de contato dental ultrafinas (0,2mm) e facetas de resina em Ipanema com Dra. Carla Christoph. 20+ anos de experiência. Test Drive do Sorriso exclusivo." 
+        <meta
+          name="description"
+          content="Lentes de contato dental ultrafinas (0,2mm) e facetas de resina em Ipanema com Dra. Carla Christoph. 20+ anos de experiência. Test Drive do Sorriso exclusivo."
         />
         <meta name="keywords" content="lentes de contato dental, facetas de resina, ipanema, dra carla christoph, test drive sorriso, porcelana, especialista protese" />
         <link rel="canonical" href="https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina" />
-        
+
         {/* Schema.org estruturado */}
         <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "MedicalWebPage",
-          "name": "Lentes de Contato Dental e Facetas de Resina em Ipanema",
-          "description": "Lentes de contato dental ultrafinas e facetas de resina com Dra. Carla Christoph, especialista em Prótese. 20+ anos de experiência em Ipanema.",
-          "url": "https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina",
-          "medicalSpecialty": "Cosmetic Dentistry",
-          "author": {
-            "@type": "Dentist",
-            "name": "Dra. Carla Christoph",
-            "qualification": "Especialista em Prótese Dental",
-            "experienceYears": 20,
-            "areaServed": {
-              "@type": "City",
-              "name": "Ipanema, Rio de Janeiro"
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "MedicalWebPage",
+            "name": "Lentes de Contato Dental e Facetas de Resina em Ipanema",
+            "description": "Lentes de contato dental ultrafinas e facetas de resina com Dra. Carla Christoph, especialista em Prótese. 20+ anos de experiência em Ipanema.",
+            "url": "https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina",
+            "medicalSpecialty": "Cosmetic Dentistry",
+            "author": {
+              "@type": "Dentist",
+              "name": "Dra. Carla Christoph",
+              "qualification": "Especialista em Prótese Dental",
+              "experienceYears": 20,
+              "areaServed": {
+                "@type": "City",
+                "name": "Ipanema, Rio de Janeiro"
+              }
+            },
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "BRL",
+              "availability": "https://schema.org/InStock",
+              "description": "Consulte valores personalizados na avaliação"
             }
-          },
-          "offers": {
-            "@type": "Offer",
-            "priceCurrency": "BRL",
-            "availability": "https://schema.org/InStock",
-            "description": "Consulte valores personalizados na avaliação"
-          }
-        })}
+          })}
         </script>
-        
+
         {/* FAQ Schema */}
         <script type="application/ld+json">
           {JSON.stringify({
@@ -200,7 +201,7 @@ const LentesEFacetas = () => {
           })}
         </script>
       </Helmet>
-      
+
       <PageLayout>
         {/* Hero Section */}
         <TreatmentHero
@@ -210,9 +211,9 @@ const LentesEFacetas = () => {
           badges={["20+ anos de experiência", "Test Drive do Sorriso", "CRO-RJ 27.509"]}
           doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
           breadcrumbs={[
-            {label: "Início", href: "/"},
-            {label: "Tratamentos", href: "/servicos"},
-            {label: "Lentes e Facetas"}
+            { label: "Início", href: "/" },
+            { label: "Tratamentos", href: "/servicos" },
+            { label: "Lentes e Facetas" }
           ]}
         />
 
@@ -363,14 +364,14 @@ const LentesEFacetas = () => {
               <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
                 {/* Imagem de fundo */}
                 <div className="aspect-[4/3] relative">
-          <img 
-            src="/Lentes.webp"
-            alt="Lentes de contato dental em cerâmica ultra-finas"
-            className="w-full h-full object-cover"
-          />
+                  <img
+                    src="/Lentes.webp"
+                    alt="Lentes de contato dental em cerâmica ultra-finas"
+                    className="w-full h-full object-cover"
+                  />
                   {/* Overlay gradiente */}
                   <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
-                  
+
                   {/* Conteúdo sobre a imagem */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                     <h3 className="text-2xl font-display font-bold mb-2">
@@ -458,7 +459,7 @@ const LentesEFacetas = () => {
                               </li>
                             </ul>
                           </div>
-                          
+
                           <div>
                             <h4 className="font-semibold text-dental-gray mb-2">Considerações</h4>
                             <ul className="space-y-2 text-dental-gray text-sm">
@@ -505,14 +506,14 @@ const LentesEFacetas = () => {
               <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
                 {/* Imagem de fundo */}
                 <div className="aspect-[4/3] relative">
-          <img 
-            src="/lovable-uploads/Faceta de Resina.webp"
-            alt="Facetas de resina composta sendo aplicadas"
-            className="w-full h-full object-cover"
-          />
+                  <img
+                    src="/lovable-uploads/Faceta de Resina.webp"
+                    alt="Facetas de resina composta sendo aplicadas"
+                    className="w-full h-full object-cover"
+                  />
                   {/* Overlay gradiente */}
                   <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
-                  
+
                   {/* Conteúdo sobre a imagem */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                     <h3 className="text-2xl font-display font-bold mb-2">
@@ -600,7 +601,7 @@ const LentesEFacetas = () => {
                               </li>
                             </ul>
                           </div>
-                          
+
                           <div>
                             <h4 className="font-semibold text-dental-gray mb-2">Considerações</h4>
                             <ul className="space-y-2 text-dental-gray text-sm">
@@ -674,121 +675,121 @@ const LentesEFacetas = () => {
 
         <SectionDivider variant="with-icon" icon={<Star className="w-5 h-5" />} />
 
-      {/* Seção da Especialista - Premium com Fade */}
-      <section className="py-20 bg-gradient-to-b from-dental-beige/10 to-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
-              Sua Dentista para Estética Dental
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-[380px,1fr] gap-12 items-start max-w-6xl mx-auto">
-            {/* Foto com Fade Effect e Badge */}
-            <div className="relative">
-              {/* Container da imagem com gradiente fade */}
-              <div className="relative overflow-hidden rounded-3xl">
-                <img
-                  src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
-                  alt="Dra. Carla Christoph"
-                  className="w-full"
-                />
-                {/* Gradiente fade lateral direito */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-dental-beige/80 pointer-events-none"></div>
-              </div>
-              
-              {/* Badge decorativo sobreposto */}
-              <div className="absolute bottom-6 left-6 bg-dental-gold text-white px-6 py-3 rounded-full shadow-lg">
-                <p className="font-semibold text-sm">20+ Anos de Experiência</p>
-              </div>
+        {/* Seção da Especialista - Premium com Fade */}
+        <section className="py-20 bg-gradient-to-b from-dental-beige/10 to-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
+                Sua Dentista para Estética Dental
+              </h2>
             </div>
 
-            {/* Conteúdo */}
-            <div className="space-y-8">
-              {/* Cabeçalho */}
-              <div>
-                <h3 className="text-3xl font-display font-bold text-dental-purple mb-2">
-                  Dra. Carla Christoph
-                </h3>
-                <p className="text-dental-gold font-semibold text-lg mb-4">
-                  CRO-RJ 27.509 | Especialista em Prótese Dentária
-                </p>
-                <p className="text-dental-gray text-lg leading-relaxed">
-                  Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
-                </p>
-                <p className="text-dental-gray text-lg leading-relaxed mt-4">
-                  Em estética dental, utiliza escaneamento iTero e o Test Drive do Sorriso para que o paciente visualize o resultado antes de começar. Cada lente e cada faceta é planejada para harmonizar com as características faciais e o estilo do paciente.
-                </p>
-              </div>
-
-              {/* Grid 2x2 de informações */}
-              <div className="grid md:grid-cols-2 gap-6">
-                {/* Formação */}
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-10 h-10 rounded-full bg-dental-gold/10 flex items-center justify-center">
-                      <Award className="w-5 h-5 text-dental-gold" />
-                    </div>
-                    <h4 className="font-semibold text-dental-purple">Formação</h4>
-                  </div>
-                  <p className="text-dental-gray text-sm">
-                    Especialista em Prótese Dentária e Implantodontia
-                  </p>
+            <div className="grid md:grid-cols-[380px,1fr] gap-12 items-start max-w-6xl mx-auto">
+              {/* Foto com Fade Effect e Badge */}
+              <div className="relative">
+                {/* Container da imagem com gradiente fade */}
+                <div className="relative overflow-hidden rounded-3xl">
+                  <img
+                    src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+                    alt="Dra. Carla Christoph - Especialista em Lentes de Contato Dental em Ipanema"
+                    className="w-full"
+                  />
+                  {/* Gradiente fade lateral direito */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-dental-beige/80 pointer-events-none"></div>
                 </div>
 
-                {/* Experiência */}
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-10 h-10 rounded-full bg-dental-gold/10 flex items-center justify-center">
-                      <Star className="w-5 h-5 text-dental-gold" />
-                    </div>
-                    <h4 className="font-semibold text-dental-purple">Experiência</h4>
-                  </div>
-                  <p className="text-dental-gray text-sm">
-                    Centenas de casos de lentes e facetas realizados
-                  </p>
-                </div>
-
-                {/* Atualização */}
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-10 h-10 rounded-full bg-dental-gold/10 flex items-center justify-center">
-                      <Sparkles className="w-5 h-5 text-dental-gold" />
-                    </div>
-                    <h4 className="font-semibold text-dental-purple">Atualização</h4>
-                  </div>
-                  <p className="text-dental-gray text-sm">
-                    Formação contínua em Design de Sorrisos e técnicas avançadas
-                  </p>
-                </div>
-
-                {/* Tecnologia */}
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-10 h-10 rounded-full bg-dental-gold/10 flex items-center justify-center">
-                      <Shield className="w-5 h-5 text-dental-gold" />
-                    </div>
-                    <h4 className="font-semibold text-dental-purple">Tecnologia</h4>
-                  </div>
-                  <p className="text-dental-gray text-sm">
-                    Scanner iTero 3D e planejamento digital avançado
-                  </p>
+                {/* Badge decorativo sobreposto */}
+                <div className="absolute bottom-6 left-6 bg-dental-gold text-white px-6 py-3 rounded-full shadow-lg">
+                  <p className="font-semibold text-sm">20+ Anos de Experiência</p>
                 </div>
               </div>
 
-              {/* Quote destacada SEM assinatura */}
-              <div className="relative bg-gradient-to-br from-dental-purple/5 to-dental-gold/5 p-8 rounded-2xl mt-8 overflow-hidden border border-dental-gold/10">
-                <div className="absolute top-4 left-4 text-5xl text-dental-gold/20 font-serif">"</div>
-                <div className="absolute bottom-4 right-4 text-5xl text-dental-gold/20 font-serif">"</div>
-                
-                <p className="text-xl text-dental-purple italic font-display leading-relaxed text-center relative z-10 px-4">
-                  Meu objetivo não é criar sorrisos perfeitos, mas sorrisos verdadeiros. Cada pessoa tem uma beleza única que merece ser realçada, nunca padronizada.
-                </p>
+              {/* Conteúdo */}
+              <div className="space-y-8">
+                {/* Cabeçalho */}
+                <div>
+                  <h3 className="text-3xl font-display font-bold text-dental-purple mb-2">
+                    Dra. Carla Christoph
+                  </h3>
+                  <p className="text-dental-gold font-semibold text-lg mb-4">
+                    CRO-RJ 27.509 | Especialista em Prótese Dentária
+                  </p>
+                  <p className="text-dental-gray text-lg leading-relaxed">
+                    Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
+                  </p>
+                  <p className="text-dental-gray text-lg leading-relaxed mt-4">
+                    Em estética dental, utiliza escaneamento iTero e o Test Drive do Sorriso para que o paciente visualize o resultado antes de começar. Cada lente e cada faceta é planejada para harmonizar com as características faciais e o estilo do paciente.
+                  </p>
+                </div>
+
+                {/* Grid 2x2 de informações */}
+                <div className="grid md:grid-cols-2 gap-6">
+                  {/* Formação */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-10 h-10 rounded-full bg-dental-gold/10 flex items-center justify-center">
+                        <Award className="w-5 h-5 text-dental-gold" />
+                      </div>
+                      <h4 className="font-semibold text-dental-purple">Formação</h4>
+                    </div>
+                    <p className="text-dental-gray text-sm">
+                      Especialista em Prótese Dentária e Implantodontia
+                    </p>
+                  </div>
+
+                  {/* Experiência */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-10 h-10 rounded-full bg-dental-gold/10 flex items-center justify-center">
+                        <Star className="w-5 h-5 text-dental-gold" />
+                      </div>
+                      <h4 className="font-semibold text-dental-purple">Experiência</h4>
+                    </div>
+                    <p className="text-dental-gray text-sm">
+                      Centenas de casos de lentes e facetas realizados
+                    </p>
+                  </div>
+
+                  {/* Atualização */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-10 h-10 rounded-full bg-dental-gold/10 flex items-center justify-center">
+                        <Sparkles className="w-5 h-5 text-dental-gold" />
+                      </div>
+                      <h4 className="font-semibold text-dental-purple">Atualização</h4>
+                    </div>
+                    <p className="text-dental-gray text-sm">
+                      Formação contínua em Design de Sorrisos e técnicas avançadas
+                    </p>
+                  </div>
+
+                  {/* Tecnologia */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-10 h-10 rounded-full bg-dental-gold/10 flex items-center justify-center">
+                        <Shield className="w-5 h-5 text-dental-gold" />
+                      </div>
+                      <h4 className="font-semibold text-dental-purple">Tecnologia</h4>
+                    </div>
+                    <p className="text-dental-gray text-sm">
+                      Scanner iTero 3D e planejamento digital avançado
+                    </p>
+                  </div>
+                </div>
+
+                {/* Quote destacada SEM assinatura */}
+                <div className="relative bg-gradient-to-br from-dental-purple/5 to-dental-gold/5 p-8 rounded-2xl mt-8 overflow-hidden border border-dental-gold/10">
+                  <div className="absolute top-4 left-4 text-5xl text-dental-gold/20 font-serif">"</div>
+                  <div className="absolute bottom-4 right-4 text-5xl text-dental-gold/20 font-serif">"</div>
+
+                  <p className="text-xl text-dental-purple italic font-display leading-relaxed text-center relative z-10 px-4">
+                    Meu objetivo não é criar sorrisos perfeitos, mas sorrisos verdadeiros. Cada pessoa tem uma beleza única que merece ser realçada, nunca padronizada.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
         {/* Test Drive do Sorriso - Destaque Especial */}
         <section className="py-16 bg-gradient-to-br from-dental-purple/5 to-dental-gold/5">
@@ -1034,19 +1035,19 @@ const LentesEFacetas = () => {
                 </h3>
                 <p className="text-dental-gray">Aspectos que exigem expertise e atenção</p>
               </div>
-              
+
               <div className="grid md:grid-cols-2 gap-8">
                 {/* Card 1 */}
                 <div className="group relative bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-dental-beige/30 hover:border-dental-gold/30 overflow-hidden">
                   {/* Número watermark */}
                   <div className="absolute top-4 right-6 text-8xl font-display font-bold text-dental-purple/5 select-none">01</div>
-                  
+
                   <div className="relative z-10">
                     <div className="flex items-start gap-5 mb-5">
                       <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                         <svg className="w-7 h-7 text-dental-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <circle cx="12" cy="12" r="9" strokeWidth="2"/>
-                          <path d="M12 7v6l3 3" strokeWidth="2" strokeLinecap="round"/>
+                          <circle cx="12" cy="12" r="9" strokeWidth="2" />
+                          <path d="M12 7v6l3 3" strokeWidth="2" strokeLinecap="round" />
                         </svg>
                       </div>
                       <div>
@@ -1065,13 +1066,13 @@ const LentesEFacetas = () => {
                 {/* Card 2 */}
                 <div className="group relative bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-dental-beige/30 hover:border-dental-gold/30 overflow-hidden">
                   <div className="absolute top-4 right-6 text-8xl font-display font-bold text-dental-purple/5 select-none">02</div>
-                  
+
                   <div className="relative z-10">
                     <div className="flex items-start gap-5 mb-5">
                       <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                         <svg className="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <rect x="4" y="4" width="16" height="16" rx="2" strokeWidth="2"/>
-                          <path d="M9 9h6M9 12h6M9 15h4" strokeWidth="2" strokeLinecap="round"/>
+                          <rect x="4" y="4" width="16" height="16" rx="2" strokeWidth="2" />
+                          <path d="M9 9h6M9 12h6M9 15h4" strokeWidth="2" strokeLinecap="round" />
                         </svg>
                       </div>
                       <div>
@@ -1090,13 +1091,13 @@ const LentesEFacetas = () => {
                 {/* Card 3 */}
                 <div className="group relative bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-dental-beige/30 hover:border-dental-gold/30 overflow-hidden">
                   <div className="absolute top-4 right-6 text-8xl font-display font-bold text-dental-purple/5 select-none">03</div>
-                  
+
                   <div className="relative z-10">
                     <div className="flex items-start gap-5 mb-5">
                       <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                         <svg className="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 2L2 7l10 5 10-5-10-5z" strokeWidth="2" strokeLinejoin="round"/>
-                          <path d="M2 17l10 5 10-5M2 12l10 5 10-5" strokeWidth="2" strokeLinejoin="round"/>
+                          <path d="M12 2L2 7l10 5 10-5-10-5z" strokeWidth="2" strokeLinejoin="round" />
+                          <path d="M2 17l10 5 10-5M2 12l10 5 10-5" strokeWidth="2" strokeLinejoin="round" />
                         </svg>
                       </div>
                       <div>
@@ -1115,13 +1116,13 @@ const LentesEFacetas = () => {
                 {/* Card 4 */}
                 <div className="group relative bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-dental-beige/30 hover:border-dental-gold/30 overflow-hidden">
                   <div className="absolute top-4 right-6 text-8xl font-display font-bold text-dental-purple/5 select-none">04</div>
-                  
+
                   <div className="relative z-10">
                     <div className="flex items-start gap-5 mb-5">
                       <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-50 to-amber-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                         <svg className="w-7 h-7 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <circle cx="12" cy="12" r="10" strokeWidth="2"/>
-                          <path d="M12 6v6l4 2" strokeWidth="2" strokeLinecap="round"/>
+                          <circle cx="12" cy="12" r="10" strokeWidth="2" />
+                          <path d="M12 6v6l4 2" strokeWidth="2" strokeLinecap="round" />
                         </svg>
                       </div>
                       <div>
@@ -1159,7 +1160,7 @@ const LentesEFacetas = () => {
                 </h3>
                 <p className="text-dental-gray">Quatro pilares da precisão técnica</p>
               </div>
-              
+
               <div className="space-y-5 max-w-4xl mx-auto">
                 {/* Item 1 */}
                 <div className="group flex items-start gap-6 bg-white p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-dental-beige/30 hover:border-dental-purple/30 hover:-translate-y-1">
@@ -1229,11 +1230,11 @@ const LentesEFacetas = () => {
                 {/* Decoração de fundo */}
                 <div className="absolute top-0 right-0 w-64 h-64 bg-dental-gold/5 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-0 left-0 w-64 h-64 bg-dental-purple/5 rounded-full blur-3xl"></div>
-                
+
                 {/* Aspas decorativas */}
                 <div className="absolute top-8 left-8 text-7xl text-dental-gold/20 font-serif leading-none">"</div>
                 <div className="absolute bottom-8 right-8 text-7xl text-dental-gold/20 font-serif leading-none">"</div>
-                
+
                 {/* Conteúdo */}
                 <div className="relative z-10 text-center px-8">
                   <p className="text-2xl md:text-3xl text-dental-purple italic font-display leading-relaxed font-medium">
@@ -1250,7 +1251,7 @@ const LentesEFacetas = () => {
         {/* Indicações e Casos Tratados */}
         <section id="indicacoes" className="py-16 md:py-20 bg-dental-beige/10">
           <div className="max-w-6xl mx-auto px-6 md:px-8">
-            
+
             {/* Cabeçalho da Seção */}
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-dental-purple mb-4">
@@ -1386,7 +1387,7 @@ const LentesEFacetas = () => {
               <h2 className="heading-lg mb-8 text-center text-dental-purple">
                 Resultados Reais de Nossos Pacientes
               </h2>
-              
+
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 {caseImages.map((caseImg, index) => (
                   <div key={index} className="relative group">
@@ -1399,9 +1400,9 @@ const LentesEFacetas = () => {
                   </div>
                 ))}
               </div>
-              
+
               <p className="text-center mt-6 text-dental-gray">
-                Deslize sobre as imagens para ver o antes e depois. 
+                Deslize sobre as imagens para ver o antes e depois.
                 Todos os casos foram tratados pela Dra. Carla Christoph.
               </p>
             </div>
@@ -1424,8 +1425,8 @@ const LentesEFacetas = () => {
 
             <Accordion type="single" collapsible className="space-y-4">
               {faqs.map((faq, index) => (
-                <AccordionItem 
-                  value={`faq-${index + 1}`} 
+                <AccordionItem
+                  value={`faq-${index + 1}`}
                   key={index}
                   className="bg-dental-beige/10 rounded-xl px-6 border-0"
                 >
@@ -1479,7 +1480,7 @@ const LentesEFacetas = () => {
               className="inline-flex items-center gap-3 bg-dental-gold hover:bg-dental-gold/90 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 group"
             >
               <svg className="w-6 h-6 group-hover:rotate-12 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
               </svg>
               <span>Agendar Avaliação no WhatsApp</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -1502,8 +1503,9 @@ const LentesEFacetas = () => {
             </div>
           </div>
         </section>
-            <InternalLinkingOptimizer currentPage="lentes-de-contato-dental-e-facetas" />
-</PageLayout>
+        <StatsBar />
+        <InternalLinkingOptimizer currentPage="lentes-de-contato-dental-e-facetas" />
+      </PageLayout>
     </>
   );
 };

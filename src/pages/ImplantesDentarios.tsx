@@ -2,6 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
+import StatsBar from "@/components/treatment/StatsBar";
 import SectionDivider from "@/components/treatment/SectionDivider";
 import ProcessTimeline from "@/components/treatment/ProcessTimeline";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -28,7 +29,7 @@ const ImplantesDentarios = () => {
   });
 
   // Scroll tracking
-  useScrollTracking({ 
+  useScrollTracking({
     pagePath: '/implantes-dentarios',
     enabled: process.env.NODE_ENV === 'production'
   });
@@ -44,12 +45,12 @@ const ImplantesDentarios = () => {
         page_type: 'service_page'
       });
     }
-    
+
     // Google Ads conversion
     if (window.gtag) {
       window.gtag('event', 'conversion', {
         'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
-        'event_callback': function() {
+        'event_callback': function () {
           console.log('Google Ads conversion tracked - Implantes Service Page');
         }
       });
@@ -57,7 +58,7 @@ const ImplantesDentarios = () => {
 
     // Send GCLID to webhook
     await sendGCLIDToWebhook('implantes_service_page_cta');
-    
+
     // Open WhatsApp
     const phone = "5521993304045";
     const message = "Olá! Vi a página sobre implantes dentários e gostaria de agendar uma avaliação com a Dra. Carla Christoph.";
@@ -70,19 +71,19 @@ const ImplantesDentarios = () => {
         <title>Implantes Dentários em Ipanema | Dra. Carla Christoph</title>
         <meta name="description" content="Implantes dentários em Ipanema com planejamento digital 3D e técnicas minimamente invasivas. Mais de 20 anos de experiência em reabilitação oral. CRO-RJ 27.509." />
         <meta name="keywords" content="implantes dentários ipanema, implante dental rio de janeiro, all on 4, protocolo dentário, dentista implantodontia zona sul, cro-rj 27509" />
-        
+
         <meta property="og:title" content="Implantes Dentários em Ipanema | Dra. Carla Christoph" />
         <meta property="og:description" content="Implantes dentários em Ipanema com planejamento digital 3D e técnicas minimamente invasivas. Mais de 20 anos de experiência em reabilitação oral." />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/Implante unitario.webp" />
         <meta property="og:url" content="https://dracarlachristoph.com/implantes-dentarios" />
-        
+
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Implantes Dentários em Ipanema | Dra. Carla Christoph" />
         <meta name="twitter:description" content="Implantes dentários em Ipanema com planejamento digital 3D e técnicas minimamente invasivas." />
-        
+
         <link rel="canonical" href="https://dracarlachristoph.com/implantes-dentarios" />
-        
+
         {/* Critical CSS para LCP */}
         <style>{`
           .dental-purple{color:#381F47}
@@ -105,7 +106,7 @@ const ImplantesDentarios = () => {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="dns-prefetch" href="//api.whatsapp.com" />
-        
+
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -133,24 +134,25 @@ const ImplantesDentarios = () => {
             "@context": "https://schema.org",
             "@type": "FAQPage",
             "mainEntity": [
-              {"@type": "Question", "name": "O que são implantes dentários?", "acceptedAnswer": {"@type": "Answer", "text": "São pinos de titânio biocompatível instalados cirurgicamente no osso da mandíbula ou maxila, substituindo a raiz do dente perdido. Sobre estes pinos, fixamos coroas, pontes ou próteses completas, restaurando função mastigatória, estética e fonética."}},
-              {"@type": "Question", "name": "O procedimento é doloroso?", "acceptedAnswer": {"@type": "Answer", "text": "A cirurgia é realizada sob anestesia local, sem dor durante o procedimento. O pós-operatório é geralmente tranquilo, com desconforto leve controlado por medicação. A maioria dos pacientes retorna às atividades normais em 2 a 3 dias."}},
-              {"@type": "Question", "name": "Quanto tempo dura o tratamento completo?", "acceptedAnswer": {"@type": "Answer", "text": "O tempo varia conforme o caso. Em média, de 4 a 6 meses desde a instalação do implante até a prótese definitiva, incluindo o período de osseointegração (3 a 6 meses). Em casos com carga imediata selecionados, a prótese provisória é instalada conforme planejamento."}},
-              {"@type": "Question", "name": "Qualquer pessoa pode colocar implantes?", "acceptedAnswer": {"@type": "Answer", "text": "A maioria dos adultos saudáveis é candidata. Avaliamos saúde geral, quantidade e qualidade óssea, hábitos (tabagismo) e condições sistêmicas (diabetes controlado). Em casos de osso insuficiente, enxertos ósseos podem viabilizar o tratamento."}},
-              {"@type": "Question", "name": "Quanto tempo duram os implantes?", "acceptedAnswer": {"@type": "Answer", "text": "Com higiene adequada e manutenções regulares, implantes podem durar décadas ou a vida toda. Estudos mostram taxa de sucesso acima de 95% em 10 anos. A coroa protética pode precisar ser substituída após 10 a 15 anos dependendo do desgaste."}},
-              {"@type": "Question", "name": "Como é a manutenção dos implantes?", "acceptedAnswer": {"@type": "Answer", "text": "Higienização rigorosa com escova, fio dental e escovas interdentais específicas. Retornos semestrais para controle profissional, radiografias periódicas e avaliação da saúde peri-implantar. Evitar sobrecarga excessiva e trauma."}},
-              {"@type": "Question", "name": "Existe rejeição de implantes?", "acceptedAnswer": {"@type": "Answer", "text": "O titânio é biocompatível e não causa rejeição imunológica. Falhas ocorrem por infecção, sobrecarga precoce, tabagismo ou higiene inadequada, não por rejeição. Taxa de sucesso é superior a 95% quando protocolos são seguidos."}},
-              {"@type": "Question", "name": "Posso fazer se tiver pouco osso?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Técnicas de enxerto ósseo (autógeno, biomaterial) ou levantamento de seio maxilar podem aumentar volume ósseo. Implantes curtos ou angulados também são alternativas. Os exames de imagem permitem planejar a melhor solução para cada caso."}},
-              {"@type": "Question", "name": "Qual a diferença entre implante e prótese?", "acceptedAnswer": {"@type": "Answer", "text": "O implante é o pino de titânio fixado no osso (substitui a raiz). A prótese é a parte visível (coroa, ponte ou dentadura) que se conecta ao implante. O conjunto completo restaura função e estética."}},
-              {"@type": "Question", "name": "Fumantes podem fazer implantes?", "acceptedAnswer": {"@type": "Answer", "text": "Sim, mas o tabagismo reduz a taxa de sucesso (de 95% para aproximadamente 85%) por prejudicar cicatrização e osseointegração. Recomendamos parar de fumar pelo menos 2 semanas antes da cirurgia e durante a cicatrização. Avaliação individual é essencial."}},
-              {"@type": "Question", "name": "Diabéticos podem colocar implantes?", "acceptedAnswer": {"@type": "Answer", "text": "Sim, desde que o diabetes esteja controlado (hemoglobina glicada abaixo de 7%). Avaliação médica prévia é importante. O controle glicêmico adequado garante cicatrização normal e taxa de sucesso equivalente a não-diabéticos."}},
-              {"@type": "Question", "name": "Vocês atendem convênios odontológicos?", "acceptedAnswer": {"@type": "Answer", "text": "Nosso atendimento é particular, o que nos permite dedicar o tempo necessário a cada paciente e utilizar somente materiais de primeira linha. Na primeira consulta, apresentamos um orçamento detalhado e transparente."}}
+              { "@type": "Question", "name": "O que são implantes dentários?", "acceptedAnswer": { "@type": "Answer", "text": "São pinos de titânio biocompatível instalados cirurgicamente no osso da mandíbula ou maxila, substituindo a raiz do dente perdido. Sobre estes pinos, fixamos coroas, pontes ou próteses completas, restaurando função mastigatória, estética e fonética." } },
+              { "@type": "Question", "name": "O procedimento é doloroso?", "acceptedAnswer": { "@type": "Answer", "text": "A cirurgia é realizada sob anestesia local, sem dor durante o procedimento. O pós-operatório é geralmente tranquilo, com desconforto leve controlado por medicação. A maioria dos pacientes retorna às atividades normais em 2 a 3 dias." } },
+              { "@type": "Question", "name": "Quanto tempo dura o tratamento completo?", "acceptedAnswer": { "@type": "Answer", "text": "O tempo varia conforme o caso. Em média, de 4 a 6 meses desde a instalação do implante até a prótese definitiva, incluindo o período de osseointegração (3 a 6 meses). Em casos com carga imediata selecionados, a prótese provisória é instalada conforme planejamento." } },
+              { "@type": "Question", "name": "Qualquer pessoa pode colocar implantes?", "acceptedAnswer": { "@type": "Answer", "text": "A maioria dos adultos saudáveis é candidata. Avaliamos saúde geral, quantidade e qualidade óssea, hábitos (tabagismo) e condições sistêmicas (diabetes controlado). Em casos de osso insuficiente, enxertos ósseos podem viabilizar o tratamento." } },
+              { "@type": "Question", "name": "Quanto tempo duram os implantes?", "acceptedAnswer": { "@type": "Answer", "text": "Com higiene adequada e manutenções regulares, implantes podem durar décadas ou a vida toda. Estudos mostram taxa de sucesso acima de 95% em 10 anos. A coroa protética pode precisar ser substituída após 10 a 15 anos dependendo do desgaste." } },
+              { "@type": "Question", "name": "Como é a manutenção dos implantes?", "acceptedAnswer": { "@type": "Answer", "text": "Higienização rigorosa com escova, fio dental e escovas interdentais específicas. Retornos semestrais para controle profissional, radiografias periódicas e avaliação da saúde peri-implantar. Evitar sobrecarga excessiva e trauma." } },
+              { "@type": "Question", "name": "Existe rejeição de implantes?", "acceptedAnswer": { "@type": "Answer", "text": "O titânio é biocompatível e não causa rejeição imunológica. Falhas ocorrem por infecção, sobrecarga precoce, tabagismo ou higiene inadequada, não por rejeição. Taxa de sucesso é superior a 95% quando protocolos são seguidos." } },
+              { "@type": "Question", "name": "Posso fazer se tiver pouco osso?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Técnicas de enxerto ósseo (autógeno, biomaterial) ou levantamento de seio maxilar podem aumentar volume ósseo. Implantes curtos ou angulados também são alternativas. Os exames de imagem permitem planejar a melhor solução para cada caso." } },
+              { "@type": "Question", "name": "Qual a diferença entre implante e prótese?", "acceptedAnswer": { "@type": "Answer", "text": "O implante é o pino de titânio fixado no osso (substitui a raiz). A prótese é a parte visível (coroa, ponte ou dentadura) que se conecta ao implante. O conjunto completo restaura função e estética." } },
+              { "@type": "Question", "name": "Fumantes podem fazer implantes?", "acceptedAnswer": { "@type": "Answer", "text": "Sim, mas o tabagismo reduz a taxa de sucesso (de 95% para aproximadamente 85%) por prejudicar cicatrização e osseointegração. Recomendamos parar de fumar pelo menos 2 semanas antes da cirurgia e durante a cicatrização. Avaliação individual é essencial." } },
+              { "@type": "Question", "name": "Diabéticos podem colocar implantes?", "acceptedAnswer": { "@type": "Answer", "text": "Sim, desde que o diabetes esteja controlado (hemoglobina glicada abaixo de 7%). Avaliação médica prévia é importante. O controle glicêmico adequado garante cicatrização normal e taxa de sucesso equivalente a não-diabéticos." } },
+              { "@type": "Question", "name": "Vocês atendem convênios odontológicos?", "acceptedAnswer": { "@type": "Answer", "text": "Nosso atendimento é particular, o que nos permite dedicar o tempo necessário a cada paciente e utilizar somente materiais de primeira linha. Na primeira consulta, apresentamos um orçamento detalhado e transparente." } }
             ]
           })}
         </script>
       </Helmet>
 
       <FastServerResponseOptimizer />
+      <StatsBar />
       <CriticalCSSOptimizer inlineStyles="" />
 
       <PageLayout>
@@ -251,23 +253,23 @@ const ImplantesDentarios = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* Card 1: Implante Unitário */}
               <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]">
-              <div className="aspect-[5/4] lg:aspect-square relative">
-                <img 
-                  src="/lovable-uploads/implante-unitario.webp"
-                  alt="Implante Unitário"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/95 via-dental-purple/70 to-transparent" />
-                
-                <div className="absolute bottom-0 left-0 right-0 p-8 text-white min-h-28 sm:min-h-32 md:min-h-36">
-                  <h3 className="text-xl font-display font-bold mb-2">Implante Unitário</h3>
-                  <p className="text-sm text-white/90 leading-relaxed line-clamp-4 md:line-clamp-5 lg:line-clamp-6">
-                    Substitui um único dente perdido sem comprometer os dentes adjacentes. Pino de titânio + coroa em cerâmica pura para resultado natural e durável.
-                  </p>
+                <div className="aspect-[5/4] lg:aspect-square relative">
+                  <img
+                    src="/lovable-uploads/implante-unitario.webp"
+                    alt="Implante dentário unitário repondo um dente perdido"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/95 via-dental-purple/70 to-transparent" />
+
+                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white min-h-28 sm:min-h-32 md:min-h-36">
+                    <h3 className="text-xl font-display font-bold mb-2">Implante Unitário</h3>
+                    <p className="text-sm text-white/90 leading-relaxed line-clamp-4 md:line-clamp-5 lg:line-clamp-6">
+                      Substitui um único dente perdido sem comprometer os dentes adjacentes. Pino de titânio + coroa em cerâmica pura para resultado natural e durável.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              
-              <div className="bg-white p-4 relative z-10">
+
+                <div className="bg-white p-4 relative z-10">
                   <Accordion type="single" collapsible>
                     <AccordionItem value="detalhes" className="border-none">
                       <AccordionTrigger className="text-dental-purple font-semibold hover:no-underline">
@@ -302,23 +304,23 @@ const ImplantesDentarios = () => {
 
               {/* Card 2: Ponte sobre Implantes */}
               <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]">
-              <div className="aspect-[5/4] lg:aspect-square relative">
-                <img 
-                  src="/lovable-uploads/ponte-implante.webp"
-                  alt="Ponte sobre Implantes"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/95 via-dental-purple/70 to-transparent" />
-                
-                <div className="absolute bottom-0 left-0 right-0 p-8 text-white min-h-28 sm:min-h-32 md:min-h-36">
-                  <h3 className="text-xl font-display font-bold mb-2">Ponte sobre Implantes</h3>
-                  <p className="text-sm text-white/90 leading-relaxed line-clamp-4 md:line-clamp-5 lg:line-clamp-6">
-                    Reabilita múltiplos dentes ausentes adjacentes com dois ou mais implantes. Estabilidade superior às pontes convencionais sem desgaste de dentes saudáveis.
-                  </p>
+                <div className="aspect-[5/4] lg:aspect-square relative">
+                  <img
+                    src="/lovable-uploads/ponte-implante.webp"
+                    alt="Ponte fixa sobre implantes dentários substituindo vários dentes"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/95 via-dental-purple/70 to-transparent" />
+
+                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white min-h-28 sm:min-h-32 md:min-h-36">
+                    <h3 className="text-xl font-display font-bold mb-2">Ponte sobre Implantes</h3>
+                    <p className="text-sm text-white/90 leading-relaxed line-clamp-4 md:line-clamp-5 lg:line-clamp-6">
+                      Reabilita múltiplos dentes ausentes adjacentes com dois ou mais implantes. Estabilidade superior às pontes convencionais sem desgaste de dentes saudáveis.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              
-              <div className="bg-white p-4 relative z-10">
+
+                <div className="bg-white p-4 relative z-10">
                   <Accordion type="single" collapsible>
                     <AccordionItem value="detalhes" className="border-none">
                       <AccordionTrigger className="text-dental-purple font-semibold hover:no-underline">
@@ -353,23 +355,23 @@ const ImplantesDentarios = () => {
 
               {/* Card 3: Protocolo All-on-4/6 */}
               <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]">
-              <div className="aspect-[5/4] lg:aspect-square relative">
-                <img 
-                  src="/lovable-uploads/all-in-4.webp"
-                  alt="Protocolo All-on-4/6"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/95 via-dental-purple/70 to-transparent" />
-                
-                <div className="absolute bottom-0 left-0 right-0 p-8 text-white min-h-28 sm:min-h-32 md:min-h-36">
-                  <h3 className="text-xl font-display font-bold mb-2">Protocolo All-on-4/6</h3>
-                  <p className="text-sm text-white/90 leading-relaxed line-clamp-4 md:line-clamp-5 lg:line-clamp-6">
-                    Reabilitação total de arcada com apenas 4 a 6 implantes estrategicamente posicionados. Prótese fixa completa com excelente custo-benefício.
-                  </p>
+                <div className="aspect-[5/4] lg:aspect-square relative">
+                  <img
+                    src="/lovable-uploads/all-in-4.webp"
+                    alt="Protocolo All-on-4 para reabilitação de arcada completa sobre implantes"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/95 via-dental-purple/70 to-transparent" />
+
+                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white min-h-28 sm:min-h-32 md:min-h-36">
+                    <h3 className="text-xl font-display font-bold mb-2">Protocolo All-on-4/6</h3>
+                    <p className="text-sm text-white/90 leading-relaxed line-clamp-4 md:line-clamp-5 lg:line-clamp-6">
+                      Reabilitação total de arcada com apenas 4 a 6 implantes estrategicamente posicionados. Prótese fixa completa com excelente custo-benefício.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              
-              <div className="bg-white p-4 relative z-10">
+
+                <div className="bg-white p-4 relative z-10">
                   <Accordion type="single" collapsible>
                     <AccordionItem value="detalhes" className="border-none">
                       <AccordionTrigger className="text-dental-purple font-semibold hover:no-underline">
@@ -404,23 +406,23 @@ const ImplantesDentarios = () => {
 
               {/* Card 4: Overdenture */}
               <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]">
-              <div className="aspect-[5/4] lg:aspect-square relative">
-                <img 
-                  src="/lovable-uploads/overdenture-clips-retencao.webp"
-                  alt="Overdenture"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/95 via-dental-purple/70 to-transparent" />
-                
-                <div className="absolute bottom-0 left-0 right-0 p-8 text-white min-h-28 sm:min-h-32 md:min-h-36">
-                  <h3 className="text-xl font-display font-bold mb-2">Overdenture</h3>
-                  <p className="text-sm text-white/90 leading-relaxed line-clamp-4 md:line-clamp-5 lg:line-clamp-6">
-                    Prótese removível com encaixe de precisão sobre 2 a 4 implantes. Estabilidade e retenção superiores às dentaduras convencionais com investimento acessível.
-                  </p>
+                <div className="aspect-[5/4] lg:aspect-square relative">
+                  <img
+                    src="/lovable-uploads/overdenture-clips-retencao.webp"
+                    alt="Prótese overdenture removível estabilizada por implantes dentários"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/95 via-dental-purple/70 to-transparent" />
+
+                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white min-h-28 sm:min-h-32 md:min-h-36">
+                    <h3 className="text-xl font-display font-bold mb-2">Overdenture</h3>
+                    <p className="text-sm text-white/90 leading-relaxed line-clamp-4 md:line-clamp-5 lg:line-clamp-6">
+                      Prótese removível com encaixe de precisão sobre 2 a 4 implantes. Estabilidade e retenção superiores às dentaduras convencionais com investimento acessível.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              
-              <div className="bg-white p-4 relative z-10">
+
+                <div className="bg-white p-4 relative z-10">
                   <Accordion type="single" collapsible>
                     <AccordionItem value="detalhes" className="border-none">
                       <AccordionTrigger className="text-dental-purple font-semibold hover:no-underline">
@@ -545,8 +547,8 @@ const ImplantesDentarios = () => {
                 Cada etapa é cuidadosamente executada para resultados previsíveis
               </p>
             </div>
-            
-            <ProcessTimeline 
+
+            <ProcessTimeline
               steps={[
                 {
                   number: "1",
@@ -596,9 +598,9 @@ const ImplantesDentarios = () => {
             <div className="grid md:grid-cols-[300px,1fr] gap-8 items-start">
               {/* Coluna Imagem */}
               <div className="relative mx-auto md:mx-0">
-                <img 
+                <img
                   src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
-                  alt="Dra. Carla Christoph"
+                  alt="Dra. Carla Christoph - Especialista em Implantes Dentários em Ipanema"
                   className="w-full rounded-2xl shadow-elegant"
                 />
                 <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-dental-gold text-white px-6 py-2 rounded-full shadow-lg font-semibold text-sm whitespace-nowrap">
@@ -614,11 +616,11 @@ const ImplantesDentarios = () => {
                 <p className="text-xl text-dental-gold font-semibold mb-4">
                   CRO-RJ 27.509 | Especialista em Prótese Dentária e Implantodontia
                 </p>
-                
+
                 <p className="text-dental-gray mb-4">
                   Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
                 </p>
-                
+
                 <p className="text-dental-gray mb-6">
                   Sua formação em Implantodontia permite planejar desde casos unitários até reabilitações completas com segurança e previsibilidade. Cada implante é posicionado com base em planejamento digital, considerando estética e função a longo prazo.
                 </p>
@@ -631,7 +633,7 @@ const ImplantesDentarios = () => {
                       <p className="text-sm text-dental-gray">Especialista em Prótese Dentária e Implantodontia</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-3">
                     <CheckCircle className="text-dental-gold flex-shrink-0 mt-1" size={20} />
                     <div>
@@ -639,7 +641,7 @@ const ImplantesDentarios = () => {
                       <p className="text-sm text-dental-gray">20+ anos, incluindo 8 na Marinha</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-3">
                     <CheckCircle className="text-dental-gold flex-shrink-0 mt-1" size={20} />
                     <div>
@@ -647,7 +649,7 @@ const ImplantesDentarios = () => {
                       <p className="text-sm text-dental-gray">Scanner iTero, planejamento digital do sorriso</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-3">
                     <CheckCircle className="text-dental-gold flex-shrink-0 mt-1" size={20} />
                     <div>
@@ -786,11 +788,11 @@ const ImplantesDentarios = () => {
         <section className="py-16 bg-gradient-to-r from-dental-purple to-dental-gold">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <Smile className="w-12 h-12 text-white mx-auto mb-4" />
-            
+
             <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
               Pronto para Recuperar seu Sorriso?
             </h2>
-            
+
             <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
               Agende sua consulta de avaliação e planejamento digital. Vamos avaliar seu caso de forma personalizada e apresentar as melhores soluções para sua necessidade.
             </p>
@@ -807,8 +809,8 @@ const ImplantesDentarios = () => {
             </p>
           </div>
         </section>
-            <InternalLinkingOptimizer currentPage="implantes-dentarios" />
-</PageLayout>
+        <InternalLinkingOptimizer currentPage="implantes-dentarios" />
+      </PageLayout>
     </>
   );
 };

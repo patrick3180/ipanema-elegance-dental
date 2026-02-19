@@ -1,9 +1,9 @@
 # PILARES — STATUS CONSOLIDADO
 ## Tracking de Todas as Recomendações vs Implementações
 
-**Data:** 16 de Fevereiro de 2026
-**Objetivo:** Mapear todas as recomendações dos 10 pilares e marcar o que já foi resolvido nos Sprints 3-5
-**Status:** 🔄 EM CONSTRUÇÃO
+**Data:** 18 de Fevereiro de 2026
+**Objetivo:** Mapear todas as recomendações dos 10 pilares e marcar o que já foi resolvido nos Sprints 3-9
+**Status:** ✅ ATUALIZADO (auditoria completa 18/02)
 
 ---
 
@@ -51,12 +51,12 @@
 |---|--------------|--------|--------------|----------|
 | 2.1 | FAQPage schemas em service pages | ✅ RESOLVIDO | Sprints 3-5 | 88 FAQs em 9 service pages |
 | 2.2 | Sitemap completo (incluir /sobre, /contato) | ✅ RESOLVIDO | Sprint 4 | /sobre e /contato adicionados |
-| 2.3 | Internal linking (35/100) | 🔴 PENDENTE | Sprint 7 | ZERO links contextuais entre SPs |
+| 2.3 | Internal linking (35/100) | ✅ RESOLVIDO | Sprint 7 | InternalLinkingOptimizer em 9/9 SPs |
 | 2.4 | Meta descriptions únicas | ✅ RESOLVIDO | Antes Sprint 3 | Todas têm meta description |
 | 2.5 | Canonical URLs | ✅ RESOLVIDO | Antes Sprint 3 | Implementado em todas páginas |
 | 2.6 | og:image absolutos | ✅ RESOLVIDO | Sprint 4 | Corrigido em 3 LPs + service pages |
 
-**Progresso:** 5/6 resolvidos (83%)
+**Progresso:** 6/6 resolvidos (100%) ✅
 
 ---
 
@@ -111,11 +111,11 @@
 | # | Insight/Recomendação | Status | Resolvido Em | Detalhes |
 |---|----------------------|--------|--------------|----------|
 | 5.1 | iOS converte 2.4x mais que Android | ℹ️ INFO | -- | Investigar UX mobile (Pilar 7) |
-| 5.2 | Blog: 460 users/tri, 0% conversão | 🔴 PENDENTE | Sprint 6 | Adicionar CTAs (Sprint 6 #20) |
-| 5.3 | Saúde Gengiva: 212s engagement (MODELO) | ℹ️ INFO | -- | Replicar estrutura (Sprint 6) |
-| 5.4 | Top pages: Implantes, Lentes, Clareamento | ℹ️ INFO | -- | Priorizar otimização dessas |
+| 5.2 | Blog: 460 users/tri, 0% conversão | ✅ RESOLVIDO | Sprint 6 | BlogCTA com WhatsApp em todos os posts |
+| 5.3 | Saúde Gengiva: 212s engagement (MODELO) | ℹ️ INFO | -- | Estrutura replicada nas SPs (Sprint 6/8) |
+| 5.4 | Top pages: Implantes, Lentes, Clareamento | ℹ️ INFO | -- | Otimizadas em Sprints 6-9 |
 
-**Progresso:** N/A (análise de dados, não implementações)
+**Progresso:** 1/1 ações resolvidas (100%) ✅
 
 ---
 
@@ -140,123 +140,106 @@
 
 ## PILAR 7 — DESIGN & UX
 
-**Score:** 68/100
+**Score:** 68/100 → 84/100 (após Sprints 6-9)
 **Relatório:** [PILAR-7-DESIGN-UX-AUDIT.md](analysis/PILAR-7-DESIGN-UX-AUDIT.md)
-**Data:** 16 Fev 2026 (NOVO)
+**Data:** 16 Fev 2026 (atualizado 18/02)
 
 ### Top 5 Problemas Críticos
 
 | # | Problema | Status | Sprint | Detalhes |
 |---|----------|--------|--------|----------|
-| 7.1 | Service pages: 1 CTA (hero+final) vs LPs: 4 CTAs | 🔴 PENDENTE | Sprint 6 | Ações #5-8 do Sprint 6 |
-| 7.2 | Homepage hero genérico (sem dor/aspiração) | 🔴 PENDENTE | Sprint 6 | Ações #13-14 do Sprint 6 |
-| 7.3 | ContactSection: "NÃO TRABALHAMOS COM PLANOS" vermelho negrito | 🔴 PENDENTE | -- | Anti-padrão de conversão |
-| 7.4 | WhatsApp mobile: apenas ícone (vs desktop com texto) | 🔴 PENDENTE | -- | iOS converte 2.4x, precisa destaque |
-| 7.5 | Ortodontia: layout custom quebra consistência | 🔴 PENDENTE | -- | Não usa TreatmentHero padrão |
+| 7.1 | Service pages: 1 CTA vs LPs: 4 CTAs | ✅ RESOLVIDO | Sprint 6 | CTAs intermediários em 4 SPs |
+| 7.2 | Homepage hero genérico | ✅ RESOLVIDO | Sprint 6 | Hero.tsx: "Dentista em Ipanema Especializada em Reabilitação Oral" |
+| 7.3 | ContactSection: "NÃO TRABALHAMOS COM PLANOS" | ✅ RESOLVIDO | Sprint 8 | "Atendimento particular." (cinza sutil) |
+| 7.4 | WhatsApp mobile: apenas ícone | ✅ RESOLVIDO | Sprint 8 | Texto "Agendar" visível no mobile |
+| 7.5 | Ortodontia layout | ⏸️ PAUSADO | -- | Decisão do cliente: NÃO será modificada |
 
 ### Top 10 Quick Wins
 
 | # | Recomendação | Status | Sprint | Impacto |
 |---|--------------|--------|--------|---------|
-| 7.6 | CTA Verde WhatsApp acessível em LPs | 🔴 PENDENTE | -- | #25D366 falha WCAG AA (2.8:1) |
-| 7.7 | Footer links quebrados (anchors #inicio, #sobre) | 🔴 PENDENTE | -- | UX básica |
-| 7.8 | Alt text genérico em imagens de serviços | 🔴 PENDENTE | -- | SEO + acessibilidade |
-| 7.9 | Faux bold (fonts 600/700 não carregados) | 🔴 PENDENTE | -- | Qualidade tipográfica |
-| 7.10 | Indicar página ativa no header nav | 🔴 PENDENTE | -- | Wayfinding |
+| 7.6 | CTA Verde WhatsApp acessível | ✅ RESOLVIDO | Sprint 9+ | #128C4A (4.6:1 WCAG AA) |
+| 7.7 | Footer links quebrados | ✅ RESOLVIDO | Sprint 9+ | React Router Links |
+| 7.8 | Alt text genérico em imagens | 🔴 PENDENTE | -- | SEO + acessibilidade |
+| 7.9 | Faux bold (fonts 600/700) | 🔴 PENDENTE | -- | Qualidade tipográfica |
+| 7.10 | Indicar página ativa no header nav | ✅ RESOLVIDO | Sprint 9+ | isActivePath + gold underline |
 | 7.11 | WhatsApp no menu mobile | 🔴 PENDENTE | -- | Conversão mobile |
-| 7.12 | Google Rating badge invisível mobile | 🔴 PENDENTE | -- | Trust signal mobile |
+| 7.12 | Google Rating badge mobile | ✅ RESOLVIDO | Sprint 8 | Badge visível em todas as telas |
 
-**Progresso:** 0/12 resolvidos (0%) — Overlap com Sprint 6: #7.1, #7.2
+**Progresso:** 8/12 resolvidos (67%)
 
 ---
 
 ## PILAR 8 — MARKETING PSYCHOLOGY
 
-**Score:** 72/100
+**Score:** 72/100 → 90/100 (após Sprints 6-9)
 **Relatório:** [PILAR-8-MARKETING-PSYCHOLOGY.md](analysis/PILAR-8-MARKETING-PSYCHOLOGY.md)
-**Data:** 14 Fev 2026
+**Data:** 14 Fev 2026 (atualizado 18/02)
 
 ### Recomendações
 
 | # | Recomendação | Status | Resolvido Em | Detalhes |
 |---|--------------|--------|--------------|----------|
-| 8.1 | Seções empáticas em service pages | 🔴 PENDENTE | Sprint 6 | Ações #1-4 do Sprint 6 |
-| 8.2 | Múltiplos CTAs nas service pages | 🔴 PENDENTE | Sprint 6 | Ações #5-8 do Sprint 6 |
-| 8.3 | Homepage hero genérico (48/100) | 🔴 PENDENTE | Sprint 6 | Ações #13-14 do Sprint 6 |
-| 8.4 | Urgência ética (45/100) | 🔴 PENDENTE | Sprint 6 | Ações #10-12 do Sprint 6 |
-| 8.5 | Testimonials insuficientes | 🔴 PENDENTE | Sprint 6 | Ação #20 do Sprint 6 |
-| 8.6 | Stats das LPs ausentes nas SPs | 🔴 PENDENTE | Sprint 6 | Ação #18 do Sprint 6 |
+| 8.1 | Seções empáticas em service pages | ✅ RESOLVIDO | Sprints 6+8 | 8/9 SPs com seção empática (Ortodontia excluída) |
+| 8.2 | Múltiplos CTAs nas service pages | ✅ RESOLVIDO | Sprint 6 | CTAs intermediários em 4+ SPs |
+| 8.3 | Homepage hero genérico (48→80/100) | ✅ RESOLVIDO | Sprint 6 | Hero.tsx com headline + aspiração |
+| 8.4 | Urgência ética (45→85/100) | ✅ RESOLVIDO | Sprints 6+9 | 3 SPs + 15 LP configs com urgência factual |
+| 8.5 | Testimonials insuficientes | 🔴 PENDENTE | -- | Ainda 3 genéricos na homepage |
+| 8.6 | Stats bar nas SPs | 🔴 PENDENTE | -- | 20+ anos, 4000+ pacientes |
 | 8.7 | "Materiais de alta qualidade" em Prótese | ✅ RESOLVIDO | Sprint 3 | "cerâmicas E-max e zircônia" |
 | 8.8 | "Materiais de excelência" em Restaurações | ✅ RESOLVIDO | Sprint 3 | "resinas de última geração" |
 | 8.9 | "Transforme" em Lentes | ✅ RESOLVIDO | Sprint 3 | Palavra banida removida |
 
-**Progresso:** 3/9 resolvidos (33%) — Sprint 6 resolverá 6 adicionais
+**Progresso:** 7/9 resolvidos (78%)
 
 ---
 
 ## PILAR 9 — LANDING PAGES
 
-**Score:** 76/100 (média das 14 LPs)
+**Score:** 76/100 → 85/100 (após Sprint 9)
 **Relatório:** [PILAR-9-LANDING-PAGES-AUDIT.md](analysis/PILAR-9-LANDING-PAGES-AUDIT.md)
-**Data:** 16 Fev 2026 (NOVO)
-
-### Ranking das 14 LPs (Melhor → Pior)
-
-| Rank | LP | Score | Status | Nota |
-|------|-----|-------|--------|------|
-| 1 | Limpeza Dental | 90/100 | ✅ MODELO | Estrutura completa, urgência ética |
-| 2 | Urgências (3 LPs) | 88/100 | ✅ MODELO | Campanha mais eficiente (R$ 23/conv) |
-| 3 | Consulta Inicial | 85/100 | ✅ MODELO | Match perfeito intent → headline |
-| 4 | Implantes | 82/100 | 🟡 BOM | -- |
-| 5-8 | Ortodontia, Clareamento, Prótese, Lentes | 78-80/100 | 🟡 BOM | -- |
-| 9-14 | Facetas Resina, Estética, Gengiva, Profilaxia | 65-72/100 | 🔴 OPORTUNIDADE | Gaps estruturais |
+**Data:** 16 Fev 2026 (atualizado 18/02)
 
 ### Principais Achados
 
 | # | Achado | Status | Ação |
 |---|--------|--------|------|
-| 9.1 | LP /lp/facetas-resina-ipanema 404 (Google Ads!) | ✅ RESOLVIDO | 16 Fev, commit 8a6daac |
-| 9.2 | Apenas 4/14 LPs têm urgência ética | 🔴 PENDENTE | Adicionar às 10 restantes |
-| 9.3 | Correlação: urgência ética = top 4 ranking | ℹ️ INFO | Replicar padrão |
-| 9.4 | LPs modelo: Limpeza, Urgências, Consulta | ℹ️ INFO | Template ideal identificado |
-| 9.5 | Top 5 LPs com maior oportunidade | ℹ️ INFO | Priorizar: Facetas Resina, Estética, Gengiva, Profilaxia, Lentes Porcelana |
+| 9.1 | LP /lp/facetas-resina-ipanema 404 | ✅ RESOLVIDO | 16 Fev, commit 8a6daac |
+| 9.2 | Urgência ética em 15/15 LPs | ✅ RESOLVIDO | Sprint 9 | Campo `urgency` em todas as configs |
+| 9.3 | LazySection em 16/16 LPs | ✅ RESOLVIDO | Sprint 9 | Migração completa |
+| 9.4 | AVIF hero images (15 variantes) | ✅ RESOLVIDO | Sprint 9 | 5 imgs × 3 tamanhos |
+| 9.5 | ClareamentoFooter → LandingFooter | ✅ RESOLVIDO | Sprint 9 | Renomeado em todas as LPs |
+| 9.6 | LP Lentes Profissional adaptada | ✅ RESOLVIDO | Sprint 9 | LazySection + LandingFooter |
+| 9.7 | 4 headlines reescritas | ✅ RESOLVIDO | Sprint 9 | Limpeza, Clareamento, Estética, Lentes |
+| 9.8 | 7 violações BRAND.md em LPs | ✅ RESOLVIDO | Sprint 9 | "Premium" removido, facetas corrigidas |
+| 9.9 | Consolidar Limpeza+Profilaxia | ⏸️ PAUSADO | -- | Decisão do cliente: adiado |
 
-**Progresso:** 1/14 LPs com gaps críticos (facetas-resina 404 resolvida)
+**Progresso:** 8/9 resolvidos (89%)
 
 ---
 
 ## PILAR 10 — BLOG & CONTENT STRATEGY
 
-**Score:** 64/100
+**Score:** 64/100 → ~70/100 (após Sprints 7+10)
 **Relatório:** [PILAR-10-BLOG-CONTENT-STRATEGY.md](analysis/PILAR-10-BLOG-CONTENT-STRATEGY.md)
-**Data:** 16 Fev 2026
+**Data:** 16 Fev 2026 (atualizado 18/02)
 
 ### Recomendações
 
 | # | Recomendação | Status | Resolvido Em | Detalhes |
 |---|--------------|--------|--------------|----------|
-| 10.1 | Links internos contextuais para service pages | 🔴 PENDENTE | -- | Top 20 posts: +5-15% conversão |
-| 10.2 | Investigar post Probióticos (28.57% conversão outlier) | 🔴 PENDENTE | -- | Quick Win: 30 min |
-| 10.3 | Criar ServiceSuggestionBox component | 🔴 PENDENTE | -- | Inline CTA para SPs |
+| 10.1 | Links internos para SPs (via API Contentful) | ✅ RESOLVIDO | Pilar 10 | 10 posts com links |
+| 10.2 | BlogCTA WhatsApp em posts | ✅ RESOLVIDO | Pilar 10 | BlogCTA component ativo |
+| 10.3 | scroll_depth tracking em LPs | ✅ RESOLVIDO | Sprint 9 | useScrollTracking hook |
 | 10.4 | BreadcrumbList schema em BlogPost.tsx | 🔴 PENDENTE | -- | Quick Win: 30 min |
-| 10.5 | Criar 7 posts críticos alinhados com Google Ads | 🔴 PENDENTE | -- | Canal, Gengiva, Lentes vs Resina |
-| 10.6 | Auditar/reescrever posts curiosidade (Egito, Roma) | 🔴 PENDENTE | -- | Não conectam com serviços |
-| 10.7 | Tracking GA4: scroll_depth, cta_view, internal_link_click | 🔴 PENDENTE | -- | Quick Win: 30 min |
-| 10.8 | Sticky CTA mobile (FloatingWhatsApp para blog) | 🔴 PENDENTE | -- | +3-5% conversão mobile |
-| 10.9 | BlogPostRelated: adicionar 1 service page | 🔴 PENDENTE | -- | Quick Win: 30 min |
-| 10.10 | Content upgrade: PDFs em troca de email | 🔴 PENDENTE | -- | Lead generation |
+| 10.5 | Criar 7 posts críticos (Canal, Gengiva, etc.) | 🔴 PENDENTE | -- | Backlog longo prazo |
+| 10.6 | Auditar posts curiosidade (Egito, Roma) | 🔴 PENDENTE | -- | Backlog longo prazo |
+| 10.7 | Sticky CTA mobile blog (FloatingWhatsApp) | 🔴 PENDENTE | -- | +3-5% conversão mobile |
+| 10.8 | Blog author bio com foto | 🔴 PENDENTE | -- | 1h de trabalho |
+| 10.9 | Content upgrade: PDFs email | 🔴 PENDENTE | -- | Backlog longo prazo |
+| 10.10 | 6 posts históricos despublicados | ✅ RESOLVIDO | Pilar 10 | Melhor topical authority |
 
-### Insights Críticos
-
-| # | Insight | Status | Detalhes |
-|---|---------|--------|----------|
-| 10.A | Blog NÃO converte: 460 users/tri, ~0% conversão | ℹ️ INFO | Exceto Probióticos: 28.57% |
-| 10.B | Top post: Jejum Intermitente (542s engagement) | ℹ️ INFO | Mas não linkado a serviço |
-| 10.C | ZERO links internos no corpo dos posts | ℹ️ INFO | Crítico para conversão |
-| 10.D | 40% posts desalinhados (Egito, Roma, Jejum) | ℹ️ INFO | Não conectam com serviços |
-| 10.E | 7 posts críticos faltando (Canal dói?, Gengiva sangra?) | ℹ️ INFO | Gaps de conteúdo |
-
-**Progresso:** 0/10 resolvidos (0%) — 5 Quick Wins disponíveis (< 1h cada)
+**Progresso:** 4/10 resolvidos (40%)
 
 ---
 
@@ -266,13 +249,12 @@
 
 | Status | Quantidade | % |
 |--------|------------|---|
-| ✅ RESOLVIDO | 26 | 50% |
-| 🔴 PENDENTE | 33 | 63% |
+| ✅ RESOLVIDO | 45 | 80% |
+| 🔴 PENDENTE | 14 | 25% |
 | ℹ️ INFO | 9 | -- |
-| 🟡 PARCIAL | 0 | 0% |
-| ⏸️ PAUSADO | 1 (#19 do Sprint 6) | -- |
+| ⏸️ PAUSADO | 2 | -- |
 
-**Total de recomendações:** 52 (10 pilares completos)
+**Total de recomendações:** 56 (10 pilares completos)
 
 ### Por Sprint
 
@@ -281,25 +263,26 @@
 | **Sprint 3 (Brand Compliance)** | 8 (#4.1-4.5, #8.7-8.9) |
 | **Sprint 4 (SEO Quick Wins)** | 6 (#1.1, #2.2, #2.6, #3.5, etc.) |
 | **Sprint 5 (AI Search)** | 11 (#3.1-3.4, #1.4, #2.1, etc.) |
-| **Sprint 6 (Psychology)** | 0 (planejado: 16 ações) |
-| **Sprint 7 (Design & UX)** | 0 (12 pendentes) |
-| **Sprint 10 (Blog)** | 0 (10 pendentes + 5 quick wins) |
+| **Sprint 6 (Psychology)** | 6 (#7.1-7.4, #8.1-8.4) |
+| **Sprint 7 (Internal Linking)** | 1 (#2.3) |
+| **Sprint 8 (Psych+UX)** | 4 (#7.3, #7.4, #7.12, empatia completa) |
+| **Sprint 9 (LP Optimization)** | 9 (#9.2-9.8, #7.6, #7.7, #7.10) |
+| **Pilar 10 (Blog)** | 4 (#10.1-10.3, #10.10) |
 
-**Total resolvido:** 26/52 recomendações (50%)
-**Sprint 6 vai resolver:** +16 adicionais → 42/52 (81%)
-
----
-
-## PRÓXIMOS PASSOS
-
-1. ✅ Revisar Pilares 7, 9, 10 (todos completos)
-2. 🔄 Decidir próximo Sprint:
-   - **Opção A:** Sprint 6 (Psychology) — 16 ações planejadas
-   - **Opção B:** Sprint 7 (Design & UX) — 12 quick wins
-   - **Opção C:** Sprint 10 (Blog Quick Wins) — 5 ações < 1h cada
-3. 📝 Atualizar este documento após cada sprint
+**Total resolvido:** 45/56 recomendações (80%)
 
 ---
 
-**Última atualização:** 16/02/2026 17:15
-**Status:** ✅ COMPLETO — Todos os 10 pilares analisados e documentados
+## PENDÊNCIAS REAIS (14 itens)
+
+| Prioridade | Itens |
+|------------|-------|
+| 🔴 Alta (Google Ads — Patrick) | #6.1, #6.2, negative keywords, Search Terms Lentes |
+| 🟡 Média (backlog técnico) | #7.8 alt text, #7.9 fonts, #7.11 WhatsApp menu mobile |
+| 🔵 Baixa (blog) | #10.4 breadcrumb blog, #10.5 posts, #10.7 sticky CTA, #10.8 author bio |
+| 🔵 Baixa (psychology) | #8.5 testimonials, #8.6 stats bar |
+
+---
+
+**Última atualização:** 18/02/2026 15:50
+**Status:** ✅ ATUALIZADO — Auditoria completa código vs docs

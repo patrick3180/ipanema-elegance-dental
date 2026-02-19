@@ -2,6 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
+import StatsBar from "@/components/treatment/StatsBar";
 import SectionDivider from "@/components/treatment/SectionDivider";
 import ProcessTimeline from "@/components/treatment/ProcessTimeline";
 import ComparisonTable from "@/components/blog/ComparisonTable";
@@ -17,7 +18,7 @@ const ClareamentoDental = () => {
     if (gclid) {
       localStorage.setItem('gclid', gclid);
     }
-    
+
     // Analytics tracking
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'conversion', {
@@ -26,7 +27,7 @@ const ClareamentoDental = () => {
         'currency': 'BRL'
       });
     }
-    
+
     window.open(`https://wa.me/5521993304045?text=${encodeURIComponent(message)}`);
   };
 
@@ -34,16 +35,16 @@ const ClareamentoDental = () => {
     <>
       <Helmet>
         <title>Clareamento Dental em Ipanema | Dra. Carla Christoph</title>
-        <meta 
-          name="description" 
-          content="Clareamento dental profissional em Ipanema. Técnicas de consultório e caseiro supervisionado. Protocolos personalizados com a Dra. Carla Christoph. CRO-RJ 27.509." 
+        <meta
+          name="description"
+          content="Clareamento dental profissional em Ipanema. Técnicas de consultório e caseiro supervisionado. Protocolos personalizados com a Dra. Carla Christoph. CRO-RJ 27.509."
         />
-        <meta 
-          name="keywords" 
-          content="clareamento dental ipanema, clareamento profissional, clareamento caseiro supervisionado, dentista ipanema" 
+        <meta
+          name="keywords"
+          content="clareamento dental ipanema, clareamento profissional, clareamento caseiro supervisionado, dentista ipanema"
         />
         <link rel="canonical" href="https://dracarlachristoph.com/clareamento-dental" />
-        
+
         {/* Open Graph */}
         <meta property="og:title" content="Clareamento Dental em Ipanema | Dra. Carla Christoph" />
         <meta property="og:description" content="Clareamento dental profissional com técnicas de consultório e caseiro supervisionado em Ipanema." />
@@ -84,16 +85,16 @@ const ClareamentoDental = () => {
             "@context": "https://schema.org",
             "@type": "FAQPage",
             "mainEntity": [
-              {"@type": "Question", "name": "Qual a diferença entre as modalidades?", "acceptedAnswer": {"@type": "Answer", "text": "O clareamento de consultório utiliza gel de maior concentração (35-37%), com resultados em 1-3 sessões. O caseiro usa concentração menor (10-20%), aplicada gradualmente em 14-21 dias com moldeiras personalizadas. O combinado inicia em consultório e mantém resultado com aplicações caseiras. A indicação depende da análise individual."}},
-              {"@type": "Question", "name": "O clareamento causa sensibilidade?", "acceptedAnswer": {"@type": "Answer", "text": "Sensibilidade temporária pode ocorrer, mas protocolos modernos minimizam esse desconforto. Utilizamos dessensibilizantes, ajustamos concentrações conforme necessário e aplicamos laser terapêutico quando indicado. A maioria dos pacientes relata pouco ou nenhum desconforto."}},
-              {"@type": "Question", "name": "Quanto tempo dura o resultado?", "acceptedAnswer": {"@type": "Answer", "text": "Com cuidados adequados, os resultados mantêm-se por 2-3 anos. A durabilidade varia conforme hábitos alimentares e higiene. Protocolo de manutenção com sessões anuais prolonga significativamente os resultados."}},
-              {"@type": "Question", "name": "Posso fazer clareamento com restaurações?", "acceptedAnswer": {"@type": "Answer", "text": "Sim, mas apenas dentes naturais respondem ao clareamento. Restaurações e próteses mantêm sua cor original. Analisamos seu caso para determinar a melhor estratégia, considerando se há necessidade de substituição posterior das restaurações visíveis."}},
-              {"@type": "Question", "name": "O clareamento é seguro para o esmalte?", "acceptedAnswer": {"@type": "Answer", "text": "Quando realizado com protocolos adequados, não causa danos ao esmalte. Os géis modernos têm pH balanceado e não provocam desmineralização. Utilizamos produtos com agentes remineralizantes que preservam a integridade dental."}},
-              {"@type": "Question", "name": "Quais cuidados após o clareamento?", "acceptedAnswer": {"@type": "Answer", "text": "Nas primeiras 48 horas, evitar alimentos e bebidas pigmentados. Manter higiene oral adequada com escovação após refeições. Uso de canudos para bebidas escuras. Consultas semestrais para manutenção profissional."}},
-              {"@type": "Question", "name": "Clareamento funciona em todos os tipos de manchas?", "acceptedAnswer": {"@type": "Answer", "text": "A eficácia varia conforme o tipo de mancha. Manchas por alimentos e idade respondem muito bem. Manchas por medicamentos têm resposta variável. Na avaliação, analisamos seu caso específico e estabelecemos expectativas realistas."}},
-              {"@type": "Question", "name": "Clareamento e limpeza são diferentes?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. A limpeza remove tártaro e manchas superficiais, devolvendo a cor natural. O clareamento altera quimicamente a cor interna do dente, clareando além da cor natural. Frequentemente realizamos limpeza antes do clareamento para otimizar resultados."}},
-              {"@type": "Question", "name": "Produtos de farmácia têm o mesmo efeito?", "acceptedAnswer": {"@type": "Answer", "text": "Produtos sem prescrição contêm concentrações muito baixas devido a regulamentação, oferecendo resultados limitados. O clareamento profissional usa concentrações terapêuticas sob supervisão, garantindo eficácia superior e segurança."}},
-              {"@type": "Question", "name": "Como é feita a escolha da modalidade?", "acceptedAnswer": {"@type": "Answer", "text": "Na consulta de avaliação, analiso suas características individuais, tipo de mancha, sensibilidade prévia, rotina e expectativas. A indicação considera todos esses fatores para definir o protocolo mais adequado ao seu caso."}}
+              { "@type": "Question", "name": "Qual a diferença entre as modalidades?", "acceptedAnswer": { "@type": "Answer", "text": "O clareamento de consultório utiliza gel de maior concentração (35-37%), com resultados em 1-3 sessões. O caseiro usa concentração menor (10-20%), aplicada gradualmente em 14-21 dias com moldeiras personalizadas. O combinado inicia em consultório e mantém resultado com aplicações caseiras. A indicação depende da análise individual." } },
+              { "@type": "Question", "name": "O clareamento causa sensibilidade?", "acceptedAnswer": { "@type": "Answer", "text": "Sensibilidade temporária pode ocorrer, mas protocolos modernos minimizam esse desconforto. Utilizamos dessensibilizantes, ajustamos concentrações conforme necessário e aplicamos laser terapêutico quando indicado. A maioria dos pacientes relata pouco ou nenhum desconforto." } },
+              { "@type": "Question", "name": "Quanto tempo dura o resultado?", "acceptedAnswer": { "@type": "Answer", "text": "Com cuidados adequados, os resultados mantêm-se por 2-3 anos. A durabilidade varia conforme hábitos alimentares e higiene. Protocolo de manutenção com sessões anuais prolonga significativamente os resultados." } },
+              { "@type": "Question", "name": "Posso fazer clareamento com restaurações?", "acceptedAnswer": { "@type": "Answer", "text": "Sim, mas apenas dentes naturais respondem ao clareamento. Restaurações e próteses mantêm sua cor original. Analisamos seu caso para determinar a melhor estratégia, considerando se há necessidade de substituição posterior das restaurações visíveis." } },
+              { "@type": "Question", "name": "O clareamento é seguro para o esmalte?", "acceptedAnswer": { "@type": "Answer", "text": "Quando realizado com protocolos adequados, não causa danos ao esmalte. Os géis modernos têm pH balanceado e não provocam desmineralização. Utilizamos produtos com agentes remineralizantes que preservam a integridade dental." } },
+              { "@type": "Question", "name": "Quais cuidados após o clareamento?", "acceptedAnswer": { "@type": "Answer", "text": "Nas primeiras 48 horas, evitar alimentos e bebidas pigmentados. Manter higiene oral adequada com escovação após refeições. Uso de canudos para bebidas escuras. Consultas semestrais para manutenção profissional." } },
+              { "@type": "Question", "name": "Clareamento funciona em todos os tipos de manchas?", "acceptedAnswer": { "@type": "Answer", "text": "A eficácia varia conforme o tipo de mancha. Manchas por alimentos e idade respondem muito bem. Manchas por medicamentos têm resposta variável. Na avaliação, analisamos seu caso específico e estabelecemos expectativas realistas." } },
+              { "@type": "Question", "name": "Clareamento e limpeza são diferentes?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. A limpeza remove tártaro e manchas superficiais, devolvendo a cor natural. O clareamento altera quimicamente a cor interna do dente, clareando além da cor natural. Frequentemente realizamos limpeza antes do clareamento para otimizar resultados." } },
+              { "@type": "Question", "name": "Produtos de farmácia têm o mesmo efeito?", "acceptedAnswer": { "@type": "Answer", "text": "Produtos sem prescrição contêm concentrações muito baixas devido a regulamentação, oferecendo resultados limitados. O clareamento profissional usa concentrações terapêuticas sob supervisão, garantindo eficácia superior e segurança." } },
+              { "@type": "Question", "name": "Como é feita a escolha da modalidade?", "acceptedAnswer": { "@type": "Answer", "text": "Na consulta de avaliação, analiso suas características individuais, tipo de mancha, sensibilidade prévia, rotina e expectativas. A indicação considera todos esses fatores para definir o protocolo mais adequado ao seu caso." } }
             ]
           })}
         </script>
@@ -108,9 +109,9 @@ const ClareamentoDental = () => {
           badges={["20+ anos de experiência", "Protocolos personalizados", "CRO-RJ 27.509"]}
           doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
           breadcrumbs={[
-            {label: "Início", href: "/"},
-            {label: "Tratamentos", href: "/servicos"},
-            {label: "Clareamento Dental"}
+            { label: "Início", href: "/" },
+            { label: "Tratamentos", href: "/servicos" },
+            { label: "Clareamento Dental" }
           ]}
         />
 
@@ -179,30 +180,30 @@ const ClareamentoDental = () => {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              
-      {/* CARD 1 - CLAREAMENTO DE CONSULTÓRIO */}
-      <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
-        <div className="aspect-[4/3] relative">
-          <img 
-            src="/lovable-uploads/Clareamento_de_consultorio.webp"
-            alt="Modelo 3D mostrando clareamento dental de consultório"
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
-          <div className="absolute bottom-0 left-0 right-0 p-6">
-            <h3 className="text-2xl font-display font-semibold text-white mb-2">
-              Clareamento de Consultório
-            </h3>
-            <p className="text-white/90 text-sm mb-4 line-clamp-3">
-              Gel clareador de alta concentração aplicado em sessões de 60-90 minutos. Resultados visíveis a partir da primeira aplicação.
-            </p>
-          </div>
-        </div>
+
+              {/* CARD 1 - CLAREAMENTO DE CONSULTÓRIO */}
+              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="aspect-[4/3] relative">
+                  <img
+                    src="/lovable-uploads/Clareamento_de_consultorio.webp"
+                    alt="Modelo 3D mostrando clareamento dental de consultório"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-2xl font-display font-semibold text-white mb-2">
+                      Clareamento de Consultório
+                    </h3>
+                    <p className="text-white/90 text-sm mb-4 line-clamp-3">
+                      Gel clareador de alta concentração aplicado em sessões de 60-90 minutos. Resultados visíveis a partir da primeira aplicação.
+                    </p>
+                  </div>
+                </div>
 
                 {/* Conteúdo expansível - Accordion */}
                 <div className="bg-white p-6">
                   <Accordion type="single" collapsible className="w-full">
-                    
+
                     <AccordionItem value="caracteristicas">
                       <AccordionTrigger className="text-left hover:text-dental-purple">
                         <span className="font-semibold">Características Principais</span>
@@ -285,33 +286,33 @@ const ClareamentoDental = () => {
                         </div>
                       </AccordionContent>
                     </AccordionItem>
-                    
+
                   </Accordion>
                 </div>
               </div>
 
-      {/* CARD 2 - CLAREAMENTO CASEIRO */}
-      <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
-        <div className="aspect-[4/3] relative">
-          <img 
-            src="/lovable-uploads/Clareamento_caseiro.webp"
-            alt="Modelo 3D mostrando moldeiras de clareamento caseiro"
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
-          <div className="absolute bottom-0 left-0 right-0 p-6">
-            <h3 className="text-2xl font-display font-semibold text-white mb-2">
-              Clareamento Caseiro Supervisionado
-            </h3>
-            <p className="text-white/90 text-sm mb-4 line-clamp-3">
-              Moldeiras personalizadas confeccionadas no consultório. Gel de menor concentração para aplicação diária em casa com acompanhamento profissional.
-            </p>
-          </div>
-        </div>
+              {/* CARD 2 - CLAREAMENTO CASEIRO */}
+              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="aspect-[4/3] relative">
+                  <img
+                    src="/lovable-uploads/Clareamento_caseiro.webp"
+                    alt="Modelo 3D mostrando moldeiras de clareamento caseiro"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-2xl font-display font-semibold text-white mb-2">
+                      Clareamento Caseiro Supervisionado
+                    </h3>
+                    <p className="text-white/90 text-sm mb-4 line-clamp-3">
+                      Moldeiras personalizadas confeccionadas no consultório. Gel de menor concentração para aplicação diária em casa com acompanhamento profissional.
+                    </p>
+                  </div>
+                </div>
 
                 <div className="bg-white p-6">
                   <Accordion type="single" collapsible className="w-full">
-                    
+
                     <AccordionItem value="caracteristicas">
                       <AccordionTrigger className="text-left hover:text-dental-purple">
                         <span className="font-semibold">Características Principais</span>
@@ -394,33 +395,33 @@ const ClareamentoDental = () => {
                         </div>
                       </AccordionContent>
                     </AccordionItem>
-                    
+
                   </Accordion>
                 </div>
               </div>
 
-      {/* CARD 3 - TRATAMENTO COMBINADO */}
-      <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
-        <div className="aspect-[4/3] relative">
-          <img 
-            src="/lovable-uploads/Clareamento_combinado.webp"
-            alt="Modelo 3D mostrando antes e depois do clareamento dental"
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
-          <div className="absolute bottom-0 left-0 right-0 p-6">
-            <h3 className="text-2xl font-display font-semibold text-white mb-2">
-              Tratamento Combinado
-            </h3>
-            <p className="text-white/90 text-sm mb-4 line-clamp-3">
-              Início em consultório seguido de manutenção caseira. Combina resultado inicial mais evidente com estabilização gradual.
-            </p>
-          </div>
-        </div>
+              {/* CARD 3 - TRATAMENTO COMBINADO */}
+              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300">
+                <div className="aspect-[4/3] relative">
+                  <img
+                    src="/lovable-uploads/Clareamento_combinado.webp"
+                    alt="Modelo 3D mostrando antes e depois do clareamento dental"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-2xl font-display font-semibold text-white mb-2">
+                      Tratamento Combinado
+                    </h3>
+                    <p className="text-white/90 text-sm mb-4 line-clamp-3">
+                      Início em consultório seguido de manutenção caseira. Combina resultado inicial mais evidente com estabilização gradual.
+                    </p>
+                  </div>
+                </div>
 
                 <div className="bg-white p-6">
                   <Accordion type="single" collapsible className="w-full">
-                    
+
                     <AccordionItem value="caracteristicas">
                       <AccordionTrigger className="text-left hover:text-dental-purple">
                         <span className="font-semibold">Características Principais</span>
@@ -499,7 +500,7 @@ const ClareamentoDental = () => {
                         </div>
                       </AccordionContent>
                     </AccordionItem>
-                    
+
                   </Accordion>
                 </div>
               </div>
@@ -597,7 +598,7 @@ const ClareamentoDental = () => {
             <p className="text-center text-dental-gray mb-12 max-w-2xl mx-auto">
               Do planejamento aos cuidados pós-tratamento, cada etapa é pensada para seu conforto
             </p>
-            
+
             <ProcessTimeline
               steps={[
                 {
@@ -665,7 +666,7 @@ const ClareamentoDental = () => {
 
             <div className="max-w-5xl mx-auto">
               <div className="grid md:grid-cols-[300px,1fr] gap-8 items-start">
-                
+
                 {/* Foto da Dra. - Maior e mais destacada */}
                 <div className="mx-auto md:mx-0">
                   <div className="relative">
@@ -680,7 +681,7 @@ const ClareamentoDental = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Conteúdo */}
                 <div className="bg-white p-8 rounded-2xl shadow-soft">
                   <div className="mb-6">
@@ -691,17 +692,17 @@ const ClareamentoDental = () => {
                       CRO-RJ 27.509 | Especialista em Prótese Dentária e Implantodontia
                     </p>
                   </div>
-                  
+
                   <div className="space-y-4 text-dental-gray leading-relaxed">
                     <p>
                       Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
                     </p>
-                    
+
                     <p>
                       Nos protocolos de clareamento, prioriza segurança e resultado natural — cada caso tem sua indicação específica. A escolha entre clareamento de consultório, caseiro supervisionado ou combinado é definida na avaliação, considerando a condição dos dentes e a expectativa do paciente.
                     </p>
                   </div>
-                  
+
                   {/* Credenciais */}
                   <div className="mt-6 pt-6 border-t border-dental-gray/20">
                     <div className="grid md:grid-cols-2 gap-4">
@@ -712,7 +713,7 @@ const ClareamentoDental = () => {
                           <p className="text-sm text-dental-gray">Especialista em Prótese Dentária e Implantodontia</p>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-start gap-3">
                         <CheckCircle className="text-dental-gold mt-1" size={20} />
                         <div>
@@ -720,7 +721,7 @@ const ClareamentoDental = () => {
                           <p className="text-sm text-dental-gray">Centenas de clareamentos realizados</p>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-start gap-3">
                         <CheckCircle className="text-dental-gold mt-1" size={20} />
                         <div>
@@ -728,7 +729,7 @@ const ClareamentoDental = () => {
                           <p className="text-sm text-dental-gray">Formação contínua em técnicas de clareamento</p>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-start gap-3">
                         <CheckCircle className="text-dental-gold mt-1" size={20} />
                         <div>
@@ -752,10 +753,10 @@ const ClareamentoDental = () => {
             <h2 className="heading-lg mb-8 text-center text-dental-purple">
               Perguntas Frequentes Sobre Clareamento
             </h2>
-            
+
             <div className="max-w-4xl mx-auto">
               <Accordion type="single" collapsible className="w-full">
-                
+
                 <AccordionItem value="faq-1">
                   <AccordionTrigger>Qual a diferença entre as modalidades?</AccordionTrigger>
                   <AccordionContent>
@@ -847,7 +848,7 @@ const ClareamentoDental = () => {
             >
               Ver Qual Protocolo é Indicado para Mim
             </button>
-            
+
             <div className="flex flex-wrap justify-center gap-6 mt-8 text-white/80 text-sm">
               <div className="flex items-center gap-2">
                 <CheckCircle size={16} />
@@ -865,8 +866,9 @@ const ClareamentoDental = () => {
           </div>
         </section>
 
-            <InternalLinkingOptimizer currentPage="clareamento-dental" />
-</PageLayout>
+        <StatsBar />
+        <InternalLinkingOptimizer currentPage="clareamento-dental" />
+      </PageLayout>
     </>
   );
 };

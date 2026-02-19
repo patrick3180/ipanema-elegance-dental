@@ -1,5 +1,6 @@
 
 import React from "react";
+import { Link } from "react-router-dom";
 import { Instagram, Facebook } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
@@ -41,18 +42,23 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-display mb-4">Navegação</h3>
             <ul className="space-y-2">
-              {["Início", "Sobre", "Tratamentos", "Blog", "Depoimentos", "Contato"].map(
-                (item) => (
-                  <li key={item}>
-                    <a
-                      href={`#${item.toLowerCase()}`}
-                      className="text-white/70 hover:text-dental-gold transition-colors"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                )
-              )}
+              {[
+                { label: "Início", path: "/" },
+                { label: "Sobre", path: "/sobre" },
+                { label: "Tratamentos", path: "/servicos" },
+                { label: "Blog", path: "/blog" },
+                { label: "Depoimentos", path: "/#depoimentos" },
+                { label: "Contato", path: "/contato" },
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link
+                    to={item.path}
+                    className="text-white/70 hover:text-dental-gold transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -63,24 +69,24 @@ const Footer = () => {
               <p>Ipanema, Rio de Janeiro - RJ</p>
               <p>CEP: 22410-901</p>
               <p className="mt-3">
-                <a 
-                  href="tel:+552137387909" 
+                <a
+                  href="tel:+552137387909"
                   className="hover:text-dental-gold transition-colors"
                 >
                   (21) 3738-7909
                 </a>
               </p>
               <p>
-                <a 
-                  href="tel:+5521993304045" 
+                <a
+                  href="tel:+5521993304045"
                   className="hover:text-dental-gold transition-colors"
                 >
                   (21) 99330-4045
                 </a>
               </p>
               <p>
-                <a 
-                  href="mailto:contato@dracarlachristoph.com" 
+                <a
+                  href="mailto:contato@dracarlachristoph.com"
                   className="hover:text-dental-gold transition-colors"
                 >
                   contato@dracarlachristoph.com

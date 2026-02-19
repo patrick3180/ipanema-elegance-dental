@@ -3,6 +3,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
+import StatsBar from "@/components/treatment/StatsBar";
 import SectionDivider from "@/components/treatment/SectionDivider";
 import ProcessTimeline from "@/components/treatment/ProcessTimeline";
 import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
@@ -138,7 +139,7 @@ const RestaureacoesEsteticas = () => {
         description="Recupere dentes comprometidos por cáries, fraturas ou trincas com resinas compostas de última geração que imitam perfeitamente a cor e textura natural."
         badges={["Resinas de Alta Performance", "Resultado Natural", "Técnica Conservadora"]}
         doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
-        breadcrumbs={[{label: "Início", href: "/"}, {label: "Tratamentos", href: "/servicos"}, {label: "Restaurações Estéticas"}]}
+        breadcrumbs={[{ label: "Início", href: "/" }, { label: "Tratamentos", href: "/servicos" }, { label: "Restaurações Estéticas" }]}
       />
 
       {/* Quick Answer Box */}
@@ -206,13 +207,13 @@ const RestaureacoesEsteticas = () => {
             {/* Foto com badge sobreposto */}
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-elegant">
-                <img 
-                  src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" 
+                <img
+                  src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
                   alt="Dra. Carla Christoph - Especialista em Restaurações Estéticas"
                   className="w-full h-auto object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-dental-beige/80"></div>
-                
+
                 {/* Badge sobreposto */}
                 <div className="absolute bottom-6 left-6 bg-dental-gold text-white px-4 py-2 rounded-lg shadow-lg">
                   <p className="text-sm font-semibold">20+ Anos de Experiência</p>
@@ -225,11 +226,11 @@ const RestaureacoesEsteticas = () => {
               <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-6">
                 Restaurações com Precisão Técnica e Arte
               </h2>
-              
+
               <p className="text-lg text-dental-gray leading-relaxed mb-4">
                 Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
               </p>
-              
+
               <p className="text-lg text-dental-gray leading-relaxed mb-8">
                 Nas restaurações, utiliza resinas e cerâmicas que reproduzem a translucidez natural do dente. O objetivo é que a restauração passe despercebida — que o dente tratado seja indistinguível dos demais.
               </p>
@@ -309,8 +310,8 @@ const RestaureacoesEsteticas = () => {
             <div className="group bg-white rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 overflow-hidden">
               {/* Imagem com overlay */}
               <div className="aspect-[4/3] relative overflow-hidden">
-                <img 
-                  src="/lovable-uploads/Restauracao direta.webp" 
+                <img
+                  src="/lovable-uploads/Restauracao direta.webp"
                   alt="Restauração Direta em Resina Composta"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
@@ -393,8 +394,8 @@ const RestaureacoesEsteticas = () => {
             <div className="group bg-white rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 overflow-hidden">
               {/* Imagem com overlay */}
               <div className="aspect-[4/3] relative overflow-hidden">
-                <img 
-                  src="/lovable-uploads/inlay de porcelana.webp" 
+                <img
+                  src="/lovable-uploads/inlay de porcelana.webp"
                   alt="Restauração Indireta - Inlay e Onlay de Porcelana"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
@@ -792,8 +793,8 @@ const RestaureacoesEsteticas = () => {
             {/* Imagem com blur decorativo */}
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-elegant">
-                <img 
-                  src="/lovable-uploads/scanner 3d.webp" 
+                <img
+                  src="/lovable-uploads/scanner 3d.webp"
                   alt="Scanner iTero Element 5D - Tecnologia de diagnóstico digital"
                   className="w-full h-auto object-cover"
                 />
@@ -991,7 +992,7 @@ const RestaureacoesEsteticas = () => {
               Recupere a Saúde e a Beleza do Seu Sorriso
             </h2>
           </div>
-          
+
           <p className="text-xl md:text-2xl mb-8 leading-relaxed text-white/90">
             Restaurações estéticas que unem precisão técnica, resinas compostas nanoparticuladas e resultado natural.
           </p>
@@ -1011,8 +1012,9 @@ const RestaureacoesEsteticas = () => {
         </div>
       </section>
 
-          <InternalLinkingOptimizer currentPage="restauracoes-esteticas" />
-</PageLayout>
+      <StatsBar />
+      <InternalLinkingOptimizer currentPage="restauracoes-esteticas" />
+    </PageLayout>
   );
 };
 

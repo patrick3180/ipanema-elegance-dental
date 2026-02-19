@@ -1,6 +1,7 @@
 
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import SEOHead from "@/components/SEOHead";
 import { getBlogPostBySlug, getAllBlogPosts } from "@/services/contentful/queries";
@@ -20,21 +21,22 @@ import FAQSectionBlog from '@/components/blog/FAQSectionBlog';
 import PeopleAlsoAsk from '@/components/blog/PeopleAlsoAsk';
 import AuthorBio from '@/components/blog/AuthorBio';
 import BlogCTA from '@/components/blog/BlogCTA';
+import BlogStickyWhatsApp from '@/components/blog/BlogStickyWhatsApp';
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>(); // Fixed: changed from postSlug to slug
   const navigate = useNavigate();
-  
+
   // Debug logging for route parameters
   React.useEffect(() => {
     console.log('BlogPost component mounted with params:', { slug });
     console.log('Current URL:', window.location.href);
   }, [slug]);
-  
+
   // Fetch the current blog post
-  const { 
-    data: post, 
-    isLoading, 
+  const {
+    data: post,
+    isLoading,
     error
   } = useQuery({
     queryKey: ['blogPost', slug],
@@ -60,7 +62,7 @@ const BlogPost = () => {
     },
     staleTime: 300000
   });
-  
+
   // Enhanced error handling and navigation
   React.useEffect(() => {
     if (!slug) {
@@ -68,7 +70,7 @@ const BlogPost = () => {
       navigate("/blog");
       return;
     }
-    
+
     if (!isLoading && !post && slug) {
       console.log(`Post not found for slug: ${slug}, redirecting to blog page`);
       navigate("/blog");
@@ -173,8 +175,39 @@ const BlogPost = () => {
 
   console.log('BlogPost: Rendering complete blog post');
 
+  // Generate BreadcrumbList schema
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Início",
+        "item": "https://dracarlachristoph.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://dracarlachristoph.com/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": post.title
+      }
+    ]
+  };
+
   return (
     <>
+      {/* BreadcrumbList Schema for Google Search */}
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
+      </Helmet>
       <SEOHead
         title={`${post.title} | Blog Dental Dra. Carla Christoph`}
         description={post.metaDescription || post.excerpt}
@@ -192,7 +225,7 @@ const BlogPost = () => {
         <section className="section-spacing">
           <div className="container-custom">
             <BlogPostHeader post={post} />
-            
+
             <BlogPostImage imageUrl={post.imageUrl} title={post.title} />
 
             {/* Quick Answer Box */}
@@ -214,7 +247,7 @@ const BlogPost = () => {
             {/* Content */}
             <div className="max-w-3xl mx-auto mb-16">
               {hasContent ? (
-                <BlogContent 
+                <BlogContent
                   content={post.content}
                   className="prose prose-lg"
                 />
@@ -223,7 +256,7 @@ const BlogPost = () => {
                   <div className="bg-dental-beige/30 rounded-lg p-6 mb-6">
                     <p className="text-dental-gray mb-4">{post.excerpt}</p>
                     <p className="text-sm text-dental-gray/70">
-                      O conteúdo completo está sendo carregado. Se o problema persistir, 
+                      O conteúdo completo está sendo carregado. Se o problema persistir,
                       entre em contato conosco.
                     </p>
                   </div>
@@ -246,7 +279,7 @@ const BlogPost = () => {
             {/* People Also Ask */}
             {post.peopleAlsoAsk?.questions && post.peopleAlsoAsk.questions.length > 0 && (
               <div className="max-w-4xl mx-auto">
-                <PeopleAlsoAsk 
+                <PeopleAlsoAsk
                   questions={post.peopleAlsoAsk.questions}
                   onQuestionClick={(question) => {
                     const contentElement = document.querySelector('.blog-content');
@@ -265,21 +298,21 @@ const BlogPost = () => {
               </div>
             )}
 
-            {/* Author Bio */}
-            {post.authorBio && (
-              <div className="max-w-4xl mx-auto">
-                <AuthorBio 
-                  bio={post.authorBio}
-                  author={post.author}
-                />
-              </div>
-            )}
+            {/* Author Bio - Always show with fallback data */}
+            <div className="max-w-4xl mx-auto">
+              <AuthorBio
+                bio={post.authorBio || "Cirurgiã-dentista com mais de 20 anos de experiência em Ipanema, Rio de Janeiro. Especialista em Prótese Dentária e Implantodontia (CRO-RJ 27.509). Formada pela Faculdade de Odontologia da Universidade Federal do Rio de Janeiro, com 8 anos como dentista militar na Odontoclínica Central da Marinha."}
+                author={post.author || "Dra. Carla Christoph"}
+              />
+            </div>
 
             <BlogPostShare post={post} />
 
             <BlogPostRelated relatedPosts={relatedPosts} />
           </div>
         </section>
+        {/* Sticky WhatsApp CTA for mobile */}
+        <BlogStickyWhatsApp />
       </PageLayout>
     </>
   );

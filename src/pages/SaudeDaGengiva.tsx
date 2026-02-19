@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
+import StatsBar from "@/components/treatment/StatsBar";
 import SectionDivider from "@/components/treatment/SectionDivider";
 import ProcessTimeline from "@/components/treatment/ProcessTimeline";
 import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
@@ -138,6 +139,7 @@ const SaudeDaGengiva = () => {
       </Helmet>
 
       <FastServerResponseOptimizer />
+      <StatsBar />
       <CriticalCSSOptimizer
         inlineStyles={`
           .treatment-hero { min-height: 60vh; }

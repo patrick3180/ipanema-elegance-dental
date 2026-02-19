@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
+import StatsBar from "@/components/treatment/StatsBar";
 import SectionDivider from "@/components/treatment/SectionDivider";
 import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -888,6 +889,7 @@ const ProteseDentaria = () => {
             </p>
           </div>
         </section>
+        <StatsBar />
         <InternalLinkingOptimizer currentPage="protese-dentaria" />
       </PageLayout>
     </>

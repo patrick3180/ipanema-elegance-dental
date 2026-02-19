@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Menu, X, Star } from "lucide-react";
+import { Menu, X, Star, MessageCircle } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const Header = () => {
@@ -49,6 +49,12 @@ const Header = () => {
     { title: "Depoimentos", action: () => handleSectionNavigation("depoimentos") },
     { title: "Contato", path: "/contato" }
   ];
+
+  const isActivePath = (path?: string) => {
+    if (!path) return false;
+    if (path === "/") return location.pathname === "/";
+    return location.pathname.startsWith(path);
+  };
 
   return (
     <header
@@ -104,7 +110,12 @@ const Header = () => {
               <Link
                 key={item.title}
                 to={item.path}
-                className="text-sm font-medium text-dental-purple/80 hover:text-dental-gold transition-colors"
+                className={cn(
+                  "text-sm font-medium transition-colors",
+                  isActivePath(item.path)
+                    ? "text-dental-gold border-b-2 border-dental-gold pb-0.5"
+                    : "text-dental-purple/80 hover:text-dental-gold"
+                )}
               >
                 {item.title}
               </Link>
@@ -142,13 +153,40 @@ const Header = () => {
                 <Link
                   key={item.title}
                   to={item.path}
-                  className="text-xl font-medium text-dental-purple hover:text-dental-gold transition-colors"
+                  className={cn(
+                    "text-xl font-medium transition-colors",
+                    isActivePath(item.path)
+                      ? "text-dental-gold"
+                      : "text-dental-purple hover:text-dental-gold"
+                  )}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.title}
                 </Link>
               )
             ))}
+
+            {/* WhatsApp CTA - Mobile Menu */}
+            <a
+              href="https://wa.me/5521993304045?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 flex items-center gap-2 bg-[#128C4A] hover:bg-[#0F7540] text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300 font-medium"
+              onClick={() => {
+                setIsMenuOpen(false);
+                if (window.dataLayer) {
+                  window.dataLayer.push({
+                    event: 'whatsapp_click',
+                    event_category: 'Contact',
+                    event_action: 'Click',
+                    event_label: 'WhatsApp Mobile Menu'
+                  });
+                }
+              }}
+            >
+              <MessageCircle size={20} />
+              Agendar pelo WhatsApp
+            </a>
           </nav>
         </div>
       )}

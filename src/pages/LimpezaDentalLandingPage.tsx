@@ -60,7 +60,7 @@ const LimpezaDentalLandingPage: React.FC = () => {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'page_view',
-        page_title: 'Limpeza Dental Premium - Ipanema',
+        page_title: 'Limpeza Dental Profissional - Ipanema',
         page_location: window.location.href,
         campaign: limpezaDentalConfig.campaign
       });
