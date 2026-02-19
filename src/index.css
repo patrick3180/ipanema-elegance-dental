@@ -351,12 +351,65 @@
   box-shadow: 0 4px 12px hsl(var(--dental-gold) / 0.3);
 }
 
+/* Hero staggered entrance animations */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-animate-1 {
+  animation: heroFadeUp 0.7s ease-out 0.1s both;
+}
+
+.hero-animate-2 {
+  animation: heroFadeUp 0.7s ease-out 0.25s both;
+}
+
+.hero-animate-3 {
+  animation: heroFadeUp 0.7s ease-out 0.4s both;
+}
+
+.hero-animate-4 {
+  animation: heroFadeUp 0.7s ease-out 0.55s both;
+}
+
+.hero-animate-5 {
+  animation: heroFadeUp 0.7s ease-out 0.7s both;
+}
+
+.hero-animate-image {
+  animation: heroFadeIn 0.8s ease-out 0.2s both;
+}
+
 /* Respeitar preferência do usuário por redução de movimento */
 @media (prefers-reduced-motion: reduce) {
 
   .animate-pulse,
   .animate-fade-in,
-  .animate-fade-in-up {
+  .animate-fade-in-up,
+  .hero-animate-1,
+  .hero-animate-2,
+  .hero-animate-3,
+  .hero-animate-4,
+  .hero-animate-5,
+  .hero-animate-image {
     animation: none !important;
     transition: none !important;
   }
