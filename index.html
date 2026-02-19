@@ -25,7 +25,7 @@
       .body-lg{font-size:1.125rem;line-height:1.7;color:rgba(85,60,107,0.9);margin-bottom:2.5rem}
       
       /* Layout */
-      .hero-section{min-height:100vh;padding-top:112px;background:#e8dfd2;position:relative;overflow:hidden}
+      .hero-section{min-height:100vh;padding-top:112px;background:linear-gradient(165deg,hsl(39 25% 85%) 0%,hsl(39 20% 82%) 35%,hsl(42 22% 84%) 100%);position:relative;overflow:hidden}
       .section-spacing{padding:4rem 1.5rem}
       .container-custom{max-width:1200px;margin:0 auto;padding:0 1.5rem}
       .grid{display:grid;gap:4rem}
@@ -86,7 +86,8 @@
     
     <!-- Fonts agora são self-hosted via @fontsource (main.tsx) - economiza 200-400ms -->
 
-    <!-- Hero image preload removido: cada página faz seu próprio preload da imagem correta -->
+    <!-- Hero image preload (LCP element da homepage) -->
+    <link rel="preload" as="image" type="image/avif" href="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.avif" />
 
     <!-- Meta tags -->
     <meta property="og:title" content="Dentista em Ipanema | Dra. Carla Christoph" />

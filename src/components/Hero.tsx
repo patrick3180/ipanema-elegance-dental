@@ -20,7 +20,7 @@ const Hero = () => {
     if (window.gtag) {
       window.gtag('event', 'conversion', {
         'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
-        'event_callback': function() {
+        'event_callback': function () {
           console.log('Google Ads conversion tracked - Hero CTA button');
         }
       });
@@ -28,59 +28,76 @@ const Hero = () => {
 
     // Send GCLID to webhook
     await sendGCLIDToWebhook('hero_button');
-    
+
     const phoneNumber = "5521993304045";
-    const message = "Olá! Gostaria de agendar uma consulta.";
+    const message = "Olá! Vi o site e gostaria de agendar uma avaliação.";
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
   };
 
   return (
-    <section 
-      id="início" 
+    <section
+      id="início"
       className="hero-section min-h-screen relative overflow-hidden section-spacing"
       style={{ paddingTop: "112px" }}
     >
-      <div className="container-custom grid lg:grid-cols-2 gap-16 items-center">
+      <div className="container-custom grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
         <div className="order-2 lg:order-1">
-          <h1 className="heading-xl mb-8">
-            Dentista em Ipanema Especializada em Reabilitação Oral e Estética Natural
+          <h1 className="heading-xl mb-6 text-balance">
+            Dentista em Ipanema Especializada em Reabilitação Oral e{' '}
+            <span className="text-dental-gold">Estética Natural</span>
           </h1>
-          <p className="body-lg mb-10 max-w-lg">
+          <p className="body-lg mb-8 max-w-lg">
             Para quem busca tratamento odontológico sem pressa, sem dor desnecessária e com resultado que parece natural
           </p>
-          <div className="flex flex-wrap gap-6">
+
+          {/* Trust badges */}
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mb-10">
+            <span className="flex items-center gap-2 text-xs uppercase tracking-widest text-dental-gold font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-dental-gold" />
+              20+ anos em Ipanema
+            </span>
+            <span className="flex items-center gap-2 text-xs uppercase tracking-widest text-dental-gold font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-dental-gold" />
+              CRO-RJ 27.509
+            </span>
+            <span className="flex items-center gap-2 text-xs uppercase tracking-widest text-dental-gold font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-dental-gold" />
+              1h+ por consulta
+            </span>
+          </div>
+
+          <div className="flex flex-wrap gap-4">
             <Button
               onClick={handleWhatsAppClick}
-              className="bg-dental-purple hover:bg-dental-purple/90 text-white rounded-md px-8 py-6 text-base"
+              className="bg-dental-gold hover:bg-dental-gold-dark text-white rounded-md px-8 py-6 text-base shadow-gold transition-all duration-300 hover:-translate-y-0.5"
             >
               <div className="flex flex-col text-left leading-tight"><span className="font-medium">Agendar minha consulta</span><span className="text-xs text-white/80">WhatsApp 24h</span></div><ArrowRight size={16} className="ml-3" />
             </Button>
             <Button
               variant="outline"
               asChild
-              className="border-dental-gray text-dental-purple hover:bg-dental-beige/50 rounded-md px-8 py-6 text-base"
+              className="border-dental-purple/30 text-dental-purple hover:bg-dental-purple/5 rounded-md px-8 py-6 text-base transition-all duration-300"
             >
               <a href="#tratamentos">Conheça nossos tratamentos</a>
             </Button>
           </div>
         </div>
-        
+
         <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
           <div className="relative">
-            <div className="w-[320px] md:w-[420px] h-[500px] md:h-[600px] bg-dental-purple/10 rounded-2xl flex items-center justify-center overflow-hidden">
+            <div className="w-[280px] sm:w-[320px] md:w-[420px] h-[420px] sm:h-[500px] md:h-[600px] bg-dental-purple/10 rounded-2xl flex items-center justify-center overflow-hidden shadow-elegant">
               <picture>
-                {/* AVIF first - best compression (50-70% smaller than PNG) */}
                 <source
                   srcSet="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.avif"
+                  sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, 420px"
                   type="image/avif"
                 />
-                {/* WebP fallback - good compression, wide support */}
                 <source
                   srcSet="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp"
+                  sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, 420px"
                   type="image/webp"
                 />
-                {/* PNG fallback - legacy browsers */}
                 <img
                   src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png"
                   alt="Dra. Carla Christoph, dentista especialista em Ipanema"
@@ -89,7 +106,7 @@ const Hero = () => {
                   height="600"
                   loading="eager"
                   fetchPriority="high"
-                  decoding="sync"
+                  decoding="async"
                 />
               </picture>
             </div>
