@@ -1,7 +1,26 @@
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
+
+// Plugin: carrega CSS externo de forma assíncrona (não render-blocking)
+// Só aplica em produção. Critical CSS inline em index.html garante que
+// a homepage renderiza imediatamente enquanto o CSS completo carrega.
+function asyncCSSPlugin(): Plugin {
+  return {
+    name: 'vite-plugin-async-css',
+    enforce: 'post',
+    apply: 'build',
+    transformIndexHtml(html: string) {
+      // Transforma <link rel="stylesheet" ...href="/assets/...css">
+      // em versão non-blocking com media="print" + onload
+      return html.replace(
+        /<link rel="stylesheet" crossorigin href="(\/assets\/[^"]+\.css)">/g,
+        '<link rel="stylesheet" href="$1" media="print" onload="this.media=\'all\'">\n    <noscript><link rel="stylesheet" href="$1"></noscript>'
+      );
+    }
+  };
+}
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -11,6 +30,7 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
+    asyncCSSPlugin(),
     mode === 'development' &&
     componentTagger(),
   ].filter(Boolean),
@@ -29,7 +49,7 @@ export default defineConfig(({ mode }) => ({
     cssCodeSplit: true, // Split CSS para melhor cache
     chunkSizeWarningLimit: 600,
     assetsInlineLimit: 4096, // Inline apenas assets pequenos
-    
+
     rollupOptions: {
       output: {
         // Bundle splitting otimizado para landing page - LCP crítico
@@ -38,30 +58,30 @@ export default defineConfig(({ mode }) => ({
           'landing-critical': ['react', 'react-dom', 'react-helmet-async'],
           'landing-hero': ['@/components/landing/clareamento/ClareamentoHero'],
           'landing-header': ['@/components/landing/clareamento/ClareamentoHeader'],
-          
+
           // Consulta inicial critical chunks
           'consulta-critical': ['@/components/landing/consulta/ConsultaInicialHero', '@/components/landing/consulta/ConsultaInicialHeader'],
           'consulta-problem': ['@/components/landing/consulta/ConsultaInicialProblem'],
           'consulta-guide': ['@/components/landing/consulta/ConsultaInicialGuide'],
-          
+
           // Lazy chunks para componentes below-the-fold  
           'landing-lazy-social': ['@/components/landing/clareamento/ClareamentoSocialProof', '@/components/landing/consulta/ConsultaInicialSocialProof'],
           'landing-lazy-faq': ['@/components/landing/clareamento/ClareamentoFAQ', '@/components/landing/consulta/ConsultaInicialFAQ'],
           'landing-lazy-footer': ['@/components/landing/clareamento/ClareamentoFooter'],
-          
+
           // UI chunks otimizados
           'landing-icons': ['lucide-react'],
           'landing-ui': ['@radix-ui/react-accordion', '@radix-ui/react-collapsible'],
-          
+
           // Tracking e performance separados
           'tracking': ['@/utils/gclid'],
           'performance': ['@/hooks/useCriticalImagePreload', '@/components/performance/CriticalResourcePreloader'],
-          
+
           // Chunks para outras páginas (contentful só carrega quando necessário)
           'vendor': ['react-router-dom'],
           'ui-core': [
-            '@radix-ui/react-dialog', 
-            '@radix-ui/react-dropdown-menu', 
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-dropdown-menu',
             '@radix-ui/react-toast',
             '@radix-ui/react-slot',
             '@radix-ui/react-label'
@@ -75,14 +95,14 @@ export default defineConfig(({ mode }) => ({
           'charts': ['recharts'],
           'utils': ['class-variance-authority', 'clsx', 'tailwind-merge'],
         },
-        
+
         // Nomes determinísticos para melhor cache
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]'
       },
     },
-    
+
     // Minificação ultra agressiva para PageSpeed 90+
     minify: mode === 'production' ? 'terser' : false,
     terserOptions: mode === 'production' ? {
@@ -107,16 +127,16 @@ export default defineConfig(({ mode }) => ({
         comments: false, // Remove all comments
       }
     } : undefined,
-    
+
     sourcemap: false,
   },
-  
+
   preview: {
     headers: {
       'Cache-Control': 'public, max-age=31536000',
     },
   },
-  
+
   optimizeDeps: {
     include: [
       'react/jsx-runtime',

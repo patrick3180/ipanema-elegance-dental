@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Outlet } from "react-router-dom";
+import "@/blog.css";
 
 const queryClient = new QueryClient({
   defaultOptions: {

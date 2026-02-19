@@ -1,0 +1,78 @@
+/* Blog content styling - carregado apenas em /blog/* via BlogLayout */
+.blog-content h1 {
+    @apply text-3xl font-display font-semibold text-dental-purple mt-8 mb-4;
+}
+
+.blog-content h2 {
+    @apply text-2xl font-display font-semibold text-dental-purple mt-10 mb-5;
+}
+
+.blog-content h3 {
+    @apply text-xl font-display font-semibold text-dental-purple mt-10 mb-4 border-b border-dental-purple/10 pb-2;
+}
+
+.blog-content p {
+    @apply my-5 leading-relaxed;
+}
+
+.blog-content a {
+    @apply font-semibold text-dental-purple underline underline-offset-2 decoration-1 hover:decoration-2 transition-colors;
+}
+
+.blog-content strong,
+.blog-content b {
+    @apply font-semibold text-dental-purple;
+}
+
+.blog-content ul {
+    @apply list-disc pl-6 my-6 space-y-2;
+}
+
+.blog-content ul li::marker {
+    @apply text-dental-purple;
+}
+
+.blog-content ol {
+    @apply list-decimal pl-6 my-6 space-y-2;
+}
+
+.blog-content ol li::marker {
+    @apply text-dental-purple;
+}
+
+.blog-content blockquote {
+    @apply border-l-4 border-dental-gold pl-4 italic my-6 py-2 text-dental-purple/80;
+}
+
+.blog-content img {
+    @apply rounded-lg mx-auto my-8 shadow-sm max-w-full;
+    height: auto !important;
+    object-fit: contain !important;
+    width: auto !important;
+    max-height: 400px !important;
+    display: block;
+}
+
+.blog-content figure {
+    @apply my-8;
+}
+
+.blog-content figcaption {
+    @apply text-center text-sm text-dental-gray mt-2;
+}
+
+.blog-content hr {
+    @apply my-8 border-dental-gray/30;
+}
+
+.blog-content table {
+    @apply w-full border-collapse my-6;
+}
+
+.blog-content th {
+    @apply bg-dental-purple/10 text-dental-purple font-medium p-2 text-left border border-dental-gray/20;
+}
+
+.blog-content td {
+    @apply p-2 border border-dental-gray/20;
+}
