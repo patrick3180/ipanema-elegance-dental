@@ -39,10 +39,10 @@ const Hero = () => {
     <section
       id="início"
       className="hero-section min-h-screen relative overflow-hidden section-spacing"
-      style={{ paddingTop: "112px" }}
+      style={{ paddingTop: "var(--header-height, 112px)" }}
     >
       <div className="container-custom grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
-        <div className="order-2 lg:order-1">
+        <div className="order-1 lg:order-1">
           {/* Eyebrow */}
           <p className="hero-animate-1 text-xs uppercase tracking-[0.2em] text-dental-gold font-medium mb-4">
             Especialista em Prótese e Implantodontia
@@ -53,7 +53,7 @@ const Hero = () => {
             <span className="text-dental-gold">Estética Natural</span>
           </h1>
 
-          <p className="hero-animate-3 body-lg mb-8 max-w-lg">
+          <p className="hero-animate-3 body-lg mb-8 max-w-lg font-medium">
             Para quem busca tratamento odontológico sem pressa, sem dor desnecessária e com resultado que parece natural
           </p>
 
@@ -106,7 +106,7 @@ const Hero = () => {
         </div>
 
         {/* Imagem */}
-        <div className="hero-animate-image order-1 lg:order-2 flex justify-center lg:justify-end">
+        <div className="hero-animate-image order-2 lg:order-2 flex justify-center lg:justify-end">
           <div className="relative">
             {/* Decoração: linha dourada fina ao redor da imagem */}
             <div className="absolute -inset-3 rounded-2xl border border-dental-gold/20" />
