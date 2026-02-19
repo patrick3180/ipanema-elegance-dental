@@ -114,12 +114,12 @@ const Hero = () => {
             <div className="w-[280px] sm:w-[320px] md:w-[400px] lg:w-[420px] h-[420px] sm:h-[480px] md:h-[560px] lg:h-[600px] rounded-2xl flex items-center justify-center overflow-hidden shadow-elegant">
               <picture>
                 <source
-                  srcSet="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.avif"
+                  srcSet="/lovable-uploads/hero-560w.avif 560w, /lovable-uploads/hero-800w.avif 800w, /lovable-uploads/hero-840w.avif 840w"
                   sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 420px"
                   type="image/avif"
                 />
                 <source
-                  srcSet="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.webp"
+                  srcSet="/lovable-uploads/hero-560w.webp 560w, /lovable-uploads/hero-800w.webp 800w, /lovable-uploads/hero-840w.webp 840w"
                   sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 420px"
                   type="image/webp"
                 />

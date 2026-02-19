@@ -16,6 +16,31 @@
 
   <!-- Critical CSS COMPLETO inline -->
   <style>
+    /* Font-face inline - elimina cadeia de dependência HTML→CSS→Font */
+    @font-face {
+      font-family: 'Playfair Display';
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+      src: url('/fonts/playfair-display-400.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Montserrat';
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+      src: url('/fonts/montserrat-400.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Montserrat';
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+      src: url('/fonts/montserrat-500.woff2') format('woff2');
+    }
+
     /* Reset e base */
     *,
     ::after,
@@ -257,8 +282,10 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/playfair-display-400.woff2" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/montserrat-400.woff2" />
 
-  <!-- Hero image preload (LCP element da homepage) -->
-  <link rel="preload" as="image" type="image/avif" href="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.avif" />
+  <!-- Hero image preload responsivo (LCP element) -->
+  <link rel="preload" as="image" type="image/avif"
+    imagesrcset="/lovable-uploads/hero-560w.avif 560w, /lovable-uploads/hero-800w.avif 800w, /lovable-uploads/hero-840w.avif 840w"
+    imagesizes="(max-width:640px) 280px, (max-width:1024px) 400px, 420px" />
 
   <!-- Meta tags -->
   <meta property="og:title" content="Dentista em Ipanema | Dra. Carla Christoph" />
