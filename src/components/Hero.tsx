@@ -87,10 +87,20 @@ const Hero = () => {
             </Button>
             <Button
               variant="outline"
-              asChild
               className="border-dental-purple/30 text-dental-purple hover:bg-dental-purple/5 rounded-md px-8 py-6 text-base transition-all duration-300"
+              onClick={() => {
+                if (window.dataLayer) {
+                  window.dataLayer.push({
+                    event: 'hero_explore_click',
+                    event_category: 'Navigation',
+                    event_action: 'Click',
+                    event_label: 'Hero Secondary CTA'
+                  });
+                }
+                document.getElementById('tratamentos')?.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
-              <a href="#tratamentos">Conheça nossos tratamentos</a>
+              Conheça nossos tratamentos
             </Button>
           </div>
         </div>
