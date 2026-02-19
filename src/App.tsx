@@ -9,7 +9,7 @@ import BlogLayout from "@/layouts/BlogLayout";
 
 // COMPONENTES DE PERFORMANCE - CRÍTICOS
 import ContentfulBlockerForNonBlogPages from '@/components/performance/ContentfulBlockerForNonBlogPages';
-import SimpleLCPOptimizer from '@/components/performance/SimpleLCPOptimizer';
+
 
 // SEO - Schema.org markup global
 import GlobalSchemas from '@/components/seo/GlobalSchemas';
@@ -96,7 +96,7 @@ const App = () => {
         <BrowserRouter>
           {/* BLOQUEADORES DE PERFORMANCE - ORDEM IMPORTA! */}
           <ContentfulBlockerForNonBlogPages />
-          <SimpleLCPOptimizer />
+
 
           <Toaster />
           <Sonner />
