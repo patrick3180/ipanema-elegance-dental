@@ -54,7 +54,8 @@ const GlobalSchemas = () => {
         },
         "identifier": "27509"
       }
-    }
+    },
+    "availableLanguage": ["pt-BR", "en"]
   };
 
   // LocalBusiness Schema - Local SEO, Google Maps, business hours
@@ -189,7 +190,8 @@ const GlobalSchemas = () => {
       "Lentes de Contato Dental",
       "Facetas de Porcelana",
       "Reabilitação Oral"
-    ]
+    ],
+    "availableLanguage": ["pt-BR", "en"]
   };
 
   return (

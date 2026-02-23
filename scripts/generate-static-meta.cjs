@@ -95,7 +95,8 @@ function generateDentistSchema() {
       { '@type': 'OpeningHoursSpecification', 'dayOfWeek': 'Saturday', 'opens': '09:00', 'closes': '14:00' }
     ],
     'hasCredential': { '@type': 'EducationalOccupationalCredential', 'credentialCategory': 'CRO-RJ', 'recognizedBy': { '@type': 'Organization', 'name': 'CRO-RJ' }, 'identifier': '27.509' },
-    'aggregateRating': { '@type': 'AggregateRating', 'ratingValue': '4.9', 'reviewCount': '127', 'bestRating': '5' }
+    'aggregateRating': { '@type': 'AggregateRating', 'ratingValue': '4.9', 'reviewCount': '127', 'bestRating': '5' },
+    'availableLanguage': ['pt-BR', 'en']
   });
 }
 
