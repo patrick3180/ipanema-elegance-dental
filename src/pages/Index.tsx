@@ -131,7 +131,7 @@ const Index = () => {
           "name": "Especialista em Prótese Dental"
         },
         {
-          "@type": "EducationalOccupationalCredential", 
+          "@type": "EducationalOccupationalCredential",
           "name": "Especialista em Implantodontia"
         }
       ]
@@ -145,6 +145,11 @@ const Index = () => {
         description="Procurando dentista em Ipanema? A Dra. Carla Christoph oferece odontologia estética e reabilitação oral com mínimo de 1 hora por consulta. Agende sua avaliação!"
         keywords="dentista Ipanema, clínica odontológica Ipanema, odontologia estética Ipanema, implantes dentários Ipanema, lentes de contato dental, facetas de porcelana, clareamento dental, prótese dentária, Dra. Carla Christoph, dentista especialista Rio de Janeiro"
         canonicalUrl="https://dracarlachristoph.com/"
+        hreflangAlternates={[
+          { lang: "pt-BR", href: "https://dracarlachristoph.com/" },
+          { lang: "en", href: "https://dracarlachristoph.com/en" },
+          { lang: "x-default", href: "https://dracarlachristoph.com/" },
+        ]}
         structuredData={structuredData}
       />
       <PageLayout className="pt-0">

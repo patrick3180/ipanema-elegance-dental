@@ -40,6 +40,11 @@ const ContactPage = () => {
         title="Contato | Dra. Carla Christoph - Dentista em Ipanema"
         description="Entre em contato com a Dra. Carla Christoph em Ipanema. Agende sua consulta pelo WhatsApp ou visite nosso consultório na Rua Visconde de Pirajá, 550."
         canonicalUrl="https://dracarlachristoph.com/contato"
+        hreflangAlternates={[
+          { lang: "pt-BR", href: "https://dracarlachristoph.com/contato" },
+          { lang: "en", href: "https://dracarlachristoph.com/en/contact" },
+          { lang: "x-default", href: "https://dracarlachristoph.com/contato" },
+        ]}
       />
       <PageLayout>
         <section className="section-spacing">

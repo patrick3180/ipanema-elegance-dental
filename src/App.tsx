@@ -52,6 +52,15 @@ const Ortodontia = lazy(() => import("./pages/Ortodontia"));
 const GonePage = lazy(() => import("./pages/GonePage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
+// English micro-site pages
+const EnHomePage = lazy(() => import("./pages/en/EnHomePage"));
+const EnAboutPage = lazy(() => import("./pages/en/EnAboutPage"));
+const EnContactPage = lazy(() => import("./pages/en/EnContactPage"));
+const EnDentalImplantsPage = lazy(() => import("./pages/en/EnDentalImplantsPage"));
+const EnPorcelainVeneersPage = lazy(() => import("./pages/en/EnPorcelainVeneersPage"));
+const EnGeneralDentistryPage = lazy(() => import("./pages/en/EnGeneralDentistryPage"));
+const EnDentalEmergencyPage = lazy(() => import("./pages/en/EnDentalEmergencyPage"));
+
 // Loading fallback component
 const PageLoadingFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-dental-beige">
@@ -146,6 +155,15 @@ const App = () => {
               {/* Rotas temporárias - redirecionam para home */}
               <Route path="/sobre" element={<AboutPage />} />
               <Route path="/contato" element={<ContactPage />} />
+
+              {/* English micro-site */}
+              <Route path="/en" element={<EnHomePage />} />
+              <Route path="/en/about" element={<EnAboutPage />} />
+              <Route path="/en/contact" element={<EnContactPage />} />
+              <Route path="/en/dental-implants" element={<EnDentalImplantsPage />} />
+              <Route path="/en/porcelain-veneers" element={<EnPorcelainVeneersPage />} />
+              <Route path="/en/general-dentistry" element={<EnGeneralDentistryPage />} />
+              <Route path="/en/dental-emergency" element={<EnDentalEmergencyPage />} />
               <Route path="/diferenciais" element={<Navigate to="/" replace />} />
 
               {/* Gone page for 410 redirects */}

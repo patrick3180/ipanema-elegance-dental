@@ -2,6 +2,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
+interface HreflangAlternate {
+  lang: string;
+  href: string;
+}
+
 interface SEOHeadProps {
   title: string;
   description: string;
@@ -15,6 +20,9 @@ interface SEOHeadProps {
   articleTags?: string[];
   noIndex?: boolean;
   structuredData?: any;
+  hreflangAlternates?: HreflangAlternate[];
+  locale?: string;
+  language?: string;
 }
 
 const SEOHead: React.FC<SEOHeadProps> = ({
@@ -29,7 +37,10 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   modifiedTime,
   articleTags,
   noIndex = false,
-  structuredData
+  structuredData,
+  hreflangAlternates,
+  locale = "pt_BR",
+  language = "pt-BR"
 }) => {
   // Normalize canonical URL to always use .com domain
   const normalizeUrl = (url: string) => {
@@ -38,7 +49,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   };
 
   const currentUrl = canonicalUrl || normalizeUrl(window.location.href);
-  
+
   // Default structured data for the dental clinic
   const defaultStructuredData = {
     "@context": "https://schema.org",
@@ -156,16 +167,16 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="author" content={author} />
       <meta name="robots" content={noIndex ? "noindex,nofollow" : "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"} />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="language" content="pt-BR" />
+      <meta name="language" content={language} />
       <meta name="revisit-after" content="7 days" />
-      
+
       {/* Google Search Console Verification */}
       <meta name="google-site-verification" content="0k2ILA3P_ahn1P6bl8bGpiSLJBcIYTaia47XPl0c3AQ" />
       <meta name="google-site-verification" content="mufiI1fRvsBjdZpIg6V7PCLlw12pjd4d-zd5dzoIkN8" />
-      
+
       {/* Canonical URL - Always use normalized .com URL */}
       <link rel="canonical" href={currentUrl} />
-      
+
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={ogType} />
       <meta property="og:title" content={title} />
@@ -176,8 +187,8 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta property="og:image:alt" content={title} />
       <meta property="og:url" content={currentUrl} />
       <meta property="og:site_name" content="Dra. Carla Christoph - Dentista em Ipanema" />
-      <meta property="og:locale" content="pt_BR" />
-      
+      <meta property="og:locale" content={locale} />
+
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@dracarlachristoph" />
@@ -186,7 +197,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
       <meta name="twitter:image:alt" content={title} />
-      
+
       {/* Article specific meta tags */}
       {ogType === 'article' && publishedTime && (
         <meta property="article:published_time" content={publishedTime} />
@@ -200,12 +211,12 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       {ogType === 'article' && articleTags && articleTags.map(tag => (
         <meta key={tag} property="article:tag" content={tag} />
       ))}
-      
+
       {/* Structured Data */}
       <script type="application/ld+json">
         {JSON.stringify(finalStructuredData)}
       </script>
-      
+
       {/* Additional SEO Meta Tags */}
       <meta name="theme-color" content="#8B4513" />
       <meta name="msapplication-TileColor" content="#8B4513" />
@@ -213,16 +224,24 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="apple-mobile-web-app-title" content="Dra. Carla Christoph" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-      
+
       {/* Geographic meta tags for local SEO */}
       <meta name="geo.region" content="BR-RJ" />
       <meta name="geo.placename" content="Ipanema, Rio de Janeiro" />
       <meta name="geo.position" content="-22.9868;-43.2005" />
       <meta name="ICBM" content="-22.9868, -43.2005" />
-      
+
       {/* Language alternatives */}
-      <link rel="alternate" hrefLang="pt-br" href={currentUrl} />
-      <link rel="alternate" hrefLang="x-default" href={currentUrl} />
+      {hreflangAlternates ? (
+        hreflangAlternates.map(alt => (
+          <link key={alt.lang} rel="alternate" hrefLang={alt.lang} href={alt.href} />
+        ))
+      ) : (
+        <>
+          <link rel="alternate" hrefLang="pt-br" href={currentUrl} />
+          <link rel="alternate" hrefLang="x-default" href={currentUrl} />
+        </>
+      )}
 
       {/* DNS prefetch for performance - Google Analytics/GTM only */}
       <link rel="dns-prefetch" href="//www.google-analytics.com" />

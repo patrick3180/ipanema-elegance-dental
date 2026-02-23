@@ -83,6 +83,9 @@ const ImplantesDentarios = () => {
         <meta name="twitter:description" content="Implantes dentários em Ipanema com planejamento digital 3D e técnicas minimamente invasivas." />
 
         <link rel="canonical" href="https://dracarlachristoph.com/implantes-dentarios" />
+        <link rel="alternate" hrefLang="pt-BR" href="https://dracarlachristoph.com/implantes-dentarios" />
+        <link rel="alternate" hrefLang="en" href="https://dracarlachristoph.com/en/dental-implants" />
+        <link rel="alternate" hrefLang="x-default" href="https://dracarlachristoph.com/implantes-dentarios" />
 
         {/* Critical CSS para LCP */}
         <style>{`

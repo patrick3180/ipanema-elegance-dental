@@ -121,6 +121,13 @@ const Header = () => {
               </Link>
             )
           ))}
+          <Link
+            to="/en"
+            className="text-sm font-medium text-dental-purple/60 hover:text-dental-gold transition-colors flex items-center gap-1 ml-2 border-l border-dental-purple/20 pl-4"
+            title="View in English"
+          >
+            🇺🇸 EN
+          </Link>
         </nav>
 
         {/* Mobile Menu Button - Always visible regardless of menu state */}
@@ -187,6 +194,15 @@ const Header = () => {
               <MessageCircle size={20} />
               Agendar pelo WhatsApp
             </a>
+
+            {/* Language Switch - Mobile Menu */}
+            <Link
+              to="/en"
+              className="mt-2 text-base font-medium text-dental-purple/60 hover:text-dental-gold transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              🇺🇸 English Version
+            </Link>
           </nav>
         </div>
       )}

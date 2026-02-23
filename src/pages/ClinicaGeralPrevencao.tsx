@@ -90,6 +90,9 @@ const ClinicaGeralPrevencao = () => {
           content="dentista ipanema, check-up dental, prevenção odontológica, limpeza dental, profilaxia, clínica geral odontologia, dra carla christoph"
         />
         <link rel="canonical" href="https://dracarlachristoph.com/clinica-geral-e-prevencao" />
+        <link rel="alternate" hrefLang="pt-BR" href="https://dracarlachristoph.com/clinica-geral-e-prevencao" />
+        <link rel="alternate" hrefLang="en" href="https://dracarlachristoph.com/en/general-dentistry" />
+        <link rel="alternate" hrefLang="x-default" href="https://dracarlachristoph.com/clinica-geral-e-prevencao" />
         <meta property="og:title" content="Clínica Geral e Prevenção Odontológica em Ipanema | Dra. Carla Christoph" />
         <meta property="og:description" content="Check-up digital e prevenção odontológica em Ipanema. Scanner 3D, ultrassom, protocolo personalizado." />
         <meta property="og:type" content="website" />

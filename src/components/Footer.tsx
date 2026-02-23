@@ -104,6 +104,8 @@ const Footer = () => {
             <a href="/politica-de-privacidade" className="hover:text-dental-gold transition-colors">Política de Privacidade</a>
             {" • "}
             <a href="/termos-de-uso" className="hover:text-dental-gold transition-colors">Termos de Uso</a>
+            {" • "}
+            <Link to="/en" className="hover:text-dental-gold transition-colors">🇺🇸 English</Link>
           </p>
         </div>
       </div>

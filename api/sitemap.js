@@ -7,13 +7,13 @@ export default async function handler(req, res) {
 
       // Usar token como query parameter (método comprovado)
       const url = `https://cdn.contentful.com/spaces/${spaceId}/environments/master/entries?content_type=blogCarla&limit=200&access_token=${accessToken}`;
-      
+
       const response = await fetch(url);
-      
+
       if (!response.ok) {
         return [];
       }
-      
+
       const data = await response.json();
       return data.items || [];
     } catch (error) {
@@ -24,7 +24,7 @@ export default async function handler(req, res) {
   try {
     const baseUrl = 'https://dracarlachristoph.com';
     const today = new Date().toISOString().split('T')[0];
-    
+
     // Páginas estáticas
     const staticPages = [
       { url: '/', priority: '1.0', changefreq: 'weekly' },
@@ -43,15 +43,23 @@ export default async function handler(req, res) {
       { url: '/contato', priority: '0.7', changefreq: 'monthly' },
       { url: '/politica-de-privacidade', priority: '0.3', changefreq: 'yearly' },
       { url: '/termos-de-uso', priority: '0.3', changefreq: 'yearly' },
+      // English micro-site
+      { url: '/en', priority: '0.8', changefreq: 'monthly' },
+      { url: '/en/about', priority: '0.5', changefreq: 'monthly' },
+      { url: '/en/contact', priority: '0.6', changefreq: 'monthly' },
+      { url: '/en/dental-implants', priority: '0.7', changefreq: 'monthly' },
+      { url: '/en/porcelain-veneers', priority: '0.7', changefreq: 'monthly' },
+      { url: '/en/general-dentistry', priority: '0.7', changefreq: 'monthly' },
+      { url: '/en/dental-emergency', priority: '0.7', changefreq: 'monthly' },
     ];
-    
+
     // Buscar posts do blog
     const blogPosts = await getBlogPosts();
-    
+
     // Gerar URLs dos posts
     const blogUrls = blogPosts.map(post => {
       let slug = '';
-      
+
       if (post.fields?.slug) {
         slug = post.fields.slug;
       } else if (post.fields?.titulo) {
@@ -63,13 +71,13 @@ export default async function handler(req, res) {
           .replace(/^-+|-+$/g, '')
           .replace(/--+/g, '-');
       }
-      
+
       if (!slug || slug.length < 3) return null;
-      
-      const updatedAt = post.sys?.updatedAt 
-        ? new Date(post.sys.updatedAt).toISOString().split('T')[0] 
+
+      const updatedAt = post.sys?.updatedAt
+        ? new Date(post.sys.updatedAt).toISOString().split('T')[0]
         : today;
-      
+
       return {
         url: `/blog/${slug}`,
         lastmod: updatedAt,
@@ -77,10 +85,10 @@ export default async function handler(req, res) {
         changefreq: 'weekly'
       };
     }).filter(item => item !== null);
-    
+
     // Combinar URLs
     const allUrls = [...staticPages, ...blogUrls];
-    
+
     // Gerar XML - IMPORTANTE: Sem espaços ou quebras antes
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -91,14 +99,14 @@ ${allUrls.map(page => `  <url>
     <priority>${page.priority}</priority>
   </url>`).join('\n')}
 </urlset>`;
-    
+
     // Headers ANTES de enviar qualquer conteúdo
     res.setHeader('Content-Type', 'application/xml; charset=utf-8');
     res.setHeader('Cache-Control', 'public, max-age=3600, s-maxage=3600');
-    
+
     // Enviar APENAS o XML, sem nada antes
     res.status(200).send(sitemap);
-    
+
   } catch (error) {
     // Em caso de erro, retornar sitemap mínimo
     const today = new Date().toISOString().split('T')[0];
@@ -117,7 +125,7 @@ ${allUrls.map(page => `  <url>
     <priority>0.8</priority>
   </url>
 </urlset>`;
-    
+
     res.setHeader('Content-Type', 'application/xml; charset=utf-8');
     res.status(200).send(fallback);
   }
