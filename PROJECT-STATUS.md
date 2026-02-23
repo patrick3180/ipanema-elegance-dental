@@ -60,6 +60,7 @@ Revisão profunda de 10 pilares do funil de marketing para otimizar conversões,
 | Sprint 5: AI Search | ✅ | 28 páginas + 65 posts pré-renderizados | 52→78/100 |
 | Sprint 6: Psychology | ✅ | Hero, seções empáticas, CTAs, urgência | 72→85/100 |
 | Sprint 7: Internal Linking | ✅ | 9 pages × 3 related links + 5 inline | 35→65+/100 |
+| Sprint EN: English Micro-Site | ✅ | 7 EN pages + hreflang + sitemap + lang switch | Novo canal |
 
 ### Status Detalhado
 Para acompanhamento detalhado pilar por pilar: **[STATUS-REVISAO-2026.md](docs/STATUS-REVISAO-2026.md)**

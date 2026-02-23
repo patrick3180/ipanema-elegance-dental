@@ -89,7 +89,10 @@ Definidas em `src/index.css`:
 | `OptimizedImage` | Imagens com lazy loading | `src/components/performance/` |
 | `UltraOptimizedPicture` | Heroes de LPs (máxima performance) | `src/components/performance/` |
 | `SEOHead` | Meta tags em pages com helmet | `src/components/seo/SEOHead.tsx` |
-| `PageLayout` | Wrapper padrão (header + footer) | `src/components/PageLayout.tsx` |
+| `PageLayout` | Wrapper padrão PT (header + footer) | `src/components/PageLayout.tsx` |
+| `EnPageLayout` | Wrapper EN (EnHeader + EnFooter) | `src/components/en/EnPageLayout.tsx` |
+| `EnHeader` | Header inglês com nav + lang switch | `src/components/en/EnHeader.tsx` |
+| `EnFooter` | Footer inglês com lang switch | `src/components/en/EnFooter.tsx` |
 | `InternalLinkingOptimizer` | Links relacionados automáticos | `src/components/seo/InternalLinkingOptimizer.tsx` |
 
 ---
@@ -131,7 +134,15 @@ src/
 │   ├── Ortodontia.tsx
 │   ├── LPLentesPorcelana.tsx    # Landing page
 │   ├── [outras LPs]
-│   └── BlogPost.tsx
+│   ├── BlogPost.tsx
+│   └── en/                      # English micro-site (7 pages)
+│       ├── EnHomePage.tsx        # /en
+│       ├── EnAboutPage.tsx       # /en/about
+│       ├── EnContactPage.tsx     # /en/contact
+│       ├── EnDentalImplantsPage.tsx     # /en/dental-implants
+│       ├── EnPorcelainVeneersPage.tsx   # /en/porcelain-veneers
+│       ├── EnGeneralDentistryPage.tsx   # /en/general-dentistry
+│       └── EnDentalEmergencyPage.tsx    # /en/dental-emergency
 ├── types/
 │   └── LandingPageConfig.ts  # Interface TypeScript das configs de LP
 ├── utils/
