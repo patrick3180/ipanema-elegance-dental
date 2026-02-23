@@ -289,6 +289,7 @@ const LPLentesPorcelana = () => {
             title={config.cta.title}
             subtitle={config.cta.subtitle}
             buttonText={config.cta.buttonText}
+            urgency={config.cta.urgency}
             whatsappNumber={config.whatsapp.number}
             whatsappMessage={config.whatsapp.message}
             campaign={config.campaign}

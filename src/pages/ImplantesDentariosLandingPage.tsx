@@ -255,6 +255,7 @@ const ImplantesDentariosLandingPage: React.FC = () => {
               title={implantesDentariosConfig.cta.title}
               subtitle={implantesDentariosConfig.cta.subtitle}
               buttonText={implantesDentariosConfig.cta.buttonText}
+              urgency={implantesDentariosConfig.cta.urgency}
               whatsappNumber={implantesDentariosConfig.whatsapp.number}
               whatsappMessage={implantesDentariosConfig.whatsapp.message}
               campaign={implantesDentariosConfig.campaign}

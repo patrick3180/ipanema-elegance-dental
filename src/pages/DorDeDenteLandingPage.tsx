@@ -212,6 +212,7 @@ const DorDeDenteLandingPage: React.FC = () => {
               title={dorDeDenteConfig.cta.title}
               subtitle={dorDeDenteConfig.cta.subtitle}
               buttonText={dorDeDenteConfig.cta.buttonText}
+              urgency={dorDeDenteConfig.cta.urgency}
               whatsappNumber={dorDeDenteConfig.whatsapp.number}
               whatsappMessage={dorDeDenteConfig.whatsapp.message}
               campaign={dorDeDenteConfig.campaign}

@@ -2,15 +2,24 @@
   "buildCommand": "npm run build && node scripts/generate-static-meta.cjs && node scripts/generate-blog-html.js",
   "outputDirectory": "dist",
   "framework": "vite",
-  "regions": ["gru1"],
+  "regions": [
+    "gru1"
+  ],
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/lp/profilaxia-dental-ipanema",
+      "destination": "/lp/limpeza-dental-ipanema",
+      "statusCode": 301
+    }
+  ],
   "rewrites": [
     {
       "source": "/sitemap.xml",
       "destination": "/api/sitemap"
     },
     {
-      "source": "/robots.txt", 
+      "source": "/robots.txt",
       "destination": "/api/robots"
     },
     {
@@ -67,6 +76,28 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Content-Type",
+          "value": "font/woff2"
+        }
+      ]
+    },
+    {
+      "source": "/lovable-uploads/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
         }
       ]
     }

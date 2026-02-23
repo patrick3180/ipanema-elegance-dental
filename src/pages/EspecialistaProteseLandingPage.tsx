@@ -261,6 +261,7 @@ const EspecialistaProteseLandingPage = () => {
                 title={especialistaProteseConfig.cta.title}
                 subtitle={especialistaProteseConfig.cta.subtitle}
                 buttonText={especialistaProteseConfig.cta.buttonText}
+                urgency={especialistaProteseConfig.cta.urgency}
                 whatsappNumber={especialistaProteseConfig.whatsapp.number}
                 whatsappMessage={especialistaProteseConfig.whatsapp.message}
                 messageMatch={especialistaProteseConfig.messageMatch}

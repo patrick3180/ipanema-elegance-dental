@@ -22,6 +22,16 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
   whatsappNumber,
   whatsappMessage
 }) => {
+  // Auto-derive AVIF paths from webp for LCP optimization
+  const deriveAvifPaths = (webpSrc: string) => {
+    const base = webpSrc.replace(/\.webp$/, '');
+    return {
+      mobile: `${base}-480.avif`,
+      desktop: `${base}-1024.avif`,
+    };
+  };
+  const avifPaths = backgroundImage ? deriveAvifPaths(backgroundImage) : null;
+
   const handleWhatsAppClick = async () => {
     // Track event with Google Tag Manager
     if (window.dataLayer) {
@@ -32,12 +42,12 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
         event_label: 'Hero CTA Button - Consulta Inicial'
       });
     }
-    
+
     // Google Ads conversion tracking
     if (window.gtag) {
       window.gtag('event', 'conversion', {
         'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
-        'event_callback': function() {
+        'event_callback': function () {
           if (process.env.NODE_ENV === 'development') {
             console.log('Google Ads conversion tracked - Hero CTA Consulta');
           }
@@ -47,7 +57,7 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
 
     // Send GCLID to webhook
     await sendGCLIDToWebhook('hero_cta_button_consulta');
-    
+
     // Open WhatsApp
     const encodedMessage = encodeURIComponent(whatsappMessage);
     window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank");
@@ -134,6 +144,8 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
                   priority={true}
                   width={760}
                   height={996}
+                  mobileSrc={avifPaths?.mobile}
+                  desktopSrc={avifPaths?.desktop}
                   className="w-full h-full object-cover"
                 />
               </div>

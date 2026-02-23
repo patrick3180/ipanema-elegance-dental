@@ -248,6 +248,7 @@ const DenteQuebradoLandingPage: React.FC = () => {
               title={denteQuebradoConfig.cta.title}
               subtitle={denteQuebradoConfig.cta.subtitle}
               buttonText={denteQuebradoConfig.cta.buttonText}
+              urgency={denteQuebradoConfig.cta.urgency}
               whatsappNumber={denteQuebradoConfig.whatsapp.number}
               whatsappMessage={denteQuebradoConfig.whatsapp.message}
               campaign={denteQuebradoConfig.campaign}

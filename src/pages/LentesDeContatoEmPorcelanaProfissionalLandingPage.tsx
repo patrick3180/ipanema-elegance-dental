@@ -237,6 +237,7 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
               title={lentesPorcelanaProfissionalConfig.cta.title}
               subtitle={lentesPorcelanaProfissionalConfig.cta.subtitle}
               buttonText={lentesPorcelanaProfissionalConfig.cta.buttonText}
+              urgency={lentesPorcelanaProfissionalConfig.cta.urgency}
               whatsappNumber={lentesPorcelanaProfissionalConfig.whatsapp.number}
               whatsappMessage={lentesPorcelanaProfissionalConfig.whatsapp.message}
               campaign={lentesPorcelanaProfissionalConfig.campaign}

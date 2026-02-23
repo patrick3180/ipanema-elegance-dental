@@ -131,12 +131,7 @@ const LimpezaDentalLandingPage: React.FC = () => {
 
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
 
-        <link
-          rel="preload"
-          href="/css/non-critical.css"
-          as="style"
-          onLoad={() => { }}
-        />
+
 
         <script type="application/ld+json">
           {JSON.stringify({
@@ -234,6 +229,7 @@ const LimpezaDentalLandingPage: React.FC = () => {
               title={limpezaDentalConfig.cta.title}
               subtitle={limpezaDentalConfig.cta.subtitle}
               buttonText={limpezaDentalConfig.cta.buttonText}
+              urgency={limpezaDentalConfig.cta.urgency}
               whatsappNumber={limpezaDentalConfig.whatsapp.number}
               whatsappMessage={limpezaDentalConfig.whatsapp.message}
               campaign={limpezaDentalConfig.campaign}

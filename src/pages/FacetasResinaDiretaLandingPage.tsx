@@ -190,6 +190,7 @@ const FacetasResinaDiretaLandingPage = () => {
               title={pageConfig.cta.title}
               subtitle={pageConfig.cta.subtitle}
               buttonText={pageConfig.cta.buttonText}
+              urgency={pageConfig.cta.urgency}
               whatsappNumber={pageConfig.whatsapp.number}
               whatsappMessage={pageConfig.whatsapp.message}
               campaign={pageConfig.campaign}

@@ -253,6 +253,7 @@ const EmergenciaOdontologicaLandingPage: React.FC = () => {
               title={emergenciaOdontologicaConfig.cta.title}
               subtitle={emergenciaOdontologicaConfig.cta.subtitle}
               buttonText={emergenciaOdontologicaConfig.cta.buttonText}
+              urgency={emergenciaOdontologicaConfig.cta.urgency}
               whatsappNumber={emergenciaOdontologicaConfig.whatsapp.number}
               whatsappMessage={emergenciaOdontologicaConfig.whatsapp.message}
               campaign={emergenciaOdontologicaConfig.campaign}
