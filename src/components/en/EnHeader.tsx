@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Menu, X, Star, MessageCircle } from "lucide-react";
+import { Menu, X, Star, MessageCircle, ChevronDown } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const EnHeader = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isTreatmentsOpen, setIsTreatmentsOpen] = useState(false);
     const location = useLocation();
     const isMobile = useIsMobile();
 
@@ -18,10 +19,15 @@ const EnHeader = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    const treatmentItems = [
+        { title: "Dental Implants", path: "/en/dental-implants" },
+        { title: "Porcelain Veneers", path: "/en/porcelain-veneers" },
+        { title: "General Dentistry", path: "/en/general-dentistry" },
+    ];
+
     const navigationItems = [
         { title: "Home", path: "/en" },
         { title: "About", path: "/en/about" },
-        { title: "Treatments", path: "/en/dental-implants" },
         { title: "Emergency", path: "/en/dental-emergency" },
         { title: "Contact", path: "/en/contact" },
     ];
@@ -72,20 +78,85 @@ const EnHeader = () => {
 
                 {/* Desktop Navigation */}
                 <nav className="hidden md:flex items-center gap-6">
-                    {navigationItems.map((item) => (
-                        <Link
-                            key={item.title}
-                            to={item.path}
+                    <Link
+                        to="/en"
+                        className={cn(
+                            "text-sm font-medium transition-colors",
+                            location.pathname === "/en"
+                                ? "text-dental-gold border-b-2 border-dental-gold pb-0.5"
+                                : "text-dental-purple/80 hover:text-dental-gold"
+                        )}
+                    >
+                        Home
+                    </Link>
+                    <Link
+                        to="/en/about"
+                        className={cn(
+                            "text-sm font-medium transition-colors",
+                            location.pathname.startsWith("/en/about")
+                                ? "text-dental-gold border-b-2 border-dental-gold pb-0.5"
+                                : "text-dental-purple/80 hover:text-dental-gold"
+                        )}
+                    >
+                        About
+                    </Link>
+
+                    {/* Treatments Dropdown */}
+                    <div className="relative group">
+                        <button
                             className={cn(
-                                "text-sm font-medium transition-colors",
-                                isActivePath(item.path)
-                                    ? "text-dental-gold border-b-2 border-dental-gold pb-0.5"
+                                "text-sm font-medium transition-colors flex items-center gap-1",
+                                treatmentItems.some(t => location.pathname.startsWith(t.path))
+                                    ? "text-dental-gold"
                                     : "text-dental-purple/80 hover:text-dental-gold"
                             )}
                         >
-                            {item.title}
-                        </Link>
-                    ))}
+                            Treatments
+                            <ChevronDown size={14} className="transition-transform group-hover:rotate-180" />
+                        </button>
+                        <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                            <div className="bg-white rounded-lg shadow-elegant border border-dental-beige/50 py-2 min-w-[200px]">
+                                {treatmentItems.map((item) => (
+                                    <Link
+                                        key={item.title}
+                                        to={item.path}
+                                        className={cn(
+                                            "block px-4 py-2 text-sm transition-colors",
+                                            location.pathname.startsWith(item.path)
+                                                ? "text-dental-gold bg-dental-beige/30"
+                                                : "text-dental-purple/80 hover:text-dental-gold hover:bg-dental-beige/20"
+                                        )}
+                                    >
+                                        {item.title}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    <Link
+                        to="/en/dental-emergency"
+                        className={cn(
+                            "text-sm font-medium transition-colors",
+                            location.pathname.startsWith("/en/dental-emergency")
+                                ? "text-dental-gold border-b-2 border-dental-gold pb-0.5"
+                                : "text-dental-purple/80 hover:text-dental-gold"
+                        )}
+                    >
+                        Emergency
+                    </Link>
+                    <Link
+                        to="/en/contact"
+                        className={cn(
+                            "text-sm font-medium transition-colors",
+                            location.pathname.startsWith("/en/contact")
+                                ? "text-dental-gold border-b-2 border-dental-gold pb-0.5"
+                                : "text-dental-purple/80 hover:text-dental-gold"
+                        )}
+                    >
+                        Contact
+                    </Link>
+
                     {/* Language switch */}
                     <Link
                         to="/"
@@ -112,21 +183,82 @@ const EnHeader = () => {
                     style={{ top: "0", left: "0", right: "0", bottom: "0" }}
                 >
                     <nav className="flex flex-col items-center gap-6">
-                        {navigationItems.map((item) => (
-                            <Link
-                                key={item.title}
-                                to={item.path}
+                        <Link
+                            to="/en"
+                            className={cn(
+                                "text-xl font-medium transition-colors",
+                                location.pathname === "/en" ? "text-dental-gold" : "text-dental-purple hover:text-dental-gold"
+                            )}
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            Home
+                        </Link>
+                        <Link
+                            to="/en/about"
+                            className={cn(
+                                "text-xl font-medium transition-colors",
+                                location.pathname.startsWith("/en/about") ? "text-dental-gold" : "text-dental-purple hover:text-dental-gold"
+                            )}
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            About
+                        </Link>
+
+                        {/* Treatments expandable */}
+                        <div className="flex flex-col items-center">
+                            <button
+                                onClick={() => setIsTreatmentsOpen(!isTreatmentsOpen)}
                                 className={cn(
-                                    "text-xl font-medium transition-colors",
-                                    isActivePath(item.path)
+                                    "text-xl font-medium transition-colors flex items-center gap-1",
+                                    treatmentItems.some(t => location.pathname.startsWith(t.path))
                                         ? "text-dental-gold"
                                         : "text-dental-purple hover:text-dental-gold"
                                 )}
-                                onClick={() => setIsMenuOpen(false)}
                             >
-                                {item.title}
-                            </Link>
-                        ))}
+                                Treatments
+                                <ChevronDown size={18} className={cn("transition-transform", isTreatmentsOpen && "rotate-180")} />
+                            </button>
+                            {isTreatmentsOpen && (
+                                <div className="flex flex-col items-center gap-3 mt-3">
+                                    {treatmentItems.map((item) => (
+                                        <Link
+                                            key={item.title}
+                                            to={item.path}
+                                            className={cn(
+                                                "text-base transition-colors",
+                                                location.pathname.startsWith(item.path)
+                                                    ? "text-dental-gold"
+                                                    : "text-dental-purple/70 hover:text-dental-gold"
+                                            )}
+                                            onClick={() => setIsMenuOpen(false)}
+                                        >
+                                            {item.title}
+                                        </Link>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+                        <Link
+                            to="/en/dental-emergency"
+                            className={cn(
+                                "text-xl font-medium transition-colors",
+                                location.pathname.startsWith("/en/dental-emergency") ? "text-dental-gold" : "text-dental-purple hover:text-dental-gold"
+                            )}
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            Emergency
+                        </Link>
+                        <Link
+                            to="/en/contact"
+                            className={cn(
+                                "text-xl font-medium transition-colors",
+                                location.pathname.startsWith("/en/contact") ? "text-dental-gold" : "text-dental-purple hover:text-dental-gold"
+                            )}
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            Contact
+                        </Link>
 
                         {/* Language switch mobile */}
                         <Link

@@ -17,6 +17,16 @@ const EnPageLayout = ({ children, className = "" }: EnPageLayoutProps) => {
         window.scrollTo(0, 0);
     }, [location.pathname]);
 
+    // Set <html lang="en"> for EN pages, restore on unmount
+    useEffect(() => {
+        const html = document.documentElement;
+        const prevLang = html.getAttribute("lang") || "pt-BR";
+        html.setAttribute("lang", "en");
+        return () => {
+            html.setAttribute("lang", prevLang);
+        };
+    }, []);
+
     return (
         <div className="bg-dental-beige min-h-screen">
             <EnHeader />

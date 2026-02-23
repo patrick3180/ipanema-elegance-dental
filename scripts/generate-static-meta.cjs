@@ -91,7 +91,7 @@ function generateDentistSchema() {
     'priceRange': '$$',
     'address': PROVIDER.address,
     'openingHoursSpecification': [
-      { '@type': 'OpeningHoursSpecification', 'dayOfWeek': ['Monday','Tuesday','Wednesday','Thursday','Friday'], 'opens': '09:00', 'closes': '19:00' },
+      { '@type': 'OpeningHoursSpecification', 'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], 'opens': '09:00', 'closes': '19:00' },
       { '@type': 'OpeningHoursSpecification', 'dayOfWeek': 'Saturday', 'opens': '09:00', 'closes': '14:00' }
     ],
     'hasCredential': { '@type': 'EducationalOccupationalCredential', 'credentialCategory': 'CRO-RJ', 'recognizedBy': { '@type': 'Organization', 'name': 'CRO-RJ' }, 'identifier': '27.509' },
@@ -395,6 +395,55 @@ const infoPages = {
 };
 
 // ============================================================
+// ENGLISH MICRO-SITE — Meta + fallback (English content)
+// ============================================================
+
+const englishPages = {
+  '/en': {
+    title: 'Dentist in Ipanema, Rio de Janeiro | Dra. Carla Christoph',
+    description: 'Cosmetic and restorative dentistry in Ipanema, Rio de Janeiro. Dental implants, porcelain veneers, teeth whitening. Personalized 1-hour appointments. CRO-RJ 27.509.',
+    h1: 'Dentist in Ipanema — Dra. Carla Christoph',
+    summary: 'Dra. Carla Christoph is a dental specialist in Ipanema, Rio de Janeiro, offering cosmetic and restorative dentistry including dental implants, porcelain veneers, teeth whitening, and general dental care. Office at Rua Visconde de Pirajá, 550 - Suite 1107, Ipanema. Monday to Friday 9 AM to 7 PM. CRO-RJ 27.509.'
+  },
+  '/en/about': {
+    title: 'About Dra. Carla Christoph | Dentist in Ipanema, Rio de Janeiro',
+    description: 'Meet Dra. Carla Christoph: dental prosthetics and implantology specialist in Ipanema with 20+ years of experience. CRO-RJ 27.509.',
+    h1: 'About Dra. Carla Christoph',
+    summary: 'Dra. Carla Christoph is a dental specialist in Prosthetic Dentistry and Oral Rehabilitation based in Ipanema, Rio de Janeiro. With over 20 years of experience (CRO-RJ 27.509), she provides personalized care with a minimum of 1 hour per appointment.'
+  },
+  '/en/contact': {
+    title: 'Contact | Dra. Carla Christoph - Dentist in Ipanema',
+    description: 'Contact Dra. Carla Christoph in Ipanema. Book via WhatsApp or visit our office at Rua Visconde de Pirajá, 550 - Suite 1107.',
+    h1: 'Contact Dra. Carla Christoph',
+    summary: 'Office: Rua Visconde de Pirajá, 550 - Suite 1107, Ipanema, Rio de Janeiro. Phone: +55 21 99330-4045. Hours: Monday-Friday 9 AM-7 PM (GMT-3). WhatsApp available 24/7.'
+  },
+  '/en/dental-implants': {
+    title: 'Dental Implants in Ipanema | Dra. Carla Christoph, Rio de Janeiro',
+    description: 'Dental implant placement with 3D digital planning in Ipanema. Biocompatible titanium implants, minimally invasive techniques. Dra. Carla Christoph, CRO-RJ 27.509.',
+    h1: 'Dental Implants in Ipanema',
+    summary: 'Dental implant treatment in Ipanema, Rio de Janeiro by Dra. Carla Christoph. Biocompatible titanium implants with 3D digital planning, minimally invasive techniques, and personalized care. Single teeth, multiple teeth, and full-mouth rehabilitation available.'
+  },
+  '/en/porcelain-veneers': {
+    title: 'Porcelain Veneers in Ipanema | Dra. Carla Christoph, Rio de Janeiro',
+    description: 'Porcelain veneers and dental laminates in Ipanema. Smile Test Drive preview, minimal preparation, natural results. Dra. Carla Christoph, CRO-RJ 27.509.',
+    h1: 'Porcelain Veneers in Ipanema',
+    summary: 'Porcelain veneer treatment in Ipanema, Rio de Janeiro by Dra. Carla Christoph. Ultra-thin ceramic laminates for a natural, beautiful smile. Exclusive Smile Test Drive preview system. Minimal tooth preparation with lasting results.'
+  },
+  '/en/general-dentistry': {
+    title: 'General Dentistry in Ipanema | Dra. Carla Christoph, Rio de Janeiro',
+    description: 'Comprehensive dental checkups, cleanings, and preventive care in Ipanema. 3D digital scanner, personalized treatment plans. Dra. Carla Christoph.',
+    h1: 'General Dentistry & Prevention in Ipanema',
+    summary: 'General dentistry and preventive care in Ipanema, Rio de Janeiro. Dental checkups, professional cleanings, teeth whitening, and personalized prevention protocols. 3D digital scanner for accurate diagnosis.'
+  },
+  '/en/dental-emergency': {
+    title: 'Dental Emergency in Ipanema | Dra. Carla Christoph, Rio de Janeiro',
+    description: 'Dental emergency in Ipanema? Toothache, broken tooth, lost filling — contact us via WhatsApp for same-day urgent dental care. Dra. Carla Christoph.',
+    h1: 'Dental Emergency in Ipanema',
+    summary: 'Urgent dental care in Ipanema, Rio de Janeiro. Same-day appointments for toothache, broken teeth, lost crowns, dental abscesses. Contact via WhatsApp for immediate assistance. Monday-Friday 9 AM-7 PM.'
+  }
+};
+
+// ============================================================
 // LANDING PAGES — Meta only + noindex (no fallback/schemas)
 // ============================================================
 
@@ -462,7 +511,7 @@ const landingPages = {
 // ============================================================
 
 function generatePage(routePath, meta, options = {}) {
-  const { noindex = false, schemas = [], fallbackContent = '' } = options;
+  const { noindex = false, schemas = [], fallbackContent = '', lang = 'pt-BR' } = options;
   let html = indexHtml;
 
   const fullUrl = BASE_URL + routePath;
@@ -494,7 +543,7 @@ function generatePage(routePath, meta, options = {}) {
     '<meta property="og:url" content="' + fullUrl + '" />',
     '<meta property="og:image" content="' + OG_IMAGE + '" />',
     '<meta property="og:site_name" content="Dra. Carla Christoph" />',
-    '<meta property="og:locale" content="pt_BR" />',
+    '<meta property="og:locale" content="' + (lang === 'en' ? 'en_US' : 'pt_BR') + '" />',
     '<meta name="twitter:card" content="summary_large_image" />',
     '<meta name="twitter:title" content="' + meta.title + '" />',
     '<meta name="twitter:description" content="' + meta.description + '" />',
@@ -563,7 +612,20 @@ for (const [routePath, data] of Object.entries(infoPages)) {
   console.log('Generated (info + schema): ' + routePath + '.html');
 }
 
-// 3. Landing pages (noindex, meta only)
+// 3. English pages (Dentist schema + fallback, lang=en)
+for (const [routePath, data] of Object.entries(englishPages)) {
+  const schemas = [generateDentistSchema()];
+  const fallbackContent = generateInfoFallbackHTML(data);
+
+  const filePath = path.join(distDir, routePath + '.html');
+  const fileDir = path.dirname(filePath);
+  fs.mkdirSync(fileDir, { recursive: true });
+  fs.writeFileSync(filePath, generatePage(routePath, data, { schemas, fallbackContent, lang: 'en' }));
+  count++;
+  console.log('Generated (english): ' + routePath + '.html');
+}
+
+// 4. Landing pages (noindex, meta only)
 for (const [routePath, meta] of Object.entries(landingPages)) {
   const filePath = path.join(distDir, routePath + '.html');
   const fileDir = path.dirname(filePath);
@@ -576,4 +638,5 @@ for (const [routePath, meta] of Object.entries(landingPages)) {
 console.log('\nDone! Generated ' + count + ' static HTML files.');
 console.log('  - ' + Object.keys(servicePages).length + ' service pages (with schemas + fallback content)');
 console.log('  - ' + Object.keys(infoPages).length + ' info pages (with Dentist schema + fallback)');
+console.log('  - ' + Object.keys(englishPages).length + ' english pages (lang=en, Dentist schema + fallback)');
 console.log('  - ' + Object.keys(landingPages).length + ' landing pages (noindex, meta only)');
