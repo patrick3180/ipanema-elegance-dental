@@ -27,11 +27,6 @@ const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>(); // Fixed: changed from postSlug to slug
   const navigate = useNavigate();
 
-  // Debug logging for route parameters
-  React.useEffect(() => {
-    console.log('BlogPost component mounted with params:', { slug });
-    console.log('Current URL:', window.location.href);
-  }, [slug]);
 
   // Fetch the current blog post
   const {
@@ -41,9 +36,7 @@ const BlogPost = () => {
   } = useQuery({
     queryKey: ['blogPost', slug],
     queryFn: () => {
-      console.log(`Fetching blog post with slug: "${slug}"`);
       if (!slug) {
-        console.error('No slug provided to getBlogPostBySlug');
         throw new Error('No slug provided');
       }
       return getBlogPostBySlug(slug);
@@ -56,51 +49,23 @@ const BlogPost = () => {
   // Fetch all posts for related posts, but with lower priority
   const { data: allPosts = [] } = useQuery({
     queryKey: ['blogPosts'],
-    queryFn: () => {
-      console.log('Fetching all blog posts for related posts');
-      return getAllBlogPosts();
-    },
+    queryFn: () => getAllBlogPosts(),
     staleTime: 300000
   });
 
-  // Enhanced error handling and navigation
   React.useEffect(() => {
     if (!slug) {
-      console.error('No slug in URL parameters, redirecting to blog page');
       navigate("/blog");
       return;
     }
 
     if (!isLoading && !post && slug) {
-      console.log(`Post not found for slug: ${slug}, redirecting to blog page`);
       navigate("/blog");
     }
   }, [post, slug, navigate, isLoading]);
 
-  // Debug logging for post data
-  React.useEffect(() => {
-    if (post) {
-      console.log('Blog post loaded successfully:', {
-        title: post.title,
-        slug: post.slug,
-        hasContent: !!post.content,
-        contentLength: post.content?.length || 0,
-        imageUrl: post.imageUrl,
-        category: post.category
-      });
-    }
-  }, [post]);
 
-  // Debug logging for errors
-  React.useEffect(() => {
-    if (error) {
-      console.error('Error loading blog post:', error);
-    }
-  }, [error]);
-
-  // Loading state
   if (isLoading) {
-    console.log('BlogPost: Rendering loading state');
     return (
       <PageLayout>
         <BlogPostLoading />
@@ -108,9 +73,7 @@ const BlogPost = () => {
     );
   }
 
-  // Error state
   if (error || !post) {
-    console.log('BlogPost: Rendering error state', { error: !!error, post: !!post });
     return (
       <PageLayout>
         <BlogPostError />
@@ -119,7 +82,6 @@ const BlogPost = () => {
   }
 
   if (!post) {
-    console.log('BlogPost: No post data, returning null');
     return null;
   }
 
@@ -128,11 +90,7 @@ const BlogPost = () => {
     .filter(p => p.category === post.category && p.id !== post.id)
     .slice(0, 2);
 
-  console.log('BlogPost: Related posts found:', relatedPosts.length);
-
-  // Check if content exists
   const hasContent = post.content && post.content.length > 10;
-  console.log('BlogPost: Content check:', { hasContent, contentLength: post.content?.length });
 
   // Create structured data for the blog post
   const structuredData = {
@@ -172,8 +130,6 @@ const BlogPost = () => {
       "description": `Artigo sobre ${post.category.toLowerCase()} em odontologia`
     }
   };
-
-  console.log('BlogPost: Rendering complete blog post');
 
   // Generate BreadcrumbList schema
   const breadcrumbSchema = {

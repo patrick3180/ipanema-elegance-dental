@@ -69,6 +69,12 @@ const generateBlogPostHTML = (post) => {
       .replace(/--+/g, '-');
   }
 
+  // Optimize Contentful image URL for mobile LCP
+  const optimizedImageUrl = imageUrl
+    ? `https:${imageUrl}?w=800&fm=webp&q=80`
+    : '';
+  const fullImageUrl = imageUrl ? 'https:' + imageUrl : '';
+
   return `<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -79,12 +85,16 @@ const generateBlogPostHTML = (post) => {
   <meta name="author" content="${author}" />
   <link rel="canonical" href="${BASE_URL}/blog/${slug}" />
 
+  <!-- LCP Optimization: preconnect + preload hero image -->
+  <link rel="preconnect" href="https://images.ctfassets.net" crossorigin />
+  ${optimizedImageUrl ? `<link rel="preload" as="image" href="${optimizedImageUrl}" fetchpriority="high" />` : ''}
+
   <!-- Open Graph -->
   <meta property="og:title" content="${title}" />
   <meta property="og:description" content="${excerpt.substring(0, 160)}" />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="${BASE_URL}/blog/${slug}" />
-  <meta property="og:image" content="${imageUrl ? 'https:' + imageUrl : ''}" />
+  <meta property="og:image" content="${fullImageUrl}" />
   <meta property="article:published_time" content="${date}" />
   <meta property="article:author" content="${author}" />
   <meta property="article:section" content="${category}" />
@@ -93,7 +103,7 @@ const generateBlogPostHTML = (post) => {
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${title}" />
   <meta name="twitter:description" content="${excerpt.substring(0, 160)}" />
-  <meta name="twitter:image" content="${imageUrl ? 'https:' + imageUrl : ''}" />
+  <meta name="twitter:image" content="${fullImageUrl}" />
 
   <!-- Schema.org BlogPosting -->
   <script type="application/ld+json">
@@ -206,7 +216,7 @@ const generateBlogPostHTML = (post) => {
       <div class="meta">
         Por ${author} • ${new Date(date).toLocaleDateString('pt-BR')} • ${category}
       </div>
-      ${imageUrl ? `<img src="https:${imageUrl}" alt="${title}" />` : ''}
+      ${optimizedImageUrl ? `<img src="${optimizedImageUrl}" alt="${title}" width="800" height="450" loading="eager" fetchpriority="high" decoding="async" style="aspect-ratio:16/9;object-fit:cover" />` : ''}
       <div class="excerpt">${excerpt}</div>
       <div class="content">
         ${content.substring(0, 1500)}${content.length > 1500 ? '...' : ''}
