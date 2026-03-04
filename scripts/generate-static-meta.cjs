@@ -585,9 +585,12 @@ let count = 0;
 
 // 1. Service pages (full schemas + fallback content)
 for (const [routePath, data] of Object.entries(servicePages)) {
+  // NOTE: FAQPage schema intentionally NOT included here.
+  // Each service page .tsx already renders FAQPage via React Helmet.
+  // Including it here too caused Google to flag 14 "FAQPage duplicated" errors.
+  // See: GSC audit report 04/Mar/2026
   const schemas = [
     generateMedicalProcedureSchema(data, routePath),
-    generateFAQPageSchema(data.faqs),
     generateDentistSchema()
   ];
   const fallbackContent = generateFallbackHTML(data, routePath);
