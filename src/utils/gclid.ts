@@ -77,7 +77,7 @@ export const sendGCLIDToWebhook = async (source: string): Promise<void> => {
   try {
     console.log('📤 Sending GCLID to webhook:', webhookData);
     
-    const response = await fetch('https://n8n.srv876901.hstgr.cloud/webhook/webhook/gclid', {
+    const response = await fetch('https://oqszkriirsodegxpfazz.supabase.co/functions/v1/gc-gclid-track', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
