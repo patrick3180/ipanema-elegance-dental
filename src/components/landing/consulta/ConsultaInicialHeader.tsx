@@ -57,9 +57,9 @@ const ConsultaInicialHeader: React.FC<ConsultaInicialHeaderProps> = ({
         <div className="flex justify-between items-center">
           {/* Logo/Brand */}
           <div className="flex flex-col">
-            <h1 className="text-lg font-bold text-[#381F47]">
+            <span className="text-lg font-bold text-[#381F47]">
               Dra. Carla Christoph
-            </h1>
+            </span>
             <span className="text-xs text-gray-600">CRO-RJ 27509</span>
           </div>
           

@@ -47,7 +47,7 @@ const ClareamentoHeader: React.FC<ClareamentoHeaderProps> = ({
       <div className="container mx-auto px-4 h-full flex items-center justify-between">
         {/* Logo/Nome */}
         <div className="flex flex-col">
-          <h1 className="text-lg font-bold text-[#381F47]">Dra. Carla Christoph</h1>
+          <span className="text-lg font-bold text-[#381F47]">Dra. Carla Christoph</span>
           <span className="text-sm text-gray-600">CRO-RJ 27509</span>
         </div>
 

@@ -48,83 +48,9 @@ export const collectSitemapData = async (): Promise<SitemapData> => {
     }
   ];
 
-  // Landing pages - Alta prioridade para conversão
-  const landingPages: SitemapUrl[] = [
-    // Landing pages já ativas
-    {
-      loc: `${baseUrl}/lp/limpeza-dental-ipanema`,
-      lastmod: today,
-      changefreq: 'monthly',
-      priority: 0.9
-    },
-    {
-      loc: `${baseUrl}/lp/profilaxia-dental-ipanema`,
-      lastmod: today,
-      changefreq: 'monthly',
-      priority: 0.9
-    },
-    {
-      loc: `${baseUrl}/lp/estetica-dental-ipanema`,
-      lastmod: today,
-      changefreq: 'monthly',
-      priority: 0.9
-    },
-    {
-      loc: `${baseUrl}/lp/saude-gengival-ipanema`,
-      lastmod: today,
-      changefreq: 'monthly',
-      priority: 0.9
-    },
-    {
-      loc: `${baseUrl}/lp/clareamento-dental`,
-      lastmod: today,
-      changefreq: 'monthly',
-      priority: 0.9
-    },
-    // Landing pages com campanhas ativas
-    {
-      loc: `${baseUrl}/lp/consulta-inicial`,
-      lastmod: today,
-      changefreq: 'monthly',
-      priority: 0.9
-    },
-    {
-      loc: `${baseUrl}/lp/dor-de-dente-urgencia-ipanema`,
-      lastmod: today,
-      changefreq: 'monthly',
-      priority: 0.9
-    },
-    {
-      loc: `${baseUrl}/lp/dente-quebrado-urgencia-ipanema`,
-      lastmod: today,
-      changefreq: 'monthly',
-      priority: 0.9
-    },
-    {
-      loc: `${baseUrl}/lp/emergencia-odontologica-ipanema`,
-      lastmod: today,
-      changefreq: 'monthly',
-      priority: 0.9
-    },
-    {
-      loc: `${baseUrl}/lp/especialista-protese-ipanema`,
-      lastmod: today,
-      changefreq: 'monthly',
-      priority: 0.9
-    },
-    {
-      loc: `${baseUrl}/lp/implantes-dentarios-ipanema`,
-      lastmod: today,
-      changefreq: 'monthly',
-      priority: 0.9
-    },
-    {
-      loc: `${baseUrl}/lp/ortodontia-ipanema`,
-      lastmod: today,
-      changefreq: 'monthly',
-      priority: 0.9
-    }
-  ];
+  // Landing pages removidas do sitemap — SEO focado em service pages
+  // LPs são exclusivas para tráfego pago (Google Ads) e já possuem noindex
+  const landingPages: SitemapUrl[] = [];
 
   // Service pages - Páginas de tratamento
   const servicePages: SitemapUrl[] = [
@@ -132,55 +58,55 @@ export const collectSitemapData = async (): Promise<SitemapData> => {
       loc: `${baseUrl}/clareamento-dental`,
       lastmod: today,
       changefreq: 'monthly',
-      priority: 0.8
+      priority: 0.9
     },
     {
       loc: `${baseUrl}/implantes-dentarios`,
       lastmod: today,
       changefreq: 'monthly',
-      priority: 0.8
+      priority: 0.9
     },
     {
-      loc: `${baseUrl}/lentes-de-contato-dental-e-facetas-de-porcelana`,
+      loc: `${baseUrl}/lentes-de-contato-dental-e-facetas-de-resina`,
       lastmod: today,
       changefreq: 'monthly',
-      priority: 0.8
+      priority: 0.9
     },
     {
       loc: `${baseUrl}/protese-dentaria`,
       lastmod: today,
       changefreq: 'monthly',
-      priority: 0.8
+      priority: 0.9
     },
     {
       loc: `${baseUrl}/restauracoes-esteticas`,
       lastmod: today,
       changefreq: 'monthly',
-      priority: 0.8
+      priority: 0.9
     },
     {
       loc: `${baseUrl}/tratamento-de-canal`,
       lastmod: today,
       changefreq: 'monthly',
-      priority: 0.8
+      priority: 0.9
     },
     {
       loc: `${baseUrl}/clinica-geral-e-prevencao`,
       lastmod: today,
       changefreq: 'monthly',
-      priority: 0.8
+      priority: 0.9
     },
     {
       loc: `${baseUrl}/saude-da-gengiva`,
       lastmod: today,
       changefreq: 'monthly',
-      priority: 0.8
+      priority: 0.9
     },
     {
       loc: `${baseUrl}/ortodontia`,
       lastmod: today,
       changefreq: 'monthly',
-      priority: 0.8
+      priority: 0.9
     }
   ];
 

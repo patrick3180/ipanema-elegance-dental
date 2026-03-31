@@ -57,36 +57,21 @@ const mainPages = [
   { url: '/contato', priority: '0.7', changefreq: 'monthly' },
 ];
 
-// Service pages (9 páginas de tratamento - alta prioridade)
+// Service pages (9 páginas de tratamento - prioridade máxima para SEO orgânico)
 const servicePages = [
   { url: '/lentes-de-contato-dental-e-facetas-de-resina', priority: '0.9', changefreq: 'monthly' },
   { url: '/clareamento-dental', priority: '0.9', changefreq: 'monthly' },
   { url: '/implantes-dentarios', priority: '0.9', changefreq: 'monthly' },
   { url: '/protese-dentaria', priority: '0.9', changefreq: 'monthly' },
   { url: '/ortodontia', priority: '0.9', changefreq: 'monthly' },
-  { url: '/saude-da-gengiva', priority: '0.8', changefreq: 'monthly' },
-  { url: '/tratamento-de-canal', priority: '0.8', changefreq: 'monthly' },
-  { url: '/restauracoes-esteticas', priority: '0.8', changefreq: 'monthly' },
-  { url: '/clinica-geral-e-prevencao', priority: '0.8', changefreq: 'monthly' },
+  { url: '/saude-da-gengiva', priority: '0.9', changefreq: 'monthly' },
+  { url: '/tratamento-de-canal', priority: '0.9', changefreq: 'monthly' },
+  { url: '/restauracoes-esteticas', priority: '0.9', changefreq: 'monthly' },
+  { url: '/clinica-geral-e-prevencao', priority: '0.9', changefreq: 'monthly' },
 ];
 
-// Landing pages (14 páginas - prioridade média)
-const landingPages = [
-  { url: '/lp/limpeza-dental-ipanema', priority: '0.6', changefreq: 'monthly' },
-  { url: '/lp/profilaxia-dental-ipanema', priority: '0.6', changefreq: 'monthly' },
-  { url: '/lp/estetica-dental-ipanema', priority: '0.6', changefreq: 'monthly' },
-  { url: '/lp/saude-gengival-ipanema', priority: '0.6', changefreq: 'monthly' },
-  { url: '/lp/clareamento-dental', priority: '0.6', changefreq: 'monthly' },
-  { url: '/lp/consulta-inicial', priority: '0.7', changefreq: 'monthly' },
-  { url: '/lp/ortodontia-ipanema', priority: '0.6', changefreq: 'monthly' },
-  { url: '/lp/dor-de-dente-urgencia-ipanema', priority: '0.6', changefreq: 'monthly' },
-  { url: '/lp/dente-quebrado-urgencia-ipanema', priority: '0.6', changefreq: 'monthly' },
-  { url: '/lp/emergencia-odontologica-ipanema', priority: '0.6', changefreq: 'monthly' },
-  { url: '/lp/especialista-protese-ipanema', priority: '0.6', changefreq: 'monthly' },
-  { url: '/lp/implantes-dentarios-ipanema', priority: '0.6', changefreq: 'monthly' },
-  { url: '/lp/lentes-porcelana-ipanema', priority: '0.6', changefreq: 'monthly' },
-  { url: '/lp/facetas-resina-ipanema', priority: '0.6', changefreq: 'monthly' },
-];
+// Landing pages removidas do sitemap — SEO focado em service pages
+// LPs são exclusivas para tráfego pago (Google Ads) e já possuem noindex
 
 // Páginas legais (baixa prioridade)
 const legalPages = [
@@ -129,11 +114,9 @@ async function generateSitemap() {
     };
   }).filter(item => item !== null);
 
-  // Combinar todas as URLs
   const allUrls = [
     ...mainPages,
     ...servicePages,
-    ...landingPages,
     ...blogUrls,
     ...legalPages,
   ];
@@ -155,11 +138,11 @@ ${allUrls.map(page => `  <url>
 
   fs.writeFileSync(sitemapPath, sitemap, 'utf-8');
 
-  console.log('✅ Sitemap generated successfully!\n');
+  console.log(`\n✅ Sitemap generated successfully!\n`);
   console.log(`📊 Statistics:`);
   console.log(`   - Main pages: ${mainPages.length}`);
   console.log(`   - Service pages: ${servicePages.length}`);
-  console.log(`   - Landing pages: ${landingPages.length}`);
+  console.log(`   - Landing pages: 0 (removed from sitemap)`);
   console.log(`   - Blog posts: ${blogUrls.length}`);
   console.log(`   - Legal pages: ${legalPages.length}`);
   console.log(`   - Total URLs: ${allUrls.length}\n`);

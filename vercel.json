@@ -11,6 +11,41 @@
       "source": "/lp/profilaxia-dental-ipanema",
       "destination": "/lp/limpeza-dental-ipanema",
       "statusCode": 301
+    },
+    {
+      "source": "/about",
+      "destination": "/sobre",
+      "statusCode": 301
+    },
+    {
+      "source": "/lentes-de-contato-dental-e-facetas",
+      "destination": "/lentes-de-contato-dental-e-facetas-de-resina",
+      "statusCode": 301
+    },
+    {
+      "source": "/2025/:path*",
+      "destination": "/blog",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/protese-dentaria-historia",
+      "destination": "/protese-dentaria",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/saude-bucal-carie-dentista",
+      "destination": "/clinica-geral-e-prevencao",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/saude-bucal-higiene-antiga-romana",
+      "destination": "/blog",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/odontologia-egito-antigo",
+      "destination": "/blog",
+      "statusCode": 301
     }
   ],
   "rewrites": [

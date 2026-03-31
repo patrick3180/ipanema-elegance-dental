@@ -35,7 +35,6 @@ Crawl-delay: 2`;
 export const formatSitemapXML = (data: SitemapData): string => {
   const allUrls = [
     ...data.staticPages,
-    ...data.landingPages,
     ...data.servicePages,
     ...data.legalPages,
     ...data.blogPosts,
@@ -83,7 +82,6 @@ export const generateOptimizedSitemap = async (): Promise<string> => {
     
     console.log(`📊 Collected ${urlCount} URLs for sitemap:`, {
       static: sitemapData.staticPages.length,
-      landing: sitemapData.landingPages.length,
       services: sitemapData.servicePages.length,
       legal: sitemapData.legalPages.length,
       blogPosts: sitemapData.blogPosts.length,
@@ -140,19 +138,19 @@ export const getBasicSitemapFallback = (): string => {
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dracarlachristoph.com/about</loc>
+    <loc>https://dracarlachristoph.com/sobre</loc>
     <lastmod>${today}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dracarlachristoph.com/services</loc>
+    <loc>https://dracarlachristoph.com/servicos</loc>
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dracarlachristoph.com/contact</loc>
+    <loc>https://dracarlachristoph.com/contato</loc>
     <lastmod>${today}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
