@@ -13,9 +13,9 @@ import ContentfulBlocker from '@/components/performance/ContentfulBlocker';
 // Critical above-the-fold components (eager loading)
 import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
 import ConsultaInicialHero from '@/components/landing/consulta/ConsultaInicialHero';
-import StatsBar from '@/components/treatment/StatsBar';
 
 // Lazy-loaded components for below-the-fold content
+const StatsBar = lazy(() => import('@/components/treatment/StatsBar'));
 const ConsultaInicialProblem = lazy(() => import('@/components/landing/consulta/ConsultaInicialProblem'));
 const ConsultaInicialDoctorBio = lazy(() => import('@/components/landing/consulta/ConsultaInicialDoctorBio'));
 const ConsultaInicialGuide = lazy(() => import('@/components/landing/consulta/ConsultaInicialGuide'));
@@ -214,14 +214,22 @@ const ConsultaInicialLandingPage = () => {
           whatsappMessage={consultaInicialConfig.whatsapp.message}
         />
 
-        {/* StatsBar - Authority signal immediately after hero */}
-        <StatsBar />
+        {/* StatsBar - Authority signal (lazy loaded, just below fold) */}
+        <LazySection
+          fallback={<div className="h-20 bg-[#FAF7F2]" />}
+          threshold={0}
+          rootMargin="200px"
+        >
+          <Suspense fallback={<div className="h-20 bg-[#FAF7F2]" />}>
+            <StatsBar />
+          </Suspense>
+        </LazySection>
 
         {/* Empathetic Problem Section */}
         <LazySection
           fallback={<div className="h-96 bg-white animate-pulse" />}
-          threshold={0.1}
-          rootMargin="100px"
+          threshold={0.05}
+          rootMargin="200px"
         >
           <Suspense fallback={<div className="h-96 bg-white" />}>
             <div className="animate-fade-in-up">
@@ -237,8 +245,8 @@ const ConsultaInicialLandingPage = () => {
         {/* Doctor Bio - Authority & Trust */}
         <LazySection
           fallback={<div className="h-64 bg-white animate-pulse" />}
-          threshold={0.1}
-          rootMargin="100px"
+          threshold={0.05}
+          rootMargin="200px"
         >
           <Suspense fallback={<div className="h-64 bg-white" />}>
             <div className="animate-fade-in-up">
@@ -250,8 +258,8 @@ const ConsultaInicialLandingPage = () => {
         {/* Guide Section */}
         <LazySection
           fallback={<div className="h-96 bg-white animate-pulse" />}
-          threshold={0.1}
-          rootMargin="100px"
+          threshold={0.05}
+          rootMargin="200px"
         >
           <Suspense fallback={<div className="h-96 bg-white" />}>
             <div className="animate-fade-in-up">
