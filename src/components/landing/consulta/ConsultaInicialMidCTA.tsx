@@ -5,11 +5,20 @@ import { sendGCLIDToWebhook } from '@/utils/gclid';
 interface ConsultaInicialMidCTAProps {
   whatsappNumber: string;
   whatsappMessage: string;
+  /** Custom CTA button label (default: "Agendar pelo WhatsApp") */
+  ctaLabel?: string;
+  /** Custom event label for GTM tracking (default: "Mid CTA Button - Consulta Inicial") */
+  eventLabel?: string;
+  /** Custom webhook source identifier (default: "mid_cta_button_consulta") */
+  webhookSource?: string;
 }
 
 const ConsultaInicialMidCTA: React.FC<ConsultaInicialMidCTAProps> = ({
   whatsappNumber,
   whatsappMessage,
+  ctaLabel = 'Agendar pelo WhatsApp',
+  eventLabel = 'Mid CTA Button - Consulta Inicial',
+  webhookSource = 'mid_cta_button_consulta',
 }) => {
   const handleWhatsAppClick = async () => {
     // Track event with Google Tag Manager
@@ -18,7 +27,7 @@ const ConsultaInicialMidCTA: React.FC<ConsultaInicialMidCTAProps> = ({
         event: 'whatsapp_click',
         event_category: 'Contact',
         event_action: 'Click',
-        event_label: 'Mid CTA Button - Consulta Inicial',
+        event_label: eventLabel,
       });
     }
 
@@ -28,14 +37,14 @@ const ConsultaInicialMidCTA: React.FC<ConsultaInicialMidCTAProps> = ({
         send_to: 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
         event_callback: function () {
           if (process.env.NODE_ENV === 'development') {
-            console.log('Google Ads conversion tracked - Mid CTA Consulta');
+            console.log(`Google Ads conversion tracked - ${eventLabel}`);
           }
         },
       });
     }
 
     // Send GCLID to webhook
-    await sendGCLIDToWebhook('mid_cta_button_consulta');
+    await sendGCLIDToWebhook(webhookSource);
 
     // Open WhatsApp
     const encodedMessage = encodeURIComponent(whatsappMessage);
@@ -57,7 +66,7 @@ const ConsultaInicialMidCTA: React.FC<ConsultaInicialMidCTAProps> = ({
             }}
           >
             <MessageCircle size={20} />
-            Agendar pelo WhatsApp
+            {ctaLabel}
           </button>
         </div>
       </div>
