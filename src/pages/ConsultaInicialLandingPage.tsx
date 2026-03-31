@@ -122,6 +122,7 @@ const ConsultaInicialLandingPage = () => {
             "@graph": [
               {
                 "@type": "Dentist",
+                "@id": "https://dracarlachristoph.com/#dentist",
                 "name": "Dra. Carla Christoph",
                 "description": consultaInicialConfig.seo.description,
                 "url": "https://dracarlachristoph.com/lp/consulta-inicial",
@@ -135,7 +136,7 @@ const ConsultaInicialLandingPage = () => {
                   "addressCountry": "BR"
                 },
                 "speciality": ["Prótese Dental", "Implantodontia", "Consulta Odontológica"],
-                "image": "/lovable-uploads/RIT08058-vertical-doutora-site.webp"
+                "image": "https://dracarlachristoph.com/lovable-uploads/RIT08058-vertical-doutora-site.webp"
               },
               {
                 "@type": "Service",
@@ -143,7 +144,7 @@ const ConsultaInicialLandingPage = () => {
                 "description": "Consulta com mínimo de 1 hora dedicada ao caso do paciente. Inclui anamnese, exame clínico completo, radiografias quando necessário e profilaxia.",
                 "provider": {
                   "@type": "Dentist",
-                  "name": "Dra. Carla Christoph"
+                  "@id": "https://dracarlachristoph.com/#dentist"
                 },
                 "areaServed": {
                   "@type": "City",
