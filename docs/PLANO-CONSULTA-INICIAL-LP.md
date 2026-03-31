@@ -1,5 +1,17 @@
 # Fase 1 — Otimização da LP `/lp/consulta-inicial`
 
+> [!NOTE]
+> **STATUS: ✅ CONCLUÍDA** — Implementada em 2026-03-31
+> - Commit: `fdf2238` — Push realizado com sucesso
+> - Build TypeScript: Zero errors (`npx tsc --noEmit`)
+> - Teste visual: Mobile (390px) + Desktop (1440px) ✅
+> - Retrocompatibilidade: Verificada em 3+ LPs (Facetas, Implantes, Limpeza) ✅
+> - Decisões do usuário aplicadas:
+>   - Hero: "Cada Caso É Único — Sua Consulta Também Deveria Ser" (versão sutil aprovada)
+>   - Problem: Redesign empático com cards gold (sem ❌ vermelhos)
+>   - FAQ: Removida pergunta sobre preço / Adicionada "Segunda Opinião" com esclarecimento de consulta paga
+>   - MidCTA: Posicionado entre Guide e Social Proof
+
 ## Contexto
 
 A LP de Consulta Inicial é a **#1 em investimento** (R$4.591 / 398 cliques) e a mais enxuta do site (6.3KB vs 36.4KB da SP correspondente — ratio de 1:5.8). Esta é a LP piloto para o padrão de melhoria que será replicado nas demais.
