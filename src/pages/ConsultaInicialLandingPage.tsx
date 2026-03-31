@@ -45,14 +45,6 @@ const criticalStyles = `
 `;
 
 const ConsultaInicialLandingPage = () => {
-  // Critical image preloading for LCP optimization
-  useCriticalImagePreload({
-    images: [
-      { src: '/lovable-uploads/RIT08058-vertical-doutora-site.webp', width: 1024 }
-    ],
-    enabled: true
-  });
-
   useEffect(() => {
     // Capture GCLID for conversion tracking
     captureGCLID();
