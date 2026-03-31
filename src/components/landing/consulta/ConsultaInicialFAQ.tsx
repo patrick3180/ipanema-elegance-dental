@@ -1,5 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import {
   Accordion,
   AccordionContent,
@@ -21,30 +20,8 @@ const ConsultaInicialFAQ: React.FC<ConsultaInicialFAQProps> = ({
   title,
   questions
 }) => {
-  // Generate FAQPage Schema for Google Featured Snippets (+200% CTR)
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": questions.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  };
-
   return (
-    <>
-      {/* FAQPage Schema for Featured Snippets */}
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
-        </script>
-      </Helmet>
-
-      <section className="bg-gray-50 py-16 lg:py-24">
+    <section className="bg-gray-50 py-16 lg:py-24">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
@@ -70,8 +47,7 @@ const ConsultaInicialFAQ: React.FC<ConsultaInicialFAQProps> = ({
         </div>
       </div>
     </section>
-    </>
   );
 };
 
-export default ConsultaInicialFAQ;
+export default ConsultaInicialFAQ;

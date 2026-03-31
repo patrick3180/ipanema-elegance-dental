@@ -7,7 +7,6 @@ import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
 import useScrollTracking from '@/hooks/useScrollTracking';
 
 // Performance Components (critical path)
-import CriticalCSSInline from '@/components/performance/CriticalCSSInline';
 import LazySection from '@/components/performance/LazySection';
 import ContentfulBlocker from '@/components/performance/ContentfulBlocker';
 
@@ -27,8 +26,8 @@ const ConsultaInicialCTA = lazy(() => import('@/components/landing/consulta/Cons
 const LandingFooter = lazy(() => import('@/components/landing/LandingFooter'));
 const FloatingWhatsApp = lazy(() => import('@/components/landing/FloatingWhatsApp'));
 
-// Fade-in animation styles
-const fadeInStyles = `
+// Inline critical CSS + animations — rendered server-side via Helmet for FCP
+const criticalStyles = `
   @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -36,6 +35,14 @@ const fadeInStyles = `
   .animate-fade-in-up {
     animation: fadeInUp 0.6s ease-out forwards;
   }
+  .hero-section{min-height:100vh;display:flex;align-items:center;background:#FAF7F2;padding-top:90px;padding-bottom:4rem}
+  .hero-content{max-width:1200px;margin:0 auto;padding:0 1rem;display:flex;flex-direction:column;gap:3rem}
+  .hero-title{font-size:clamp(1.875rem,5vw,3rem);font-weight:700;line-height:1.2;margin-bottom:1rem;color:#381F47;font-family:serif}
+  .hero-subtitle{font-size:clamp(1.125rem,2.5vw,1.25rem);margin-bottom:2rem;color:#333;line-height:1.6}
+  .btn-primary{background:#381F47;color:#fff;padding:1rem 2rem;border-radius:.5rem;font-weight:600;transition:all .3s ease;display:inline-flex;align-items:center;gap:.75rem;font-size:1.125rem;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1)}
+  .header-fixed{position:fixed;top:0;left:0;right:0;z-index:50;background:#fff;box-shadow:0 1px 3px 0 rgba(0,0,0,.1)}
+  .hero-image{width:100%;height:auto;border-radius:.5rem;box-shadow:0 20px 25px -5px rgba(0,0,0,.1)}
+  @media(min-width:768px){.hero-content{flex-direction:row;align-items:center}}
 `;
 
 const ConsultaInicialLandingPage = () => {
@@ -77,8 +84,8 @@ const ConsultaInicialLandingPage = () => {
       <GTMManager gtmId={consultaInicialConfig.tracking.gtmId} />
       {/* Optimized SEO Head Tags */}
       <Helmet>
-        {/* Fade-in animation CSS */}
-        <style>{fadeInStyles}</style>
+        {/* Critical CSS inline — zero-latency render */}
+        <style>{criticalStyles}</style>
 
         {/* Primary Meta Tags */}
         <title>{consultaInicialConfig.seo.title}</title>
@@ -87,9 +94,26 @@ const ConsultaInicialLandingPage = () => {
         <meta name="robots" content="noindex, nofollow" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-        {/* Critical Resource Preloads - Only essentials */}
+        {/* Critical Resource Preloads */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="dns-prefetch" href="//api.whatsapp.com" />
+
+        {/* Hero image preload for LCP */}
+        <link
+          rel="preload"
+          as="image"
+          type="image/avif"
+          href="/lovable-uploads/RIT08058-vertical-doutora-site-480.avif"
+          media="(max-width: 767px)"
+        />
+        <link
+          rel="preload"
+          as="image"
+          type="image/avif"
+          href="/lovable-uploads/RIT08058-vertical-doutora-site-1024.avif"
+          media="(min-width: 768px)"
+        />
 
         {/* Optimized font loading - load asynchronously */}
         <link
@@ -167,8 +191,7 @@ const ConsultaInicialLandingPage = () => {
         </script>
       </Helmet>
 
-      {/* EMERGENCY PERFORMANCE OPTIMIZATIONS */}
-      <CriticalCSSInline />
+      {/* CONTENTFUL BLOCKER — Prevent unnecessary API calls */}
       <ContentfulBlocker />
 
       {/* Page Content */}
