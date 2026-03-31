@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { captureGCLID } from '@/utils/gclid';
 import { consultaInicialConfig } from '@/config/consultaInicialConfig';
 import { GTMManager } from '@/components/performance/GTMManager';
-import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
 import useScrollTracking from '@/hooks/useScrollTracking';
 
 // Performance Components (critical path)
@@ -98,22 +97,6 @@ const ConsultaInicialLandingPage = () => {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="dns-prefetch" href="//api.whatsapp.com" />
-
-        {/* Hero image preload for LCP */}
-        <link
-          rel="preload"
-          as="image"
-          type="image/avif"
-          href="/lovable-uploads/RIT08058-vertical-doutora-site-480.avif"
-          media="(max-width: 767px)"
-        />
-        <link
-          rel="preload"
-          as="image"
-          type="image/avif"
-          href="/lovable-uploads/RIT08058-vertical-doutora-site-1024.avif"
-          media="(min-width: 768px)"
-        />
 
         {/* Optimized font loading - load asynchronously */}
         <link
