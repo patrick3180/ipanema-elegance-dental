@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Análise Competitiva — Dra. Carla Christoph | Odontologia Premium Ipanema</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f6f4f0;
+      --paper-card: #fffefa;
+      --terracotta: #c45d3e;
+      --terracotta-light: #e8836a;
+      --ink: #2c2420;
+      --ink-light: #5a4f48;
+      --ink-muted: #8a7f78;
+      --border: #e8e4de;
+      --purple: #381F47;
+      --gold: #B3955F;
+      --gold-light: #d4b57e;
+      --green: #2d7a4f;
+      --green-light: #e8f5e9;
+      --red: #c45d3e;
+      --red-light: #fde8e4;
+      --blue: #2563eb;
+      --blue-light: #eff6ff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Grain texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 { font-family: 'Instrument Serif', serif; font-weight: 400; }
+    h1 { font-size: 2.5rem; line-height: 1.15; color: var(--ink); }
+    h2 { font-size: 1.75rem; line-height: 1.25; color: var(--ink); margin-bottom: 1rem; }
+    h3 { font-size: 1.35rem; line-height: 1.3; color: var(--ink-light); }
+    h4 { font-size: 1.1rem; }
+
+    p { color: var(--ink-light); margin-bottom: 1rem; }
+
+    /* Layout */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+    /* Cover */
+    .cover {
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .cover-badge {
+      display: inline-block;
+      background: var(--terracotta);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.2rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+    }
+    .cover h1 { margin-bottom: 1.5rem; }
+    .cover-meta {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+    }
+    .cover-meta span { display: flex; align-items: center; gap: 0.4rem; }
+
+    /* Sections */
+    .section {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-child { border-bottom: none; }
+
+    .section-number {
+      font-family: 'Instrument Serif', serif;
+      font-size: 4rem;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      color: var(--ink-muted);
+    }
+
+    /* Cards */
+    .card {
+      background: var(--paper-card);
+      border-radius: 12px;
+      padding: 1.5rem 1.5rem 1.5rem 1.75rem;
+      border-left: 4px solid var(--terracotta);
+      margin-bottom: 1.25rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transform: translateY(-1px);
+    }
+    .card h3 { margin-bottom: 0.5rem; }
+    .card p { font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .card-meta {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* Color swatches */
+    .swatches {
+      display: flex;
+      gap: 0.5rem;
+      margin: 0.75rem 0;
+    }
+    .swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 2px solid rgba(0,0,0,0.08);
+      display: inline-block;
+    }
+
+    /* Score bars */
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+    .score-item { display: flex; align-items: center; gap: 0.5rem; }
+    .score-label { font-size: 0.8rem; color: var(--ink-muted); min-width: 120px; }
+    .score-bar-bg {
+      flex: 1;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .score-bar {
+      height: 100%;
+      border-radius: 3px;
+      background: var(--terracotta);
+      transition: width 0.8s ease;
+    }
+    .score-value { font-size: 0.8rem; font-weight: 600; min-width: 24px; text-align: right; }
+
+    /* Comparison table */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.82rem;
+      overflow-x: auto;
+      display: block;
+    }
+    .comparison-table thead { background: var(--purple); color: white; }
+    .comparison-table th {
+      padding: 0.75rem 0.6rem;
+      text-align: center;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .comparison-table th:first-child { text-align: left; border-radius: 8px 0 0 0; }
+    .comparison-table th:last-child { border-radius: 0 8px 0 0; }
+    .comparison-table td {
+      padding: 0.6rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .comparison-table td:first-child { text-align: left; font-weight: 500; }
+    .comparison-table tr:last-child td { font-weight: 700; border-top: 2px solid var(--purple); }
+    .comparison-table tbody tr:hover { background: rgba(196, 93, 62, 0.04); }
+
+    .highlight-cell { background: rgba(45, 122, 79, 0.1); font-weight: 600; color: var(--green); }
+    .winner-cell { background: var(--gold); color: white; font-weight: 700; border-radius: 4px; }
+
+    /* Pattern cards */
+    .pattern-card {
+      background: var(--paper-card);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .pattern-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, var(--gold), var(--terracotta));
+    }
+    .pattern-number {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.5rem;
+      color: var(--border);
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+    }
+    .pattern-card h3 { padding-left: 0.75rem; }
+    .pattern-card p { padding-left: 0.75rem; }
+
+    /* Recommendation boxes */
+    .rec-box {
+      background: var(--green-light);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-left: 4px solid var(--green);
+    }
+    .rec-box.warning {
+      background: var(--red-light);
+      border-left-color: var(--red);
+    }
+    .rec-box h4 { margin-bottom: 0.5rem; }
+    .rec-box p { font-size: 0.9rem; color: var(--ink-light); margin: 0; }
+
+    /* Flow connector */
+    .flow-connector {
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem 0;
+    }
+    .flow-line {
+      width: 2px;
+      height: 40px;
+      background: repeating-linear-gradient(
+        180deg,
+        var(--border) 0px,
+        var(--border) 4px,
+        transparent 4px,
+        transparent 8px
+      );
+    }
+
+    /* Executive summary */
+    .exec-summary {
+      background: var(--purple);
+      color: white;
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin: 2rem 0;
+    }
+    .exec-summary h2 { color: white; }
+    .exec-summary p { color: rgba(255,255,255,0.85); font-size: 1.05rem; line-height: 1.7; }
+
+    /* Print styles */
+    @media print {
+      body { background: white; }
+      body::before { display: none; }
+      .container { max-width: 100%; padding: 0 1cm; }
+      .cover { padding: 3cm 1cm 2cm; }
+      .section { page-break-inside: avoid; }
+      .card:hover { box-shadow: none; transform: none; }
+      @page { size: A4; margin: 1.5cm; }
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      h1 { font-size: 1.75rem; }
+      h2 { font-size: 1.35rem; }
+      .cover { padding: 3rem 1rem 2rem; }
+      .container { padding: 0 1rem; }
+      .section { padding: 2.5rem 0; }
+      .card { padding: 1.25rem; }
+      .score-grid { grid-template-columns: 1fr; }
+      .comparison-table { font-size: 0.72rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="container">
+    <span class="cover-badge">Análise Competitiva</span>
+    <h1>Inteligência Competitiva<br><em>Odontologia Premium em Ipanema</em></h1>
+    <p style="font-size: 1.1rem; color: var(--ink-muted); max-width: 600px; margin: 0 auto;">
+      Análise detalhada de 5 concorrentes diretos na Zona Sul do Rio de Janeiro
+      para posicionar a clínica da Dra. Carla Christoph como referência no mercado.
+    </p>
+    <div class="cover-meta">
+      <span>📍 Ipanema, Leblon, Zona Sul — RJ</span>
+      <span>📅 01 de Abril de 2026</span>
+      <span>🔬 5 concorrentes analisados</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- EXECUTIVE SUMMARY -->
+<div class="exec-summary">
+  <h2 style="margin-bottom: 1rem;">Resumo Executivo</h2>
+  <p>
+    A clínica da Dra. Carla Christoph já se posiciona como <strong>líder técnica</strong> no mercado de
+    odontologia premium em Ipanema. O site é o mais avançado tecnicamente (React SPA, AVIF, PWA, Critical CSS)
+    e visualmente superior à concorrência. O blog com 44+ artigos é a maior vantagem SEO, e a versão em inglês
+    é um diferencial exclusivo. As principais oportunidades estão em (1) aumentar o volume de avaliações
+    no Google de 23 para 100+, (2) criar uma galeria de casos clínicos antes/depois, e (3) nomear
+    explicitamente a tecnologia utilizada para justificar o posicionamento premium.
+  </p>
+</div>
+
+<div class="flow-connector"><div class="flow-line"></div></div>
+
+<!-- SECTION 1: COMPETITOR PROFILES -->
+<section class="section">
+  <div class="section-number">01</div>
+  <h2>Perfis dos Concorrentes</h2>
+  <p>Análise detalhada dos 5 principais concorrentes em Ipanema, Leblon e Zona Sul.</p>
+
+  <!-- Competitor 1 -->
+  <div class="card">
+    <h3>Guilherme Rothier — Odontologia Estética</h3>
+    <div class="swatches">
+      <span class="swatch" style="background: #1a2744;" title="Azul Marinho"></span>
+      <span class="swatch" style="background: #ffffff; border-color: #ddd;" title="Branco"></span>
+      <span class="swatch" style="background: #c9a84c;" title="Dourado"></span>
+    </div>
+    <p><strong>Localização:</strong> R. Visconde de Pirajá, 414, salas 908/909 — Ipanema</p>
+    <p><strong>Diferenciais:</strong> CAD-CAM/CEREC (sessão única), Laser LiteTouch™ (sem dor), microscopia operatória, vaga de garagem</p>
+    <p><strong>Posicionamento:</strong> Tech-first — foca em equipamentos avançados como justificativa premium</p>
+    <div class="card-meta">
+      <span>👨‍⚕️ 25+ anos</span>
+      <span>⭐ Nota máxima Google</span>
+      <span>🕐 Seg-Sex 08h-20h</span>
+      <span>🅿️ Garagem própria</span>
+    </div>
+    <div class="score-grid" style="margin-top: 1rem;">
+      <div class="score-item">
+        <span class="score-label">SEO</span>
+        <div class="score-bar-bg"><div class="score-bar" style="width: 80%; background: #1a2744;"></div></div>
+        <span class="score-value">8</span>
+      </div>
+      <div class="score-item">
+        <span class="score-label">Design</span>
+        <div class="score-bar-bg"><div class="score-bar" style="width: 80%; background: #1a2744;"></div></div>
+        <span class="score-value">8</span>
+      </div>
+      <div class="score-item">
+        <span class="score-label">Social Proof</span>
+        <div class="score-bar-bg"><div class="score-bar" style="width: 80%; background: #1a2744;"></div></div>
+        <span class="score-value">8</span>
+      </div>
+      <div class="score-item">
+        <span class="score-label">CTA Strategy</span>
+        <div class="score-bar-bg"><div class="score-bar" style="width: 80%; background: #1a2744;"></div></div>
+        <span class="score-value">8</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Competitor 2 -->
+  <div class="card">
+    <h3>Fontes Odontologia</h3>
+    <div class="swatches">
+      <span class="swatch" style="background: #95D5B2;" title="Verde Menta"></span>
+      <span class="swatch" style="background: #ffffff; border-color: #ddd;" title="Branco"></span>
+      <span class="swatch" style="background: #333333;" title="Preto"></span>
+    </div>
+    <p><strong>Localização:</strong> R. Visconde de Pirajá, 351, sala 801 — Ipanema</p>
+    <p><strong>Diferenciais:</strong> 36+ anos (desde 1987), 1.5k+ pacientes, 3.5k+ tratamentos, equipe multidisciplinar</p>
+    <p><strong>Posicionamento:</strong> Humanizado — "Seu sorriso, nossa felicidade"</p>
+    <div class="card-meta">
+      <span>👨‍⚕️ 36+ anos</span>
+      <span>👥 1.5k+ pacientes</span>
+      <span>💚 Estilo acolhedor</span>
+    </div>
+  </div>
+
+  <!-- Competitor 3 -->
+  <div class="card">
+    <h3>DenTotal Ipanema</h3>
+    <div class="swatches">
+      <span class="swatch" style="background: #1e3a5f;" title="Azul Escuro"></span>
+      <span class="swatch" style="background: #ffffff; border-color: #ddd;" title="Branco"></span>
+      <span class="swatch" style="background: #c9a84c;" title="Dourado"></span>
+    </div>
+    <p><strong>Localização:</strong> R. Farme de Amoedo, 66 — Ipanema</p>
+    <p><strong>Diferenciais:</strong> Avaliação inicial cortesia, próximo ao metrô, amenidades (TV, café, brindes)</p>
+    <p><strong>Posicionamento:</strong> Acessível/Popular — "Especializada em Devolver Sorrisos"</p>
+    <div class="card-meta">
+      <span>🆓 Avaliação grátis</span>
+      <span>🚇 Próximo ao metrô</span>
+      <span>💳 Parcelamento flexível</span>
+    </div>
+  </div>
+
+  <!-- Competitor 4 -->
+  <div class="card">
+    <h3>Dra. Mariana Wolf</h3>
+    <div class="swatches">
+      <span class="swatch" style="background: #2c2420;" title="Escuro Elegante"></span>
+      <span class="swatch" style="background: #ffffff; border-color: #ddd;" title="Branco"></span>
+      <span class="swatch" style="background: #c9a84c;" title="Dourado"></span>
+    </div>
+    <p><strong>Localização:</strong> Av. Ataulfo de Paiva, 1251, sala 206 — Leblon</p>
+    <p><strong>Diferenciais:</strong> Mestre em Implantodontia, Mock-up pré-tratamento, Harmonização Orofacial, personal branding forte</p>
+    <p><strong>Posicionamento:</strong> Emocional/Personal — "Transformamos vida!"</p>
+    <div class="card-meta">
+      <span>🎓 Mestre (UNESA)</span>
+      <span>👄 Harmonfacial</span>
+      <span>📸 Casos Clínicos</span>
+    </div>
+  </div>
+
+  <!-- Competitor 5 -->
+  <div class="card">
+    <h3>Dra. Vilma Rafael</h3>
+    <div class="swatches">
+      <span class="swatch" style="background: #1a5c2e;" title="Verde Escuro"></span>
+      <span class="swatch" style="background: #ffffff; border-color: #ddd;" title="Branco"></span>
+      <span class="swatch" style="background: #666666;" title="Cinza"></span>
+    </div>
+    <p><strong>Localização:</strong> R. Garcia D'Ávila, 64/309 — Ipanema</p>
+    <p><strong>Diferenciais:</strong> Google 5.0★, estacionamento cliente, programas preventivos Care/White, 25+ anos, check-up digital</p>
+    <p><strong>Posicionamento:</strong> Especialidade nicho — "Especialista em Periodontia e Estética Oral"</p>
+    <div class="card-meta">
+      <span>⭐ 5.0 Google</span>
+      <span>🅿️ Estacionamento</span>
+      <span>🔄 Prog. Care</span>
+    </div>
+  </div>
+
+  <div class="section-tags">
+    <span class="tag">Ipanema</span>
+    <span class="tag">Leblon</span>
+    <span class="tag">Zona Sul</span>
+    <span class="tag">5 Concorrentes</span>
+    <span class="tag">Odontologia Premium</span>
+  </div>
+</section>
+
+<div class="flow-connector"><div class="flow-line"></div></div>
+
+<!-- SECTION 2: COMPARISON TABLE -->
+<section class="section">
+  <div class="section-number">02</div>
+  <h2>Tabela Comparativa</h2>
+  <p>Pontuação de 1 a 10 em 8 critérios de competitividade digital.</p>
+
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Critério</th>
+        <th>Dra. Carla</th>
+        <th>Rothier</th>
+        <th>Fontes</th>
+        <th>DenTotal</th>
+        <th>M. Wolf</th>
+        <th>Vilma R.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Search Visibility</td>
+        <td>7</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>6</td>
+        <td>6</td>
+      </tr>
+      <tr>
+        <td>Review Quality</td>
+        <td>8</td>
+        <td class="highlight-cell">9</td>
+        <td>7</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+      </tr>
+      <tr>
+        <td>Visual Design</td>
+        <td class="highlight-cell">9</td>
+        <td>8</td>
+        <td>8</td>
+        <td>5</td>
+        <td>6</td>
+        <td>6</td>
+      </tr>
+      <tr>
+        <td>Mobile Responsive</td>
+        <td class="highlight-cell">9</td>
+        <td>7</td>
+        <td>8</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+      </tr>
+      <tr>
+        <td>Content Depth</td>
+        <td class="highlight-cell">9</td>
+        <td>7</td>
+        <td>7</td>
+        <td>6</td>
+        <td>7</td>
+        <td>6</td>
+      </tr>
+      <tr>
+        <td>Social Proof</td>
+        <td>7</td>
+        <td class="highlight-cell">8</td>
+        <td class="highlight-cell">8</td>
+        <td>6</td>
+        <td>7</td>
+        <td>7</td>
+      </tr>
+      <tr>
+        <td>CTA Strategy</td>
+        <td class="highlight-cell">9</td>
+        <td>8</td>
+        <td>8</td>
+        <td>7</td>
+        <td>7</td>
+        <td>6</td>
+      </tr>
+      <tr>
+        <td>Page Speed</td>
+        <td class="highlight-cell">9</td>
+        <td>6</td>
+        <td>6</td>
+        <td>5</td>
+        <td>5</td>
+        <td>6</td>
+      </tr>
+      <tr style="background: rgba(179,149,95,0.08);">
+        <td><strong>TOTAL</strong></td>
+        <td style="background: var(--gold); color: white; font-weight: 700; border-radius: 4px;"><strong>67</strong></td>
+        <td><strong>61</strong></td>
+        <td><strong>59</strong></td>
+        <td><strong>45</strong></td>
+        <td><strong>50</strong></td>
+        <td><strong>51</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="rec-box">
+    <h4>🏆 Resultado</h4>
+    <p>A Dra. Carla lidera com <strong>67 pontos</strong>, 6 pontos acima do segundo colocado (Rothier, 61).
+       O maior gap está em Social Proof (7 vs 8-9), onde o volume de reviews no Google é o principal fator.</p>
+  </div>
+</section>
+
+<div class="flow-connector"><div class="flow-line"></div></div>
+
+<!-- SECTION 3: SEO LANDSCAPE -->
+<section class="section">
+  <div class="section-number">03</div>
+  <h2>Panorama SEO</h2>
+  <p>Oportunidades de keywords e gaps identificados na concorrência.</p>
+
+  <div class="card">
+    <h3>Keywords de Alta Competição</h3>
+    <p>Todos os concorrentes otimizam para estas keywords — presença obrigatória:</p>
+    <p><strong>"dentista ipanema"</strong> · <strong>"implante dentário ipanema"</strong> · <strong>"lentes de contato dental ipanema"</strong> · <strong>"clareamento dental ipanema"</strong> · <strong>"facetas ipanema"</strong></p>
+  </div>
+
+  <div class="card" style="border-left-color: var(--green);">
+    <h3>🎯 Gaps de Keyword (Oportunidades)</h3>
+    <p>Nenhum concorrente otimiza bem para estas keywords de alta intenção:</p>
+    <p>
+      <strong>"emergência dentária ipanema"</strong> ·
+      <strong>"scanner intraoral ipanema"</strong> ·
+      <strong>"limpeza dental ipanema"</strong> ·
+      <strong>"profilaxia ipanema"</strong> ·
+      <strong>"dentista particular ipanema"</strong> ·
+      <strong>"english speaking dentist ipanema"</strong> ·
+      <strong>"dentist ipanema english"</strong>
+    </p>
+    <div class="rec-box">
+      <h4>💡 Oportunidade Exclusiva</h4>
+      <p>A Dra. Carla é a ÚNICA com versão em inglês. Keywords como "english speaking dentist ipanema" e "dentist near copacabana" são keywords de nicho <strong>com zero competição</strong> e altíssima intenção de conversão (turistas/expats).</p>
+    </div>
+  </div>
+
+  <div class="card" style="border-left-color: var(--gold);">
+    <h3>📊 Vantagem de Conteúdo</h3>
+    <p>Com <strong>44+ artigos de blog</strong> atualizados semanalmente, a Dra. Carla possui a maior biblioteca de conteúdo da concorrência. Rothier, Fontes e Vilma Rafael têm blogs com poucas postagens e atualizações irregulares. Mariana Wolf tem blog mas com frequência baixa. DenTotal não possui blog.</p>
+  </div>
+
+  <div class="section-tags">
+    <span class="tag">SEO</span>
+    <span class="tag">Keywords</span>
+    <span class="tag">Content Gap</span>
+    <span class="tag">Multilíngue</span>
+  </div>
+</section>
+
+<div class="flow-connector"><div class="flow-line"></div></div>
+
+<!-- SECTION 4: PATTERNS OF THE TOP 10% -->
+<section class="section">
+  <div class="section-number">04</div>
+  <h2>Padrões do Top 10%</h2>
+  <p>O que separa os sites de elite do restante no nicho de odontologia premium.</p>
+
+  <div class="pattern-card">
+    <span class="pattern-number">01</span>
+    <h3>Personal Brand > Marca Genérica</h3>
+    <p>Sites de elite constroem a marca ao redor da profissional: bio detalhada, foto na hero, credenciais visíveis, tom pessoal. Sites genéricos ("Clínica XYZ") performam pior.</p>
+    <div class="rec-box">
+      <h4>Dra. Carla: ✅ Líder</h4>
+      <p>O melhor personal branding da lista — hero com foto profissional, badge "CRO-RJ 27.509", proof points numéricos e bio humanizada.</p>
+    </div>
+  </div>
+
+  <div class="pattern-card">
+    <span class="pattern-number">02</span>
+    <h3>Prova Social Quantificada</h3>
+    <p>Números concretos geram confiança: ★ Google, nº de reviews, anos de experiência, tratamentos realizados. Fontes lidera com "1.5k+ pacientes, 3.5k+ tratamentos".</p>
+    <div class="rec-box warning">
+      <h4>Dra. Carla: ⚠️ Oportunidade</h4>
+      <p>Mostra "20+ anos" e "4.9★" mas poderia destacar nº total de tratamentos e buscar 100+ reviews no Google (atual: 23).</p>
+    </div>
+  </div>
+
+  <div class="pattern-card">
+    <span class="pattern-number">03</span>
+    <h3>Tecnologia com Nome e Marca</h3>
+    <p>Rothier nomeia CAD-CAM/CEREC, Laser LiteTouch™, microscopia. Quando a tecnologia tem nome (não genérica), justifica o premium e gera autoridade técnica.</p>
+    <div class="rec-box warning">
+      <h4>Dra. Carla: ⚠️ Oportunidade</h4>
+      <p>Menciona "scanner intraoral" genericamente. Poderia criar seção "Nossa Tecnologia" com modelo/marca dos equipamentos.</p>
+    </div>
+  </div>
+
+  <div class="pattern-card">
+    <span class="pattern-number">04</span>
+    <h3>WhatsApp como Canal Master</h3>
+    <p>100% dos concorrentes usam WhatsApp como CTA principal. Os melhores: botão floating, texto que reduz ansiedade ("Conversar sobre meu caso"), mensagem pré-formatada.</p>
+    <div class="rec-box">
+      <h4>Dra. Carla: ✅ Excelente</h4>
+      <p>"Agendar minha consulta (WhatsApp 24h)" é superior à maioria. Mensagem com contexto e disponibilidade 24h.</p>
+    </div>
+  </div>
+
+  <div class="pattern-card">
+    <span class="pattern-number">05</span>
+    <h3>Blog Ativo = SEO Dominante</h3>
+    <p>Conteúdo atualizado semanalmente é raro no nicho. A maioria dos concorrentes tem blog abandonado ou inexistente. Quem mantém blog ativo domina long-tail keywords.</p>
+    <div class="rec-box">
+      <h4>Dra. Carla: ✅ Líder Absoluta</h4>
+      <p>44+ posts ativos, atualizados semanalmente. Nenhum concorrente chega perto. Vantagem SEO massiva e duradoura.</p>
+    </div>
+  </div>
+
+  <div class="section-tags">
+    <span class="tag">Padrões</span>
+    <span class="tag">Best Practices</span>
+    <span class="tag">Top 10%</span>
+  </div>
+</section>
+
+<div class="flow-connector"><div class="flow-line"></div></div>
+
+<!-- SECTION 5: DESIGN DIRECTION -->
+<section class="section">
+  <div class="section-number">05</div>
+  <h2>Direção de Design Recomendada</h2>
+  <p>Recomendações baseadas na análise competitiva para manter a liderança visual.</p>
+
+  <div class="card" style="border-left-color: var(--purple);">
+    <h3>Manter e Reforçar</h3>
+    <p><strong>Paleta roxo/dourado/bege:</strong> Única no mercado — todos os concorrentes usam Azul ou Verde. Essa paleta transmite sofisticação, nobreza e distinção. Não mude.</p>
+    <p><strong>Playfair Display + Montserrat:</strong> Combinação clássica e premium. Mantém a personalidade da marca.</p>
+    <p><strong>Fotografia humanizada:</strong> O estilo atual (Dra. Carla de jaleco branco, iluminação quente) é superior ao estilo "high-tech" do Rothier.</p>
+  </div>
+
+  <div class="card" style="border-left-color: var(--green);">
+    <h3>Adicionar</h3>
+    <p><strong>Seção "Nossa Tecnologia":</strong> Página dedicada com fotos/nomes dos equipamentos (scanner modelo X, sistemas de moldagem digital, etc).</p>
+    <p><strong>Galeria de Casos Clínicos:</strong> Antes/depois em carousel com contexto do caso. DenTotal e Mariana Wolf já fazem isso.</p>
+    <p><strong>Counter animado:</strong> "20+ anos | 5.000+ tratamentos | 4.9★ Google" — números em destaque como Fontes faz.</p>
+    <p><strong>Programa de Prevenção:</strong> Criar um programa tipo "Cuidar by Dra. Carla" (como o Care da Vilma Rafael) — fideliza pacientes.</p>
+  </div>
+
+  <div class="card" style="border-left-color: var(--red);">
+    <h3>Evitar</h3>
+    <p><strong>Popup excessivo:</strong> DenTotal usa popups repetitivos em todos os CTAs. Irritante e prejudica UX.</p>
+    <p><strong>Visual genérico:</strong> DenTotal e Dental Face parecem templates. Nunca usar cor azul marinho ou verde menta — são "padrão clínica".</p>
+    <p><strong>Preço explícito ou "consulta grátis":</strong> DenTotal oferece "avaliação cortesia". Posicionar premium é o oposto de commoditizar.</p>
+  </div>
+
+  <div class="section-tags">
+    <span class="tag">Design</span>
+    <span class="tag">Branding</span>
+    <span class="tag">Recomendações</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="text-align: center; padding: 3rem 0; color: var(--ink-muted); font-size: 0.8rem; border-top: 1px solid var(--border);">
+  <p>Relatório de Inteligência Competitiva — Dra. Carla Christoph</p>
+  <p>Gerado automaticamente via Website Intelligence Engine — Abril 2026</p>
+  <p style="margin-top: 0.5rem; font-style: italic;">Documento confidencial — uso interno</p>
+</footer>
+
+</div><!-- /.container -->
+
+</body>
+</html>
