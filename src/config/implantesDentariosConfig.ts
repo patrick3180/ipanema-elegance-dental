@@ -81,7 +81,7 @@ export const implantesDentariosConfig: LandingPageConfig = {
   cta: {
     title: 'A Perda Óssea é Progressiva',
     subtitle: 'Quanto mais cedo o diagnóstico, menos complexo tende a ser o procedimento.',
-    buttonText: 'Ver Meu Caso',
+    buttonText: 'Agendar Consulta de Planejamento',
     urgency: 'A perda óssea é progressiva — cada mês conta'
   },
   

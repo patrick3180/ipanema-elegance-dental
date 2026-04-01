@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 const services = [
   {
     title: "Lentes de Contato Dental e Facetas de Porcelana",
-    description: "Lâminas ultrafinas de porcelana que corrigem cor, forma e pequenas imperfeições. Resultado natural e duradouro, planejado digitalmente com scanner iTero.",
+    description: "Lâminas ultrafinas de porcelana que corrigem cor, forma e pequenas imperfeições. Resultado natural e duradouro, planejado digitalmente com iTero Element 5D.",
     image: "/Lentes.webp",
     slug: "lentes-de-contato-dental-e-facetas-de-porcelana"
   },

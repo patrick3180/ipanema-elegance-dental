@@ -75,7 +75,7 @@ const Ortodontia = () => {
     },
     {
       question: "Quanto tempo dura o tratamento com Invisalign®?",
-      answer: "O tratamento com Invisalign® geralmente dura entre 6 a 18 meses para casos simples a moderados, podendo estender-se até 24 meses em casos complexos. Com o scanner iTero Element 5D, conseguimos simular digitalmente o resultado e estimar com precisão o tempo necessário. Cada caso é único e o Dr. Bruno fará uma avaliação detalhada para determinar o prazo exato do seu tratamento."
+      answer: "O tratamento com Invisalign® geralmente dura entre 6 a 18 meses para casos simples a moderados, podendo estender-se até 24 meses em casos complexos. Com o iTero Element 5D, conseguimos simular digitalmente o resultado e estimar com precisão o tempo necessário. Cada caso é único e o Dr. Bruno fará uma avaliação detalhada para determinar o prazo exato do seu tratamento."
     },
     {
       question: "Qual a idade ideal para começar o tratamento ortodôntico?",
@@ -90,8 +90,8 @@ const Ortodontia = () => {
       answer: "Com Invisalign®, você remove os alinhadores para comer, podendo desfrutar de qualquer alimento sem restrições. Com aparelho fixo (estético ou tradicional), deve-se evitar alimentos duros (pipoca, amendoim), pegajosos (balas, chicletes) e cortar alimentos em pedaços menores. Fornecemos lista completa de cuidados alimentares."
     },
     {
-      question: "Como funciona o scanner iTero Element 5D?",
-      answer: "O scanner iTero elimina a necessidade das desconfortáveis moldagens com massa. Em poucos minutos, criamos um modelo 3D ultra-preciso dos seus dentes. Você visualiza imediatamente uma simulação do resultado esperado. Durante o tratamento, usamos o scanner para acompanhar o progresso com precisão milimétrica, garantindo que tudo está evoluindo conforme planejado."
+      question: "Como funciona o iTero Element 5D?",
+      answer: "O iTero Element 5D elimina a necessidade das desconfortáveis moldagens com massa. Em poucos minutos, criamos um modelo 3D ultra-preciso dos seus dentes. Você visualiza imediatamente uma simulação do resultado esperado. Durante o tratamento, usamos o iTero Element 5D para acompanhar o progresso com precisão milimétrica, garantindo que tudo está evoluindo conforme planejado."
     },
     {
       question: "Qual a diferença entre aparelho estético e tradicional?",
@@ -125,11 +125,11 @@ const Ortodontia = () => {
         <title>Ortodontia e Invisalign® em Ipanema | Dra. Carla Christoph</title>
         <meta 
           name="description" 
-          content="Ortodontia moderna em Ipanema com Dr. Bruno Moreira (Doutor UERJ) no consultório da Dra. Carla Christoph. Invisalign®, aparelho estético e scanner iTero. Tratamento personalizado com tecnologia avançada."
+          content="Ortodontia moderna em Ipanema com Dr. Bruno Moreira (Doutor UERJ) no consultório da Dra. Carla Christoph. Invisalign®, aparelho estético e iTero Element 5D. Tratamento personalizado com tecnologia avançada."
         />
         <meta 
           name="keywords" 
-          content="ortodontia ipanema, invisalign ipanema, aparelho transparente, aparelho estético, ortodontista ipanema, dr bruno moreira, dra carla christoph, scanner itero, aparelho invisível, alinhador dental"
+          content="ortodontia ipanema, invisalign ipanema, aparelho transparente, aparelho estético, ortodontista ipanema, dr bruno moreira, dra carla christoph, itero element 5d, aparelho invisível, alinhador dental"
         />
         <link rel="canonical" href="https://dracarlachristoph.com/ortodontia" />
         
@@ -151,7 +151,7 @@ const Ortodontia = () => {
             "bodyLocation": "Teeth and Jaw",
             "followup": "Consultas mensais e contenção pós-tratamento",
             "howPerformed": "Aparelhos fixos, estéticos ou alinhadores removíveis Invisalign com planejamento digital",
-            "preparation": "Avaliação clínica, radiografias e escaneamento digital iTero",
+            "preparation": "Avaliação clínica, radiografias e escaneamento com iTero Element 5D",
             "provider": [
               {
                 "@type": "Dentist",
@@ -164,7 +164,7 @@ const Ortodontia = () => {
                 "name": "Dr. Bruno Moreira das Neves",
                 "identifier": "CRO-RJ 41.684",
                 "description": "Ortodontista especialista, Doutor pela UERJ",
-                "knowsAbout": ["Ortodontia", "Invisalign", "Scanner iTero"]
+                "knowsAbout": ["Ortodontia", "Invisalign", "iTero Element 5D"]
               }
             ],
             "potentialComplication": "Sensibilidade temporária, pequenas aftas (aparelho fixo)",
@@ -209,7 +209,7 @@ const Ortodontia = () => {
                 No consultório da Dra. Carla Christoph, oferecemos tratamento 
                 ortodôntico especializado com o Dr. Bruno Moreira das Neves, 
                 ortodontista com doutorado pela UERJ. Utilizamos tecnologia 
-                avançada como scanner iTero Element 5D e Invisalign® para 
+                avançada como iTero Element 5D e Invisalign® para 
                 alinhar seu sorriso com conforto e precisão.
               </p>
               
@@ -231,7 +231,7 @@ const Ortodontia = () => {
         <section className="py-8 bg-white">
           <div className="container-custom">
             <QuickAnswerBox
-              answer="Ortodontia é a especialidade que corrige a posição dos dentes e maxilares usando aparelhos fixos ou alinhadores invisíveis como Invisalign®. No consultório da Dra. Carla Christoph, o tratamento é realizado pelo Dr. Bruno Moreira das Neves, ortodontista especialista com doutorado pela UERJ. A Dra. Carla acompanha toda a jornada do paciente, garantindo atendimento integrado. Utilizamos scanner iTero Element 5D para planejamento digital preciso e oferecemos Invisalign®, aparelho estético e tradicional, com tratamentos durando de 6 a 24 meses conforme o caso."
+              answer="Ortodontia é a especialidade que corrige a posição dos dentes e maxilares usando aparelhos fixos ou alinhadores invisíveis como Invisalign®. No consultório da Dra. Carla Christoph, o tratamento é realizado pelo Dr. Bruno Moreira das Neves, ortodontista especialista com doutorado pela UERJ. A Dra. Carla acompanha toda a jornada do paciente, garantindo atendimento integrado. Utilizamos o iTero Element 5D para planejamento digital preciso e oferecemos Invisalign®, aparelho estético e tradicional, com tratamentos durando de 6 a 24 meses conforme o caso."
             />
           </div>
         </section>
@@ -433,7 +433,7 @@ const Ortodontia = () => {
                   Adeus às Moldagens com Massa!
                 </h3>
                 <p className="text-dental-gray mb-6">
-                  Com o scanner iTero Element 5D, criamos um modelo 3D ultra-preciso 
+                  Com o iTero Element 5D, criamos um modelo 3D ultra-preciso 
                   dos seus dentes em minutos, sem desconforto. A tecnologia permite:
                 </p>
                 <ul className="space-y-3 text-dental-gray">
@@ -459,7 +459,7 @@ const Ortodontia = () => {
               <div className="bg-gradient-to-br from-dental-purple/10 to-dental-gold/10 p-8 rounded-lg">
                 <div className="text-center">
                   <div className="w-24 h-24 bg-dental-purple/20 rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden">
-                    <img src="/lovable-uploads/Itero_tela.webp" alt="Scanner iTero Element 5D" className="w-16 h-16 object-contain" />
+                    <img src="/lovable-uploads/Itero_tela.webp" alt="iTero Element 5D" className="w-16 h-16 object-contain" />
                   </div>
                   <h4 className="text-lg font-semibold mb-2 text-dental-purple">
                     Simulação em Tempo Real
@@ -686,7 +686,7 @@ const Ortodontia = () => {
               </h2>
               <p className="text-lg text-dental-gray mb-8">
                 Agende sua avaliação com o Dr. Bruno e descubra como a 
-                ortodontia moderna pode alinhar seu sorriso. Scanner iTero 3D, 
+                ortodontia moderna pode alinhar seu sorriso. iTero Element 5D, 
                 Invisalign e consultas sem pressa te aguardam.
               </p>
               

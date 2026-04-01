@@ -12,7 +12,7 @@
 | Fase | Descrição | Status | Data Início | Data Conclusão |
 |------|-----------|--------|-------------|----------------|
 | 0 | Setup: branch + tracker | ✅ Concluída | 01/04/2026 | 01/04/2026 |
-| 1 | Quick Win: iTero Element 5D | ⬜ Pendente | — | — |
+| 1 | Quick Win: iTero Element 5D | ✅ Concluída | 01/04/2026 | 01/04/2026 |
 | 2 | Auditoria do Design System atual | ⬜ Pendente | — | — |
 | 3 | Homepage Redesign | ⬜ Pendente | — | — |
 | 4 | Páginas de Serviço (9 páginas) | ⬜ Pendente | — | — |
@@ -33,37 +33,41 @@
 - [x] Commit das pesquisas no branch `main`
 - [x] Criar branch `redesign/v2`
 - [x] Criar este tracker
-- [ ] Push do branch para GitHub (backup remoto)
+- [x] Push do branch para GitHub (backup remoto)
 
 ---
 
-## FASE 1: Quick Win — iTero Element 5D
+## FASE 1: Quick Win — iTero Element 5D ✅
 
 > Trocar todas as menções genéricas de "scanner digital", "scanner intraoral", "escaneamento digital" por "iTero Element 5D" nas LPs e páginas de serviço.
 
-### Landing Pages (16 configs)
-- [ ] `clareamentoConfig.ts` — verificar se menciona scanner
-- [ ] `lentesPorcelanaAcolhedorConfig.ts` — "escaneamento digital iTero" → "iTero Element 5D"
-- [ ] `lentesPorcelanaProfissionalConfig.ts` — idem
-- [ ] `facetasResinaDiretaConfig.ts` — verificar
-- [ ] `implantesDentariosConfig.ts` — verificar
-- [ ] `especialistaProteseConfig.ts` — "scanner 3D" → "iTero Element 5D"
-- [ ] `emergenciaOdontologicaConfig.ts` — provavelmente não menciona
-- [ ] `dorDeDenteConfig.ts` — provavelmente não menciona
-- [ ] `denteQuebradoConfig.ts` — provavelmente não menciona
-- [ ] `consultaInicialConfig.ts` — verificar
-- [ ] `limpezaDentalConfig.ts` — verificar
-- [ ] `profilaxiaConfig.ts` — verificar
-- [ ] `ortodontiaConfig.ts` — verificar
-- [ ] `esteticaSorrisoGenericaConfig.ts` — verificar
-- [ ] `saudeGengivalConfig.ts` — verificar
-- [ ] `LPLentesPorcelana.tsx` (legacy) — verificar
+### Landing Pages (configs)
+- [x] `ortodontiaConfig.ts` — atualizado (badges, steps, subheadline, CTA)
+- [x] `especialistaProteseConfig.ts` — atualizado (benefits, steps)
+- [x] `lentesPorcelanaProfissionalConfig.ts` — atualizado (subheadline, steps, badges)
+- [x] `lentesPorcelanaAcolhedorConfig.ts` — atualizado (subheadline, steps, badges)
+- [x] `esteticaSorrisoGenericaConfig.ts` — atualizado (badges)
+- [x] `LPLentesPorcelana.tsx` (legacy LP) — atualizado (meta, OG, hero, badges)
+- [x] Configs sem menção de scanner (clareamento, facetas resina, emergência, dor de dente, dente quebrado, consulta inicial, limpeza, profilaxia, saúde gengival) — verificados, OK
 
 ### Páginas de Serviço (site institucional)
-- [ ] Verificar e atualizar todas as páginas que mencionam scanner
+- [x] `ClinicaGeralPrevencao.tsx` — 15 referências atualizadas (FAQs, meta, Schema.org, badges, hero, process steps, CTA)
+- [x] `ProteseDentaria.tsx` — 4 referências atualizadas (process steps, doctor section)
+- [x] `LentesEFacetas.tsx` — 8 referências atualizadas (FAQ, hero, benefits, tech section, process steps, CTA)
+- [x] `Ortodontia.tsx` — 11 referências atualizadas (FAQs, meta, keywords, Schema.org, hero, tech section, CTA)
+- [x] `ImplantesDentarios.tsx` — 4 referências atualizadas (badges, QuickAnswer, process steps, doctor section)
+- [x] `RestaureacoesEsteticas.tsx` — 3 referências atualizadas (process steps, alt text, tech section)
+- [x] `AboutPage.tsx` — 3 referências atualizadas (technology, doctor bio, first consultation)
+
+### Componentes Compartilhados
+- [x] `AboutSection.tsx` — 1 referência atualizada (doctor bio)
+- [x] `ServicesSection.tsx` — 1 referência atualizada (lentes description)
+
+### Blog
+- [x] `blogPosts.ts` — 2 referências atualizadas (digital dentistry article)
 
 ### Commit
-- [ ] `fix(copy): update scanner references to iTero Element 5D`
+- [ ] `fix(copy): standardize all scanner references to iTero Element 5D`
 
 ---
 

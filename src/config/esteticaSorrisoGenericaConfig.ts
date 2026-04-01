@@ -61,7 +61,7 @@ export const esteticaSorrisoGenericaConfig: LandingPageConfig = {
     stats: [
       { number: '20+', label: 'Anos em Estética Dental' },
       { number: '4.000+', label: 'Pacientes Atendidos' },
-      { number: 'iTero', label: 'Scanner Digital 3D' },
+      { number: 'iTero', label: 'Scanner iTero Element 5D' },
       { number: '24h', label: 'WhatsApp Disponível' }
     ]
   },

@@ -45,8 +45,8 @@ const faqs = [
     answer: "Uma consulta preventiva custa uma fração do valor de tratamentos como canal, implantes ou enxertos gengivais. Além disso, você evita dor, desconforto e tempo longe do trabalho. Investir em prevenção é proteger sua saúde e seu bolso."
   },
   {
-    question: "Scanner digital 3D substitui as moldagens tradicionais?",
-    answer: "Sim! O scanner captura imagens digitais precisas da sua boca em poucos minutos, sem aquele desconforto das moldeiras com massa. É mais rápido, mais preciso e muito mais confortável, especialmente para quem tem reflexo de vômito."
+    question: "O iTero Element 5D substitui as moldagens tradicionais?",
+    answer: "Sim! O iTero Element 5D captura imagens digitais precisas da sua boca em poucos minutos, sem aquele desconforto das moldeiras com massa. É mais rápido, mais preciso e muito mais confortável, especialmente para quem tem reflexo de vômito."
   },
   {
     question: "Como vocês identificam cáries no estágio inicial?",
@@ -83,7 +83,7 @@ const ClinicaGeralPrevencao = () => {
         <title>Clínica Geral e Prevenção Odontológica em Ipanema | Dra. Carla Christoph</title>
         <meta
           name="description"
-          content="Check-up digital e prevenção odontológica em Ipanema. Scanner 3D, ultrassom, protocolo personalizado. Dra. Carla Christoph CRO-RJ 27.509 - 20+ anos de experiência."
+          content="Check-up digital e prevenção odontológica em Ipanema. iTero Element 5D, ultrassom, protocolo personalizado. Dra. Carla Christoph CRO-RJ 27.509 - 20+ anos de experiência."
         />
         <meta
           name="keywords"
@@ -94,7 +94,7 @@ const ClinicaGeralPrevencao = () => {
         <link rel="alternate" hrefLang="en" href="https://dracarlachristoph.com/en/general-dentistry" />
         <link rel="alternate" hrefLang="x-default" href="https://dracarlachristoph.com/clinica-geral-e-prevencao" />
         <meta property="og:title" content="Clínica Geral e Prevenção Odontológica em Ipanema | Dra. Carla Christoph" />
-        <meta property="og:description" content="Check-up digital e prevenção odontológica em Ipanema. Scanner 3D, ultrassom, protocolo personalizado." />
+        <meta property="og:description" content="Check-up digital e prevenção odontológica em Ipanema. iTero Element 5D, ultrassom, protocolo personalizado." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dracarlachristoph.com/clinica-geral-e-prevencao" />
         <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
@@ -103,7 +103,7 @@ const ClinicaGeralPrevencao = () => {
             "@context": "https://schema.org",
             "@type": "MedicalProcedure",
             "name": "Check-up Digital e Prevenção Odontológica",
-            "description": "Check-up dental completo com scanner digital 3D, limpeza profissional e protocolo preventivo personalizado",
+            "description": "Check-up dental completo com iTero Element 5D, limpeza profissional e protocolo preventivo personalizado",
             "procedureType": "Dental",
             "provider": {
               "@type": "Dentist",
@@ -159,10 +159,10 @@ const ClinicaGeralPrevencao = () => {
               },
               {
                 "@type": "Question",
-                "name": "Scanner digital 3D substitui as moldagens tradicionais?",
+                "name": "O iTero Element 5D substitui as moldagens tradicionais?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Sim! O scanner captura imagens digitais precisas da sua boca em poucos minutos, sem o desconforto das moldeiras com massa. É mais rápido, mais preciso e muito mais confortável."
+                  "text": "Sim! O iTero Element 5D captura imagens digitais precisas da sua boca em poucos minutos, sem o desconforto das moldeiras com massa. É mais rápido, mais preciso e muito mais confortável."
                 }
               },
               {
@@ -214,7 +214,7 @@ const ClinicaGeralPrevencao = () => {
         title="Cuide da Saúde do Seu Sorriso com Prevenção e Tecnologia"
         subtitle="Dra. Carla Christoph - Especialista em Saúde Bucal Integral"
         description="Check-up digital completo e protocolos preventivos para identificar problemas antes que se tornem complexos. Porque prevenir é sempre melhor - e mais econômico - do que remediar."
-        badges={["20+ anos de experiência", "CRO-RJ 27.509", "Scanner Digital 3D"]}
+        badges={["20+ anos de experiência", "CRO-RJ 27.509", "iTero Element 5D"]}
         doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
         breadcrumbs={[
           { label: "Início", href: "/" },
@@ -227,7 +227,7 @@ const ClinicaGeralPrevencao = () => {
       <section className="py-8 bg-white">
         <div className="container-custom">
           <QuickAnswerBox
-            answer="Clínica geral e prevenção odontológica oferece check-up completo para manter a saúde bucal e evitar problemas futuros. Na clínica da Dra. Carla Christoph em Ipanema (CRO-RJ 27.509), o check-up inclui exame clínico detalhado, limpeza profissional com ultrassom, scanner digital 3D e avaliação de risco personalizada. Com 20+ anos de experiência, criamos protocolos preventivos individualizados. Recomenda-se consultas a cada 6-8 meses para baixo risco e 3-4 meses para alto risco. Prevenir é sempre mais econômico e confortável do que tratar problemas avançados."
+            answer="Clínica geral e prevenção odontológica oferece check-up completo para manter a saúde bucal e evitar problemas futuros. Na clínica da Dra. Carla Christoph em Ipanema (CRO-RJ 27.509), o check-up inclui exame clínico detalhado, limpeza profissional com ultrassom, iTero Element 5D e avaliação de risco personalizada. Com 20+ anos de experiência, criamos protocolos preventivos individualizados. Recomenda-se consultas a cada 6-8 meses para baixo risco e 3-4 meses para alto risco. Prevenir é sempre mais econômico e confortável do que tratar problemas avançados."
           />
         </div>
       </section>
@@ -338,7 +338,7 @@ const ClinicaGeralPrevencao = () => {
                 Tecnologia a Seu Favor
               </h3>
               <p className="text-dental-gray">
-                Check-up com scanner digital 3D e câmera HD que identifica problemas invisíveis a olho nu, antes que causem dor ou desconforto
+                Check-up com iTero Element 5D e câmera HD que identifica problemas invisíveis a olho nu, antes que causem dor ou desconforto
               </p>
             </div>
 
@@ -375,7 +375,7 @@ const ClinicaGeralPrevencao = () => {
               <div className="aspect-[4/3] relative">
                 <img
                   src="/lovable-uploads/scanner + intraoral.webp"
-                  alt="Check-up Digital Completo com Scanner 3D"
+                  alt="Check-up Digital Completo com iTero Element 5D"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
@@ -386,7 +386,7 @@ const ClinicaGeralPrevencao = () => {
                   Check-up Digital Completo
                 </h3>
                 <p className="text-sm leading-relaxed opacity-95">
-                  Avaliação detalhada com scanner digital 3D e câmera de alta definição. Conseguimos ver o que os olhos não veem, identificando pequenos problemas antes que virem grandes preocupações.
+                  Avaliação detalhada com iTero Element 5D e câmera de alta definição. Conseguimos ver o que os olhos não veem, identificando pequenos problemas antes que virem grandes preocupações.
                 </p>
               </div>
             </div>
@@ -520,7 +520,7 @@ const ClinicaGeralPrevencao = () => {
                 </p>
 
                 <p>
-                  Minha abordagem combina scanner digital e planejamento individualizado com tempo dedicado para entender suas necessidades reais.
+                  Minha abordagem combina iTero Element 5D e planejamento individualizado com tempo dedicado para entender suas necessidades reais.
                   Porque prevenir não é só limpar os dentes - é criar uma relação de confiança onde você se sente cuidado.
                 </p>
               </div>
@@ -564,7 +564,7 @@ const ClinicaGeralPrevencao = () => {
               {
                 number: 2,
                 title: "Diagnóstico Digital",
-                description: "Scanner digital 3D + Solicitação de exames complementares quando necessário",
+                description: "iTero Element 5D + Solicitação de exames complementares quando necessário",
                 icon: <Scan size={24} />,
                 duration: "1ª Consulta"
               },
@@ -634,7 +634,7 @@ const ClinicaGeralPrevencao = () => {
 
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
             Agende seu check-up preventivo e descubra como pequenos cuidados fazem toda a diferença.
-            Scanner digital, protocolos personalizados e tempo para cuidar da sua saúde bucal aguardam você em Ipanema.
+            iTero Element 5D, protocolos personalizados e tempo para cuidar da sua saúde bucal aguardam você em Ipanema.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

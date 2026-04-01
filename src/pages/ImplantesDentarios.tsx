@@ -163,7 +163,7 @@ const ImplantesDentarios = () => {
           title="Implantes Dentários e Reabilitação Oral"
           subtitle="Especialidade da Dra. Carla Christoph"
           description="Recupere a função mastigatória, estética natural e autoconfiança com implantes de titânio biocompatível. Planejamento digital 3D e técnicas minimamente invasivas para resultados previsíveis e duradouros."
-          badges={["20+ anos de experiência", "CRO-RJ 27.509", "Scanner digital 3D"]}
+          badges={["20+ anos de experiência", "CRO-RJ 27.509", "iTero Element 5D"]}
           doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
           breadcrumbs={[
             { label: "Início", href: "/" },
@@ -176,7 +176,7 @@ const ImplantesDentarios = () => {
         <section className="py-8 bg-white">
           <div className="container-custom">
             <QuickAnswerBox
-              answer="Implantes dentários são raízes artificiais de titânio biocompatível instaladas no osso para substituir dentes perdidos. Na clínica da Dra. Carla Christoph em Ipanema, realizamos planejamento digital 3D com scanner intraoral, técnicas minimamente invasivas e próteses personalizadas. Com mais de 20 anos de experiência (CRO-RJ 27.509), oferecemos desde implantes unitários até reabilitações completas como All-on-4 e protocolo fixo, com tratamentos que duram de 3 a 6 meses conforme o caso."
+              answer="Implantes dentários são raízes artificiais de titânio biocompatível instaladas no osso para substituir dentes perdidos. Na clínica da Dra. Carla Christoph em Ipanema, realizamos planejamento digital 3D com iTero Element 5D, técnicas minimamente invasivas e próteses personalizadas. Com mais de 20 anos de experiência (CRO-RJ 27.509), oferecemos desde implantes unitários até reabilitações completas como All-on-4 e protocolo fixo, com tratamentos que duram de 3 a 6 meses conforme o caso."
             />
           </div>
         </section>
@@ -577,7 +577,7 @@ const ImplantesDentarios = () => {
                 {
                   number: "4",
                   title: "Moldagem Digital e Prótese Definitiva",
-                  description: "Moldagem com scanner intraoral ou convencional. Confecção da prótese definitiva em cerâmica pura com cor, forma e translucidez naturais. Instalação e ajustes finais para conforto e estética natural.",
+                  description: "Moldagem com iTero Element 5D ou convencional. Confecção da prótese definitiva em cerâmica pura com cor, forma e translucidez naturais. Instalação e ajustes finais para conforto e estética natural.",
                   icon: <CheckCircle className="w-6 h-6" />,
                   duration: "2-3 consultas"
                 },
@@ -649,7 +649,7 @@ const ImplantesDentarios = () => {
                     <CheckCircle className="text-dental-gold flex-shrink-0 mt-1" size={20} />
                     <div>
                       <p className="font-semibold text-dental-purple">Tecnologia</p>
-                      <p className="text-sm text-dental-gray">Scanner iTero, planejamento digital do sorriso</p>
+                      <p className="text-sm text-dental-gray">iTero Element 5D, planejamento digital do sorriso</p>
                     </div>
                   </div>
 

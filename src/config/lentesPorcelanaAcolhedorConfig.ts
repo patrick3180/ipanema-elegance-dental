@@ -40,7 +40,7 @@ export const lentesPorcelanaAcolhedorConfig: LandingPageConfig = {
 
   guide: {
     title: 'Como Funciona o Tratamento com a Dra. Carla Christoph',
-    subtitle: '20+ anos em Estética Dental — CRO-RJ 27.509. Escaneamento digital iTero e Test Drive do Sorriso em todos os casos.',
+    subtitle: '20+ anos em Estética Dental — CRO-RJ 27.509. Escaneamento digital com iTero Element 5D e Test Drive do Sorriso em todos os casos.',
     steps: [
       { number: '1', title: 'Consulta e Análise Facial', description: 'Conversa sobre suas expectativas. Análise facial, fotografias e escaneamento digital para entender o que combina com você.' },
       { number: '2', title: 'Test Drive do Sorriso', description: 'Você experimenta um modelo provisório na sua boca antes de iniciar. Vê, sente e aprova. Se não gostar, ajustamos até ficar do seu jeito.' },
@@ -59,7 +59,7 @@ export const lentesPorcelanaAcolhedorConfig: LandingPageConfig = {
     stats: [
       { number: '20+', label: 'Anos em Estética Dental' },
       { number: '4.000+', label: 'Pacientes Atendidos' },
-      { number: 'iTero', label: 'Scanner Digital 3D' },
+      { number: 'iTero', label: 'Scanner iTero Element 5D' },
       { number: '24h', label: 'WhatsApp Disponível' }
     ]
   },

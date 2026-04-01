@@ -1,72 +1,73 @@
-import React, { useEffect, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { limpezaDentalConfig } from '@/config/limpezaDentalConfig';
 import { captureGCLID } from '@/utils/gclid';
-import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
-import { useScrollTracking } from '@/hooks/useScrollTracking';
-import CriticalCSSInliner from '@/components/performance/CriticalCSSInliner';
-import HeroImagePreloader from '@/components/performance/HeroImagePreloader';
-import ErrorBoundary from '@/components/performance/ErrorBoundary';
-import LazySection from '@/components/performance/LazySection';
+import { limpezaDentalConfig } from '@/config/limpezaDentalConfig';
 import { GTMManager } from '@/components/performance/GTMManager';
+import useScrollTracking from '@/hooks/useScrollTracking';
 
-// Critical components (loaded immediately)
+// Performance Components (critical path only)
+import LazySection from '@/components/performance/LazySection';
+import ContentfulBlocker from '@/components/performance/ContentfulBlocker';
+import ErrorBoundary from '@/components/performance/ErrorBoundary';
+
+// Critical above-the-fold components (eager loading)
 import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
 import ConsultaInicialHero from '@/components/landing/consulta/ConsultaInicialHero';
 
-// Lazy loaded components
-const ConsultaInicialProblem = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialProblem'));
-const ConsultaInicialGuide = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialGuide'));
-const ConsultaInicialSocialProof = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialSocialProof'));
-const ConsultaInicialFAQ = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialFAQ'));
-const ConsultaInicialCTA = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialCTA'));
-const LandingFooter = React.lazy(() => import('@/components/landing/LandingFooter'));
-const FloatingWhatsApp = React.lazy(() => import('@/components/landing/FloatingWhatsApp'));
+// Lazy-loaded components for below-the-fold content
+const StatsBar = lazy(() => import('@/components/treatment/StatsBar'));
+const ConsultaInicialProblem = lazy(() => import('@/components/landing/consulta/ConsultaInicialProblem'));
+const ConsultaInicialDoctorBio = lazy(() => import('@/components/landing/consulta/ConsultaInicialDoctorBio'));
+const ConsultaInicialGuide = lazy(() => import('@/components/landing/consulta/ConsultaInicialGuide'));
+const ConsultaInicialMidCTA = lazy(() => import('@/components/landing/consulta/ConsultaInicialMidCTA'));
+const ConsultaInicialSocialProof = lazy(() => import('@/components/landing/consulta/ConsultaInicialSocialProof'));
+const ConsultaInicialFAQ = lazy(() => import('@/components/landing/consulta/ConsultaInicialFAQ'));
+const ConsultaInicialCTA = lazy(() => import('@/components/landing/consulta/ConsultaInicialCTA'));
+const LandingFooter = lazy(() => import('@/components/landing/LandingFooter'));
+const FloatingWhatsApp = lazy(() => import('@/components/landing/FloatingWhatsApp'));
+
+// Inline critical CSS + animations — rendered server-side via Helmet for FCP
+const criticalStyles = `
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  .hero-section{min-height:100vh;display:flex;align-items:center;background:#FAF7F2;padding-top:90px;padding-bottom:4rem}
+  .hero-content{max-width:1200px;margin:0 auto;padding:0 1rem;display:flex;flex-direction:column;gap:3rem}
+  .hero-title{font-size:clamp(1.875rem,5vw,3rem);font-weight:700;line-height:1.2;margin-bottom:1rem;color:#381F47;font-family:serif}
+  .hero-subtitle{font-size:clamp(1.125rem,2.5vw,1.25rem);margin-bottom:2rem;color:#333;line-height:1.6}
+  .btn-primary{background:#381F47;color:#fff;padding:1rem 2rem;border-radius:.5rem;font-weight:600;transition:all .3s ease;display:inline-flex;align-items:center;gap:.75rem;font-size:1.125rem;border:none;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1)}
+  .header-fixed{position:fixed;top:0;left:0;right:0;z-index:50;background:#fff;box-shadow:0 1px 3px 0 rgba(0,0,0,.1)}
+  .hero-image{width:100%;height:auto;border-radius:.5rem;box-shadow:0 20px 25px -5px rgba(0,0,0,.1)}
+  @media(min-width:768px){.hero-content{flex-direction:row;align-items:center}}
+`;
 
 const LimpezaDentalLandingPage: React.FC = () => {
-  const criticalImages = [
-    {
-      src: '/lovable-uploads/vertical-de-jaleco-480.avif',
-      type: 'avif' as const,
-      media: '(max-width: 767px)',
-      priority: true
-    },
-    {
-      src: '/lovable-uploads/vertical-de-jaleco-768.avif',
-      type: 'avif' as const,
-      media: '(min-width: 768px) and (max-width: 1023px)',
-      priority: true
-    },
-    {
-      src: '/lovable-uploads/vertical-de-jaleco-1024.avif',
-      type: 'avif' as const,
-      media: '(min-width: 1024px)',
-      priority: true
-    },
-    {
-      src: '/lovable-uploads/vertical-de-jaleco.webp',
-      type: 'webp' as const,
-      priority: true
-    }
-  ];
-
-  useCriticalImagePreload({ images: [{ src: limpezaDentalConfig.hero.backgroundImage }] });
+  const pageConfig = limpezaDentalConfig;
 
   useEffect(() => {
-    console.debug('[LP Limpeza] Mounted at', new Date().toISOString());
+    // Capture GCLID for conversion tracking
     captureGCLID();
 
+    // Push page_view event (GTM is loaded via index.html)
     if (typeof window !== 'undefined') {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'page_view',
-        page_title: 'Limpeza Dental Profissional - Ipanema',
+        page_title: pageConfig.seo.title,
         page_location: window.location.href,
-        campaign: limpezaDentalConfig.campaign
+        page_path: '/lp/limpeza-dental-ipanema',
+        campaign: pageConfig.campaign,
+        ad_group: pageConfig.messageMatch.adGroup,
+        keyword: pageConfig.messageMatch.keyword
       });
     }
   }, []);
 
+  // Production scroll tracking
   useScrollTracking({
     pagePath: '/lp/limpeza-dental-ipanema',
     enabled: process.env.NODE_ENV === 'production'
@@ -74,186 +75,284 @@ const LimpezaDentalLandingPage: React.FC = () => {
 
   return (
     <>
-      <GTMManager gtmId={limpezaDentalConfig.tracking.gtmId} />
-      <CriticalCSSInliner />
-      <HeroImagePreloader images={criticalImages} />
-
+      <GTMManager gtmId={pageConfig.tracking.gtmId} />
+      {/* Optimized SEO Head Tags */}
       <Helmet>
-        <title>{limpezaDentalConfig.seo.title}</title>
-        <meta name="description" content={limpezaDentalConfig.seo.description} />
-        <meta name="keywords" content={limpezaDentalConfig.seo.keywords.join(', ')} />
-        <meta name="robots" content="noindex, nofollow" />
-        <link rel="canonical" href="https://dracarlachristoph.com/lp/limpeza-dental-ipanema" />
+        {/* Critical CSS inline — zero-latency render */}
+        <style>{criticalStyles}</style>
 
-        <meta property="og:title" content={limpezaDentalConfig.seo.title} />
-        <meta property="og:description" content={limpezaDentalConfig.seo.description} />
+        {/* Primary Meta Tags */}
+        <title>{pageConfig.seo.title}</title>
+        <meta name="description" content={pageConfig.seo.description} />
+        <meta name="keywords" content={pageConfig.seo.keywords.join(', ')} />
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+        {/* Critical Resource Preloads */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="//api.whatsapp.com" />
+
+        {/* Optimized font loading - load asynchronously */}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          media="print"
+          onLoad={(e: any) => { e.target.media = 'all'; }}
+        />
+
+        {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dracarlachristoph.com/lp/limpeza-dental-ipanema" />
-        <meta property="og:image" content={`https://dracarlachristoph.com${limpezaDentalConfig.hero.backgroundImage}`} />
+        <meta property="og:title" content={pageConfig.seo.title} />
+        <meta property="og:description" content={pageConfig.seo.description} />
+        <meta property="og:image" content={`https://dracarlachristoph.com${pageConfig.hero.backgroundImage}`} />
+        <meta property="og:site_name" content="Dra. Carla Christoph" />
+        <meta property="og:locale" content="pt_BR" />
 
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={limpezaDentalConfig.seo.title} />
-        <meta name="twitter:description" content={limpezaDentalConfig.seo.description} />
-        <meta name="twitter:image" content={`https://dracarlachristoph.com${limpezaDentalConfig.hero.backgroundImage}`} />
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://dracarlachristoph.com/lp/limpeza-dental-ipanema" />
+        <meta property="twitter:title" content={pageConfig.seo.title} />
+        <meta property="twitter:description" content={pageConfig.seo.description} />
+        <meta property="twitter:image" content={`https://dracarlachristoph.com${pageConfig.hero.backgroundImage}`} />
 
-        <link
-          rel="preload"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
-          as="style"
-          onLoad={(e: any) => {
-            e.target.rel = 'stylesheet';
-            e.target.onload = null;
-          }}
-        />
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://dracarlachristoph.com/lp/limpeza-dental-ipanema" />
 
-        <link
-          rel="preload"
-          href="/lovable-uploads/vertical-de-jaleco-1024.avif"
-          as="image"
-          type="image/avif"
-          media="(min-width: 1024px)"
-          fetchPriority="high"
-        />
-        <link
-          rel="preload"
-          href="/lovable-uploads/vertical-de-jaleco.webp"
-          as="image"
-          type="image/webp"
-          fetchPriority="high"
-        />
-
-        <link rel="preload" href="/fonts/montserrat-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/montserrat-500.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/playfair-display-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-
-        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="//wa.me" />
-
-        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
-
-
-
+        {/* Schema.org structured data — @graph pattern (Dentist + Service + FAQPage) */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Dentist",
-            "name": "Dra. Carla Christoph",
-            "description": limpezaDentalConfig.seo.description,
-            "url": "https://dracarlachristoph.com/lp/limpeza-dental-ipanema",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
-              "addressLocality": "Ipanema",
-              "addressRegion": "RJ",
-              "postalCode": "22410-002",
-              "addressCountry": "BR"
-            },
-            "telephone": "+5521993304045",
-            "priceRange": "$$",
-            "areaServed": "Rio de Janeiro"
-          })}
-        </script>
-
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "MedicalProcedure",
-            "name": "Limpeza Dental Profissional",
-            "description": "Profilaxia profissional com tecnologia ultrassônica que remove tártaro e placa bacteriana",
-            "procedureType": "Preventive",
-            "bodyLocation": "Teeth"
+            "@graph": [
+              {
+                "@type": "Dentist",
+                "@id": "https://dracarlachristoph.com/#dentist",
+                "name": "Dra. Carla Christoph",
+                "description": pageConfig.seo.description,
+                "url": "https://dracarlachristoph.com/lp/limpeza-dental-ipanema",
+                "telephone": "+5521993304045",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
+                  "addressLocality": "Ipanema",
+                  "addressRegion": "RJ",
+                  "postalCode": "22410-002",
+                  "addressCountry": "BR"
+                },
+                "geo": {
+                  "@type": "GeoCoordinates",
+                  "latitude": "-22.9866",
+                  "longitude": "-43.2024"
+                },
+                "speciality": ["Prótese Dental", "Implantodontia", "Estética Dental"],
+                "image": `https://dracarlachristoph.com${pageConfig.hero.backgroundImage}`
+              },
+              {
+                "@type": "Service",
+                "name": "Limpeza Dental Profissional",
+                "description": "Profilaxia profissional com tecnologia ultrassônica. Remoção de tártaro, placa bacteriana e manchas em consulta sem pressa.",
+                "provider": {
+                  "@id": "https://dracarlachristoph.com/#dentist"
+                },
+                "areaServed": {
+                  "@type": "City",
+                  "name": "Rio de Janeiro"
+                },
+                "serviceType": "Preventive Dentistry"
+              },
+              {
+                "@type": "FAQPage",
+                "mainEntity": pageConfig.faq.questions.map(q => ({
+                  "@type": "Question",
+                  "name": q.question,
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": q.answer
+                  }
+                }))
+              }
+            ]
           })}
         </script>
       </Helmet>
 
+      {/* CONTENTFUL BLOCKER — Prevent unnecessary API calls */}
+      <ContentfulBlocker />
+
+      {/* Page Content */}
       <ErrorBoundary>
-        <ConsultaInicialHeader
-          whatsappNumber={limpezaDentalConfig.whatsapp.number}
-          whatsappMessage={limpezaDentalConfig.whatsapp.message}
-          campaign={limpezaDentalConfig.campaign}
-          messageMatch={limpezaDentalConfig.messageMatch}
-        />
+        <main className="min-h-screen bg-white">
+          {/* Critical Above-the-fold Content */}
+          <ConsultaInicialHeader
+            whatsappNumber={pageConfig.whatsapp.number}
+            whatsappMessage={pageConfig.whatsapp.message}
+            campaign={pageConfig.campaign}
+            messageMatch={pageConfig.messageMatch}
+          />
 
-        <ConsultaInicialHero
-          headline={limpezaDentalConfig.hero.headline}
-          subheadline={limpezaDentalConfig.hero.subheadline}
-          ctaText={limpezaDentalConfig.hero.ctaText}
-          benefits={limpezaDentalConfig.benefits}
-          backgroundImage={limpezaDentalConfig.hero.backgroundImage}
-          whatsappNumber={limpezaDentalConfig.whatsapp.number}
-          whatsappMessage={limpezaDentalConfig.whatsapp.message}
-        />
+          <ConsultaInicialHero
+            headline={pageConfig.hero.headline}
+            subheadline={pageConfig.hero.subheadline}
+            ctaText={pageConfig.hero.ctaText}
+            benefits={pageConfig.benefits}
+            backgroundImage={pageConfig.hero.backgroundImage}
+            whatsappNumber={pageConfig.whatsapp.number}
+            whatsappMessage={pageConfig.whatsapp.message}
+          />
 
-        <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.1} rootMargin="100px">
-          <Suspense fallback={<div className="h-96 bg-gray-50" />}>
-            <ConsultaInicialProblem
-              title={limpezaDentalConfig.problem.title}
-              description={limpezaDentalConfig.problem.description}
-              problems={limpezaDentalConfig.problem.problems}
-            />
-          </Suspense>
-        </LazySection>
+          {/* StatsBar - Authority signal (lazy loaded, just below fold) */}
+          <LazySection
+            fallback={<div className="h-20 bg-[#FAF7F2]" />}
+            threshold={0}
+            rootMargin="200px"
+          >
+            <Suspense fallback={<div className="h-20 bg-[#FAF7F2]" />}>
+              <StatsBar />
+            </Suspense>
+          </LazySection>
 
-        <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.1} rootMargin="100px">
-          <Suspense fallback={<div className="h-96 bg-white" />}>
-            <ConsultaInicialGuide
-              title={limpezaDentalConfig.guide.title}
-              subtitle={limpezaDentalConfig.guide.subtitle}
-              steps={limpezaDentalConfig.guide.steps}
-            />
-          </Suspense>
-        </LazySection>
+          {/* Empathetic Problem Section */}
+          <LazySection
+            fallback={<div className="h-96 bg-white animate-pulse" />}
+            threshold={0.05}
+            rootMargin="200px"
+          >
+            <Suspense fallback={<div className="h-96 bg-white" />}>
+              <div className="animate-fade-in-up">
+                <ConsultaInicialProblem
+                  title={pageConfig.problem.title}
+                  description={pageConfig.problem.description}
+                  problems={pageConfig.problem.problems}
+                />
+              </div>
+            </Suspense>
+          </LazySection>
 
-        <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.1} rootMargin="50px">
-          <Suspense fallback={<div className="h-96 bg-gray-50" />}>
-            <ConsultaInicialSocialProof
-              title={limpezaDentalConfig.socialProof.title}
-              testimonials={limpezaDentalConfig.socialProof.testimonials}
-              stats={limpezaDentalConfig.socialProof.stats}
-            />
-          </Suspense>
-        </LazySection>
+          {/* Doctor Bio - Authority & Trust */}
+          <LazySection
+            fallback={<div className="h-64 bg-white animate-pulse" />}
+            threshold={0.05}
+            rootMargin="200px"
+          >
+            <Suspense fallback={<div className="h-64 bg-white" />}>
+              <div className="animate-fade-in-up">
+                <ConsultaInicialDoctorBio />
+              </div>
+            </Suspense>
+          </LazySection>
 
-        <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.1} rootMargin="50px">
-          <Suspense fallback={<div className="h-96 bg-white" />}>
-            <ConsultaInicialFAQ
-              title={limpezaDentalConfig.faq.title}
-              questions={limpezaDentalConfig.faq.questions}
-            />
-          </Suspense>
-        </LazySection>
+          {/* Guide Section */}
+          <LazySection
+            fallback={<div className="h-96 bg-white animate-pulse" />}
+            threshold={0.05}
+            rootMargin="200px"
+          >
+            <Suspense fallback={<div className="h-96 bg-white" />}>
+              <div className="animate-fade-in-up">
+                <ConsultaInicialGuide
+                  title={pageConfig.guide.title}
+                  subtitle={pageConfig.guide.subtitle}
+                  steps={pageConfig.guide.steps}
+                />
+              </div>
+            </Suspense>
+          </LazySection>
 
-        <LazySection fallback={<div className="h-32 bg-[#381F47] animate-pulse" />} threshold={0.1}>
-          <Suspense fallback={<div className="h-32 bg-[#381F47]" />}>
-            <ConsultaInicialCTA
-              title={limpezaDentalConfig.cta.title}
-              subtitle={limpezaDentalConfig.cta.subtitle}
-              buttonText={limpezaDentalConfig.cta.buttonText}
-              urgency={limpezaDentalConfig.cta.urgency}
-              whatsappNumber={limpezaDentalConfig.whatsapp.number}
-              whatsappMessage={limpezaDentalConfig.whatsapp.message}
-              campaign={limpezaDentalConfig.campaign}
-              messageMatch={limpezaDentalConfig.messageMatch}
-            />
-          </Suspense>
-        </LazySection>
+          {/* Mid-page CTA - Between guide and social proof */}
+          <LazySection
+            fallback={<div className="h-32 animate-pulse" />}
+            threshold={0.1}
+            rootMargin="50px"
+          >
+            <Suspense fallback={<div className="h-32" />}>
+              <ConsultaInicialMidCTA
+                whatsappNumber={pageConfig.whatsapp.number}
+                whatsappMessage={pageConfig.whatsapp.message}
+                ctaLabel="Agendar Minha Limpeza"
+                eventLabel="Mid CTA Button - Limpeza Dental"
+                webhookSource="mid_cta_button_limpeza"
+              />
+            </Suspense>
+          </LazySection>
 
-        <LazySection fallback={<div className="h-64 bg-[#381F47] animate-pulse" />} threshold={0.1}>
-          <Suspense fallback={<div className="h-64 bg-[#381F47]" />}>
-            <LandingFooter doctorName="Dra. Carla Christoph" clinicName="Ipanema Elegance Dental" phoneNumber="(21) 99330-4045" />
-          </Suspense>
-        </LazySection>
+          {/* Social Proof Section */}
+          <LazySection
+            fallback={<div className="h-96 bg-gray-50 animate-pulse" />}
+            threshold={0.1}
+            rootMargin="50px"
+          >
+            <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+              <div className="animate-fade-in-up">
+                <ConsultaInicialSocialProof
+                  title={pageConfig.socialProof.title}
+                  testimonials={pageConfig.socialProof.testimonials}
+                  stats={pageConfig.socialProof.stats}
+                />
+              </div>
+            </Suspense>
+          </LazySection>
 
-        <LazySection fallback={null} threshold={0} rootMargin="0px">
-          <Suspense fallback={null}>
-            <FloatingWhatsApp
-              phoneNumber={limpezaDentalConfig.whatsapp.number}
-              message={limpezaDentalConfig.whatsapp.message}
-              campaign={limpezaDentalConfig.campaign}
-              messageMatch={limpezaDentalConfig.messageMatch}
-            />
-          </Suspense>
-        </LazySection>
+          {/* FAQ Section */}
+          <LazySection
+            fallback={<div className="h-96 bg-white animate-pulse" />}
+            threshold={0.1}
+            rootMargin="50px"
+          >
+            <Suspense fallback={<div className="h-96 bg-white" />}>
+              <div className="animate-fade-in-up">
+                <ConsultaInicialFAQ
+                  title={pageConfig.faq.title}
+                  questions={pageConfig.faq.questions}
+                />
+              </div>
+            </Suspense>
+          </LazySection>
+
+          {/* Final CTA Section */}
+          <LazySection
+            fallback={<div className="h-32 bg-[#381F47] animate-pulse" />}
+            threshold={0.1}
+          >
+            <Suspense fallback={<div className="h-32 bg-[#381F47]" />}>
+              <ConsultaInicialCTA
+                title={pageConfig.cta.title}
+                subtitle={pageConfig.cta.subtitle}
+                buttonText={pageConfig.cta.buttonText}
+                urgency={pageConfig.cta.urgency}
+                whatsappNumber={pageConfig.whatsapp.number}
+                whatsappMessage={pageConfig.whatsapp.message}
+                campaign={pageConfig.campaign}
+                messageMatch={pageConfig.messageMatch}
+              />
+            </Suspense>
+          </LazySection>
+
+          <LazySection
+            fallback={<div className="h-64 bg-[#381F47] animate-pulse" />}
+            threshold={0.1}
+          >
+            <Suspense fallback={<div className="h-64 bg-[#381F47]" />}>
+              <LandingFooter doctorName="Dra. Carla Christoph" clinicName="Ipanema Elegance Dental" phoneNumber="(21) 99330-4045" />
+            </Suspense>
+          </LazySection>
+
+          {/* Mobile Floating WhatsApp - Load after user interaction */}
+          <LazySection
+            fallback={null}
+            threshold={0}
+            rootMargin="0px"
+          >
+            <Suspense fallback={null}>
+              <FloatingWhatsApp
+                phoneNumber={pageConfig.whatsapp.number}
+                message={pageConfig.whatsapp.message}
+                campaign={pageConfig.campaign}
+                messageMatch={pageConfig.messageMatch}
+              />
+            </Suspense>
+          </LazySection>
+        </main>
       </ErrorBoundary>
     </>
   );

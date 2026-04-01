@@ -577,7 +577,7 @@ const ProteseDentaria = () => {
                 {
                   number: 1,
                   title: "Consulta de Diagnóstico Completo",
-                  description: "Análise facial, exame clínico, radiografias digitais e escaneamento intraoral para diagnóstico preciso e planejamento personalizado.",
+                  description: "Análise facial, exame clínico, radiografias digitais e escaneamento com iTero Element 5D para diagnóstico preciso e planejamento personalizado.",
                   icon: <Search size={24} />,
                   duration: "1a Consulta"
                 },
@@ -591,7 +591,7 @@ const ProteseDentaria = () => {
                 {
                   number: 3,
                   title: "Moldagem Digital de Precisão",
-                  description: "Scanner intraoral elimina desconforto de moldeiras, garantindo precisão milimétrica. O arquivo 3D é enviado diretamente ao laboratório parceiro.",
+                  description: "iTero Element 5D elimina desconforto de moldeiras, garantindo precisão milimétrica. O arquivo 3D é enviado diretamente ao laboratório parceiro.",
                   icon: <Scan size={24} />,
                   duration: "1a Consulta"
                 },
@@ -764,7 +764,7 @@ const ProteseDentaria = () => {
                         <CheckCircle className="text-dental-gold mt-1" size={20} />
                         <div>
                           <p className="font-semibold text-dental-purple">Atualização</p>
-                          <p className="text-sm text-dental-gray">Cursos contínuos em DSD e scanner intraoral</p>
+                          <p className="text-sm text-dental-gray">Cursos contínuos em DSD e iTero Element 5D</p>
                         </div>
                       </div>
 
@@ -772,7 +772,7 @@ const ProteseDentaria = () => {
                         <CheckCircle className="text-dental-gold mt-1" size={20} />
                         <div>
                           <p className="font-semibold text-dental-purple">Tecnologia</p>
-                          <p className="text-sm text-dental-gray">Scanner iTero e planejamento digital</p>
+                          <p className="text-sm text-dental-gray">iTero Element 5D e planejamento digital</p>
                         </div>
                       </div>
                     </div>

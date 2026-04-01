@@ -15,7 +15,7 @@ export const lentesPorcelanaProfissionalConfig: LandingPageConfig = {
 
   hero: {
     headline: 'Lentes de Porcelana em Ipanema — Resultado Natural que Dura mais de 15 Anos',
-    subheadline: 'Porcelana de alta translucidez, planejamento digital com scanner iTero e Test Drive do Sorriso antes de começar. Dra. Carla Christoph, especialista com mais de 20 anos em estética dental.',
+    subheadline: 'Porcelana de alta translucidez, planejamento digital com iTero Element 5D e Test Drive do Sorriso antes de começar. Dra. Carla Christoph, especialista com mais de 20 anos em estética dental.',
     ctaText: 'Agendar Minha Avaliação',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
@@ -40,7 +40,7 @@ export const lentesPorcelanaProfissionalConfig: LandingPageConfig = {
 
   guide: {
     title: 'Como a Dra. Carla Christoph Planeja Suas Lentes',
-    subtitle: '20+ anos em Estética Dental — CRO-RJ 27.509. Escaneamento digital iTero e Test Drive do Sorriso em todos os casos.',
+    subtitle: '20+ anos em Estética Dental — CRO-RJ 27.509. Escaneamento digital com iTero Element 5D e Test Drive do Sorriso em todos os casos.',
     steps: [
       { number: '1', title: 'Consulta e Análise Facial', description: 'Conversa sobre suas expectativas. Análise facial, fotografias e escaneamento digital para entender o que combina com o seu rosto.' },
       { number: '2', title: 'Test Drive do Sorriso', description: 'Você experimenta um modelo provisório na boca antes de iniciar. Vê, sente e aprova. Se não gostar, ajustamos até ficar do seu jeito.' },
@@ -58,7 +58,7 @@ export const lentesPorcelanaProfissionalConfig: LandingPageConfig = {
     ],
     stats: [
       { number: '20+', label: 'Anos em Estética Dental' },
-      { number: 'iTero', label: 'Scanner Digital 3D' },
+      { number: 'iTero', label: 'Scanner iTero Element 5D' },
       { number: '15+', label: 'Anos de Durabilidade' },
       { number: '100%', label: 'Casos com Test Drive' }
     ]
@@ -92,7 +92,7 @@ export const lentesPorcelanaProfissionalConfig: LandingPageConfig = {
 
   seo: {
     title: 'Lentes de Contato Dental Porcelana Ipanema | Estética do Sorriso',
-    description: 'Lentes de porcelana em Ipanema com resultado natural e duradouro. Planejamento digital com scanner iTero. Agende sua avaliação.',
+    description: 'Lentes de porcelana em Ipanema com resultado natural e duradouro. Planejamento digital com iTero Element 5D. Agende sua avaliação.',
     keywords: [
       'lentes de contato dental porcelana ipanema',
       'facetas de porcelana ipanema',

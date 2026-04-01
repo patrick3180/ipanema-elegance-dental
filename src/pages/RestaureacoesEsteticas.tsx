@@ -637,7 +637,7 @@ const RestaureacoesEsteticas = () => {
               {
                 number: 1,
                 title: "Diagnóstico Preciso",
-                description: "Exame clínico completo • Radiografias digitais • Análise oclusal detalhada • Scanner iTero para casos complexos • Avaliação de bruxismo e hábitos parafuncionais",
+                description: "Exame clínico completo • Radiografias digitais • Análise oclusal detalhada • iTero Element 5D para casos complexos • Avaliação de bruxismo e hábitos parafuncionais",
                 icon: <Stethoscope size={24} />,
                 duration: "1ª Consulta"
               },
@@ -795,7 +795,7 @@ const RestaureacoesEsteticas = () => {
               <div className="relative rounded-2xl overflow-hidden shadow-elegant">
                 <img
                   src="/lovable-uploads/scanner 3d.webp"
-                  alt="Scanner iTero Element 5D - Tecnologia de diagnóstico digital"
+                  alt="iTero Element 5D - Tecnologia de diagnóstico digital"
                   className="w-full h-auto object-cover"
                 />
               </div>
@@ -814,7 +814,7 @@ const RestaureacoesEsteticas = () => {
               </div>
 
               <p className="text-lg text-dental-gray leading-relaxed mb-8">
-                O <span className="font-semibold text-dental-purple">iTero Element 5D</span> é o scanner intraoral mais avançado do mercado, oferecendo diagnóstico em tempo real e precisão milimétrica.
+                O <span className="font-semibold text-dental-purple">iTero Element 5D</span> é o escaneamento intraoral mais avançado do mercado, oferecendo diagnóstico em tempo real e precisão milimétrica.
               </p>
 
               {/* Funcionalidades */}

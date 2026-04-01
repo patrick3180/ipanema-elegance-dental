@@ -122,7 +122,7 @@ const LentesEFacetas = () => {
     },
     {
       question: "Como funciona a consulta de planejamento?",
-      answer: "É uma conversa aprofundada para entendermos seus desejos e expectativas. Realizamos escaneamento digital com iTero 3D e uma análise completa do seu sorriso e face. Juntos, definimos o melhor plano de tratamento, explicando os prós e contras de cada opção (lentes vs facetas). Você sairá da consulta com todas as informações necessárias para tomar uma decisão informada."
+      answer: "É uma conversa aprofundada para entendermos seus desejos e expectativas. Realizamos escaneamento digital com iTero Element 5D e uma análise completa do seu sorriso e face. Juntos, definimos o melhor plano de tratamento, explicando os prós e contras de cada opção (lentes vs facetas). Você sairá da consulta com todas as informações necessárias para tomar uma decisão informada."
     }
   ];
 
@@ -210,7 +210,7 @@ const LentesEFacetas = () => {
         <TreatmentHero
           title="Estética Dental que Não Parece Artificial — Test Drive do Sorriso"
           subtitle="Estética Dental com a Dra. Carla Christoph"
-          description="Simulação provisória na sua boca antes de começar. Você vê, sente e aprova. Lentes de porcelana ou facetas de resina — cada caso tem sua indicação. Escaneamento digital iTero e cerâmica de alta translucidez."
+          description="Simulação provisória na sua boca antes de começar. Você vê, sente e aprova. Lentes de porcelana ou facetas de resina — cada caso tem sua indicação. Escaneamento digital com iTero Element 5D e cerâmica de alta translucidez."
           badges={["20+ anos de experiência", "Test Drive do Sorriso", "CRO-RJ 27.509"]}
           doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
           breadcrumbs={[
@@ -326,7 +326,7 @@ const LentesEFacetas = () => {
                 <ul className="space-y-2 text-dental-gray text-sm">
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
-                    <span>Scanner iTero 3D: moldagem digital sem desconforto</span>
+                    <span>iTero Element 5D: moldagem digital sem desconforto</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
@@ -775,7 +775,7 @@ const LentesEFacetas = () => {
                       <h4 className="font-semibold text-dental-purple">Tecnologia</h4>
                     </div>
                     <p className="text-dental-gray text-sm">
-                      Scanner iTero 3D e planejamento digital avançado
+                      iTero Element 5D e planejamento digital avançado
                     </p>
                   </div>
                 </div>
@@ -955,7 +955,7 @@ const LentesEFacetas = () => {
             <div className="bg-gradient-to-br from-dental-beige/30 to-white p-10 rounded-3xl shadow-lg">
               <div className="space-y-6">
                 <p className="text-dental-gray leading-relaxed text-center text-lg">
-                  Utilizamos o scanner iTero Element 5D para planejamento técnico preciso: escaneamento digital sem moldagens com massa, modelo 3D preciso para o laboratório, comunicação digital com técnicos e arquivo digital do seu tratamento.
+                  Utilizamos o iTero Element 5D para planejamento técnico preciso: escaneamento digital sem moldagens com massa, modelo 3D preciso para o laboratório, comunicação digital com técnicos e arquivo digital do seu tratamento.
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-6 mt-8">
@@ -1351,7 +1351,7 @@ const LentesEFacetas = () => {
               {
                 number: "1",
                 title: "Avaliação Completa e Planejamento Digital",
-                description: "Consulta inicial com análise facial completa e fotográfica. Scanner iTero 3D: moldagem digital sem massa, sem desconforto. Avaliação da saúde bucal e periodontal. Estudo das proporções ideais para harmonização facial. Apresentação do plano de tratamento personalizado.",
+                description: "Consulta inicial com análise facial completa e fotográfica. iTero Element 5D: moldagem digital sem massa, sem desconforto. Avaliação da saúde bucal e periodontal. Estudo das proporções ideais para harmonização facial. Apresentação do plano de tratamento personalizado.",
                 icon: <Search className="w-6 h-6" />
               },
               {
@@ -1363,7 +1363,7 @@ const LentesEFacetas = () => {
               {
                 number: "3",
                 title: "Preparo Conservador",
-                description: "Com o mock-up 100% aprovado, iniciamos o preparo. Lentes: preparo mínimo preservando ao máximo a estrutura dental. Facetas de resina: escultura direta no consultório (1-2 consultas). Nova escaneamento digital para laboratório (apenas lentes). Provisórios estéticos enquanto aguarda (se necessário).",
+                description: "Com o mock-up 100% aprovado, iniciamos o preparo. Lentes: preparo mínimo preservando ao máximo a estrutura dental. Facetas de resina: escultura direta no consultório (1-2 consultas). Novo escaneamento com iTero Element 5D para laboratório (apenas lentes). Provisórios estéticos enquanto aguarda (se necessário).",
                 icon: <Shield className="w-6 h-6" />
               },
               {
@@ -1472,7 +1472,7 @@ const LentesEFacetas = () => {
 
             {/* Texto */}
             <p className="text-lg md:text-xl text-white/90 mb-10 leading-relaxed max-w-3xl mx-auto">
-              Na consulta de avaliação, analisamos seu caso com escaneamento digital iTero 3D, realizamos um checkup completo da saúde bucal e apresentamos as possibilidades — lentes, facetas ou outros tratamentos mais adequados.
+              Na consulta de avaliação, analisamos seu caso com iTero Element 5D, realizamos um checkup completo da saúde bucal e apresentamos as possibilidades — lentes, facetas ou outros tratamentos mais adequados.
             </p>
 
             {/* Botão WhatsApp */}
