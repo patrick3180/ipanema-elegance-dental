@@ -2,6 +2,7 @@
 import React from "react";
 import { Separator } from "@/components/ui/separator";
 import { ArrowRight } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const services = [
   {
@@ -94,31 +95,37 @@ const ServicesSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
           {services.map((service, index) => (
-            <div
+            <ScrollReveal
               key={index}
-              className="relative rounded-xl overflow-hidden shadow-lg group h-80 transition-all duration-500 ease-in-out transform hover:scale-105"
-              aria-label={service.title}
+              animation="fade-up"
+              delay={(index % 3) * 120}
+              threshold={0.08}
             >
-              <img
-                src={service.image}
-                alt={service.title}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/90 group-hover:via-black/60 transition-all duration-300"></div>
-              <div className="relative h-full flex flex-col justify-end p-6 text-white">
-                <h3 className="text-2xl font-bold font-display mb-2 tracking-wide">{service.title}</h3>
-                <p className="opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-40 transition-all duration-500 ease-in-out text-sm mb-4 overflow-hidden">
-                  {service.description}
-                </p>
-                <a 
-                  href={getServiceUrl(service.slug)}
-                  className="inline-flex items-center text-dental-gold hover:text-white font-medium text-sm transition-colors duration-300"
-                >
-                  Saiba mais <ArrowRight size={16} className="ml-1" />
-                </a>
+              <div
+                className="relative rounded-xl overflow-hidden shadow-lg group h-80 transition-all duration-500 ease-in-out transform hover:scale-105"
+                aria-label={service.title}
+              >
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/90 group-hover:via-black/60 transition-all duration-300"></div>
+                <div className="relative h-full flex flex-col justify-end p-6 text-white">
+                  <h3 className="text-2xl font-bold font-display mb-2 tracking-wide">{service.title}</h3>
+                  <p className="opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-40 transition-all duration-500 ease-in-out text-sm mb-4 overflow-hidden">
+                    {service.description}
+                  </p>
+                  <a 
+                    href={getServiceUrl(service.slug)}
+                    className="inline-flex items-center text-dental-gold hover:text-white font-medium text-sm transition-colors duration-300"
+                  >
+                    Saiba mais <ArrowRight size={16} className="ml-1" />
+                  </a>
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

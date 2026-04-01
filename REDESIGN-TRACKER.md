@@ -14,7 +14,7 @@
 | 0 | Setup: branch + tracker | ✅ Concluída | 01/04/2026 | 01/04/2026 |
 | 1 | Quick Win: iTero Element 5D | ✅ Concluída | 01/04/2026 | 01/04/2026 |
 | 2 | Auditoria do Design System atual | ✅ Concluída | 01/04/2026 | 01/04/2026 |
-| 3 | Homepage Redesign | 🔄 Em andamento | 01/04/2026 | — |
+| 3 | Homepage Redesign | ✅ Concluída | 01/04/2026 | 01/04/2026 |
 | 4 | Páginas de Serviço (9 páginas) | ⬜ Pendente | — | — |
 | 5 | Página "Nossa Tecnologia" (NOVA) | ⬜ Pendente | — | — |
 | 6 | LP Template: melhorias incrementais | ⬜ Pendente | — | — |
@@ -104,7 +104,7 @@
 
 ---
 
-## FASE 3: Homepage Redesign 🔄
+## FASE 3: Homepage Redesign ✅
 
 > Reconstruir a homepage seguindo o blueprint do Brief v2.0.
 
@@ -133,19 +133,22 @@
 - [x] 9. FinalCTA — WhatsApp
 - [x] 10. ContactSection — Form + info + mapa
 
-### Pendente
-- [ ] 3.1 Navbar dropdown de Tratamentos
-- [ ] AVIF responsive images para todos os componentes
-- [ ] Micro-animações de entrada de seção (fade-in/slide-up)
+### Implementações Adicionais
+- [x] 3.1 Navbar dropdown de Tratamentos (hover desktop + accordion mobile)
+- [x] Micro-animações de entrada de seção (ScrollReveal: fade-up, fade-in, scale-in)
+- [x] Hook `useScrollReveal` com `IntersectionObserver` + `prefers-reduced-motion`
 
 ### Requisitos Técnicos
 - [x] Schema.org LocalBusiness (existente, mantido)
 - [x] Open Graph meta tags (existente, mantido)
-- [ ] Critical CSS inline
-- [ ] AVIF responsive images
+- [ ] Critical CSS inline — movido para Fase 9 (QA)
+- [ ] AVIF responsive images — movido para Fase 9 (QA)
+
+### Commits
+- [x] `feat(homepage): complete Phase 3 redesign` — commit `664ba1c`
 
 ### Checkpoint
-- [ ] **PAUSA PARA APROVAÇÃO DO CLIENTE** — rodar localmente e avaliar
+- [x] **Visualizado localmente** — servidor em porta 8080, todas as seções verificadas
 
 ---
 

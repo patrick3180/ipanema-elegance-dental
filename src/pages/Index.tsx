@@ -2,6 +2,7 @@
 import React from "react";
 import PageLayout from "@/components/PageLayout";
 import SEOHead from "@/components/SEOHead";
+import ScrollReveal from "@/components/ScrollReveal";
 import Hero from "@/components/Hero";
 import HomepageStatsBar from "@/components/HomepageStatsBar";
 import AboutSection from "@/components/AboutSection";
@@ -165,28 +166,44 @@ const Index = () => {
         <HomepageStatsBar />
 
         {/* 3. Sobre — Bio + foto + CTA */}
-        <AboutSection />
+        <ScrollReveal animation="fade-up">
+          <AboutSection />
+        </ScrollReveal>
 
         {/* 4. Diferenciais — Por que a Dra. Carla? */}
-        <DifferentialsSection />
+        <ScrollReveal animation="fade-up" delay={100}>
+          <DifferentialsSection />
+        </ScrollReveal>
 
         {/* 5. Tratamentos — Grid 3x3 */}
-        <ServicesSection />
+        <ScrollReveal animation="fade-up">
+          <ServicesSection />
+        </ScrollReveal>
 
         {/* 6. Tecnologia — iTero Element 5D showcase */}
-        <TechnologyShowcase />
+        <ScrollReveal animation="fade-in" duration={800}>
+          <TechnologyShowcase />
+        </ScrollReveal>
 
         {/* 7. Depoimentos — Carousel com estrelas */}
-        <TestimonialsCarousel />
+        <ScrollReveal animation="fade-up">
+          <TestimonialsCarousel />
+        </ScrollReveal>
 
         {/* 8. Blog — 3 artigos recentes */}
-        <BlogPreview />
+        <ScrollReveal animation="fade-up" delay={50}>
+          <BlogPreview />
+        </ScrollReveal>
 
         {/* 9. CTA Final — WhatsApp */}
-        <FinalCTA />
+        <ScrollReveal animation="scale-in" duration={500}>
+          <FinalCTA />
+        </ScrollReveal>
 
         {/* 10. Contato — Form + info + mapa */}
-        <ContactSection />
+        <ScrollReveal animation="fade-up">
+          <ContactSection />
+        </ScrollReveal>
       </PageLayout>
     </>
   );

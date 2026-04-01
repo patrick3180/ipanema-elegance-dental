@@ -1,50 +1,77 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Menu, X, Star, MessageCircle } from "lucide-react";
+import { Menu, X, Star, MessageCircle, ChevronDown } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+
+const treatmentSubItems = [
+  { title: "Lentes de Contato Dental", path: "/servicos/lentes-de-contato-dental-e-facetas-de-porcelana" },
+  { title: "Clareamento Dental", path: "/servicos/clareamento-dental" },
+  { title: "Prótese Dentária", path: "/servicos/protese-dentaria" },
+  { title: "Implantes Dentários", path: "/servicos/implantes-dentarios" },
+  { title: "Ortodontia", path: "/servicos/ortodontia" },
+  { title: "Clínica Geral e Prevenção", path: "/servicos/clinica-geral-e-prevencao" },
+  { title: "Restaurações Estéticas", path: "/servicos/restauracoes-esteticas" },
+  { title: "Tratamento de Canal", path: "/servicos/tratamento-de-canal" },
+  { title: "Saúde da Gengiva", path: "/servicos/saude-da-gengiva" },
+];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isTreatmentsOpen, setIsTreatmentsOpen] = useState(false);
+  const [isMobileTreatmentsOpen, setIsMobileTreatmentsOpen] = useState(false);
   const location = useLocation();
   const isMobile = useIsMobile();
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 10);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close dropdown on route change
+  useEffect(() => {
+    setIsTreatmentsOpen(false);
+    setIsMobileTreatmentsOpen(false);
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
+  // Handle dropdown hover with delay
+  const handleDropdownEnter = () => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    setIsTreatmentsOpen(true);
+  };
+
+  const handleDropdownLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setIsTreatmentsOpen(false);
+    }, 150);
+  };
+
   // Function to handle section navigation
   const handleSectionNavigation = (sectionId: string) => {
     setIsMenuOpen(false);
-
     if (location.pathname === '/') {
-      // If already on homepage, scroll to section
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      // If not on homepage, navigate to homepage then to section
       window.location.href = `/#${sectionId}`;
     }
   };
 
-  // Navigation items with their routes
+  // Navigation items
   const navigationItems = [
     { title: "Início", path: "/" },
     { title: "Sobre", path: "/sobre" },
-    { title: "Tratamentos", path: "/servicos" },
+    { title: "Tratamentos", path: "/servicos", hasDropdown: true },
     { title: "Blog", path: "/blog" },
     { title: "Depoimentos", action: () => handleSectionNavigation("depoimentos") },
     { title: "Contato", path: "/contato" }
@@ -78,7 +105,7 @@ const Header = () => {
           Dra. Carla Christoph
         </Link>
 
-        {/* Google Rating Badge - All Screens (Sprint 8 - High CTR +15-25%) */}
+        {/* Google Rating Badge */}
         <a
           href="https://g.page/r/CYsX3fOl2dljEAI/review"
           target="_blank"
@@ -97,19 +124,92 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          {navigationItems.map((item) => (
-            item.action ? (
-              <button
-                key={item.title}
-                onClick={item.action}
-                className="text-sm font-medium text-dental-purple/80 hover:text-dental-gold transition-colors"
-              >
-                {item.title}
-              </button>
-            ) : (
+          {navigationItems.map((item) => {
+            // Tratamentos with dropdown
+            if (item.hasDropdown) {
+              return (
+                <div
+                  key={item.title}
+                  className="relative"
+                  ref={dropdownRef}
+                  onMouseEnter={handleDropdownEnter}
+                  onMouseLeave={handleDropdownLeave}
+                >
+                  <Link
+                    to={item.path!}
+                    className={cn(
+                      "text-sm font-medium transition-colors inline-flex items-center gap-1",
+                      isActivePath(item.path)
+                        ? "text-dental-gold border-b-2 border-dental-gold pb-0.5"
+                        : "text-dental-purple/80 hover:text-dental-gold"
+                    )}
+                  >
+                    {item.title}
+                    <ChevronDown
+                      size={14}
+                      className={cn(
+                        "transition-transform duration-200",
+                        isTreatmentsOpen ? "rotate-180" : ""
+                      )}
+                    />
+                  </Link>
+
+                  {/* Dropdown Panel */}
+                  <div
+                    className={cn(
+                      "absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-200",
+                      isTreatmentsOpen
+                        ? "opacity-100 translate-y-0 pointer-events-auto"
+                        : "opacity-0 -translate-y-2 pointer-events-none"
+                    )}
+                  >
+                    <div className="bg-white rounded-xl shadow-hover border border-dental-purple/5 py-2 min-w-[280px]">
+                      {treatmentSubItems.map((sub) => (
+                        <Link
+                          key={sub.path}
+                          to={sub.path}
+                          className={cn(
+                            "block px-5 py-2.5 text-sm transition-colors",
+                            location.pathname === sub.path
+                              ? "text-dental-gold bg-dental-gold/5 font-medium"
+                              : "text-dental-purple/80 hover:text-dental-gold hover:bg-dental-beige/50"
+                          )}
+                        >
+                          {sub.title}
+                        </Link>
+                      ))}
+                      <div className="border-t border-dental-purple/5 mt-1 pt-1">
+                        <Link
+                          to="/servicos"
+                          className="block px-5 py-2.5 text-sm font-medium text-dental-gold hover:bg-dental-beige/50 transition-colors"
+                        >
+                          Ver todos os tratamentos →
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
+            // Action items (Depoimentos)
+            if (item.action) {
+              return (
+                <button
+                  key={item.title}
+                  onClick={item.action}
+                  className="text-sm font-medium text-dental-purple/80 hover:text-dental-gold transition-colors"
+                >
+                  {item.title}
+                </button>
+              );
+            }
+
+            // Regular links
+            return (
               <Link
                 key={item.title}
-                to={item.path}
+                to={item.path!}
                 className={cn(
                   "text-sm font-medium transition-colors",
                   isActivePath(item.path)
@@ -119,8 +219,8 @@ const Header = () => {
               >
                 {item.title}
               </Link>
-            )
-          ))}
+            );
+          })}
           <Link
             to="/en"
             className="text-sm font-medium text-dental-purple/60 hover:text-dental-gold transition-colors flex items-center gap-1 ml-2 border-l border-dental-purple/20 pl-4"
@@ -130,7 +230,7 @@ const Header = () => {
           </Link>
         </nav>
 
-        {/* Mobile Menu Button - Always visible regardless of menu state */}
+        {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="md:hidden text-dental-purple p-2 z-[70]"
@@ -140,26 +240,93 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Mobile Navigation - Separate from header to ensure proper layering */}
+      {/* Mobile Navigation */}
       {isMenuOpen && (
         <div
-          className="md:hidden fixed inset-0 bg-dental-beige z-50 pt-24 px-6 transition-opacity duration-300 opacity-100"
+          className="md:hidden fixed inset-0 bg-dental-beige z-50 pt-24 px-6 overflow-y-auto"
           style={{ top: "0", left: "0", right: "0", bottom: "0" }}
         >
-          <nav className="flex flex-col items-center gap-6">
-            {navigationItems.map((item) => (
-              item.action ? (
-                <button
-                  key={item.title}
-                  onClick={item.action}
-                  className="text-xl font-medium text-dental-purple hover:text-dental-gold transition-colors"
-                >
-                  {item.title}
-                </button>
-              ) : (
+          <nav className="flex flex-col items-center gap-5 pb-12">
+            {navigationItems.map((item) => {
+              // Tratamentos with expandable submenu
+              if (item.hasDropdown) {
+                return (
+                  <div key={item.title} className="w-full max-w-xs text-center">
+                    <button
+                      onClick={() => setIsMobileTreatmentsOpen(!isMobileTreatmentsOpen)}
+                      className={cn(
+                        "text-xl font-medium transition-colors inline-flex items-center gap-2",
+                        isActivePath(item.path)
+                          ? "text-dental-gold"
+                          : "text-dental-purple hover:text-dental-gold"
+                      )}
+                    >
+                      {item.title}
+                      <ChevronDown
+                        size={18}
+                        className={cn(
+                          "transition-transform duration-200",
+                          isMobileTreatmentsOpen ? "rotate-180" : ""
+                        )}
+                      />
+                    </button>
+
+                    {/* Mobile submenu */}
+                    <div
+                      className={cn(
+                        "overflow-hidden transition-all duration-300",
+                        isMobileTreatmentsOpen
+                          ? "max-h-[500px] opacity-100 mt-3"
+                          : "max-h-0 opacity-0"
+                      )}
+                    >
+                      <div className="flex flex-col gap-2 bg-white/50 rounded-xl p-3">
+                        {treatmentSubItems.map((sub) => (
+                          <Link
+                            key={sub.path}
+                            to={sub.path}
+                            className={cn(
+                              "text-base py-2 px-3 rounded-lg transition-colors",
+                              location.pathname === sub.path
+                                ? "text-dental-gold bg-dental-gold/10 font-medium"
+                                : "text-dental-purple/80 hover:text-dental-gold hover:bg-dental-beige"
+                            )}
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            {sub.title}
+                          </Link>
+                        ))}
+                        <Link
+                          to="/servicos"
+                          className="text-base py-2 px-3 text-dental-gold font-medium border-t border-dental-purple/10 mt-1 pt-3"
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          Ver todos →
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
+              // Action items
+              if (item.action) {
+                return (
+                  <button
+                    key={item.title}
+                    onClick={item.action}
+                    className="text-xl font-medium text-dental-purple hover:text-dental-gold transition-colors"
+                  >
+                    {item.title}
+                  </button>
+                );
+              }
+
+              // Regular links
+              return (
                 <Link
                   key={item.title}
-                  to={item.path}
+                  to={item.path!}
                   className={cn(
                     "text-xl font-medium transition-colors",
                     isActivePath(item.path)
@@ -170,8 +337,8 @@ const Header = () => {
                 >
                   {item.title}
                 </Link>
-              )
-            ))}
+              );
+            })}
 
             {/* WhatsApp CTA - Mobile Menu */}
             <a
@@ -195,7 +362,7 @@ const Header = () => {
               Agendar pelo WhatsApp
             </a>
 
-            {/* Language Switch - Mobile Menu */}
+            {/* Language Switch */}
             <Link
               to="/en"
               className="mt-2 text-base font-medium text-dental-purple/60 hover:text-dental-gold transition-colors"

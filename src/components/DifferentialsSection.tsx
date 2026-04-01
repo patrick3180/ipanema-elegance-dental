@@ -1,6 +1,7 @@
 import React from "react";
 import { Separator } from "@/components/ui/separator";
 import { Clock, Heart, Fingerprint, Shield } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const differentials = [
   {
@@ -50,23 +51,27 @@ const DifferentialsSection = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {differentials.map((item, index) => (
-            <div
+            <ScrollReveal
               key={index}
-              className="group relative bg-white rounded-2xl p-8 shadow-soft hover:shadow-hover transition-all duration-500 hover:-translate-y-1"
+              animation="fade-up"
+              delay={index * 100}
+              threshold={0.1}
             >
-              {/* Accent line top */}
-              <div className="absolute top-0 left-8 right-8 h-0.5 bg-dental-gold/0 group-hover:bg-dental-gold/60 transition-all duration-500 rounded-full" />
+              <div className="group relative bg-white rounded-2xl p-8 shadow-soft hover:shadow-hover transition-all duration-500 hover:-translate-y-1 h-full">
+                {/* Accent line top */}
+                <div className="absolute top-0 left-8 right-8 h-0.5 bg-dental-gold/0 group-hover:bg-dental-gold/60 transition-all duration-500 rounded-full" />
 
-              <div className="w-14 h-14 rounded-xl bg-dental-gold/10 flex items-center justify-center text-dental-gold mb-6 group-hover:bg-dental-gold/20 transition-colors duration-300">
-                {item.icon}
+                <div className="w-14 h-14 rounded-xl bg-dental-gold/10 flex items-center justify-center text-dental-gold mb-6 group-hover:bg-dental-gold/20 transition-colors duration-300">
+                  {item.icon}
+                </div>
+                <h3 className="text-lg font-display font-semibold text-dental-purple mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-dental-gray leading-relaxed">
+                  {item.description}
+                </p>
               </div>
-              <h3 className="text-lg font-display font-semibold text-dental-purple mb-3">
-                {item.title}
-              </h3>
-              <p className="text-sm text-dental-gray leading-relaxed">
-                {item.description}
-              </p>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>
@@ -75,3 +80,4 @@ const DifferentialsSection = () => {
 };
 
 export default DifferentialsSection;
+

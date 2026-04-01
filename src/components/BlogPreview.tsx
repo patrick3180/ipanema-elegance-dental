@@ -2,6 +2,7 @@ import React from "react";
 import { Separator } from "@/components/ui/separator";
 import { ArrowRight, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
+import ScrollReveal from "@/components/ScrollReveal";
 
 // Static preview of recent blog articles — these match the top blog posts
 const blogPreviews = [
@@ -54,59 +55,65 @@ const BlogPreview = () => {
 
         <div className="grid md:grid-cols-3 gap-8">
           {blogPreviews.map((post, index) => (
-            <Link
+            <ScrollReveal
               key={index}
-              to={`/blog/${post.slug}`}
-              className="group block"
+              animation="fade-up"
+              delay={index * 150}
+              threshold={0.1}
             >
-              <article className="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-hover transition-all duration-500 hover:-translate-y-1 h-full flex flex-col">
-                {/* Image */}
-                <div className="aspect-[16/10] overflow-hidden bg-dental-purple/5">
-                  {post.image ? (
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                      width="400"
-                      height="250"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <Calendar className="w-12 h-12 text-dental-purple/20" />
-                    </div>
-                  )}
-                </div>
-
-                {/* Content */}
-                <div className="p-6 flex flex-col flex-grow">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-xs font-medium uppercase tracking-wider text-dental-gold bg-dental-gold/10 px-3 py-1 rounded-full">
-                      {post.category}
-                    </span>
-                    <span className="text-xs text-dental-gray">
-                      {post.readTime} de leitura
-                    </span>
+              <Link
+                to={`/blog/${post.slug}`}
+                className="group block h-full"
+              >
+                <article className="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-hover transition-all duration-500 hover:-translate-y-1 h-full flex flex-col">
+                  {/* Image */}
+                  <div className="aspect-[16/10] overflow-hidden bg-dental-purple/5">
+                    {post.image ? (
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                        width="400"
+                        height="250"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <Calendar className="w-12 h-12 text-dental-purple/20" />
+                      </div>
+                    )}
                   </div>
 
-                  <h3 className="text-lg font-display font-semibold text-dental-purple mb-2 group-hover:text-dental-gold transition-colors duration-300 line-clamp-2">
-                    {post.title}
-                  </h3>
+                  {/* Content */}
+                  <div className="p-6 flex flex-col flex-grow">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-xs font-medium uppercase tracking-wider text-dental-gold bg-dental-gold/10 px-3 py-1 rounded-full">
+                        {post.category}
+                      </span>
+                      <span className="text-xs text-dental-gray">
+                        {post.readTime} de leitura
+                      </span>
+                    </div>
 
-                  <p className="text-sm text-dental-gray leading-relaxed mb-4 flex-grow line-clamp-3">
-                    {post.excerpt}
-                  </p>
+                    <h3 className="text-lg font-display font-semibold text-dental-purple mb-2 group-hover:text-dental-gold transition-colors duration-300 line-clamp-2">
+                      {post.title}
+                    </h3>
 
-                  <span className="inline-flex items-center text-sm font-medium text-dental-gold group-hover:text-dental-gold-dark transition-colors duration-300">
-                    Ler artigo
-                    <ArrowRight
-                      size={14}
-                      className="ml-1 group-hover:translate-x-1 transition-transform duration-300"
-                    />
-                  </span>
-                </div>
-              </article>
-            </Link>
+                    <p className="text-sm text-dental-gray leading-relaxed mb-4 flex-grow line-clamp-3">
+                      {post.excerpt}
+                    </p>
+
+                    <span className="inline-flex items-center text-sm font-medium text-dental-gold group-hover:text-dental-gold-dark transition-colors duration-300">
+                      Ler artigo
+                      <ArrowRight
+                        size={14}
+                        className="ml-1 group-hover:translate-x-1 transition-transform duration-300"
+                      />
+                    </span>
+                  </div>
+                </article>
+              </Link>
+            </ScrollReveal>
           ))}
         </div>
 
