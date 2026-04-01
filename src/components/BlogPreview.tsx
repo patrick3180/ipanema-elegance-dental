@@ -3,37 +3,10 @@ import { Separator } from "@/components/ui/separator";
 import { ArrowRight, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
+import { blogPosts } from "@/data/blogPosts";
 
-// Static preview of recent blog articles — these match the top blog posts
-const blogPreviews = [
-  {
-    slug: "odontologia-digital-scanner-intraoral-futuro",
-    title: "Odontologia Digital: Como o iTero Element 5D Transforma Tratamentos",
-    excerpt:
-      "Descubra como a tecnologia de escaneamento digital 3D está revolucionando a forma como planejamos e executamos tratamentos dentários.",
-    category: "Tecnologia",
-    readTime: "5 min",
-    image: "/blog/odontologia-digital.webp",
-  },
-  {
-    slug: "lentes-de-contato-dental-guia-completo",
-    title: "Lentes de Contato Dental: Guia Completo para um Sorriso Perfeito",
-    excerpt:
-      "Tudo que você precisa saber sobre lentes de contato dental — indicações, processo, cuidados e quanto tempo duram.",
-    category: "Estética",
-    readTime: "7 min",
-    image: "/blog/lentes-contato.webp",
-  },
-  {
-    slug: "implantes-dentarios-mitos-verdades",
-    title: "Implantes Dentários: Mitos e Verdades que Todo Paciente Deve Saber",
-    excerpt:
-      "Dói? Quanto tempo dura? Qualquer pessoa pode fazer? Respondemos as dúvidas mais comuns sobre implantes dentários.",
-    category: "Implantes",
-    readTime: "6 min",
-    image: "/blog/implantes.webp",
-  },
-];
+// Use the 3 most recent REAL blog posts from our data source
+const blogPreviews = blogPosts.slice(0, 3);
 
 const BlogPreview = () => {
   return (
@@ -68,9 +41,9 @@ const BlogPreview = () => {
                 <article className="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-hover transition-all duration-500 hover:-translate-y-1 h-full flex flex-col">
                   {/* Image */}
                   <div className="aspect-[16/10] overflow-hidden bg-dental-purple/5">
-                    {post.image ? (
+                    {post.imageUrl ? (
                       <img
-                        src={post.image}
+                        src={post.imageUrl}
                         alt={post.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"
@@ -91,7 +64,7 @@ const BlogPreview = () => {
                         {post.category}
                       </span>
                       <span className="text-xs text-dental-gray">
-                        {post.readTime} de leitura
+                        {post.date}
                       </span>
                     </div>
 

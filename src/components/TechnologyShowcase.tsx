@@ -93,7 +93,7 @@ const TechnologyShowcase = () => {
 
               <div className="relative w-full max-w-md aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="/itero-element-5d.webp"
+                  src="/lovable-uploads/itero_screen.webp"
                   alt="Scanner iTero Element 5D utilizado pela Dra. Carla Christoph para escaneamento digital em Ipanema"
                   className="w-full h-full object-cover"
                   loading="lazy"
