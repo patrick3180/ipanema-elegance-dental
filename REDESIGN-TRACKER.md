@@ -67,7 +67,7 @@
 - [x] `blogPosts.ts` — 2 referências atualizadas (digital dentistry article)
 
 ### Commit
-- [ ] `fix(copy): standardize all scanner references to iTero Element 5D`
+- [x] `fix(copy): standardize all scanner references to iTero Element 5D` — commit `06ead4b`
 
 ---
 
