@@ -6,7 +6,10 @@ import StatsBar from "@/components/treatment/StatsBar";
 import SectionDivider from "@/components/treatment/SectionDivider";
 import ProcessTimeline from "@/components/treatment/ProcessTimeline";
 import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import DoctorBioSection from "@/components/treatment/DoctorBioSection";
+import ServiceFAQ from "@/components/treatment/ServiceFAQ";
+import FinalServiceCTA from "@/components/treatment/FinalServiceCTA";
+import ScrollReveal from "@/components/ScrollReveal";
 import {
   Shield, AlertCircle, Zap, Sparkles, Heart, Search,
   HelpCircle, CheckCircle, ArrowRight
@@ -172,324 +175,224 @@ const TratamentoDeCanal = () => {
         />
 
         {/* Quick Answer Box */}
-        <section className="py-8 bg-white">
-          <div className="container-custom">
-            <QuickAnswerBox
-              answer="Tratamento de canal (endodontia) remove a polpa infectada do dente, aliviando a dor e salvando o dente da extração. No consultório da Dra. Carla Christoph em Ipanema (CRO-RJ 27.509), o tratamento é realizado com endodontista especializado e finalizado pela Dra. Carla. O procedimento é confortável com anestesia moderna, geralmente completado em 1-2 sessões. Após o canal, recomenda-se restauração adequada ou coroa para proteger o dente, que pode durar muitos anos com os cuidados corretos."
-            />
-          </div>
-        </section>
+        <ScrollReveal animation="fade-up">
+          <section className="py-8 bg-white">
+            <div className="container-custom">
+              <QuickAnswerBox
+                answer="Tratamento de canal (endodontia) remove a polpa infectada do dente, aliviando a dor e salvando o dente da extração. No consultório da Dra. Carla Christoph em Ipanema (CRO-RJ 27.509), o tratamento é realizado com endodontista especializado e finalizado pela Dra. Carla. O procedimento é confortável com anestesia moderna, geralmente completado em 1-2 sessões. Após o canal, recomenda-se restauração adequada ou coroa para proteger o dente, que pode durar muitos anos com os cuidados corretos."
+              />
+            </div>
+          </section>
+        </ScrollReveal>
 
         {/* 2. SectionDivider */}
         <SectionDivider variant="with-icon" icon={<Shield size={20} />} />
 
         {/* 3. Seção empática */}
-        <section className="py-16 bg-white">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              Tratamento de Canal Não Precisa Ser Assustador
-            </h2>
+        <ScrollReveal animation="fade-up">
+          <section className="py-16 bg-white">
+            <div className="container-custom">
+              <h2 className="heading-lg mb-8 text-center text-dental-purple">
+                Tratamento de Canal Não Precisa Ser Assustador
+              </h2>
 
-            <div className="max-w-3xl mx-auto space-y-6 text-dental-gray leading-relaxed">
-              <p>
-                A maioria das pessoas sente apreensão quando ouve "tratamento de canal". É compreensível — durante muito tempo, o procedimento era associado a dor e desconforto. Mas a realidade atual é bem diferente.
-              </p>
-              <p>
-                Com anestesia eficiente e técnicas atualizadas, o procedimento é tranquilo. O que costuma doer é o problema que levou à necessidade do canal — a infecção, a inflamação. O tratamento, justamente, alivia essa dor.
-              </p>
-              <p>
-                No consultório da Dra. Carla Christoph, você tem a segurança de um acompanhamento completo: do diagnóstico inicial à restauração final, passando pelo tratamento com endodontista especializado.
-              </p>
-              <div className="mt-6 bg-dental-beige/30 p-6 rounded-lg border-l-4 border-dental-gold">
-                <p className="text-dental-gray">
-                  <strong className="text-dental-purple">Importante:</strong> Adiar o tratamento pode levar a infecção que se espalha para outras áreas, podendo exigir extração do dente. Quanto antes tratado, maior a chance de preservar o dente natural.
+              <div className="max-w-3xl mx-auto space-y-6 text-dental-gray leading-relaxed">
+                <p>
+                  A maioria das pessoas sente apreensão quando ouve "tratamento de canal". É compreensível — durante muito tempo, o procedimento era associado a dor e desconforto. Mas a realidade atual é bem diferente.
                 </p>
+                <p>
+                  Com anestesia eficiente e técnicas atualizadas, o procedimento é tranquilo. O que costuma doer é o problema que levou à necessidade do canal — a infecção, a inflamação. O tratamento, justamente, alivia essa dor.
+                </p>
+                <p>
+                  No consultório da Dra. Carla Christoph, você tem a segurança de um acompanhamento completo: do diagnóstico inicial à restauração final, passando pelo tratamento com endodontista especializado.
+                </p>
+                <div className="mt-6 bg-dental-beige/30 p-6 rounded-lg border-l-4 border-dental-gold">
+                  <p className="text-dental-gray">
+                    <strong className="text-dental-purple">Importante:</strong> Adiar o tratamento pode levar a infecção que se espalha para outras áreas, podendo exigir extração do dente. Quanto antes tratado, maior a chance de preservar o dente natural.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </ScrollReveal>
 
         {/* 4. SectionDivider */}
         <SectionDivider variant="with-icon" icon={<AlertCircle size={20} />} />
 
         {/* 5. Seção de situações — 3 cards */}
-        <section className="py-16 bg-white">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-4 text-center text-dental-purple">
-              Quando o Tratamento de Canal é Necessário
-            </h2>
-            <p className="text-center text-dental-gray mb-12 max-w-2xl mx-auto">
-              Sinais que merecem atenção
-            </p>
+        <ScrollReveal animation="fade-up">
+          <section className="py-16 bg-white">
+            <div className="container-custom">
+              <h2 className="heading-lg mb-4 text-center text-dental-purple">
+                Quando o Tratamento de Canal é Necessário
+              </h2>
+              <p className="text-center text-dental-gray mb-12 max-w-2xl mx-auto">
+                Sinais que merecem atenção
+              </p>
 
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {/* Card 1 */}
-              <div className="text-center">
-                <div className="w-16 h-16 bg-dental-purple/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Zap className="w-8 h-8 text-dental-purple" />
-                </div>
-                <h3 className="text-xl font-semibold text-dental-purple mb-3">
-                  Dor Persistente
-                </h3>
-                <p className="text-dental-gray">
-                  Dor de dente espontânea, latejante ou que piora com calor. Sensibilidade prolongada que não passa. São sinais de que a polpa do dente pode estar comprometida.
-                </p>
-              </div>
-
-              {/* Card 2 */}
-              <div className="text-center">
-                <div className="w-16 h-16 bg-dental-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <AlertCircle className="w-8 h-8 text-dental-gold" />
-                </div>
-                <h3 className="text-xl font-semibold text-dental-purple mb-3">
-                  Inchaço ou Abscesso
-                </h3>
-                <p className="text-dental-gray">
-                  Gengiva inchada perto de um dente, presença de pus ou fístula. Indica infecção que precisa de tratamento para não se espalhar.
-                </p>
-              </div>
-
-              {/* Card 3 */}
-              <div className="text-center">
-                <div className="w-16 h-16 bg-dental-purple/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Sparkles className="w-8 h-8 text-dental-purple" />
-                </div>
-                <h3 className="text-xl font-semibold text-dental-purple mb-3">
-                  Dente Escurecido
-                </h3>
-                <p className="text-dental-gray">
-                  Um dente que escureceu após trauma ou cárie profunda pode ter a polpa comprometida. O canal trata a causa e permite restaurar a aparência do dente.
-                </p>
+              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                {[
+                  {
+                    icon: <Zap className="w-8 h-8 text-dental-purple" />,
+                    iconBg: "bg-dental-purple/10",
+                    title: "Dor Persistente",
+                    text: "Dor de dente espontânea, latejante ou que piora com calor. Sensibilidade prolongada que não passa. São sinais de que a polpa do dente pode estar comprometida."
+                  },
+                  {
+                    icon: <AlertCircle className="w-8 h-8 text-dental-gold" />,
+                    iconBg: "bg-dental-gold/10",
+                    title: "Inchaço ou Abscesso",
+                    text: "Gengiva inchada perto de um dente, presença de pus ou fístula. Indica infecção que precisa de tratamento para não se espalhar."
+                  },
+                  {
+                    icon: <Sparkles className="w-8 h-8 text-dental-purple" />,
+                    iconBg: "bg-dental-purple/10",
+                    title: "Dente Escurecido",
+                    text: "Um dente que escureceu após trauma ou cárie profunda pode ter a polpa comprometida. O canal trata a causa e permite restaurar a aparência do dente."
+                  }
+                ].map((card, i) => (
+                  <ScrollReveal key={i} animation="fade-up" delay={i * 150}>
+                    <div className="text-center">
+                      <div className={`w-16 h-16 ${card.iconBg} rounded-full flex items-center justify-center mx-auto mb-4`}>
+                        {card.icon}
+                      </div>
+                      <h3 className="text-xl font-semibold text-dental-purple mb-3">
+                        {card.title}
+                      </h3>
+                      <p className="text-dental-gray">{card.text}</p>
+                    </div>
+                  </ScrollReveal>
+                ))}
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </ScrollReveal>
 
-        {/* CTA Intermediário - Sprint 6 #8 */}
-        <section className="py-8 bg-dental-beige/30">
-          <div className="max-w-3xl mx-auto px-4 text-center">
-            <p className="text-xl text-dental-gray mb-6">
-              Está com um desses sintomas?
-            </p>
-            <a
-              href="https://wa.me/5521993304045?text=Olá!%20Estou%20com%20sintomas%20que%20podem%20indicar%20necessidade%20de%20tratamento%20de%20canal.%20Gostaria%20de%20agendar%20uma%20avaliação%20de%20urgência."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
-            >
-              Agendar Avaliação de Urgência
-              <ArrowRight size={20} className="ml-2" />
-            </a>
-          </div>
-        </section>
-
-        {/* 6. Seção diferencial — Especialista */}
-        <section className="py-16 bg-gradient-purple-soft">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-12 text-center text-dental-purple">
-              Por Que Tratar com a Dra. Carla Christoph
-            </h2>
-
-            <div className="max-w-5xl mx-auto">
-              <div className="grid md:grid-cols-[300px,1fr] gap-8 items-start">
-                {/* Foto */}
-                <div className="mx-auto md:mx-0">
-                  <div className="relative">
-                    <img
-                      src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
-                      alt="Dra. Carla Christoph - Acompanhamento Completo no Tratamento de Canal"
-                      className="w-full rounded-2xl shadow-elegant"
-                    />
-                    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-dental-gold text-white px-6 py-2 rounded-full shadow-gold font-semibold text-sm whitespace-nowrap">
-                      Jornada Completa
-                    </div>
-                  </div>
-                </div>
-
-                {/* Conteúdo */}
-                <div className="bg-white p-8 rounded-2xl shadow-soft">
-                  <div className="mb-6">
-                    <h3 className="text-3xl font-display font-semibold text-dental-purple mb-2">
-                      Dra. Carla Christoph
-                    </h3>
-                    <p className="text-dental-gold-dark font-medium text-lg">
-                      CRO-RJ 27.509 | Especialista em Prótese Dentária e Implantodontia
-                    </p>
-                  </div>
-
-                  <div className="space-y-4 text-dental-gray leading-relaxed">
-                    <p>
-                      Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
-                    </p>
-                    <p>
-                      No tratamento de canal, a Dra. Carla acompanha pessoalmente cada etapa e é responsável pela finalização: restauração direta, coroa ou prótese. Você tem uma profissional cuidando de toda a sua jornada — do diagnóstico ao resultado final.
-                    </p>
-                  </div>
-
-                  {/* Credenciais 2x2 */}
-                  <div className="mt-6 pt-6 border-t border-dental-gray/20">
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="text-dental-gold mt-1" size={20} />
-                        <div>
-                          <p className="font-semibold text-dental-purple">Coordenação</p>
-                          <p className="text-sm text-dental-gray">Acompanhamento pessoal de toda a jornada do tratamento</p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="text-dental-gold mt-1" size={20} />
-                        <div>
-                          <p className="font-semibold text-dental-purple">Finalização</p>
-                          <p className="text-sm text-dental-gray">Restauração, coroa ou prótese feitas pela Dra. Carla</p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="text-dental-gold mt-1" size={20} />
-                        <div>
-                          <p className="font-semibold text-dental-purple">Experiência</p>
-                          <p className="text-sm text-dental-gray">20+ anos, incluindo 8 na Marinha</p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="text-dental-gold mt-1" size={20} />
-                        <div>
-                          <p className="font-semibold text-dental-purple">Abordagem</p>
-                          <p className="text-sm text-dental-gray">Consultas individualizadas, mínimo de 1 hora</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        {/* CTA Intermediário */}
+        <ScrollReveal animation="scale-in">
+          <section className="py-8 bg-dental-beige/30">
+            <div className="max-w-3xl mx-auto px-4 text-center">
+              <p className="text-xl text-dental-gray mb-6">
+                Está com um desses sintomas?
+              </p>
+              <a
+                href="https://wa.me/5521993304045?text=Olá!%20Estou%20com%20sintomas%20que%20podem%20indicar%20necessidade%20de%20tratamento%20de%20canal.%20Gostaria%20de%20agendar%20uma%20avaliação%20de%20urgência."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
+              >
+                Agendar Avaliação de Urgência
+                <ArrowRight size={20} className="ml-2" />
+              </a>
             </div>
-          </div>
-        </section>
+          </section>
+        </ScrollReveal>
+
+        {/* 6. Doctor Bio — now using shared component */}
+        <ScrollReveal animation="fade-up">
+          <DoctorBioSection
+            sectionTitle="Por Que Tratar com a Dra. Carla Christoph"
+            badgeText="Jornada Completa"
+            paragraphs={[
+              "Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.",
+              "No tratamento de canal, a Dra. Carla acompanha pessoalmente cada etapa e é responsável pela finalização: restauração direta, coroa ou prótese. Você tem uma profissional cuidando de toda a sua jornada — do diagnóstico ao resultado final."
+            ]}
+            credentials={[
+              { title: "Coordenação", description: "Acompanhamento pessoal de toda a jornada do tratamento" },
+              { title: "Finalização", description: "Restauração, coroa ou prótese feitas pela Dra. Carla" },
+              { title: "Experiência", description: "20+ anos, incluindo 8 na Marinha" },
+              { title: "Abordagem", description: "Consultas individualizadas, mínimo de 1 hora" }
+            ]}
+          />
+        </ScrollReveal>
 
         {/* 7. SectionDivider + ProcessTimeline */}
         <SectionDivider variant="with-icon" icon={<Search size={20} />} />
 
-        <section className="py-16 bg-white">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-4 text-center text-dental-purple">
-              Como Funciona o Tratamento de Canal no Consultório
-            </h2>
+        <ScrollReveal animation="fade-up">
+          <section className="py-16 bg-white">
+            <div className="container-custom">
+              <h2 className="heading-lg mb-4 text-center text-dental-purple">
+                Como Funciona o Tratamento de Canal no Consultório
+              </h2>
 
-            <div className="max-w-4xl mx-auto">
-              <ProcessTimeline
-                steps={[
-                  {
-                    number: 1,
-                    title: "Diagnóstico com a Dra. Carla",
-                    description: "Exame clínico, radiografia e avaliação do caso. A Dra. Carla identifica o problema e explica o que precisa ser feito.",
-                    icon: <Search size={24} />,
-                    duration: "1ª Consulta"
-                  },
-                  {
-                    number: 2,
-                    title: "Tratamento com Endodontista",
-                    description: "O procedimento é realizado por endodontista especializado, com anestesia local. A Dra. Carla acompanha pessoalmente.",
-                    icon: <Shield size={24} />,
-                    duration: "1-2 sessões"
-                  },
-                  {
-                    number: 3,
-                    title: "Restauração pela Dra. Carla",
-                    description: "Após o canal, a Dra. Carla finaliza o dente — com restauração direta em resina, coroa ou a solução mais indicada para o seu caso.",
-                    icon: <Sparkles size={24} />,
-                    duration: "Finalização"
-                  },
-                  {
-                    number: 4,
-                    title: "Acompanhamento",
-                    description: "Consultas de controle para garantir que o dente tratado está saudável e a restauração está íntegra.",
-                    icon: <Heart size={24} />,
-                    duration: "Periódico"
-                  }
-                ]}
-              />
+              <div className="max-w-4xl mx-auto">
+                <ProcessTimeline
+                  steps={[
+                    {
+                      number: 1,
+                      title: "Diagnóstico com a Dra. Carla",
+                      description: "Exame clínico, radiografia e avaliação do caso. A Dra. Carla identifica o problema e explica o que precisa ser feito.",
+                      icon: <Search size={24} />,
+                      duration: "1ª Consulta"
+                    },
+                    {
+                      number: 2,
+                      title: "Tratamento com Endodontista",
+                      description: "O procedimento é realizado por endodontista especializado, com anestesia local. A Dra. Carla acompanha pessoalmente.",
+                      icon: <Shield size={24} />,
+                      duration: "1-2 sessões"
+                    },
+                    {
+                      number: 3,
+                      title: "Restauração pela Dra. Carla",
+                      description: "Após o canal, a Dra. Carla finaliza o dente — com restauração direta em resina, coroa ou a solução mais indicada para o seu caso.",
+                      icon: <Sparkles size={24} />,
+                      duration: "Finalização"
+                    },
+                    {
+                      number: 4,
+                      title: "Acompanhamento",
+                      description: "Consultas de controle para garantir que o dente tratado está saudável e a restauração está íntegra.",
+                      icon: <Heart size={24} />,
+                      duration: "Periódico"
+                    }
+                  ]}
+                />
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </ScrollReveal>
 
         {/* 8. Seção informativa */}
-        <section className="py-16 bg-white">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              O Que Acontece Durante o Procedimento
-            </h2>
+        <ScrollReveal animation="fade-up">
+          <section className="py-16 bg-white">
+            <div className="container-custom">
+              <h2 className="heading-lg mb-8 text-center text-dental-purple">
+                O Que Acontece Durante o Procedimento
+              </h2>
 
-            <div className="max-w-3xl mx-auto space-y-6 text-dental-gray leading-relaxed">
-              <p>
-                O tratamento de canal consiste em remover a polpa do dente — o tecido interno que contém nervos e vasos — quando ela está inflamada ou infectada. Com o dente anestesiado, o endodontista acessa o interior, limpa e desinfeta os canais, e os preenche com material biocompatível. O procedimento geralmente leva de 1 a 2 sessões, e o dente é então restaurado pela Dra. Carla para recuperar forma, função e aparência.
-              </p>
-              <p>
-                Na prática clínica, o que mais vemos é pacientes que chegam tensos e saem aliviados — tanto pela dor que passa quanto por descobrirem que o procedimento foi muito mais tranquilo do que imaginavam.
-              </p>
+              <div className="max-w-3xl mx-auto space-y-6 text-dental-gray leading-relaxed">
+                <p>
+                  O tratamento de canal consiste em remover a polpa do dente — o tecido interno que contém nervos e vasos — quando ela está inflamada ou infectada. Com o dente anestesiado, o endodontista acessa o interior, limpa e desinfeta os canais, e os preenche com material biocompatível. O procedimento geralmente leva de 1 a 2 sessões, e o dente é então restaurado pela Dra. Carla para recuperar forma, função e aparência.
+                </p>
+                <p>
+                  Na prática clínica, o que mais vemos é pacientes que chegam tensos e saem aliviados — tanto pela dor que passa quanto por descobrirem que o procedimento foi muito mais tranquilo do que imaginavam.
+                </p>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </ScrollReveal>
 
-        {/* 9. SectionDivider + FAQ */}
+        {/* 9. SectionDivider + FAQ — now using shared component */}
         <SectionDivider variant="with-icon" icon={<HelpCircle size={20} />} />
 
-        <section className="py-16 bg-dental-beige/20">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              Dúvidas Sobre Tratamento de Canal
-            </h2>
+        <ScrollReveal animation="fade-up">
+          <ServiceFAQ
+            title="Dúvidas Sobre Tratamento de Canal"
+            faqs={faqs}
+          />
+        </ScrollReveal>
 
-            <div className="max-w-4xl mx-auto">
-              <Accordion type="single" collapsible className="w-full space-y-4">
-                {faqs.map((faq, index) => (
-                  <AccordionItem
-                    value={`item-${index + 1}`}
-                    key={index}
-                    className="bg-white rounded-lg border border-dental-purple/20 px-6"
-                  >
-                    <AccordionTrigger className="text-left text-base font-semibold text-dental-purple hover:text-dental-gold transition-colors py-6">
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-dental-gray leading-relaxed pb-6">
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
-          </div>
-        </section>
-
-        {/* 10. CTA Final */}
-        <section className="py-20 bg-gradient-purple-gold text-white">
-          <div className="container-custom text-center">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Shield className="w-8 h-8 text-dental-gold" />
-              <h2 className="heading-lg">
-                Dor de Dente Precisa de Atenção
-              </h2>
-            </div>
-            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Agende sua avaliação. Quanto antes o diagnóstico, mais simples tende a ser o tratamento.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button
-                onClick={handleWhatsAppClick}
-                className="bg-dental-gold text-dental-purple px-8 py-4 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-all inline-flex items-center gap-2"
-              >
-                <ArrowRight className="w-5 h-5" />
-                Agendar Avaliação
-              </button>
-            </div>
-
-            <p className="mt-6 text-sm opacity-75">
-              WhatsApp: (21) 99330-4045 | Atendimento 24h
-            </p>
-          </div>
-        </section>
+        {/* 10. CTA Final — now using shared component */}
+        <FinalServiceCTA
+          icon={<Shield className="w-8 h-8" />}
+          title="Dor de Dente Precisa de Atenção"
+          description="Agende sua avaliação. Quanto antes o diagnóstico, mais simples tende a ser o tratamento."
+          ctaText="Agendar Avaliação"
+          whatsappMessage="Olá! Vi a página sobre tratamento de canal e gostaria de agendar uma avaliação com a Dra. Carla Christoph."
+          onClickOverride={handleWhatsAppClick}
+        />
         <InternalLinkingOptimizer currentPage="tratamento-de-canal" />
       </PageLayout>
     </>
