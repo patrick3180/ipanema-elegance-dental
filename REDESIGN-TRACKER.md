@@ -13,7 +13,7 @@
 |------|-----------|--------|-------------|----------------|
 | 0 | Setup: branch + tracker | ✅ Concluída | 01/04/2026 | 01/04/2026 |
 | 1 | Quick Win: iTero Element 5D | ✅ Concluída | 01/04/2026 | 01/04/2026 |
-| 2 | Auditoria do Design System atual | ⬜ Pendente | — | — |
+| 2 | Auditoria do Design System atual | ✅ Concluída | 01/04/2026 | 01/04/2026 |
 | 3 | Homepage Redesign | ⬜ Pendente | — | — |
 | 4 | Páginas de Serviço (9 páginas) | ⬜ Pendente | — | — |
 | 5 | Página "Nossa Tecnologia" (NOVA) | ⬜ Pendente | — | — |
@@ -71,17 +71,36 @@
 
 ---
 
-## FASE 2: Auditoria do Design System
+## FASE 2: Auditoria do Design System ✅
 
 > Revisar tokens, componentes e padrões visuais antes de começar o redesign.
 
-- [ ] Auditar `tailwind.config.ts` — cores, fonts, spacing
-- [ ] Auditar componentes base em `src/components/`
-- [ ] Mapear componentes reutilizáveis vs. código duplicado
-- [ ] Documentar design tokens atuais
-- [ ] Identificar gaps vs. o Brief (Ex: breadcrumb, stats bar)
-- [ ] Definir novos componentes necessários
-- [ ] Commit: `audit(design): document current design system`
+- [x] Auditar `tailwind.config.ts` — cores, fonts, spacing
+- [x] Auditar componentes base em `src/components/` (34 files + 10 subdirs)
+- [x] Mapear componentes reutilizáveis vs. código duplicado
+- [x] Documentar design tokens atuais (cores, tipografia, sombras, gradientes, animações)
+- [x] Identificar gaps vs. o Brief (5 novos componentes + 1 upgrade necessários)
+- [x] Definir novos componentes necessários (HomepageStatsBar, DifferentialsSection, TechnologyShowcase, BlogPreview, FinalCTA, TestimonialCarousel)
+
+### Problemas Encontrados
+- 🔴 CSS duplicado: `shadow-elegant`, `shadow-soft`, `shadow-gold`, `bg-gradient-purple-soft` definidas 2x no index.css com valores diferentes
+- 🟡 Playfair Display carrega apenas peso 400, mas usa font-medium (500)
+- 🟡 Utility `elegant-shadow` redundante com `shadow-soft`
+
+### Gaps vs Brief (Homepage)
+- ❌ Stats Bar no hero (existe em treatment mas não na homepage)
+- ❌ "Por que a Dra. Carla?" — seção de diferenciais dedicada
+- ❌ Tecnologia Destaque (iTero Element 5D)
+- ❌ Blog Preview (3 últimos artigos)
+- ❌ CTA Final antes do footer
+- ❌ Navbar dropdown de Tratamentos
+- ❌ Depoimentos como carousel (atualmente grid estático)
+
+### Relatório Completo
+- [Auditoria do Design System](../../../.gemini/antigravity/brain/6e1c5f75-f121-43ab-a08c-26dc18d4aceb/design_system_audit.md)
+
+### Commit
+- [x] `audit(design): complete design system audit` — documentado em artifact
 
 ---
 
