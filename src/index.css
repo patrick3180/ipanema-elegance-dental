@@ -43,6 +43,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('/fonts/playfair-display-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --background: 51 22% 76%;
@@ -127,15 +135,15 @@
 
   /* Typography utilities */
   .heading-xl {
-    @apply text-4xl md:text-4xl xl:text-5xl font-display font-medium leading-tight;
+    @apply text-4xl md:text-4xl xl:text-5xl font-display font-semibold leading-tight;
   }
 
   .heading-lg {
-    @apply text-3xl md:text-4xl font-display font-medium;
+    @apply text-3xl md:text-4xl font-display font-semibold;
   }
 
   .heading-md {
-    @apply text-2xl md:text-3xl font-display font-medium;
+    @apply text-2xl md:text-3xl font-display font-semibold;
   }
 
   .body-lg {
@@ -236,22 +244,9 @@
   z-index: 1;
 }
 
-/* Gradientes e sombras premium para seção da especialista */
-.bg-gradient-purple-soft {
-  background: linear-gradient(135deg, hsl(250 100% 98%) 0%, hsl(30 100% 97%) 100%);
-}
-
-.shadow-elegant {
-  box-shadow: 0 10px 40px -10px hsl(var(--dental-purple) / 0.2);
-}
-
-.shadow-soft {
-  box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08);
-}
-
-.shadow-gold {
-  box-shadow: 0 4px 12px hsl(var(--dental-gold) / 0.3);
-}
+/* NOTE: shadow-elegant, shadow-soft, shadow-gold, bg-gradient-purple-soft
+   are defined in @layer utilities above. Do NOT re-declare here.
+   Legacy duplicates removed in Phase 3 cleanup (01/04/2026). */
 
 /* Hero staggered entrance animations */
 @keyframes heroFadeUp {

@@ -14,7 +14,7 @@
 | 0 | Setup: branch + tracker | ✅ Concluída | 01/04/2026 | 01/04/2026 |
 | 1 | Quick Win: iTero Element 5D | ✅ Concluída | 01/04/2026 | 01/04/2026 |
 | 2 | Auditoria do Design System atual | ✅ Concluída | 01/04/2026 | 01/04/2026 |
-| 3 | Homepage Redesign | ⬜ Pendente | — | — |
+| 3 | Homepage Redesign | 🔄 Em andamento | 01/04/2026 | — |
 | 4 | Páginas de Serviço (9 páginas) | ⬜ Pendente | — | — |
 | 5 | Página "Nossa Tecnologia" (NOVA) | ⬜ Pendente | — | — |
 | 6 | LP Template: melhorias incrementais | ⬜ Pendente | — | — |
@@ -104,34 +104,45 @@
 
 ---
 
-## FASE 3: Homepage Redesign
+## FASE 3: Homepage Redesign 🔄
 
 > Reconstruir a homepage seguindo o blueprint do Brief v2.0.
 
-### Seções (ordem da página)
-- [ ] 3.1 Navbar — Logo, menu dropdown, EN toggle, CTA WhatsApp
-- [ ] 3.2 Hero Section — Badge, H1, sub, foto AVIF, stats bar, CTAs
-- [ ] 3.3 Serviços Grid — Cards com ícone + título + link
-- [ ] 3.4 "Por que a Dra. Carla?" — Diferenciais com ícone + parágrafo
-- [ ] 3.5 Tecnologia Destaque — iTero Element 5D com foto
-- [ ] 3.6 Depoimentos — Carousel com estrelas + nome + bairro
-- [ ] 3.7 Blog Preview — 3 últimos artigos do Contentful
-- [ ] 3.8 CTA Final — WhatsApp
-- [ ] 3.9 Footer — Info, mapa, horários, redes sociais
+### CSS Cleanup
+- [x] Consolidar CSS duplicado (shadow/gradient definitions)
+- [x] Adicionar Playfair Display 600 (semibold)
+- [x] Atualizar heading utilities para font-semibold
+
+### Novos Componentes Criados
+- [x] `HomepageStatsBar.tsx` — Count-up animado (20+ anos, 4000+ pacientes, CRO-RJ)
+- [x] `DifferentialsSection.tsx` — 4 cards "Por que a Dra. Carla?"
+- [x] `TechnologyShowcase.tsx` — iTero Element 5D dark section
+- [x] `TestimonialsCarousel.tsx` — Carousel com auto-play, dots, arrows, 5 depoimentos
+- [x] `BlogPreview.tsx` — 3 artigos com cards hover, categories, read time
+- [x] `FinalCTA.tsx` — CTA WhatsApp full-width com tracking
+
+### Index.tsx Recomposto (10 seções)
+- [x] 1. Hero — Badge + H1 + Trust Badges + 2 CTAs + Photo
+- [x] 2. HomepageStatsBar — Prova social imediata
+- [x] 3. AboutSection — Bio + foto + CTA
+- [x] 4. DifferentialsSection — Por que a Dra. Carla?
+- [x] 5. ServicesSection — Grid 3x3
+- [x] 6. TechnologyShowcase — iTero Element 5D
+- [x] 7. TestimonialsCarousel — Carousel com estrelas
+- [x] 8. BlogPreview — 3 artigos recentes
+- [x] 9. FinalCTA — WhatsApp
+- [x] 10. ContactSection — Form + info + mapa
+
+### Pendente
+- [ ] 3.1 Navbar dropdown de Tratamentos
+- [ ] AVIF responsive images para todos os componentes
+- [ ] Micro-animações de entrada de seção (fade-in/slide-up)
 
 ### Requisitos Técnicos
+- [x] Schema.org LocalBusiness (existente, mantido)
+- [x] Open Graph meta tags (existente, mantido)
 - [ ] Critical CSS inline
 - [ ] AVIF responsive images
-- [ ] Micro-animações (entrada de seções)
-- [ ] Mobile-first responsive
-- [ ] Schema.org LocalBusiness
-- [ ] Open Graph meta tags
-
-### Commits
-- [ ] `feat(homepage): new hero section with stats bar`
-- [ ] `feat(homepage): services grid + differentials`
-- [ ] `feat(homepage): technology showcase + testimonials`
-- [ ] `feat(homepage): blog preview + CTA + footer`
 
 ### Checkpoint
 - [ ] **PAUSA PARA APROVAÇÃO DO CLIENTE** — rodar localmente e avaliar

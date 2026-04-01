@@ -3,9 +3,14 @@ import React from "react";
 import PageLayout from "@/components/PageLayout";
 import SEOHead from "@/components/SEOHead";
 import Hero from "@/components/Hero";
+import HomepageStatsBar from "@/components/HomepageStatsBar";
 import AboutSection from "@/components/AboutSection";
+import DifferentialsSection from "@/components/DifferentialsSection";
 import ServicesSection from "@/components/ServicesSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
+import TechnologyShowcase from "@/components/TechnologyShowcase";
+import TestimonialsCarousel from "@/components/TestimonialsCarousel";
+import BlogPreview from "@/components/BlogPreview";
+import FinalCTA from "@/components/FinalCTA";
 import ContactSection from "@/components/ContactSection";
 
 const Index = () => {
@@ -153,10 +158,34 @@ const Index = () => {
         structuredData={structuredData}
       />
       <PageLayout className="pt-0">
+        {/* 1. Hero — Eyebrow + H1 + Trust Badges + 2 CTAs + Photo */}
         <Hero />
+
+        {/* 2. Stats Bar — Prova social imediata */}
+        <HomepageStatsBar />
+
+        {/* 3. Sobre — Bio + foto + CTA */}
         <AboutSection />
+
+        {/* 4. Diferenciais — Por que a Dra. Carla? */}
+        <DifferentialsSection />
+
+        {/* 5. Tratamentos — Grid 3x3 */}
         <ServicesSection />
-        <TestimonialsSection />
+
+        {/* 6. Tecnologia — iTero Element 5D showcase */}
+        <TechnologyShowcase />
+
+        {/* 7. Depoimentos — Carousel com estrelas */}
+        <TestimonialsCarousel />
+
+        {/* 8. Blog — 3 artigos recentes */}
+        <BlogPreview />
+
+        {/* 9. CTA Final — WhatsApp */}
+        <FinalCTA />
+
+        {/* 10. Contato — Form + info + mapa */}
         <ContactSection />
       </PageLayout>
     </>
