@@ -54,13 +54,18 @@ const Header = () => {
     }, 150);
   };
 
-  // Function to handle section navigation
+  // Function to handle section navigation with fixed header offset
+  const HEADER_OFFSET = 100;
   const handleSectionNavigation = (sectionId: string) => {
     setIsMenuOpen(false);
     if (location.pathname === '/') {
       const element = document.getElementById(sectionId);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: elementPosition - HEADER_OFFSET,
+          behavior: 'smooth',
+        });
       }
     } else {
       window.location.href = `/#${sectionId}`;

@@ -240,7 +240,8 @@ const BlogPost = () => {
                   onQuestionClick={(question) => {
                     const contentElement = document.querySelector('.blog-content');
                     if (contentElement) {
-                      contentElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      const top = contentElement.getBoundingClientRect().top + window.scrollY - 100;
+                      window.scrollTo({ top, behavior: 'smooth' });
                     }
                   }}
                 />

@@ -97,7 +97,11 @@ const Hero = () => {
                     event_label: 'Hero Secondary CTA'
                   });
                 }
-                document.getElementById('tratamentos')?.scrollIntoView({ behavior: 'smooth' });
+                const el = document.getElementById('tratamentos');
+                if (el) {
+                  const top = el.getBoundingClientRect().top + window.scrollY - 100;
+                  window.scrollTo({ top, behavior: 'smooth' });
+                }
               }}
             >
               Conheça nossos tratamentos

@@ -93,6 +93,15 @@
     scroll-behavior: smooth;
   }
 
+  html {
+    scroll-padding-top: 100px;
+  }
+
+  /* Ensure anchored sections clear the fixed header */
+  [id] {
+    scroll-margin-top: 100px;
+  }
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
