@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { Skeleton } from "@/components/ui/skeleton";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import BlogLayout from "@/layouts/BlogLayout";
 
 // COMPONENTES DE PERFORMANCE - CRÍTICOS
@@ -71,6 +72,17 @@ const PageLoadingFallback = () => (
   </div>
 );
 
+// QueryClient global - necessário para BlogPreview na homepage e blog pages
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000,
+      refetchOnWindowFocus: false,
+      retry: 1,
+    },
+  },
+});
+
 const App = () => {
   // BLOQUEIO DO CONTENTFUL EM LANDING PAGES
   useEffect(() => {
@@ -97,6 +109,7 @@ const App = () => {
   }, []);
 
   return (
+    <QueryClientProvider client={queryClient}>
     <HelmetProvider>
       {/* SEO - Global Schema.org markup for Organization + LocalBusiness */}
       <GlobalSchemas />
@@ -176,6 +189,7 @@ const App = () => {
         </BrowserRouter>
       </TooltipProvider>
     </HelmetProvider>
+    </QueryClientProvider>
   );
 };
 

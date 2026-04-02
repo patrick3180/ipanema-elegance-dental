@@ -6,15 +6,15 @@ import { Menu, X, Star, MessageCircle, ChevronDown } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const treatmentSubItems = [
-  { title: "Lentes de Contato Dental", path: "/servicos/lentes-de-contato-dental-e-facetas-de-porcelana" },
-  { title: "Clareamento Dental", path: "/servicos/clareamento-dental" },
-  { title: "Prótese Dentária", path: "/servicos/protese-dentaria" },
-  { title: "Implantes Dentários", path: "/servicos/implantes-dentarios" },
-  { title: "Ortodontia", path: "/servicos/ortodontia" },
-  { title: "Clínica Geral e Prevenção", path: "/servicos/clinica-geral-e-prevencao" },
-  { title: "Restaurações Estéticas", path: "/servicos/restauracoes-esteticas" },
-  { title: "Tratamento de Canal", path: "/servicos/tratamento-de-canal" },
-  { title: "Saúde da Gengiva", path: "/servicos/saude-da-gengiva" },
+  { title: "Lentes de Contato Dental", path: "/lentes-de-contato-dental-e-facetas-de-porcelana" },
+  { title: "Clareamento Dental", path: "/clareamento-dental" },
+  { title: "Prótese Dentária", path: "/protese-dentaria" },
+  { title: "Implantes Dentários", path: "/implantes-dentarios" },
+  { title: "Ortodontia", path: "/ortodontia" },
+  { title: "Clínica Geral e Prevenção", path: "/clinica-geral-e-prevencao" },
+  { title: "Restaurações Estéticas", path: "/restauracoes-esteticas" },
+  { title: "Tratamento de Canal", path: "/tratamento-de-canal" },
+  { title: "Saúde da Gengiva", path: "/saude-da-gengiva" },
 ];
 
 const Header = () => {

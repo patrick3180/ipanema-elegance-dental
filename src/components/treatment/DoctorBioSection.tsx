@@ -16,6 +16,8 @@ export interface DoctorBioSectionProps {
   doctorImage?: string;
   doctorAlt?: string;
   variant?: "default" | "editorial";
+  doctorName?: string;
+  doctorSubtitle?: ReactNode;
 }
 
 const DoctorBioSection = ({
@@ -27,6 +29,8 @@ const DoctorBioSection = ({
   doctorImage = "/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp",
   doctorAlt = "Dra. Carla Christoph - Especialista em Odontologia",
   variant = "default",
+  doctorName = "Dra. Carla Christoph",
+  doctorSubtitle = "CRO-RJ 27.509 | Especialista em Prótese Dentária e Implantodontia",
 }: DoctorBioSectionProps) => {
   return (
     <section className="py-16 bg-gradient-purple-soft">
@@ -70,10 +74,10 @@ const DoctorBioSection = ({
             <div className="bg-white p-8 rounded-2xl shadow-soft">
               <div className="mb-6">
                 <h3 className="text-3xl font-display font-semibold text-dental-purple mb-2">
-                  Dra. Carla Christoph
+                  {doctorName}
                 </h3>
                 <p className="text-dental-gold-dark font-medium text-lg">
-                  CRO-RJ 27.509 | Especialista em Prótese Dentária e Implantodontia
+                  {doctorSubtitle}
                 </p>
               </div>
 

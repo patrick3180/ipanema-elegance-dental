@@ -11,6 +11,11 @@ import ProcessTimeline from '@/components/treatment/ProcessTimeline';
 import InfoCard from '@/components/treatment/InfoCard';
 import { Card, CardContent } from "@/components/ui/card";
 import { InternalLinkingOptimizer } from '@/components/seo/InternalLinkingOptimizer';
+import ScrollReveal from '@/components/ScrollReveal';
+import DoctorBioSection from '@/components/treatment/DoctorBioSection';
+import ServiceFAQ from '@/components/treatment/ServiceFAQ';
+import FinalServiceCTA from '@/components/treatment/FinalServiceCTA';
+
 
 const ProteseDentaria = () => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -694,94 +699,22 @@ const ProteseDentaria = () => {
         </section>
 
         {/* Seção da Especialista */}
-        <section className="py-16 bg-gradient-purple-soft">
-          <div className="container-custom">
-            <SectionDivider variant="with-icon" icon={<Award size={20} />} />
-
-            <h2 className="heading-lg mb-12 text-center text-dental-purple">
-              Expertise e Experiência em Reabilitação Oral
-            </h2>
-
-            <div className="max-w-5xl mx-auto">
-              <div className="grid md:grid-cols-[300px,1fr] gap-8 items-start">
-
-                {/* Foto da Dra. - Maior e mais destacada */}
-                <div className="mx-auto md:mx-0">
-                  <div className="relative">
-                    <img
-                      src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
-                      alt="Dra. Carla Christoph - Especialista em Prótese Dentária"
-                      className="w-full rounded-2xl shadow-elegant"
-                    />
-                    {/* Badge flutuante */}
-                    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-dental-gold text-white px-6 py-2 rounded-full shadow-gold font-semibold text-sm whitespace-nowrap">
-                      20+ Anos de Experiência
-                    </div>
-                  </div>
-                </div>
-
-                {/* Conteúdo */}
-                <div className="bg-white p-8 rounded-2xl shadow-soft">
-                  <div className="mb-6">
-                    <h3 className="text-3xl font-display font-semibold text-dental-purple mb-2">
-                      Dra. Carla Christoph
-                    </h3>
-                    <p className="text-dental-gold-dark font-medium text-lg">
-                      CRO-RJ 27.509 | Especialista em Prótese Dentária
-                    </p>
-                  </div>
-
-                  <div className="space-y-4 text-dental-gray leading-relaxed">
-                    <p>
-                      Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
-                    </p>
-
-                    <p>
-                      Como especialista em Prótese Dentária, reabilitação oral é onde sua formação se aprofunda. Casos complexos são sua rotina — da coroa unitária à reabilitação completa, cada solução é planejada com base em diagnóstico detalhado e planejamento digital.
-                    </p>
-                  </div>
-
-                  {/* Credenciais */}
-                  <div className="mt-6 pt-6 border-t border-dental-gray/20">
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="text-dental-gold mt-1" size={20} />
-                        <div>
-                          <p className="font-semibold text-dental-purple">Formação</p>
-                          <p className="text-sm text-dental-gray">Especialista em Prótese Dentária e Implantodontia</p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="text-dental-gold mt-1" size={20} />
-                        <div>
-                          <p className="font-semibold text-dental-purple">Experiência</p>
-                          <p className="text-sm text-dental-gray">8 anos como dentista militar na Marinha</p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="text-dental-gold mt-1" size={20} />
-                        <div>
-                          <p className="font-semibold text-dental-purple">Atualização</p>
-                          <p className="text-sm text-dental-gray">Cursos contínuos em DSD e iTero Element 5D</p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="text-dental-gold mt-1" size={20} />
-                        <div>
-                          <p className="font-semibold text-dental-purple">Tecnologia</p>
-                          <p className="text-sm text-dental-gray">iTero Element 5D e planejamento digital</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <ScrollReveal animation="fade-up">
+          <DoctorBioSection
+            sectionTitle="Expertise e Experiência em Reabilitação Oral"
+            badgeText="20+ Anos de Experiência"
+            paragraphs={[
+              "Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.",
+              "Como especialista em Prótese Dentária, reabilitação oral é onde sua formação se aprofunda. Casos complexos são sua rotina — da coroa unitária à reabilitação completa, cada solução é planejada com base em diagnóstico detalhado e planejamento digital."
+            ]}
+            credentials={[
+              { title: "Formação", description: "Especialista em Prótese Dentária e Implantodontia" },
+              { title: "Experiência", description: "8 anos como dentista militar na Marinha" },
+              { title: "Atualização", description: "Cursos contínuos em DSD e iTero Element 5D" },
+              { title: "Tecnologia", description: "iTero Element 5D e planejamento digital" }
+            ]}
+          />
+        </ScrollReveal>
 
         {/* Seção de Vídeo - Condicional */}
         {hasVideo && (
@@ -834,61 +767,21 @@ const ProteseDentaria = () => {
         <SectionDivider variant="with-icon" icon={<HelpCircle size={20} />} />
 
         {/* FAQs */}
-        <section className="py-16 bg-dental-beige/20">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              Perguntas Frequentes sobre Prótese Dentária
-            </h2>
-
-            <div className="max-w-4xl mx-auto">
-              <Accordion type="single" collapsible className="w-full space-y-4">
-                {faqs.map((faq, index) => (
-                  <AccordionItem
-                    value={`item-${index + 1}`}
-                    key={index}
-                    className="bg-white rounded-lg border border-dental-purple/20 px-6"
-                  >
-                    <AccordionTrigger className="text-left text-base font-semibold text-dental-purple hover:text-dental-gold transition-colors py-6">
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-dental-gray leading-relaxed pb-6">
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
-          </div>
-        </section>
+        <ScrollReveal animation="fade-up">
+          <ServiceFAQ 
+            title="Perguntas Frequentes sobre Prótese Dentária"
+            faqs={faqs}
+          />
+        </ScrollReveal>
 
         {/* CTA Final */}
-        <section className="py-20 bg-gradient-purple-gold text-white">
-          <div className="container-custom text-center">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Award className="w-8 h-8 text-dental-gold" />
-              <h2 className="heading-lg">
-                Recuperar Função e Estética com Prótese Dentária
-              </h2>
-            </div>
-            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Na consulta de planejamento, analisamos seu caso e definimos o tipo de prótese mais adequado — fixa, removível ou sobre implantes. A prótese dentária devolve função mastigatória completa e pode melhorar significativamente sua qualidade de vida.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button
-                onClick={() => handleWhatsAppClick('Olá! Vi a página sobre prótese dentária e gostaria de agendar uma avaliação com a Dra. Carla Christoph')}
-                className="bg-dental-gold text-dental-purple px-8 py-4 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-all inline-flex items-center gap-2"
-              >
-                <ArrowRight className="w-5 h-5" />
-                Agendar Avaliação pelo WhatsApp
-              </button>
-            </div>
-
-            <p className="mt-6 text-sm opacity-75">
-              Atendimento de segunda a sexta, das 9h às 19h
-            </p>
-          </div>
-        </section>
+        <FinalServiceCTA 
+          title="Recuperar Função e Estética com Prótese Dentária"
+          description="Na consulta de planejamento, analisamos seu caso e definimos o tipo de prótese mais adequado — fixa, removível ou sobre implantes. A prótese dentária devolve função mastigatória completa e pode melhorar significativamente sua qualidade de vida."
+          ctaText="Agendar Avaliação pelo WhatsApp"
+          whatsappMessage="Olá! Vi a página sobre prótese dentária e gostaria de agendar uma avaliação com a Dra. Carla Christoph"
+          onClickOverride={() => handleWhatsAppClick('Olá! Vi a página sobre prótese dentária e gostaria de agendar uma avaliação com a Dra. Carla Christoph')}
+        />
         <StatsBar />
         <InternalLinkingOptimizer currentPage="protese-dentaria" />
       </PageLayout>

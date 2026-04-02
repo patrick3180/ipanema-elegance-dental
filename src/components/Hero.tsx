@@ -111,11 +111,11 @@ const Hero = () => {
             className="w-[280px] sm:w-[320px] md:w-[400px] lg:w-[460px] h-[420px] sm:h-[480px] md:h-[560px] lg:h-[640px]"
             style={{
               WebkitMaskImage: `
-                linear-gradient(to right, black 60%, transparent 100%),
+                linear-gradient(to left, black 60%, transparent 100%),
                 linear-gradient(to bottom, black 65%, transparent 100%)
               `,
               maskImage: `
-                linear-gradient(to right, black 60%, transparent 100%),
+                linear-gradient(to left, black 60%, transparent 100%),
                 linear-gradient(to bottom, black 65%, transparent 100%)
               `,
               WebkitMaskComposite: 'source-in',

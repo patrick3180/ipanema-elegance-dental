@@ -5,6 +5,10 @@ import TreatmentHero from "@/components/treatment/TreatmentHero";
 import StatsBar from "@/components/treatment/StatsBar";
 import SectionDivider from "@/components/treatment/SectionDivider";
 import ProcessTimeline from "@/components/treatment/ProcessTimeline";
+import DoctorBioSection from "@/components/treatment/DoctorBioSection";
+import ServiceFAQ from "@/components/treatment/ServiceFAQ";
+import FinalServiceCTA from "@/components/treatment/FinalServiceCTA";
+import ScrollReveal from "@/components/ScrollReveal";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
   Cpu, Scan, Shield, Heart, Activity, Clock, CheckCircle,
@@ -595,223 +599,59 @@ const ImplantesDentarios = () => {
 
         <SectionDivider variant="with-icon" icon={<Award className="w-5 h-5" />} />
 
-        {/* Seção da Especialista */}
-        <section className="py-16 bg-gradient-to-br from-dental-purple/5 via-dental-beige/20 to-dental-purple/5">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="grid md:grid-cols-[300px,1fr] gap-8 items-start">
-              {/* Coluna Imagem */}
-              <div className="relative mx-auto md:mx-0">
-                <img
-                  src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
-                  alt="Dra. Carla Christoph - Especialista em Implantes Dentários em Ipanema"
-                  className="w-full rounded-2xl shadow-elegant"
-                />
-                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-dental-gold text-white px-6 py-2 rounded-full shadow-lg font-semibold text-sm whitespace-nowrap">
-                  20+ anos de experiência
-                </div>
-              </div>
-
-              {/* Coluna Conteúdo */}
-              <div className="bg-white p-8 rounded-2xl shadow-soft">
-                <h2 className="text-3xl font-display font-bold text-dental-purple mb-2">
-                  Dra. Carla Christoph
-                </h2>
-                <p className="text-xl text-dental-gold font-semibold mb-4">
-                  CRO-RJ 27.509 | Especialista em Prótese Dentária e Implantodontia
-                </p>
-
-                <p className="text-dental-gray mb-4">
-                  Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
-                </p>
-
-                <p className="text-dental-gray mb-6">
-                  Sua formação em Implantodontia permite planejar desde casos unitários até reabilitações completas com segurança e previsibilidade. Cada implante é posicionado com base em planejamento digital, considerando estética e função a longo prazo.
-                </p>
-
-                <div className="grid md:grid-cols-2 gap-4 mt-6">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="text-dental-gold flex-shrink-0 mt-1" size={20} />
-                    <div>
-                      <p className="font-semibold text-dental-purple">Formação</p>
-                      <p className="text-sm text-dental-gray">Especialista em Prótese Dentária e Implantodontia</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="text-dental-gold flex-shrink-0 mt-1" size={20} />
-                    <div>
-                      <p className="font-semibold text-dental-purple">Experiência</p>
-                      <p className="text-sm text-dental-gray">20+ anos, incluindo 8 na Marinha</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="text-dental-gold flex-shrink-0 mt-1" size={20} />
-                    <div>
-                      <p className="font-semibold text-dental-purple">Tecnologia</p>
-                      <p className="text-sm text-dental-gray">iTero Element 5D, planejamento digital do sorriso</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="text-dental-gold flex-shrink-0 mt-1" size={20} />
-                    <div>
-                      <p className="font-semibold text-dental-purple">Abordagem</p>
-                      <p className="text-sm text-dental-gray">Consultas individualizadas, mínimo de 1 hora</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <ScrollReveal animation="fade-up">
+          <DoctorBioSection 
+            sectionTitle="Dra. Carla Christoph"
+            doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+            doctorAlt="Dra. Carla Christoph - Especialista em Implantes Dentários em Ipanema"
+            doctorName="Dra. Carla Christoph"
+            doctorSubtitle="CRO-RJ 27.509 | Especialista em Prótese Dentária e Implantodontia"
+            paragraphs={[
+              "Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.",
+              "Sua formação em Implantodontia permite planejar desde casos unitários até reabilitações completas com segurança e previsibilidade. Cada implante é posicionado com base em planejamento digital, considerando estética e função a longo prazo."
+            ]}
+            credentials={[
+              { title: "Formação", description: "Especialista em Prótese Dentária e Implantodontia" },
+              { title: "Experiência", description: "20+ anos, incluindo 8 na Marinha" },
+              { title: "Tecnologia", description: "iTero Element 5D, planejamento digital do sorriso" },
+              { title: "Abordagem", description: "Consultas individualizadas, mínimo de 1 hora" }
+            ]}
+          />
+        </ScrollReveal>
 
         <SectionDivider variant="with-icon" icon={<HelpCircle className="w-5 h-5" />} />
 
-        {/* FAQ Section */}
-        <section className="py-12 bg-white">
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple text-center mb-12">
-              Perguntas Frequentes Sobre Implantes Dentários
-            </h2>
+        <ScrollReveal animation="fade-up">
+          <ServiceFAQ 
+            title="Perguntas Frequentes Sobre Implantes Dentários"
+            faqs={[
+              { question: "O que são implantes dentários?", answer: "São pinos de titânio biocompatível instalados cirurgicamente no osso da mandíbula ou maxila, substituindo a raiz do dente perdido. Sobre estes pinos, fixamos coroas, pontes ou próteses completas, restaurando função mastigatória, estética e fonética." },
+              { question: "O procedimento é doloroso?", answer: "A cirurgia é realizada sob anestesia local, sem dor durante o procedimento. O pós-operatório é geralmente tranquilo, com desconforto leve controlado por medicação. A maioria dos pacientes retorna às atividades normais em 2 a 3 dias." },
+              { question: "Quanto tempo dura o tratamento completo?", answer: "O tempo varia conforme o caso. Em média, de 4 a 6 meses desde a instalação do implante até a prótese definitiva, incluindo o período de osseointegração (3 a 6 meses). Em casos com carga imediata selecionados, a prótese provisória é instalada conforme planejamento." },
+              { question: "Qualquer pessoa pode colocar implantes?", answer: "A maioria dos adultos saudáveis é candidata. Avaliamos saúde geral, quantidade e qualidade óssea, hábitos (tabagismo) e condições sistêmicas (diabetes controlado). Em casos de osso insuficiente, enxertos ósseos podem viabilizar o tratamento." },
+              { question: "Quanto tempo duram os implantes?", answer: "Com higiene adequada e manutenções regulares, implantes podem durar décadas ou a vida toda. Estudos mostram taxa de sucesso acima de 95% em 10 anos. A coroa protética pode precisar ser substituída após 10 a 15 anos dependendo do desgaste." },
+              { question: "Como é a manutenção dos implantes?", answer: "Higienização rigorosa com escova, fio dental e escovas interdentais específicas. Retornos semestrais para controle profissional, radiografias periódicas e avaliação da saúde peri-implantar. Evitar sobrecarga excessiva e trauma." },
+              { question: "Existe rejeição de implantes?", answer: "O titânio é biocompatível e não causa rejeição imunológica. Falhas ocorrem por infecção, sobrecarga precoce, tabagismo ou higiene inadequada, não por rejeição. Taxa de sucesso é superior a 95% quando protocolos são seguidos." },
+              { question: "Posso fazer se tiver pouco osso?", answer: "Sim. Técnicas de enxerto ósseo (autógeno, biomaterial) ou levantamento de seio maxilar podem aumentar volume ósseo. Implantes curtos ou angulados também são alternativas. Os exames de imagem permitem planejar a melhor solução para cada caso." },
+              { question: "Qual a diferença entre implante e prótese?", answer: "O implante é o pino de titânio fixado no osso (substitui a raiz). A prótese é a parte visível (coroa, ponte ou dentadura) que se conecta ao implante. O conjunto completo restaura função e estética." },
+              { question: "Fumantes podem fazer implantes?", answer: "Sim, mas o tabagismo reduz a taxa de sucesso (de 95% para aproximadamente 85%) por prejudicar cicatrização e osseointegração. Recomendamos parar de fumar pelo menos 2 semanas antes da cirurgia e durante a cicatrização. Avaliação individual é essencial." },
+              { question: "Diabéticos podem colocar implantes?", answer: "Sim, desde que o diabetes esteja controlado (hemoglobina glicada abaixo de 7%). Avaliação médica prévia é importante. O controle glicêmico adequado garante cicatrização normal e taxa de sucesso equivalente a não-diabéticos." },
+              { question: "Vocês atendem convênios odontológicos?", answer: "Nosso atendimento é particular, o que nos permite dedicar o tempo necessário a cada paciente e utilizar somente materiais de primeira linha. Na primeira consulta, apresentamos um orçamento detalhado e transparente." }
+            ]}
+          />
+        </ScrollReveal>
 
-            <Accordion type="single" collapsible className="space-y-4">
-              <AccordionItem value="faq-1" className="border border-dental-beige rounded-lg px-6">
-                <AccordionTrigger className="text-left text-dental-purple font-semibold hover:no-underline">
-                  O que são implantes dentários?
-                </AccordionTrigger>
-                <AccordionContent className="text-dental-gray">
-                  São pinos de titânio biocompatível instalados cirurgicamente no osso da mandíbula ou maxila, substituindo a raiz do dente perdido. Sobre estes pinos, fixamos coroas, pontes ou próteses completas, restaurando função mastigatória, estética e fonética.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="faq-2" className="border border-dental-beige rounded-lg px-6">
-                <AccordionTrigger className="text-left text-dental-purple font-semibold hover:no-underline">
-                  O procedimento é doloroso?
-                </AccordionTrigger>
-                <AccordionContent className="text-dental-gray">
-                  A cirurgia é realizada sob anestesia local, sem dor durante o procedimento. O pós-operatório é geralmente tranquilo, com desconforto leve controlado por medicação. A maioria dos pacientes retorna às atividades normais em 2 a 3 dias.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="faq-3" className="border border-dental-beige rounded-lg px-6">
-                <AccordionTrigger className="text-left text-dental-purple font-semibold hover:no-underline">
-                  Quanto tempo dura o tratamento completo?
-                </AccordionTrigger>
-                <AccordionContent className="text-dental-gray">
-                  O tempo varia conforme o caso. Em média, de 4 a 6 meses desde a instalação do implante até a prótese definitiva, incluindo o período de osseointegração (3 a 6 meses). Em casos com carga imediata selecionados, a prótese provisória é instalada conforme planejamento.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="faq-4" className="border border-dental-beige rounded-lg px-6">
-                <AccordionTrigger className="text-left text-dental-purple font-semibold hover:no-underline">
-                  Qualquer pessoa pode colocar implantes?
-                </AccordionTrigger>
-                <AccordionContent className="text-dental-gray">
-                  A maioria dos adultos saudáveis é candidata. Avaliamos saúde geral, quantidade e qualidade óssea, hábitos (tabagismo) e condições sistêmicas (diabetes controlado). Em casos de osso insuficiente, enxertos ósseos podem viabilizar o tratamento.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="faq-5" className="border border-dental-beige rounded-lg px-6">
-                <AccordionTrigger className="text-left text-dental-purple font-semibold hover:no-underline">
-                  Quanto tempo duram os implantes?
-                </AccordionTrigger>
-                <AccordionContent className="text-dental-gray">
-                  Com higiene adequada e manutenções regulares, implantes podem durar décadas ou a vida toda. Estudos mostram taxa de sucesso acima de 95% em 10 anos. A coroa protética pode precisar ser substituída após 10 a 15 anos dependendo do desgaste.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="faq-6" className="border border-dental-beige rounded-lg px-6">
-                <AccordionTrigger className="text-left text-dental-purple font-semibold hover:no-underline">
-                  Como é a manutenção dos implantes?
-                </AccordionTrigger>
-                <AccordionContent className="text-dental-gray">
-                  Higienização rigorosa com escova, fio dental e escovas interdentais específicas. Retornos semestrais para controle profissional, radiografias periódicas e avaliação da saúde peri-implantar. Evitar sobrecarga excessiva e trauma.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="faq-7" className="border border-dental-beige rounded-lg px-6">
-                <AccordionTrigger className="text-left text-dental-purple font-semibold hover:no-underline">
-                  Existe rejeição de implantes?
-                </AccordionTrigger>
-                <AccordionContent className="text-dental-gray">
-                  O titânio é biocompatível e não causa rejeição imunológica. Falhas ocorrem por infecção, sobrecarga precoce, tabagismo ou higiene inadequada, não por rejeição. Taxa de sucesso é superior a 95% quando protocolos são seguidos.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="faq-8" className="border border-dental-beige rounded-lg px-6">
-                <AccordionTrigger className="text-left text-dental-purple font-semibold hover:no-underline">
-                  Posso fazer se tiver pouco osso?
-                </AccordionTrigger>
-                <AccordionContent className="text-dental-gray">
-                  Sim. Técnicas de enxerto ósseo (autógeno, biomaterial) ou levantamento de seio maxilar podem aumentar volume ósseo. Implantes curtos ou angulados também são alternativas. Os exames de imagem permitem planejar a melhor solução para cada caso.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="faq-9" className="border border-dental-beige rounded-lg px-6">
-                <AccordionTrigger className="text-left text-dental-purple font-semibold hover:no-underline">
-                  Qual a diferença entre implante e prótese?
-                </AccordionTrigger>
-                <AccordionContent className="text-dental-gray">
-                  O implante é o pino de titânio fixado no osso (substitui a raiz). A prótese é a parte visível (coroa, ponte ou dentadura) que se conecta ao implante. O conjunto completo restaura função e estética.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="faq-10" className="border border-dental-beige rounded-lg px-6">
-                <AccordionTrigger className="text-left text-dental-purple font-semibold hover:no-underline">
-                  Fumantes podem fazer implantes?
-                </AccordionTrigger>
-                <AccordionContent className="text-dental-gray">
-                  Sim, mas o tabagismo reduz a taxa de sucesso (de 95% para aproximadamente 85%) por prejudicar cicatrização e osseointegração. Recomendamos parar de fumar pelo menos 2 semanas antes da cirurgia e durante a cicatrização. Avaliação individual é essencial.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="faq-11" className="border border-dental-beige rounded-lg px-6">
-                <AccordionTrigger className="text-left text-dental-purple font-semibold hover:no-underline">
-                  Diabéticos podem colocar implantes?
-                </AccordionTrigger>
-                <AccordionContent className="text-dental-gray">
-                  Sim, desde que o diabetes esteja controlado (hemoglobina glicada abaixo de 7%). Avaliação médica prévia é importante. O controle glicêmico adequado garante cicatrização normal e taxa de sucesso equivalente a não-diabéticos.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="faq-12" className="border border-dental-beige rounded-lg px-6">
-                <AccordionTrigger className="text-left text-dental-purple font-semibold hover:no-underline">
-                  Vocês atendem convênios odontológicos?
-                </AccordionTrigger>
-                <AccordionContent className="text-dental-gray">
-                  Nosso atendimento é particular, o que nos permite dedicar o tempo necessário a cada paciente e utilizar somente materiais de primeira linha. Na primeira consulta, apresentamos um orçamento detalhado e transparente.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-        </section>
-
-        {/* CTA Final */}
-        <section className="py-16 bg-gradient-to-r from-dental-purple to-dental-gold">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <Smile className="w-12 h-12 text-white mx-auto mb-4" />
-
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
-              Pronto para Recuperar seu Sorriso?
-            </h2>
-
-            <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-              Agende sua consulta de avaliação e planejamento digital. Vamos avaliar seu caso de forma personalizada e apresentar as melhores soluções para sua necessidade.
-            </p>
-
-            <button
-              onClick={handleWhatsAppClick}
-              className="bg-white hover:bg-dental-beige text-dental-purple px-8 py-4 text-lg rounded-lg font-semibold inline-flex items-center gap-2 transition-all shadow-lg hover:shadow-xl mb-4"
-            >
-              Agendar Avaliação
-            </button>
-
-            <p className="text-white/80 text-sm mt-6">
-              WhatsApp: (21) 99330-4045 | Atendimento de segunda a sexta, 9h às 19h
-            </p>
-          </div>
-        </section>
+        <FinalServiceCTA 
+          title="Pronto para Recuperar seu Sorriso?"
+          description="Agende sua consulta de avaliação e planejamento digital. Vamos avaliar seu caso de forma personalizada e apresentar as melhores soluções para sua necessidade."
+          ctaText="Agendar Avaliação"
+          whatsappMessage="Olá! Vi a página sobre implantes dentários e gostaria de agendar uma avaliação com a Dra. Carla Christoph."
+          onClickOverride={handleWhatsAppClick}
+          icon={<Smile className="w-8 h-8" />}
+          variant="primary"
+          phoneNumber="(21) 99330-4045"
+          businessHours="segunda a sexta, 9h às 19h"
+        />
         <InternalLinkingOptimizer currentPage="implantes-dentarios" />
       </PageLayout>
     </>

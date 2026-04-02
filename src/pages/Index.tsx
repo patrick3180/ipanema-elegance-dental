@@ -180,6 +180,13 @@ const Index = () => {
           <ServicesSection />
         </ScrollReveal>
 
+        {/* Separador visual entre Tratamentos e Tecnologia */}
+        <div className="w-full px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="h-px bg-gradient-to-r from-transparent via-dental-purple/30 to-transparent" />
+          </div>
+        </div>
+
         {/* 6. Tecnologia — iTero Element 5D showcase */}
         <ScrollReveal animation="fade-in" duration={800}>
           <TechnologyShowcase />

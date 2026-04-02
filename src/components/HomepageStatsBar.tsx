@@ -89,11 +89,13 @@ function StatCounter({ stat }: { stat: StatItem }) {
     return () => observer.disconnect();
   }, []);
 
-  const count = useCountUp(stat.value, 1800, visible);
+  // CRO-RJ is a fixed registration number — no animation
+  const isCRO = stat.label === "CRO-RJ";
+  const count = useCountUp(stat.value, 1800, isCRO ? false : visible);
 
   const formatValue = () => {
-    if (stat.label === "CRO-RJ") {
-      return count.toLocaleString("pt-BR");
+    if (isCRO) {
+      return stat.value.toLocaleString("pt-BR");
     }
     if (stat.value >= 1000) {
       return count.toLocaleString("pt-BR");

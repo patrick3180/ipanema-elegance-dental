@@ -1,14 +1,29 @@
 import React from "react";
 import { Separator } from "@/components/ui/separator";
-import { ArrowRight, Calendar } from "lucide-react";
+import { ArrowRight, Calendar, Loader } from "lucide-react";
 import { Link } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
-import { blogPosts } from "@/data/blogPosts";
-
-// Use the 3 most recent REAL blog posts from our data source
-const blogPreviews = blogPosts.slice(0, 3);
+import { useQuery } from "@tanstack/react-query";
+import { getAllBlogPosts } from "@/services/contentful/queries";
+import { blogPosts as localBlogPosts } from "@/data/blogPosts";
+import { BlogPost } from "@/types/BlogPost";
 
 const BlogPreview = () => {
+  // Fetch real blog posts from Contentful (same source as BlogPage)
+  const {
+    data: posts = [],
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["blogPosts"],
+    queryFn: getAllBlogPosts,
+    staleTime: 30 * 60 * 1000, // 30min cache
+  });
+
+  // Use Contentful posts if available, otherwise fall back to local data
+  const displayPosts: BlogPost[] =
+    posts.length > 0 ? posts.slice(0, 3) : localBlogPosts.slice(0, 3);
+
   return (
     <section className="section-spacing bg-dental-beige">
       <div className="container-custom">
@@ -26,69 +41,76 @@ const BlogPreview = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {blogPreviews.map((post, index) => (
-            <ScrollReveal
-              key={index}
-              animation="fade-up"
-              delay={index * 150}
-              threshold={0.1}
-            >
-              <Link
-                to={`/blog/${post.slug}`}
-                className="group block h-full"
+        {isLoading ? (
+          <div className="flex flex-col items-center justify-center py-12">
+            <Loader className="h-8 w-8 animate-spin text-dental-purple/40 mb-3" />
+            <p className="text-sm text-dental-gray/60">Carregando artigos...</p>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-3 gap-8">
+            {displayPosts.map((post, index) => (
+              <ScrollReveal
+                key={post.id || index}
+                animation="fade-up"
+                delay={index * 150}
+                threshold={0.1}
               >
-                <article className="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-hover transition-all duration-500 hover:-translate-y-1 h-full flex flex-col">
-                  {/* Image */}
-                  <div className="aspect-[16/10] overflow-hidden bg-dental-purple/5">
-                    {post.imageUrl ? (
-                      <img
-                        src={post.imageUrl}
-                        alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                        width="400"
-                        height="250"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <Calendar className="w-12 h-12 text-dental-purple/20" />
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6 flex flex-col flex-grow">
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="text-xs font-medium uppercase tracking-wider text-dental-gold bg-dental-gold/10 px-3 py-1 rounded-full">
-                        {post.category}
-                      </span>
-                      <span className="text-xs text-dental-gray">
-                        {post.date}
-                      </span>
+                <Link
+                  to={`/blog/${post.slug}`}
+                  className="group block h-full"
+                >
+                  <article className="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-hover transition-all duration-500 hover:-translate-y-1 h-full flex flex-col">
+                    {/* Image */}
+                    <div className="aspect-[16/10] overflow-hidden bg-dental-purple/5">
+                      {post.imageUrl ? (
+                        <img
+                          src={post.imageUrl}
+                          alt={post.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                          width="400"
+                          height="250"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <Calendar className="w-12 h-12 text-dental-purple/20" />
+                        </div>
+                      )}
                     </div>
 
-                    <h3 className="text-lg font-display font-semibold text-dental-purple mb-2 group-hover:text-dental-gold transition-colors duration-300 line-clamp-2">
-                      {post.title}
-                    </h3>
+                    {/* Content */}
+                    <div className="p-6 flex flex-col flex-grow">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="text-xs font-medium uppercase tracking-wider text-dental-gold bg-dental-gold/10 px-3 py-1 rounded-full">
+                          {post.category}
+                        </span>
+                        <span className="text-xs text-dental-gray">
+                          {post.date}
+                        </span>
+                      </div>
 
-                    <p className="text-sm text-dental-gray leading-relaxed mb-4 flex-grow line-clamp-3">
-                      {post.excerpt}
-                    </p>
+                      <h3 className="text-lg font-display font-semibold text-dental-purple mb-2 group-hover:text-dental-gold transition-colors duration-300 line-clamp-2">
+                        {post.title}
+                      </h3>
 
-                    <span className="inline-flex items-center text-sm font-medium text-dental-gold group-hover:text-dental-gold-dark transition-colors duration-300">
-                      Ler artigo
-                      <ArrowRight
-                        size={14}
-                        className="ml-1 group-hover:translate-x-1 transition-transform duration-300"
-                      />
-                    </span>
-                  </div>
-                </article>
-              </Link>
-            </ScrollReveal>
-          ))}
-        </div>
+                      <p className="text-sm text-dental-gray leading-relaxed mb-4 flex-grow line-clamp-3">
+                        {post.excerpt}
+                      </p>
+
+                      <span className="inline-flex items-center text-sm font-medium text-dental-gold group-hover:text-dental-gold-dark transition-colors duration-300">
+                        Ler artigo
+                        <ArrowRight
+                          size={14}
+                          className="ml-1 group-hover:translate-x-1 transition-transform duration-300"
+                        />
+                      </span>
+                    </div>
+                  </article>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
+        )}
 
         {/* View all link */}
         <div className="text-center mt-10">

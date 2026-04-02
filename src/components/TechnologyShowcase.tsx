@@ -17,7 +17,7 @@ const features = [
   {
     icon: <Zap className="w-5 h-5" />,
     title: "Diagnóstico Avançado",
-    description: "Tecnologia NIRI para detecção precoce de cáries sem raio-X.",
+    description: "Tecnologia NIRI para detecção precoce de cáries e trincas nos dentes, sem raio-X.",
   },
 ];
 
