@@ -204,7 +204,6 @@ const Ortodontia = () => {
       </Helmet>
 
       <FastServerResponseOptimizer />
-      <StatsBar />
       <CriticalCSSOptimizer 
         inlineStyles={`
           .treatment-hero { min-height: 60vh; }
@@ -390,7 +389,7 @@ const Ortodontia = () => {
                 <div className="bg-gradient-to-br from-dental-purple/10 to-dental-gold/10 p-8 rounded-lg">
                   <div className="text-center">
                     <div className="w-32 h-32 flex items-center justify-center mx-auto mb-4 overflow-hidden mask-image-gradient shadow-elegant">
-                      <img src="/lovable-uploads/itero_screen.webp" alt="iTero Element 5D" className="w-full h-full object-cover" />
+                      <img src="/lovable-uploads/itero_screen.webp" alt="Scanner intraoral iTero Element 5D para planejamento ortodôntico digital" className="w-full h-full object-cover" />
                     </div>
                     <h4 className="text-lg font-semibold mb-2 text-dental-purple">
                       Simulação em Tempo Real
@@ -422,6 +421,7 @@ const Ortodontia = () => {
         />
 
         <InternalLinkingOptimizer currentPage="ortodontia" />
+        <StatsBar />
       </PageLayout>
     </>
   );

@@ -169,7 +169,7 @@
   }
 
   .bg-gradient-purple-soft {
-    background: linear-gradient(135deg, rgba(56, 31, 71, 0.03) 0%, rgba(56, 31, 71, 0.08) 100%);
+    background: linear-gradient(135deg, hsl(250 100% 98%) 0%, hsl(30 100% 97%) 100%);
   }
 
   .bg-gradient-gold-subtle {
@@ -182,15 +182,15 @@
 
   /* Elegant shadow system */
   .shadow-soft {
-    box-shadow: 0 4px 16px rgba(56, 31, 71, 0.08), 0 2px 8px rgba(56, 31, 71, 0.04);
+    box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08);
   }
 
   .shadow-elegant {
-    box-shadow: 0 8px 24px rgba(56, 31, 71, 0.12), 0 4px 12px rgba(56, 31, 71, 0.06);
+    box-shadow: 0 10px 40px -10px hsl(var(--dental-purple) / 0.2);
   }
 
   .shadow-gold {
-    box-shadow: 0 6px 20px rgba(179, 149, 95, 0.15), 0 3px 10px rgba(179, 149, 95, 0.08);
+    box-shadow: 0 4px 12px hsl(var(--dental-gold) / 0.3);
   }
 
   .shadow-hover {

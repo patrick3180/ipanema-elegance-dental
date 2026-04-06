@@ -70,8 +70,33 @@ const BlogPage = () => {
     ]
   };
 
+  // BreadcrumbList schema for Google Search
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Início",
+        "item": "https://dracarlachristoph.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog"
+      }
+    ]
+  };
+
   return (
     <>
+      {/* BreadcrumbList Schema for Google Search */}
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
+      </Helmet>
       <SEOHead
         title="Blog Dra. Carla Christoph | Dicas de Saúde Bucal em Ipanema"
         description="Acesse o blog de odontologia da Dra. Carla Christoph. Encontre dicas de saúde bucal em Ipanema, artigos informativos e novidades para o seu sorriso."
@@ -83,6 +108,21 @@ const BlogPage = () => {
       <PageLayout>
         <section className="section-spacing">
           <div className="container-custom">
+            {/* Visual Breadcrumb Navigation */}
+            <nav aria-label="Breadcrumb" className="mb-8">
+              <ol className="flex items-center gap-2 text-sm text-dental-gray">
+                <li>
+                  <a href="/" className="hover:text-dental-purple transition-colors">
+                    Início
+                  </a>
+                </li>
+                <li className="text-dental-gray/50">/</li>
+                <li>
+                  <span className="text-dental-purple font-medium">Blog</span>
+                </li>
+              </ol>
+            </nav>
+
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h1 className="heading-lg mb-4">Blog Odontológico da Dra. Carla Christoph: Informação e Cuidado para seu Sorriso</h1>
               <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />

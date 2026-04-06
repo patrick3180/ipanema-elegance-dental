@@ -15,6 +15,7 @@ import ScrollReveal from '@/components/ScrollReveal';
 import DoctorBioSection from '@/components/treatment/DoctorBioSection';
 import ServiceFAQ from '@/components/treatment/ServiceFAQ';
 import FinalServiceCTA from '@/components/treatment/FinalServiceCTA';
+import EmpatheticPainPoints from '@/components/treatment/EmpatheticPainPoints';
 
 
 const ProteseDentaria = () => {
@@ -251,63 +252,38 @@ const ProteseDentaria = () => {
           </div>
         </section>
 
-        {/* Seção Empática — Sprint 8 */}
-        <section className="py-16 bg-gradient-to-br from-dental-beige/20 via-white to-dental-beige/10">
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-display font-bold text-dental-purple mb-10 text-center">
-              Você se identifica com alguma dessas situações?
-            </h2>
-            <div className="space-y-5">
-              <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-purple shadow-soft hover:shadow-elegant transition-all duration-300">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center group-hover:bg-dental-purple/20 transition-colors">
-                  <Shield className="w-6 h-6 text-dental-purple" />
-                </div>
-                <div>
-                  <strong className="block text-dental-purple font-semibold mb-1">Prótese que solta ao falar ou comer</strong>
-                  <span className="text-dental-gray leading-relaxed">causando insegurança em momentos sociais e profissionais?</span>
-                </div>
-              </div>
-              <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-gold shadow-soft hover:shadow-elegant transition-all duration-300">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-gold/10 flex items-center justify-center group-hover:bg-dental-gold/20 transition-colors">
-                  <AlertCircle className="w-6 h-6 text-dental-gold" />
-                </div>
-                <div>
-                  <strong className="block text-dental-purple font-semibold mb-1">Dificuldade para mastigar alimentos que você gosta</strong>
-                  <span className="text-dental-gray leading-relaxed">por causa de dentes ausentes ou uma prótese desconfortável?</span>
-                </div>
-              </div>
-              <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-purple-soft shadow-soft hover:shadow-elegant transition-all duration-300">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center group-hover:bg-dental-purple/20 transition-colors">
-                  <Heart className="w-6 h-6 text-dental-purple-soft" />
-                </div>
-                <div>
-                  <strong className="block text-dental-purple font-semibold mb-1">Constrangimento ao sorrir por falta de dentes</strong>
-                  <span className="text-dental-gray leading-relaxed">ou por uma prótese que não parece natural?</span>
-                </div>
-              </div>
-            </div>
-
-            <p className="text-center text-dental-gray mt-10 text-lg leading-relaxed">
-              Uma prótese bem planejada devolve função, estética e qualidade de vida.<br className="hidden md:block" /> Vamos avaliar a melhor solução para o seu caso.
-            </p>
-
-            <div className="max-w-2xl mx-auto mt-8">
-              <div className="bg-white p-6 rounded-xl border-2 border-dental-gold shadow-elegant">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-dental-gold/15 flex items-center justify-center">
-                    <Clock className="w-5 h-5 text-dental-gold" />
-                  </div>
-                  <div>
-                    <p className="text-dental-purple font-semibold mb-2">Importante</p>
-                    <p className="text-dental-gray leading-relaxed text-sm">
-                      Dentes ausentes causam movimentação dos dentes vizinhos e perda óssea progressiva. Quanto antes iniciar a reabilitação, mais simples e previsível será o tratamento.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Seção Empática - EmpatheticPainPoints */}
+        <ScrollReveal animation="fade-up">
+          <EmpatheticPainPoints
+            title="Você se identifica com alguma dessas situações?"
+            painPoints={[
+              {
+                icon: <Shield className="w-6 h-6 text-dental-purple" />,
+                strong: "Prótese que solta ao falar ou comer",
+                description: "causando insegurança em momentos sociais e profissionais?",
+                borderColor: "border-dental-purple"
+              },
+              {
+                icon: <AlertCircle className="w-6 h-6 text-dental-gold" />,
+                strong: "Dificuldade para mastigar alimentos que você gosta",
+                description: "por causa de dentes ausentes ou uma prótese desconfortável?",
+                borderColor: "border-dental-gold"
+              },
+              {
+                icon: <Heart className="w-6 h-6 text-dental-purple-soft" />,
+                strong: "Constrangimento ao sorrir por falta de dentes",
+                description: "ou por uma prótese que não parece natural?",
+                borderColor: "border-dental-purple-soft"
+              }
+            ]}
+            conclusion={<>Uma prótese bem planejada devolve função, estética e qualidade de vida.<br className="hidden md:block" /> Vamos avaliar a melhor solução para o seu caso.</>}
+            callout={{
+              icon: <Clock className="w-5 h-5 text-dental-gold" />,
+              title: "Importante",
+              text: "Dentes ausentes causam movimentação dos dentes vizinhos e perda óssea progressiva. Quanto antes iniciar a reabilitação, mais simples e previsível será o tratamento."
+            }}
+          />
+        </ScrollReveal>
 
         {/* CTA Intermediário — Sprint 8 */}
         <section className="py-8 bg-white">

@@ -7,6 +7,7 @@ import SectionDivider from "@/components/treatment/SectionDivider";
 import ProcessTimeline from "@/components/treatment/ProcessTimeline";
 import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import DoctorBioSection from "@/components/treatment/DoctorBioSection";
+import EmpatheticPainPoints from "@/components/treatment/EmpatheticPainPoints";
 import ServiceFAQ from "@/components/treatment/ServiceFAQ";
 import FinalServiceCTA from "@/components/treatment/FinalServiceCTA";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -151,7 +152,6 @@ const TratamentoDeCanal = () => {
       </Helmet>
 
       <FastServerResponseOptimizer />
-      <StatsBar />
       <CriticalCSSOptimizer
         inlineStyles={`
           .treatment-hero { min-height: 60vh; }
@@ -188,32 +188,32 @@ const TratamentoDeCanal = () => {
         {/* 2. SectionDivider */}
         <SectionDivider variant="with-icon" icon={<Shield size={20} />} />
 
-        {/* 3. Seção empática */}
+        {/* 3. Seção empática - EmpatheticPainPoints */}
         <ScrollReveal animation="fade-up">
-          <section className="py-16 bg-white">
-            <div className="container-custom">
-              <h2 className="heading-lg mb-8 text-center text-dental-purple">
-                Tratamento de Canal Não Precisa Ser Assustador
-              </h2>
-
-              <div className="max-w-3xl mx-auto space-y-6 text-dental-gray leading-relaxed">
-                <p>
-                  A maioria das pessoas sente apreensão quando ouve "tratamento de canal". É compreensível — durante muito tempo, o procedimento era associado a dor e desconforto. Mas a realidade atual é bem diferente.
-                </p>
-                <p>
-                  Com anestesia eficiente e técnicas atualizadas, o procedimento é tranquilo. O que costuma doer é o problema que levou à necessidade do canal — a infecção, a inflamação. O tratamento, justamente, alivia essa dor.
-                </p>
-                <p>
-                  No consultório da Dra. Carla Christoph, você tem a segurança de um acompanhamento completo: do diagnóstico inicial à restauração final, passando pelo tratamento com endodontista especializado.
-                </p>
-                <div className="mt-6 bg-dental-beige/30 p-6 rounded-lg border-l-4 border-dental-gold">
-                  <p className="text-dental-gray">
-                    <strong className="text-dental-purple">Importante:</strong> Adiar o tratamento pode levar a infecção que se espalha para outras áreas, podendo exigir extração do dente. Quanto antes tratado, maior a chance de preservar o dente natural.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
+          <EmpatheticPainPoints
+            title="Tratamento de canal não precisa ser assustador"
+            painPoints={[
+              {
+                icon: <Shield className="w-6 h-6 text-dental-purple" />,
+                strong: "Medo de sentir dor durante o procedimento",
+                description: "Com anestesia moderna e técnicas atualizadas, o procedimento é tranquilo. O que dói é a infecção — o canal justamente alivia essa dor.",
+                borderColor: "border-dental-purple"
+              },
+              {
+                icon: <AlertCircle className="w-6 h-6 text-dental-gold" />,
+                strong: "Adiando há meses por insegurança",
+                description: "Adiar pode transformar um tratamento simples em algo mais complexo. Quanto antes diagnosticado, maior a chance de preservar o dente.",
+                borderColor: "border-dental-gold"
+              },
+              {
+                icon: <Heart className="w-6 h-6 text-dental-purple-soft" />,
+                strong: "Precisa de acompanhamento completo",
+                description: "Do diagnóstico à restauração final, a Dra. Carla coordena toda a jornada com endodontista especializado.",
+                borderColor: "border-dental-purple-soft"
+              }
+            ]}
+            conclusion={<>O tratamento de canal moderno é muito mais confortável do que se imagina.<br className="hidden md:block" /> Dê o primeiro passo: agende sua avaliação.</>}
+          />
         </ScrollReveal>
 
         {/* 4. SectionDivider */}
@@ -394,6 +394,7 @@ const TratamentoDeCanal = () => {
           onClickOverride={handleWhatsAppClick}
         />
         <InternalLinkingOptimizer currentPage="tratamento-de-canal" />
+        <StatsBar />
       </PageLayout>
     </>
   );

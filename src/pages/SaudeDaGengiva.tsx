@@ -58,7 +58,6 @@ const SaudeDaGengiva = () => {
       </Helmet>
 
       <FastServerResponseOptimizer />
-      <StatsBar />
       <CriticalCSSOptimizer inlineStyles={`.treatment-hero { min-height: 60vh; } .container-custom { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }`} />
 
       <PageLayout>
@@ -160,6 +159,7 @@ const SaudeDaGengiva = () => {
 
         <FinalServiceCTA icon={<Heart className="w-8 h-8" />} title="Cuide da Base do Seu Sorriso" description="Agende sua avaliação periodontal. Tratamento precoce faz toda a diferença." ctaText="Agendar Avaliação" whatsappMessage="Olá! Vi a página sobre saúde da gengiva e gostaria de agendar uma avaliação periodontal com a Dra. Carla Christoph." onClickOverride={handleWhatsAppClick} />
         <InternalLinkingOptimizer currentPage="saude-da-gengiva" />
+        <StatsBar />
       </PageLayout>
     </>
   );

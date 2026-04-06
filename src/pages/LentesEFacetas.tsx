@@ -14,6 +14,8 @@ import { ComparisonTableItem } from "@/types/BlogPost";
 import DoctorBioSection from "@/components/treatment/DoctorBioSection";
 import ServiceFAQ from "@/components/treatment/ServiceFAQ";
 import FinalServiceCTA from "@/components/treatment/FinalServiceCTA";
+import EmpatheticPainPoints from "@/components/treatment/EmpatheticPainPoints";
+import ScrollReveal from '@/components/ScrollReveal';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CheckCircle, Star, ArrowRight, Play, Sparkles, Shield, Heart, Award, Search, HelpCircle, Droplet, Maximize2, Ruler, Palette, AlertCircle } from "lucide-react";
 import { InternalLinkingOptimizer } from '@/components/seo/InternalLinkingOptimizer';
@@ -231,6 +233,34 @@ const LentesEFacetas = () => {
             />
           </div>
         </section>
+
+        {/* Seção Empática - EmpatheticPainPoints */}
+        <ScrollReveal animation="fade-up">
+          <EmpatheticPainPoints
+            title="Você se identifica com alguma dessas situações?"
+            painPoints={[
+              {
+                icon: <Sparkles className="w-6 h-6 text-dental-purple" />,
+                strong: "Insatisfação com a cor ou forma dos dentes",
+                description: "que faz você evitar sorrir com naturalidade em fotos e conversas?",
+                borderColor: "border-dental-purple"
+              },
+              {
+                icon: <AlertCircle className="w-6 h-6 text-dental-gold" />,
+                strong: "Dentes desalinhados, com espaços ou lascados",
+                description: "que afetam sua confiança profissional e social?",
+                borderColor: "border-dental-gold"
+              },
+              {
+                icon: <Heart className="w-6 h-6 text-dental-purple-soft" />,
+                strong: "Medo de um resultado artificial",
+                description: "ou de um desgaste excessivo dos dentes naturais?",
+                borderColor: "border-dental-purple-soft"
+              }
+            ]}
+            conclusion={<>Lentes e facetas bem planejadas entregam naturalidade e harmonia — sem exageros.<br className="hidden md:block" /> Oferecemos o Test Drive do Sorriso para você aprovar antes de começar.</>}
+          />
+        </ScrollReveal>
 
         {/* Section Divider */}
         <SectionDivider variant="with-icon" icon={<Sparkles size={20} />} />
