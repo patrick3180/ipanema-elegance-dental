@@ -69,7 +69,7 @@ const AboutSection = () => {
                 Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
               </p>
               <p className="body-md">
-                Especialista em Prótese Dentária e Implantodontia, a Dra. Carla utiliza escaneamento digital intraoral e ferramentas de planejamento do sorriso para oferecer previsibilidade e segurança em cada tratamento. Cada caso é tratado como único, com o tempo necessário para ouvir, planejar e executar.
+                Especialista em Prótese Dentária e Implantodontia, a Dra. Carla utiliza o iTero Element 5D e ferramentas de planejamento do sorriso para oferecer previsibilidade e segurança em cada tratamento. Cada caso é tratado como único, com o tempo necessário para ouvir, planejar e executar.
               </p>
             </div>
             

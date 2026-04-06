@@ -11,6 +11,11 @@ import ComparisonTable from "@/components/blog/ComparisonTable";
 import OptimizedImage from "@/components/OptimizedImage";
 import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import { ComparisonTableItem } from "@/types/BlogPost";
+import DoctorBioSection from "@/components/treatment/DoctorBioSection";
+import ServiceFAQ from "@/components/treatment/ServiceFAQ";
+import FinalServiceCTA from "@/components/treatment/FinalServiceCTA";
+import EmpatheticPainPoints from "@/components/treatment/EmpatheticPainPoints";
+import ScrollReveal from '@/components/ScrollReveal';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CheckCircle, Star, ArrowRight, Play, Sparkles, Shield, Heart, Award, Search, HelpCircle, Droplet, Maximize2, Ruler, Palette, AlertCircle } from "lucide-react";
 import { InternalLinkingOptimizer } from '@/components/seo/InternalLinkingOptimizer';
@@ -122,7 +127,7 @@ const LentesEFacetas = () => {
     },
     {
       question: "Como funciona a consulta de planejamento?",
-      answer: "É uma conversa aprofundada para entendermos seus desejos e expectativas. Realizamos escaneamento digital com iTero 3D e uma análise completa do seu sorriso e face. Juntos, definimos o melhor plano de tratamento, explicando os prós e contras de cada opção (lentes vs facetas). Você sairá da consulta com todas as informações necessárias para tomar uma decisão informada."
+      answer: "É uma conversa aprofundada para entendermos seus desejos e expectativas. Realizamos escaneamento digital com iTero Element 5D e uma análise completa do seu sorriso e face. Juntos, definimos o melhor plano de tratamento, explicando os prós e contras de cada opção (lentes vs facetas). Você sairá da consulta com todas as informações necessárias para tomar uma decisão informada."
     }
   ];
 
@@ -210,7 +215,7 @@ const LentesEFacetas = () => {
         <TreatmentHero
           title="Estética Dental que Não Parece Artificial — Test Drive do Sorriso"
           subtitle="Estética Dental com a Dra. Carla Christoph"
-          description="Simulação provisória na sua boca antes de começar. Você vê, sente e aprova. Lentes de porcelana ou facetas de resina — cada caso tem sua indicação. Escaneamento digital iTero e cerâmica de alta translucidez."
+          description="Simulação provisória na sua boca antes de começar. Você vê, sente e aprova. Lentes de porcelana ou facetas de resina — cada caso tem sua indicação. Escaneamento digital com iTero Element 5D e cerâmica de alta translucidez."
           badges={["20+ anos de experiência", "Test Drive do Sorriso", "CRO-RJ 27.509"]}
           doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
           breadcrumbs={[
@@ -228,6 +233,34 @@ const LentesEFacetas = () => {
             />
           </div>
         </section>
+
+        {/* Seção Empática - EmpatheticPainPoints */}
+        <ScrollReveal animation="fade-up">
+          <EmpatheticPainPoints
+            title="Você se identifica com alguma dessas situações?"
+            painPoints={[
+              {
+                icon: <Sparkles className="w-6 h-6 text-dental-purple" />,
+                strong: "Insatisfação com a cor ou forma dos dentes",
+                description: "que faz você evitar sorrir com naturalidade em fotos e conversas?",
+                borderColor: "border-dental-purple"
+              },
+              {
+                icon: <AlertCircle className="w-6 h-6 text-dental-gold" />,
+                strong: "Dentes desalinhados, com espaços ou lascados",
+                description: "que afetam sua confiança profissional e social?",
+                borderColor: "border-dental-gold"
+              },
+              {
+                icon: <Heart className="w-6 h-6 text-dental-purple-soft" />,
+                strong: "Medo de um resultado artificial",
+                description: "ou de um desgaste excessivo dos dentes naturais?",
+                borderColor: "border-dental-purple-soft"
+              }
+            ]}
+            conclusion={<>Lentes e facetas bem planejadas entregam naturalidade e harmonia — sem exageros.<br className="hidden md:block" /> Oferecemos o Test Drive do Sorriso para você aprovar antes de começar.</>}
+          />
+        </ScrollReveal>
 
         {/* Section Divider */}
         <SectionDivider variant="with-icon" icon={<Sparkles size={20} />} />
@@ -326,7 +359,7 @@ const LentesEFacetas = () => {
                 <ul className="space-y-2 text-dental-gray text-sm">
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
-                    <span>Scanner iTero 3D: moldagem digital sem desconforto</span>
+                    <span>iTero Element 5D: moldagem digital sem desconforto</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-dental-gold mt-1 flex-shrink-0" />
@@ -678,121 +711,39 @@ const LentesEFacetas = () => {
 
         <SectionDivider variant="with-icon" icon={<Star className="w-5 h-5" />} />
 
-        {/* Seção da Especialista - Premium com Fade */}
-        <section className="py-20 bg-gradient-to-b from-dental-beige/10 to-white">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
-                Sua Dentista para Estética Dental
-              </h2>
-            </div>
-
-            <div className="grid md:grid-cols-[380px,1fr] gap-12 items-start max-w-6xl mx-auto">
-              {/* Foto com Fade Effect e Badge */}
-              <div className="relative">
-                {/* Container da imagem com gradiente fade */}
-                <div className="relative overflow-hidden rounded-3xl">
-                  <img
-                    src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
-                    alt="Dra. Carla Christoph - Especialista em Lentes de Contato Dental em Ipanema"
-                    className="w-full"
-                  />
-                  {/* Gradiente fade lateral direito */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-dental-beige/80 pointer-events-none"></div>
-                </div>
-
-                {/* Badge decorativo sobreposto */}
-                <div className="absolute bottom-6 left-6 bg-dental-gold text-white px-6 py-3 rounded-full shadow-lg">
-                  <p className="font-semibold text-sm">20+ Anos de Experiência</p>
-                </div>
-              </div>
-
-              {/* Conteúdo */}
-              <div className="space-y-8">
-                {/* Cabeçalho */}
-                <div>
-                  <h3 className="text-3xl font-display font-bold text-dental-purple mb-2">
-                    Dra. Carla Christoph
-                  </h3>
-                  <p className="text-dental-gold font-semibold text-lg mb-4">
-                    CRO-RJ 27.509 | Especialista em Prótese Dentária
-                  </p>
-                  <p className="text-dental-gray text-lg leading-relaxed">
-                    Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
-                  </p>
-                  <p className="text-dental-gray text-lg leading-relaxed mt-4">
-                    Em estética dental, utiliza escaneamento iTero e o Test Drive do Sorriso para que o paciente visualize o resultado antes de começar. Cada lente e cada faceta é planejada para harmonizar com as características faciais e o estilo do paciente.
-                  </p>
-                </div>
-
-                {/* Grid 2x2 de informações */}
-                <div className="grid md:grid-cols-2 gap-6">
-                  {/* Formação */}
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="w-10 h-10 rounded-full bg-dental-gold/10 flex items-center justify-center">
-                        <Award className="w-5 h-5 text-dental-gold" />
-                      </div>
-                      <h4 className="font-semibold text-dental-purple">Formação</h4>
-                    </div>
-                    <p className="text-dental-gray text-sm">
-                      Especialista em Prótese Dentária e Implantodontia
-                    </p>
-                  </div>
-
-                  {/* Experiência */}
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="w-10 h-10 rounded-full bg-dental-gold/10 flex items-center justify-center">
-                        <Star className="w-5 h-5 text-dental-gold" />
-                      </div>
-                      <h4 className="font-semibold text-dental-purple">Experiência</h4>
-                    </div>
-                    <p className="text-dental-gray text-sm">
-                      Centenas de casos de lentes e facetas realizados
-                    </p>
-                  </div>
-
-                  {/* Atualização */}
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="w-10 h-10 rounded-full bg-dental-gold/10 flex items-center justify-center">
-                        <Sparkles className="w-5 h-5 text-dental-gold" />
-                      </div>
-                      <h4 className="font-semibold text-dental-purple">Atualização</h4>
-                    </div>
-                    <p className="text-dental-gray text-sm">
-                      Formação contínua em Design de Sorrisos e técnicas avançadas
-                    </p>
-                  </div>
-
-                  {/* Tecnologia */}
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="w-10 h-10 rounded-full bg-dental-gold/10 flex items-center justify-center">
-                        <Shield className="w-5 h-5 text-dental-gold" />
-                      </div>
-                      <h4 className="font-semibold text-dental-purple">Tecnologia</h4>
-                    </div>
-                    <p className="text-dental-gray text-sm">
-                      Scanner iTero 3D e planejamento digital avançado
-                    </p>
-                  </div>
-                </div>
-
-                {/* Quote destacada SEM assinatura */}
-                <div className="relative bg-gradient-to-br from-dental-purple/5 to-dental-gold/5 p-8 rounded-2xl mt-8 overflow-hidden border border-dental-gold/10">
-                  <div className="absolute top-4 left-4 text-5xl text-dental-gold/20 font-serif">"</div>
-                  <div className="absolute bottom-4 right-4 text-5xl text-dental-gold/20 font-serif">"</div>
-
-                  <p className="text-xl text-dental-purple italic font-display leading-relaxed text-center relative z-10 px-4">
-                    Meu objetivo não é criar sorrisos perfeitos, mas sorrisos verdadeiros. Cada pessoa tem uma beleza única que merece ser realçada, nunca padronizada.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <DoctorBioSection
+          sectionTitle="Sua Dentista para Estética Dental"
+          doctorName="Dra. Carla Christoph"
+          doctorSubtitle="CRO-RJ 27.509 | Especialista em Prótese Dentária"
+          doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+          paragraphs={[
+            "Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.",
+            "Em estética dental, utiliza escaneamento iTero e o Test Drive do Sorriso para que o paciente visualize o resultado antes de começar. Cada lente e cada faceta é planejada para harmonizar com as características faciais e o estilo do paciente."
+          ]}
+          credentials={[
+            {
+              icon: <Award className="w-5 h-5 text-dental-gold" />,
+              title: "Formação",
+              description: "Especialista em Prótese Dentária e Implantodontia"
+            },
+            {
+              icon: <Star className="w-5 h-5 text-dental-gold" />,
+              title: "Experiência",
+              description: "Centenas de casos de lentes e facetas realizados"
+            },
+            {
+              icon: <Sparkles className="w-5 h-5 text-dental-gold" />,
+              title: "Atualização",
+              description: "Formação contínua em Design de Sorrisos e técnicas avançadas"
+            },
+            {
+              icon: <Shield className="w-5 h-5 text-dental-gold" />,
+              title: "Tecnologia",
+              description: "iTero Element 5D e planejamento digital avançado"
+            }
+          ]}
+          quote="Meu objetivo não é criar sorrisos perfeitos, mas sorrisos verdadeiros. Cada pessoa tem uma beleza única que merece ser realçada, nunca padronizada."
+        />
 
         {/* Test Drive do Sorriso - Destaque Especial */}
         <section className="py-16 bg-gradient-to-br from-dental-purple/5 to-dental-gold/5">
@@ -955,7 +906,7 @@ const LentesEFacetas = () => {
             <div className="bg-gradient-to-br from-dental-beige/30 to-white p-10 rounded-3xl shadow-lg">
               <div className="space-y-6">
                 <p className="text-dental-gray leading-relaxed text-center text-lg">
-                  Utilizamos o scanner iTero Element 5D para planejamento técnico preciso: escaneamento digital sem moldagens com massa, modelo 3D preciso para o laboratório, comunicação digital com técnicos e arquivo digital do seu tratamento.
+                  Utilizamos o iTero Element 5D para planejamento técnico preciso: escaneamento digital sem moldagens com massa, modelo 3D preciso para o laboratório, comunicação digital com técnicos e arquivo digital do seu tratamento.
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-6 mt-8">
@@ -1351,7 +1302,7 @@ const LentesEFacetas = () => {
               {
                 number: "1",
                 title: "Avaliação Completa e Planejamento Digital",
-                description: "Consulta inicial com análise facial completa e fotográfica. Scanner iTero 3D: moldagem digital sem massa, sem desconforto. Avaliação da saúde bucal e periodontal. Estudo das proporções ideais para harmonização facial. Apresentação do plano de tratamento personalizado.",
+                description: "Consulta inicial com análise facial completa e fotográfica. iTero Element 5D: moldagem digital sem massa, sem desconforto. Avaliação da saúde bucal e periodontal. Estudo das proporções ideais para harmonização facial. Apresentação do plano de tratamento personalizado.",
                 icon: <Search className="w-6 h-6" />
               },
               {
@@ -1363,7 +1314,7 @@ const LentesEFacetas = () => {
               {
                 number: "3",
                 title: "Preparo Conservador",
-                description: "Com o mock-up 100% aprovado, iniciamos o preparo. Lentes: preparo mínimo preservando ao máximo a estrutura dental. Facetas de resina: escultura direta no consultório (1-2 consultas). Nova escaneamento digital para laboratório (apenas lentes). Provisórios estéticos enquanto aguarda (se necessário).",
+                description: "Com o mock-up 100% aprovado, iniciamos o preparo. Lentes: preparo mínimo preservando ao máximo a estrutura dental. Facetas de resina: escultura direta no consultório (1-2 consultas). Novo escaneamento com iTero Element 5D para laboratório (apenas lentes). Provisórios estéticos enquanto aguarda (se necessário).",
                 icon: <Shield className="w-6 h-6" />
               },
               {
@@ -1415,97 +1366,20 @@ const LentesEFacetas = () => {
         <SectionDivider variant="with-icon" icon={<HelpCircle className="w-5 h-5" />} />
 
         {/* FAQs */}
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
-                Perguntas Frequentes
-              </h2>
-              <p className="text-lg text-dental-gray">
-                Tire todas as suas dúvidas sobre lentes e facetas
-              </p>
-            </div>
-
-            <Accordion type="single" collapsible className="space-y-4">
-              {faqs.map((faq, index) => (
-                <AccordionItem
-                  value={`faq-${index + 1}`}
-                  key={index}
-                  className="bg-dental-beige/10 rounded-xl px-6 border-0"
-                >
-                  <AccordionTrigger className="text-left hover:text-dental-purple py-5">
-                    <span className="font-semibold text-dental-purple">
-                      {faq.question}
-                    </span>
-                  </AccordionTrigger>
-                  <AccordionContent className="text-dental-gray pb-5">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </section>
+        <ServiceFAQ
+          faqs={faqs}
+          title="Perguntas Frequentes sobre Lentes e Facetas"
+          subtitle="Tire todas as suas dúvidas"
+        />
 
         <SectionDivider variant="with-icon" icon={<Star className="w-5 h-5" />} />
 
         {/* CTA Final */}
-        <section className="py-20 bg-gradient-to-br from-dental-purple via-dental-purple/95 to-dental-purple/90 relative overflow-hidden">
-          {/* Padrão decorativo de fundo */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-dental-gold rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-dental-gold rounded-full blur-3xl"></div>
-          </div>
-
-          <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-            {/* Ícone decorativo */}
-            <div className="flex justify-center mb-6">
-              <div className="w-16 h-16 bg-dental-gold/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                <Sparkles className="w-8 h-8 text-dental-gold" />
-              </div>
-            </div>
-
-            {/* Título */}
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-6">
-              Ver se Lentes São Indicadas para o Seu Caso
-            </h2>
-
-            {/* Texto */}
-            <p className="text-lg md:text-xl text-white/90 mb-10 leading-relaxed max-w-3xl mx-auto">
-              Na consulta de avaliação, analisamos seu caso com escaneamento digital iTero 3D, realizamos um checkup completo da saúde bucal e apresentamos as possibilidades — lentes, facetas ou outros tratamentos mais adequados.
-            </p>
-
-            {/* Botão WhatsApp */}
-            <a
-              href="https://wa.me/5521993304045?text=Olá!%20Vi%20a%20página%20sobre%20Lentes%20e%20Facetas%20e%20gostaria%20de%20agendar%20uma%20avaliação."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-dental-gold hover:bg-dental-gold/90 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 group"
-            >
-              <svg className="w-6 h-6 group-hover:rotate-12 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-              </svg>
-              <span>Agendar Avaliação no WhatsApp</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </a>
-
-            {/* Informações adicionais */}
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-white/80 text-sm">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-dental-gold" />
-                <span>WhatsApp 24h</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-dental-gold" />
-                <span>Ipanema, Rio de Janeiro</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-dental-gold" />
-                <span>CRO-RJ 27.509</span>
-              </div>
-            </div>
-          </div>
-        </section>
+        <FinalServiceCTA
+          title="Ver se Lentes São Indicadas para o Seu Caso"
+          description="Na consulta de avaliação, analisamos seu caso com iTero Element 5D, realizamos um checkup completo da saúde bucal e apresentamos as possibilidades — lentes, facetas ou outros tratamentos mais adequados."
+          whatsappMessage="Olá! Vi a página sobre Lentes e Facetas e gostaria de agendar uma avaliação."
+        />
         <StatsBar />
         <InternalLinkingOptimizer currentPage="lentes-de-contato-dental-e-facetas" />
       </PageLayout>

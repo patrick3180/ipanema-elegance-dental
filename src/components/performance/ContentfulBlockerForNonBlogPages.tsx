@@ -13,17 +13,17 @@ const ContentfulBlockerForNonBlogPages = () => {
   const location = useLocation();
   
   useEffect(() => {
-    // Lista de rotas que PODEM usar Contentful (apenas blog)
-    const blogPageRoutes = ['/blog'];
+    // Lista de rotas que PODEM usar Contentful (blog e homepage com BlogPreview)
+    const allowedContentfulRoutes = ['/blog', '/'];
     
-    // Verifica se é uma página do blog
-    const isBlogPage = blogPageRoutes.some(route => 
-      location.pathname.startsWith(route)
-    );
+    // Verifica se a rota atual permite Contentful
+    const isContentfulAllowed = 
+      location.pathname === '/' || 
+      location.pathname.startsWith('/blog');
     
-    // Se for página do blog, não bloqueia
-    if (isBlogPage) {
-      console.log('✅ Contentful permitido em página do blog:', location.pathname);
+    // Se for rota permitida, não bloqueia
+    if (isContentfulAllowed) {
+      console.log('✅ Contentful permitido:', location.pathname);
       return;
     }
     

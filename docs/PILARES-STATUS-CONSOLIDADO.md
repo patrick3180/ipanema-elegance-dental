@@ -1,9 +1,9 @@
 # PILARES — STATUS CONSOLIDADO
 ## Tracking de Todas as Recomendações vs Implementações
 
-**Data:** 19 de Fevereiro de 2026
-**Objetivo:** Mapear todas as recomendações dos 10 pilares e marcar o que já foi resolvido nos Sprints 3-10
-**Status:** ✅ ATUALIZADO (Sprint 10 completo 19/02)
+**Data:** 02 de Abril de 2026
+**Objetivo:** Mapear todas as recomendacoes dos 10 pilares e marcar o que ja foi resolvido nos Sprints 3-11
+**Status:** ✅ ATUALIZADO (Sprint 11 completo 02/04)
 
 ---
 
@@ -140,7 +140,7 @@
 
 ## PILAR 7 — DESIGN & UX
 
-**Score:** 68/100 → 84/100 (após Sprints 6-9)
+**Score:** 68/100 → 86/100 (apos Sprints 6-11)
 **Relatório:** [PILAR-7-DESIGN-UX-AUDIT.md](analysis/PILAR-7-DESIGN-UX-AUDIT.md)
 **Data:** 16 Fev 2026 (atualizado 18/02)
 
@@ -168,11 +168,13 @@
 
 **Progresso:** 8/12 resolvidos (67%)
 
+> **Sprint 11:** Padronização dos 4 componentes compartilhados (EmpatheticPainPoints, DoctorBioSection, ServiceFAQ, FinalServiceCTA) em todas as 9 SPs. Consistência visual 100%.
+
 ---
 
 ## PILAR 8 — MARKETING PSYCHOLOGY
 
-**Score:** 72/100 → 90/100 (após Sprints 6-9)
+**Score:** 72/100 → 92/100 (apos Sprints 6-11)
 **Relatório:** [PILAR-8-MARKETING-PSYCHOLOGY.md](analysis/PILAR-8-MARKETING-PSYCHOLOGY.md)
 **Data:** 14 Fev 2026 (atualizado 18/02)
 
@@ -180,7 +182,7 @@
 
 | # | Recomendação | Status | Resolvido Em | Detalhes |
 |---|--------------|--------|--------------|----------|
-| 8.1 | Seções empáticas em service pages | ✅ RESOLVIDO | Sprints 6+8 | 8/9 SPs com seção empática (Ortodontia excluída) |
+| 8.1 | Secoes empaticas em service pages | ✅ RESOLVIDO | Sprints 6+8+11 | 9/9 SPs com secao empatica via EmpatheticPainPoints (Ortodontia inclusa) |
 | 8.2 | Múltiplos CTAs nas service pages | ✅ RESOLVIDO | Sprint 6 | CTAs intermediários em 4+ SPs |
 | 8.3 | Homepage hero genérico (48→80/100) | ✅ RESOLVIDO | Sprint 6 | Hero.tsx com headline + aspiração |
 | 8.4 | Urgência ética (45→85/100) | ✅ RESOLVIDO | Sprints 6+9 | 3 SPs + 15 LP configs com urgência factual |
@@ -267,6 +269,8 @@
 | **Sprint 7 (Internal Linking)** | 1 (#2.3) |
 | **Sprint 8 (Psych+UX)** | 4 (#7.3, #7.4, #7.12, empatia completa) |
 | **Sprint 9 (LP Optimization)** | 9 (#9.2-9.8, #7.6, #7.7, #7.10) |
+| **Sprint 10 (Tech+Blog)** | 2 (#10.4, alt text) |
+| **Sprint 11 (Components)** | 4 (Padronizacao 4 componentes em 9/9 SPs) |
 | **Pilar 10 (Blog)** | 4 (#10.1-10.3, #10.10) |
 
 **Total resolvido:** 45/56 recomendações (80%)
@@ -284,5 +288,5 @@
 
 ---
 
-**Última atualização:** 18/02/2026 15:50
-**Status:** ✅ ATUALIZADO — Auditoria completa código vs docs
+**Ultima atualizacao:** 02/04/2026 15:52
+**Status:** ✅ ATUALIZADO — Sprint 11 completo (padronizacao de componentes)

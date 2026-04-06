@@ -11,6 +11,12 @@ import ProcessTimeline from '@/components/treatment/ProcessTimeline';
 import InfoCard from '@/components/treatment/InfoCard';
 import { Card, CardContent } from "@/components/ui/card";
 import { InternalLinkingOptimizer } from '@/components/seo/InternalLinkingOptimizer';
+import ScrollReveal from '@/components/ScrollReveal';
+import DoctorBioSection from '@/components/treatment/DoctorBioSection';
+import ServiceFAQ from '@/components/treatment/ServiceFAQ';
+import FinalServiceCTA from '@/components/treatment/FinalServiceCTA';
+import EmpatheticPainPoints from '@/components/treatment/EmpatheticPainPoints';
+
 
 const ProteseDentaria = () => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -246,63 +252,38 @@ const ProteseDentaria = () => {
           </div>
         </section>
 
-        {/* Seção Empática — Sprint 8 */}
-        <section className="py-16 bg-gradient-to-br from-dental-beige/20 via-white to-dental-beige/10">
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-display font-bold text-dental-purple mb-10 text-center">
-              Você se identifica com alguma dessas situações?
-            </h2>
-            <div className="space-y-5">
-              <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-purple shadow-soft hover:shadow-elegant transition-all duration-300">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center group-hover:bg-dental-purple/20 transition-colors">
-                  <Shield className="w-6 h-6 text-dental-purple" />
-                </div>
-                <div>
-                  <strong className="block text-dental-purple font-semibold mb-1">Prótese que solta ao falar ou comer</strong>
-                  <span className="text-dental-gray leading-relaxed">causando insegurança em momentos sociais e profissionais?</span>
-                </div>
-              </div>
-              <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-gold shadow-soft hover:shadow-elegant transition-all duration-300">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-gold/10 flex items-center justify-center group-hover:bg-dental-gold/20 transition-colors">
-                  <AlertCircle className="w-6 h-6 text-dental-gold" />
-                </div>
-                <div>
-                  <strong className="block text-dental-purple font-semibold mb-1">Dificuldade para mastigar alimentos que você gosta</strong>
-                  <span className="text-dental-gray leading-relaxed">por causa de dentes ausentes ou uma prótese desconfortável?</span>
-                </div>
-              </div>
-              <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-purple-soft shadow-soft hover:shadow-elegant transition-all duration-300">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center group-hover:bg-dental-purple/20 transition-colors">
-                  <Heart className="w-6 h-6 text-dental-purple-soft" />
-                </div>
-                <div>
-                  <strong className="block text-dental-purple font-semibold mb-1">Constrangimento ao sorrir por falta de dentes</strong>
-                  <span className="text-dental-gray leading-relaxed">ou por uma prótese que não parece natural?</span>
-                </div>
-              </div>
-            </div>
-
-            <p className="text-center text-dental-gray mt-10 text-lg leading-relaxed">
-              Uma prótese bem planejada devolve função, estética e qualidade de vida.<br className="hidden md:block" /> Vamos avaliar a melhor solução para o seu caso.
-            </p>
-
-            <div className="max-w-2xl mx-auto mt-8">
-              <div className="bg-white p-6 rounded-xl border-2 border-dental-gold shadow-elegant">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-dental-gold/15 flex items-center justify-center">
-                    <Clock className="w-5 h-5 text-dental-gold" />
-                  </div>
-                  <div>
-                    <p className="text-dental-purple font-semibold mb-2">Importante</p>
-                    <p className="text-dental-gray leading-relaxed text-sm">
-                      Dentes ausentes causam movimentação dos dentes vizinhos e perda óssea progressiva. Quanto antes iniciar a reabilitação, mais simples e previsível será o tratamento.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Seção Empática - EmpatheticPainPoints */}
+        <ScrollReveal animation="fade-up">
+          <EmpatheticPainPoints
+            title="Você se identifica com alguma dessas situações?"
+            painPoints={[
+              {
+                icon: <Shield className="w-6 h-6 text-dental-purple" />,
+                strong: "Prótese que solta ao falar ou comer",
+                description: "causando insegurança em momentos sociais e profissionais?",
+                borderColor: "border-dental-purple"
+              },
+              {
+                icon: <AlertCircle className="w-6 h-6 text-dental-gold" />,
+                strong: "Dificuldade para mastigar alimentos que você gosta",
+                description: "por causa de dentes ausentes ou uma prótese desconfortável?",
+                borderColor: "border-dental-gold"
+              },
+              {
+                icon: <Heart className="w-6 h-6 text-dental-purple-soft" />,
+                strong: "Constrangimento ao sorrir por falta de dentes",
+                description: "ou por uma prótese que não parece natural?",
+                borderColor: "border-dental-purple-soft"
+              }
+            ]}
+            conclusion={<>Uma prótese bem planejada devolve função, estética e qualidade de vida.<br className="hidden md:block" /> Vamos avaliar a melhor solução para o seu caso.</>}
+            callout={{
+              icon: <Clock className="w-5 h-5 text-dental-gold" />,
+              title: "Importante",
+              text: "Dentes ausentes causam movimentação dos dentes vizinhos e perda óssea progressiva. Quanto antes iniciar a reabilitação, mais simples e previsível será o tratamento."
+            }}
+          />
+        </ScrollReveal>
 
         {/* CTA Intermediário — Sprint 8 */}
         <section className="py-8 bg-white">
@@ -577,7 +558,7 @@ const ProteseDentaria = () => {
                 {
                   number: 1,
                   title: "Consulta de Diagnóstico Completo",
-                  description: "Análise facial, exame clínico, radiografias digitais e escaneamento intraoral para diagnóstico preciso e planejamento personalizado.",
+                  description: "Análise facial, exame clínico, radiografias digitais e escaneamento com iTero Element 5D para diagnóstico preciso e planejamento personalizado.",
                   icon: <Search size={24} />,
                   duration: "1a Consulta"
                 },
@@ -591,7 +572,7 @@ const ProteseDentaria = () => {
                 {
                   number: 3,
                   title: "Moldagem Digital de Precisão",
-                  description: "Scanner intraoral elimina desconforto de moldeiras, garantindo precisão milimétrica. O arquivo 3D é enviado diretamente ao laboratório parceiro.",
+                  description: "iTero Element 5D elimina desconforto de moldeiras, garantindo precisão milimétrica. O arquivo 3D é enviado diretamente ao laboratório parceiro.",
                   icon: <Scan size={24} />,
                   duration: "1a Consulta"
                 },
@@ -694,94 +675,22 @@ const ProteseDentaria = () => {
         </section>
 
         {/* Seção da Especialista */}
-        <section className="py-16 bg-gradient-purple-soft">
-          <div className="container-custom">
-            <SectionDivider variant="with-icon" icon={<Award size={20} />} />
-
-            <h2 className="heading-lg mb-12 text-center text-dental-purple">
-              Expertise e Experiência em Reabilitação Oral
-            </h2>
-
-            <div className="max-w-5xl mx-auto">
-              <div className="grid md:grid-cols-[300px,1fr] gap-8 items-start">
-
-                {/* Foto da Dra. - Maior e mais destacada */}
-                <div className="mx-auto md:mx-0">
-                  <div className="relative">
-                    <img
-                      src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
-                      alt="Dra. Carla Christoph - Especialista em Prótese Dentária"
-                      className="w-full rounded-2xl shadow-elegant"
-                    />
-                    {/* Badge flutuante */}
-                    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-dental-gold text-white px-6 py-2 rounded-full shadow-gold font-semibold text-sm whitespace-nowrap">
-                      20+ Anos de Experiência
-                    </div>
-                  </div>
-                </div>
-
-                {/* Conteúdo */}
-                <div className="bg-white p-8 rounded-2xl shadow-soft">
-                  <div className="mb-6">
-                    <h3 className="text-3xl font-display font-semibold text-dental-purple mb-2">
-                      Dra. Carla Christoph
-                    </h3>
-                    <p className="text-dental-gold-dark font-medium text-lg">
-                      CRO-RJ 27.509 | Especialista em Prótese Dentária
-                    </p>
-                  </div>
-
-                  <div className="space-y-4 text-dental-gray leading-relaxed">
-                    <p>
-                      Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
-                    </p>
-
-                    <p>
-                      Como especialista em Prótese Dentária, reabilitação oral é onde sua formação se aprofunda. Casos complexos são sua rotina — da coroa unitária à reabilitação completa, cada solução é planejada com base em diagnóstico detalhado e planejamento digital.
-                    </p>
-                  </div>
-
-                  {/* Credenciais */}
-                  <div className="mt-6 pt-6 border-t border-dental-gray/20">
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="text-dental-gold mt-1" size={20} />
-                        <div>
-                          <p className="font-semibold text-dental-purple">Formação</p>
-                          <p className="text-sm text-dental-gray">Especialista em Prótese Dentária e Implantodontia</p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="text-dental-gold mt-1" size={20} />
-                        <div>
-                          <p className="font-semibold text-dental-purple">Experiência</p>
-                          <p className="text-sm text-dental-gray">8 anos como dentista militar na Marinha</p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="text-dental-gold mt-1" size={20} />
-                        <div>
-                          <p className="font-semibold text-dental-purple">Atualização</p>
-                          <p className="text-sm text-dental-gray">Cursos contínuos em DSD e scanner intraoral</p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="text-dental-gold mt-1" size={20} />
-                        <div>
-                          <p className="font-semibold text-dental-purple">Tecnologia</p>
-                          <p className="text-sm text-dental-gray">Scanner iTero e planejamento digital</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <ScrollReveal animation="fade-up">
+          <DoctorBioSection
+            sectionTitle="Expertise e Experiência em Reabilitação Oral"
+            badgeText="20+ Anos de Experiência"
+            paragraphs={[
+              "Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.",
+              "Como especialista em Prótese Dentária, reabilitação oral é onde sua formação se aprofunda. Casos complexos são sua rotina — da coroa unitária à reabilitação completa, cada solução é planejada com base em diagnóstico detalhado e planejamento digital."
+            ]}
+            credentials={[
+              { title: "Formação", description: "Especialista em Prótese Dentária e Implantodontia" },
+              { title: "Experiência", description: "8 anos como dentista militar na Marinha" },
+              { title: "Atualização", description: "Cursos contínuos em DSD e iTero Element 5D" },
+              { title: "Tecnologia", description: "iTero Element 5D e planejamento digital" }
+            ]}
+          />
+        </ScrollReveal>
 
         {/* Seção de Vídeo - Condicional */}
         {hasVideo && (
@@ -834,61 +743,21 @@ const ProteseDentaria = () => {
         <SectionDivider variant="with-icon" icon={<HelpCircle size={20} />} />
 
         {/* FAQs */}
-        <section className="py-16 bg-dental-beige/20">
-          <div className="container-custom">
-            <h2 className="heading-lg mb-8 text-center text-dental-purple">
-              Perguntas Frequentes sobre Prótese Dentária
-            </h2>
-
-            <div className="max-w-4xl mx-auto">
-              <Accordion type="single" collapsible className="w-full space-y-4">
-                {faqs.map((faq, index) => (
-                  <AccordionItem
-                    value={`item-${index + 1}`}
-                    key={index}
-                    className="bg-white rounded-lg border border-dental-purple/20 px-6"
-                  >
-                    <AccordionTrigger className="text-left text-base font-semibold text-dental-purple hover:text-dental-gold transition-colors py-6">
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-dental-gray leading-relaxed pb-6">
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
-          </div>
-        </section>
+        <ScrollReveal animation="fade-up">
+          <ServiceFAQ 
+            title="Perguntas Frequentes sobre Prótese Dentária"
+            faqs={faqs}
+          />
+        </ScrollReveal>
 
         {/* CTA Final */}
-        <section className="py-20 bg-gradient-purple-gold text-white">
-          <div className="container-custom text-center">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Award className="w-8 h-8 text-dental-gold" />
-              <h2 className="heading-lg">
-                Recuperar Função e Estética com Prótese Dentária
-              </h2>
-            </div>
-            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Na consulta de planejamento, analisamos seu caso e definimos o tipo de prótese mais adequado — fixa, removível ou sobre implantes. A prótese dentária devolve função mastigatória completa e pode melhorar significativamente sua qualidade de vida.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button
-                onClick={() => handleWhatsAppClick('Olá! Vi a página sobre prótese dentária e gostaria de agendar uma avaliação com a Dra. Carla Christoph')}
-                className="bg-dental-gold text-dental-purple px-8 py-4 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-all inline-flex items-center gap-2"
-              >
-                <ArrowRight className="w-5 h-5" />
-                Agendar Avaliação pelo WhatsApp
-              </button>
-            </div>
-
-            <p className="mt-6 text-sm opacity-75">
-              Atendimento de segunda a sexta, das 9h às 19h
-            </p>
-          </div>
-        </section>
+        <FinalServiceCTA 
+          title="Recuperar Função e Estética com Prótese Dentária"
+          description="Na consulta de planejamento, analisamos seu caso e definimos o tipo de prótese mais adequado — fixa, removível ou sobre implantes. A prótese dentária devolve função mastigatória completa e pode melhorar significativamente sua qualidade de vida."
+          ctaText="Agendar Avaliação pelo WhatsApp"
+          whatsappMessage="Olá! Vi a página sobre prótese dentária e gostaria de agendar uma avaliação com a Dra. Carla Christoph"
+          onClickOverride={() => handleWhatsAppClick('Olá! Vi a página sobre prótese dentária e gostaria de agendar uma avaliação com a Dra. Carla Christoph')}
+        />
         <StatsBar />
         <InternalLinkingOptimizer currentPage="protese-dentaria" />
       </PageLayout>

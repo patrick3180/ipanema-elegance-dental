@@ -1,7 +1,7 @@
 import { LandingPageConfig } from "@/types/LandingPageConfig";
 
 export const limpezaDentalConfig: LandingPageConfig = {
-  campaign: "limpeza-dental-premium",
+  campaign: "Pesquisa - Limpeza Dental - Zona Sul",
 
   messageMatch: {
     adGroup: "limpeza-dental-ipanema",
@@ -10,7 +10,7 @@ export const limpezaDentalConfig: LandingPageConfig = {
 
   whatsapp: {
     number: "5521993304045",
-    message: "Olá! Vi o site e gostaria de agendar uma limpeza dental. Podem me informar valores e disponibilidade?"
+    message: "Olá! Vi o site e gostaria de agendar uma limpeza dental profissional."
   },
 
   hero: {
@@ -42,7 +42,7 @@ export const limpezaDentalConfig: LandingPageConfig = {
 
   guide: {
     title: "Como é a Limpeza no Consultório",
-    subtitle: "Processo completo com tempo adequado e tecnologia ultrassônica.",
+    subtitle: "Dra. Carla Christoph — CRO-RJ 27.509. Cada limpeza com tempo dedicado e orientação individual.",
     steps: [
       {
         number: "1",
@@ -126,7 +126,7 @@ export const limpezaDentalConfig: LandingPageConfig = {
 
   contact: {
     whatsappNumber: "5521993304045",
-    whatsappMessage: "Olá! Vi o site e gostaria de agendar uma limpeza dental. Podem me informar valores e disponibilidade?",
+    whatsappMessage: "Olá! Vi o site e gostaria de agendar uma limpeza dental profissional.",
     doctorName: "Dra. Carla Christoph",
     clinicName: "Clínica Dra. Carla Christoph"
   },

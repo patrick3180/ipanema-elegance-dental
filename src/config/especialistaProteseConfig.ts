@@ -22,7 +22,7 @@ export const especialistaProteseConfig: LandingPageConfig = {
 
   benefits: [
     'Especialista em Prótese Dentária',
-    'Planejamento digital com scanner 3D',
+    'Planejamento digital com iTero Element 5D',
     'WhatsApp 24h',
     '20+ anos de experiência (8 na Marinha)'
   ],
@@ -44,7 +44,7 @@ export const especialistaProteseConfig: LandingPageConfig = {
     title: 'A Abordagem da Especialista em Prótese',
     subtitle: 'Cada caso de reabilitação é planejado individualmente. A Dra. Carla conduz o processo do diagnóstico à entrega final.',
     steps: [
-      { number: '1', title: 'Consulta de Planejamento', description: 'Análise clínica completa, fotografias, radiografias e escaneamento digital. Entendemos o histórico e definimos os objetivos do tratamento.' },
+      { number: '1', title: 'Consulta de Planejamento', description: 'Análise clínica completa, fotografias, radiografias e escaneamento digital com iTero Element 5D. Entendemos o histórico e definimos os objetivos do tratamento.' },
       { number: '2', title: 'Projeto Protético Digital', description: 'Com base nos dados coletados, a Dra. Carla projeta a reabilitação — tipo de prótese, materiais, sequência de etapas. Tudo definido antes de começar.' },
       { number: '3', title: 'Execução por Etapas', description: 'O tratamento segue o cronograma planejado. Cada etapa é executada com precisão, usando somente materiais de primeira linha e provas intermediárias para garantir o ajuste.' },
       { number: '4', title: 'Acompanhamento de Longo Prazo', description: 'Após a entrega, consultas de acompanhamento garantem que a prótese se mantenha funcional e confortável ao longo dos anos.' }

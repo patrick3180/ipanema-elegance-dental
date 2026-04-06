@@ -49,8 +49,8 @@ export const blogPosts: BlogPost[] = [
     content: `
       <p>A odontologia digital tem transformado completamente a forma como os tratamentos dentários são planejados e executados. Com o avanço da tecnologia, procedimentos que antes eram demorados e desconfortáveis agora são realizados com muito mais precisão e conforto para o paciente.</p>
       
-      <h2>Escaneamento digital: adeus às moldagens convencionais</h2>
-      <p>O escaneamento digital substituiu as tradicionais moldagens com materiais de impressão, que muitos pacientes consideram desconfortáveis. Com um scanner intraoral, é possível obter um modelo digital preciso da dentição do paciente em poucos minutos, sem desconforto.</p>
+      <h2>iTero Element 5D: adeus às moldagens convencionais</h2>
+      <p>O escaneamento digital substituiu as tradicionais moldagens com materiais de impressão, que muitos pacientes consideram desconfortáveis. Com o iTero Element 5D, é possível obter um modelo digital preciso da dentição do paciente em poucos minutos, sem desconforto.</p>
       
       <h2>Planejamento digital de sorriso</h2>
       <p>Com softwares especializados, é possível projetar virtualmente o resultado final de um tratamento estético antes mesmo de iniciá-lo. Isso permite que os pacientes visualizem como ficará seu sorriso após procedimentos como lentes de contato dental, facetas ou implantes.</p>

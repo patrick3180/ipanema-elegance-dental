@@ -11,6 +11,11 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { sendGCLIDToWebhook } from "@/utils/gclid";
 import { Sparkles, Shield, Heart, Award, Search, Scan, CheckCircle, HelpCircle, ArrowRight, Clock, Link, Ban, Target, Wrench, Stethoscope, Syringe, Scissors, HeartPulse, Layers, Focus, Gem } from "lucide-react";
 import { InternalLinkingOptimizer } from '@/components/seo/InternalLinkingOptimizer';
+import ScrollReveal from '@/components/ScrollReveal';
+import DoctorBioSection from '@/components/treatment/DoctorBioSection';
+import ServiceFAQ from '@/components/treatment/ServiceFAQ';
+import FinalServiceCTA from '@/components/treatment/FinalServiceCTA';
+import EmpatheticPainPoints from '@/components/treatment/EmpatheticPainPoints';
 
 const RestaureacoesEsteticas = () => {
   const handleWhatsAppClick = async (message: string) => {
@@ -25,6 +30,17 @@ const RestaureacoesEsteticas = () => {
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
   };
+
+  const faqs = [
+    { question: "O que é uma restauração dental estética?", answer: "É um procedimento que reconstrói dentes comprometidos por cáries, fraturas ou trincas utilizando materiais de última geração (resina composta ou porcelana) que mimetizam perfeitamente a cor, brilho e textura dos dentes naturais. Diferente das antigas \"obturações\" escuras de amálgama, as restaurações estéticas são praticamente invisíveis." },
+    { question: "Quando uma restauração é necessária?", answer: <><p className="mb-3">Restaurações são indicadas em diversas situações:</p><ul className="list-disc pl-5 space-y-2"><li>Presença de cáries (pequenas, médias ou extensas)</li><li>Fraturas dentais por trauma ou desgaste</li><li>Trincas que causam sensibilidade</li><li>Substituição de restaurações antigas escurecidas</li><li>Correção de formato ou fechamento de pequenos espaços</li><li>Reconstrução após <RouterLink to="/tratamento-de-canal" className="text-dental-gold hover:text-dental-purple transition-colors font-medium">tratamento de canal</RouterLink></li></ul></> },
+    { question: "Qual material é usado nas restaurações estéticas?", answer: "Utilizamos resinas compostas de última geração com nanotecnologia, que oferecem alta resistência, estética natural e durabilidade. Para casos que exigem máxima longevidade (grandes restaurações posteriores), indicamos porcelanas ou resinas laboratoriais (inlay/onlay), que são confeccionadas em laboratório e proporcionam ainda mais resistência." },
+    { question: "Fazer restauração dói?", answer: "Não. Utilizamos anestesia local com técnica confortável. A maioria dos pacientes relata não sentir desconforto durante o procedimento. Após o término do efeito anestésico, pode haver sensibilidade leve por 24-48h, facilmente controlada com analgésicos comuns se necessário." },
+    { question: "Quanto tempo dura uma restauração estética?", answer: <>A durabilidade varia conforme o tipo de restauração e cuidados do paciente:<ul className="list-disc pl-5 space-y-2 mt-3"><li><strong>Restaurações diretas (resina):</strong> 5 a 8 anos em média</li><li><strong>Restaurações indiretas (inlay/onlay de porcelana):</strong> 12 a 15 anos ou mais</li></ul><p className="mt-3">Fatores que prolongam a vida útil: boa higiene oral, check-ups regulares, não roer unhas, evitar abrir embalagens com os dentes e usar placa para bruxismo quando indicado.</p></> },
+    { question: "Posso trocar minhas restaurações antigas escuras?", answer: "Sim! A substituição de restaurações antigas de amálgama (metálicas) por restaurações estéticas em resina é um dos procedimentos mais procurados. Além do benefício estético, eliminamos o risco de microinfiltrações comuns em restaurações antigas e removemos o metal da boca. A troca é feita de forma conservadora, preservando o máximo de estrutura dental sadia." },
+    { question: "Restauração em resina mancha com o tempo?", answer: "As resinas compostas modernas apresentam excelente estabilidade de cor. Com os cuidados adequados (boa higiene, polimentos periódicos no dentista e moderação no consumo de alimentos muito pigmentados como café, vinho tinto e açaí), as restaurações mantêm sua cor original por muitos anos. Quando necessário, é possível fazer polimento profissional para renovar o brilho." },
+    { question: "Qual a diferença entre restauração e obturação?", answer: "Na prática odontológica moderna, os termos são sinônimos — ambos se referem ao preenchimento de uma cavidade dental. \"Obturação\" é um termo mais antigo, frequentemente associado às restaurações em amálgama (metálicas). \"Restauração\" é o termo técnico correto e mais abrangente, pois enfatiza o objetivo do tratamento: restaurar forma, função e estética. Hoje, priorizamos sempre restaurações estéticas em materiais tooth-colored (da cor do dente)." },
+  ];
 
   return (
     <PageLayout>
@@ -151,144 +167,54 @@ const RestaureacoesEsteticas = () => {
         </div>
       </section>
 
-      {/* SEÇÃO 2: INTRODUÇÃO EMPÁTICA — REDESIGNED */}
-      <section className="py-16 bg-gradient-to-br from-dental-beige/20 via-white to-dental-beige/10">
-        <div className="max-w-4xl mx-auto px-4">
-          {/* Quote empático */}
-          <div className="text-center mb-12">
-            <p className="text-xl text-dental-gray leading-relaxed mb-4 max-w-2xl mx-auto">
-              Você já escondeu o sorriso ao notar um dente quebrado, manchado ou com aquela restauração escura que denuncia o tratamento?
-            </p>
-            <p className="text-dental-gray leading-relaxed max-w-2xl mx-auto">
-              Cáries, fraturas e trincas são mais comuns do que imagina — e o impacto vai além da estética.
-            </p>
-          </div>
-
-          {/* 3 diferenciais visuais */}
-          <div className="space-y-5">
-            <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-purple shadow-soft hover:shadow-elegant transition-all duration-300">
-              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center group-hover:bg-dental-purple/20 transition-colors">
-                <Gem className="w-6 h-6 text-dental-purple" />
-              </div>
-              <div>
-                <strong className="block text-dental-purple font-semibold mb-1">Restaurações que passam despercebidas</strong>
-                <span className="text-dental-gray leading-relaxed">Usamos resinas e cerâmicas estratificadas que reproduzem a translucidez e textura natural do seu dente — não são obturações, são reconstruções.</span>
-              </div>
-            </div>
-            <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-gold shadow-soft hover:shadow-elegant transition-all duration-300">
-              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-gold/10 flex items-center justify-center group-hover:bg-dental-gold/20 transition-colors">
-                <Shield className="w-6 h-6 text-dental-gold" />
-              </div>
-              <div>
-                <strong className="block text-dental-purple font-semibold mb-1">Técnica conservadora — preservamos o máximo</strong>
-                <span className="text-dental-gray leading-relaxed">Cada restauração é planejada para remover apenas o necessário. Quanto mais estrutura natural preservada, melhor o resultado a longo prazo.</span>
-              </div>
-            </div>
-            <div className="group flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-dental-purple-soft shadow-soft hover:shadow-elegant transition-all duration-300">
-              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-dental-purple/10 flex items-center justify-center group-hover:bg-dental-purple/20 transition-colors">
-                <Heart className="w-6 h-6 text-dental-purple-soft" />
-              </div>
-              <div>
-                <strong className="block text-dental-purple font-semibold mb-1">Cada caso planejado individualmente</strong>
-                <span className="text-dental-gray leading-relaxed">A Dra. Carla reserva tempo para entender seu histórico antes de qualquer procedimento — sem pressa, sem protocolo padrão.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Seção Empática - EmpatheticPainPoints */}
+      <ScrollReveal animation="fade-up">
+        <EmpatheticPainPoints
+          title="Você já escondeu o sorriso por causa de um dente comprometido?"
+          painPoints={[
+            {
+              icon: <Gem className="w-6 h-6 text-dental-purple" />,
+              strong: "Restaurações que passam despercebidas",
+              description: "Usamos resinas e cerâmicas estratificadas que reproduzem a translucidez e textura natural do seu dente — não são obturações, são reconstruções.",
+              borderColor: "border-dental-purple"
+            },
+            {
+              icon: <Shield className="w-6 h-6 text-dental-gold" />,
+              strong: "Técnica conservadora — preservamos o máximo",
+              description: "Cada restauração é planejada para remover apenas o necessário. Quanto mais estrutura natural preservada, melhor o resultado a longo prazo.",
+              borderColor: "border-dental-gold"
+            },
+            {
+              icon: <Heart className="w-6 h-6 text-dental-purple-soft" />,
+              strong: "Cada caso planejado individualmente",
+              description: "A Dra. Carla reserva tempo para entender seu histórico antes de qualquer procedimento — sem pressa, sem protocolo padrão.",
+              borderColor: "border-dental-purple-soft"
+            }
+          ]}
+          conclusion={<>Cáries, fraturas e trincas são mais comuns do que imagina — e o impacto vai além da estética.<br className="hidden md:block" /> Vamos avaliar a melhor solução para o seu caso.</>}
+        />
+      </ScrollReveal>
 
       {/* SEÇÃO 3: DIVIDER */}
       <SectionDivider variant="with-icon" icon={<Award size={20} />} />
 
       {/* SEÇÃO 4: ESPECIALISTA - DRA. CARLA */}
-      <section className="py-16 bg-gradient-to-b from-dental-beige/10 to-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid md:grid-cols-[380px,1fr] gap-12 items-center">
-            {/* Foto com badge sobreposto */}
-            <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-elegant">
-                <img
-                  src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
-                  alt="Dra. Carla Christoph - Especialista em Restaurações Estéticas"
-                  className="w-full h-auto object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-dental-beige/80"></div>
-
-                {/* Badge sobreposto */}
-                <div className="absolute bottom-6 left-6 bg-dental-gold text-white px-4 py-2 rounded-lg shadow-lg">
-                  <p className="text-sm font-semibold">20+ Anos de Experiência</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Conteúdo */}
-            <div>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-6">
-                Restaurações com Precisão Técnica e Arte
-              </h2>
-
-              <p className="text-lg text-dental-gray leading-relaxed mb-4">
-                Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
-              </p>
-
-              <p className="text-lg text-dental-gray leading-relaxed mb-8">
-                Nas restaurações, utiliza resinas e cerâmicas que reproduzem a translucidez natural do dente. O objetivo é que a restauração passe despercebida — que o dente tratado seja indistinguível dos demais.
-              </p>
-
-              {/* Grid 2x2 de informações */}
-              <div className="grid md:grid-cols-2 gap-6">
-                {/* Card 1: Formação */}
-                <div className="bg-white p-6 rounded-xl shadow-soft hover:shadow-elegant transition-all duration-300">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 rounded-full bg-purple-50 flex items-center justify-center">
-                      <Award className="w-6 h-6 text-dental-purple" />
-                    </div>
-                    <h3 className="text-xl font-display font-bold text-dental-purple">Formação</h3>
-                  </div>
-                  <p className="text-dental-gray">Especialista em Prótese Dentária e Implantodontia</p>
-                  <p className="text-sm text-dental-gold font-semibold mt-2">CRO-RJ 27.509</p>
-                </div>
-
-                {/* Card 2: Experiência */}
-                <div className="bg-white p-6 rounded-xl shadow-soft hover:shadow-elegant transition-all duration-300">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 rounded-full bg-yellow-50 flex items-center justify-center">
-                      <Clock className="w-6 h-6 text-dental-gold" />
-                    </div>
-                    <h3 className="text-xl font-display font-bold text-dental-purple">Experiência</h3>
-                  </div>
-                  <p className="text-dental-gray">20+ anos tratando casos de todas as complexidades</p>
-                  <p className="text-sm text-dental-gold font-semibold mt-2">Milhares de restaurações realizadas</p>
-                </div>
-
-                {/* Card 3: Atualização */}
-                <div className="bg-white p-6 rounded-xl shadow-soft hover:shadow-elegant transition-all duration-300">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center">
-                      <Sparkles className="w-6 h-6 text-dental-purple" />
-                    </div>
-                    <h3 className="text-xl font-display font-bold text-dental-purple">Atualização</h3>
-                  </div>
-                  <p className="text-dental-gray">Formação contínua em técnicas avançadas</p>
-                  <p className="text-sm text-dental-gold font-semibold mt-2">Estratificação e polimento de alto acabamento</p>
-                </div>
-
-                {/* Card 4: Tecnologia */}
-                <div className="bg-white p-6 rounded-xl shadow-soft hover:shadow-elegant transition-all duration-300">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center">
-                      <Scan className="w-6 h-6 text-dental-purple" />
-                    </div>
-                    <h3 className="text-xl font-display font-bold text-dental-purple">Tecnologia</h3>
-                  </div>
-                  <p className="text-dental-gray">Scanner intraoral iTero Element 5D</p>
-                  <p className="text-sm text-dental-gold font-semibold mt-2">Materiais com certificação internacional</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ScrollReveal animation="fade-up">
+        <DoctorBioSection
+          sectionTitle="Restaurações com Precisão Técnica e Arte"
+          badgeText="20+ Anos de Experiência"
+          paragraphs={[
+            "Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.",
+            "Nas restaurações, utiliza resinas e cerâmicas que reproduzem a translucidez natural do dente. O objetivo é que a restauração passe despercebida — que o dente tratado seja indistinguível dos demais."
+          ]}
+          credentials={[
+            { title: "Formação", description: "Especialista em Prótese Dentária e Implantodontia" },
+            { title: "Experiência", description: "20+ anos tratando casos de todas as complexidades" },
+            { title: "Atualização", description: "Formação contínua em técnicas avançadas" },
+            { title: "Tecnologia", description: "Scanner intraoral iTero Element 5D" }
+          ]}
+        />
+      </ScrollReveal>
 
       {/* SEÇÃO 5: DIVIDER */}
       <SectionDivider variant="with-icon" icon={<Shield size={20} />} />
@@ -637,7 +563,7 @@ const RestaureacoesEsteticas = () => {
               {
                 number: 1,
                 title: "Diagnóstico Preciso",
-                description: "Exame clínico completo • Radiografias digitais • Análise oclusal detalhada • Scanner iTero para casos complexos • Avaliação de bruxismo e hábitos parafuncionais",
+                description: "Exame clínico completo • Radiografias digitais • Análise oclusal detalhada • iTero Element 5D para casos complexos • Avaliação de bruxismo e hábitos parafuncionais",
                 icon: <Stethoscope size={24} />,
                 duration: "1ª Consulta"
               },
@@ -795,7 +721,7 @@ const RestaureacoesEsteticas = () => {
               <div className="relative rounded-2xl overflow-hidden shadow-elegant">
                 <img
                   src="/lovable-uploads/scanner 3d.webp"
-                  alt="Scanner iTero Element 5D - Tecnologia de diagnóstico digital"
+                  alt="iTero Element 5D - Tecnologia de diagnóstico digital"
                   className="w-full h-auto object-cover"
                 />
               </div>
@@ -814,7 +740,7 @@ const RestaureacoesEsteticas = () => {
               </div>
 
               <p className="text-lg text-dental-gray leading-relaxed mb-8">
-                O <span className="font-semibold text-dental-purple">iTero Element 5D</span> é o scanner intraoral mais avançado do mercado, oferecendo diagnóstico em tempo real e precisão milimétrica.
+                O <span className="font-semibold text-dental-purple">iTero Element 5D</span> é o escaneamento intraoral mais avançado do mercado, oferecendo diagnóstico em tempo real e precisão milimétrica.
               </p>
 
               {/* Funcionalidades */}
@@ -872,145 +798,25 @@ const RestaureacoesEsteticas = () => {
       <SectionDivider variant="with-icon" icon={<HelpCircle size={20} />} />
 
       {/* SEÇÃO 16: FAQS */}
-      <section className="py-16 bg-dental-beige/20">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
-              Perguntas Frequentes
-            </h2>
-            <p className="text-lg text-dental-gray">
-              Respostas para as dúvidas mais comuns sobre restaurações estéticas
-            </p>
-          </div>
-
-          <Accordion type="single" collapsible className="w-full space-y-4">
-            {/* FAQ 1 */}
-            <AccordionItem value="item-1" className="bg-white rounded-lg border border-dental-purple/20 px-6">
-              <AccordionTrigger className="text-left text-base font-semibold text-dental-purple hover:text-dental-gold transition-colors py-6">
-                O que é uma restauração dental estética?
-              </AccordionTrigger>
-              <AccordionContent className="text-dental-gray leading-relaxed pb-6">
-                É um procedimento que reconstrói dentes comprometidos por cáries, fraturas ou trincas utilizando materiais de última geração (resina composta ou porcelana) que mimetizam perfeitamente a cor, brilho e textura dos dentes naturais. Diferente das antigas "obturações" escuras de amálgama, as restaurações estéticas são praticamente invisíveis.
-              </AccordionContent>
-            </AccordionItem>
-
-            {/* FAQ 2 */}
-            <AccordionItem value="item-2" className="bg-white rounded-lg border border-dental-purple/20 px-6">
-              <AccordionTrigger className="text-left text-base font-semibold text-dental-purple hover:text-dental-gold transition-colors py-6">
-                Quando uma restauração é necessária?
-              </AccordionTrigger>
-              <AccordionContent className="text-dental-gray leading-relaxed pb-6">
-                <p className="mb-3">Restaurações são indicadas em diversas situações:</p>
-                <ul className="list-disc pl-5 space-y-2">
-                  <li>Presença de cáries (pequenas, médias ou extensas)</li>
-                  <li>Fraturas dentais por trauma ou desgaste</li>
-                  <li>Trincas que causam sensibilidade</li>
-                  <li>Substituição de restaurações antigas escurecidas</li>
-                  <li>Correção de formato ou fechamento de pequenos espaços</li>
-                  <li>Reconstrução após <RouterLink to="/tratamento-de-canal" className="text-dental-gold hover:text-dental-purple transition-colors font-medium">tratamento de canal</RouterLink></li>
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-
-            {/* FAQ 3 */}
-            <AccordionItem value="item-3" className="bg-white rounded-lg border border-dental-purple/20 px-6">
-              <AccordionTrigger className="text-left text-base font-semibold text-dental-purple hover:text-dental-gold transition-colors py-6">
-                Qual material é usado nas restaurações estéticas?
-              </AccordionTrigger>
-              <AccordionContent className="text-dental-gray leading-relaxed pb-6">
-                Utilizamos resinas compostas de última geração com nanotecnologia, que oferecem alta resistência, estética natural e durabilidade. Para casos que exigem máxima longevidade (grandes restaurações posteriores), indicamos porcelanas ou resinas laboratoriais (inlay/onlay), que são confeccionadas em laboratório e proporcionam ainda mais resistência.
-              </AccordionContent>
-            </AccordionItem>
-
-            {/* FAQ 4 */}
-            <AccordionItem value="item-4" className="bg-white rounded-lg border border-dental-purple/20 px-6">
-              <AccordionTrigger className="text-left text-base font-semibold text-dental-purple hover:text-dental-gold transition-colors py-6">
-                Fazer restauração dói?
-              </AccordionTrigger>
-              <AccordionContent className="text-dental-gray leading-relaxed pb-6">
-                Não. Utilizamos anestesia local com técnica confortável. A maioria dos pacientes relata não sentir desconforto durante o procedimento. Após o término do efeito anestésico, pode haver sensibilidade leve por 24-48h, facilmente controlada com analgésicos comuns se necessário.
-              </AccordionContent>
-            </AccordionItem>
-
-            {/* FAQ 5 */}
-            <AccordionItem value="item-5" className="bg-white rounded-lg border border-dental-purple/20 px-6">
-              <AccordionTrigger className="text-left text-base font-semibold text-dental-purple hover:text-dental-gold transition-colors py-6">
-                Quanto tempo dura uma restauração estética?
-              </AccordionTrigger>
-              <AccordionContent className="text-dental-gray leading-relaxed pb-6">
-                A durabilidade varia conforme o tipo de restauração e cuidados do paciente:
-                <ul className="list-disc pl-5 space-y-2 mt-3">
-                  <li><strong>Restaurações diretas (resina):</strong> 5 a 8 anos em média</li>
-                  <li><strong>Restaurações indiretas (inlay/onlay de porcelana):</strong> 12 a 15 anos ou mais</li>
-                </ul>
-                <p className="mt-3">Fatores que prolongam a vida útil: boa higiene oral, check-ups regulares, não roer unhas, evitar abrir embalagens com os dentes e usar placa para bruxismo quando indicado.</p>
-              </AccordionContent>
-            </AccordionItem>
-
-            {/* FAQ 6 */}
-            <AccordionItem value="item-6" className="bg-white rounded-lg border border-dental-purple/20 px-6">
-              <AccordionTrigger className="text-left text-base font-semibold text-dental-purple hover:text-dental-gold transition-colors py-6">
-                Posso trocar minhas restaurações antigas escuras?
-              </AccordionTrigger>
-              <AccordionContent className="text-dental-gray leading-relaxed pb-6">
-                Sim! A substituição de restaurações antigas de amálgama (metálicas) por restaurações estéticas em resina é um dos procedimentos mais procurados. Além do benefício estético, eliminamos o risco de microinfiltrações comuns em restaurações antigas e removemos o metal da boca. A troca é feita de forma conservadora, preservando o máximo de estrutura dental sadia.
-              </AccordionContent>
-            </AccordionItem>
-
-            {/* FAQ 7 */}
-            <AccordionItem value="item-7" className="bg-white rounded-lg border border-dental-purple/20 px-6">
-              <AccordionTrigger className="text-left text-base font-semibold text-dental-purple hover:text-dental-gold transition-colors py-6">
-                Restauração em resina mancha com o tempo?
-              </AccordionTrigger>
-              <AccordionContent className="text-dental-gray leading-relaxed pb-6">
-                As resinas compostas modernas apresentam excelente estabilidade de cor. Com os cuidados adequados (boa higiene, polimentos periódicos no dentista e moderação no consumo de alimentos muito pigmentados como café, vinho tinto e açaí), as restaurações mantêm sua cor original por muitos anos. Quando necessário, é possível fazer polimento profissional para renovar o brilho.
-              </AccordionContent>
-            </AccordionItem>
-
-            {/* FAQ 8 */}
-            <AccordionItem value="item-8" className="bg-white rounded-lg border border-dental-purple/20 px-6">
-              <AccordionTrigger className="text-left text-base font-semibold text-dental-purple hover:text-dental-gold transition-colors py-6">
-                Qual a diferença entre restauração e obturação?
-              </AccordionTrigger>
-              <AccordionContent className="text-dental-gray leading-relaxed pb-6">
-                Na prática odontológica moderna, os termos são sinônimos — ambos se referem ao preenchimento de uma cavidade dental. "Obturação" é um termo mais antigo, frequentemente associado às restaurações em amálgama (metálicas). "Restauração" é o termo técnico correto e mais abrangente, pois enfatiza o objetivo do tratamento: restaurar forma, função e estética. Hoje, priorizamos sempre restaurações estéticas em materiais tooth-colored (da cor do dente).
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-      </section>
+      <ScrollReveal animation="fade-up">
+        <ServiceFAQ 
+          title="Perguntas Frequentes"
+          subtitle="Respostas para as dúvidas mais comuns sobre restaurações estéticas"
+          faqs={faqs}
+        />
+      </ScrollReveal>
 
       {/* SEÇÃO 17: DIVIDER */}
       <SectionDivider variant="with-icon" icon={<ArrowRight size={20} />} />
 
       {/* SEÇÃO 18: CTA FINAL */}
-      <section className="py-20 bg-gradient-to-br from-dental-purple via-dental-purple to-dental-gold text-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <Sparkles className="w-10 h-10 text-dental-gold" />
-            <h2 className="text-3xl md:text-5xl font-display font-bold">
-              Recupere a Saúde e a Beleza do Seu Sorriso
-            </h2>
-          </div>
-
-          <p className="text-xl md:text-2xl mb-8 leading-relaxed text-white/90">
-            Restaurações estéticas que unem precisão técnica, resinas compostas nanoparticuladas e resultado natural.
-          </p>
-
-          <button
-            onClick={() => handleWhatsAppClick("Olá! Vi a página sobre restaurações estéticas e gostaria de agendar uma avaliação com a Dra. Carla Christoph.")}
-            className="inline-flex items-center gap-3 bg-white text-dental-purple px-8 py-4 rounded-full text-lg font-semibold shadow-elegant hover:shadow-2xl hover:scale-105 transition-all duration-300"
-          >
-            <Sparkles className="w-6 h-6" />
-            Agendar Avaliação pelo WhatsApp
-            <ArrowRight className="w-6 h-6" />
-          </button>
-
-          <p className="mt-8 text-white/80 text-sm">
-            Atendimento de segunda a sexta, das 9h às 19h
-          </p>
-        </div>
-      </section>
+      <FinalServiceCTA 
+        title="Recupere a Saúde e a Beleza do Seu Sorriso"
+        description="Restaurações estéticas que unem precisão técnica, resinas compostas nanoparticuladas e resultado natural."
+        ctaText="Agendar Avaliação pelo WhatsApp"
+        whatsappMessage="Olá! Vi a página sobre restaurações estéticas e gostaria de agendar uma avaliação com a Dra. Carla Christoph."
+        onClickOverride={() => handleWhatsAppClick("Olá! Vi a página sobre restaurações estéticas e gostaria de agendar uma avaliação com a Dra. Carla Christoph.")}
+      />
 
       <StatsBar />
       <InternalLinkingOptimizer currentPage="restauracoes-esteticas" />

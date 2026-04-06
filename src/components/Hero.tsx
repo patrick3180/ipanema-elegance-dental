@@ -97,7 +97,11 @@ const Hero = () => {
                     event_label: 'Hero Secondary CTA'
                   });
                 }
-                document.getElementById('tratamentos')?.scrollIntoView({ behavior: 'smooth' });
+                const el = document.getElementById('tratamentos');
+                if (el) {
+                  const top = el.getBoundingClientRect().top + window.scrollY - 100;
+                  window.scrollTo({ top, behavior: 'smooth' });
+                }
               }}
             >
               Conheça nossos tratamentos
@@ -105,39 +109,45 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Imagem */}
+        {/* Imagem — fluid integration with mask-image gradient */}
         <div className="hero-animate-image order-2 lg:order-2 flex justify-center lg:justify-end">
-          <div className="relative">
-            {/* Decoração: linha dourada fina ao redor da imagem */}
-            <div className="absolute -inset-3 rounded-2xl border border-dental-gold/20" />
-
-            <div className="w-[280px] sm:w-[320px] md:w-[400px] lg:w-[420px] h-[420px] sm:h-[480px] md:h-[560px] lg:h-[600px] rounded-2xl flex items-center justify-center overflow-hidden shadow-elegant">
-              <picture>
-                <source
-                  srcSet="/lovable-uploads/hero-560w.avif 560w, /lovable-uploads/hero-800w.avif 800w, /lovable-uploads/hero-840w.avif 840w"
-                  sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 420px"
-                  type="image/avif"
-                />
-                <source
-                  srcSet="/lovable-uploads/hero-560w.webp 560w, /lovable-uploads/hero-800w.webp 800w, /lovable-uploads/hero-840w.webp 840w"
-                  sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 420px"
-                  type="image/webp"
-                />
-                <img
-                  src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png"
-                  alt="Dra. Carla Christoph, dentista especialista em Ipanema"
-                  className="w-full h-full object-cover"
-                  width="420"
-                  height="600"
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                />
-              </picture>
-            </div>
-
-            {/* Detalhe decorativo: ponto dourado */}
-            <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-dental-gold rounded-full" />
+          <div
+            className="w-[280px] sm:w-[320px] md:w-[400px] lg:w-[460px] h-[420px] sm:h-[480px] md:h-[560px] lg:h-[640px]"
+            style={{
+              WebkitMaskImage: `
+                linear-gradient(to left, black 60%, transparent 100%),
+                linear-gradient(to bottom, black 65%, transparent 100%)
+              `,
+              maskImage: `
+                linear-gradient(to left, black 60%, transparent 100%),
+                linear-gradient(to bottom, black 65%, transparent 100%)
+              `,
+              WebkitMaskComposite: 'source-in',
+              maskComposite: 'intersect',
+            }}
+          >
+            <picture>
+              <source
+                srcSet="/lovable-uploads/hero-560w.avif 560w, /lovable-uploads/hero-800w.avif 800w, /lovable-uploads/hero-840w.avif 840w"
+                sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px"
+                type="image/avif"
+              />
+              <source
+                srcSet="/lovable-uploads/hero-560w.webp 560w, /lovable-uploads/hero-800w.webp 800w, /lovable-uploads/hero-840w.webp 840w"
+                sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px"
+                type="image/webp"
+              />
+              <img
+                src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png"
+                alt="Dra. Carla Christoph, dentista especialista em Ipanema"
+                className="w-full h-full object-cover object-top"
+                width="460"
+                height="640"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
+            </picture>
           </div>
         </div>
       </div>

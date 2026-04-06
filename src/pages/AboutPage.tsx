@@ -107,7 +107,7 @@ const AboutPage = () => {
     {
       icon: ScanLine,
       title: "Tecnologia Digital",
-      description: "Scanner intraoral iTero, planejamento digital do sorriso e Test Drive do Sorriso para visualização prévia do resultado."
+      description: "iTero Element 5D, planejamento digital do sorriso e Test Drive do Sorriso para visualização prévia do resultado."
     }
   ];
 
@@ -154,7 +154,7 @@ const AboutPage = () => {
                   Com mais de duas décadas em Ipanema, a Dra. Carla Christoph construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Especialista em Prótese Dentária e Implantodontia (CRO-RJ 27.509), sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha — experiência que trouxe disciplina e precisão para sua prática clínica.
                 </p>
                 <p>
-                  A Dra. Carla utiliza escaneamento digital intraoral (iTero) e ferramentas de planejamento do sorriso para oferecer previsibilidade e segurança em cada tratamento. Cada caso é tratado como único, com o tempo necessário para ouvir, planejar e executar.
+                  A Dra. Carla utiliza o iTero Element 5D e ferramentas de planejamento do sorriso para oferecer previsibilidade e segurança em cada tratamento. Cada caso é tratado como único, com o tempo necessário para ouvir, planejar e executar.
                 </p>
               </div>
             </div>
@@ -190,7 +190,7 @@ const AboutPage = () => {
               <h2 className="heading-md mb-6 text-center">O Que Esperar da Primeira Consulta</h2>
               <div className="bg-dental-beige/50 p-8 rounded-lg">
                 <p className="text-dental-gray">
-                  Na primeira consulta, a Dra. Carla faz uma avaliação completa com exame clínico, fotografias e, quando indicado, escaneamento digital. Você sai entendendo exatamente o que precisa ser feito, em que ordem, e quanto tempo leva. Sem surpresas.
+                  Na primeira consulta, a Dra. Carla faz uma avaliação completa com exame clínico, fotografias e, quando indicado, escaneamento com iTero Element 5D. Você sai entendendo exatamente o que precisa ser feito, em que ordem, e quanto tempo leva. Sem surpresas.
                 </p>
               </div>
             </div>

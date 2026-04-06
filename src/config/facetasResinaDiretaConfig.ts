@@ -29,7 +29,7 @@ export const facetasResinaDiretaConfig: LandingPageConfig = {
 
   problem: {
     title: 'Você Se Identifica com Alguma Dessas Situações?',
-    description: 'As facetas de resina são a escolha de quem quer transformar o sorriso de forma rápida, segura e acessível — sem sacrificar naturalidade nem conforto.',
+    description: 'As facetas de resina são a escolha de quem quer renovar o sorriso de forma rápida, segura e acessível — sem sacrificar naturalidade nem conforto.',
     problems: [
       'Um evento importante está se aproximando e você quer um sorriso mais bonito nas fotos.',
       'Seus dentes têm manchas, lascas ou espaços que te incomodam no dia a dia.',
@@ -82,7 +82,7 @@ export const facetasResinaDiretaConfig: LandingPageConfig = {
 
   cta: {
     title: 'Seu Sorriso Merece essa Atenção',
-    subtitle: 'Mande uma mensagem no WhatsApp e converse com a equipe da Dra. Carla sobre as suas facetas. Avaliação personalizada, valores transparentes e resultado no mesmo dia.',
+    subtitle: 'Mande uma mensagem no WhatsApp e converse com a equipe da Dra. Carla sobre as suas facetas. Avaliação individual com tempo dedicado ao seu caso, valores transparentes e resultado no mesmo dia.',
     buttonText: 'Quero Falar Sobre Minhas Facetas',
     urgency: 'Pequenas correções de forma e cor ficam mais simples quando planejadas com antecedência.'
   },

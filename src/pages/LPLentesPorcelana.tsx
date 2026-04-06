@@ -57,13 +57,13 @@ const LPLentesPorcelana = () => {
     <>
       <Helmet>
         <title>Lentes de Contato Dental em Porcelana Ipanema | Dra. Carla Christoph</title>
-        <meta name="description" content="Lentes de porcelana ultrafinas em Ipanema. Dentes naturalmente brancos que não mancham. Test Drive do Sorriso e scanner 3D. 20+ anos de experiência. CRO-RJ 27.509" />
+        <meta name="description" content="Lentes de porcelana ultrafinas em Ipanema. Dentes naturalmente brancos que não mancham. Test Drive do Sorriso e iTero Element 5D. 20+ anos de experiência. CRO-RJ 27.509" />
         <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href="https://dracarlachristoph.com/lp/lentes-porcelana-ipanema" />
 
         {/* Open Graph */}
         <meta property="og:title" content="Lentes de Contato Dental em Porcelana Ipanema | Dra. Carla Christoph" />
-        <meta property="og:description" content="Lentes de porcelana ultrafinas em Ipanema. Test Drive do Sorriso e scanner 3D iTero." />
+        <meta property="og:description" content="Lentes de porcelana ultrafinas em Ipanema. Test Drive do Sorriso e iTero Element 5D." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dracarlachristoph.com/lp/lentes-porcelana-ipanema" />
         <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
@@ -122,7 +122,7 @@ const LPLentesPorcelana = () => {
               </h1>
 
               <p className="text-lg md:text-xl text-dental-gray mb-6 leading-relaxed">
-                Scanner iTero 3D e simulação em resina provisória na sua boca. Você aprova cada detalhe antes de qualquer desgaste. Lentes de porcelana com especialista em Ipanema — CRO-RJ 27.509.
+                iTero Element 5D e simulação em resina provisória na sua boca. Você aprova cada detalhe antes de qualquer desgaste. Lentes de porcelana com especialista em Ipanema — CRO-RJ 27.509.
               </p>
 
               {/* Badges Grid 2x2 */}
@@ -137,7 +137,7 @@ const LPLentesPorcelana = () => {
                 </div>
                 <div className="flex items-center gap-2 bg-dental-purple/10 text-dental-purple rounded-lg p-3 text-sm">
                   <CheckCircle size={16} className="shrink-0" />
-                  <span>Scanner iTero 3D</span>
+                  <span>iTero Element 5D</span>
                 </div>
                 <div className="flex items-center gap-2 bg-dental-purple/10 text-dental-purple rounded-lg p-3 text-sm">
                   <CheckCircle size={16} className="shrink-0" />
