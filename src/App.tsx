@@ -62,6 +62,9 @@ const EnPorcelainVeneersPage = lazy(() => import("./pages/en/EnPorcelainVeneersP
 const EnGeneralDentistryPage = lazy(() => import("./pages/en/EnGeneralDentistryPage"));
 const EnDentalEmergencyPage = lazy(() => import("./pages/en/EnDentalEmergencyPage"));
 
+// English landing pages (Google Ads)
+const EnCosmeticDentistryLP = lazy(() => import("./pages/en/EnCosmeticDentistryLP"));
+
 // Loading fallback component
 const PageLoadingFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-dental-beige">
@@ -177,6 +180,10 @@ const App = () => {
               <Route path="/en/porcelain-veneers" element={<EnPorcelainVeneersPage />} />
               <Route path="/en/general-dentistry" element={<EnGeneralDentistryPage />} />
               <Route path="/en/dental-emergency" element={<EnDentalEmergencyPage />} />
+
+              {/* English landing pages (Google Ads — noindex) */}
+              <Route path="/en/lp/cosmetic-dentistry" element={<EnCosmeticDentistryLP />} />
+
               <Route path="/diferenciais" element={<Navigate to="/" replace />} />
 
               {/* Gone page for 410 redirects */}

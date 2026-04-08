@@ -21,6 +21,16 @@ const EnDentalEmergencyPage = () => {
                 event_label: 'WhatsApp EN Dental Emergency'
             });
         }
+
+        if (window.gtag) {
+            window.gtag('event', 'conversion', {
+                'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
+                'event_callback': function () {
+                    console.log('Google Ads conversion tracked - EN Dental Emergency');
+                }
+            });
+        }
+
         await sendGCLIDToWebhook('en_dental_emergency');
         window.open(
             "https://wa.me/5521993304045?text=Hello!%20I%20have%20a%20dental%20emergency%20and%20need%20to%20be%20seen%20as%20soon%20as%20possible.",
@@ -38,7 +48,7 @@ const EnDentalEmergencyPage = () => {
         "inLanguage": "en",
         "provider": {
             "@type": "Dentist",
-            "name": "Dra. Carla Christoph",
+            "name": "Dr. Carla Christoph",
             "telephone": "+5521993304045",
             "address": {
                 "@type": "PostalAddress",
@@ -115,8 +125,8 @@ const EnDentalEmergencyPage = () => {
     return (
         <>
             <SEOHead
-                title="Dental Emergency in Ipanema | Dra. Carla Christoph, Rio de Janeiro"
-                description="Dental emergency in Ipanema? Toothache, broken tooth, lost filling — contact us via WhatsApp for same-day urgent dental care. Dra. Carla Christoph, CRO-RJ 27.509."
+                title="Dental Emergency in Ipanema | Dr. Carla Christoph, Rio de Janeiro"
+                description="Dental emergency in Ipanema? Toothache, broken tooth, lost filling — contact us via WhatsApp for same-day urgent dental care. Dr. Carla Christoph, CRO-RJ 27.509."
                 keywords="dental emergency ipanema, emergency dentist rio de janeiro, toothache ipanema, broken tooth Rio, urgent dental care brazil"
                 canonicalUrl="https://dracarlachristoph.com/en/dental-emergency"
                 structuredData={structuredData}

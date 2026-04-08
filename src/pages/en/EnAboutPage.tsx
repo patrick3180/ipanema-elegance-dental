@@ -38,8 +38,8 @@ const EnAboutPage = () => {
     return (
         <>
             <SEOHead
-                title="About Dra. Carla Christoph | Dentist in Ipanema, Rio de Janeiro"
-                description="Meet Dra. Carla Christoph — dental specialist in Ipanema with 20+ years of experience in prosthodontics and implant dentistry. CRO-RJ 27.509."
+                title="About Dr. Carla Christoph | Dentist in Ipanema, Rio de Janeiro"
+                description="Meet Dr. Carla Christoph — dental specialist in Ipanema with 20+ years of experience in prosthodontics and implant dentistry. CRO-RJ 27.509."
                 canonicalUrl="https://dracarlachristoph.com/en/about"
                 locale="en_US"
                 language="en"
@@ -54,7 +54,7 @@ const EnAboutPage = () => {
                     <div className="container-custom">
                         {/* Header */}
                         <div className="max-w-3xl mx-auto text-center mb-12">
-                            <h1 className="heading-lg mb-4">About Dra. Carla Christoph</h1>
+                            <h1 className="heading-lg mb-4">About Dr. Carla Christoph</h1>
                             <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />
                             <p className="text-dental-gray">
                                 Over 20 years dedicated to cosmetic and restorative dentistry.
@@ -66,7 +66,7 @@ const EnAboutPage = () => {
                             <div>
                                 <OptimizedImage
                                     src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
-                                    alt="Dra. Carla Christoph - Dentist in Ipanema"
+                                    alt="Dr. Carla Christoph - Dentist in Ipanema"
                                     className="rounded-2xl shadow-elegant w-full"
                                     width={500}
                                     height={625}
@@ -77,14 +77,14 @@ const EnAboutPage = () => {
                                 <div>
                                     <h2 className="text-2xl font-display text-dental-purple mb-3">Background & Training</h2>
                                     <p className="text-dental-gray leading-relaxed">
-                                        Dra. Carla Christoph is a board-certified dental specialist in <strong>prosthodontics</strong> and <strong>implant dentistry</strong>, registered with the Regional Dental Council of Rio de Janeiro (CRO-RJ 27.509). She graduated from the Federal University of Rio de Janeiro (UFRJ) and has over two decades of clinical experience.
+                                        Dr. Carla Christoph is a board-certified dental specialist in <strong>prosthodontics</strong> and <strong>implant dentistry</strong>, registered with the Regional Dental Council of Rio de Janeiro (CRO-RJ 27.509). She graduated from the Federal University of Rio de Janeiro (UFRJ) and has over two decades of clinical experience.
                                     </p>
                                 </div>
 
                                 <div>
                                     <h3 className="text-xl font-display text-dental-purple mb-2">8 Years in the Brazilian Navy</h3>
                                     <p className="text-dental-gray leading-relaxed">
-                                        Before establishing her private practice in Ipanema, Dra. Carla served as a dental officer in the Brazilian Navy for 8 years — an experience that shaped her precision, discipline, and commitment to patient care.
+                                        Before establishing her private practice in Ipanema, Dr. Carla served as a dental officer in the Brazilian Navy for 8 years — an experience that shaped her precision, discipline, and commitment to patient care.
                                     </p>
                                 </div>
 

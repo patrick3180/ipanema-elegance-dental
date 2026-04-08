@@ -11,7 +11,7 @@ const EnFooter = () => {
             <div className="container-custom">
                 <div className="grid md:grid-cols-3 gap-8 mb-12">
                     <div>
-                        <h3 className="text-xl font-display mb-4">Dra. Carla Christoph</h3>
+                        <h3 className="text-xl font-display mb-4">Dr. Carla Christoph</h3>
                         <p className="text-white/60 text-sm mb-1">CRO-RJ 27.509</p>
                         <p className="text-white/70 mb-4">
                             Cosmetic and restorative dentistry in Ipanema, Rio de Janeiro — minimum 1-hour appointments for personalized care.
@@ -111,7 +111,7 @@ const EnFooter = () => {
                 <Separator className="bg-white/20 mb-8" />
 
                 <div className="text-center text-white/70 text-sm">
-                    <p>&copy; {currentYear} Dra. Carla Christoph — All rights reserved.</p>
+                    <p>&copy; {currentYear} Dr. Carla Christoph — All rights reserved.</p>
                     <p className="mt-2">
                         <a href="/politica-de-privacidade" className="hover:text-dental-gold transition-colors">Privacy Policy</a>
                         {" • "}

@@ -3,6 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Menu, X, Star, MessageCircle, ChevronDown } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { sendGCLIDToWebhook } from "@/utils/gclid";
+import { getEquivalentPath } from "@/utils/languageMap";
 
 const EnHeader = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,7 +58,7 @@ const EnHeader = () => {
             </a>
             <div className="container mx-auto flex items-center justify-between">
                 <Link to="/en" className="flex items-center gap-2 text-dental-purple font-display text-2xl">
-                    Dra. Carla Christoph
+                    Dr. Carla Christoph
                 </Link>
 
                 {/* Google Rating Badge */}
@@ -159,7 +161,7 @@ const EnHeader = () => {
 
                     {/* Language switch */}
                     <Link
-                        to="/"
+                        to={getEquivalentPath(location.pathname, 'pt')}
                         className="text-xs font-medium text-dental-purple/60 hover:text-dental-purple transition-colors flex items-center gap-1"
                     >
                         🇧🇷 Português
@@ -270,12 +272,9 @@ const EnHeader = () => {
                         </Link>
 
                         {/* WhatsApp CTA - Mobile Menu */}
-                        <a
-                            href="https://wa.me/5521993304045?text=Hello!%20I'd%20like%20to%20book%20an%20appointment."
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <button
                             className="mt-4 flex items-center gap-2 bg-[#128C4A] hover:bg-[#0F7540] text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300 font-medium"
-                            onClick={() => {
+                            onClick={async () => {
                                 setIsMenuOpen(false);
                                 if (window.dataLayer) {
                                     window.dataLayer.push({
@@ -285,11 +284,36 @@ const EnHeader = () => {
                                         event_label: 'WhatsApp EN Mobile Menu'
                                     });
                                 }
+
+                                if (window.gtag) {
+                                    window.gtag('event', 'conversion', {
+                                        'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
+                                        'event_callback': function () {
+                                            console.log('Google Ads conversion tracked - EN Mobile Menu');
+                                        }
+                                    });
+                                }
+
+                                await sendGCLIDToWebhook('en_header_mobile_menu');
+
+                                window.open(
+                                    "https://wa.me/5521993304045?text=Hello!%20I'd%20like%20to%20book%20an%20appointment.",
+                                    "_blank"
+                                );
                             }}
                         >
                             <MessageCircle size={20} />
                             Book on WhatsApp
-                        </a>
+                        </button>
+
+                        {/* Language Switch - Mobile */}
+                        <Link
+                            to={getEquivalentPath(location.pathname, 'pt')}
+                            className="mt-2 text-base font-medium text-dental-purple/60 hover:text-dental-gold transition-colors"
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            🇧🇷 Versão em Português
+                        </Link>
                     </nav>
                 </div>
             )}

@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Menu, X, Star, MessageCircle, ChevronDown } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { getEquivalentPath } from "@/utils/languageMap";
 
 const treatmentSubItems = [
   { title: "Lentes de Contato Dental", path: "/lentes-de-contato-dental-e-facetas-de-porcelana" },
@@ -227,7 +228,7 @@ const Header = () => {
             );
           })}
           <Link
-            to="/en"
+            to={getEquivalentPath(location.pathname, 'en')}
             className="text-sm font-medium text-dental-purple/60 hover:text-dental-gold transition-colors flex items-center gap-1 ml-2 border-l border-dental-purple/20 pl-4"
             title="View in English"
           >
@@ -369,7 +370,7 @@ const Header = () => {
 
             {/* Language Switch */}
             <Link
-              to="/en"
+              to={getEquivalentPath(location.pathname, 'en')}
               className="mt-2 text-base font-medium text-dental-purple/60 hover:text-dental-gold transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >

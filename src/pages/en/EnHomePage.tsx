@@ -1,20 +1,60 @@
 import React from "react";
 import EnPageLayout from "@/components/en/EnPageLayout";
 import SEOHead from "@/components/SEOHead";
+import ScrollReveal from "@/components/ScrollReveal";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Award, ScanLine, Stethoscope, Shield, Clock } from "lucide-react";
+import { MessageCircle, ArrowRight, Award, ScanLine, Clock } from "lucide-react";
 import OptimizedImage from "@/components/OptimizedImage";
 import { Link } from "react-router-dom";
+import { sendGCLIDToWebhook } from "@/utils/gclid";
+
+// EN Home components
+import EnStatsBar from "@/components/en/EnStatsBar";
+import EnAboutSection from "@/components/en/EnAboutSection";
+import EnDifferentialsSection from "@/components/en/EnDifferentialsSection";
+import EnServicesSection from "@/components/en/EnServicesSection";
+import EnTechnologyShowcase from "@/components/en/EnTechnologyShowcase";
+import EnTestimonialsCarousel from "@/components/en/EnTestimonialsCarousel";
+import EnInternationalPatients from "@/components/en/EnInternationalPatients";
+import EnFinalCTA from "@/components/en/EnFinalCTA";
 
 const EnHomePage = () => {
+    const handleWhatsAppClick = async (source: string) => {
+        if (window.dataLayer) {
+            window.dataLayer.push({
+                event: 'whatsapp_click',
+                event_category: 'Contact',
+                event_action: 'Click',
+                event_label: `WhatsApp EN Home ${source}`
+            });
+        }
+
+        if (window.gtag) {
+            window.gtag('event', 'conversion', {
+                'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
+                'event_callback': function () {
+                    console.log(`Google Ads conversion tracked - EN Home ${source}`);
+                }
+            });
+        }
+
+        await sendGCLIDToWebhook(`en_home_${source.toLowerCase().replace(/\s+/g, '_')}`);
+
+        window.open(
+            "https://wa.me/5521993304045?text=Hello!%20I'd%20like%20to%20book%20an%20appointment.",
+            "_blank"
+        );
+    };
+
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "Dentist",
-        "name": "Dra. Carla Christoph",
+        "name": "Dr. Carla Christoph",
         "url": "https://dracarlachristoph.com/en",
+        "logo": "https://dracarlachristoph.com/og-image.jpg",
         "image": "https://dracarlachristoph.com/og-image.jpg",
-        "description": "Cosmetic and restorative dentistry in Ipanema, Rio de Janeiro. Dental implants, porcelain veneers, teeth whitening in a personalized 1-hour appointment setting.",
+        "description": "Cosmetic and restorative dentistry in Ipanema, Rio de Janeiro. Dental implants, porcelain veneers, teeth whitening. 20+ years of experience. 1-hour personalized appointments.",
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107",
@@ -31,6 +71,8 @@ const EnHomePage = () => {
         "telephone": "+5521993304045",
         "email": "contato@dracarlachristoph.com",
         "priceRange": "$$",
+        "paymentAccepted": "Cash, Credit Card, Bank Transfer, PIX",
+        "currenciesAccepted": "BRL",
         "openingHoursSpecification": [
             {
                 "@type": "OpeningHoursSpecification",
@@ -39,38 +81,85 @@ const EnHomePage = () => {
                 "closes": "19:00"
             }
         ],
+        "areaServed": {
+            "@type": "City",
+            "name": "Rio de Janeiro",
+            "sameAs": "https://en.wikipedia.org/wiki/Rio_de_Janeiro"
+        },
+        "sameAs": [
+            "https://instagram.com/dracarlachristoph",
+            "https://wa.me/5521993304045"
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Dental Treatments",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "MedicalProcedure",
+                        "name": "Dental Implants",
+                        "description": "Specialized implant dentistry with 20+ years of experience and digital planning"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "MedicalProcedure",
+                        "name": "Porcelain Veneers",
+                        "description": "Digital smile design with ultra-thin porcelain laminates"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "MedicalProcedure",
+                        "name": "Professional Teeth Whitening",
+                        "description": "Safe and effective in-office or supervised at-home teeth whitening"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "MedicalProcedure",
+                        "name": "Dental Prosthetics",
+                        "description": "Fixed and removable dental prosthetics for full oral rehabilitation"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "MedicalProcedure",
+                        "name": "Cosmetic Dentistry",
+                        "description": "Aesthetic restorations in composite resin and porcelain for natural-looking results"
+                    }
+                }
+            ]
+        },
+        "founder": {
+            "@type": "Person",
+            "name": "Carla Christoph",
+            "jobTitle": "Dental Surgeon",
+            "hasCredential": [
+                {
+                    "@type": "EducationalOccupationalCredential",
+                    "name": "Specialist in Prosthodontics"
+                },
+                {
+                    "@type": "EducationalOccupationalCredential",
+                    "name": "Specialist in Implant Dentistry"
+                }
+            ]
+        },
         "inLanguage": "en"
     };
-
-    const services = [
-        {
-            title: "Dental Implants",
-            description: "Titanium implant placement with 3D digital planning for single teeth or full-mouth rehabilitation.",
-            link: "/en/dental-implants"
-        },
-        {
-            title: "Porcelain Veneers",
-            description: "Ultra-thin porcelain laminates for a natural smile transformation, with our exclusive Smile Test Drive.",
-            link: "/en/porcelain-veneers"
-        },
-        {
-            title: "General Dentistry",
-            description: "Comprehensive dental checkups, professional cleanings, teeth whitening, and preventive care.",
-            link: "/en/general-dentistry"
-        },
-        {
-            title: "Dental Emergency",
-            description: "Toothache, broken tooth, or lost filling? Same-day appointments available for urgent care.",
-            link: "/en/dental-emergency"
-        }
-    ];
 
     return (
         <>
             <SEOHead
-                title="Dentist in Ipanema, Rio de Janeiro | Dra. Carla Christoph"
-                description="Cosmetic and restorative dentistry in Ipanema. Dental implants, porcelain veneers, teeth whitening. 20+ years of experience. 1-hour personalized appointments. Book via WhatsApp."
-                keywords="dentist ipanema, dental clinic ipanema rio, cosmetic dentistry rio de janeiro, dental implants ipanema, porcelain veneers brazil, teeth whitening rio"
+                title="Dentist in Ipanema, Rio de Janeiro | Dr. Carla Christoph"
+                description="Cosmetic and restorative dentistry in Ipanema. Dental implants, porcelain veneers, teeth whitening. 20+ years of experience. 1-hour personalized appointments. Book via WhatsApp — we reply in your language."
+                keywords="dentist ipanema, dental clinic ipanema rio, cosmetic dentistry rio de janeiro, dental implants ipanema, porcelain veneers brazil, teeth whitening rio, dentist rio de janeiro english"
                 canonicalUrl="https://dracarlachristoph.com/en"
                 structuredData={structuredData}
                 locale="en_US"
@@ -82,153 +171,167 @@ const EnHomePage = () => {
                 ]}
             />
             <EnPageLayout className="pt-0">
-                {/* Hero Section */}
-                <section className="relative min-h-[80vh] flex items-center bg-gradient-to-br from-dental-purple/5 to-dental-beige pt-24">
-                    <div className="container-custom grid md:grid-cols-2 gap-12 items-center">
-                        <div className="space-y-6">
-                            <h1 className="heading-xl text-dental-purple">
-                                Cosmetic Dentistry in <span className="text-dental-gold">Ipanema</span>, Rio de Janeiro
-                            </h1>
-                            <p className="text-lg text-dental-gray leading-relaxed">
-                                Personalized dental care with a minimum 1-hour appointment — so your dentist can listen, explain, and plan without rushing. Over 20 years of experience in cosmetic and restorative dentistry.
+                {/* 1. Hero Section */}
+                <section
+                    className="hero-section min-h-screen relative overflow-hidden section-spacing"
+                    style={{ paddingTop: "var(--header-height, 112px)" }}
+                >
+                    <div className="container-custom grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
+                        <div className="order-1 lg:order-1">
+                            {/* Eyebrow */}
+                            <p className="hero-animate-1 text-xs uppercase tracking-[0.2em] text-dental-gold font-medium mb-4">
+                                Specialist in Prosthodontics & Implant Dentistry
                             </p>
-                            <div className="flex flex-col sm:flex-row gap-4">
-                                <a
-                                    href="https://wa.me/5521993304045?text=Hello!%20I'd%20like%20to%20book%20an%20appointment."
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center justify-center gap-2 bg-dental-gold hover:bg-dental-gold/90 text-white px-8 py-4 rounded-lg shadow-lg transition-all duration-300 font-medium text-lg"
+
+                            <h1 className="hero-animate-2 heading-xl mb-6 text-balance">
+                                Cosmetic Dentistry in{' '}
+                                <span className="text-dental-gold">Ipanema</span>, Rio de Janeiro
+                            </h1>
+
+                            <p className="hero-animate-3 body-lg mb-8 max-w-lg font-medium">
+                                Personalized dental care with a minimum 1-hour appointment — so your dentist can listen, explain, and plan without rushing. Over 20 years of experience.
+                            </p>
+
+                            {/* Trust badges */}
+                            <div className="hero-animate-4 flex flex-wrap items-center gap-x-6 gap-y-3 mb-10">
+                                <span className="flex items-center gap-2 text-xs uppercase tracking-widest text-dental-gold font-medium">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-dental-gold" />
+                                    20+ Years in Ipanema
+                                </span>
+                                <span className="flex items-center gap-2 text-xs uppercase tracking-widest text-dental-gold font-medium">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-dental-gold" />
+                                    CRO-RJ 27.509
+                                </span>
+                                <span className="flex items-center gap-2 text-xs uppercase tracking-widest text-dental-gold font-medium">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-dental-gold" />
+                                    1h+ Per Appointment
+                                </span>
+                            </div>
+
+                            {/* CTAs */}
+                            <div className="hero-animate-5 flex flex-wrap gap-4">
+                                <Button
+                                    onClick={() => handleWhatsAppClick('hero_cta')}
+                                    className="bg-dental-gold hover:bg-dental-gold-dark text-white rounded-md px-8 py-6 text-base shadow-gold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-hover"
+                                >
+                                    <div className="flex flex-col text-left leading-tight">
+                                        <span className="font-medium">Book Your Appointment</span>
+                                        <span className="text-xs text-white/80">We reply in your language</span>
+                                    </div>
+                                    <ArrowRight size={16} className="ml-3" />
+                                </Button>
+                                <Button
+                                    variant="outline"
+                                    className="border-dental-purple/30 text-dental-purple hover:bg-dental-purple/5 rounded-md px-8 py-6 text-base transition-all duration-300"
                                     onClick={() => {
                                         if (window.dataLayer) {
                                             window.dataLayer.push({
-                                                event: 'whatsapp_click',
-                                                event_category: 'Contact',
+                                                event: 'hero_explore_click',
+                                                event_category: 'Navigation',
                                                 event_action: 'Click',
-                                                event_label: 'WhatsApp EN Hero CTA'
+                                                event_label: 'EN Hero Secondary CTA'
                                             });
+                                        }
+                                        const el = document.getElementById('treatments');
+                                        if (el) {
+                                            const top = el.getBoundingClientRect().top + window.scrollY - 100;
+                                            window.scrollTo({ top, behavior: 'smooth' });
                                         }
                                     }}
                                 >
-                                    <MessageCircle size={22} />
-                                    Book on WhatsApp
-                                </a>
-                            </div>
-
-                            {/* Trust Signals */}
-                            <div className="flex flex-wrap gap-6 pt-4 text-sm text-dental-gray">
-                                <div className="flex items-center gap-2">
-                                    <Award size={18} className="text-dental-gold" />
-                                    <span>20+ Years Experience</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <ScanLine size={18} className="text-dental-gold" />
-                                    <span>3D Digital Scanner</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Clock size={18} className="text-dental-gold" />
-                                    <span>1-Hour Appointments</span>
-                                </div>
+                                    Explore Our Treatments
+                                </Button>
                             </div>
                         </div>
 
-                        <div className="hidden md:block">
-                            <OptimizedImage
-                                src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
-                                alt="Dra. Carla Christoph - Dentist in Ipanema, Rio de Janeiro"
-                                className="rounded-2xl shadow-elegant w-full max-w-lg mx-auto"
-                                width={500}
-                                height={625}
-                            />
-                        </div>
-                    </div>
-                </section>
-
-                {/* Services Section */}
-                <section className="section-spacing bg-white/50">
-                    <div className="container-custom">
-                        <div className="text-center mb-12">
-                            <h2 className="heading-lg mb-4">Our Treatments</h2>
-                            <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />
-                            <p className="text-dental-gray max-w-2xl mx-auto">
-                                From routine checkups to full smile transformations — every treatment with the same dedication and attention to detail.
-                            </p>
-                        </div>
-
-                        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                            {services.map((service) => (
-                                <Link
-                                    key={service.title}
-                                    to={service.link}
-                                    className="group bg-white rounded-xl p-6 shadow-soft hover:shadow-elegant transition-all duration-300 border border-transparent hover:border-dental-gold/20"
-                                >
-                                    <h3 className="text-xl font-display text-dental-purple group-hover:text-dental-gold transition-colors mb-2">
-                                        {service.title}
-                                    </h3>
-                                    <p className="text-dental-gray text-sm">{service.description}</p>
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* Why Choose Us */}
-                <section className="section-spacing">
-                    <div className="container-custom">
-                        <div className="text-center mb-12">
-                            <h2 className="heading-lg mb-4">Why Patients Choose Us</h2>
-                            <Separator className="w-24 h-1 bg-dental-gold mx-auto" />
-                        </div>
-
-                        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                            <div className="text-center space-y-3">
-                                <div className="w-14 h-14 mx-auto bg-dental-purple/10 rounded-full flex items-center justify-center">
-                                    <Clock size={24} className="text-dental-gold" />
-                                </div>
-                                <h3 className="font-display text-lg">Unhurried Care</h3>
-                                <p className="text-dental-gray text-sm">
-                                    Minimum 1-hour appointments. Your dentist takes the time to listen, explain, and plan — no assembly line.
-                                </p>
-                            </div>
-                            <div className="text-center space-y-3">
-                                <div className="w-14 h-14 mx-auto bg-dental-purple/10 rounded-full flex items-center justify-center">
-                                    <Shield size={24} className="text-dental-gold" />
-                                </div>
-                                <h3 className="font-display text-lg">20+ Years Experience</h3>
-                                <p className="text-dental-gray text-sm">
-                                    Board-certified specialist in prosthodontics and implant dentistry (CRO-RJ 27.509), with 8 years in the Brazilian Navy.
-                                </p>
-                            </div>
-                            <div className="text-center space-y-3">
-                                <div className="w-14 h-14 mx-auto bg-dental-purple/10 rounded-full flex items-center justify-center">
-                                    <ScanLine size={24} className="text-dental-gold" />
-                                </div>
-                                <h3 className="font-display text-lg">Digital Planning</h3>
-                                <p className="text-dental-gray text-sm">
-                                    iTero Element 5D intraoral scanner for precise 3D imaging — no messy impressions, just digital comfort.
-                                </p>
+                        {/* Hero Image */}
+                        <div className="hero-animate-image order-2 lg:order-2 flex justify-center lg:justify-end">
+                            <div
+                                className="w-[280px] sm:w-[320px] md:w-[400px] lg:w-[460px] h-[420px] sm:h-[480px] md:h-[560px] lg:h-[640px]"
+                                style={{
+                                    WebkitMaskImage: `
+                                        linear-gradient(to left, black 60%, transparent 100%),
+                                        linear-gradient(to bottom, black 65%, transparent 100%)
+                                    `,
+                                    maskImage: `
+                                        linear-gradient(to left, black 60%, transparent 100%),
+                                        linear-gradient(to bottom, black 65%, transparent 100%)
+                                    `,
+                                    WebkitMaskComposite: 'source-in',
+                                    maskComposite: 'intersect',
+                                }}
+                            >
+                                <picture>
+                                    <source
+                                        srcSet="/lovable-uploads/hero-560w.avif 560w, /lovable-uploads/hero-800w.avif 800w, /lovable-uploads/hero-840w.avif 840w"
+                                        sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px"
+                                        type="image/avif"
+                                    />
+                                    <source
+                                        srcSet="/lovable-uploads/hero-560w.webp 560w, /lovable-uploads/hero-800w.webp 800w, /lovable-uploads/hero-840w.webp 840w"
+                                        sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px"
+                                        type="image/webp"
+                                    />
+                                    <img
+                                        src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png"
+                                        alt="Dr. Carla Christoph, dental specialist in Ipanema, Rio de Janeiro"
+                                        className="w-full h-full object-cover object-top"
+                                        width="460"
+                                        height="640"
+                                        loading="eager"
+                                        fetchPriority="high"
+                                        decoding="async"
+                                    />
+                                </picture>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* CTA Section */}
-                <section className="section-spacing bg-dental-purple text-white">
-                    <div className="container-custom text-center">
-                        <h2 className="text-3xl md:text-4xl font-display mb-4">Ready to Book Your Appointment?</h2>
-                        <p className="text-white/80 max-w-xl mx-auto mb-8">
-                            Reach out on WhatsApp for a quick response. We're available Monday–Friday, 9 AM–7 PM (GMT-3).
-                        </p>
-                        <a
-                            href="https://wa.me/5521993304045?text=Hello!%20I'd%20like%20to%20book%20an%20appointment."
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-dental-gold hover:bg-dental-gold/90 text-white px-8 py-4 rounded-lg shadow-lg transition-all duration-300 font-medium text-lg"
-                        >
-                            <MessageCircle size={22} />
-                            Book on WhatsApp
-                        </a>
+                {/* 2. Stats Bar */}
+                <EnStatsBar />
+
+                {/* 3. About Dr. Carla */}
+                <ScrollReveal animation="fade-up">
+                    <EnAboutSection />
+                </ScrollReveal>
+
+                {/* 4. Differentials — Why Patients Choose Us */}
+                <ScrollReveal animation="fade-up" delay={100}>
+                    <EnDifferentialsSection />
+                </ScrollReveal>
+
+                {/* 5. Treatments Grid — 6 Services */}
+                <ScrollReveal animation="fade-up">
+                    <EnServicesSection />
+                </ScrollReveal>
+
+                {/* Separator */}
+                <div className="w-full px-4">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="h-px bg-gradient-to-r from-transparent via-dental-purple/30 to-transparent" />
                     </div>
-                </section>
+                </div>
+
+                {/* 6. Technology — iTero Element 5D */}
+                <ScrollReveal animation="fade-in" duration={800}>
+                    <EnTechnologyShowcase />
+                </ScrollReveal>
+
+                {/* 7. Testimonials */}
+                <ScrollReveal animation="fade-up">
+                    <EnTestimonialsCarousel />
+                </ScrollReveal>
+
+                {/* 8. International Patients */}
+                <ScrollReveal animation="fade-up">
+                    <EnInternationalPatients />
+                </ScrollReveal>
+
+                {/* 9. Final CTA */}
+                <ScrollReveal animation="scale-in" duration={500}>
+                    <EnFinalCTA />
+                </ScrollReveal>
             </EnPageLayout>
         </>
     );

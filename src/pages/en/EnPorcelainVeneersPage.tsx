@@ -21,6 +21,16 @@ const EnPorcelainVeneersPage = () => {
                 event_label: 'WhatsApp EN Porcelain Veneers'
             });
         }
+
+        if (window.gtag) {
+            window.gtag('event', 'conversion', {
+                'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
+                'event_callback': function () {
+                    console.log('Google Ads conversion tracked - EN Porcelain Veneers');
+                }
+            });
+        }
+
         await sendGCLIDToWebhook('en_porcelain_veneers');
         window.open(
             "https://wa.me/5521993304045?text=Hello!%20I'd%20like%20to%20learn%20more%20about%20porcelain%20veneers.",
@@ -38,7 +48,7 @@ const EnPorcelainVeneersPage = () => {
         "inLanguage": "en",
         "provider": {
             "@type": "Dentist",
-            "name": "Dra. Carla Christoph",
+            "name": "Dr. Carla Christoph",
             "telephone": "+5521993304045",
             "address": {
                 "@type": "PostalAddress",
@@ -91,7 +101,7 @@ const EnPorcelainVeneersPage = () => {
     return (
         <>
             <SEOHead
-                title="Porcelain Veneers in Ipanema | Dra. Carla Christoph, Rio de Janeiro"
+                title="Porcelain Veneers in Ipanema | Dr. Carla Christoph, Rio de Janeiro"
                 description="Porcelain veneers and dental laminates in Ipanema, Rio de Janeiro. Smile Test Drive preview, minimal preparation, 15-20 year durability. Specialist with 20+ years experience."
                 keywords="porcelain veneers ipanema, dental veneers rio de janeiro, dental laminates brazil, smile makeover ipanema"
                 canonicalUrl="https://dracarlachristoph.com/en/porcelain-veneers"

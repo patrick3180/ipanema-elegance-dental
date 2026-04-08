@@ -21,6 +21,16 @@ const EnDentalImplantsPage = () => {
                 event_label: 'WhatsApp EN Dental Implants'
             });
         }
+
+        if (window.gtag) {
+            window.gtag('event', 'conversion', {
+                'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
+                'event_callback': function () {
+                    console.log('Google Ads conversion tracked - EN Dental Implants');
+                }
+            });
+        }
+
         await sendGCLIDToWebhook('en_dental_implants');
         window.open(
             "https://wa.me/5521993304045?text=Hello!%20I'd%20like%20to%20learn%20more%20about%20dental%20implants.",
@@ -38,7 +48,7 @@ const EnDentalImplantsPage = () => {
         "inLanguage": "en",
         "provider": {
             "@type": "Dentist",
-            "name": "Dra. Carla Christoph",
+            "name": "Dr. Carla Christoph",
             "telephone": "+5521993304045",
             "address": {
                 "@type": "PostalAddress",
@@ -91,7 +101,7 @@ const EnDentalImplantsPage = () => {
     return (
         <>
             <SEOHead
-                title="Dental Implants in Ipanema | Dra. Carla Christoph, Rio de Janeiro"
+                title="Dental Implants in Ipanema | Dr. Carla Christoph, Rio de Janeiro"
                 description="Dental implant specialist in Ipanema, Rio de Janeiro. 3D digital planning, minimally invasive techniques, 20+ years of experience. CRO-RJ 27.509. Book your consultation."
                 keywords="dental implants ipanema, dental implant rio de janeiro, implant dentist brazil, tooth replacement ipanema"
                 canonicalUrl="https://dracarlachristoph.com/en/dental-implants"

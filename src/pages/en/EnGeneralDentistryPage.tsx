@@ -21,6 +21,16 @@ const EnGeneralDentistryPage = () => {
                 event_label: 'WhatsApp EN General Dentistry'
             });
         }
+
+        if (window.gtag) {
+            window.gtag('event', 'conversion', {
+                'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
+                'event_callback': function () {
+                    console.log('Google Ads conversion tracked - EN General Dentistry');
+                }
+            });
+        }
+
         await sendGCLIDToWebhook('en_general_dentistry');
         window.open(
             "https://wa.me/5521993304045?text=Hello!%20I'd%20like%20to%20book%20a%20dental%20checkup.",
@@ -38,7 +48,7 @@ const EnGeneralDentistryPage = () => {
         "inLanguage": "en",
         "provider": {
             "@type": "Dentist",
-            "name": "Dra. Carla Christoph",
+            "name": "Dr. Carla Christoph",
             "telephone": "+5521993304045",
             "address": {
                 "@type": "PostalAddress",
@@ -110,7 +120,7 @@ const EnGeneralDentistryPage = () => {
     return (
         <>
             <SEOHead
-                title="General Dentistry & Prevention in Ipanema | Dra. Carla Christoph"
+                title="General Dentistry & Prevention in Ipanema | Dr. Carla Christoph"
                 description="Dental checkup, professional cleaning, teeth whitening, and preventive care in Ipanema, Rio de Janeiro. 1-hour appointments with personalized attention. Book via WhatsApp."
                 keywords="dental checkup ipanema, teeth cleaning rio de janeiro, teeth whitening ipanema, dentist checkup brazil, preventive dentistry rio"
                 canonicalUrl="https://dracarlachristoph.com/en/general-dentistry"

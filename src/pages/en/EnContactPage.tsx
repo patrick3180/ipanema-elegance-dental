@@ -37,7 +37,7 @@ const EnContactPage = () => {
     return (
         <>
             <SEOHead
-                title="Contact | Dra. Carla Christoph - Dentist in Ipanema"
+                title="Contact | Dr. Carla Christoph - Dentist in Ipanema"
                 description="Book your dental appointment in Ipanema, Rio de Janeiro. Located at Rua Visconde de Pirajá, 550, Suite 1107. Contact via WhatsApp for a quick response."
                 canonicalUrl="https://dracarlachristoph.com/en/contact"
                 locale="en_US"
