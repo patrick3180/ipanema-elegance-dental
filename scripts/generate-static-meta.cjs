@@ -505,6 +505,12 @@ const landingPages = {
     title: 'Facetas de Resina em Ipanema | Dra. Carla Christoph',
     description: 'Facetas de resina direta em Ipanema. Transforme seu sorriso em uma única sessão com a Dra. Carla Christoph.',
   },
+
+  // English landing pages (Google Ads — noindex)
+  '/en/lp/cosmetic-dentistry': {
+    title: 'Cosmetic Dentistry in Ipanema | Dr. Carla Christoph, Rio de Janeiro',
+    description: 'Porcelain veneers, composite bonding & smile makeovers in Ipanema. Personalized 1-hour appointments with Dr. Carla Christoph. CRO-RJ 27.509.',
+  },
 };
 
 // ============================================================

@@ -58,6 +58,10 @@
       "destination": "/api/robots"
     },
     {
+      "source": "/en/lp/:path*",
+      "destination": "/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
