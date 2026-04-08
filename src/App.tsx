@@ -61,6 +61,9 @@ const EnDentalImplantsPage = lazy(() => import("./pages/en/EnDentalImplantsPage"
 const EnPorcelainVeneersPage = lazy(() => import("./pages/en/EnPorcelainVeneersPage"));
 const EnGeneralDentistryPage = lazy(() => import("./pages/en/EnGeneralDentistryPage"));
 const EnDentalEmergencyPage = lazy(() => import("./pages/en/EnDentalEmergencyPage"));
+const EnDentalProstheticsPage = lazy(() => import("./pages/en/EnDentalProstheticsPage"));
+const EnTeethWhiteningPage = lazy(() => import("./pages/en/EnTeethWhiteningPage"));
+const EnVeneersAndLensesPage = lazy(() => import("./pages/en/EnVeneersAndLensesPage"));
 
 // English landing pages (Google Ads)
 const EnCosmeticDentistryLP = lazy(() => import("./pages/en/EnCosmeticDentistryLP"));
@@ -180,6 +183,9 @@ const App = () => {
               <Route path="/en/porcelain-veneers" element={<EnPorcelainVeneersPage />} />
               <Route path="/en/general-dentistry" element={<EnGeneralDentistryPage />} />
               <Route path="/en/dental-emergency" element={<EnDentalEmergencyPage />} />
+              <Route path="/en/dental-prosthetics" element={<EnDentalProstheticsPage />} />
+              <Route path="/en/teeth-whitening" element={<EnTeethWhiteningPage />} />
+              <Route path="/en/veneers-and-lenses" element={<EnVeneersAndLensesPage />} />
 
               {/* English landing pages (Google Ads — noindex) */}
               <Route path="/en/lp/cosmetic-dentistry" element={<EnCosmeticDentistryLP />} />
