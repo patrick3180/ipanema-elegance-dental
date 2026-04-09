@@ -42,7 +42,7 @@ const EnPorcelainVeneersPage = () => {
         "@context": "https://schema.org",
         "@type": "MedicalProcedure",
         "name": "Porcelain Veneers",
-        "description": "Ultra-thin porcelain veneers (dental laminates) for natural smile transformation. Includes exclusive Smile Test Drive preview in Ipanema, Rio de Janeiro.",
+        "description": "Ultra-thin porcelain veneers (dental laminates) for natural smile enhancement. Includes exclusive Smile Test Drive preview in Ipanema, Rio de Janeiro.",
         "procedureType": "Dental",
         "url": "https://dracarlachristoph.com/en/porcelain-veneers",
         "inLanguage": "en",
@@ -103,7 +103,7 @@ const EnPorcelainVeneersPage = () => {
             <SEOHead
                 title="Porcelain Veneers in Ipanema | Dr. Carla Christoph, Rio de Janeiro"
                 description="Porcelain veneers and dental laminates in Ipanema, Rio de Janeiro. Smile Test Drive preview, minimal preparation, 15-20 year durability. Specialist with 20+ years experience."
-                keywords="porcelain veneers ipanema, dental veneers rio de janeiro, dental laminates brazil, smile makeover ipanema"
+                keywords="porcelain veneers ipanema, dental veneers rio de janeiro, dental laminates brazil, dental aesthetics ipanema"
                 canonicalUrl="https://dracarlachristoph.com/en/porcelain-veneers"
                 structuredData={structuredData}
                 locale="en_US"
@@ -121,8 +121,9 @@ const EnPorcelainVeneersPage = () => {
                         <h1 className="heading-lg mb-4">Porcelain Veneers in Ipanema</h1>
                         <Separator className="w-24 h-1 bg-dental-gold mb-6" />
                         <p className="text-lg text-dental-gray leading-relaxed max-w-3xl">
-                            Ultra-thin porcelain shells custom-crafted to transform your smile with minimal tooth preparation. Our exclusive <strong>Smile Test Drive</strong> lets you preview your new smile before any permanent changes — so you know exactly what to expect.
+                            Ultra-thin porcelain shells custom-crafted to enhance your natural smile with minimal tooth preparation. Our exclusive <strong>Smile Test Drive</strong> lets you preview your results before any permanent changes — so you know exactly what to expect.
                         </p>
+                        <p className="text-sm text-dental-gray/70 mt-3">Dr. Carla Christoph · CRO-RJ 27.509 · 20+ years of experience</p>
                     </div>
                 </section>
 
@@ -191,7 +192,7 @@ const EnPorcelainVeneersPage = () => {
                 {/* CTA */}
                 <section className="section-spacing bg-dental-purple text-white">
                     <div className="container-custom text-center">
-                        <h2 className="text-3xl font-display mb-4">Interested in a Smile Transformation?</h2>
+                        <h2 className="text-3xl font-display mb-4">Ready to Explore Your Options?</h2>
                         <p className="text-white/80 max-w-xl mx-auto mb-8">
                             Book a consultation to discuss your goals. We'll explain your options, show you digital previews, and plan your Smile Test Drive.
                         </p>

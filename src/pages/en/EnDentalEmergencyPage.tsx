@@ -132,6 +132,11 @@ const EnDentalEmergencyPage = () => {
                 structuredData={structuredData}
                 locale="en_US"
                 language="en"
+                hreflangAlternates={[
+                    { lang: "pt-BR", href: "https://dracarlachristoph.com/emergencia-dental" },
+                    { lang: "en", href: "https://dracarlachristoph.com/en/dental-emergency" },
+                    { lang: "x-default", href: "https://dracarlachristoph.com/emergencia-dental" },
+                ]}
             />
             <EnPageLayout>
                 {/* Urgency Hero */}
@@ -145,6 +150,7 @@ const EnDentalEmergencyPage = () => {
                         <p className="text-lg text-dental-gray leading-relaxed max-w-3xl mb-8">
                             Toothache, broken tooth, or lost crown? Don't wait — contact us now for same-day urgent care during business hours.
                         </p>
+                        <p className="text-sm text-dental-gray/70">Dr. Carla Christoph · CRO-RJ 27.509 · Ipanema, Rio de Janeiro</p>
 
                         {/* Urgent CTA */}
                         <div className="bg-white rounded-2xl p-6 md:p-8 shadow-elegant border border-red-100 mb-8">

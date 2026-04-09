@@ -303,7 +303,7 @@ const EnDentalImplantsPage = () => {
               <div className="bg-white p-6 rounded-xl shadow-soft hover:shadow-elegant transition-all duration-300">
                 <div className="flex flex-col items-center text-center">
                   <div className="mb-4"><Shield className="w-12 h-12 text-dental-purple" /></div>
-                  <h3 className="text-xl font-display font-bold text-dental-purple mb-3">World-Class Implants</h3>
+                  <h3 className="text-xl font-display font-bold text-dental-purple mb-3">Internationally Recognized Implants</h3>
                   <p className="text-dental-gray">We work with globally recognized brands, featuring treated surfaces that promote osseointegration and long-term scientific validation.</p>
                 </div>
               </div>

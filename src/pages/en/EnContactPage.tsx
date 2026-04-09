@@ -58,9 +58,10 @@ const EnContactPage = () => {
                             <p className="text-dental-gray mb-4">
                                 Book your appointment or get in touch
                             </p>
-                            <p className="text-dental-gray text-sm">
+                            <p className="text-dental-gray text-sm mb-2">
                                 Private practice only — no insurance plans accepted.
                             </p>
+                            <p className="text-sm text-dental-gray/70">Dr. Carla Christoph · CRO-RJ 27.509 · English-speaking staff available</p>
                         </div>
 
                         {/* WhatsApp CTA */}

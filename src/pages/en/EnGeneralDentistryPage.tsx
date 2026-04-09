@@ -102,7 +102,7 @@ const EnGeneralDentistryPage = () => {
         },
         {
             q: "Do you accept dental insurance?",
-            a: "We are a private practice. This allows us to dedicate proper time to each patient and use only premium materials. We provide clear, detailed cost estimates before any treatment begins."
+            a: "We are a private practice. This allows us to dedicate proper time to each patient and use only high-quality materials. We provide clear, detailed cost estimates before any treatment begins."
         }
     ];
 

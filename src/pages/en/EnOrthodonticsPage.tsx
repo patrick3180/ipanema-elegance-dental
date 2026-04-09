@@ -378,7 +378,7 @@ const EnOrthodonticsPage = () => {
                 <ul className="space-y-3 text-dental-gray">
                   <li className="flex items-start"><Zap className="w-5 h-5 text-dental-gold mr-2 mt-1" /> <span>Immediate result visualization</span></li>
                   <li className="flex items-start"><Zap className="w-5 h-5 text-dental-gold mr-2 mt-1" /> <span>Precise digital planning and Invisalign aligners</span></li>
-                  <li className="flex items-start"><Zap className="w-5 h-5 text-dental-gold mr-2 mt-1" /> <span>Millimetric monitoring and focus on excellence</span></li>
+                  <li className="flex items-start"><Zap className="w-5 h-5 text-dental-gold mr-2 mt-1" /> <span>Millimetric monitoring and focus on precision</span></li>
                 </ul>
               </div>
 

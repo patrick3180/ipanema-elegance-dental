@@ -109,7 +109,7 @@ const EnAestheticRestorationsPage = () => {
       <section className="py-8 bg-white">
         <div className="container-custom">
           <QuickAnswerBox
-            answer="Aesthetic restorations are treatments that rebuild teeth compromised by cavities, fractures, or cracks using nano-filled composite resins or state-of-the-art ceramics. At Dr. Carla Christoph's practice in Ipanema (CRO-RJ 27.509), we use premium materials with color layering techniques that perfectly reproduce the natural translucency of teeth. The treatment is conservative, preserving as much tooth structure as possible, and the result is indistinguishable from natural teeth. With 20+ years of experience, we perform everything from small restorations to complex reconstructions in one or just a few sessions."
+            answer="Aesthetic restorations are treatments that rebuild teeth compromised by cavities, fractures, or cracks using nano-filled composite resins or state-of-the-art ceramics. At Dr. Carla Christoph's practice in Ipanema (CRO-RJ 27.509), we use high-quality materials with color layering techniques that perfectly reproduce the natural translucency of teeth. The treatment is conservative, preserving as much tooth structure as possible, and the result is indistinguishable from natural teeth. With 20+ years of experience, we perform everything from small restorations to complex reconstructions in one or just a few sessions."
           />
         </div>
       </section>
@@ -613,7 +613,7 @@ const EnAestheticRestorationsPage = () => {
                 <div>
                   <h3 className="text-xl font-display font-bold text-dental-purple mb-2">High-Gloss Finishing</h3>
                   <p className="text-dental-gray leading-relaxed">
-                    Premium polishing that delivers a glass-like shine and texture that perfectly mimics natural tooth enamel.
+                    Professional-grade polishing that delivers a glass-like shine and texture that perfectly mimics natural tooth enamel.
                   </p>
                 </div>
               </div>
