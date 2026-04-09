@@ -441,6 +441,24 @@ const englishPages = {
     description: 'Dental emergency in Ipanema? Toothache, broken tooth, lost filling — contact us via WhatsApp for same-day urgent dental care. Dra. Carla Christoph.',
     h1: 'Dental Emergency in Ipanema',
     summary: 'Urgent dental care in Ipanema, Rio de Janeiro. Same-day appointments for toothache, broken teeth, lost crowns, dental abscesses. Contact via WhatsApp for immediate assistance. Monday-Friday 9 AM-7 PM.'
+  },
+  '/en/dental-prosthetics': {
+    title: 'Dental Prosthetics in Ipanema | Dr. Carla Christoph, Rio de Janeiro',
+    description: 'Fixed and removable dental prosthetics in Ipanema. Crowns, bridges, All-on-4 implant-supported dentures. 20+ years of expertise. Dr. Carla Christoph, CRO-RJ 27.509.',
+    h1: 'Dental Prosthetics & Oral Rehabilitation in Ipanema',
+    summary: 'Dental prosthetics and oral rehabilitation in Ipanema, Rio de Janeiro by Dr. Carla Christoph. Crowns, bridges, implant-supported prosthetics, removable dentures, All-on-4 and All-on-6 protocols. E-max and zirconia ceramics with 15-20 year durability. 20+ years of experience, CRO-RJ 27.509.'
+  },
+  '/en/teeth-whitening': {
+    title: 'Teeth Whitening in Ipanema | Dr. Carla Christoph, Rio de Janeiro',
+    description: 'Professional teeth whitening in Ipanema. In-office, at-home, and combined protocols. Safe, effective results up to 9 shades whiter. Dr. Carla Christoph, CRO-RJ 27.509.',
+    h1: 'Professional Teeth Whitening in Ipanema',
+    summary: 'Professional teeth whitening in Ipanema, Rio de Janeiro by Dr. Carla Christoph. In-office whitening (1-3 sessions), at-home with custom trays, and combined protocols. Results up to 9 shades whiter with pH-balanced gels. Safe, effective, and long-lasting. CRO-RJ 27.509.'
+  },
+  '/en/veneers-and-lenses': {
+    title: 'Veneers & Contact Lenses in Ipanema | Dr. Carla Christoph, Rio de Janeiro',
+    description: 'Porcelain veneers, contact lenses, and composite bonding in Ipanema. Smile Test Drive preview with iTero scanner. Dr. Carla Christoph, CRO-RJ 27.509.',
+    h1: 'Veneers & Contact Lenses — Smile Test Drive',
+    summary: 'Porcelain veneers, dental contact lenses, and composite bonding in Ipanema, Rio de Janeiro by Dr. Carla Christoph. Ultra-thin ceramic laminates (0.2-0.5mm) with minimal preparation. Exclusive Smile Test Drive digital preview with iTero 5D scanner. 15-20 year durability. CRO-RJ 27.509.'
   }
 };
 
