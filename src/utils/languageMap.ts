@@ -22,16 +22,16 @@ const languageRoutes: LanguageRoute[] = [
 
   // Service pages
   { pt: "/implantes-dentarios", en: "/en/dental-implants" },
-  { pt: "/lentes-de-contato-dental-e-facetas-de-resina", en: "/en/porcelain-veneers" },
+  { pt: "/lentes-de-contato-dental-e-facetas-de-resina", en: "/en/veneers-and-lenses" },
   { pt: "/clinica-geral-e-prevencao", en: "/en/general-dentistry" },
+  { pt: "/clareamento-dental", en: "/en/teeth-whitening" },
+  { pt: "/protese-dentaria", en: "/en/dental-prosthetics" },
 
   // Emergency
   { pt: "/emergencia-odontologica", en: "/en/dental-emergency" },
 
   // Service pages with EN equivalent (future)
-  { pt: "/clareamento-dental", en: "/en/teeth-whitening" },
   { pt: "/ortodontia", en: "/en/orthodontics" },
-  { pt: "/protese-dentaria", en: "/en/dental-prosthetics" },
   { pt: "/tratamento-de-canal", en: "/en/root-canal" },
   { pt: "/restauracao-dental", en: "/en/dental-restorations" },
   { pt: "/saude-da-gengiva", en: "/en/gum-health" },

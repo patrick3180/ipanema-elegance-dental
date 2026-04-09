@@ -23,8 +23,11 @@ const EnHeader = () => {
 
     const treatmentItems = [
         { title: "Dental Implants", path: "/en/dental-implants" },
-        { title: "Porcelain Veneers", path: "/en/porcelain-veneers" },
+        { title: "Veneers & Lenses", path: "/en/veneers-and-lenses" },
+        { title: "Teeth Whitening", path: "/en/teeth-whitening" },
+        { title: "Dental Prosthetics", path: "/en/dental-prosthetics" },
         { title: "General Dentistry", path: "/en/general-dentistry" },
+        { title: "Porcelain Veneers", path: "/en/porcelain-veneers" },
     ];
 
     const navigationItems = [

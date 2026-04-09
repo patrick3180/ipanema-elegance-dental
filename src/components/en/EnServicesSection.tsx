@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 
 const services = [
   {
-    title: "Porcelain Veneers",
+    title: "Porcelain Veneers & Lenses",
     description:
       "Ultra-thin porcelain laminates that correct color, shape, and minor imperfections. Natural, long-lasting results planned digitally with iTero Element 5D.",
     image: "/Lentes.webp",
-    link: "/en/porcelain-veneers",
+    link: "/en/veneers-and-lenses",
   },
   {
     title: "Dental Implants",
@@ -24,7 +24,7 @@ const services = [
     description:
       "Professional teeth whitening with controlled sensitivity. In-office or supervised at-home protocols with natural-looking results.",
     image: "/Clareamento.webp",
-    link: "/en/general-dentistry",
+    link: "/en/teeth-whitening",
   },
   {
     title: "General Dentistry",
@@ -34,11 +34,11 @@ const services = [
     link: "/en/general-dentistry",
   },
   {
-    title: "Cosmetic Dentistry",
+    title: "Dental Prosthetics",
     description:
-      "Composite bonding, smile design, and aesthetic restorations that look and feel natural — planned with digital precision.",
+      "Fixed and removable dental prosthetics for full oral rehabilitation — crowns, bridges, dentures, and implant-supported solutions.",
     image: "/lovable-uploads/textura natural restauração.webp",
-    link: "/en/porcelain-veneers",
+    link: "/en/dental-prosthetics",
   },
   {
     title: "Dental Emergency",
