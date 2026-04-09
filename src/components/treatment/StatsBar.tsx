@@ -7,16 +7,20 @@ interface StatItem {
     label: string;
 }
 
-const stats: StatItem[] = [
+interface StatsBarProps {
+    locale?: "pt" | "en";
+}
+
+const getStats = (locale: "pt" | "en"): StatItem[] => [
     {
         icon: <Calendar className="w-5 h-5 text-dental-gold" />,
         value: "20+",
-        label: "Anos de Experiência",
+        label: locale === "en" ? "Years of Experience" : "Anos de Experiência",
     },
     {
         icon: <Users className="w-5 h-5 text-dental-gold" />,
         value: "4.000+",
-        label: "Pacientes Atendidos",
+        label: locale === "en" ? "Patients Served" : "Pacientes Atendidos",
     },
     {
         icon: <Award className="w-5 h-5 text-dental-gold" />,
@@ -26,13 +30,16 @@ const stats: StatItem[] = [
     {
         icon: <Star className="w-5 h-5 text-dental-gold fill-dental-gold" />,
         value: "4.9 ★",
-        label: "Avaliação Google",
+        label: locale === "en" ? "Google Rating" : "Avaliação Google",
     },
 ];
 
-const StatsBar = () => {
+const StatsBar = ({ locale = "pt" }: StatsBarProps) => {
+    const stats = getStats(locale);
+    const ariaLabel = locale === "en" ? "Clinic statistics" : "Estatísticas da clínica";
+
     return (
-        <section className="bg-dental-purple/5 border-y border-dental-purple/10" aria-label="Estatísticas da clínica">
+        <section className="bg-dental-purple/5 border-y border-dental-purple/10" aria-label={ariaLabel}>
             <div className="container-custom py-6">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                     {stats.map((stat, index) => (
@@ -60,3 +67,4 @@ const StatsBar = () => {
 };
 
 export default StatsBar;
+

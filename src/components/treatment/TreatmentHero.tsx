@@ -25,6 +25,7 @@ export interface TreatmentHeroProps {
   doctorImage?: string;
   badges?: string[];
   breadcrumbs?: BreadcrumbItemType[];
+  locale?: "pt" | "en";
 }
 
 const TreatmentHero = ({
@@ -34,10 +35,15 @@ const TreatmentHero = ({
   doctorImage,
   badges,
   breadcrumbs,
+  locale = "pt",
 }: TreatmentHeroProps) => {
+  const isEn = locale === "en";
+
   const handleWhatsAppClick = () => {
     const phone = "5521993304045";
-    const message = `Olá! Gostaria de agendar uma consulta de avaliação sobre ${title}.`;
+    const message = isEn
+      ? `Hello! I would like to schedule a consultation about ${title}.`
+      : `Olá! Gostaria de agendar uma consulta de avaliação sobre ${title}.`;
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank", "noopener,noreferrer");
   };
@@ -67,7 +73,7 @@ const TreatmentHero = ({
 
       <section
       className="bg-gradient-purple-soft animate-fade-in"
-      aria-label="Hero do tratamento"
+      aria-label={isEn ? "Treatment hero" : "Hero do tratamento"}
     >
       <div className="section-spacing content-container">
         <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center">
@@ -136,10 +142,10 @@ const TreatmentHero = ({
                 onClick={handleWhatsAppClick}
                 className="bg-dental-purple hover:bg-dental-purple-dark text-white shadow-soft hover:shadow-hover transition-all duration-300 px-6 py-6 text-base"
                 size="lg"
-                aria-label="Agendar consulta de avaliação pelo WhatsApp"
+                aria-label={isEn ? "Schedule evaluation appointment via WhatsApp" : "Agendar consulta de avaliação pelo WhatsApp"}
               >
                 <Calendar className="mr-2 h-5 w-5" />
-                Agendar Consulta de Avaliação
+                {isEn ? "Book Your Evaluation" : "Agendar Consulta de Avaliação"}
               </Button>
             </div>
           </div>
@@ -150,7 +156,7 @@ const TreatmentHero = ({
               <div className="group rounded-2xl overflow-hidden shadow-elegant">
                 <OptimizedImage
                   src={doctorImage}
-                  alt={`Dra. Carla Christoph - Especialista em ${title}`}
+                  alt={isEn ? `Dr. Carla Christoph - ${title} Specialist` : `Dra. Carla Christoph - Especialista em ${title}`}
                   className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
                   width={600}
                   height={800}

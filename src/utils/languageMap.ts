@@ -30,10 +30,10 @@ const languageRoutes: LanguageRoute[] = [
   // Emergency
   { pt: "/emergencia-odontologica", en: "/en/dental-emergency" },
 
-  // Service pages with EN equivalent (future)
+  // All service pages
   { pt: "/ortodontia", en: "/en/orthodontics" },
   { pt: "/tratamento-de-canal", en: "/en/root-canal" },
-  { pt: "/restauracao-dental", en: "/en/dental-restorations" },
+  { pt: "/restauracoes-esteticas", en: "/en/aesthetic-restorations" },
   { pt: "/saude-da-gengiva", en: "/en/gum-health" },
 ];
 

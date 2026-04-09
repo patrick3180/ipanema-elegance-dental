@@ -3,9 +3,9 @@
 **Projeto:** Revisão 360° do Funil de Marketing  
 **Duração:** 12 semanas  
 **Data de Início:** 13 de Fevereiro de 2026  
-**Status Geral:** SPRINT 12 COMPLETO — 10 Sprints finalizados
-**Ultima Atualizacao:** 02 de Abril de 2026
-**Proximo Milestone:** Migração final para branch main (merge)
+**Status Geral:** SPRINT 13 COMPLETO — 11 Sprints finalizados
+**Ultima Atualizacao:** 09 de Abril de 2026
+**Proximo Milestone:** EN Homepage grid expansion + shared component localization
 
 ---
 
@@ -39,8 +39,9 @@ Sprint 9 (LPs):       [██████████] 100% COMPLETO (urgency+he
 Sprint 10 (Tech+Blog):[██████████] 100% COMPLETO (StatsBar+BreadcrumbList+StickyBlogCTA+AuthorBio+fonts+alt)
 Sprint 11 (Components):[██████████] 100% COMPLETO (EmpatheticPainPoints+DoctorBio+ServiceFAQ+FinalCTA padronizados 9/9 SPs)
 Sprint 12 (Polimento): [██████████] 100% COMPLETO (Montserrat700-fix+AltText-audit+BlogBreadcrumb)
+Sprint 13 (EN Site):   [██████████] 100% COMPLETO (9/9 EN service pages + EnHeader nav + languageMap)
 ─────────────────────────────────────────
-SPRINTS: [██████████] 100% (10/10 completos)
+SPRINTS: [██████████] 100% (11/11 completos)
 
 DECISAO DO CLIENTE
 ─────────────────────────────────────────
@@ -388,6 +389,8 @@ PROJECT OVERALL: [████████████████████�
 | Sprint 9 | LP Optimization (3 phases) | ✅ COMPLETO (18 Fev) | LPs: 76→85, Brand: 92→94 |
 | Sprint 10 | Tech + Blog fixes | ✅ COMPLETO (19 Fev) | Blog: 64→70 |
 | Sprint 11 | Component Standardization (9 SPs) | ✅ COMPLETO (02 Abr) | Design: 84→86, Psych: 90→92 |
+| Sprint 12 | Polish (Montserrat, Alt, Breadcrumb) | ✅ COMPLETO (02 Abr) | Tech: 78→80 |
+| Sprint 13 | EN Site Mirroring (9 service pages) | ✅ COMPLETO (09 Abr) | EN coverage: 0→100% |
 
 **NOTA:** Ortodontia excluida de todo o scope por decisao do cliente.
 
@@ -400,6 +403,37 @@ PROJECT OVERALL: [████████████████████�
 - `FinalServiceCTA` — 9/9 SPs ✅
 
 **Impacto:** Consistência visual 100%, manutenção centralizada, UX uniforme em todo o funil de serviços.
+
+### Sprint 13 — EN Site Mirroring (09 Abr 2026)
+
+**Escopo:** Criar versões em inglês de todas as 9 páginas de serviço como espelho fiel do site PT.
+
+**Páginas EN criadas:**
+- `EnDentalImplantsPage.tsx` — Mirror de ImplantesDentarios.tsx ✅
+- `EnVeneersAndLensesPage.tsx` — Mirror de LentesEFacetas.tsx ✅
+- `EnTeethWhiteningPage.tsx` — Mirror de ClareamentoDental.tsx ✅
+- `EnDentalProstheticsPage.tsx` — Mirror de ProteseDentaria.tsx ✅
+- `EnGeneralDentistryPage.tsx` — Mirror de ClinicaGeralPrevencao.tsx ✅
+- `EnAestheticRestorationsPage.tsx` — Mirror de RestaureacoesEsteticas.tsx ✅
+- `EnOrthodonticsPage.tsx` — Mirror de Ortodontia.tsx ✅
+- `EnRootCanalPage.tsx` — Mirror de TratamentoDeCanal.tsx ✅
+- `EnGumHealthPage.tsx` — Mirror de SaudeDaGengiva.tsx ✅
+
+**Infraestrutura:**
+- `EnHeader.tsx` — Dropdown "Treatments" com 9 itens (removido Porcelain Veneers redundante) ✅
+- `languageMap.ts` — Mapeamento bidirecional PT↔EN para todas as 9 SPs ✅
+- `App.tsx` — Lazy-loading routes para todas as 9 EN SPs ✅
+- Todas as páginas usam `EnPageLayout` (EN header/footer) ✅
+
+**Paridade técnica:**
+- Helmet (hreflang, canonical, MedicalProcedure/FAQPage schemas) ✅
+- sendGCLIDToWebhook para conversion tracking ✅
+- Design pattern padronizado (Hero, QuickAnswer, PainPoints, etc.) ✅
+
+**Pendências (backlog):**
+- [ ] EN Homepage service grid expansion (incluir todas as 9 SPs)
+- [ ] Shared component localization (TreatmentHero CTA button, etc.)
+- [ ] Cleanup da rota `/en/porcelain-veneers` redundante
 
 ---
 
@@ -526,5 +560,5 @@ MAY-JUN
 ---
 
 **Criado:** 13 de Fevereiro 2026, 15:00
-**Ultima atualizacao:** 02 de Abril 2026, 21:30 (Sprint 12 COMPLETO — Montserrat700-fix, Alt-text-audit, BlogBreadcrumb)
-**Proximo sync:** Merge para branch main e monitorar Search Console / PageSpeed
+**Ultima atualizacao:** 09 de Abril 2026, 14:45 (Sprint 13 COMPLETO — EN site mirroring 9/9 SPs + EnHeader + languageMap)
+**Proximo sync:** EN homepage grid expansion + shared component localization

@@ -133,6 +133,7 @@ const EnVeneersAndLensesPage = () => {
       <EnPageLayout>
         {/* Hero Section */}
         <TreatmentHero
+          locale="en"
           title="Dental Aesthetics That Don't Look Artificial — Smile Test Drive"
           subtitle="Dental Aesthetics with Dr. Carla Christoph"
           description="A provisional simulation right on your teeth before you commit. You see it, feel it, and approve it. Porcelain lenses or composite veneers — each case has its indication. Digital scanning with iTero Element 5D and high-translucency ceramics."
@@ -393,6 +394,7 @@ const EnVeneersAndLensesPage = () => {
 
         {/* Doctor Bio */}
         <DoctorBioSection
+          locale="en"
           sectionTitle="Your Dentist for Dental Aesthetics"
           doctorName="Dr. Carla Christoph"
           doctorSubtitle="CRO-RJ 27.509 | Prosthodontic Specialist"
@@ -670,11 +672,12 @@ const EnVeneersAndLensesPage = () => {
 
         {/* Final CTA */}
         <FinalServiceCTA
+          locale="en"
           title="Find Out If Lenses Are Right for Your Case"
           description="During your evaluation, we analyze your case with the iTero Element 5D, perform a complete oral health checkup, and present the possibilities — lenses, veneers, or other treatments best suited to your needs."
           whatsappMessage="Hello! I saw the page about Lenses and Veneers and would like to book an evaluation."
         />
-        <StatsBar />
+        <StatsBar locale="en" />
       </EnPageLayout>
     </>
   );

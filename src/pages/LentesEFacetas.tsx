@@ -162,7 +162,7 @@ const LentesEFacetas = () => {
         <meta name="keywords" content="lentes de contato dental, facetas de resina, ipanema, dra carla christoph, test drive sorriso, porcelana, especialista protese" />
         <link rel="canonical" href="https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina" />
         <link rel="alternate" hrefLang="pt-BR" href="https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina" />
-        <link rel="alternate" hrefLang="en" href="https://dracarlachristoph.com/en/porcelain-veneers" />
+        <link rel="alternate" hrefLang="en" href="https://dracarlachristoph.com/en/veneers-and-lenses" />
         <link rel="alternate" hrefLang="x-default" href="https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina" />
 
         {/* Schema.org estruturado */}

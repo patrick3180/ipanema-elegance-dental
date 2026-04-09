@@ -10,18 +10,22 @@ export interface FinalServiceCTAProps {
   variant?: "default" | "urgency";
   footnote?: string;
   onClickOverride?: () => void;
+  locale?: "pt" | "en";
 }
 
 const FinalServiceCTA = ({
   icon,
   title,
   description,
-  ctaText = "Agendar Avaliação",
+  ctaText,
   whatsappMessage,
   variant = "default",
-  footnote = "WhatsApp: (21) 99330-4045 | Atendimento 24h",
+  footnote,
   onClickOverride,
+  locale = "pt",
 }: FinalServiceCTAProps) => {
+  const resolvedCtaText = ctaText ?? (locale === "en" ? "Book Your Evaluation" : "Agendar Avaliação");
+  const resolvedFootnote = footnote ?? (locale === "en" ? "WhatsApp: (21) 99330-4045 | 24h Service" : "WhatsApp: (21) 99330-4045 | Atendimento 24h");
   const handleClick = () => {
     if (onClickOverride) {
       onClickOverride();
@@ -59,12 +63,12 @@ const FinalServiceCTA = ({
             className={`${buttonClasses} px-8 py-4 rounded-lg font-semibold text-lg transition-all inline-flex items-center gap-2`}
           >
             <ArrowRight className="w-5 h-5" />
-            {ctaText}
+            {resolvedCtaText}
           </button>
         </div>
 
-        {footnote && (
-          <p className="mt-6 text-sm opacity-75">{footnote}</p>
+        {resolvedFootnote && (
+          <p className="mt-6 text-sm opacity-75">{resolvedFootnote}</p>
         )}
       </div>
     </section>

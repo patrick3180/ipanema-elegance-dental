@@ -18,20 +18,27 @@ export interface DoctorBioSectionProps {
   variant?: "default" | "editorial";
   doctorName?: string;
   doctorSubtitle?: ReactNode;
+  locale?: "pt" | "en";
 }
 
 const DoctorBioSection = ({
   sectionTitle,
   paragraphs,
   credentials,
-  badgeText = "20+ Anos de Experiência",
+  badgeText,
   quote,
   doctorImage = "/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp",
-  doctorAlt = "Dra. Carla Christoph - Especialista em Odontologia",
+  doctorAlt,
   variant = "default",
-  doctorName = "Dra. Carla Christoph",
-  doctorSubtitle = "CRO-RJ 27.509 | Especialista em Prótese Dentária e Implantodontia",
+  doctorName,
+  doctorSubtitle,
+  locale = "pt",
 }: DoctorBioSectionProps) => {
+  const resolvedBadgeText = badgeText ?? (locale === "en" ? "20+ Years of Experience" : "20+ Anos de Experiência");
+  const resolvedDoctorAlt = doctorAlt ?? (locale === "en" ? "Dr. Carla Christoph - Dental Specialist" : "Dra. Carla Christoph - Especialista em Odontologia");
+  const resolvedDoctorName = doctorName ?? (locale === "en" ? "Dr. Carla Christoph" : "Dra. Carla Christoph");
+  const resolvedDoctorSubtitle = doctorSubtitle ?? (locale === "en" ? "CRO-RJ 27.509 | Specialist in Prosthodontics and Implant Dentistry" : "CRO-RJ 27.509 | Especialista em Prótese Dentária e Implantodontia");
+
   return (
     <section className="py-16 bg-gradient-purple-soft">
       <div className="container-custom">
@@ -48,7 +55,7 @@ const DoctorBioSection = ({
                   <div className="relative overflow-hidden rounded-3xl">
                     <img
                       src={doctorImage}
-                      alt={doctorAlt}
+                      alt={resolvedDoctorAlt}
                       className="w-full"
                       loading="lazy"
                     />
@@ -57,14 +64,14 @@ const DoctorBioSection = ({
                 ) : (
                   <img
                     src={doctorImage}
-                    alt={doctorAlt}
+                    alt={resolvedDoctorAlt}
                     className="w-full rounded-2xl shadow-elegant"
                     loading="lazy"
                   />
                 )}
-                {badgeText && (
+                {resolvedBadgeText && (
                   <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-dental-gold text-white px-6 py-2 rounded-full shadow-gold font-semibold text-sm whitespace-nowrap">
-                    {badgeText}
+                    {resolvedBadgeText}
                   </div>
                 )}
               </div>
@@ -74,10 +81,10 @@ const DoctorBioSection = ({
             <div className="bg-white p-8 rounded-2xl shadow-soft">
               <div className="mb-6">
                 <h3 className="text-3xl font-display font-semibold text-dental-purple mb-2">
-                  {doctorName}
+                  {resolvedDoctorName}
                 </h3>
                 <p className="text-dental-gold-dark font-medium text-lg">
-                  {doctorSubtitle}
+                  {resolvedDoctorSubtitle}
                 </p>
               </div>
 

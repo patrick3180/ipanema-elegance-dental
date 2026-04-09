@@ -26,8 +26,11 @@ const EnHeader = () => {
         { title: "Veneers & Lenses", path: "/en/veneers-and-lenses" },
         { title: "Teeth Whitening", path: "/en/teeth-whitening" },
         { title: "Dental Prosthetics", path: "/en/dental-prosthetics" },
+        { title: "Aesthetic Restorations", path: "/en/aesthetic-restorations" },
+        { title: "Orthodontics", path: "/en/orthodontics" },
+        { title: "Root Canal", path: "/en/root-canal" },
+        { title: "Gum Health", path: "/en/gum-health" },
         { title: "General Dentistry", path: "/en/general-dentistry" },
-        { title: "Porcelain Veneers", path: "/en/porcelain-veneers" },
     ];
 
     const navigationItems = [

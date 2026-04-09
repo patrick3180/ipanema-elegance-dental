@@ -64,6 +64,10 @@ const EnDentalEmergencyPage = lazy(() => import("./pages/en/EnDentalEmergencyPag
 const EnDentalProstheticsPage = lazy(() => import("./pages/en/EnDentalProstheticsPage"));
 const EnTeethWhiteningPage = lazy(() => import("./pages/en/EnTeethWhiteningPage"));
 const EnVeneersAndLensesPage = lazy(() => import("./pages/en/EnVeneersAndLensesPage"));
+const EnAestheticRestorationsPage = lazy(() => import("./pages/en/EnAestheticRestorationsPage"));
+const EnOrthodonticsPage = lazy(() => import("./pages/en/EnOrthodonticsPage"));
+const EnRootCanalPage = lazy(() => import("./pages/en/EnRootCanalPage"));
+const EnGumHealthPage = lazy(() => import("./pages/en/EnGumHealthPage"));
 
 // English landing pages (Google Ads)
 const EnCosmeticDentistryLP = lazy(() => import("./pages/en/EnCosmeticDentistryLP"));
@@ -180,12 +184,16 @@ const App = () => {
               <Route path="/en/about" element={<EnAboutPage />} />
               <Route path="/en/contact" element={<EnContactPage />} />
               <Route path="/en/dental-implants" element={<EnDentalImplantsPage />} />
-              <Route path="/en/porcelain-veneers" element={<EnPorcelainVeneersPage />} />
+              <Route path="/en/porcelain-veneers" element={<Navigate to="/en/veneers-and-lenses" replace />} />
               <Route path="/en/general-dentistry" element={<EnGeneralDentistryPage />} />
               <Route path="/en/dental-emergency" element={<EnDentalEmergencyPage />} />
               <Route path="/en/dental-prosthetics" element={<EnDentalProstheticsPage />} />
               <Route path="/en/teeth-whitening" element={<EnTeethWhiteningPage />} />
               <Route path="/en/veneers-and-lenses" element={<EnVeneersAndLensesPage />} />
+              <Route path="/en/aesthetic-restorations" element={<EnAestheticRestorationsPage />} />
+              <Route path="/en/orthodontics" element={<EnOrthodonticsPage />} />
+              <Route path="/en/root-canal" element={<EnRootCanalPage />} />
+              <Route path="/en/gum-health" element={<EnGumHealthPage />} />
 
               {/* English landing pages (Google Ads — noindex) */}
               <Route path="/en/lp/cosmetic-dentistry" element={<EnCosmeticDentistryLP />} />

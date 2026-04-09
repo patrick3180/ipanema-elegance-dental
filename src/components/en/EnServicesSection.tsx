@@ -13,39 +13,60 @@ const services = [
     link: "/en/veneers-and-lenses",
   },
   {
-    title: "Dental Implants",
+    title: "Professional Teeth Whitening",
     description:
-      "Titanium implant placement with 3D digital planning for single teeth or full-mouth rehabilitation. Over 20 years of implant experience.",
-    image: "/Implante.webp",
-    link: "/en/dental-implants",
-  },
-  {
-    title: "Teeth Whitening",
-    description:
-      "Professional teeth whitening with controlled sensitivity. In-office or supervised at-home protocols with natural-looking results.",
+      "Whiter teeth with safety. In-office or supervised at-home protocols with controlled sensitivity and natural results.",
     image: "/Clareamento.webp",
     link: "/en/teeth-whitening",
   },
   {
-    title: "General Dentistry",
+    title: "Dental Prosthetics",
     description:
-      "Comprehensive dental checkups with digital scanning, professional cleanings, and personalized preventive care plans.",
+      "Restore chewing function and the aesthetics of your smile with personalized dental prosthetics, developed by specialist Dr. Carla Christoph.",
+    image: "/Protese.webp",
+    link: "/en/dental-prosthetics",
+  },
+  {
+    title: "Dental Implants",
+    description:
+      "Rehabilitation of missing teeth with implants that restore chewing function and aesthetics. Digital planning for single-tooth and full-mouth cases.",
+    image: "/Implante.webp",
+    link: "/en/dental-implants",
+  },
+  {
+    title: "Orthodontics",
+    description:
+      "Dental alignment and bite correction with fixed braces, aesthetic braces, or Invisalign® aligners. In partnership with Dr. Bruno, PhD in Orthodontics from UERJ.",
+    image: "/Ortodontia.webp",
+    link: "/en/orthodontics",
+  },
+  {
+    title: "General Dentistry & Prevention",
+    description:
+      "Take care of your oral health with digital checkups, professional cleaning (prophylaxis), and personalized prevention plans.",
     image: "/Profilaxia.webp",
     link: "/en/general-dentistry",
   },
   {
-    title: "Dental Prosthetics",
+    title: "Aesthetic Restorations",
     description:
-      "Fixed and removable dental prosthetics for full oral rehabilitation — crowns, bridges, dentures, and implant-supported solutions.",
-    image: "/lovable-uploads/textura natural restauração.webp",
-    link: "/en/dental-prosthetics",
+      "Treatment for cavities and reconstruction of fractured teeth with resins and ceramics that replicate the natural color and translucency of the tooth.",
+    image: "/Restarações.webp",
+    link: "/en/aesthetic-restorations",
   },
   {
-    title: "Dental Emergency",
+    title: "Root Canal (Endodontics)",
     description:
-      "Toothache, broken tooth, or lost filling? Same-day appointments available for urgent dental care in Ipanema.",
+      "Root canal treatment to eliminate pain and preserve the natural tooth. Performed by a specialized endodontist, with Dr. Carla's follow-up from start to finish.",
     image: "/Endodontia.webp",
-    link: "/en/dental-emergency",
+    link: "/en/root-canal",
+  },
+  {
+    title: "Gum Health (Periodontics)",
+    description:
+      "Specialized treatment for gingivitis and periodontitis, caring for the foundation of your smile and preventing future problems.",
+    image: "/Periodontia.webp",
+    link: "/en/gum-health",
   },
 ];
 
@@ -55,13 +76,11 @@ const EnServicesSection = () => {
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-8">
           <h2 className="heading-lg mb-4">
-            Our Dental Treatments
+            Our Dental Treatments for Your Smile in Ipanema
           </h2>
           <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />
           <p className="text-dental-gray mb-6">
-            From routine checkups to full smile rehabilitation — every treatment
-            with the same dedication, attention to detail, and the time needed
-            to get it right.
+            At our dental office in Ipanema, Dr. Carla Christoph offers a full range of dental treatments, from prevention and essential care to the most advanced aesthetic dentistry and oral rehabilitation. Explore our solutions and discover how we can care for your smile.
           </p>
         </div>
 

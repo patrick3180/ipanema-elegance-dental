@@ -1,198 +1,469 @@
-import React from "react";
+import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import EnPageLayout from "@/components/en/EnPageLayout";
-import SEOHead from "@/components/SEOHead";
-import { Separator } from "@/components/ui/separator";
-import { MessageCircle, CheckCircle, Clock, Shield, Utensils, Smile, Heart, ArrowRight, Sparkles, Award, Search, Scan, Star, Package } from "lucide-react";
-import { sendGCLIDToWebhook } from "@/utils/gclid";
+import TreatmentHero from "@/components/treatment/TreatmentHero";
+import StatsBar from "@/components/treatment/StatsBar";
+import SectionDivider from "@/components/treatment/SectionDivider";
+import QuickAnswerBox from "@/components/blog/QuickAnswerBox";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Search, Scan, Star, ArrowRight, Sparkles, Shield, Heart, Award, AlertCircle, Calendar, CheckCircle, Package, Zap, PlayCircle, Clock, HelpCircle, Utensils, Smile } from "lucide-react";
+import ProcessTimeline from '@/components/treatment/ProcessTimeline';
+import { Card, CardContent } from "@/components/ui/card";
+import ScrollReveal from '@/components/ScrollReveal';
+import DoctorBioSection from '@/components/treatment/DoctorBioSection';
+import ServiceFAQ from '@/components/treatment/ServiceFAQ';
+import FinalServiceCTA from '@/components/treatment/FinalServiceCTA';
+import EmpatheticPainPoints from '@/components/treatment/EmpatheticPainPoints';
+import { sendGCLIDToWebhook } from "@/utils/gclid";
 
 const EnDentalProstheticsPage = () => {
-    const handleWhatsAppClick = async (message?: string) => {
-        if (window.dataLayer) {
-            window.dataLayer.push({ event: 'whatsapp_click', event_category: 'Contact', event_action: 'Click', event_label: 'WhatsApp EN Dental Prosthetics' });
-        }
-        if (window.gtag) {
-            window.gtag('event', 'conversion', { 'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9' });
-        }
-        await sendGCLIDToWebhook('en_dental_prosthetics');
-        const defaultMessage = "Hello! I'd like to learn more about dental prosthetics and oral rehabilitation.";
-        window.open(`https://wa.me/5521993304045?text=${encodeURIComponent(message || defaultMessage)}`, "_blank");
-    };
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
-    const structuredData = {
-        "@context": "https://schema.org", "@type": "MedicalProcedure",
-        "name": "Dental Prosthetics", "procedureType": "Dental", "inLanguage": "en",
-        "description": "Complete oral rehabilitation with dental crowns, bridges, implant-supported prostheses, and All-on-4/6 protocols in Ipanema, Rio de Janeiro.",
-        "url": "https://dracarlachristoph.com/en/dental-prosthetics",
-        "provider": { "@type": "Dentist", "name": "Dr. Carla Christoph", "telephone": "+5521993304045",
-            "address": { "@type": "PostalAddress", "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107", "addressLocality": "Ipanema", "addressRegion": "RJ", "addressCountry": "BR" }
-        }
-    };
+  const hasVideo = false;
+  const videoUrl = "";
 
-    const faqs = [
-        { q: "Which type of prosthesis is best for my case?", a: "Every case is unique. The choice depends on the number of missing teeth, bone condition, gum health, aesthetic expectations, and lifestyle. During your planning consultation, we analyze all aspects to recommend the ideal solution." },
-        { q: "How long does a well-made prosthesis last?", a: "With quality materials and proper care, a crown or bridge can last 15-20 years. Implant-supported prostheses often exceed 20 years. Longevity depends on oral hygiene, regular dental visits, and daily care." },
-        { q: "Is an implant-supported prosthesis worth the investment?", a: "For many patients, yes. They offer complete bone preservation, no grinding of adjacent teeth, greater durability, and a natural feel — excellent long-term value." },
-        { q: "How do I care for dental prostheses?", a: "Fixed prostheses are cleaned like natural teeth with brushing and flossing. Removable prostheses should be cleaned with specialized products. Biannual dental visits are essential for professional maintenance." },
-        { q: "Will I be left without teeth during treatment?", a: "Never! We always provide a temporary prosthesis so you maintain aesthetics and function throughout treatment. You won't go a single day without teeth." },
-        { q: "Can a prosthesis look natural?", a: "Absolutely! We use layered ceramic stratification, individualized characterization, and custom shade matching. The result is indistinguishable from natural teeth." },
-        { q: "What's the difference between porcelain and resin?", a: "Porcelain offers superior aesthetics, durability, and stain resistance — our choice for long-term restorations. Resin may be used for temporaries. We use only premium-grade materials." },
-        { q: "Is it possible to get prosthetics with limited bone?", a: "Yes! For conventional prostheses, bone volume isn't limiting. For implant-supported ones, bone grafting or zygomatic implants can make treatment possible even with reduced bone." },
-        { q: "When should an old prosthesis be replaced?", a: "Signs include: visible wear, color changes, poor fit, chewing discomfort, or gum issues around the prosthesis. A professional evaluation determines the optimal time." },
-        { q: "Is the procedure painful?", a: "All procedures use effective local anesthesia and comfort-focused techniques. Most patients report significantly less discomfort than expected." },
-        { q: "What's the advantage of seeing a specialist?", a: "A prosthodontic specialist has 2-3 years of additional training, masters advanced techniques, works with top laboratories, and has extensive complex-case experience." },
-        { q: "Fixed or removable: how do I choose?", a: "Fixed prostheses offer greater comfort and natural feel but require specific conditions. Removable prosthetics are an option when fixed solutions aren't feasible. We evaluate all factors to recommend the best solution." }
-    ];
+  const handleWhatsAppClick = async (message?: string) => {
+    const gclid = new URLSearchParams(window.location.search).get('gclid');
+    if (gclid) localStorage.setItem('gclid', gclid);
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9', 'value': 1.0, 'currency': 'BRL' });
+    }
+    await sendGCLIDToWebhook('en_dental_prosthetics');
+    const defaultMessage = "Hello! I'd like to schedule a dental prosthetics evaluation with Dr. Carla Christoph.";
+    window.open(`https://wa.me/5521993304045?text=${encodeURIComponent(message || defaultMessage)}`, "_blank");
+  };
 
-    const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en",
-        "mainEntity": faqs.map(f => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } }))
-    };
+  const faqs = [
+    {
+      question: "Which type of prosthesis is best for my case?",
+      answer: "Every case is unique and requires an individualized evaluation. The choice depends on factors such as the number of missing teeth, bone condition, gum health, aesthetic expectations, and lifestyle. During the planning consultation, we analyze all these aspects to recommend the ideal solution for you."
+    },
+    {
+      question: "How long does a well-made prosthesis last?",
+      answer: "With quality materials and proper care, a crown or bridge can last 15 to 20 years. Implant-supported prostheses tend to last even longer, potentially exceeding 20 years. Longevity depends on oral hygiene, regular dental visits, and daily care."
+    },
+    {
+      question: "Is an implant-supported prosthesis worth the investment?",
+      answer: "For many patients, yes. Implant-supported prostheses offer unique advantages: total bone preservation, no wear on adjacent teeth, greater durability, and a natural feel. Considering the longevity and quality of life they provide, they represent excellent long-term value."
+    },
+    {
+      question: "How do I maintain my prosthesis?",
+      answer: "Fixed prostheses (crowns, bridges, implant-supported) are cleaned like natural teeth, with brushing and flossing. Removable prostheses should be taken out for cleaning with specific products. Semi-annual dental visits are essential for professional maintenance and adjustments when needed."
+    },
+    {
+      question: "Will I be without teeth during treatment?",
+      answer: "Never! We always provide a temporary prosthesis so you maintain aesthetics and function throughout the entire treatment. Our commitment is to your comfort and social life. You will not spend a single moment without teeth."
+    },
+    {
+      question: "Can a prosthesis look natural?",
+      answer: "Absolutely! We use techniques such as ceramic layering, individualized characterization, and personalized shade matching. The result is teeth that perfectly mimic nature, with translucency, texture, and appearance indistinguishable from natural teeth."
+    },
+    {
+      question: "What's the difference between porcelain and composite?",
+      answer: "Porcelain (ceramic) offers superior aesthetics, durability, and stain resistance. It's our choice for long-lasting cases. Composite can be used for temporaries or specific situations. We use top-tier materials to ensure durability and a natural result."
+    },
+    {
+      question: "Is it possible to get a prosthesis with little bone?",
+      answer: "Yes! For conventional prostheses (not implant-supported), bone quantity is not a limiting factor. For implant-supported prostheses, techniques like bone grafting or zygomatic implants can make treatment possible even with limited bone. A CT scan evaluation determines the possibilities."
+    },
+    {
+      question: "When should I replace an old prosthesis?",
+      answer: "Signs it's time to replace: visible wear, color change, infiltrations, poor fit, discomfort while chewing, or gum problems around the prosthesis. A professional evaluation can determine the ideal time for replacement."
+    },
+    {
+      question: "Is the procedure painful?",
+      answer: "Procedures are performed with effective local anesthesia and techniques that prioritize comfort. Most patients report less discomfort than expected. We provide appropriate medication and close follow-up when needed."
+    },
+    {
+      question: "What's the advantage of seeing a specialist?",
+      answer: "A specialist has 2–3 years of specific training in prosthetics, masters advanced techniques, works with the best laboratories, and has experience with complex cases. This translates to prostheses with better fit, superior aesthetics, and greater durability."
+    },
+    {
+      question: "Fixed or removable prosthesis: how to choose?",
+      answer: "Fixed prostheses offer greater comfort, security, and a natural feel, but require specific conditions (healthy supporting teeth or the possibility of implants). Removable prostheses are an option when there's no support for a fixed one. We evaluate all factors to recommend the best solution."
+    }
+  ];
 
-    const processSteps = [
-        { step: "1", title: "Comprehensive Diagnostic Consultation", desc: "Facial analysis, clinical exam, digital X-rays, and iTero Element 5D scanning for precise diagnosis and personalized planning." },
-        { step: "2", title: "Minimally Invasive Preparation", desc: "When needed, teeth are prepared with maximum preservation of healthy structure, prioritizing conservative techniques." },
-        { step: "3", title: "Precision Digital Impression", desc: "iTero Element 5D eliminates traditional impression discomfort, ensuring millimetric precision. The 3D file goes directly to the lab." },
-        { step: "4", title: "Temporary Prosthesis", desc: "A temporary replacement is crafted and placed to maintain aesthetics and function until the definitive prosthesis is ready." },
-        { step: "5", title: "Artisanal Fabrication", desc: "Our partner laboratory crafts your prosthesis with E-max and zirconia ceramics, layering colors and textures for a natural result." },
-        { step: "6", title: "Final Placement & Adjustment", desc: "Your prosthesis is cemented or fixed with meticulous occlusal adjustments. You leave with your new smile and care instructions." },
-        { step: "7", title: "Ongoing Follow-Up", desc: "Maintenance appointments to protect your investment and ensure the health of your smile for years to come." }
-    ];
+  return (
+    <>
+      <Helmet>
+        <title>Dental Prosthetics & Oral Rehabilitation in Ipanema | Dr. Carla Christoph</title>
+        <meta name="description" content="Dental prosthetics in Ipanema with a prosthodontic specialist. Crowns, bridges, and implant-supported prostheses. Complete oral rehabilitation with 20+ years of experience." />
+        <link rel="canonical" href="https://dracarlachristoph.com/en/dental-prosthetics" />
+        <link rel="alternate" hrefLang="pt-BR" href="https://dracarlachristoph.com/protese-dentaria" />
+        <link rel="alternate" hrefLang="en" href="https://dracarlachristoph.com/en/dental-prosthetics" />
+        <link rel="alternate" hrefLang="x-default" href="https://dracarlachristoph.com/protese-dentaria" />
 
-    const modalities = [
-        { title: "Dental Crowns", img: "/lovable-uploads/Coroa e-max.webp", alt: "E-max ceramic dental crown", desc: "Protective ceramic or zirconia caps that restore damaged teeth — form, function, and flawless aesthetics.", tags: ["Ceramic", "Natural Result"] },
-        { title: "Fixed Bridges", img: "/lovable-uploads/Ponte fixa.webp", alt: "Porcelain fixed dental bridge", desc: "Fixed prosthesis replacing one or more missing teeth, anchored to adjacent teeth or implants.", tags: ["Fixed Solution", "Multiple Teeth"] },
-        { title: "Implant-Supported", img: "/Implante.webp", alt: "Implant-supported dental prosthesis", desc: "The ideal combination of stability and natural appearance, anchored to dental implants for maximum comfort.", tags: ["Natural Look", "Maximum Stability"] },
-        { title: "Removable Prostheses", img: "/lovable-uploads/Prótese parcial removível moderna.webp", alt: "Modern removable partial denture", desc: "Partial or full dentures with modern materials, improved fit, and superior aesthetics.", tags: ["Accessible", "Easy Maintenance"] },
-        { title: "All-on-4/6 Protocol", img: "/lovable-uploads/all in 4.webp", alt: "All-on-4 full-arch prosthesis on implants", desc: "Full-arch rehabilitation on 4 or 6 implants with a fixed prosthesis for complete restoration.", tags: ["Full Rehabilitation", "Fixed Prosthesis"], highlight: true },
-        { title: "Overdenture", img: "/lovable-uploads/Overdenture com clips de retenção.webp", alt: "Overdenture stabilized by implants", desc: "Removable prosthesis stabilized by implants — combining convenience of removal with implant-supported firmness.", tags: ["Stability", "Removable"] }
-    ];
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org", "@type": "MedicalProcedure",
+            "name": "Dental Prosthetics", "description": "Oral rehabilitation with fixed and removable dental prostheses",
+            "procedureType": "Dental", "inLanguage": "en",
+            "provider": { "@type": "Dentist", "name": "Dr. Carla Christoph", "telephone": "+5521993304045",
+              "address": { "@type": "PostalAddress", "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107", "addressLocality": "Ipanema", "addressRegion": "RJ", "postalCode": "22410-002", "addressCountry": "BR" }
+            }
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en",
+            "mainEntity": faqs.map(faq => ({ "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": faq.answer } }))
+          })}
+        </script>
+      </Helmet>
 
-    return (
-        <>
-            <SEOHead title="Dental Prosthetics & Oral Rehabilitation in Ipanema | Dr. Carla Christoph" description="Dental prosthetics specialist in Ipanema, Rio de Janeiro. Crowns, bridges, implant-supported prostheses, All-on-4 protocols. E-max and zirconia ceramics. 20+ years experience." keywords="dental prosthetics ipanema, dental crowns rio, dental bridge brazil, implant prosthesis, all-on-4 rio, oral rehabilitation" canonicalUrl="https://dracarlachristoph.com/en/dental-prosthetics" structuredData={structuredData} locale="en_US" language="en" hreflangAlternates={[{ lang: "pt-BR", href: "https://dracarlachristoph.com/protese-dentaria" }, { lang: "en", href: "https://dracarlachristoph.com/en/dental-prosthetics" }, { lang: "x-default", href: "https://dracarlachristoph.com/protese-dentaria" }]} />
-            <EnPageLayout>
-                <section className="section-spacing bg-gradient-to-br from-dental-purple/5 to-dental-beige pt-28">
-                    <div className="container-custom max-w-4xl">
-                        <h1 className="heading-lg mb-4">Dental Prosthetics & Oral Rehabilitation</h1>
-                        <Separator className="w-24 h-1 bg-dental-gold mb-6" />
-                        <p className="text-lg text-dental-gray leading-relaxed max-w-3xl">Missing or damaged teeth affect far more than your smile — they impact chewing, speech, bone health, and confidence. As a prosthodontics specialist with 20+ years of experience, Dr. Carla Christoph provides individualized oral rehabilitation using E-max and zirconia ceramics, iTero Element 5D digital scanning, and meticulous planning for naturally beautiful, long-lasting results.</p>
+      <EnPageLayout>
+        {/* Hero Section */}
+        <TreatmentHero
+          locale="en"
+          title="Dental Prosthetics & Oral Rehabilitation"
+          subtitle="Specialty of Dr. Carla Christoph"
+          description="Complete smile reconstruction with individualized planning and E-max and zirconia ceramics. Specialist with over 20 years of experience in complex cases."
+          badges={["20+ years of experience", "CRO-RJ 27.509", "Complex Cases"]}
+          doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+          breadcrumbs={[
+            { label: "Home", href: "/en" },
+            { label: "Treatments", href: "/en" },
+            { label: "Dental Prosthetics" }
+          ]}
+        />
+
+        {/* Quick Answer Box */}
+        <section className="py-8 bg-white">
+          <div className="container-custom">
+            <QuickAnswerBox
+              answer="A dental prosthesis is an artificial structure that replaces missing teeth, restoring chewing function and aesthetics. At Dr. Carla Christoph's practice in Ipanema, we offer crowns, bridges, and implant-supported prostheses in high-translucency porcelain. With over 20 years of experience (CRO-RJ 27.509) in oral rehabilitation, we work with E-max and zirconia ceramics that last 15 to 20 years. Treatment varies by complexity, including planning, digital impressions, and temporary prostheses so you never go without teeth."
+            />
+          </div>
+        </section>
+
+        {/* Empathetic Pain Points */}
+        <ScrollReveal animation="fade-up">
+          <EmpatheticPainPoints
+            title="Do you relate to any of these situations?"
+            painPoints={[
+              {
+                icon: <Shield className="w-6 h-6 text-dental-purple" />,
+                strong: "A prosthesis that comes loose when speaking or eating",
+                description: "causing insecurity in social and professional moments?",
+                borderColor: "border-dental-purple"
+              },
+              {
+                icon: <AlertCircle className="w-6 h-6 text-dental-gold" />,
+                strong: "Difficulty chewing foods you enjoy",
+                description: "because of missing teeth or an uncomfortable prosthesis?",
+                borderColor: "border-dental-gold"
+              },
+              {
+                icon: <Heart className="w-6 h-6 text-dental-purple-soft" />,
+                strong: "Embarrassment about smiling due to missing teeth",
+                description: "or a prosthesis that doesn't look natural?",
+                borderColor: "border-dental-purple-soft"
+              }
+            ]}
+            conclusion={<>A well-planned prosthesis restores function, aesthetics, and quality of life.<br className="hidden md:block" /> Let's evaluate the best solution for your case.</>}
+            callout={{
+              icon: <Clock className="w-5 h-5 text-dental-gold" />,
+              title: "Important",
+              text: "Missing teeth cause neighboring teeth to shift and progressive bone loss. The sooner you begin rehabilitation, the simpler and more predictable the treatment will be."
+            }}
+          />
+        </ScrollReveal>
+
+        {/* Mid CTA */}
+        <section className="py-8 bg-white">
+          <div className="max-w-3xl mx-auto px-4 text-center">
+            <p className="text-xl text-dental-gray mb-6">
+              Want to know which prosthesis fits your case?
+            </p>
+            <button
+              onClick={() => handleWhatsAppClick('Hello! I saw the dental prosthetics page and would like to know which type of prosthesis is recommended for my case.')}
+              className="inline-flex items-center justify-center px-8 py-4 bg-dental-gold hover:bg-dental-gold/90 text-white font-semibold rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
+            >
+              Book Your Evaluation
+              <ArrowRight size={20} className="ml-2" />
+            </button>
+          </div>
+        </section>
+
+        <SectionDivider variant="with-icon" icon={<Award size={20} />} />
+
+        {/* 3 Visual Cards */}
+        <section className="py-16 bg-white">
+          <div className="container-custom">
+            <h2 className="heading-lg mb-4 text-center text-dental-purple">
+              Complete Oral Rehabilitation
+            </h2>
+            <p className="text-center text-dental-gray mb-12 max-w-2xl mx-auto">
+              Over 20 years restoring function, aesthetics, and quality of life
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-dental-purple/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Utensils className="w-8 h-8 text-dental-purple" />
+                </div>
+                <h3 className="text-xl font-semibold text-dental-purple mb-3">Chewing Function</h3>
+                <p className="text-dental-gray">Rediscover the pleasure of enjoying your favorite foods with comfort and confidence</p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 bg-dental-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Smile className="w-8 h-8 text-dental-gold" />
+                </div>
+                <h3 className="text-xl font-semibold text-dental-purple mb-3">Natural Aesthetics</h3>
+                <p className="text-dental-gray">Prostheses that perfectly mimic the color, shape, and translucency of natural teeth</p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 bg-dental-purple/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Heart className="w-8 h-8 text-dental-purple" />
+                </div>
+                <h3 className="text-xl font-semibold text-dental-purple mb-3">Quality of Life</h3>
+                <p className="text-dental-gray">Regain your confidence and self-esteem to smile without hesitation</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <SectionDivider variant="with-icon" icon={<Sparkles size={20} />} />
+
+        {/* Prosthesis Modalities - 6 cards */}
+        <section className="py-16 bg-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-navy mb-4">Available Dental Prosthesis Options</h2>
+              <p className="text-lg text-dental-text-secondary">State-of-the-art technologies and materials for every need</p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+              {/* Dental Crowns */}
+              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
+                <div className="aspect-[4/3] relative">
+                  <img src="/lovable-uploads/Coroa e-max.webp" alt="E-max ceramic dental crown on tooth" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+                </div>
+                <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                  <h3 className="text-2xl font-display font-semibold text-white mb-2">Dental Crowns</h3>
+                  <p className="text-white/90 text-sm mb-4 line-clamp-3">Protective caps in pure ceramic or zirconia that cover and protect damaged teeth, restoring impeccable form, function, and aesthetics.</p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">Ceramic</span>
+                    <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">Natural Result</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Fixed Bridges */}
+              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
+                <div className="aspect-[4/3] relative">
+                  <img src="/lovable-uploads/Ponte fixa.webp" alt="Fixed porcelain bridge replacing teeth" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+                </div>
+                <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                  <h3 className="text-2xl font-display font-semibold text-white mb-2">Fixed Bridges</h3>
+                  <p className="text-white/90 text-sm mb-4 line-clamp-3">Fixed prosthesis that replaces one or more missing teeth, anchored to neighboring teeth or implants, restoring function and aesthetics.</p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">Fixed Solution</span>
+                    <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">Multiple Teeth</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Implant-Supported Prosthesis */}
+              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
+                <div className="absolute top-4 right-4 bg-dental-gold text-white text-xs font-semibold px-3 py-1 rounded-full z-10"></div>
+                <div className="aspect-[4/3] relative">
+                  <img src="/Implante.webp" alt="Implant-supported dental prosthesis" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+                </div>
+                <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                  <h3 className="text-2xl font-display font-semibold text-white mb-2">Implant-Supported Prosthesis</h3>
+                  <p className="text-white/90 text-sm mb-4 line-clamp-3">The ideal combination of stability and naturalness. Prosthesis fixed to dental implants for maximum comfort and durability.</p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">Natural Look</span>
+                    <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">Maximum Stability</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Removable Prostheses */}
+              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
+                <div className="aspect-[4/3] relative">
+                  <img src="/lovable-uploads/Prótese parcial removível moderna.webp" alt="Modern removable partial prosthesis" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+                </div>
+                <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                  <h3 className="text-2xl font-display font-semibold text-white mb-2">Removable Prostheses</h3>
+                  <p className="text-white/90 text-sm mb-4 line-clamp-3">Modern partial (RPD) or complete (dentures) prostheses, with improved fit and superior aesthetics.</p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">Affordable Solution</span>
+                    <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">Easy Hygiene</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* All-on-4/6 Protocol */}
+              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer border-2 border-dental-gold/30">
+                <div className="aspect-[4/3] relative">
+                  <img src="/lovable-uploads/all in 4.webp" alt="All-on-4 protocol full arch on implants" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+                </div>
+                <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                  <h3 className="text-2xl font-display font-semibold text-white mb-2">All-on-4/6 Protocol</h3>
+                  <p className="text-white/90 text-sm mb-4 line-clamp-3">Full arch rehabilitation on 4 or 6 implants, with a fixed prosthesis for complete arch restoration.</p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">Complete Rehabilitation</span>
+                    <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">Fixed Prosthesis</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Overdenture */}
+              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer">
+                <div className="aspect-[4/3] relative">
+                  <img src="/lovable-uploads/Overdenture com clips de retenção.webp" alt="Overdenture stabilized by implants with clips" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent"></div>
+                </div>
+                <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                  <h3 className="text-2xl font-display font-semibold text-white mb-2">Overdenture Prosthesis</h3>
+                  <p className="text-white/90 text-sm mb-4 line-clamp-3">Removable prosthesis stabilized by implants, combining the convenience of removal with firmness and comfort while chewing.</p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">Stability</span>
+                    <span className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">Removable</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* Process Timeline */}
+        <section className="py-12 bg-dental-beige/20">
+          <div className="container-custom">
+            <h2 className="heading-lg mb-4 text-center text-dental-purple">
+              Your Journey to a New Smile
+            </h2>
+            <p className="text-center text-dental-gray mb-12 max-w-2xl mx-auto">
+              Each step is carefully planned to ensure comfort, precision, and natural, predictable results
+            </p>
+
+            <ProcessTimeline
+              steps={[
+                { number: 1, title: "Complete Diagnostic Consultation", description: "Facial analysis, clinical exam, digital X-rays, and iTero Element 5D scanning for precise diagnosis and personalized planning.", icon: <Search size={24} />, duration: "1st Visit" },
+                { number: 2, title: "Minimally Invasive Preparation", description: "When necessary, we prepare teeth with maximum preservation of healthy structure, always prioritizing conservative techniques.", icon: <Shield size={24} />, duration: "1st Visit" },
+                { number: 3, title: "Precision Digital Impression", description: "iTero Element 5D eliminates the discomfort of traditional molds, ensuring millimetric precision. The 3D file is sent directly to our partner laboratory.", icon: <Scan size={24} />, duration: "1st Visit" },
+                { number: 4, title: "Temporary Prosthesis Fabrication & Placement", description: "Fabrication and placement of a temporary tooth to ensure aesthetics and function until the definitive prosthesis is placed.", icon: <Package size={24} />, duration: "1st Visit" },
+                { number: 5, title: "Artisan Fabrication", description: "Our partner laboratory creates your prosthesis with E-max and zirconia ceramics, layering colors and textures for a result indistinguishable from natural teeth.", icon: <Sparkles size={24} />, duration: "1–2 weeks" },
+                { number: 6, title: "Installation & Final Adjustment", description: "Cementation or fixation of the prosthesis with meticulous occlusion adjustments. You leave with your new smile and all care instructions.", icon: <Star size={24} />, duration: "1 Visit" },
+                { number: 7, title: "Ongoing Follow-Up", description: "Maintenance appointments to protect your investment and ensure the health of your smile for many years.", icon: <Heart size={24} />, duration: "Periodic" }
+              ]}
+            />
+          </div>
+        </section>
+
+        {/* Complex Cases */}
+        <section className="py-12 bg-white">
+          <div className="container-custom">
+            <h2 className="heading-lg mb-8 text-center text-dental-purple">
+              Solutions for Complex Cases
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <Card>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold mb-3 text-dental-purple">Complete Oral Rehabilitation</h3>
+                  <p className="text-dental-gray mb-4">For cases of multiple tooth loss, severe wear, or bite problems, we develop a comprehensive protocol that restores function, aesthetics, and vertical dimension, with natural facial rejuvenation.</p>
+                  <ul className="space-y-2 text-sm text-dental-gray">
+                    {["Complete occlusal analysis", "Bite restoration", "Facial rejuvenation"].map(t => (
+                      <li key={t} className="flex items-start gap-2"><ArrowRight className="text-dental-gold mt-0.5" size={16} /><span>{t}</span></li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold mb-3 text-dental-purple">High-Performance Aesthetic Prostheses</h3>
+                  <p className="text-dental-gray mb-4">We use state-of-the-art ceramics (E-max, Zirconia) with artisan layering, reproducing the translucency, texture, and individual characterization of natural teeth.</p>
+                  <ul className="space-y-2 text-sm text-dental-gray">
+                    {["E-max and zirconia ceramics", "Artisan layering", "Indistinguishable result"].map(t => (
+                      <li key={t} className="flex items-start gap-2"><ArrowRight className="text-dental-gold mt-0.5" size={16} /><span>{t}</span></li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Doctor Bio */}
+        <ScrollReveal animation="fade-up">
+          <DoctorBioSection
+            locale="en"
+            sectionTitle="Expertise & Experience in Oral Rehabilitation"
+            badgeText="20+ Years of Experience"
+            paragraphs={[
+              "With over two decades in Ipanema, Dr. Carla has built her reputation by treating each patient individually, with time and attention. Her background includes 8 years as a military dentist at the Navy's Central Dental Clinic, experience that brought discipline and precision to her clinical practice.",
+              "As a Prosthodontic specialist, oral rehabilitation is where her training runs deepest. Complex cases are her routine — from a single crown to complete rehabilitation, every solution is planned based on detailed diagnosis and digital planning."
+            ]}
+            credentials={[
+              { title: "Education", description: "Specialist in Prosthodontics and Implantology" },
+              { title: "Experience", description: "8 years as a military dentist in the Navy" },
+              { title: "Continuing Education", description: "Ongoing courses in DSD and iTero Element 5D" },
+              { title: "Technology", description: "iTero Element 5D and digital planning" }
+            ]}
+          />
+        </ScrollReveal>
+
+        {/* Video Section - Conditional */}
+        {hasVideo && (
+          <section className="py-16 bg-white">
+            <div className="container-custom">
+              <SectionDivider variant="with-icon" icon={<PlayCircle size={20} />} />
+              <h2 className="heading-lg mb-4 text-center text-dental-purple">Meet Dr. Carla Christoph</h2>
+              <p className="text-center text-dental-gray mb-12 max-w-2xl mx-auto">Watch and understand how we approach complex oral rehabilitation cases</p>
+              <div className="max-w-4xl mx-auto">
+                <div className="relative aspect-video rounded-2xl overflow-hidden shadow-elegant">
+                  {videoUrl ? (
+                    <iframe src={videoUrl} title="Dr. Carla Christoph video about Dental Prosthetics" className="w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-purple-soft flex items-center justify-center">
+                      <div className="text-center"><PlayCircle className="w-20 h-20 text-dental-gold mx-auto mb-4" /><p className="text-dental-purple font-semibold">Video coming soon</p></div>
                     </div>
-                </section>
+                  )}
+                </div>
+                <div className="mt-6 bg-dental-beige/20 p-6 rounded-xl">
+                  <p className="text-dental-gray"><strong className="text-dental-purple">In this video:</strong> Dr. Carla explains her approach to oral rehabilitation cases, shows the office and equipment used, and shares her work philosophy.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
-                <section className="section-spacing bg-white/50">
-                    <div className="container-custom max-w-5xl">
-                        <h2 className="heading-md mb-4 text-center">Complete Oral Rehabilitation</h2>
-                        <p className="text-center text-dental-gray mb-10 max-w-2xl mx-auto">Over 20 years restoring function, aesthetics, and quality of life</p>
-                        <div className="grid md:grid-cols-3 gap-8">
-                            {[{ icon: Utensils, title: "Chewing Function", desc: "Enjoy your favorite foods again with comfort and confidence" },
-                              { icon: Smile, title: "Natural Aesthetics", desc: "Prostheses that perfectly replicate color, shape, and translucency of natural teeth" },
-                              { icon: Heart, title: "Quality of Life", desc: "Rediscover your confidence and self-esteem — smile without hesitation" }
-                            ].map(c => (
-                                <div key={c.title} className="text-center">
-                                    <div className="w-16 h-16 bg-dental-purple/10 rounded-full flex items-center justify-center mx-auto mb-4"><c.icon className="w-8 h-8 text-dental-purple" /></div>
-                                    <h3 className="text-xl font-semibold text-dental-purple mb-3">{c.title}</h3>
-                                    <p className="text-dental-gray">{c.desc}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+        <SectionDivider variant="with-icon" icon={<HelpCircle size={20} />} />
 
-                <section className="py-8 bg-white">
-                    <div className="max-w-3xl mx-auto px-4 text-center">
-                        <p className="text-xl text-dental-gray mb-6">Want to know which prosthesis is right for your case?</p>
-                        <button onClick={() => handleWhatsAppClick("Hello! I saw your dental prosthetics page and would like to know which type is right for me.")} className="inline-flex items-center justify-center px-8 py-4 bg-dental-gold hover:bg-dental-gold/90 text-white font-semibold rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105">
-                            Book an Evaluation <ArrowRight size={20} className="ml-2" />
-                        </button>
-                    </div>
-                </section>
+        {/* FAQs */}
+        <ScrollReveal animation="fade-up">
+          <ServiceFAQ
+            title="Frequently Asked Questions About Dental Prosthetics"
+            faqs={faqs}
+          />
+        </ScrollReveal>
 
-                <section className="section-spacing">
-                    <div className="container-custom max-w-6xl">
-                        <h2 className="heading-md mb-4 text-center">Types of Dental Prosthetics</h2>
-                        <p className="text-center text-dental-gray mb-10">State-of-the-art technologies and materials for every need</p>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {modalities.map(m => (
-                                <div key={m.title} className={`group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer ${m.highlight ? 'border-2 border-dental-gold/30' : ''}`}>
-                                    <div className="aspect-[4/3] relative">
-                                        <img src={m.img} alt={m.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent" />
-                                    </div>
-                                    <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                                        <h3 className="text-2xl font-display font-semibold text-white mb-2">{m.title}</h3>
-                                        <p className="text-white/90 text-sm mb-4 line-clamp-3">{m.desc}</p>
-                                        <div className="flex flex-wrap gap-2">{m.tags.map(t => <span key={t} className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full">{t}</span>)}</div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                <section className="section-spacing bg-dental-beige/20">
-                    <div className="container-custom max-w-4xl">
-                        <h2 className="heading-md mb-4 text-center">Your Journey to a New Smile</h2>
-                        <p className="text-center text-dental-gray mb-10 max-w-2xl mx-auto">Every step is carefully planned for comfort, precision, and natural results</p>
-                        <div className="space-y-6">
-                            {processSteps.map(item => (
-                                <div key={item.step} className="flex gap-4 items-start bg-white rounded-xl p-6 shadow-soft">
-                                    <div className="w-10 h-10 bg-dental-gold text-white rounded-full flex items-center justify-center font-display text-lg flex-shrink-0">{item.step}</div>
-                                    <div><h3 className="font-display text-dental-purple mb-1">{item.title}</h3><p className="text-dental-gray text-sm">{item.desc}</p></div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                <section className="section-spacing bg-white/50">
-                    <div className="container-custom max-w-4xl">
-                        <h2 className="heading-md mb-8 text-center">Solutions for Complex Cases</h2>
-                        <div className="grid md:grid-cols-2 gap-8">
-                            <div className="bg-white rounded-xl p-6 shadow-soft">
-                                <h3 className="text-xl font-semibold mb-3 text-dental-purple">Full Oral Rehabilitation</h3>
-                                <p className="text-dental-gray mb-4">For cases with multiple losses, severe wear, or bite problems — a comprehensive protocol restoring function, aesthetics, and vertical dimension with natural facial rejuvenation.</p>
-                                <ul className="space-y-2 text-sm text-dental-gray">
-                                    {["Complete occlusal analysis", "Bite restoration", "Natural facial rejuvenation"].map(t => <li key={t} className="flex items-start gap-2"><ArrowRight className="text-dental-gold mt-0.5" size={16} /><span>{t}</span></li>)}
-                                </ul>
-                            </div>
-                            <div className="bg-white rounded-xl p-6 shadow-soft">
-                                <h3 className="text-xl font-semibold mb-3 text-dental-purple">High-Performance Aesthetic Prosthetics</h3>
-                                <p className="text-dental-gray mb-4">Next-generation ceramics (E-max, Zirconia) with artisanal stratification, reproducing translucency, texture, and characterization of natural teeth.</p>
-                                <ul className="space-y-2 text-sm text-dental-gray">
-                                    {["E-max and zirconia ceramics", "Artisanal layering technique", "Indistinguishable from natural teeth"].map(t => <li key={t} className="flex items-start gap-2"><ArrowRight className="text-dental-gold mt-0.5" size={16} /><span>{t}</span></li>)}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section className="section-spacing bg-dental-beige/20">
-                    <div className="container-custom max-w-3xl">
-                        <h2 className="heading-md mb-8 text-center">Frequently Asked Questions</h2>
-                        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
-                        <Accordion type="single" collapsible className="space-y-3">
-                            {faqs.map((faq, i) => (
-                                <AccordionItem key={i} value={`faq-${i}`} className="bg-white rounded-lg px-6 border border-dental-beige/50">
-                                    <AccordionTrigger className="text-left font-medium text-dental-purple hover:text-dental-gold">{faq.q}</AccordionTrigger>
-                                    <AccordionContent className="text-dental-gray">{faq.a}</AccordionContent>
-                                </AccordionItem>
-                            ))}
-                        </Accordion>
-                    </div>
-                </section>
-
-                <section className="section-spacing bg-dental-purple text-white">
-                    <div className="container-custom text-center">
-                        <h2 className="text-3xl font-display mb-4">Restore Function & Aesthetics with Dental Prosthetics</h2>
-                        <p className="text-white/80 max-w-xl mx-auto mb-8">During your planning consultation, we'll analyze your case and determine the most suitable prosthesis — fixed, removable, or implant-supported.</p>
-                        <button onClick={() => handleWhatsAppClick("Hello! I'd like to book an evaluation for dental prosthetics with Dr. Carla Christoph.")} className="inline-flex items-center gap-2 bg-dental-gold hover:bg-dental-gold/90 text-white px-8 py-4 rounded-lg shadow-lg transition-all duration-300 font-medium text-lg">
-                            <MessageCircle size={22} /> Book on WhatsApp
-                        </button>
-                    </div>
-                </section>
-            </EnPageLayout>
-        </>
-    );
+        {/* Final CTA */}
+        <FinalServiceCTA
+          locale="en"
+          title="Restore Function & Aesthetics with Dental Prosthetics"
+          description="During your planning consultation, we analyze your case and determine the most suitable prosthesis type — fixed, removable, or implant-supported. Dental prosthetics restore complete chewing function and can significantly improve your quality of life."
+          ctaText="Book Your Evaluation via WhatsApp"
+          whatsappMessage="Hello! I saw the dental prosthetics page and would like to book an evaluation with Dr. Carla Christoph."
+          onClickOverride={() => handleWhatsAppClick('Hello! I saw the dental prosthetics page and would like to book an evaluation with Dr. Carla Christoph.')}
+        />
+        <StatsBar locale="en" />
+      </EnPageLayout>
+    </>
+  );
 };
 
 export default EnDentalProstheticsPage;

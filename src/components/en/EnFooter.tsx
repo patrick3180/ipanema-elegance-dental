@@ -44,9 +44,15 @@ const EnFooter = () => {
                             {[
                                 { label: "Home", path: "/en" },
                                 { label: "About", path: "/en/about" },
+                                { label: "Veneers & Lenses", path: "/en/veneers-and-lenses" },
+                                { label: "Teeth Whitening", path: "/en/teeth-whitening" },
+                                { label: "Dental Prosthetics", path: "/en/dental-prosthetics" },
                                 { label: "Dental Implants", path: "/en/dental-implants" },
-                                { label: "Porcelain Veneers", path: "/en/porcelain-veneers" },
+                                { label: "Orthodontics", path: "/en/orthodontics" },
                                 { label: "General Dentistry", path: "/en/general-dentistry" },
+                                { label: "Aesthetic Restorations", path: "/en/aesthetic-restorations" },
+                                { label: "Root Canal", path: "/en/root-canal" },
+                                { label: "Gum Health", path: "/en/gum-health" },
                                 { label: "Emergency", path: "/en/dental-emergency" },
                                 { label: "Contact", path: "/en/contact" },
                             ].map((item) => (
