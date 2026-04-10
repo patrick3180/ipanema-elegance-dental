@@ -4,6 +4,7 @@ import SEOHead from "@/components/SEOHead";
 import { Separator } from "@/components/ui/separator";
 import { MessageCircle, CheckCircle, Sparkles, ShieldCheck } from "lucide-react";
 import { sendGCLIDToWebhook } from "@/utils/gclid";
+import { InternalLinkingOptimizer } from "@/components/seo/InternalLinkingOptimizer";
 import {
     Accordion,
     AccordionContent,
@@ -218,6 +219,7 @@ const EnGeneralDentistryPage = () => {
                         </button>
                     </div>
                 </section>
+                <InternalLinkingOptimizer currentPage="en-general-dentistry" />
             </EnPageLayout>
         </>
     );

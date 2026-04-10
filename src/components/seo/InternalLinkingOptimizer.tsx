@@ -61,8 +61,65 @@ export const InternalLinkingOptimizer: React.FC<InternalLinkingOptimizerProps> =
       { title: 'Clareamento Dental', url: '/clareamento-dental', description: 'Estética após os cuidados preventivos' },
       { title: 'Ortodontia', url: '/ortodontia', description: 'Alinhamento dental integrado à prevenção' },
     ],
+    // English pages
+    'en-dental-implants': [
+      { title: 'Dental Prosthetics', url: '/en/dental-prosthetics', description: 'Crowns and fixed prostheses on implants' },
+      { title: 'Gum Health', url: '/en/gum-health', description: 'Essential foundation for implant success' },
+      { title: 'General Dentistry', url: '/en/general-dentistry', description: 'Assessment and preventive care' },
+    ],
+    'en-teeth-whitening': [
+      { title: 'Veneers & Lenses', url: '/en/veneers-and-lenses', description: 'Complete aesthetics with porcelain lenses' },
+      { title: 'Aesthetic Restorations', url: '/en/aesthetic-restorations', description: 'Restorations that match the new shade' },
+      { title: 'Gum Health', url: '/en/gum-health', description: 'Healthy gums before whitening' },
+    ],
+    'en-veneers-and-lenses': [
+      { title: 'Teeth Whitening', url: '/en/teeth-whitening', description: 'Combine whitening with your lenses' },
+      { title: 'Orthodontics', url: '/en/orthodontics', description: 'Prior alignment when needed' },
+      { title: 'Aesthetic Restorations', url: '/en/aesthetic-restorations', description: 'Integrated aesthetic treatments' },
+    ],
+    'en-orthodontics': [
+      { title: 'Veneers & Lenses', url: '/en/veneers-and-lenses', description: 'Aesthetic finishing after alignment' },
+      { title: 'Teeth Whitening', url: '/en/teeth-whitening', description: 'Whitening integrated with treatment' },
+      { title: 'General Dentistry', url: '/en/general-dentistry', description: 'Hygiene and prevention during braces' },
+    ],
+    'en-root-canal': [
+      { title: 'Aesthetic Restorations', url: '/en/aesthetic-restorations', description: 'Tooth reconstruction after root canal' },
+      { title: 'Dental Prosthetics', url: '/en/dental-prosthetics', description: 'Crown for post-treatment protection' },
+      { title: 'Dental Implants', url: '/en/dental-implants', description: 'Alternative if extraction is needed' },
+    ],
+    'en-gum-health': [
+      { title: 'Dental Implants', url: '/en/dental-implants', description: 'Implants require healthy gums' },
+      { title: 'General Dentistry', url: '/en/general-dentistry', description: 'Prevention and periodontal maintenance' },
+      { title: 'Veneers & Lenses', url: '/en/veneers-and-lenses', description: 'Aesthetics with a healthy foundation' },
+    ],
+    'en-dental-prosthetics': [
+      { title: 'Dental Implants', url: '/en/dental-implants', description: 'Implants as support for fixed prostheses' },
+      { title: 'Root Canal', url: '/en/root-canal', description: 'Tooth preservation before prosthesis' },
+      { title: 'General Dentistry', url: '/en/general-dentistry', description: 'Preventive care after rehabilitation' },
+    ],
+    'en-aesthetic-restorations': [
+      { title: 'Root Canal', url: '/en/root-canal', description: 'Reconstruction after endodontic treatment' },
+      { title: 'Teeth Whitening', url: '/en/teeth-whitening', description: 'Harmonize restoration colors' },
+      { title: 'Veneers & Lenses', url: '/en/veneers-and-lenses', description: 'Advanced aesthetics with porcelain' },
+    ],
+    'en-general-dentistry': [
+      { title: 'Gum Health', url: '/en/gum-health', description: 'Prevention and periodontal treatment' },
+      { title: 'Teeth Whitening', url: '/en/teeth-whitening', description: 'Aesthetics after preventive care' },
+      { title: 'Orthodontics', url: '/en/orthodontics', description: 'Dental alignment integrated with prevention' },
+    ],
+    'en-porcelain-veneers': [
+      { title: 'Veneers & Lenses', url: '/en/veneers-and-lenses', description: 'Full comparison: lenses vs. composite' },
+      { title: 'Teeth Whitening', url: '/en/teeth-whitening', description: 'Whitening before veneer preparation' },
+      { title: 'Orthodontics', url: '/en/orthodontics', description: 'Alignment before aesthetic treatment' },
+    ],
+    'en-dental-emergency': [
+      { title: 'Root Canal', url: '/en/root-canal', description: 'Emergency endodontic treatment' },
+      { title: 'Dental Implants', url: '/en/dental-implants', description: 'Replacement for lost teeth' },
+      { title: 'General Dentistry', url: '/en/general-dentistry', description: 'Follow-up care after emergency' },
+    ],
   };
 
+  const isEnglish = currentPage.startsWith('en-');
   const relatedLinks = allLinks[currentPage] || [];
   if (relatedLinks.length === 0) return null;
 
@@ -70,7 +127,7 @@ export const InternalLinkingOptimizer: React.FC<InternalLinkingOptimizerProps> =
     <section className="py-12 bg-dental-beige/20">
       <div className="max-w-4xl mx-auto px-4">
         <h2 className="text-xl font-display font-semibold text-dental-purple mb-6">
-          Tratamentos Relacionados
+          {isEnglish ? 'Related Treatments' : 'Tratamentos Relacionados'}
         </h2>
         <div className="grid gap-4 sm:grid-cols-3">
           {relatedLinks.map((link, index) => (
@@ -86,7 +143,7 @@ export const InternalLinkingOptimizer: React.FC<InternalLinkingOptimizerProps> =
                 {link.description}
               </span>
               <span className="flex items-center gap-1 text-dental-gold text-xs font-medium mt-1">
-                Saiba mais <ArrowRight className="w-3 h-3" />
+                {isEnglish ? 'Learn more' : 'Saiba mais'} <ArrowRight className="w-3 h-3" />
               </span>
             </Link>
           ))}

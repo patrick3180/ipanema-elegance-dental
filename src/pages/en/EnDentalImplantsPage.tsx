@@ -16,6 +16,7 @@ import {
   Cpu, Scan, Shield, Heart, Activity, Clock, CheckCircle,
   Award, HelpCircle, Smile, Sparkles, ArrowRight, AlertCircle
 } from "lucide-react";
+import { InternalLinkingOptimizer } from "@/components/seo/InternalLinkingOptimizer";
 import { sendGCLIDToWebhook } from "@/utils/gclid";
 
 const EnDentalImplantsPage = () => {
@@ -405,6 +406,7 @@ const EnDentalImplantsPage = () => {
           phoneNumber="(21) 99330-4045"
           businessHours="Monday to Friday, 9AM to 7PM"
         />
+        <InternalLinkingOptimizer currentPage="en-dental-implants" />
         <StatsBar locale="en" />
       </EnPageLayout>
     </>

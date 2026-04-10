@@ -14,6 +14,7 @@ import DoctorBioSection from '@/components/treatment/DoctorBioSection';
 import ServiceFAQ from '@/components/treatment/ServiceFAQ';
 import FinalServiceCTA from '@/components/treatment/FinalServiceCTA';
 import EmpatheticPainPoints from '@/components/treatment/EmpatheticPainPoints';
+import { InternalLinkingOptimizer } from "@/components/seo/InternalLinkingOptimizer";
 import { sendGCLIDToWebhook } from "@/utils/gclid";
 
 const EnDentalProstheticsPage = () => {
@@ -477,6 +478,7 @@ const EnDentalProstheticsPage = () => {
           whatsappMessage="Hello! I saw the dental prosthetics page and would like to book an evaluation with Dr. Carla Christoph."
           onClickOverride={() => handleWhatsAppClick('Hello! I saw the dental prosthetics page and would like to book an evaluation with Dr. Carla Christoph.')}
         />
+        <InternalLinkingOptimizer currentPage="en-dental-prosthetics" />
         <StatsBar locale="en" />
       </EnPageLayout>
     </>

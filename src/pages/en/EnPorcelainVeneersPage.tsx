@@ -4,6 +4,7 @@ import SEOHead from "@/components/SEOHead";
 import { Separator } from "@/components/ui/separator";
 import { MessageCircle, CheckCircle, Sparkles } from "lucide-react";
 import { sendGCLIDToWebhook } from "@/utils/gclid";
+import { InternalLinkingOptimizer } from "@/components/seo/InternalLinkingOptimizer";
 import {
     Accordion,
     AccordionContent,
@@ -205,6 +206,7 @@ const EnPorcelainVeneersPage = () => {
                         </button>
                     </div>
                 </section>
+                <InternalLinkingOptimizer currentPage="en-porcelain-veneers" />
             </EnPageLayout>
         </>
     );

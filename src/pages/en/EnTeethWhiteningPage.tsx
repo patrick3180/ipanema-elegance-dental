@@ -15,6 +15,7 @@ import EmpatheticPainPoints from "@/components/treatment/EmpatheticPainPoints";
 import DoctorBioSection from "@/components/treatment/DoctorBioSection";
 import ServiceFAQ from "@/components/treatment/ServiceFAQ";
 import FinalServiceCTA from "@/components/treatment/FinalServiceCTA";
+import { InternalLinkingOptimizer } from "@/components/seo/InternalLinkingOptimizer";
 import { sendGCLIDToWebhook } from "@/utils/gclid";
 
 const EnTeethWhiteningPage = () => {
@@ -510,6 +511,7 @@ const EnTeethWhiteningPage = () => {
           variant="urgency"
         />
 
+        <InternalLinkingOptimizer currentPage="en-teeth-whitening" />
         <StatsBar locale="en" />
       </EnPageLayout>
     </>

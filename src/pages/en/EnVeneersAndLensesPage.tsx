@@ -16,6 +16,7 @@ import EmpatheticPainPoints from "@/components/treatment/EmpatheticPainPoints";
 import ScrollReveal from '@/components/ScrollReveal';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CheckCircle, Star, ArrowRight, Sparkles, Shield, Heart, Award, Search, HelpCircle, Droplet, Maximize2, Ruler, Palette, AlertCircle } from "lucide-react";
+import { InternalLinkingOptimizer } from "@/components/seo/InternalLinkingOptimizer";
 import { sendGCLIDToWebhook } from "@/utils/gclid";
 
 const EnVeneersAndLensesPage = () => {
@@ -694,6 +695,7 @@ const EnVeneersAndLensesPage = () => {
           description="During your evaluation, we analyze your case with the iTero Element 5D, perform a complete oral health checkup, and present the possibilities — lenses, veneers, or other treatments best suited to your needs."
           whatsappMessage="Hello! I saw the page about Lenses and Veneers and would like to book an evaluation."
         />
+        <InternalLinkingOptimizer currentPage="en-veneers-and-lenses" />
         <StatsBar locale="en" />
       </EnPageLayout>
     </>
