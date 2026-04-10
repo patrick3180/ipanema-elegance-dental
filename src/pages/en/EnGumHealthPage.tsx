@@ -63,13 +63,14 @@ const EnGumHealthPage = () => {
       />
 
       <ScrollReveal animation="fade-up">
-        <section className="py-8 bg-white"><div className="container-custom"><QuickAnswerBox answer="Gum health (periodontics) treats gum diseases such as gingivitis and periodontitis, which cause bleeding, recession, and bad breath. At Dr. Carla Christoph's office in Ipanema (CRO-RJ 27.509), we perform periodontal evaluation, professional cleaning, and treatment of gum pockets. Gingivitis is reversible; periodontitis is manageable with treatment and periodic maintenance. For low-risk patients, cleaning every 6 months is recommended; for periodontal disease cases, every 3-4 months to maintain stability." /></div></section>
+        <section className="py-8 bg-white"><div className="container-custom"><QuickAnswerBox locale="en" answer="Gum health (periodontics) treats gum diseases such as gingivitis and periodontitis, which cause bleeding, recession, and bad breath. At Dr. Carla Christoph's office in Ipanema (CRO-RJ 27.509), we perform periodontal evaluation, professional cleaning, and treatment of gum pockets. Gingivitis is reversible; periodontitis is manageable with treatment and periodic maintenance. For low-risk patients, cleaning every 6 months is recommended; for periodontal disease cases, every 3-4 months to maintain stability." /></div></section>
       </ScrollReveal>
 
       <SectionDivider variant="with-icon" icon={<AlertCircle size={20} />} />
 
       <ScrollReveal animation="fade-up">
         <EmpatheticPainPoints
+          locale="en"
           painPoints={[
             { icon: <Activity className="w-6 h-6 text-dental-purple" />, strong: "Gums that bleed when brushing or flossing", description: "and you've been living with it for years thinking it's \"just normal\"?", borderColor: "border-dental-purple" },
             { icon: <AlertCircle className="w-6 h-6 text-dental-gold" />, strong: "Persistent bad breath despite good brushing", description: "that causes discomfort in social and professional interactions?", borderColor: "border-dental-gold" },

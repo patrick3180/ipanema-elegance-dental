@@ -222,7 +222,7 @@ const EnOrthodonticsPage = () => {
         <section className="py-8 bg-white">
           <div className="container-custom">
             <QuickAnswerBox
-              answer="Orthodontics is the specialty that corrects tooth positioning. At Dr. Carla's office, treatment is performed by Dr. Bruno Moreira, an orthodontist with a PhD from UERJ. Dr. Carla oversees the patient journey, ensuring integration. We use the iTero Element 5D for planning and offer Invisalign® or aesthetic braces with treatment lasting between 6 to 24 months."
+locale="en"               answer="Orthodontics is the specialty that corrects tooth positioning. At Dr. Carla's office, treatment is performed by Dr. Bruno Moreira, an orthodontist with a PhD from UERJ. Dr. Carla oversees the patient journey, ensuring integration. We use the iTero Element 5D for planning and offer Invisalign® or aesthetic braces with treatment lasting between 6 to 24 months."
             />
           </div>
         </section>

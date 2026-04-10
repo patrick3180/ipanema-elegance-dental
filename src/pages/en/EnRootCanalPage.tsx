@@ -156,7 +156,7 @@ const EnRootCanalPage = () => {
         <section className="py-8 bg-white">
           <div className="container-custom">
             <QuickAnswerBox
-              answer="Root canal treatment (endodontics) removes the infected pulp from the tooth, relieving pain and saving the tooth from extraction. At Dr. Carla Christoph's office in Ipanema (CRO-RJ 27.509), treatment is performed by a specialized endodontist and finalized by Dr. Carla. The procedure is comfortable with modern anesthesia, usually completed in 1-2 sessions. After the root canal, proper restoration or a crown is recommended to protect the tooth, which can last many years with proper care."
+locale="en"               answer="Root canal treatment (endodontics) removes the infected pulp from the tooth, relieving pain and saving the tooth from extraction. At Dr. Carla Christoph's office in Ipanema (CRO-RJ 27.509), treatment is performed by a specialized endodontist and finalized by Dr. Carla. The procedure is comfortable with modern anesthesia, usually completed in 1-2 sessions. After the root canal, proper restoration or a crown is recommended to protect the tooth, which can last many years with proper care."
             />
           </div>
         </section>

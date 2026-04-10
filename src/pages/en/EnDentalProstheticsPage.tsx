@@ -150,7 +150,7 @@ const EnDentalProstheticsPage = () => {
         <section className="py-8 bg-white">
           <div className="container-custom">
             <QuickAnswerBox
-              answer="A dental prosthesis is an artificial structure that replaces missing teeth, restoring chewing function and aesthetics. At Dr. Carla Christoph's practice in Ipanema, we offer crowns, bridges, and implant-supported prostheses in high-translucency porcelain. With over 20 years of experience (CRO-RJ 27.509) in oral rehabilitation, we work with E-max and zirconia ceramics that last 15 to 20 years. Treatment varies by complexity, including planning, digital impressions, and temporary prostheses so you never go without teeth."
+locale="en"               answer="A dental prosthesis is an artificial structure that replaces missing teeth, restoring chewing function and aesthetics. At Dr. Carla Christoph's practice in Ipanema, we offer crowns, bridges, and implant-supported prostheses in high-translucency porcelain. With over 20 years of experience (CRO-RJ 27.509) in oral rehabilitation, we work with E-max and zirconia ceramics that last 15 to 20 years. Treatment varies by complexity, including planning, digital impressions, and temporary prostheses so you never go without teeth."
             />
           </div>
         </section>

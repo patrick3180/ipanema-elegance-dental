@@ -18,14 +18,19 @@ export interface EmpatheticPainPointsProps {
   painPoints: PainPointItem[];
   conclusion?: ReactNode;
   callout?: PainPointCallout;
+  locale?: "pt" | "en";
 }
 
 const EmpatheticPainPoints = ({
-  title = "Você se identifica com alguma dessas situações?",
+  title,
   painPoints,
   conclusion,
   callout,
+  locale = "pt",
 }: EmpatheticPainPointsProps) => {
+  const resolvedTitle = title ?? (locale === "en"
+    ? "Do you relate to any of these situations?"
+    : "Você se identifica com alguma dessas situações?");
   const borderColors = [
     "border-dental-purple",
     "border-dental-gold",
@@ -36,7 +41,7 @@ const EmpatheticPainPoints = ({
     <section className="py-16 bg-gradient-to-br from-dental-beige/20 via-white to-dental-beige/10">
       <div className="max-w-4xl mx-auto px-4">
         <h2 className="text-2xl md:text-3xl font-display font-bold text-dental-purple mb-10 text-center">
-          {title}
+          {resolvedTitle}
         </h2>
 
         <div className="space-y-5">

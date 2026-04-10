@@ -181,7 +181,7 @@ const EnVeneersAndLensesPage = () => {
         <section className="py-8 bg-white">
           <div className="container-custom">
             <QuickAnswerBox
-              answer="Dental contact lenses are ultra-thin porcelain shells (0.2–0.5mm) bonded to teeth with minimal preparation, ideal for lasting aesthetic changes. Composite veneers are thicker restorations (0.7–1.5mm) sculpted directly in the office. At Dr. Carla Christoph's practice in Ipanema, we offer the Smile Test Drive (mock-up) so you can preview the result before starting. Lenses last 15–20 years and don't stain; composite veneers last 5–8 years. Treatment takes 2–3 appointments (15–20 days) for lenses and 1–2 appointments for composite veneers."
+locale="en"               answer="Dental contact lenses are ultra-thin porcelain shells (0.2–0.5mm) bonded to teeth with minimal preparation, ideal for lasting aesthetic changes. Composite veneers are thicker restorations (0.7–1.5mm) sculpted directly in the office. At Dr. Carla Christoph's practice in Ipanema, we offer the Smile Test Drive (mock-up) so you can preview the result before starting. Lenses last 15–20 years and don't stain; composite veneers last 5–8 years. Treatment takes 2–3 appointments (15–20 days) for lenses and 1–2 appointments for composite veneers."
             />
           </div>
         </section>

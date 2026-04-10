@@ -170,6 +170,7 @@ const EnGeneralDentistryPage = () => {
                 question="What does a general dental checkup include?"
                 answer="A comprehensive exam with the iTero Element 5D digital scanner, clinical inspection, professional cleaning (scaling and polishing), risk assessment, and a personalized prevention plan. Every appointment starts with at least 1 full hour of dedicated attention."
                 source="Based on clinical protocols used at Dra. Carla Christoph's office in Ipanema."
+                locale="en"
               />
             </div>
           </section>
@@ -344,7 +345,19 @@ const EnGeneralDentistryPage = () => {
         {/* Doctor Bio */}
         <DoctorBioSection
           locale="en"
-          treatmentContext="general dentistry and preventive care"
+          sectionTitle="Your Dentist in Ipanema"
+          paragraphs={[
+            "Dr. Carla Christoph graduated from the Federal University of Rio de Janeiro (UFRJ) and has dedicated over 20 years to dentistry — with specializations in prosthodontics and implant dentistry.",
+            "Her approach to general dentistry is rooted in prevention: every appointment is an opportunity to detect early signs of decay, gum disease, or functional issues before they become costly problems.",
+            "Patients benefit from unhurried consultations (minimum 1 hour), digital diagnostics with iTero Element 5D, and a care plan that integrates every aspect of oral health."
+          ]}
+          credentials={[
+            { title: "UFRJ Graduate", description: "Federal University of Rio de Janeiro" },
+            { title: "Prosthodontics Specialist", description: "Advanced oral rehabilitation" },
+            { title: "20+ Years", description: "Clinical experience in Ipanema" },
+            { title: "Digital Diagnostics", description: "iTero Element 5D scanning" }
+          ]}
+          quote="Prevention is the most intelligent investment in oral health. A routine visit today can save years of complex treatment."
         />
 
         <SectionDivider />

@@ -124,7 +124,7 @@ const EnDentalImplantsPage = () => {
         <section className="py-8 bg-white">
           <div className="container-custom">
             <QuickAnswerBox
-              answer="Dental implants are artificial titanium roots placed in the bone to replace missing teeth. At Dr. Carla Christoph's practice in Ipanema, we perform 3D digital planning with iTero Element 5D, minimally invasive techniques, and personalized prostheses. With over 20 years of experience (CRO-RJ 27.509), we offer everything from single implants to complete rehabilitations like All-on-4 and fixed protocols, with treatments lasting 3 to 6 months depending on the case."
+locale="en"               answer="Dental implants are artificial titanium roots placed in the bone to replace missing teeth. At Dr. Carla Christoph's practice in Ipanema, we perform 3D digital planning with iTero Element 5D, minimally invasive techniques, and personalized prostheses. With over 20 years of experience (CRO-RJ 27.509), we offer everything from single implants to complete rehabilitations like All-on-4 and fixed protocols, with treatments lasting 3 to 6 months depending on the case."
             />
           </div>
         </section>

@@ -109,7 +109,7 @@ const EnTeethWhiteningPage = () => {
           <section className="py-8 bg-white">
             <div className="container-custom">
               <QuickAnswerBox
-                answer="Teeth whitening is a cosmetic procedure that lightens teeth using peroxide-based gel. At Dr. Carla Christoph's practice in Ipanema, we offer in-office techniques (1-3 sessions of 60-90 minutes) and supervised at-home whitening. With over 20 years of experience (CRO-RJ 27.509), we work with personalized protocols that lighten 4 to 9 shades safely, preserving the health of teeth and gums. Treatment lasts 7 to 21 days depending on the chosen modality."
+locale="en"                 answer="Teeth whitening is a cosmetic procedure that lightens teeth using peroxide-based gel. At Dr. Carla Christoph's practice in Ipanema, we offer in-office techniques (1-3 sessions of 60-90 minutes) and supervised at-home whitening. With over 20 years of experience (CRO-RJ 27.509), we work with personalized protocols that lighten 4 to 9 shades safely, preserving the health of teeth and gums. Treatment lasts 7 to 21 days depending on the chosen modality."
               />
             </div>
           </section>
