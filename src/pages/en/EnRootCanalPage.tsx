@@ -123,6 +123,19 @@ const EnRootCanalPage = () => {
         </script>
       </Helmet>
 
+      {/* Speakable schema for voice search */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Root Canal Treatment in Ipanema",
+        "url": "https://dracarlachristoph.com/en/root-canal",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"]
+        },
+        "inLanguage": "en"
+      }) }} />
+
       {/* 1. Hero Section */}
       <TreatmentHero
         locale="en"

@@ -91,6 +91,19 @@ const EnDentalImplantsPage = () => {
         </script>
       </Helmet>
 
+      {/* Speakable schema for voice search */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Dental Implants in Ipanema",
+        "url": "https://dracarlachristoph.com/en/dental-implants",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"]
+        },
+        "inLanguage": "en"
+      }) }} />
+
       <EnPageLayout>
         {/* Hero */}
         <TreatmentHero
