@@ -48,6 +48,57 @@ const EnAboutPage = () => {
                     { lang: "en", href: "https://dracarlachristoph.com/en/about" },
                     { lang: "x-default", href: "https://dracarlachristoph.com/sobre" },
                 ]}
+                structuredData={{
+                    "@context": "https://schema.org",
+                    "@type": "Dentist",
+                    "name": "Dr. Carla Christoph",
+                    "url": "https://dracarlachristoph.com/en/about",
+                    "image": "https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp",
+                    "description": "Dental specialist in Ipanema, Rio de Janeiro with 20+ years of experience in prosthodontics and implant dentistry.",
+                    "medicalSpecialty": ["Prosthodontics", "Dental Implants", "Cosmetic Dentistry"],
+                    "hasCredential": [
+                        {
+                            "@type": "EducationalOccupationalCredential",
+                            "credentialCategory": "Professional License",
+                            "recognizedBy": {
+                                "@type": "Organization",
+                                "name": "Conselho Regional de Odontologia do Rio de Janeiro (CRO-RJ)"
+                            },
+                            "identifier": "CRO-RJ 27.509"
+                        }
+                    ],
+                    "alumniOf": [
+                        {
+                            "@type": "EducationalOrganization",
+                            "name": "UFRJ — Federal University of Rio de Janeiro",
+                            "department": "School of Dentistry"
+                        }
+                    ],
+                    "knowsAbout": [
+                        "Porcelain Veneers",
+                        "Dental Implants",
+                        "Dental Prosthetics",
+                        "Teeth Whitening",
+                        "Orthodontics",
+                        "Cosmetic Dentistry",
+                        "Oral Rehabilitation"
+                    ],
+                    "worksFor": {
+                        "@type": "Dentist",
+                        "name": "Dr. Carla Christoph — Dental Clinic",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107",
+                            "addressLocality": "Ipanema, Rio de Janeiro",
+                            "addressRegion": "RJ",
+                            "postalCode": "22410-002",
+                            "addressCountry": "BR"
+                        }
+                    },
+                    "sameAs": [
+                        "https://instagram.com/dracarlachristoph"
+                    ]
+                }}
             />
             <EnPageLayout>
                 <section className="section-spacing">

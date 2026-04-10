@@ -109,6 +109,23 @@ const EnVeneersAndLensesPage = () => {
         <link rel="alternate" hrefLang="en" href="https://dracarlachristoph.com/en/veneers-and-lenses" />
         <link rel="alternate" hrefLang="x-default" href="https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina" />
 
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Dental Contact Lenses and Composite Veneers in Ipanema | Dr. Carla" />
+        <meta property="og:description" content="Ultra-thin dental contact lenses (0.2mm) and composite veneers in Ipanema with Dr. Carla Christoph. 20+ years of experience. Exclusive Smile Test Drive." />
+        <meta property="og:url" content="https://dracarlachristoph.com/en/veneers-and-lenses" />
+        <meta property="og:image" content="https://dracarlachristoph.com/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:site_name" content="Dr. Carla Christoph - Dentist in Ipanema" />
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Dental Contact Lenses & Composite Veneers | Dr. Carla Christoph" />
+        <meta name="twitter:description" content="Ultra-thin dental lenses and composite veneers in Ipanema. Smile Test Drive included. CRO-RJ 27.509." />
+        <meta name="twitter:image" content="https://dracarlachristoph.com/og-image.jpg" />
+        <meta name="language" content="en" />
+
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org", "@type": "MedicalWebPage",

@@ -47,6 +47,65 @@ const EnContactPage = () => {
                     { lang: "en", href: "https://dracarlachristoph.com/en/contact" },
                     { lang: "x-default", href: "https://dracarlachristoph.com/contato" },
                 ]}
+                structuredData={{
+                    "@context": "https://schema.org",
+                    "@type": "Dentist",
+                    "name": "Dr. Carla Christoph — Dental Clinic",
+                    "alternateName": "Dra. Carla Christoph",
+                    "url": "https://dracarlachristoph.com/en",
+                    "telephone": "+5521993304045",
+                    "email": "contato@dracarlachristoph.com",
+                    "image": "https://dracarlachristoph.com/og-image.jpg",
+                    "priceRange": "$$",
+                    "currenciesAccepted": "BRL",
+                    "paymentAccepted": "Cash, Credit Card, Debit Card, PIX",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107",
+                        "addressLocality": "Ipanema, Rio de Janeiro",
+                        "addressRegion": "RJ",
+                        "postalCode": "22410-002",
+                        "addressCountry": "BR"
+                    },
+                    "geo": {
+                        "@type": "GeoCoordinates",
+                        "latitude": -22.9838,
+                        "longitude": -43.2006
+                    },
+                    "openingHoursSpecification": [
+                        {
+                            "@type": "OpeningHoursSpecification",
+                            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                            "opens": "08:00",
+                            "closes": "18:00"
+                        },
+                        {
+                            "@type": "OpeningHoursSpecification",
+                            "dayOfWeek": "Saturday",
+                            "opens": "08:00",
+                            "closes": "14:00"
+                        }
+                    ],
+                    "areaServed": [
+                        { "@type": "City", "name": "Rio de Janeiro" },
+                        { "@type": "Neighborhood", "name": "Ipanema" },
+                        { "@type": "Neighborhood", "name": "Leblon" },
+                        { "@type": "Neighborhood", "name": "Copacabana" }
+                    ],
+                    "hasMap": "https://maps.google.com/?cid=YOUR_GOOGLE_MAPS_CID",
+                    "sameAs": [
+                        "https://instagram.com/dracarlachristoph",
+                        "https://wa.me/5521993304045"
+                    ],
+                    "aggregateRating": {
+                        "@type": "AggregateRating",
+                        "ratingValue": "4.9",
+                        "reviewCount": "23",
+                        "bestRating": "5",
+                        "worstRating": "1"
+                    },
+                    "medicalSpecialty": ["Prosthodontics", "Dental Implants", "Cosmetic Dentistry"]
+                }}
             />
             <EnPageLayout>
                 <section className="section-spacing">

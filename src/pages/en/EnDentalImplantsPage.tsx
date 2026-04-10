@@ -55,6 +55,23 @@ const EnDentalImplantsPage = () => {
         <link rel="alternate" hrefLang="en" href="https://dracarlachristoph.com/en/dental-implants" />
         <link rel="alternate" hrefLang="x-default" href="https://dracarlachristoph.com/implantes-dentarios" />
 
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Dental Implants in Ipanema | Dr. Carla Christoph" />
+        <meta property="og:description" content="Dental implants in Ipanema with 3D digital planning and minimally invasive techniques. Over 20 years of experience in oral rehabilitation. CRO-RJ 27.509." />
+        <meta property="og:url" content="https://dracarlachristoph.com/en/dental-implants" />
+        <meta property="og:image" content="https://dracarlachristoph.com/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:site_name" content="Dr. Carla Christoph - Dentist in Ipanema" />
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Dental Implants in Ipanema | Dr. Carla Christoph" />
+        <meta name="twitter:description" content="Dental implants with 3D digital planning and minimally invasive techniques. CRO-RJ 27.509." />
+        <meta name="twitter:image" content="https://dracarlachristoph.com/og-image.jpg" />
+        <meta name="language" content="en" />
+
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org", "@type": "MedicalProcedure",

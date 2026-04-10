@@ -94,6 +94,23 @@ const EnDentalProstheticsPage = () => {
         <link rel="alternate" hrefLang="en" href="https://dracarlachristoph.com/en/dental-prosthetics" />
         <link rel="alternate" hrefLang="x-default" href="https://dracarlachristoph.com/protese-dentaria" />
 
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Dental Prosthetics & Oral Rehabilitation in Ipanema | Dr. Carla Christoph" />
+        <meta property="og:description" content="Dental prosthetics in Ipanema with a prosthodontic specialist. Crowns, bridges, and implant-supported prostheses. Complete oral rehabilitation with 20+ years of experience." />
+        <meta property="og:url" content="https://dracarlachristoph.com/en/dental-prosthetics" />
+        <meta property="og:image" content="https://dracarlachristoph.com/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:site_name" content="Dr. Carla Christoph - Dentist in Ipanema" />
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Dental Prosthetics & Oral Rehabilitation | Dr. Carla Christoph" />
+        <meta name="twitter:description" content="Dental prosthetics in Ipanema. Crowns, bridges, and implant-supported prostheses. CRO-RJ 27.509." />
+        <meta name="twitter:image" content="https://dracarlachristoph.com/og-image.jpg" />
+        <meta name="language" content="en" />
+
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org", "@type": "MedicalProcedure",
