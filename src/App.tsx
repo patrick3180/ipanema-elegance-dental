@@ -58,7 +58,6 @@ const EnHomePage = lazy(() => import("./pages/en/EnHomePage"));
 const EnAboutPage = lazy(() => import("./pages/en/EnAboutPage"));
 const EnContactPage = lazy(() => import("./pages/en/EnContactPage"));
 const EnDentalImplantsPage = lazy(() => import("./pages/en/EnDentalImplantsPage"));
-const EnPorcelainVeneersPage = lazy(() => import("./pages/en/EnPorcelainVeneersPage"));
 const EnGeneralDentistryPage = lazy(() => import("./pages/en/EnGeneralDentistryPage"));
 const EnDentalEmergencyPage = lazy(() => import("./pages/en/EnDentalEmergencyPage"));
 const EnDentalProstheticsPage = lazy(() => import("./pages/en/EnDentalProstheticsPage"));

@@ -1,5 +1,5 @@
 import React from "react";
-import { Helmet } from "react-helmet-async";
+import SEOHead from "@/components/SEOHead";
 import EnPageLayout from "@/components/en/EnPageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
 import StatsBar from "@/components/treatment/StatsBar";
@@ -70,71 +70,24 @@ const EnRootCanalPage = () => {
 
   return (
     <EnPageLayout>
-      <Helmet>
-        <title>Root Canal Treatment in Ipanema | Dr. Carla Christoph</title>
-        <meta name="description" content="Root canal treatment in Ipanema with comprehensive follow-up. Specialized endodontist and finalization by Dr. Carla Christoph. CRO-RJ 27.509." />
-        <link rel="canonical" href="https://dracarlachristoph.com/en/root-canal" />
-        <link rel="alternate" hrefLang="pt-BR" href="https://dracarlachristoph.com/tratamento-de-canal" />
-        <link rel="alternate" hrefLang="en" href="https://dracarlachristoph.com/en/root-canal" />
-        <link rel="alternate" hrefLang="x-default" href="https://dracarlachristoph.com/tratamento-de-canal" />
-
-        <meta property="og:title" content="Root Canal Treatment in Ipanema | Comprehensive Care" />
-        <meta property="og:description" content="Root canal treatment with individualized follow-up and finalization by Dr. Carla Christoph in Ipanema." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dracarlachristoph.com/en/root-canal" />
-
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "MedicalProcedure",
-            "name": "Root Canal Treatment (Endodontics)",
-            "description": "Endodontic treatment with comprehensive follow-up and restorative finalization",
-            "procedureType": "Dental",
-            "inLanguage": "en",
-            "provider": {
-              "@type": "Dentist",
-              "name": "Dr. Carla Christoph",
-              "telephone": "+5521993304045",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107",
-                "addressLocality": "Ipanema",
-                "addressRegion": "RJ",
-                "postalCode": "22410-002",
-                "addressCountry": "BR"
-              }
-            }
-          })}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "inLanguage": "en",
-            "mainEntity": faqs.map(faq => ({
-              "@type": "Question",
-              "name": faq.question,
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": faq.answer
-              }
-            }))
-          })}
-        </script>
-      </Helmet>
-
-      {/* Speakable schema for voice search */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Root Canal Treatment in Ipanema",
-        "url": "https://dracarlachristoph.com/en/root-canal",
-        "speakable": {
-          "@type": "SpeakableSpecification",
-          "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"]
-        },
-        "inLanguage": "en"
-      }) }} />
+      <SEOHead
+        title="Root Canal Treatment in Ipanema | Dr. Carla Christoph"
+        description="Root canal treatment in Ipanema with comprehensive follow-up. Specialized endodontist and finalization by Dr. Carla Christoph. CRO-RJ 27.509."
+        canonicalUrl="https://dracarlachristoph.com/en/root-canal"
+        keywords="root canal Ipanema, endodontics Rio, tooth pain dentist, root canal treatment"
+        locale="en_US"
+        language="en"
+        hreflangAlternates={[
+          { lang: "pt-BR", href: "https://dracarlachristoph.com/tratamento-de-canal" },
+          { lang: "en", href: "https://dracarlachristoph.com/en/root-canal" },
+          { lang: "x-default", href: "https://dracarlachristoph.com/tratamento-de-canal" }
+        ]}
+        structuredData={{ "@context": "https://schema.org", "@type": "MedicalProcedure", "name": "Root Canal Treatment (Endodontics)", "description": "Endodontic treatment with comprehensive follow-up and restorative finalization", "procedureType": "Dental", "inLanguage": "en", "provider": { "@type": "Dentist", "name": "Dr. Carla Christoph", "telephone": "+5521993304045", "address": { "@type": "PostalAddress", "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107", "addressLocality": "Ipanema", "addressRegion": "RJ", "postalCode": "22410-002", "addressCountry": "BR" } } }}
+        additionalStructuredData={[
+          { "@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en", "mainEntity": faqs.map(faq => ({ "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": faq.answer } })) },
+          { "@context": "https://schema.org", "@type": "WebPage", "name": "Root Canal Treatment in Ipanema", "url": "https://dracarlachristoph.com/en/root-canal", "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"] }, "inLanguage": "en" }
+        ]}
+      />
 
       {/* 1. Hero Section */}
       <TreatmentHero

@@ -1,5 +1,5 @@
 import React from "react";
-import { Helmet } from "react-helmet-async";
+import SEOHead from "@/components/SEOHead";
 import EnPageLayout from "@/components/en/EnPageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
 import StatsBar from "@/components/treatment/StatsBar";
@@ -48,61 +48,40 @@ const EnDentalImplantsPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Dental Implants in Ipanema | Dr. Carla Christoph</title>
-        <meta name="description" content="Dental implants in Ipanema with 3D digital planning and minimally invasive techniques. Over 20 years of experience in oral rehabilitation. CRO-RJ 27.509." />
-        <link rel="canonical" href="https://dracarlachristoph.com/en/dental-implants" />
-        <link rel="alternate" hrefLang="pt-BR" href="https://dracarlachristoph.com/implantes-dentarios" />
-        <link rel="alternate" hrefLang="en" href="https://dracarlachristoph.com/en/dental-implants" />
-        <link rel="alternate" hrefLang="x-default" href="https://dracarlachristoph.com/implantes-dentarios" />
-
-        {/* Open Graph */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Dental Implants in Ipanema | Dr. Carla Christoph" />
-        <meta property="og:description" content="Dental implants in Ipanema with 3D digital planning and minimally invasive techniques. Over 20 years of experience in oral rehabilitation. CRO-RJ 27.509." />
-        <meta property="og:url" content="https://dracarlachristoph.com/en/dental-implants" />
-        <meta property="og:image" content="https://dracarlachristoph.com/og-image.jpg" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:site_name" content="Dr. Carla Christoph - Dentist in Ipanema" />
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Dental Implants in Ipanema | Dr. Carla Christoph" />
-        <meta name="twitter:description" content="Dental implants with 3D digital planning and minimally invasive techniques. CRO-RJ 27.509." />
-        <meta name="twitter:image" content="https://dracarlachristoph.com/og-image.jpg" />
-        <meta name="language" content="en" />
-
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org", "@type": "MedicalProcedure",
-            "name": "Dental Implants", "description": "Oral rehabilitation with biocompatible titanium implants and implant-supported prostheses",
-            "procedureType": "Dental", "inLanguage": "en",
-            "provider": { "@type": "Dentist", "name": "Dr. Carla Christoph", "telephone": "+5521993304045",
-              "address": { "@type": "PostalAddress", "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107", "addressLocality": "Ipanema", "addressRegion": "RJ", "postalCode": "22410-002", "addressCountry": "BR" }
-            }
-          })}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify({
+      <SEOHead
+        title="Dental Implants in Ipanema | Dr. Carla Christoph"
+        description="Dental implants in Ipanema with 3D digital planning and minimally invasive techniques. Over 20 years of experience in oral rehabilitation. CRO-RJ 27.509."
+        canonicalUrl="https://dracarlachristoph.com/en/dental-implants"
+        keywords="dental implants Ipanema, oral rehabilitation Rio de Janeiro, titanium implants, implant dentistry"
+        locale="en_US"
+        language="en"
+        hreflangAlternates={[
+          { lang: "pt-BR", href: "https://dracarlachristoph.com/implantes-dentarios" },
+          { lang: "en", href: "https://dracarlachristoph.com/en/dental-implants" },
+          { lang: "x-default", href: "https://dracarlachristoph.com/implantes-dentarios" }
+        ]}
+        structuredData={{
+          "@context": "https://schema.org", "@type": "MedicalProcedure",
+          "name": "Dental Implants", "description": "Oral rehabilitation with biocompatible titanium implants and implant-supported prostheses",
+          "procedureType": "Dental", "inLanguage": "en",
+          "provider": { "@type": "Dentist", "name": "Dr. Carla Christoph", "telephone": "+5521993304045",
+            "address": { "@type": "PostalAddress", "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107", "addressLocality": "Ipanema", "addressRegion": "RJ", "postalCode": "22410-002", "addressCountry": "BR" }
+          }
+        }}
+        additionalStructuredData={[
+          {
             "@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en",
             "mainEntity": faqs.map(faq => ({ "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": faq.answer } }))
-          })}
-        </script>
-      </Helmet>
-
-      {/* Speakable schema for voice search */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Dental Implants in Ipanema",
-        "url": "https://dracarlachristoph.com/en/dental-implants",
-        "speakable": {
-          "@type": "SpeakableSpecification",
-          "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"]
-        },
-        "inLanguage": "en"
-      }) }} />
+          },
+          {
+            "@context": "https://schema.org", "@type": "WebPage",
+            "name": "Dental Implants in Ipanema",
+            "url": "https://dracarlachristoph.com/en/dental-implants",
+            "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"] },
+            "inLanguage": "en"
+          }
+        ]}
+      />
 
       <EnPageLayout>
         {/* Hero */}

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import SEOHead from "@/components/SEOHead";
 import EnPageLayout from "@/components/en/EnPageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
 import StatsBar from "@/components/treatment/StatsBar";
@@ -43,70 +43,25 @@ const EnAestheticRestorationsPage = () => {
 
   return (
     <EnPageLayout>
-      <Helmet>
-        <title>Aesthetic Dental Restorations in Ipanema | Dr. Carla Christoph</title>
-        <meta name="description" content="Aesthetic dental restorations in Ipanema with nano-filled composite resin. Treatment for cavities, broken and cracked teeth. Natural, long-lasting results. Dr. Carla Christoph CRO-RJ 27.509." />
-        <link rel="canonical" href="https://dracarlachristoph.com/en/aesthetic-restorations" />
-        <link rel="alternate" hrefLang="pt-BR" href="https://dracarlachristoph.com/restauracoes-esteticas" />
-        <link rel="alternate" hrefLang="en" href="https://dracarlachristoph.com/en/aesthetic-restorations" />
-        <link rel="alternate" hrefLang="x-default" href="https://dracarlachristoph.com/restauracoes-esteticas" />
-        <meta property="og:title" content="Aesthetic Dental Restorations in Ipanema | Dr. Carla Christoph" />
-        <meta property="og:description" content="Aesthetic dental restorations in Ipanema with nano-filled composite resin. Natural, long-lasting results." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dracarlachristoph.com/en/aesthetic-restorations" />
-        <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "MedicalProcedure",
-            "name": "Aesthetic Dental Restoration",
-            "description": "Aesthetic dental restoration with nano-filled composite resin for treatment of cavities, fractures, and cracks with natural results",
-            "procedureType": "Dental",
-            "inLanguage": "en",
-            "provider": {
-              "@type": "Dentist",
-              "name": "Dr. Carla Christoph",
-              "telephone": "+5521993304045",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107",
-                "addressLocality": "Ipanema",
-                "addressRegion": "RJ",
-                "postalCode": "22410-002",
-                "addressCountry": "BR"
-              }
-            }
-          })}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "inLanguage": "en",
-            "mainEntity": faqs.map(faq => ({
-              "@type": "Question",
-              "name": faq.question,
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": typeof faq.answer === 'string' ? faq.answer : faq.question
-              }
-            }))
-          })}
-        </script>
-      </Helmet>
-
-      {/* Speakable schema for voice search */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Aesthetic Dental Restorations in Ipanema",
-        "url": "https://dracarlachristoph.com/en/aesthetic-restorations",
-        "speakable": {
-          "@type": "SpeakableSpecification",
-          "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"]
-        },
-        "inLanguage": "en"
-      }) }} />
+      <SEOHead
+        title="Aesthetic Dental Restorations in Ipanema | Dr. Carla Christoph"
+        description="Aesthetic dental restorations in Ipanema with nano-filled composite resin. Treatment for cavities, broken and cracked teeth. Natural, long-lasting results. Dr. Carla Christoph CRO-RJ 27.509."
+        canonicalUrl="https://dracarlachristoph.com/en/aesthetic-restorations"
+        keywords="aesthetic restorations Ipanema, dental fillings Rio, composite resin dentist, cavity treatment"
+        ogImage="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+        locale="en_US"
+        language="en"
+        hreflangAlternates={[
+          { lang: "pt-BR", href: "https://dracarlachristoph.com/restauracoes-esteticas" },
+          { lang: "en", href: "https://dracarlachristoph.com/en/aesthetic-restorations" },
+          { lang: "x-default", href: "https://dracarlachristoph.com/restauracoes-esteticas" }
+        ]}
+        structuredData={{ "@context": "https://schema.org", "@type": "MedicalProcedure", "name": "Aesthetic Dental Restoration", "description": "Aesthetic dental restoration with nano-filled composite resin for treatment of cavities, fractures, and cracks with natural results", "procedureType": "Dental", "inLanguage": "en", "provider": { "@type": "Dentist", "name": "Dr. Carla Christoph", "telephone": "+5521993304045", "address": { "@type": "PostalAddress", "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107", "addressLocality": "Ipanema", "addressRegion": "RJ", "postalCode": "22410-002", "addressCountry": "BR" } } }}
+        additionalStructuredData={[
+          { "@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en", "mainEntity": faqs.map(faq => ({ "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": typeof faq.answer === 'string' ? faq.answer : faq.question } })) },
+          { "@context": "https://schema.org", "@type": "WebPage", "name": "Aesthetic Dental Restorations in Ipanema", "url": "https://dracarlachristoph.com/en/aesthetic-restorations", "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"] }, "inLanguage": "en" }
+        ]}
+      />
 
       <TreatmentHero
         locale="en"

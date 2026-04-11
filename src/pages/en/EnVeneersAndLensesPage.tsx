@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import SEOHead from "@/components/SEOHead";
 import EnPageLayout from "@/components/en/EnPageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
 import StatsBar from "@/components/treatment/StatsBar";
@@ -101,65 +101,33 @@ const EnVeneersAndLensesPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Dental Contact Lenses and Composite Veneers in Ipanema | Dr. Carla</title>
-        <meta name="description" content="Ultra-thin dental contact lenses (0.2mm) and composite veneers in Ipanema with Dr. Carla Christoph. 20+ years of experience. Exclusive Smile Test Drive." />
-        <meta name="keywords" content="dental contact lenses, composite veneers, ipanema, dr carla christoph, smile test drive, porcelain, prosthetics specialist" />
-        <link rel="canonical" href="https://dracarlachristoph.com/en/veneers-and-lenses" />
-        <link rel="alternate" hrefLang="pt-BR" href="https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina" />
-        <link rel="alternate" hrefLang="en" href="https://dracarlachristoph.com/en/veneers-and-lenses" />
-        <link rel="alternate" hrefLang="x-default" href="https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina" />
-
-        {/* Open Graph */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Dental Contact Lenses and Composite Veneers in Ipanema | Dr. Carla" />
-        <meta property="og:description" content="Ultra-thin dental contact lenses (0.2mm) and composite veneers in Ipanema with Dr. Carla Christoph. 20+ years of experience. Exclusive Smile Test Drive." />
-        <meta property="og:url" content="https://dracarlachristoph.com/en/veneers-and-lenses" />
-        <meta property="og:image" content="https://dracarlachristoph.com/og-image.jpg" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:site_name" content="Dr. Carla Christoph - Dentist in Ipanema" />
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Dental Contact Lenses & Composite Veneers | Dr. Carla Christoph" />
-        <meta name="twitter:description" content="Ultra-thin dental lenses and composite veneers in Ipanema. Smile Test Drive included. CRO-RJ 27.509." />
-        <meta name="twitter:image" content="https://dracarlachristoph.com/og-image.jpg" />
-        <meta name="language" content="en" />
-
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org", "@type": "MedicalWebPage",
-            "name": "Dental Contact Lenses and Composite Veneers in Ipanema",
-            "description": "Ultra-thin dental contact lenses and composite veneers with Dr. Carla Christoph, Prosthodontic specialist. 20+ years of experience in Ipanema.",
-            "url": "https://dracarlachristoph.com/en/veneers-and-lenses",
-            "inLanguage": "en",
-            "medicalSpecialty": "Cosmetic Dentistry",
-            "author": { "@type": "Dentist", "name": "Dr. Carla Christoph", "qualification": "Prosthodontic Specialist", "experienceYears": 20, "areaServed": { "@type": "City", "name": "Ipanema, Rio de Janeiro" } },
-            "offers": { "@type": "Offer", "priceCurrency": "BRL", "availability": "https://schema.org/InStock", "description": "Contact us for personalized pricing" }
-          })}
-        </script>
-
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en",
-            "mainEntity": faqs.map(faq => ({ "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": faq.answer } }))
-          })}
-        </script>
-      </Helmet>
-
-      {/* Speakable schema for voice search */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Dental Veneers & Contact Lenses in Ipanema",
-        "url": "https://dracarlachristoph.com/en/veneers-and-lenses",
-        "speakable": {
-          "@type": "SpeakableSpecification",
-          "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"]
-        },
-        "inLanguage": "en"
-      }) }} />
+      <SEOHead
+        title="Dental Contact Lenses and Composite Veneers in Ipanema | Dr. Carla"
+        description="Ultra-thin dental contact lenses (0.2mm) and composite veneers in Ipanema with Dr. Carla Christoph. 20+ years of experience. Exclusive Smile Test Drive."
+        canonicalUrl="https://dracarlachristoph.com/en/veneers-and-lenses"
+        keywords="dental contact lenses, composite veneers, ipanema, dr carla christoph, smile test drive, porcelain, prosthetics specialist"
+        locale="en_US"
+        language="en"
+        hreflangAlternates={[
+          { lang: "pt-BR", href: "https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina" },
+          { lang: "en", href: "https://dracarlachristoph.com/en/veneers-and-lenses" },
+          { lang: "x-default", href: "https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina" }
+        ]}
+        structuredData={{
+          "@context": "https://schema.org", "@type": "MedicalWebPage",
+          "name": "Dental Contact Lenses and Composite Veneers in Ipanema",
+          "description": "Ultra-thin dental contact lenses and composite veneers with Dr. Carla Christoph, Prosthodontic specialist. 20+ years of experience in Ipanema.",
+          "url": "https://dracarlachristoph.com/en/veneers-and-lenses",
+          "inLanguage": "en",
+          "medicalSpecialty": "Cosmetic Dentistry",
+          "author": { "@type": "Dentist", "name": "Dr. Carla Christoph", "qualification": "Prosthodontic Specialist", "experienceYears": 20, "areaServed": { "@type": "City", "name": "Ipanema, Rio de Janeiro" } },
+          "offers": { "@type": "Offer", "priceCurrency": "BRL", "availability": "https://schema.org/InStock", "description": "Contact us for personalized pricing" }
+        }}
+        additionalStructuredData={[
+          { "@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en", "mainEntity": faqs.map(faq => ({ "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": faq.answer } })) },
+          { "@context": "https://schema.org", "@type": "WebPage", "name": "Dental Veneers & Contact Lenses in Ipanema", "url": "https://dracarlachristoph.com/en/veneers-and-lenses", "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"] }, "inLanguage": "en" }
+        ]}
+      />
 
       <EnPageLayout>
         {/* Hero Section */}

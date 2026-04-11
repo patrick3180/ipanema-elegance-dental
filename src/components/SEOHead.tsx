@@ -20,6 +20,8 @@ interface SEOHeadProps {
   articleTags?: string[];
   noIndex?: boolean;
   structuredData?: any;
+  /** Additional structured data blocks (e.g., FAQPage alongside MedicalProcedure) */
+  additionalStructuredData?: any[];
   hreflangAlternates?: HreflangAlternate[];
   locale?: string;
   language?: string;
@@ -38,6 +40,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   articleTags,
   noIndex = false,
   structuredData,
+  additionalStructuredData,
   hreflangAlternates,
   locale = "pt_BR",
   language = "pt-BR"
@@ -216,6 +219,13 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <script type="application/ld+json">
         {JSON.stringify(finalStructuredData)}
       </script>
+
+      {/* Additional structured data blocks (e.g., FAQPage) */}
+      {additionalStructuredData && additionalStructuredData.map((data, index) => (
+        <script key={`sd-${index}`} type="application/ld+json">
+          {JSON.stringify(data)}
+        </script>
+      ))}
 
       {/* Additional SEO Meta Tags */}
       <meta name="theme-color" content="#8B4513" />

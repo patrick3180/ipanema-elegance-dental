@@ -1,5 +1,5 @@
 import React from "react";
-import { Helmet } from "react-helmet-async";
+import SEOHead from "@/components/SEOHead";
 import EnPageLayout from "@/components/en/EnPageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
 import StatsBar from "@/components/treatment/StatsBar";
@@ -45,61 +45,40 @@ const EnTeethWhiteningPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Professional Teeth Whitening in Ipanema | Dr. Carla Christoph</title>
-        <meta name="description" content="Professional teeth whitening in Ipanema. In-office and supervised at-home techniques. Personalized protocols with Dr. Carla Christoph. CRO-RJ 27.509." />
-        <link rel="canonical" href="https://dracarlachristoph.com/en/teeth-whitening" />
-        <link rel="alternate" hrefLang="pt-BR" href="https://dracarlachristoph.com/clareamento-dental" />
-        <link rel="alternate" hrefLang="en" href="https://dracarlachristoph.com/en/teeth-whitening" />
-        <link rel="alternate" hrefLang="x-default" href="https://dracarlachristoph.com/clareamento-dental" />
-
-        {/* Open Graph */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Professional Teeth Whitening in Ipanema | Dr. Carla Christoph" />
-        <meta property="og:description" content="Professional teeth whitening in Ipanema. In-office and supervised at-home techniques. Personalized protocols with Dr. Carla Christoph. CRO-RJ 27.509." />
-        <meta property="og:url" content="https://dracarlachristoph.com/en/teeth-whitening" />
-        <meta property="og:image" content="https://dracarlachristoph.com/og-image.jpg" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:site_name" content="Dr. Carla Christoph - Dentist in Ipanema" />
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Professional Teeth Whitening in Ipanema | Dr. Carla Christoph" />
-        <meta name="twitter:description" content="Professional teeth whitening in Ipanema. In-office and supervised at-home techniques. CRO-RJ 27.509." />
-        <meta name="twitter:image" content="https://dracarlachristoph.com/og-image.jpg" />
-        <meta name="language" content="en" />
-
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org", "@type": "MedicalProcedure",
-            "name": "Professional Teeth Whitening", "description": "Teeth whitening procedure with in-office and supervised at-home techniques",
-            "procedureType": "Dental", "inLanguage": "en",
-            "provider": { "@type": "Dentist", "name": "Dr. Carla Christoph", "telephone": "+5521993304045",
-              "address": { "@type": "PostalAddress", "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107", "addressLocality": "Ipanema", "addressRegion": "RJ", "postalCode": "22410-002", "addressCountry": "BR" }
-            }
-          })}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify({
+      <SEOHead
+        title="Professional Teeth Whitening in Ipanema | Dr. Carla Christoph"
+        description="Professional teeth whitening in Ipanema. In-office and supervised at-home techniques. Personalized protocols with Dr. Carla Christoph. CRO-RJ 27.509."
+        canonicalUrl="https://dracarlachristoph.com/en/teeth-whitening"
+        keywords="teeth whitening Ipanema, professional whitening Rio de Janeiro, dental bleaching, cosmetic dentistry"
+        locale="en_US"
+        language="en"
+        hreflangAlternates={[
+          { lang: "pt-BR", href: "https://dracarlachristoph.com/clareamento-dental" },
+          { lang: "en", href: "https://dracarlachristoph.com/en/teeth-whitening" },
+          { lang: "x-default", href: "https://dracarlachristoph.com/clareamento-dental" }
+        ]}
+        structuredData={{
+          "@context": "https://schema.org", "@type": "MedicalProcedure",
+          "name": "Professional Teeth Whitening", "description": "Teeth whitening procedure with in-office and supervised at-home techniques",
+          "procedureType": "Dental", "inLanguage": "en",
+          "provider": { "@type": "Dentist", "name": "Dr. Carla Christoph", "telephone": "+5521993304045",
+            "address": { "@type": "PostalAddress", "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107", "addressLocality": "Ipanema", "addressRegion": "RJ", "postalCode": "22410-002", "addressCountry": "BR" }
+          }
+        }}
+        additionalStructuredData={[
+          {
             "@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en",
             "mainEntity": faqs.map(faq => ({ "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": faq.answer } }))
-          })}
-        </script>
-      </Helmet>
-
-      {/* Speakable schema for voice search */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Professional Teeth Whitening in Ipanema",
-        "url": "https://dracarlachristoph.com/en/teeth-whitening",
-        "speakable": {
-          "@type": "SpeakableSpecification",
-          "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"]
-        },
-        "inLanguage": "en"
-      }) }} />
+          },
+          {
+            "@context": "https://schema.org", "@type": "WebPage",
+            "name": "Professional Teeth Whitening in Ipanema",
+            "url": "https://dracarlachristoph.com/en/teeth-whitening",
+            "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"] },
+            "inLanguage": "en"
+          }
+        ]}
+      />
 
       <EnPageLayout>
         {/* Hero Section */}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Helmet } from "react-helmet-async";
+import SEOHead from "@/components/SEOHead";
 import EnPageLayout from "@/components/en/EnPageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
 import StatsBar from "@/components/treatment/StatsBar";
@@ -87,61 +87,24 @@ const EnDentalProstheticsPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Dental Prosthetics & Oral Rehabilitation in Ipanema | Dr. Carla Christoph</title>
-        <meta name="description" content="Dental prosthetics in Ipanema with a prosthodontic specialist. Crowns, bridges, and implant-supported prostheses. Complete oral rehabilitation with 20+ years of experience." />
-        <link rel="canonical" href="https://dracarlachristoph.com/en/dental-prosthetics" />
-        <link rel="alternate" hrefLang="pt-BR" href="https://dracarlachristoph.com/protese-dentaria" />
-        <link rel="alternate" hrefLang="en" href="https://dracarlachristoph.com/en/dental-prosthetics" />
-        <link rel="alternate" hrefLang="x-default" href="https://dracarlachristoph.com/protese-dentaria" />
-
-        {/* Open Graph */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Dental Prosthetics & Oral Rehabilitation in Ipanema | Dr. Carla Christoph" />
-        <meta property="og:description" content="Dental prosthetics in Ipanema with a prosthodontic specialist. Crowns, bridges, and implant-supported prostheses. Complete oral rehabilitation with 20+ years of experience." />
-        <meta property="og:url" content="https://dracarlachristoph.com/en/dental-prosthetics" />
-        <meta property="og:image" content="https://dracarlachristoph.com/og-image.jpg" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:site_name" content="Dr. Carla Christoph - Dentist in Ipanema" />
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Dental Prosthetics & Oral Rehabilitation | Dr. Carla Christoph" />
-        <meta name="twitter:description" content="Dental prosthetics in Ipanema. Crowns, bridges, and implant-supported prostheses. CRO-RJ 27.509." />
-        <meta name="twitter:image" content="https://dracarlachristoph.com/og-image.jpg" />
-        <meta name="language" content="en" />
-
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org", "@type": "MedicalProcedure",
-            "name": "Dental Prosthetics", "description": "Oral rehabilitation with fixed and removable dental prostheses",
-            "procedureType": "Dental", "inLanguage": "en",
-            "provider": { "@type": "Dentist", "name": "Dr. Carla Christoph", "telephone": "+5521993304045",
-              "address": { "@type": "PostalAddress", "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107", "addressLocality": "Ipanema", "addressRegion": "RJ", "postalCode": "22410-002", "addressCountry": "BR" }
-            }
-          })}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en",
-            "mainEntity": faqs.map(faq => ({ "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": faq.answer } }))
-          })}
-        </script>
-      </Helmet>
-
-      {/* Speakable schema for voice search */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Dental Prosthetics & Oral Rehabilitation in Ipanema",
-        "url": "https://dracarlachristoph.com/en/dental-prosthetics",
-        "speakable": {
-          "@type": "SpeakableSpecification",
-          "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"]
-        },
-        "inLanguage": "en"
-      }) }} />
+      <SEOHead
+        title="Dental Prosthetics & Oral Rehabilitation in Ipanema | Dr. Carla Christoph"
+        description="Dental prosthetics in Ipanema with a prosthodontic specialist. Crowns, bridges, and implant-supported prostheses. Complete oral rehabilitation with 20+ years of experience."
+        canonicalUrl="https://dracarlachristoph.com/en/dental-prosthetics"
+        keywords="dental prosthetics Ipanema, crowns Rio, bridges dentist, oral rehabilitation specialist"
+        locale="en_US"
+        language="en"
+        hreflangAlternates={[
+          { lang: "pt-BR", href: "https://dracarlachristoph.com/protese-dentaria" },
+          { lang: "en", href: "https://dracarlachristoph.com/en/dental-prosthetics" },
+          { lang: "x-default", href: "https://dracarlachristoph.com/protese-dentaria" }
+        ]}
+        structuredData={{ "@context": "https://schema.org", "@type": "MedicalProcedure", "name": "Dental Prosthetics", "description": "Oral rehabilitation with fixed and removable dental prostheses", "procedureType": "Dental", "inLanguage": "en", "provider": { "@type": "Dentist", "name": "Dr. Carla Christoph", "telephone": "+5521993304045", "address": { "@type": "PostalAddress", "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107", "addressLocality": "Ipanema", "addressRegion": "RJ", "postalCode": "22410-002", "addressCountry": "BR" } } }}
+        additionalStructuredData={[
+          { "@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en", "mainEntity": faqs.map(faq => ({ "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": faq.answer } })) },
+          { "@context": "https://schema.org", "@type": "WebPage", "name": "Dental Prosthetics & Oral Rehabilitation in Ipanema", "url": "https://dracarlachristoph.com/en/dental-prosthetics", "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"] }, "inLanguage": "en" }
+        ]}
+      />
 
       <EnPageLayout>
         {/* Hero Section */}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Helmet } from "react-helmet-async";
+import SEOHead from "@/components/SEOHead";
 import EnPageLayout from "@/components/en/EnPageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
 import StatsBar from "@/components/treatment/StatsBar";
@@ -144,76 +144,45 @@ const EnOrthodonticsPage = () => {
 
   return (
     <EnPageLayout>
-      <Helmet>
-        <title>Orthodontics & Invisalign® in Ipanema | Dr. Carla Christoph</title>
-        <meta name="description" content="Modern orthodontics in Ipanema with Dr. Bruno Moreira (PhD UERJ) at Dr. Carla Christoph's office. Invisalign®, aesthetic braces, and iTero Element 5D technology." />
-        <link rel="canonical" href="https://dracarlachristoph.com/en/orthodontics" />
-        <link rel="alternate" hrefLang="pt-BR" href="https://dracarlachristoph.com/ortodontia" />
-        <link rel="alternate" hrefLang="en" href="https://dracarlachristoph.com/en/orthodontics" />
-        <link rel="alternate" hrefLang="x-default" href="https://dracarlachristoph.com/ortodontia" />
-
-        <meta property="og:title" content="Orthodontics & Invisalign® in Ipanema | Dr. Carla Christoph" />
-        <meta property="og:description" content="Modern orthodontics in Ipanema with Dr. Bruno Moreira, specialist with PhD from UERJ. Invisalign® and iTero technology." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dracarlachristoph.com/en/orthodontics" />
-
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "MedicalProcedure",
-            "name": "Orthodontic Treatment",
-            "description": "Correction of tooth and jaw positioning using orthodontic appliances or invisible aligners",
-            "procedureType": "Orthodontic",
-            "bodyLocation": "Teeth and Jaw",
-            "inLanguage": "en",
-            "followup": "Monthly appointments and post-treatment retention",
-            "howPerformed": "Fixed braces, aesthetic braces, or Invisalign removable aligners with digital planning",
-            "preparation": "Clinical evaluation, X-rays, and iTero Element 5D scanning",
-            "provider": [
-              {
-                "@type": "Dentist",
-                "name": "Dr. Carla Christoph",
-                "identifier": "CRO-RJ 27.509"
-              },
-              {
-                "@type": "Dentist",
-                "name": "Dr. Bruno Moreira das Neves",
-                "identifier": "CRO-RJ 41.684",
-                "description": "Specialist orthodontist, PhD from UERJ"
-              }
-            ],
-            "typicalAgeRange": "7-99"
-          })}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "inLanguage": "en",
-            "mainEntity": faqs.map(faq => ({
-              "@type": "Question",
-              "name": faq.question,
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": faq.answer
-              }
-            }))
-          })}
-        </script>
-      </Helmet>
-
-      {/* Speakable schema for voice search */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Modern Orthodontics in Ipanema",
-        "url": "https://dracarlachristoph.com/en/orthodontics",
-        "speakable": {
-          "@type": "SpeakableSpecification",
-          "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"]
-        },
-        "inLanguage": "en"
-      }) }} />
+      <SEOHead
+        title="Orthodontics & Invisalign® in Ipanema | Dr. Carla Christoph"
+        description="Modern orthodontics in Ipanema with Dr. Bruno Moreira (PhD UERJ) at Dr. Carla Christoph's office. Invisalign®, aesthetic braces, and iTero Element 5D technology."
+        canonicalUrl="https://dracarlachristoph.com/en/orthodontics"
+        keywords="orthodontics Ipanema, Invisalign Rio de Janeiro, braces dentist, teeth alignment"
+        locale="en_US"
+        language="en"
+        hreflangAlternates={[
+          { lang: "pt-BR", href: "https://dracarlachristoph.com/ortodontia" },
+          { lang: "en", href: "https://dracarlachristoph.com/en/orthodontics" },
+          { lang: "x-default", href: "https://dracarlachristoph.com/ortodontia" }
+        ]}
+        structuredData={{
+          "@context": "https://schema.org", "@type": "MedicalProcedure",
+          "name": "Orthodontic Treatment", "description": "Correction of tooth and jaw positioning using orthodontic appliances or invisible aligners",
+          "procedureType": "Orthodontic", "bodyLocation": "Teeth and Jaw", "inLanguage": "en",
+          "followup": "Monthly appointments and post-treatment retention",
+          "howPerformed": "Fixed braces, aesthetic braces, or Invisalign removable aligners with digital planning",
+          "preparation": "Clinical evaluation, X-rays, and iTero Element 5D scanning",
+          "provider": [
+            { "@type": "Dentist", "name": "Dr. Carla Christoph", "identifier": "CRO-RJ 27.509" },
+            { "@type": "Dentist", "name": "Dr. Bruno Moreira das Neves", "identifier": "CRO-RJ 41.684", "description": "Specialist orthodontist, PhD from UERJ" }
+          ],
+          "typicalAgeRange": "7-99"
+        }}
+        additionalStructuredData={[
+          {
+            "@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en",
+            "mainEntity": faqs.map(faq => ({ "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": faq.answer } }))
+          },
+          {
+            "@context": "https://schema.org", "@type": "WebPage",
+            "name": "Modern Orthodontics in Ipanema",
+            "url": "https://dracarlachristoph.com/en/orthodontics",
+            "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"] },
+            "inLanguage": "en"
+          }
+        ]}
+      />
 
       {/* Treatment Hero */}
       <TreatmentHero

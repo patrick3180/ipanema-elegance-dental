@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import SEOHead from "@/components/SEOHead";
 import EnPageLayout from "@/components/en/EnPageLayout";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
 import StatsBar from "@/components/treatment/StatsBar";
@@ -37,36 +37,25 @@ const EnGumHealthPage = () => {
 
   return (
     <EnPageLayout>
-      <Helmet>
-        <title>Gum Health & Periodontics in Ipanema | Dr. Carla Christoph</title>
-        <meta name="description" content="Periodontal treatment in Ipanema with integrated care. Gingivitis, periodontitis, and gum recession. Dr. Carla Christoph, CRO-RJ 27.509." />
-        <link rel="canonical" href="https://dracarlachristoph.com/en/gum-health" />
-        <link rel="alternate" hrefLang="pt-BR" href="https://dracarlachristoph.com/saude-da-gengiva" />
-        <link rel="alternate" hrefLang="en" href="https://dracarlachristoph.com/en/gum-health" />
-        <link rel="alternate" hrefLang="x-default" href="https://dracarlachristoph.com/saude-da-gengiva" />
-        <meta property="og:title" content="Gum Health & Periodontics in Ipanema | Integrated Care" />
-        <meta property="og:description" content="Periodontal treatment with integrated follow-up by Dr. Carla Christoph in Ipanema." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dracarlachristoph.com/en/gum-health" />
-        <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:site_name" content="Dr. Carla Christoph - Dentist in Ipanema" />
-        <script type="application/ld+json">{JSON.stringify({ "@context": "https://schema.org", "@type": "MedicalProcedure", "name": "Periodontal Treatment (Gum Health)", "description": "Diagnosis and treatment of gum diseases with follow-up integrated into the comprehensive treatment plan", "procedureType": "Dental", "inLanguage": "en", "provider": { "@type": "Dentist", "name": "Dr. Carla Christoph", "telephone": "+5521993304045", "address": { "@type": "PostalAddress", "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107", "addressLocality": "Ipanema", "addressRegion": "RJ", "postalCode": "22410-002", "addressCountry": "BR" } } })}</script>
-        <script type="application/ld+json">{JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en", "mainEntity": faqs.map(faq => ({ "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": faq.answer } })) })}</script>
-      </Helmet>
-
-      {/* Speakable schema for voice search */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Gum Health & Periodontics in Ipanema",
-        "url": "https://dracarlachristoph.com/en/gum-health",
-        "speakable": {
-          "@type": "SpeakableSpecification",
-          "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"]
-        },
-        "inLanguage": "en"
-      }) }} />
+      <SEOHead
+        title="Gum Health & Periodontics in Ipanema | Dr. Carla Christoph"
+        description="Periodontal treatment in Ipanema with integrated care. Gingivitis, periodontitis, and gum recession. Dr. Carla Christoph, CRO-RJ 27.509."
+        canonicalUrl="https://dracarlachristoph.com/en/gum-health"
+        keywords="gum health Ipanema, periodontics Rio, gingivitis treatment, periodontitis dentist"
+        ogImage="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+        locale="en_US"
+        language="en"
+        hreflangAlternates={[
+          { lang: "pt-BR", href: "https://dracarlachristoph.com/saude-da-gengiva" },
+          { lang: "en", href: "https://dracarlachristoph.com/en/gum-health" },
+          { lang: "x-default", href: "https://dracarlachristoph.com/saude-da-gengiva" }
+        ]}
+        structuredData={{ "@context": "https://schema.org", "@type": "MedicalProcedure", "name": "Periodontal Treatment (Gum Health)", "description": "Diagnosis and treatment of gum diseases with follow-up integrated into the comprehensive treatment plan", "procedureType": "Dental", "inLanguage": "en", "provider": { "@type": "Dentist", "name": "Dr. Carla Christoph", "telephone": "+5521993304045", "address": { "@type": "PostalAddress", "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107", "addressLocality": "Ipanema", "addressRegion": "RJ", "postalCode": "22410-002", "addressCountry": "BR" } } }}
+        additionalStructuredData={[
+          { "@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en", "mainEntity": faqs.map(faq => ({ "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": faq.answer } })) },
+          { "@context": "https://schema.org", "@type": "WebPage", "name": "Gum Health & Periodontics in Ipanema", "url": "https://dracarlachristoph.com/en/gum-health", "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"] }, "inLanguage": "en" }
+        ]}
+      />
 
       <TreatmentHero
         locale="en"
