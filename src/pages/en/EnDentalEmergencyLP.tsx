@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { captureGCLID } from "@/utils/gclid";
-import { enCosmeticDentistryLPConfig } from "@/config/enCosmeticDentistryLPConfig";
+import { enDentalEmergencyLPConfig } from "@/config/enDentalEmergencyLPConfig";
 
 // Performance
 import LazySection from "@/components/performance/LazySection";
@@ -15,7 +15,6 @@ import EnLPHero from "@/components/en/lp/EnLPHero";
 // Below-the-fold (lazy)
 const EnLPProblem = lazy(() => import("@/components/en/lp/EnLPProblem"));
 const EnLPDoctorBio = lazy(() => import("@/components/en/lp/EnLPDoctorBio"));
-const EnLPServices = lazy(() => import("@/components/en/lp/EnLPServices"));
 const EnLPGuide = lazy(() => import("@/components/en/lp/EnLPGuide"));
 const EnLPMidCTA = lazy(() => import("@/components/en/lp/EnLPMidCTA"));
 const EnLPSocialProof = lazy(() => import("@/components/en/lp/EnLPSocialProof"));
@@ -35,8 +34,8 @@ const criticalStyles = `
   }
 `;
 
-const EnCosmeticDentistryLP: React.FC = () => {
-  const config = enCosmeticDentistryLPConfig;
+const EnDentalEmergencyLP: React.FC = () => {
+  const config = enDentalEmergencyLPConfig;
 
   useEffect(() => {
     captureGCLID();
@@ -47,7 +46,7 @@ const EnCosmeticDentistryLP: React.FC = () => {
         event: "page_view",
         page_title: config.seo.title,
         page_location: window.location.href,
-        page_path: "/en/lp/cosmetic-dentistry",
+        page_path: "/en/lp/dental-emergency",
         campaign: config.campaign,
         ad_group: config.messageMatch.adGroup,
         keyword: config.messageMatch.keyword,
@@ -75,7 +74,7 @@ const EnCosmeticDentistryLP: React.FC = () => {
 
         {/* OG */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dracarlachristoph.com/en/lp/cosmetic-dentistry" />
+        <meta property="og:url" content="https://dracarlachristoph.com/en/lp/dental-emergency" />
         <meta property="og:title" content={config.seo.title} />
         <meta property="og:description" content={config.seo.description} />
         <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
@@ -88,9 +87,9 @@ const EnCosmeticDentistryLP: React.FC = () => {
         <meta property="twitter:description" content={config.seo.description} />
 
         {/* Canonical */}
-        <link rel="canonical" href="https://dracarlachristoph.com/en/lp/cosmetic-dentistry" />
+        <link rel="canonical" href="https://dracarlachristoph.com/en/lp/dental-emergency" />
 
-        {/* Schema.org — @graph (Dentist + Service + FAQPage) */}
+        {/* Schema.org — @graph */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -100,7 +99,7 @@ const EnCosmeticDentistryLP: React.FC = () => {
                 "@id": "https://dracarlachristoph.com/#dentist",
                 "name": "Dr. Carla Christoph",
                 "description": config.seo.description,
-                "url": "https://dracarlachristoph.com/en/lp/cosmetic-dentistry",
+                "url": "https://dracarlachristoph.com/en/lp/dental-emergency",
                 "telephone": "+5521993304045",
                 "address": {
                   "@type": "PostalAddress",
@@ -115,21 +114,28 @@ const EnCosmeticDentistryLP: React.FC = () => {
                   "latitude": "-22.9866",
                   "longitude": "-43.2024"
                 },
-                "speciality": ["Prosthodontics", "Implant Dentistry", "Cosmetic Dentistry"],
+                "speciality": ["Prosthodontics", "Implant Dentistry"],
                 "availableLanguage": ["Portuguese", "English", "Spanish"],
-                "image": "https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+                "image": "https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp",
+                "openingHoursSpecification": {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                  "opens": "09:00",
+                  "closes": "18:00"
+                }
               },
               {
                 "@type": "WebPage",
-                "url": "https://dracarlachristoph.com/en/lp/cosmetic-dentistry",
-                "datePublished": "2026-04-08",
+                "url": "https://dracarlachristoph.com/en/lp/dental-emergency",
+                "datePublished": "2026-04-10",
                 "dateModified": "2026-04-10",
                 "inLanguage": "en"
               },
               {
-                "@type": "Service",
-                "name": "Cosmetic Dentistry",
-                "description": "Comprehensive cosmetic dentistry including porcelain veneers, teeth whitening, composite bonding, and digital smile planning in Ipanema, Rio de Janeiro.",
+                "@type": "MedicalProcedure",
+                "name": "Dental Emergency Care",
+                "description": "Urgent dental care for toothache, broken teeth, lost fillings, dental abscesses, and knocked-out teeth in Ipanema, Rio de Janeiro.",
+                "procedureType": "Dental",
                 "provider": {
                   "@id": "https://dracarlachristoph.com/#dentist"
                 },
@@ -137,7 +143,6 @@ const EnCosmeticDentistryLP: React.FC = () => {
                   "@type": "City",
                   "name": "Rio de Janeiro"
                 },
-                "serviceType": "Cosmetic Dentistry",
                 "inLanguage": "en"
               },
               {
@@ -180,7 +185,7 @@ const EnCosmeticDentistryLP: React.FC = () => {
 
           {/* === BELOW THE FOLD (lazy) === */}
 
-          {/* Problem / Pain Points */}
+          {/* Problem / What happened? */}
           <LazySection
             fallback={<div className="h-96 bg-white animate-pulse" />}
             threshold={0.05}
@@ -210,20 +215,7 @@ const EnCosmeticDentistryLP: React.FC = () => {
             </Suspense>
           </LazySection>
 
-          {/* Services Showcase */}
-          <LazySection
-            fallback={<div className="h-96 bg-white animate-pulse" />}
-            threshold={0.05}
-            rootMargin="200px"
-          >
-            <Suspense fallback={<div className="h-96 bg-white" />}>
-              <div className="animate-fade-in-up">
-                <EnLPServices />
-              </div>
-            </Suspense>
-          </LazySection>
-
-          {/* Guide / Treatment Steps */}
+          {/* Guide / What to Do Right Now */}
           <LazySection
             fallback={<div className="h-96 bg-dental-beige/40 animate-pulse" />}
             threshold={0.05}
@@ -331,4 +323,4 @@ const EnCosmeticDentistryLP: React.FC = () => {
   );
 };
 
-export default EnCosmeticDentistryLP;
+export default EnDentalEmergencyLP;

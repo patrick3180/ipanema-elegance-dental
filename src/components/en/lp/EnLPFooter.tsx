@@ -11,7 +11,7 @@ const EnLPFooter: React.FC = () => {
           Rua Visconde de Pirajá, 550 — Suite 1107, Ipanema, Rio de Janeiro, RJ 22410-002
         </p>
         <p className="text-white/30 text-[10px] mt-4">
-          © {new Date().getFullYear()} Dr. Carla Christoph. All rights reserved. RT: CROSP-RJ 27.509.
+          © {new Date().getFullYear()} Dr. Carla Christoph. All rights reserved. CRO-RJ 27.509.
         </p>
       </div>
     </footer>

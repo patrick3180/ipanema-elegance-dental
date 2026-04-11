@@ -24,6 +24,8 @@ export const enCosmeticDentistryLPConfig: LandingPageConfig = {
     "20+ years of cosmetic dentistry experience",
     "Digital smile planning with iTero 5D scanner",
     "Same dentist from start to finish",
+    "Minimum 1-hour appointments — no rushed procedures",
+    "Smile Test Drive — try your new smile before committing",
     "We reply in your language via WhatsApp"
   ],
 
@@ -52,9 +54,9 @@ export const enCosmeticDentistryLPConfig: LandingPageConfig = {
   socialProof: {
     title: "What Our Patients Say",
     testimonials: [
-      { name: "Marina P. — Ipanema", text: "I wanted to change my smile but didn't know if I needed veneers or whitening. Dr. Carla evaluated everything and recommended whitening plus 4 restorations. It turned out natural and beautiful. (translated from Portuguese)" },
-      { name: "Fernanda G. — Leblon", text: "I thought I needed veneers on all my teeth. During the assessment, she showed me that only 4 teeth needed treatment. I saved money and the result was perfectly harmonious. (translated from Portuguese)" },
-      { name: "Thiago R. — Copacabana", text: "The Smile Test Drive convinced me. I could see how it would look before making a decision. No surprises. (translated from Portuguese)" }
+      { name: "Gerald G. — United Kingdom", text: "Excellent dentist, very gentle, calm and will explain the process with you. The office space is very clean. I had my teeth cleaned, dental X-rays, 3 porcelain fillings and the outcome was brilliant. I had 2 sensitive teeth and she managed to rectify that for me." },
+      { name: "Haley H. — International Patient", text: "Amazing experience! Had pain and she completely resolved my problem and fixed a chipped tooth! My new tooth looks great. I am super happy with her services!" },
+      { name: "Marina P. — Ipanema", text: "I wanted to change my smile but didn't know if I needed veneers or whitening. Dr. Carla evaluated everything and recommended whitening plus 4 restorations. It turned out natural and beautiful. (translated from Portuguese)" }
     ],
     stats: [
       { number: "20+", label: "Years of Experience" },
@@ -80,7 +82,7 @@ export const enCosmeticDentistryLPConfig: LandingPageConfig = {
     title: "Ready to Improve Your Smile in Ipanema?",
     subtitle: "Send us a message on WhatsApp with a photo of your smile. Dr. Carla will personally review your case and respond — in your language.",
     buttonText: "Book Your Consultation",
-    urgency: "Limited availability for international patients — we reserve dedicated appointment blocks for cosmetic cases."
+    urgency: "Private practice in Ipanema — every patient is seen personally by Dr. Carla from consultation to follow-up."
   },
 
   contact: {

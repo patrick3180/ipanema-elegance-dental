@@ -48,6 +48,9 @@ const EnGumHealthPage = () => {
         <meta property="og:description" content="Periodontal treatment with integrated follow-up by Dr. Carla Christoph in Ipanema." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dracarlachristoph.com/en/gum-health" />
+        <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:site_name" content="Dr. Carla Christoph - Dentist in Ipanema" />
         <script type="application/ld+json">{JSON.stringify({ "@context": "https://schema.org", "@type": "MedicalProcedure", "name": "Periodontal Treatment (Gum Health)", "description": "Diagnosis and treatment of gum diseases with follow-up integrated into the comprehensive treatment plan", "procedureType": "Dental", "inLanguage": "en", "provider": { "@type": "Dentist", "name": "Dr. Carla Christoph", "telephone": "+5521993304045", "address": { "@type": "PostalAddress", "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107", "addressLocality": "Ipanema", "addressRegion": "RJ", "postalCode": "22410-002", "addressCountry": "BR" } } })}</script>
         <script type="application/ld+json">{JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en", "mainEntity": faqs.map(faq => ({ "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": faq.answer } })) })}</script>
       </Helmet>

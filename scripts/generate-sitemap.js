@@ -73,6 +73,25 @@ const servicePages = [
 // Landing pages removidas do sitemap — SEO focado em service pages
 // LPs são exclusivas para tráfego pago (Google Ads) e já possuem noindex
 
+// English micro-site pages (SEO-indexable, excluindo LPs noindex)
+const englishPages = [
+  { url: '/en', priority: '0.9', changefreq: 'weekly' },
+  { url: '/en/about', priority: '0.7', changefreq: 'monthly' },
+  { url: '/en/contact', priority: '0.7', changefreq: 'monthly' },
+  { url: '/en/dental-implants', priority: '0.9', changefreq: 'monthly' },
+  { url: '/en/veneers-and-lenses', priority: '0.9', changefreq: 'monthly' },
+  { url: '/en/general-dentistry', priority: '0.9', changefreq: 'monthly' },
+  { url: '/en/dental-emergency', priority: '0.9', changefreq: 'monthly' },
+  { url: '/en/dental-prosthetics', priority: '0.9', changefreq: 'monthly' },
+  { url: '/en/teeth-whitening', priority: '0.9', changefreq: 'monthly' },
+  { url: '/en/aesthetic-restorations', priority: '0.9', changefreq: 'monthly' },
+  { url: '/en/orthodontics', priority: '0.9', changefreq: 'monthly' },
+  { url: '/en/root-canal', priority: '0.9', changefreq: 'monthly' },
+  { url: '/en/gum-health', priority: '0.9', changefreq: 'monthly' },
+];
+// English LPs NÃO incluídas — possuem noindex, nofollow (Google Ads only)
+// /en/lp/cosmetic-dentistry, /en/lp/dental-implants, /en/lp/dental-emergency, /en/lp/general-consultation
+
 // Páginas legais (baixa prioridade)
 const legalPages = [
   { url: '/politica-de-privacidade', priority: '0.3', changefreq: 'yearly' },
@@ -117,6 +136,7 @@ async function generateSitemap() {
   const allUrls = [
     ...mainPages,
     ...servicePages,
+    ...englishPages,
     ...blogUrls,
     ...legalPages,
   ];
@@ -142,6 +162,7 @@ ${allUrls.map(page => `  <url>
   console.log(`📊 Statistics:`);
   console.log(`   - Main pages: ${mainPages.length}`);
   console.log(`   - Service pages: ${servicePages.length}`);
+  console.log(`   - English pages: ${englishPages.length}`);
   console.log(`   - Landing pages: 0 (removed from sitemap)`);
   console.log(`   - Blog posts: ${blogUrls.length}`);
   console.log(`   - Legal pages: ${legalPages.length}`);

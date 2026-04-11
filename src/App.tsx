@@ -71,6 +71,9 @@ const EnGumHealthPage = lazy(() => import("./pages/en/EnGumHealthPage"));
 
 // English landing pages (Google Ads)
 const EnCosmeticDentistryLP = lazy(() => import("./pages/en/EnCosmeticDentistryLP"));
+const EnDentalImplantsLP = lazy(() => import("./pages/en/EnDentalImplantsLP"));
+const EnDentalEmergencyLP = lazy(() => import("./pages/en/EnDentalEmergencyLP"));
+const EnGeneralConsultationLP = lazy(() => import("./pages/en/EnGeneralConsultationLP"));
 
 // Loading fallback component
 const PageLoadingFallback = () => (
@@ -197,6 +200,9 @@ const App = () => {
 
               {/* English landing pages (Google Ads — noindex) */}
               <Route path="/en/lp/cosmetic-dentistry" element={<EnCosmeticDentistryLP />} />
+              <Route path="/en/lp/dental-implants" element={<EnDentalImplantsLP />} />
+              <Route path="/en/lp/dental-emergency" element={<EnDentalEmergencyLP />} />
+              <Route path="/en/lp/general-consultation" element={<EnGeneralConsultationLP />} />
 
               <Route path="/diferenciais" element={<Navigate to="/" replace />} />
 

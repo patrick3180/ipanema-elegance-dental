@@ -48,6 +48,7 @@ const EnLPDoctorBio: React.FC = () => {
             <div className="flex flex-wrap gap-3 pt-2">
               {[
                 "Prosthodontics Specialist",
+                "Private Practice Only",
                 "20+ Years",
                 "Brazilian Navy",
                 "iTero 5D",

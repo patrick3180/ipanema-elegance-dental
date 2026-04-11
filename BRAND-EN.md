@@ -164,7 +164,7 @@ Before publishing any EN content, verify:
 - [ ] No banned words present (Section 4)
 - [ ] Canonical bio used correctly (Section 1)
 - [ ] Contextual phrase correct for the page (Section 1)
-- [ ] "Dra." used correctly, never "Dr." for Carla (Section 2)
+- [ ] "Dr." used correctly (English title), never "Dra." which is Portuguese-only (Section 2)
 - [ ] No prices mentioned anywhere (Section 7)
 - [ ] No before/after photos (Section 7)
 - [ ] No "free consultation" language (Section 7)

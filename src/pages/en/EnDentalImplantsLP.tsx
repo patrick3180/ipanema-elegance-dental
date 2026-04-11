@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { captureGCLID } from "@/utils/gclid";
-import { enCosmeticDentistryLPConfig } from "@/config/enCosmeticDentistryLPConfig";
+import { enDentalImplantsLPConfig } from "@/config/enDentalImplantsLPConfig";
 
 // Performance
 import LazySection from "@/components/performance/LazySection";
@@ -35,8 +35,8 @@ const criticalStyles = `
   }
 `;
 
-const EnCosmeticDentistryLP: React.FC = () => {
-  const config = enCosmeticDentistryLPConfig;
+const EnDentalImplantsLP: React.FC = () => {
+  const config = enDentalImplantsLPConfig;
 
   useEffect(() => {
     captureGCLID();
@@ -47,7 +47,7 @@ const EnCosmeticDentistryLP: React.FC = () => {
         event: "page_view",
         page_title: config.seo.title,
         page_location: window.location.href,
-        page_path: "/en/lp/cosmetic-dentistry",
+        page_path: "/en/lp/dental-implants",
         campaign: config.campaign,
         ad_group: config.messageMatch.adGroup,
         keyword: config.messageMatch.keyword,
@@ -75,7 +75,7 @@ const EnCosmeticDentistryLP: React.FC = () => {
 
         {/* OG */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dracarlachristoph.com/en/lp/cosmetic-dentistry" />
+        <meta property="og:url" content="https://dracarlachristoph.com/en/lp/dental-implants" />
         <meta property="og:title" content={config.seo.title} />
         <meta property="og:description" content={config.seo.description} />
         <meta property="og:image" content="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" />
@@ -88,9 +88,9 @@ const EnCosmeticDentistryLP: React.FC = () => {
         <meta property="twitter:description" content={config.seo.description} />
 
         {/* Canonical */}
-        <link rel="canonical" href="https://dracarlachristoph.com/en/lp/cosmetic-dentistry" />
+        <link rel="canonical" href="https://dracarlachristoph.com/en/lp/dental-implants" />
 
-        {/* Schema.org — @graph (Dentist + Service + FAQPage) */}
+        {/* Schema.org — @graph (Dentist + WebPage + Service + FAQPage) */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -100,7 +100,7 @@ const EnCosmeticDentistryLP: React.FC = () => {
                 "@id": "https://dracarlachristoph.com/#dentist",
                 "name": "Dr. Carla Christoph",
                 "description": config.seo.description,
-                "url": "https://dracarlachristoph.com/en/lp/cosmetic-dentistry",
+                "url": "https://dracarlachristoph.com/en/lp/dental-implants",
                 "telephone": "+5521993304045",
                 "address": {
                   "@type": "PostalAddress",
@@ -115,21 +115,22 @@ const EnCosmeticDentistryLP: React.FC = () => {
                   "latitude": "-22.9866",
                   "longitude": "-43.2024"
                 },
-                "speciality": ["Prosthodontics", "Implant Dentistry", "Cosmetic Dentistry"],
+                "speciality": ["Prosthodontics", "Implant Dentistry"],
                 "availableLanguage": ["Portuguese", "English", "Spanish"],
                 "image": "https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
               },
               {
                 "@type": "WebPage",
-                "url": "https://dracarlachristoph.com/en/lp/cosmetic-dentistry",
-                "datePublished": "2026-04-08",
+                "url": "https://dracarlachristoph.com/en/lp/dental-implants",
+                "datePublished": "2026-04-10",
                 "dateModified": "2026-04-10",
                 "inLanguage": "en"
               },
               {
-                "@type": "Service",
-                "name": "Cosmetic Dentistry",
-                "description": "Comprehensive cosmetic dentistry including porcelain veneers, teeth whitening, composite bonding, and digital smile planning in Ipanema, Rio de Janeiro.",
+                "@type": "MedicalProcedure",
+                "name": "Dental Implants",
+                "description": "Oral rehabilitation with biocompatible titanium implants and implant-supported prostheses. Single implants, bridges, All-on-4 protocols, and overdentures.",
+                "procedureType": "Dental",
                 "provider": {
                   "@id": "https://dracarlachristoph.com/#dentist"
                 },
@@ -137,7 +138,6 @@ const EnCosmeticDentistryLP: React.FC = () => {
                   "@type": "City",
                   "name": "Rio de Janeiro"
                 },
-                "serviceType": "Cosmetic Dentistry",
                 "inLanguage": "en"
               },
               {
@@ -206,19 +206,6 @@ const EnCosmeticDentistryLP: React.FC = () => {
             <Suspense fallback={<div className="h-64 bg-dental-beige/40" />}>
               <div className="animate-fade-in-up">
                 <EnLPDoctorBio />
-              </div>
-            </Suspense>
-          </LazySection>
-
-          {/* Services Showcase */}
-          <LazySection
-            fallback={<div className="h-96 bg-white animate-pulse" />}
-            threshold={0.05}
-            rootMargin="200px"
-          >
-            <Suspense fallback={<div className="h-96 bg-white" />}>
-              <div className="animate-fade-in-up">
-                <EnLPServices />
               </div>
             </Suspense>
           </LazySection>
@@ -331,4 +318,4 @@ const EnCosmeticDentistryLP: React.FC = () => {
   );
 };
 
-export default EnCosmeticDentistryLP;
+export default EnDentalImplantsLP;

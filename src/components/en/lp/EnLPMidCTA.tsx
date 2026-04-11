@@ -44,7 +44,7 @@ const EnLPMidCTA: React.FC<EnLPMidCTAProps> = ({
     <section className="py-10 bg-dental-purple">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <p className="text-white/80 text-sm mb-4">
-          Curious about what's possible? Send a photo on WhatsApp and we'll assess your case.
+          Wondering what your treatment plan could look like? Send a smile photo via WhatsApp — Dr. Carla will personally assess your case.
         </p>
         <Button
           onClick={handleWhatsAppClick}
@@ -55,7 +55,7 @@ const EnLPMidCTA: React.FC<EnLPMidCTAProps> = ({
           <ArrowRight size={16} className="ml-3" />
         </Button>
         <p className="text-white/40 text-xs mt-3">
-          We reply in your language • Response within minutes
+          Private practice in Ipanema • We reply in your language
         </p>
       </div>
     </section>
