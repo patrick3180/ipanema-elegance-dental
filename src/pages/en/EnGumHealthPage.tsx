@@ -55,6 +55,19 @@ const EnGumHealthPage = () => {
         <script type="application/ld+json">{JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en", "mainEntity": faqs.map(faq => ({ "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": faq.answer } })) })}</script>
       </Helmet>
 
+      {/* Speakable schema for voice search */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Gum Health & Periodontics in Ipanema",
+        "url": "https://dracarlachristoph.com/en/gum-health",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"]
+        },
+        "inLanguage": "en"
+      }) }} />
+
       <TreatmentHero
         locale="en"
         title="Gum Health in Ipanema"

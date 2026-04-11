@@ -202,6 +202,19 @@ const EnOrthodonticsPage = () => {
         </script>
       </Helmet>
 
+      {/* Speakable schema for voice search */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Modern Orthodontics in Ipanema",
+        "url": "https://dracarlachristoph.com/en/orthodontics",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"]
+        },
+        "inLanguage": "en"
+      }) }} />
+
       {/* Treatment Hero */}
       <TreatmentHero
         locale="en"

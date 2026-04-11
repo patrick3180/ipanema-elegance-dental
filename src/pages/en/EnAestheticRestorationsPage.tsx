@@ -95,6 +95,19 @@ const EnAestheticRestorationsPage = () => {
         </script>
       </Helmet>
 
+      {/* Speakable schema for voice search */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Aesthetic Dental Restorations in Ipanema",
+        "url": "https://dracarlachristoph.com/en/aesthetic-restorations",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"]
+        },
+        "inLanguage": "en"
+      }) }} />
+
       <TreatmentHero
         locale="en"
         title="Aesthetic Dental Restorations in Ipanema"

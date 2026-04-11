@@ -139,6 +139,18 @@ const EnDentalEmergencyPage = () => {
                     { lang: "x-default", href: "https://dracarlachristoph.com/emergencia-dental" },
                 ]}
             />
+            {/* Speakable schema for voice search */}
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              "name": "Dental Emergency in Ipanema",
+              "url": "https://dracarlachristoph.com/en/dental-emergency",
+              "speakable": {
+                "@type": "SpeakableSpecification",
+                "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"]
+              },
+              "inLanguage": "en"
+            }) }} />
             <EnPageLayout>
                 {/* Urgency Hero */}
                 <section className="section-spacing bg-gradient-to-br from-red-50/50 to-dental-beige pt-28">

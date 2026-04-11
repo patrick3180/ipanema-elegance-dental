@@ -130,6 +130,19 @@ const EnDentalProstheticsPage = () => {
         </script>
       </Helmet>
 
+      {/* Speakable schema for voice search */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Dental Prosthetics & Oral Rehabilitation in Ipanema",
+        "url": "https://dracarlachristoph.com/en/dental-prosthetics",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"]
+        },
+        "inLanguage": "en"
+      }) }} />
+
       <EnPageLayout>
         {/* Hero Section */}
         <TreatmentHero
