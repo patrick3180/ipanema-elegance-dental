@@ -459,6 +459,30 @@ const englishPages = {
     description: 'Porcelain veneers, contact lenses, and composite bonding in Ipanema. Smile Test Drive preview with iTero scanner. Dr. Carla Christoph, CRO-RJ 27.509.',
     h1: 'Veneers & Contact Lenses — Smile Test Drive',
     summary: 'Porcelain veneers, dental contact lenses, and composite bonding in Ipanema, Rio de Janeiro by Dr. Carla Christoph. Ultra-thin ceramic laminates (0.2-0.5mm) with minimal preparation. Exclusive Smile Test Drive digital preview with iTero 5D scanner. 15-20 year durability. CRO-RJ 27.509.'
+  },
+  '/en/orthodontics': {
+    title: 'Orthodontics in Ipanema | Dr. Bruno Neves & Dr. Carla Christoph, Rio de Janeiro',
+    description: 'Invisalign, ceramic braces, and traditional orthodontics in Ipanema. iTero 5D digital scanner for precise treatment planning. Dr. Bruno Neves & Dr. Carla Christoph.',
+    h1: 'Modern Orthodontics in Ipanema',
+    summary: 'Orthodontic treatment in Ipanema, Rio de Janeiro. Invisalign clear aligners, ceramic braces, and traditional braces with Dr. Bruno Moreira das Neves (orthodontist, PhD UERJ) and Dr. Carla Christoph. iTero Element 5D digital scanner for precise planning. 6-24 month treatment duration.'
+  },
+  '/en/root-canal': {
+    title: 'Root Canal Treatment in Ipanema | Dr. Carla Christoph, Rio de Janeiro',
+    description: 'Pain-free root canal treatment in Ipanema with modern techniques. Save your natural tooth with expert endodontic care. Dr. Carla Christoph, CRO-RJ 27.509.',
+    h1: 'Root Canal Treatment in Ipanema',
+    summary: 'Root canal treatment (endodontics) in Ipanema, Rio de Janeiro by Dr. Carla Christoph. Modern pain-free techniques with specialist endodontist. Save your natural tooth from extraction. Completed in 1-2 sessions. CRO-RJ 27.509.'
+  },
+  '/en/gum-health': {
+    title: 'Gum Health & Periodontics in Ipanema | Dr. Carla Christoph, Rio de Janeiro',
+    description: 'Periodontal treatment and gum health in Ipanema. Prevention and treatment of gingivitis and periodontitis. Dr. Carla Christoph, CRO-RJ 27.509.',
+    h1: 'Gum Health & Periodontal Treatment in Ipanema',
+    summary: 'Periodontal treatment and gum health in Ipanema, Rio de Janeiro by Dr. Carla Christoph. Diagnosis and treatment of gingivitis and periodontitis. Professional cleanings every 3-6 months. Integrated care with implant and prosthetic planning. CRO-RJ 27.509.'
+  },
+  '/en/aesthetic-restorations': {
+    title: 'Aesthetic Dental Restorations in Ipanema | Dr. Carla Christoph, Rio de Janeiro',
+    description: 'Aesthetic dental restorations in Ipanema. Tooth-colored fillings, composite bonding, inlays and onlays. Natural results. Dr. Carla Christoph, CRO-RJ 27.509.',
+    h1: 'Aesthetic Dental Restorations in Ipanema',
+    summary: 'Aesthetic dental restorations in Ipanema, Rio de Janeiro by Dr. Carla Christoph. Tooth-colored composite fillings with nano-particle technology, ceramic inlays/onlays, and amalgam replacement. Natural-looking results indistinguishable from natural teeth. 20+ years of experience, CRO-RJ 27.509.'
   }
 };
 
@@ -528,6 +552,18 @@ const landingPages = {
   '/en/lp/cosmetic-dentistry': {
     title: 'Cosmetic Dentistry in Ipanema | Dr. Carla Christoph, Rio de Janeiro',
     description: 'Porcelain veneers, composite bonding & smile makeovers in Ipanema. Personalized 1-hour appointments with Dr. Carla Christoph. CRO-RJ 27.509.',
+  },
+  '/en/lp/dental-implants': {
+    title: 'Dental Implants in Ipanema | Dr. Carla Christoph, Rio de Janeiro',
+    description: 'Dental implant placement with 3D digital planning in Ipanema. Biocompatible titanium implants, minimally invasive techniques. Dr. Carla Christoph, CRO-RJ 27.509.',
+  },
+  '/en/lp/dental-emergency': {
+    title: 'Dental Emergency in Ipanema | Dr. Carla Christoph, Rio de Janeiro',
+    description: 'Dental emergency in Ipanema? Toothache, broken tooth, lost filling — contact us via WhatsApp for same-day urgent dental care. Dr. Carla Christoph.',
+  },
+  '/en/lp/general-consultation': {
+    title: 'General Dental Consultation in Ipanema | Dr. Carla Christoph, Rio de Janeiro',
+    description: 'Book your first dental consultation in Ipanema. Comprehensive evaluation with 3D digital scanner. Personalized treatment plan. Dr. Carla Christoph, CRO-RJ 27.509.',
   },
 };
 
