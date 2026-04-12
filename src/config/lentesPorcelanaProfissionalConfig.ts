@@ -10,13 +10,13 @@ export const lentesPorcelanaProfissionalConfig: LandingPageConfig = {
 
   whatsapp: {
     number: '5521993304045',
-    message: 'Olá! Vi o site sobre lentes de porcelana e gostaria de agendar uma avaliação para renovar meu sorriso.'
+    message: 'Olá! Vi o site sobre lentes de porcelana e gostaria de agendar uma consulta para renovar meu sorriso.'
   },
 
   hero: {
     headline: 'Lentes de Porcelana em Ipanema — Resultado Natural que Dura mais de 15 Anos',
     subheadline: 'Porcelana de alta translucidez, planejamento digital com iTero Element 5D e Test Drive do Sorriso antes de começar. Dra. Carla Christoph, especialista com mais de 20 anos em estética dental.',
-    ctaText: 'Agendar Minha Avaliação',
+    ctaText: 'Agendar Minha Consulta',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
 
@@ -78,21 +78,21 @@ export const lentesPorcelanaProfissionalConfig: LandingPageConfig = {
 
   cta: {
     title: 'Quer Ver Como Seu Sorriso Pode Ficar?',
-    subtitle: 'Agende sua avaliação e faça o Test Drive do Sorriso antes de tomar qualquer decisão.',
-    buttonText: 'Agendar Avaliação com Test Drive',
-    urgency: 'Quem busca lentes já sabe o que quer mudar — a avaliação mostra como chegar lá com previsibilidade.'
+    subtitle: 'Agende sua consulta e faça o Test Drive do Sorriso antes de tomar qualquer decisão.',
+    buttonText: 'Agendar Consulta com Test Drive',
+    urgency: 'Quem busca lentes já sabe o que quer mudar — a consulta mostra como chegar lá com previsibilidade.'
   },
 
   contact: {
     whatsappNumber: '5521993304045',
-    whatsappMessage: 'Olá! Vi o site sobre lentes de porcelana e gostaria de agendar uma avaliação para renovar meu sorriso.',
+    whatsappMessage: 'Olá! Vi o site sobre lentes de porcelana e gostaria de agendar uma consulta para renovar meu sorriso.',
     doctorName: 'Dra. Carla Christoph',
     clinicName: 'Consultório Odontológico'
   },
 
   seo: {
     title: 'Lentes de Contato Dental Porcelana Ipanema | Estética do Sorriso',
-    description: 'Lentes de porcelana em Ipanema com resultado natural e duradouro. Planejamento digital com iTero Element 5D. Agende sua avaliação.',
+    description: 'Lentes de porcelana em Ipanema com resultado natural e duradouro. Planejamento digital com iTero Element 5D. Agende sua consulta.',
     keywords: [
       'lentes de contato dental porcelana ipanema',
       'facetas de porcelana ipanema',

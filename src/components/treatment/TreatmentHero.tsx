@@ -43,7 +43,7 @@ const TreatmentHero = ({
     const phone = "5521993304045";
     const message = isEn
       ? `Hello! I would like to schedule a consultation about ${title}.`
-      : `Olá! Gostaria de agendar uma consulta de avaliação sobre ${title}.`;
+      : `Olá! Gostaria de agendar uma consulta sobre ${title}.`;
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank", "noopener,noreferrer");
   };
@@ -142,10 +142,10 @@ const TreatmentHero = ({
                 onClick={handleWhatsAppClick}
                 className="bg-dental-purple hover:bg-dental-purple-dark text-white shadow-soft hover:shadow-hover transition-all duration-300 px-6 py-6 text-base"
                 size="lg"
-                aria-label={isEn ? "Schedule evaluation appointment via WhatsApp" : "Agendar consulta de avaliação pelo WhatsApp"}
+                aria-label={isEn ? "Schedule consultation via WhatsApp" : "Agendar consulta pelo WhatsApp"}
               >
                 <Calendar className="mr-2 h-5 w-5" />
-                {isEn ? "Book Your Evaluation" : "Agendar Consulta de Avaliação"}
+                {isEn ? "Book Your Consultation" : "Agendar Consulta"}
               </Button>
             </div>
           </div>

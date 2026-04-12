@@ -148,7 +148,7 @@ const Index = () => {
     <>
       <SEOHead
         title="Dentista em Ipanema | Clínica Odontológica Dra. Carla Christoph"
-        description="Procurando dentista em Ipanema? A Dra. Carla Christoph oferece odontologia estética e reabilitação oral com mínimo de 1 hora por consulta. Agende sua avaliação!"
+        description="Procurando dentista em Ipanema? A Dra. Carla Christoph oferece odontologia estética e reabilitação oral com mínimo de 1 hora por consulta. Agende sua consulta!"
         keywords="dentista Ipanema, clínica odontológica Ipanema, odontologia estética Ipanema, implantes dentários Ipanema, lentes de contato dental, facetas de porcelana, clareamento dental, prótese dentária, Dra. Carla Christoph, dentista especialista Rio de Janeiro"
         canonicalUrl="https://dracarlachristoph.com/"
         hreflangAlternates={[

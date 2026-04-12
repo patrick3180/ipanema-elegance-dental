@@ -147,6 +147,7 @@ Estrutura padrão para service pages completas (Lentes, Prótese, Clareamento, I
 - **Seção "Problema" deve ser específica** ao tratamento — não genérica
 - **Cada LP tem seu config file** em `src/config/`
 - **WhatsApp message pré-formatada** identifica a LP de origem
+- **WhatsApp message usa "consulta"**, nunca "avaliação" (ver `BRAND.md` Seção 5 — Regra Especial)
 - **GCLID é capturado** no `useEffect` da page (`captureGCLID()`)
 - **Tracking completo** em cada CTA (ver `TRACKING.md`)
 
@@ -237,6 +238,7 @@ Antes de publicar qualquer página nova ou atualização:
 - [ ] FAQ sem pergunta sobre preço
 - [ ] Depoimentos no formato correto (ver `BRAND.md` Seção 6)
 - [ ] CTA com WhatsApp + mensagem contextualizada
+- [ ] CTAs e mensagens WhatsApp usam "consulta", NÃO "avaliação" (ver `BRAND.md` Seção 5)
 
 ### SEO
 - [ ] `<title>` e `<meta description>` definidos

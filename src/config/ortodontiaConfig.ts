@@ -16,7 +16,7 @@ export const ortodontiaConfig: LandingPageConfig = {
   hero: {
     headline: 'Ortodontia Conduzida por Doutor em Ortodontia pela UERJ',
     subheadline: 'Dr. Bruno, Doutor em Ortodontia pela UERJ e Professor no IOPUC-Rio, planeja cada caso com escaneamento digital iTero Element 5D. Opções de alinhadores Invisalign, aparelho estético e convencional.',
-    ctaText: 'Agendar Minha Avaliação Ortodôntica',
+    ctaText: 'Agendar Minha Consulta Ortodôntica',
     backgroundImage: '/lovable-uploads/DrBruno_site.webp'
   },
 
@@ -71,7 +71,7 @@ export const ortodontiaConfig: LandingPageConfig = {
     questions: [
       { question: 'Quem é o ortodontista responsável?', answer: 'Dr. Bruno, Doutor em Ortodontia pela UERJ, Mestre em Clínica Odontológica pela UFF e Professor de Pós-Graduação em Ortodontia no IOPUC-Rio. Todo o tratamento é conduzido por ele, dentro do consultório da Dra. Carla Christoph.' },
       { question: 'Adulto pode usar aparelho ortodôntico?', answer: 'Sim. Não há limite de idade para ortodontia. O que importa é a condição dos dentes e do osso. Muitos dos nossos pacientes iniciam o tratamento após os 30 ou 40 anos.' },
-      { question: 'Invisalign funciona para casos complexos?', answer: 'Em muitos casos, sim. O Invisalign evoluiu e hoje trata desde casos simples até os mais complexos. A avaliação com iTero Element 5D define se é a melhor opção para o seu caso específico.' },
+      { question: 'Invisalign funciona para casos complexos?', answer: 'Em muitos casos, sim. O Invisalign evoluiu e hoje trata desde casos simples até os mais complexos. A análise com iTero Element 5D define se é a melhor opção para o seu caso específico.' },
       { question: 'O tratamento ortodôntico dói?', answer: 'É normal sentir pressão nos dentes nos primeiros dias após a instalação ou ajustes. A sensação é temporária e controlável com analgésicos simples. A maioria dos pacientes se adapta rapidamente.' },
       { question: 'Quanto tempo dura o tratamento?', answer: 'Varia conforme a complexidade. Casos simples podem levar de 6 a 12 meses; casos mais complexos, de 18 a 30 meses. O planejamento digital permite estimar a duração com mais precisão.' },
       { question: 'Preciso usar contenção depois?', answer: 'Sim. A contenção é parte essencial do tratamento — é o que mantém os dentes na posição corrigida. Pode ser fixa (colada atrás dos dentes) ou removível, dependendo do caso.' }
@@ -80,8 +80,8 @@ export const ortodontiaConfig: LandingPageConfig = {
 
   cta: {
     title: 'Quer Saber Qual Tratamento Ortodôntico é Indicado para Você?',
-    subtitle: 'Na avaliação, o Dr. Bruno analisa seu caso com escaneamento digital iTero Element 5D e apresenta as opções mais adequadas.',
-    buttonText: 'Agendar Minha Avaliação',
+    subtitle: 'Na consulta, o Dr. Bruno analisa seu caso com escaneamento digital iTero Element 5D e apresenta as opções mais adequadas.',
+    buttonText: 'Agendar Minha Consulta',
     urgency: 'Ortodontia é viável em qualquer idade — e o planejamento digital permite prever o resultado antes de começar.'
   },
 

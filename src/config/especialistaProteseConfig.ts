@@ -71,15 +71,15 @@ export const especialistaProteseConfig: LandingPageConfig = {
     questions: [
       { question: 'Qual a diferença entre um dentista generalista e uma especialista em prótese?', answer: 'A especialista tem formação avançada em reabilitação oral — planejamento de casos complexos, domínio de materiais e técnicas específicas. Isso faz diferença principalmente em casos com múltiplas ausências ou desgaste severo.' },
       { question: 'Quanto tempo dura uma prótese bem feita?', answer: 'Com materiais adequados, técnica precisa e acompanhamento regular, uma prótese fixa em porcelana pode durar 15 a 20 anos ou mais. A longevidade depende também dos cuidados do paciente.' },
-      { question: 'Prótese fixa ou removível — como saber qual é melhor para mim?', answer: 'Depende da condição dos dentes remanescentes, da quantidade de osso disponível e do caso como um todo. A avaliação clínica e os exames definem a indicação. A Dra. Carla apresenta as opções com prós e contras de cada uma.' },
-      { question: 'É possível trocar uma prótese antiga por uma nova?', answer: 'Sim. Próteses antigas podem ser substituídas por soluções mais modernas, com melhor estética e função. A avaliação determina o que é viável para o seu caso.' },
+      { question: 'Prótese fixa ou removível — como saber qual é melhor para mim?', answer: 'Depende da condição dos dentes remanescentes, da quantidade de osso disponível e do caso como um todo. A análise clínica e os exames definem a indicação. A Dra. Carla apresenta as opções com prós e contras de cada uma.' },
+      { question: 'É possível trocar uma prótese antiga por uma nova?', answer: 'Sim. Próteses antigas podem ser substituídas por soluções mais modernas, com melhor estética e função. A análise determina o que é viável para o seu caso.' },
       { question: 'Vocês atendem convênios?', answer: 'Nosso atendimento é particular, o que nos permite dedicar o tempo necessário ao planejamento e trabalhar com materiais selecionados. Na consulta, apresentamos o plano completo com valores transparentes.' }
     ]
   },
 
   cta: {
     title: 'Seu Caso Merece Atenção Especializada',
-    subtitle: 'Agende sua consulta de planejamento. A avaliação detalhada é o primeiro passo para um tratamento seguro e bem conduzido.',
+    subtitle: 'Agende sua consulta de planejamento. A análise detalhada é o primeiro passo para um tratamento seguro e bem conduzido.',
     buttonText: 'Agendar Minha Consulta',
     urgency: 'Espaços sem dentes causam movimentação dos dentes vizinhos — quanto antes a reposição, mais simples tende a ser.'
   },

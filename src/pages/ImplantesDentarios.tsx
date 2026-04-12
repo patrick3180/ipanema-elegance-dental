@@ -66,7 +66,7 @@ const ImplantesDentarios = () => {
 
     // Open WhatsApp
     const phone = "5521993304045";
-    const message = "Olá! Vi a página sobre implantes dentários e gostaria de agendar uma avaliação com a Dra. Carla Christoph.";
+    const message = "Olá! Vi a página sobre implantes dentários e gostaria de agendar uma consulta com a Dra. Carla Christoph.";
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
@@ -151,8 +151,8 @@ const ImplantesDentarios = () => {
               { "@type": "Question", "name": "Existe rejeição de implantes?", "acceptedAnswer": { "@type": "Answer", "text": "O titânio é biocompatível e não causa rejeição imunológica. Falhas ocorrem por infecção, sobrecarga precoce, tabagismo ou higiene inadequada, não por rejeição. Taxa de sucesso é superior a 95% quando protocolos são seguidos." } },
               { "@type": "Question", "name": "Posso fazer se tiver pouco osso?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Técnicas de enxerto ósseo (autógeno, biomaterial) ou levantamento de seio maxilar podem aumentar volume ósseo. Implantes curtos ou angulados também são alternativas. Os exames de imagem permitem planejar a melhor solução para cada caso." } },
               { "@type": "Question", "name": "Qual a diferença entre implante e prótese?", "acceptedAnswer": { "@type": "Answer", "text": "O implante é o pino de titânio fixado no osso (substitui a raiz). A prótese é a parte visível (coroa, ponte ou dentadura) que se conecta ao implante. O conjunto completo restaura função e estética." } },
-              { "@type": "Question", "name": "Fumantes podem fazer implantes?", "acceptedAnswer": { "@type": "Answer", "text": "Sim, mas o tabagismo reduz a taxa de sucesso (de 95% para aproximadamente 85%) por prejudicar cicatrização e osseointegração. Recomendamos parar de fumar pelo menos 2 semanas antes da cirurgia e durante a cicatrização. Avaliação individual é essencial." } },
-              { "@type": "Question", "name": "Diabéticos podem colocar implantes?", "acceptedAnswer": { "@type": "Answer", "text": "Sim, desde que o diabetes esteja controlado (hemoglobina glicada abaixo de 7%). Avaliação médica prévia é importante. O controle glicêmico adequado garante cicatrização normal e taxa de sucesso equivalente a não-diabéticos." } },
+              { "@type": "Question", "name": "Fumantes podem fazer implantes?", "acceptedAnswer": { "@type": "Answer", "text": "Sim, mas o tabagismo reduz a taxa de sucesso (de 95% para aproximadamente 85%) por prejudicar cicatrização e osseointegração. Recomendamos parar de fumar pelo menos 2 semanas antes da cirurgia e durante a cicatrização. Análise individual é essencial." } },
+              { "@type": "Question", "name": "Diabéticos podem colocar implantes?", "acceptedAnswer": { "@type": "Answer", "text": "Sim, desde que o diabetes esteja controlado (hemoglobina glicada abaixo de 7%). Análise médica prévia é importante. O controle glicêmico adequado garante cicatrização normal e taxa de sucesso equivalente a não-diabéticos." } },
               { "@type": "Question", "name": "Vocês atendem convênios odontológicos?", "acceptedAnswer": { "@type": "Answer", "text": "Nosso atendimento é particular, o que nos permite dedicar o tempo necessário a cada paciente e utilizar somente materiais de primeira linha. Na primeira consulta, apresentamos um orçamento detalhado e transparente." } }
             ]
           })}
@@ -450,7 +450,7 @@ const ImplantesDentarios = () => {
               onClick={handleWhatsAppClick}
               className="inline-flex items-center justify-center px-8 py-4 bg-dental-gold hover:bg-dental-gold/90 text-white font-semibold rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
             >
-              Agendar Avaliação
+              Agendar Consulta
               <ArrowRight size={20} className="ml-2" />
             </button>
           </div>
@@ -534,7 +534,7 @@ const ImplantesDentarios = () => {
               steps={[
                 {
                   number: "1",
-                  title: "Avaliação e Solicitação de Exames",
+                  title: "Consulta Inicial e Solicitação de Exames",
                   description: "Exame clínico completo, digitalização das arcadas com scanner oral 3D, estudo de caso detalhado e solicitação de exames de imagem para planejamento preciso do seu tratamento.",
                   icon: <Scan className="w-6 h-6" />,
                   duration: "1 consulta"
@@ -609,8 +609,8 @@ const ImplantesDentarios = () => {
               { question: "Existe rejeição de implantes?", answer: "O titânio é biocompatível e não causa rejeição imunológica. Falhas ocorrem por infecção, sobrecarga precoce, tabagismo ou higiene inadequada, não por rejeição. Taxa de sucesso é superior a 95% quando protocolos são seguidos." },
               { question: "Posso fazer se tiver pouco osso?", answer: "Sim. Técnicas de enxerto ósseo (autógeno, biomaterial) ou levantamento de seio maxilar podem aumentar volume ósseo. Implantes curtos ou angulados também são alternativas. Os exames de imagem permitem planejar a melhor solução para cada caso." },
               { question: "Qual a diferença entre implante e prótese?", answer: "O implante é o pino de titânio fixado no osso (substitui a raiz). A prótese é a parte visível (coroa, ponte ou dentadura) que se conecta ao implante. O conjunto completo restaura função e estética." },
-              { question: "Fumantes podem fazer implantes?", answer: "Sim, mas o tabagismo reduz a taxa de sucesso (de 95% para aproximadamente 85%) por prejudicar cicatrização e osseointegração. Recomendamos parar de fumar pelo menos 2 semanas antes da cirurgia e durante a cicatrização. Avaliação individual é essencial." },
-              { question: "Diabéticos podem colocar implantes?", answer: "Sim, desde que o diabetes esteja controlado (hemoglobina glicada abaixo de 7%). Avaliação médica prévia é importante. O controle glicêmico adequado garante cicatrização normal e taxa de sucesso equivalente a não-diabéticos." },
+              { question: "Fumantes podem fazer implantes?", answer: "Sim, mas o tabagismo reduz a taxa de sucesso (de 95% para aproximadamente 85%) por prejudicar cicatrização e osseointegração. Recomendamos parar de fumar pelo menos 2 semanas antes da cirurgia e durante a cicatrização. Análise individual é essencial." },
+              { question: "Diabéticos podem colocar implantes?", answer: "Sim, desde que o diabetes esteja controlado (hemoglobina glicada abaixo de 7%). Análise médica prévia é importante. O controle glicêmico adequado garante cicatrização normal e taxa de sucesso equivalente a não-diabéticos." },
               { question: "Vocês atendem convênios odontológicos?", answer: "Nosso atendimento é particular, o que nos permite dedicar o tempo necessário a cada paciente e utilizar somente materiais de primeira linha. Na primeira consulta, apresentamos um orçamento detalhado e transparente." }
             ]}
           />
@@ -618,9 +618,9 @@ const ImplantesDentarios = () => {
 
         <FinalServiceCTA 
           title="Pronto para Recuperar seu Sorriso?"
-          description="Agende sua consulta de avaliação e planejamento digital. Vamos avaliar seu caso de forma personalizada e apresentar as melhores soluções para sua necessidade."
-          ctaText="Agendar Avaliação"
-          whatsappMessage="Olá! Vi a página sobre implantes dentários e gostaria de agendar uma avaliação com a Dra. Carla Christoph."
+          description="Agende sua consulta e planejamento digital. Vamos avaliar seu caso de forma personalizada e apresentar as melhores soluções para sua necessidade."
+          ctaText="Agendar Consulta"
+          whatsappMessage="Olá! Vi a página sobre implantes dentários e gostaria de agendar uma consulta com a Dra. Carla Christoph."
           onClickOverride={handleWhatsAppClick}
           icon={<Smile className="w-8 h-8" />}
           variant="primary"

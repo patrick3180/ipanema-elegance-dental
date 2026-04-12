@@ -269,7 +269,7 @@ const ClareamentoLandingPage: React.FC = () => {
               <ConsultaInicialMidCTA
                 whatsappNumber={pageConfig.whatsapp.number}
                 whatsappMessage={pageConfig.whatsapp.message}
-                ctaLabel="Agendar Minha Avaliação de Clareamento"
+                ctaLabel="Agendar Minha Consulta de Clareamento"
                 eventLabel="Mid CTA Button - Clareamento"
                 webhookSource="mid_cta_button_clareamento"
               />

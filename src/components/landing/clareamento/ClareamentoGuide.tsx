@@ -25,7 +25,7 @@ const ClareamentoGuide: React.FC<ClareamentoGuideProps> = ({
     consultorio: [
       {
         number: "1",
-        title: "Avaliação Personalizada",
+        title: "Consulta Personalizada",
         description: "Análise completa do seu caso, histórico e expectativas para definir a melhor abordagem de clareamento"
       },
       {

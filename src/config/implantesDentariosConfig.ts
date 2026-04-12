@@ -43,7 +43,7 @@ export const implantesDentariosConfig: LandingPageConfig = {
     title: 'Como a Dra. Carla Christoph Planeja Seu Tratamento com Implantes',
     subtitle: 'Especialista em Implantodontia — CRO-RJ 27.509. Do diagnóstico à prótese final, todo o tratamento com a mesma profissional.',
     steps: [
-      { number: '1', title: 'Consulta e Tomografia', description: 'Avaliação clínica detalhada e tomografia computadorizada para mapear a estrutura óssea com precisão.' },
+      { number: '1', title: 'Consulta e Tomografia', description: 'Análise clínica detalhada e tomografia computadorizada para mapear a estrutura óssea com precisão.' },
       { number: '2', title: 'Planejamento Digital do Caso', description: 'Definição da posição, angulação e tipo de implante mais adequado — tudo planejado antes da cirurgia.' },
       { number: '3', title: 'Cirurgia de Instalação', description: 'Procedimento com anestesia local, de forma tranquila. Na maioria dos casos, o pós é mais simples do que se imagina.' },
       { number: '4', title: 'Cicatrização e Integração', description: 'O implante se integra ao osso ao longo de alguns meses. Durante esse período, você pode usar uma prótese provisória.' },
@@ -74,7 +74,7 @@ export const implantesDentariosConfig: LandingPageConfig = {
       { question: 'Quanto tempo leva do início ao dente definitivo?', answer: 'O tempo total varia de 3 a 8 meses, dependendo da necessidade de enxerto ósseo e da região. Durante esse período, você não fica sem dente — usamos provisórios enquanto o implante se integra ao osso.' },
       { question: 'Existe idade máxima para colocar implante?', answer: 'Não existe limite de idade. O que avaliamos é a saúde geral e a qualidade óssea do paciente. Pessoas com 70, 80 anos fazem implantes com sucesso rotineiramente.' },
       { question: 'Implante ou prótese removível — qual é melhor?', answer: 'O implante é fixo, preserva o osso, não machuca a gengiva e permite mastigar normalmente. A prótese removível é uma alternativa quando o implante não é possível, mas tem limitações funcionais e de conforto.' },
-      { question: 'Preciso fazer enxerto ósseo antes do implante?', answer: 'Depende do volume de osso disponível. A avaliação com tomografia e planejamento digital mostra exatamente se há necessidade. Quando necessário, o enxerto é feito antes ou junto com o implante.' }
+      { question: 'Preciso fazer enxerto ósseo antes do implante?', answer: 'Depende do volume de osso disponível. A análise com tomografia e planejamento digital mostra exatamente se há necessidade. Quando necessário, o enxerto é feito antes ou junto com o implante.' }
     ]
   },
   

@@ -269,7 +269,7 @@ const FacetasResinaDiretaLandingPage = () => {
               <ConsultaInicialMidCTA
                 whatsappNumber={pageConfig.whatsapp.number}
                 whatsappMessage={pageConfig.whatsapp.message}
-                ctaLabel="Agendar Minha Avaliação de Facetas"
+                ctaLabel="Agendar Minha Consulta de Facetas"
                 eventLabel="Mid CTA Button - Facetas Resina"
                 webhookSource="mid_cta_button_facetas"
               />

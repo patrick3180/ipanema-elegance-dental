@@ -64,7 +64,7 @@ const TratamentoDeCanal = () => {
 
     // Open WhatsApp
     const phone = "5521993304045";
-    const message = "Olá! Vi a página sobre tratamento de canal e gostaria de agendar uma avaliação com a Dra. Carla Christoph.";
+    const message = "Olá! Vi a página sobre tratamento de canal e gostaria de agendar uma consulta com a Dra. Carla Christoph.";
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
@@ -212,7 +212,7 @@ const TratamentoDeCanal = () => {
                 borderColor: "border-dental-purple-soft"
               }
             ]}
-            conclusion={<>O tratamento de canal moderno é muito mais confortável do que se imagina.<br className="hidden md:block" /> Dê o primeiro passo: agende sua avaliação.</>}
+            conclusion={<>O tratamento de canal moderno é muito mais confortável do que se imagina.<br className="hidden md:block" /> Dê o primeiro passo: agende sua consulta.</>}
           />
         </ScrollReveal>
 
@@ -276,12 +276,12 @@ const TratamentoDeCanal = () => {
                 Está com um desses sintomas?
               </p>
               <a
-                href="https://wa.me/5521993304045?text=Olá!%20Estou%20com%20sintomas%20que%20podem%20indicar%20necessidade%20de%20tratamento%20de%20canal.%20Gostaria%20de%20agendar%20uma%20avaliação%20de%20urgência."
+                href="https://wa.me/5521993304045?text=Olá!%20Estou%20com%20sintomas%20que%20podem%20indicar%20necessidade%20de%20tratamento%20de%20canal.%20Gostaria%20de%20agendar%20uma%20consulta%20de%20urgência."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
               >
-                Agendar Avaliação de Urgência
+                Agendar Consulta de Urgência
                 <ArrowRight size={20} className="ml-2" />
               </a>
             </div>
@@ -322,7 +322,7 @@ const TratamentoDeCanal = () => {
                     {
                       number: 1,
                       title: "Diagnóstico com a Dra. Carla",
-                      description: "Exame clínico, radiografia e avaliação do caso. A Dra. Carla identifica o problema e explica o que precisa ser feito.",
+                      description: "Exame clínico, radiografia e análise do caso. A Dra. Carla identifica o problema e explica o que precisa ser feito.",
                       icon: <Search size={24} />,
                       duration: "1ª Consulta"
                     },
@@ -388,9 +388,9 @@ const TratamentoDeCanal = () => {
         <FinalServiceCTA
           icon={<Shield className="w-8 h-8" />}
           title="Dor de Dente Precisa de Atenção"
-          description="Agende sua avaliação. Quanto antes o diagnóstico, mais simples tende a ser o tratamento."
-          ctaText="Agendar Avaliação"
-          whatsappMessage="Olá! Vi a página sobre tratamento de canal e gostaria de agendar uma avaliação com a Dra. Carla Christoph."
+          description="Agende sua consulta. Quanto antes o diagnóstico, mais simples tende a ser o tratamento."
+          ctaText="Agendar Consulta"
+          whatsappMessage="Olá! Vi a página sobre tratamento de canal e gostaria de agendar uma consulta com a Dra. Carla Christoph."
           onClickOverride={handleWhatsAppClick}
         />
         <InternalLinkingOptimizer currentPage="tratamento-de-canal" />

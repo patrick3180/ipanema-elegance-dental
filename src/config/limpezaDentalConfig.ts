@@ -46,7 +46,7 @@ export const limpezaDentalConfig: LandingPageConfig = {
     steps: [
       {
         number: "1",
-        title: "Avaliação",
+        title: "Análise",
         description: "Exame da condição dos dentes e gengiva. Identificação de áreas de acúmulo e verificação geral."
       },
       {

@@ -19,7 +19,7 @@ export const InternalLinkingOptimizer: React.FC<InternalLinkingOptimizerProps> =
     'implantes-dentarios': [
       { title: 'Prótese Dentária', url: '/protese-dentaria', description: 'Coroas e próteses fixas sobre implante' },
       { title: 'Saúde da Gengiva', url: '/saude-da-gengiva', description: 'Base essencial para o sucesso do implante' },
-      { title: 'Clínica Geral e Prevenção', url: '/clinica-geral-e-prevencao', description: 'Avaliação e cuidados preventivos' },
+      { title: 'Clínica Geral e Prevenção', url: '/clinica-geral-e-prevencao', description: 'Consulta e cuidados preventivos' },
     ],
     'clareamento-dental': [
       { title: 'Lentes de Contato Dental e Facetas', url: '/lentes-de-contato-dental-e-facetas', description: 'Estética completa com lentes de porcelana' },

@@ -813,9 +813,9 @@ const RestaureacoesEsteticas = () => {
       <FinalServiceCTA 
         title="Recupere a Saúde e a Beleza do Seu Sorriso"
         description="Restaurações estéticas que unem precisão técnica, resinas compostas nanoparticuladas e resultado natural."
-        ctaText="Agendar Avaliação pelo WhatsApp"
-        whatsappMessage="Olá! Vi a página sobre restaurações estéticas e gostaria de agendar uma avaliação com a Dra. Carla Christoph."
-        onClickOverride={() => handleWhatsAppClick("Olá! Vi a página sobre restaurações estéticas e gostaria de agendar uma avaliação com a Dra. Carla Christoph.")}
+        ctaText="Agendar Consulta pelo WhatsApp"
+        whatsappMessage="Olá! Vi a página sobre restaurações estéticas e gostaria de agendar uma consulta com a Dra. Carla Christoph."
+        onClickOverride={() => handleWhatsAppClick("Olá! Vi a página sobre restaurações estéticas e gostaria de agendar uma consulta com a Dra. Carla Christoph.")}
       />
 
       <StatsBar />

@@ -21,7 +21,7 @@ import CriticalCSSOptimizer from '@/components/performance/CriticalCSSOptimizer'
 import { InternalLinkingOptimizer } from '@/components/seo/InternalLinkingOptimizer';
 
 const faqs = [
-  { question: "Gengiva que sangra ao escovar é normal?", answer: "Não. Sangramento gengival é sinal de inflamação, mesmo que não doa. Pode ser gengivite (reversível) ou periodontite (mais avançada). Vale procurar avaliação para identificar a causa e tratar antes que progrida." },
+  { question: "Gengiva que sangra ao escovar é normal?", answer: "Não. Sangramento gengival é sinal de inflamação, mesmo que não doa. Pode ser gengivite (reversível) ou periodontite (mais avançada). Vale procurar um profissional para identificar a causa e tratar antes que progrida." },
   { question: "Periodontite tem cura?", answer: "Periodontite é controlável, mas não é 'curável' no sentido de desaparecer sozinha. Com tratamento adequado e manutenção periódica, é possível estabilizar a doença e evitar que progrida. A disciplina nas consultas de manutenção é fundamental." },
   { question: "Posso fazer lentes ou implantes se tenho problema gengival?", answer: "Primeiro é necessário tratar a gengiva. Lentes, facetas e implantes exigem uma base gengival saudável para funcionar bem e durar. A Dra. Carla integra o tratamento periodontal ao planejamento do caso — um passo de cada vez." },
   { question: "Retração gengival tem tratamento?", answer: "Depende da causa e da extensão. Em alguns casos, procedimentos de enxerto gengival podem cobrir a raiz exposta. Em outros, o objetivo é estabilizar a situação e evitar que progrida. A avaliação clínica define a melhor abordagem." },
@@ -38,7 +38,7 @@ const SaudeDaGengiva = () => {
     if (window.gtag) { window.gtag('event', 'conversion', { 'send_to': 'AW-16894364517/OQZvCMXV0foZEOqP7vY9', 'event_callback': function () { console.log('Google Ads conversion tracked - Gengiva Service Page'); } }); }
     await sendGCLIDToWebhook('gengiva_service_page_cta');
     const phone = "5521993304045";
-    const message = "Olá! Vi a página sobre saúde da gengiva e gostaria de agendar uma avaliação periodontal com a Dra. Carla Christoph.";
+    const message = "Olá! Vi a página sobre saúde da gengiva e gostaria de agendar uma consulta periodontal com a Dra. Carla Christoph.";
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
@@ -132,7 +132,7 @@ const SaudeDaGengiva = () => {
               <h2 className="heading-lg mb-4 text-center text-dental-purple">Como Cuidamos da Saúde da Sua Gengiva</h2>
               <div className="max-w-4xl mx-auto">
                 <ProcessTimeline steps={[
-                  { number: 1, title: "Avaliação com a Dra. Carla", description: "Exame clínico detalhado da gengiva, sondagem periodontal e radiografias quando necessário. Identificação do estágio do problema.", icon: <Search size={24} />, duration: "1ª Consulta" },
+                  { number: 1, title: "Consulta com a Dra. Carla", description: "Exame clínico detalhado da gengiva, sondagem periodontal e radiografias quando necessário. Identificação do estágio do problema.", icon: <Search size={24} />, duration: "1ª Consulta" },
                   { number: 2, title: "Tratamento Periodontal", description: "Limpeza profunda (raspagem), tratamento com periodontista especializado quando indicado. Controle da infecção e inflamação.", icon: <Shield size={24} />, duration: "1-4 sessões" },
                   { number: 3, title: "Reavaliação", description: "Após o tratamento, a Dra. Carla reavalia a resposta da gengiva e define os próximos passos — manutenção, tratamentos complementares ou encaminhamento para procedimentos estéticos.", icon: <CheckCircle size={24} />, duration: "30-45 dias" },
                   { number: 4, title: "Manutenção Periódica", description: "A doença periodontal é controlável, mas exige acompanhamento. Consultas regulares de manutenção previnem recidivas e mantêm a saúde gengival.", icon: <Heart size={24} />, duration: "A cada 3-6 meses" }
@@ -157,7 +157,7 @@ const SaudeDaGengiva = () => {
         <SectionDivider variant="with-icon" icon={<HelpCircle size={20} />} />
         <ScrollReveal animation="fade-up"><ServiceFAQ title="Dúvidas sobre Saúde da Gengiva" faqs={faqs} /></ScrollReveal>
 
-        <FinalServiceCTA icon={<Heart className="w-8 h-8" />} title="Cuide da Base do Seu Sorriso" description="Agende sua avaliação periodontal. Tratamento precoce faz toda a diferença." ctaText="Agendar Avaliação" whatsappMessage="Olá! Vi a página sobre saúde da gengiva e gostaria de agendar uma avaliação periodontal com a Dra. Carla Christoph." onClickOverride={handleWhatsAppClick} />
+        <FinalServiceCTA icon={<Heart className="w-8 h-8" />} title="Cuide da Base do Seu Sorriso" description="Agende sua consulta periodontal. Tratamento precoce faz toda a diferença." ctaText="Agendar Consulta" whatsappMessage="Olá! Vi a página sobre saúde da gengiva e gostaria de agendar uma consulta periodontal com a Dra. Carla Christoph." onClickOverride={handleWhatsAppClick} />
         <InternalLinkingOptimizer currentPage="saude-da-gengiva" />
         <StatsBar />
       </PageLayout>

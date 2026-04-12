@@ -49,7 +49,7 @@ const BlogCTA: React.FC<BlogCTAProps> = ({
         Tem dúvidas sobre o que leu?
       </p>
       <p className="text-dental-gray mb-6 max-w-lg mx-auto">
-        Agende uma consulta de avaliação e tire suas dúvidas diretamente com a Dra. Carla Christoph.
+        Agende uma consulta e tire suas dúvidas diretamente com a Dra. Carla Christoph.
       </p>
       <button
         onClick={handleWhatsAppClick}

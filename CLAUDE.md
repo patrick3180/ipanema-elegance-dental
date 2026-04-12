@@ -51,11 +51,38 @@ Estas **jamais** devem aparecer em conteúdo do site:
 | "100% natural" | "natural ao ponto de passar despercebido" |
 | "atendimento personalizado" | "mínimo de 1 hora por consulta" |
 | "materiais de alta qualidade" | nomear o material real |
-| "agende agora" / "não perca" | "agende sua avaliação pelo WhatsApp" |
+| "agende agora" / "não perca" | "agende sua consulta pelo WhatsApp" |
+| "avaliação" (em CTAs e agendamento) | "consulta" — ver regra de disambiguação abaixo |
 
 **Princípio**: Se uma frase poderia ser usada por qualquer dentista do Brasil, ela é genérica demais.
 
-### 1.3 Atribuição de Tratamentos — Quem Faz o Quê
+### 1.3 Disambiguação: "Avaliação" vs. "Consulta"
+
+> ⚠️ **REGRA INVIOLÁVEL — Abril 2026**
+
+A palavra **"avaliação"** causa confusão real: pacientes chegam ao consultório acreditando que a primeira visita é **gratuita**. Isso acontece porque "avaliação" tem dois significados no ecossistema:
+
+| Contexto | Significado Real | Custo |
+|----------|-----------------|-------|
+| "Agende sua avaliação" (CTA) | Consulta inicial completa (exame + limpeza + plano) | R$ 600 (NÃO mencionar no site) |
+| "Avaliação periodontal" (clínico) | Análise diagnóstica dentro de um procedimento | Incluso ou gratuito para pacientes ativos |
+
+**Regras:**
+- ✅ **"Consulta"** — usar em CTAs, botões, mensagens WhatsApp, convites para agendamento
+- ✅ **"Avaliação"** — usar APENAS em contexto técnico/diagnóstico (ex: "avaliação periodontal", "avaliação tomográfica", "avaliação do caso")
+- ❌ **NUNCA** usar "avaliação" quando o significado real é "consulta com custo"
+- ❌ **NUNCA** usar "avaliação gratuita", "avaliação sem compromisso"
+
+**Exemplos:**
+| ❌ Errado | ✅ Correto |
+|-----------|------------|
+| "Agende sua avaliação" | "Agende sua consulta" |
+| "Avaliação completa" (CTA) | "Consulta completa" |
+| "Marcar avaliação" (WhatsApp) | "Marcar consulta" / "agendar consulta" |
+| "Avaliação periodontal" (clínico) | ✅ Manter — é técnico |
+| "Avaliação Google" (review) | ✅ Manter — é outro contexto |
+
+### 1.4 Atribuição de Tratamentos — Quem Faz o Quê
 
 **CRÍTICO:** A Dra. Carla NÃO faz canal nem periodontia. Nunca afirmar que ela faz.
 
@@ -74,7 +101,7 @@ Estas **jamais** devem aparecer em conteúdo do site:
 - Dr. Bruno = **"Dr. Bruno"** (sem sobrenome "Christoph" — ele NÃO é da família)
 - Dr. Bruno = Doutor em Ortodontia pela UERJ, Professor IOPUC-Rio
 
-### 1.4 Tracking — Regras de Segurança
+### 1.5 Tracking — Regras de Segurança
 - GTM **só carrega** via `index.html` — nunca em componentes React
 - GCLID usa **localStorage** — nunca sessionStorage
 - Toda ação de WhatsApp DEVE: disparar `dataLayer.push` + `gtag conversion` + `sendGCLIDToWebhook()`
@@ -440,6 +467,7 @@ Estas decisões já foram tomadas e aprovadas:
 | GCLID em localStorage | sessionStorage causava perda de dados |
 | Scanner = "iTero Element 5D" | Nome correto e diferenciador |
 | Sem "consulta sem compromisso" | Posicionamento premium/particular |
+| "Avaliação" → "Consulta" em CTAs | Pacientes confundiam com serviço gratuito (Auditoria Abril/2026) |
 
 ---
 
@@ -513,6 +541,7 @@ Estas decisões já foram tomadas e aprovadas:
 □ Atribuição de tratamentos está correta (Dra. Carla vs. parceiros)
 □ Dr. Bruno = "Dr. Bruno" (sem Christoph)
 □ Novo CTA tem: dataLayer.push + gtag + sendGCLIDToWebhook
+□ Nenhum CTA usa "avaliação" — usar "consulta" (ver Seção 1.3)
 □ Testei visualmente se mexi no CSS global
 □ Meta tags e Schema.org estão presentes se criei página nova
 □ noindex/nofollow se for landing page

@@ -42,8 +42,8 @@ export const clareamentoConfig: LandingPageConfig = {
     title: 'Como a Dra. Carla Christoph Conduz o Clareamento',
     subtitle: 'Protocolo individualizado — CRO-RJ 27.509. Cada caso tem sua indicação específica.',
     steps: [
-      { number: '1', title: 'Avaliação e Diagnóstico', description: 'Análise da causa do escurecimento, condição dos dentes e gengiva. Definição do protocolo mais adequado para o seu caso.' },
-      { number: '2', title: 'Preparação Cuidadosa', description: 'Proteção dos tecidos gengivais e avaliação da sensibilidade para garantir segurança e conforto durante o procedimento.' },
+      { number: '1', title: 'Consulta e Diagnóstico', description: 'Análise da causa do escurecimento, condição dos dentes e gengiva. Definição do protocolo mais adequado para o seu caso.' },
+      { number: '2', title: 'Preparação Cuidadosa', description: 'Proteção dos tecidos gengivais e análise da sensibilidade para garantir segurança e conforto durante o procedimento.' },
       { number: '3', title: 'Aplicação Profissional', description: 'Clareamento de consultório (sessão de 45-60 min) ou moldeiras para clareamento caseiro supervisionado — depende do caso. Utilizamos somente géis clareadores de primeira linha.' },
       { number: '4', title: 'Acompanhamento dos Resultados', description: 'Monitoramento do progresso e orientações para manutenção. A cor estabiliza ao longo de 2 semanas após o término.' }
     ]
@@ -78,8 +78,8 @@ export const clareamentoConfig: LandingPageConfig = {
 
   cta: {
     title: 'Quer Saber Qual Clareamento é Indicado para Você?',
-    subtitle: 'O clareamento é um dos tratamentos mais simples da odontologia estética. Uma avaliação inicial mostra qual protocolo é indicado para a cor e o tipo dos seus dentes.',
-    buttonText: 'Agendar Minha Avaliação',
+    subtitle: 'O clareamento é um dos tratamentos mais simples da odontologia estética. Uma consulta inicial mostra qual protocolo é indicado para a cor e o tipo dos seus dentes.',
+    buttonText: 'Agendar Minha Consulta',
     urgency: 'O escurecimento dental tende a avançar com o tempo — quanto antes o tratamento, mais natural o resultado.'
   },
 
@@ -92,7 +92,7 @@ export const clareamentoConfig: LandingPageConfig = {
 
   seo: {
     title: "Clareamento Dental em Ipanema | Resultado Natural - Dra. Carla Christoph",
-    description: "Clareamento dental seguro e eficaz em Ipanema. Técnicas de consultório e caseiro supervisionado com a Dra. Carla Christoph. Agende sua avaliação.",
+    description: "Clareamento dental seguro e eficaz em Ipanema. Técnicas de consultório e caseiro supervisionado com a Dra. Carla Christoph. Agende sua consulta.",
     keywords: ["clareamento dental", "clareamento dental ipanema", "dentista ipanema", "clareamento dental rio de janeiro", "clareamento dental particular"]
   },
 

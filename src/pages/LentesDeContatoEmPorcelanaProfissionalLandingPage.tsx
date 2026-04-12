@@ -166,7 +166,7 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
             "description": "Estética dental com lentes de contato de porcelana ultrafinas",
             "procedureType": "Estética Dental",
             "bodyLocation": "Dentes",
-            "preparation": "Consulta de avaliação e planejamento digital do sorriso",
+            "preparation": "Consulta inicial e planejamento digital do sorriso",
             "followup": "Acompanhamento pós-procedimento para garantir adaptação",
             "howPerformed": "Aplicação de lentes de porcelana ultrafinas cimentadas aos dentes",
             "status": "Accepted",

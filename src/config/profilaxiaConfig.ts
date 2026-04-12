@@ -15,14 +15,14 @@ export const profilaxiaConfig: LandingPageConfig = {
 
   hero: {
     headline: "Profilaxia Dental em Ipanema — Prevenção que Funciona",
-    subheadline: "Limpeza profissional completa com avaliação detalhada. Prevenir é mais simples, mais rápido e custa menos do que tratar.",
+    subheadline: "Limpeza profissional completa com análise detalhada. Prevenir é mais simples, mais rápido e custa menos do que tratar.",
     ctaText: "Agendar Minha Profilaxia",
     backgroundImage: "/lovable-uploads/vertical-de-jaleco.webp"
   },
 
   benefits: [
     "Limpeza completa com ultrassom",
-    "Avaliação preventiva incluída",
+    "Análise preventiva incluída",
     "WhatsApp 24h",
     "20+ anos de experiência"
   ],
@@ -42,12 +42,12 @@ export const profilaxiaConfig: LandingPageConfig = {
 
   guide: {
     title: "O Que Inclui a Profilaxia",
-    subtitle: "Mais do que uma limpeza — uma avaliação preventiva completa.",
+    subtitle: "Mais do que uma limpeza — uma análise preventiva completa.",
     steps: [
       {
         number: "1",
         title: "Exame Clínico",
-        description: "Avaliação de dentes, gengiva e mucosa. Identificação de problemas em estágio inicial — cáries, gengivite, desgaste."
+        description: "Análise de dentes, gengiva e mucosa. Identificação de problemas em estágio inicial — cáries, gengivite, desgaste."
       },
       {
         number: "2",
@@ -108,7 +108,7 @@ export const profilaxiaConfig: LandingPageConfig = {
       },
       {
         question: "Vocês atendem convênios?",
-        answer: "Nosso atendimento é particular, o que nos permite dedicar tempo à avaliação completa, não apenas à limpeza."
+        answer: "Nosso atendimento é particular, o que nos permite dedicar tempo à análise completa, não apenas à limpeza."
       }
     ]
   },

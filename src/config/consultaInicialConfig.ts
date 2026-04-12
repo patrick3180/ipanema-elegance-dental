@@ -10,7 +10,7 @@ export const consultaInicialConfig: LandingPageConfig = {
 
   whatsapp: {
     number: "5521993304045",
-    message: "Olá! Vi sobre a consulta odontológica personalizada e gostaria de agendar minha avaliação com a Dra. Carla Christoph."
+    message: "Olá! Vi sobre a consulta odontológica personalizada e gostaria de agendar minha consulta com a Dra. Carla Christoph."
   },
 
   hero: {
@@ -78,14 +78,14 @@ export const consultaInicialConfig: LandingPageConfig = {
 
   cta: {
     title: "Pronto para uma Consulta Diferente?",
-    subtitle: "Agende sua avaliação e descubra como é ser atendido com tempo, atenção e transparência.",
+    subtitle: "Agende sua consulta e descubra como é ser atendido com tempo, atenção e transparência.",
     buttonText: "Agendar Minha Consulta",
     urgency: 'Pequenos problemas detectados cedo evitam tratamentos complexos.'
   },
 
   contact: {
     whatsappNumber: "5521993304045",
-    whatsappMessage: "Olá! Vi sobre a consulta odontológica personalizada e gostaria de agendar minha avaliação com a Dra. Carla Christoph.",
+    whatsappMessage: "Olá! Vi sobre a consulta odontológica personalizada e gostaria de agendar minha consulta com a Dra. Carla Christoph.",
     doctorName: "Dra. Carla Christoph",
     clinicName: "Clínica Dra. Carla Christoph"
   },

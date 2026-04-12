@@ -111,11 +111,11 @@ const LentesEFacetas = () => {
     },
     {
       question: "Preciso fazer em todos os dentes?",
-      answer: "Não necessariamente. Muitos casos envolvem apenas os dentes anteriores superiores (4 a 10 dentes). Na avaliação, analiso seu sorriso para determinar quantos dentes precisam ser incluídos para um resultado harmonioso. O planejamento é individualizado para cada pessoa."
+      answer: "Não necessariamente. Muitos casos envolvem apenas os dentes anteriores superiores (4 a 10 dentes). Na consulta, analiso seu sorriso para determinar quantos dentes precisam ser incluídos para um resultado harmonioso. O planejamento é individualizado para cada pessoa."
     },
     {
       question: "Qual o investimento para lentes de contato dental e facetas em Ipanema?",
-      answer: "O investimento varia conforme o número de dentes tratados, complexidade do caso e tipo de material escolhido. Lentes de contato dental requerem maior investimento devido ao material cerâmico importado e durabilidade superior (15-20 anos). Facetas de resina oferecem excelente custo-benefício para quem busca resultado imediato com investimento mais acessível. Oferecemos planos de pagamento facilitados. O valor reflete toda a experiência, tecnologia avançada e acompanhamento personalizado. Consulte valores detalhados na avaliação."
+      answer: "O investimento varia conforme o número de dentes tratados, complexidade do caso e tipo de material escolhido. Lentes de contato dental requerem maior investimento devido ao material cerâmico importado e durabilidade superior (15-20 anos). Facetas de resina oferecem excelente custo-benefício para quem busca resultado imediato com investimento mais acessível. Oferecemos planos de pagamento facilitados. O valor reflete toda a experiência, tecnologia avançada e acompanhamento personalizado. Consulte valores detalhados na consulta."
     },
     {
       question: "Lentes podem manchar com café, vinho ou cigarro?",
@@ -123,7 +123,7 @@ const LentesEFacetas = () => {
     },
     {
       question: "Como é a manutenção das lentes e facetas?",
-      answer: "Lentes de cerâmica: Higiene oral normal (escova, fio dental, enxaguante), evitar morder objetos duros (canetas, unhas, gelo), uso de placa miorrelaxante se você range os dentes à noite. Retornos semestrais para avaliação e polimento profissional. Facetas de resina: Mesmos cuidados, porém requerem polimento profissional a cada 6 meses para manter o brilho. Ambas podem durar muitos anos com os cuidados adequados."
+      answer: "Lentes de cerâmica: Higiene oral normal (escova, fio dental, enxaguante), evitar morder objetos duros (canetas, unhas, gelo), uso de placa miorrelaxante se você range os dentes à noite. Retornos semestrais para acompanhamento e polimento profissional. Facetas de resina: Mesmos cuidados, porém requerem polimento profissional a cada 6 meses para manter o brilho. Ambas podem durar muitos anos com os cuidados adequados."
     },
     {
       question: "Como funciona a consulta de planejamento?",
@@ -188,7 +188,7 @@ const LentesEFacetas = () => {
               "@type": "Offer",
               "priceCurrency": "BRL",
               "availability": "https://schema.org/InStock",
-              "description": "Consulte valores personalizados na avaliação"
+              "description": "Consulte valores personalizados na consulta"
             }
           })}
         </script>
@@ -1301,7 +1301,7 @@ const LentesEFacetas = () => {
             <ProcessTimeline steps={[
               {
                 number: "1",
-                title: "Avaliação Completa e Planejamento Digital",
+                title: "Consulta Inicial e Planejamento Digital",
                 description: "Consulta inicial com análise facial completa e fotográfica. iTero Element 5D: moldagem digital sem massa, sem desconforto. Avaliação da saúde bucal e periodontal. Estudo das proporções ideais para harmonização facial. Apresentação do plano de tratamento personalizado.",
                 icon: <Search className="w-6 h-6" />
               },
@@ -1326,7 +1326,7 @@ const LentesEFacetas = () => {
               {
                 number: "5",
                 title: "Cimentação e Finalização",
-                description: "Prova final e ajustes necessários. Cimentação adesiva de alta precisão (lentes) ou finalização (facetas). Polimento e acabamento impecável. Orientações de cuidados e higienização. Agendamento do retorno para avaliação.",
+                description: "Prova final e ajustes necessários. Cimentação adesiva de alta precisão (lentes) ou finalização (facetas). Polimento e acabamento impecável. Orientações de cuidados e higienização. Agendamento do retorno para acompanhamento.",
                 icon: <CheckCircle className="w-6 h-6" />
               }
             ]} />
@@ -1377,8 +1377,8 @@ const LentesEFacetas = () => {
         {/* CTA Final */}
         <FinalServiceCTA
           title="Ver se Lentes São Indicadas para o Seu Caso"
-          description="Na consulta de avaliação, analisamos seu caso com iTero Element 5D, realizamos um checkup completo da saúde bucal e apresentamos as possibilidades — lentes, facetas ou outros tratamentos mais adequados."
-          whatsappMessage="Olá! Vi a página sobre Lentes e Facetas e gostaria de agendar uma avaliação."
+          description="Na consulta, analisamos seu caso com iTero Element 5D, realizamos um checkup completo da saúde bucal e apresentamos as possibilidades — lentes, facetas ou outros tratamentos mais adequados."
+          whatsappMessage="Olá! Vi a página sobre Lentes e Facetas e gostaria de agendar uma consulta."
         />
         <StatsBar />
         <InternalLinkingOptimizer currentPage="lentes-de-contato-dental-e-facetas" />

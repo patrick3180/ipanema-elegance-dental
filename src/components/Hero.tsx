@@ -30,7 +30,7 @@ const Hero = () => {
     await sendGCLIDToWebhook('hero_button');
 
     const phoneNumber = "5521993304045";
-    const message = "Olá! Vi o site e gostaria de agendar uma avaliação.";
+    const message = "Olá! Vi o site e gostaria de agendar uma consulta.";
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
   };

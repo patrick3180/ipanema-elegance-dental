@@ -45,7 +45,7 @@ const Ortodontia = () => {
     }
     await sendGCLIDToWebhook('ortodontia_service_page_cta');
     const phone = "5521993304045";
-    const message = "Olá! Gostaria de agendar uma avaliação ortodôntica com o Dr. Bruno.";
+    const message = "Olá! Gostaria de agendar uma consulta ortodôntica com o Dr. Bruno.";
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
@@ -114,7 +114,7 @@ const Ortodontia = () => {
     },
     {
       question: "Qual a idade ideal para começar o tratamento ortodôntico?",
-      answer: "A primeira avaliação ortodôntica é recomendada aos 7 anos para identificar problemas precocemente. Para aparelho fixo, a idade ideal é entre 11-14 anos. Adultos de qualquer idade podem fazer ortodontia - temos pacientes acima de 60 anos."
+      answer: "A primeira consulta ortodôntica é recomendada aos 7 anos para identificar problemas precocemente. Para aparelho fixo, a idade ideal é entre 11-14 anos. Adultos de qualquer idade podem fazer ortodontia - temos pacientes acima de 60 anos."
     },
     {
       question: "O tratamento ortodôntico dói?",
@@ -146,7 +146,7 @@ const Ortodontia = () => {
     },
     {
       question: "Qual o investimento para o tratamento ortodôntico?",
-      answer: "O investimento varia conforme o tipo de aparelho e complexidade do caso. Oferecemos planos de pagamento facilitados e condições especiais. Fazemos o orçamento personalizado na avaliação."
+      answer: "O investimento varia conforme o tipo de aparelho e complexidade do caso. Oferecemos planos de pagamento facilitados e condições especiais. Fazemos o orçamento personalizado na consulta."
     },
     {
       question: "Posso trocar de aparelho fixo para Invisalign® durante o tratamento?",
@@ -184,7 +184,7 @@ const Ortodontia = () => {
             "bodyLocation": "Teeth and Jaw",
             "followup": "Consultas mensais e contenção pós-tratamento",
             "howPerformed": "Aparelhos fixos, estéticos ou alinhadores removíveis Invisalign com planejamento digital",
-            "preparation": "Avaliação clínica, radiografias e escaneamento com iTero Element 5D",
+            "preparation": "Análise clínica, radiografias e escaneamento com iTero Element 5D",
             "provider": [
               {
                 "@type": "Dentist",
@@ -412,9 +412,9 @@ const Ortodontia = () => {
         {/* Final CTA */}
         <FinalServiceCTA 
           title="Pronto para Conquistar o Sorriso dos Seus Sonhos?"
-          description="Agende sua avaliação com o Dr. Bruno e descubra como a ortodontia moderna pode alinhar seus dentes. iTero Element 5D, Invisalign e atenção exclusiva lhe aguardam."
-          ctaText="Agendar Avaliação pelo WhatsApp"
-          whatsappMessage="Olá! Gostaria de agendar uma avaliação ortodôntica com o Dr. Bruno."
+          description="Agende sua consulta com o Dr. Bruno e descubra como a ortodontia moderna pode alinhar seus dentes. iTero Element 5D, Invisalign e atenção exclusiva lhe aguardam."
+          ctaText="Agendar Consulta pelo WhatsApp"
+          whatsappMessage="Olá! Gostaria de agendar uma consulta ortodôntica com o Dr. Bruno."
           onClickOverride={handleWhatsAppClick}
           icon={<Calendar className="w-8 h-8" />}
           variant="urgency"

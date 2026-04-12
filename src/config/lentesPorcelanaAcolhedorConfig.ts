@@ -78,9 +78,9 @@ export const lentesPorcelanaAcolhedorConfig: LandingPageConfig = {
 
   cta: {
     title: 'Cada Lente é Planejada Individualmente',
-    subtitle: 'Nem todos os casos se beneficiam de lentes. Na avaliação, vemos se é a melhor opção para o seu sorriso.',
-    buttonText: 'Agendar Minha Avaliação',
-    urgency: 'Quem busca lentes já sabe o que quer mudar — a avaliação mostra como chegar lá com previsibilidade.'
+    subtitle: 'Nem todos os casos se beneficiam de lentes. Na consulta, vemos se é a melhor opção para o seu sorriso.',
+    buttonText: 'Agendar Minha Consulta',
+    urgency: 'Quem busca lentes já sabe o que quer mudar — a consulta mostra como chegar lá com previsibilidade.'
   },
 
   contact: {

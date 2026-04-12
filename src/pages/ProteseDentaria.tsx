@@ -27,7 +27,7 @@ const ProteseDentaria = () => {
 
   const handleWhatsAppClick = (message?: string) => {
     const phone = "5521993304045";
-    const defaultMessage = "Olá! Gostaria de agendar uma consulta de avaliação para prótese dentária com a Dra. Carla Christoph.";
+    const defaultMessage = "Olá! Gostaria de agendar uma consulta para prótese dentária com a Dra. Carla Christoph.";
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message || defaultMessage)}`;
     window.open(url, "_blank", "noopener,noreferrer");
   };
@@ -36,7 +36,7 @@ const ProteseDentaria = () => {
   const faqs = [
     {
       question: "Qual tipo de prótese é melhor para meu caso?",
-      answer: "Cada caso é único e requer avaliação individualizada. A escolha depende de fatores como quantidade de dentes perdidos, condição óssea, saúde gengival, expectativas estéticas e estilo de vida. Durante a consulta de planejamento, analisamos todos esses aspectos para indicar a solução ideal para você."
+      answer: "Cada caso é único e requer análise individualizada. A escolha depende de fatores como quantidade de dentes perdidos, condição óssea, saúde gengival, expectativas estéticas e estilo de vida. Durante a consulta de planejamento, analisamos todos esses aspectos para indicar a solução ideal para você."
     },
     {
       question: "Quanto tempo dura uma prótese bem feita?",
@@ -64,11 +64,11 @@ const ProteseDentaria = () => {
     },
     {
       question: "É possível fazer prótese com pouco osso?",
-      answer: "Sim! Para próteses convencionais (não sobre implante), a quantidade óssea não é limitante. Para próteses sobre implante, técnicas como enxerto ósseo ou implantes zigomáticos podem viabilizar o tratamento mesmo com pouco osso. Uma avaliação tomográfica determina as possibilidades."
+      answer: "Sim! Para próteses convencionais (não sobre implante), a quantidade óssea não é limitante. Para próteses sobre implante, técnicas como enxerto ósseo ou implantes zigomáticos podem viabilizar o tratamento mesmo com pouco osso. Uma análise tomográfica determina as possibilidades."
     },
     {
       question: "Quando trocar uma prótese antiga?",
-      answer: "Sinais de que é hora de trocar: desgaste visível, mudança de cor, infiltrações, desadaptação, desconforto ao mastigar ou problemas gengivais ao redor da prótese. Uma avaliação profissional pode determinar o momento ideal para substituição."
+      answer: "Sinais de que é hora de trocar: desgaste visível, mudança de cor, infiltrações, desadaptação, desconforto ao mastigar ou problemas gengivais ao redor da prótese. Uma análise profissional pode determinar o momento ideal para substituição."
     },
     {
       question: "O procedimento é doloroso?",
@@ -132,7 +132,7 @@ const ProteseDentaria = () => {
                 "name": "Qual tipo de prótese é melhor para meu caso?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Cada caso é único e requer avaliação individualizada. A escolha depende de fatores como quantidade de dentes perdidos, condição óssea, saúde gengival, expectativas estéticas e estilo de vida."
+                  "text": "Cada caso é único e requer análise individualizada. A escolha depende de fatores como quantidade de dentes perdidos, condição óssea, saúde gengival, expectativas estéticas e estilo de vida."
                 }
               },
               {
@@ -295,7 +295,7 @@ const ProteseDentaria = () => {
               onClick={() => handleWhatsAppClick('Olá! Vi a página sobre prótese dentária e gostaria de saber qual tipo de prótese é indicado para o meu caso.')}
               className="inline-flex items-center justify-center px-8 py-4 bg-dental-gold hover:bg-dental-gold/90 text-white font-semibold rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
             >
-              Agendar Avaliação
+              Agendar Consulta
               <ArrowRight size={20} className="ml-2" />
             </button>
           </div>
@@ -754,9 +754,9 @@ const ProteseDentaria = () => {
         <FinalServiceCTA 
           title="Recuperar Função e Estética com Prótese Dentária"
           description="Na consulta de planejamento, analisamos seu caso e definimos o tipo de prótese mais adequado — fixa, removível ou sobre implantes. A prótese dentária devolve função mastigatória completa e pode melhorar significativamente sua qualidade de vida."
-          ctaText="Agendar Avaliação pelo WhatsApp"
-          whatsappMessage="Olá! Vi a página sobre prótese dentária e gostaria de agendar uma avaliação com a Dra. Carla Christoph"
-          onClickOverride={() => handleWhatsAppClick('Olá! Vi a página sobre prótese dentária e gostaria de agendar uma avaliação com a Dra. Carla Christoph')}
+          ctaText="Agendar Consulta pelo WhatsApp"
+          whatsappMessage="Olá! Vi a página sobre prótese dentária e gostaria de agendar uma consulta com a Dra. Carla Christoph"
+          onClickOverride={() => handleWhatsAppClick('Olá! Vi a página sobre prótese dentária e gostaria de agendar uma consulta com a Dra. Carla Christoph')}
         />
         <StatsBar />
         <InternalLinkingOptimizer currentPage="protese-dentaria" />

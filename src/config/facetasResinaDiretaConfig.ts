@@ -16,7 +16,7 @@ export const facetasResinaDiretaConfig: LandingPageConfig = {
   hero: {
     headline: 'Insatisfação com o Sorriso? Facetas de Resina em Ipanema — Resultado no Mesmo Dia',
     subheadline: 'Facetas esculpidas diretamente no dente pela Dra. Carla Christoph. Você acompanha e aprova cada etapa antes de finalizar — sem pressa e sem surpresas.',
-    ctaText: 'Agendar Minha Avaliação de Facetas',
+    ctaText: 'Agendar Minha Consulta de Facetas',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
 
@@ -45,7 +45,7 @@ export const facetasResinaDiretaConfig: LandingPageConfig = {
     subtitle: 'Do primeiro contato ao sorriso pronto — cada etapa pensada para sua segurança e satisfação.',
     steps: [
       { number: '1', title: 'Conversa Inicial', description: 'Mande uma mensagem no WhatsApp. Nós iremos entender o que te incomoda, tirar suas dúvidas e agendar um horário para você.' },
-      { number: '2', title: 'Avaliação e Planejamento', description: 'Na consulta, a Dra. Carla examina seus dentes, ouve com atenção o que você deseja e explica o que é possível alcançar com as facetas de resina no seu caso — com total transparência.' },
+      { number: '2', title: 'Consulta e Planejamento', description: 'Na consulta, a Dra. Carla examina seus dentes, ouve com atenção o que você deseja e explica o que é possível alcançar com as facetas de resina no seu caso — com total transparência.' },
       { number: '3', title: 'Test Drive do Sorriso', description: 'Caso tenha dúvidas sobre o resultado, a Dra. Carla pode aplicar uma resina removível para que você visualize e aprove o resultado final antes de colocar a resina definitiva.' },
       { number: '4', title: 'Escultura com Aprovação em Tempo Real', description: 'As facetas são esculpidas dente a dente, diretamente na sua boca. Você acompanha cada etapa e aprova o resultado antes de finalizar.' },
       { number: '5', title: 'Acabamento e Polimento', description: 'A sessão termina com acabamento de alta precisão e polimento com brilho natural. Você sai no mesmo dia com o sorriso pronto e orientações claras de cuidados.' }
@@ -74,7 +74,7 @@ export const facetasResinaDiretaConfig: LandingPageConfig = {
       { question: 'A resina mancha com o tempo?', answer: 'Resinas de alta performance, como as que utilizamos, têm alta resistência a manchas. No entanto, cuidados com alimentos muito pigmentados e o polimento anual são importantes para manter a cor estável por mais tempo.' },
       { question: 'Qual a principal diferença para a porcelana?', answer: 'A resina é uma solução mais rápida (feita em 1 dia) e com um investimento mais acessível. A porcelana, feita em laboratório, oferece maior durabilidade (15+ anos) e resistência total a manchas, sendo um investimento a longo prazo.' },
       { question: 'Como saberei como ficará o resultado final?', answer: 'Antes de qualquer trabalho definitivo, a Dra. Carla pode aplicar uma resina removível para que você visualize e aprove o resultado. Uma vez que esteja tudo aprovado, ela faz o trabalho com a resina definitiva, de alta performance. Você vê na prática, na própria boca, como ficará o sorriso antes dele ser feito.' },
-      { question: 'Quanto custa fazer facetas de resina?', answer: 'O valor depende do número de dentes e do planejamento estético para o seu caso. As facetas de resina têm um investimento significativamente mais acessível que as de porcelana, com resultado igualmente harmonioso para a maioria das situações. Na avaliação inicial, apresentamos o investimento completo com valores claros — você decide no seu tempo.' },
+      { question: 'Quanto custa fazer facetas de resina?', answer: 'O valor depende do número de dentes e do planejamento estético para o seu caso. As facetas de resina têm um investimento significativamente mais acessível que as de porcelana, com resultado igualmente harmonioso para a maioria das situações. Na consulta inicial, apresentamos o investimento completo com valores claros — você decide no seu tempo.' },
       { question: 'Como funciona o agendamento?', answer: 'Envie uma mensagem pelo WhatsApp descrevendo o que você deseja e nós iremos encontrar o melhor horário para você. A consulta com a Dra. Carla é feita sem pressa. Ela irá escutar com bastante atenção o que você deseja e apresentar a proposta de plano de tratamento. Caso tenha dúvidas, ela pode fazer o test drive do sorriso — uma aplicação de resina removível para que você possa ver e aprovar o resultado final antes de colocar a resina definitiva.' },
       { question: 'O atendimento é particular?', answer: 'Sim. O atendimento da Dra. Carla é particular, o que permite dedicar tempo real ao seu caso e usar materiais de primeira linha. Emitimos recibo para solicitação de reembolso ao seu convênio, caso o seu plano permita.' }
     ]
@@ -82,7 +82,7 @@ export const facetasResinaDiretaConfig: LandingPageConfig = {
 
   cta: {
     title: 'Seu Sorriso Merece essa Atenção',
-    subtitle: 'Mande uma mensagem no WhatsApp e converse com a equipe da Dra. Carla sobre as suas facetas. Avaliação individual com tempo dedicado ao seu caso, valores transparentes e resultado no mesmo dia.',
+    subtitle: 'Mande uma mensagem no WhatsApp e converse com a equipe da Dra. Carla sobre as suas facetas. Consulta individual com tempo dedicado ao seu caso, valores transparentes e resultado no mesmo dia.',
     buttonText: 'Quero Falar Sobre Minhas Facetas',
     urgency: 'Pequenas correções de forma e cor ficam mais simples quando planejadas com antecedência.'
   },

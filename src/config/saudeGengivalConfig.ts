@@ -16,7 +16,7 @@ export const saudeGengivalConfig: LandingPageConfig = {
   hero: {
     headline: 'Saúde da Gengiva em Ipanema — Sangramento e Retração Merecem Atenção',
     subheadline: 'Gengiva que sangra não é normal. Tratamento periodontal com acompanhamento individualizado. Dra. Carla Christoph coordena a jornada completa do seu tratamento.',
-    ctaText: 'Agendar Avaliação Gengival',
+    ctaText: 'Agendar Consulta Gengival',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
 
@@ -44,7 +44,7 @@ export const saudeGengivalConfig: LandingPageConfig = {
     title: 'Como Cuidamos da Sua Gengiva',
     subtitle: 'A Dra. Carla coordena o tratamento com periodontista especializado e acompanha cada etapa.',
     steps: [
-      { number: '1', title: 'Avaliação Detalhada', description: 'Exame clínico da gengiva, sondagem periodontal e radiografias quando necessário para identificar o estágio do problema.' },
+      { number: '1', title: 'Consulta Detalhada', description: 'Exame clínico da gengiva, sondagem periodontal e radiografias quando necessário para identificar o estágio do problema.' },
       { number: '2', title: 'Tratamento Periodontal', description: 'Limpeza profunda e tratamento com periodontista especializado quando indicado. Controle da inflamação e infecção.' },
       { number: '3', title: 'Reavaliação', description: 'Após o tratamento, avaliamos a resposta da gengiva e definimos os próximos passos — manutenção ou tratamentos complementares.' },
       { number: '4', title: 'Manutenção Periódica', description: 'Consultas regulares para manter o controle e prevenir recidivas. A frequência é definida individualmente.' }
@@ -79,8 +79,8 @@ export const saudeGengivalConfig: LandingPageConfig = {
 
   cta: {
     title: 'Gengiva Saudável é a Base de Tudo',
-    subtitle: 'Agende uma avaliação gengival. Tratamento precoce faz toda a diferença.',
-    buttonText: 'Agendar Avaliação Gengival',
+    subtitle: 'Agende uma consulta gengival. Tratamento precoce faz toda a diferença.',
+    buttonText: 'Agendar Consulta Gengival',
     urgency: 'Sangramento gengival ignorado pode evoluir para problemas que afetam outros tratamentos.'
   },
 
@@ -93,7 +93,7 @@ export const saudeGengivalConfig: LandingPageConfig = {
 
   seo: {
     title: 'Cuidado Gengival Ipanema | Tratamento para Saúde da Gengiva',
-    description: 'Especialista em saúde gengival em Ipanema. Tratamento para sangramento, sensibilidade e prevenção. Agende sua avaliação e recupere seu bem-estar.',
+    description: 'Especialista em saúde gengival em Ipanema. Tratamento para sangramento, sensibilidade e prevenção. Agende sua consulta e recupere seu bem-estar.',
     keywords: [
       'saúde da gengiva ipanema',
       'cuidado com a gengiva',

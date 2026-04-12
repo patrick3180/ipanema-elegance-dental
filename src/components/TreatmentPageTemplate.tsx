@@ -20,7 +20,7 @@ const TreatmentPageTemplate = ({
   introduction,
   sections,
   faqs = [],
-  whatsappMessage = "Olá, gostaria de agendar uma avaliação",
+  whatsappMessage = "Olá, gostaria de agendar uma consulta",
   ctaHeading,
   preImageUrl
 }: TreatmentPageProps) => {

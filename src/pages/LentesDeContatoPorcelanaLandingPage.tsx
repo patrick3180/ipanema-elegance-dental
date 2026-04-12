@@ -148,7 +148,7 @@ const LentesDeContatoPorcelanaLandingPage = () => {
             "description": "Tratamento estético dental com lentes ultrafinas de porcelana e planejamento digital",
             "procedureType": "Cosmetic Dentistry",
             "bodyLocation": "Mouth",
-            "preparation": "Consulta de avaliação e planejamento digital do sorriso",
+            "preparation": "Consulta inicial e planejamento digital do sorriso",
             "followup": "Acompanhamento pós-tratamento e orientações de cuidados"
           })}
         </script>

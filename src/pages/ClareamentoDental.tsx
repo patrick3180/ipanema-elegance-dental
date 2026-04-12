@@ -97,10 +97,10 @@ const ClareamentoDental = () => {
               { "@type": "Question", "name": "Posso fazer clareamento com restaurações?", "acceptedAnswer": { "@type": "Answer", "text": "Sim, mas apenas dentes naturais respondem ao clareamento. Restaurações e próteses mantêm sua cor original. Analisamos seu caso para determinar a melhor estratégia, considerando se há necessidade de substituição posterior das restaurações visíveis." } },
               { "@type": "Question", "name": "O clareamento é seguro para o esmalte?", "acceptedAnswer": { "@type": "Answer", "text": "Quando realizado com protocolos adequados, não causa danos ao esmalte. Os géis modernos têm pH balanceado e não provocam desmineralização. Utilizamos produtos com agentes remineralizantes que preservam a integridade dental." } },
               { "@type": "Question", "name": "Quais cuidados após o clareamento?", "acceptedAnswer": { "@type": "Answer", "text": "Nas primeiras 48 horas, evitar alimentos e bebidas pigmentados. Manter higiene oral adequada com escovação após refeições. Uso de canudos para bebidas escuras. Consultas semestrais para manutenção profissional." } },
-              { "@type": "Question", "name": "Clareamento funciona em todos os tipos de manchas?", "acceptedAnswer": { "@type": "Answer", "text": "A eficácia varia conforme o tipo de mancha. Manchas por alimentos e idade respondem muito bem. Manchas por medicamentos têm resposta variável. Na avaliação, analisamos seu caso específico e estabelecemos expectativas realistas." } },
+              { "@type": "Question", "name": "Clareamento funciona em todos os tipos de manchas?", "acceptedAnswer": { "@type": "Answer", "text": "A eficácia varia conforme o tipo de mancha. Manchas por alimentos e idade respondem muito bem. Manchas por medicamentos têm resposta variável. Na consulta, analisamos seu caso específico e estabelecemos expectativas realistas." } },
               { "@type": "Question", "name": "Clareamento e limpeza são diferentes?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. A limpeza remove tártaro e manchas superficiais, devolvendo a cor natural. O clareamento altera quimicamente a cor interna do dente, clareando além da cor natural. Frequentemente realizamos limpeza antes do clareamento para otimizar resultados." } },
               { "@type": "Question", "name": "Produtos de farmácia têm o mesmo efeito?", "acceptedAnswer": { "@type": "Answer", "text": "Produtos sem prescrição contêm concentrações muito baixas devido a regulamentação, oferecendo resultados limitados. O clareamento profissional usa concentrações terapêuticas sob supervisão, garantindo eficácia superior e segurança." } },
-              { "@type": "Question", "name": "Como é feita a escolha da modalidade?", "acceptedAnswer": { "@type": "Answer", "text": "Na consulta de avaliação, analiso suas características individuais, tipo de mancha, sensibilidade prévia, rotina e expectativas. A indicação considera todos esses fatores para definir o protocolo mais adequado ao seu caso." } }
+              { "@type": "Question", "name": "Como é feita a escolha da modalidade?", "acceptedAnswer": { "@type": "Answer", "text": "Na consulta inicial, analiso suas características individuais, tipo de mancha, sensibilidade prévia, rotina e expectativas. A indicação considera todos esses fatores para definir o protocolo mais adequado ao seu caso." } }
             ]
           })}
         </script>
@@ -582,7 +582,7 @@ const ClareamentoDental = () => {
             ]} />
 
             <p className="text-center mt-6 text-dental-gray">
-              A indicação depende da análise individual de cada caso. Na avaliação, consideramos suas necessidades, rotina e características dentais específicas.
+              A indicação depende da análise individual de cada caso. Na consulta, consideramos suas necessidades, rotina e características dentais específicas.
             </p>
           </div>
         </section>
@@ -605,7 +605,7 @@ const ClareamentoDental = () => {
               steps={[
                 {
                   number: 1,
-                  title: "Avaliação Inicial",
+                  title: "Consulta Inicial",
                   description: "Exame clínico, análise da saúde bucal e registro fotográfico da cor inicial. Identificação do tipo de mancha e viabilidade do tratamento.",
                   icon: <Search size={24} />,
                   duration: "1ª Consulta"
@@ -641,7 +641,7 @@ const ClareamentoDental = () => {
                 {
                   number: 6,
                   title: "Acompanhamento",
-                  description: "Avaliação do progresso e ajustes quando necessário. Manejo de sensibilidade com protocolos específicos.",
+                  description: "Acompanhamento do progresso e ajustes quando necessário. Manejo de sensibilidade com protocolos específicos.",
                   icon: <Heart size={24} />,
                   duration: "Durante tratamento"
                 },
@@ -669,7 +669,7 @@ const ClareamentoDental = () => {
             doctorSubtitle="CRO-RJ 27.509 | Especialista em Prótese Dentária e Implantodontia"
             paragraphs={[
               "Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.",
-              "Nos protocolos de clareamento, prioriza segurança e resultado natural — cada caso tem sua indicação específica. A escolha entre clareamento de consultório, caseiro supervisionado ou combinado é definida na avaliação, considerando a condição dos dentes e a expectativa do paciente."
+              "Nos protocolos de clareamento, prioriza segurança e resultado natural — cada caso tem sua indicação específica. A escolha entre clareamento de consultório, caseiro supervisionado ou combinado é definida na consulta, considerando a condição dos dentes e a expectativa do paciente."
             ]}
             credentials={[
               { title: "Formação", description: "Especialista em Prótese Dentária e Implantodontia" },
@@ -692,19 +692,19 @@ const ClareamentoDental = () => {
               { question: "Posso fazer clareamento com restaurações?", answer: "Sim, mas apenas dentes naturais respondem ao clareamento. Restaurações e próteses mantêm sua cor original. Analisamos seu caso para determinar a melhor estratégia, considerando se há necessidade de substituição posterior das restaurações visíveis." },
               { question: "O clareamento é seguro para o esmalte?", answer: "Quando realizado com protocolos adequados, não causa danos ao esmalte. Os géis modernos têm pH balanceado e não provocam desmineralização. Utilizamos produtos com agentes remineralizantes que preservam a integridade dental." },
               { question: "Quais cuidados após o clareamento?", answer: "Nas primeiras 48 horas, evitar alimentos e bebidas pigmentados. Manter higiene oral adequada com escovação após refeições. Uso de canudos para bebidas escuras. Consultas semestrais para manutenção profissional." },
-              { question: "Clareamento funciona em todos os tipos de manchas?", answer: "A eficácia varia conforme o tipo de mancha. Manchas por alimentos e idade respondem muito bem. Manchas por medicamentos têm resposta variável. Na avaliação, analisamos seu caso específico e estabelecemos expectativas realistas." },
+              { question: "Clareamento funciona em todos os tipos de manchas?", answer: "A eficácia varia conforme o tipo de mancha. Manchas por alimentos e idade respondem muito bem. Manchas por medicamentos têm resposta variável. Na consulta, analisamos seu caso específico e estabelecemos expectativas realistas." },
               { question: "Clareamento e limpeza são diferentes?", answer: "Sim. A limpeza remove tártaro e manchas superficiais, devolvendo a cor natural. O clareamento altera quimicamente a cor interna do dente, clareando além da cor natural. Frequentemente realizamos limpeza antes do clareamento para otimizar resultados." },
               { question: "Produtos de farmácia têm o mesmo efeito?", answer: "Produtos sem prescrição contêm concentrações muito baixas devido a regulamentação, oferecendo resultados limitados. O clareamento profissional usa concentrações terapêuticas sob supervisão, garantindo eficácia superior e segurança." },
-              { question: "Como é feita a escolha da modalidade?", answer: "Na consulta de avaliação, analiso suas características individuais, tipo de mancha, sensibilidade prévia, rotina e expectativas. A indicação considera todos esses fatores para definir o protocolo mais adequado ao seu caso." }
+              { question: "Como é feita a escolha da modalidade?", answer: "Na consulta inicial, analiso suas características individuais, tipo de mancha, sensibilidade prévia, rotina e expectativas. A indicação considera todos esses fatores para definir o protocolo mais adequado ao seu caso." }
             ]}
           />
         </ScrollReveal>
 
         <FinalServiceCTA 
           title="Ver Qual Protocolo é Indicado para Mim"
-          description="Cada caso tem sua indicação específica. Na avaliação, analisamos o tipo de mancha e definimos se consultório, caseiro ou combinado é mais adequado."
+          description="Cada caso tem sua indicação específica. Na consulta, analisamos o tipo de mancha e definimos se consultório, caseiro ou combinado é mais adequado."
           ctaText="Ver Qual Protocolo é Indicado para Mim"
-          whatsappMessage="Olá! Gostaria de agendar uma avaliação para clareamento dental com a Dra. Carla Christoph."
+          whatsappMessage="Olá! Gostaria de agendar uma consulta para clareamento dental com a Dra. Carla Christoph."
           onClickOverride={handleWhatsAppClick}
           icon={<Calendar className="w-8 h-8" />}
           variant="urgency"

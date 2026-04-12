@@ -71,7 +71,7 @@ export const dorDeDenteConfig: LandingPageConfig = {
     questions: [
       { question: 'Posso tomar analgésico enquanto espero a consulta?', answer: 'Sim. Analgésicos comuns (dipirona, paracetamol, ibuprofeno) podem aliviar temporariamente. Evite aspirina se houver sangramento. Na dúvida, pergunte pelo WhatsApp antes de medicar.' },
       { question: 'Dor de dente sempre significa canal?', answer: 'Não. A dor pode ter várias causas — cárie, restauração infiltrada, fratura, problema gengival. Muitas vezes a solução é mais simples do que canal. O diagnóstico correto é fundamental.' },
-      { question: 'E se a dor passar sozinha?', answer: 'Dor que passa sozinha não significa que o problema foi resolvido. Pode significar que o nervo do dente morreu, o que é pior. Se teve dor intensa que desapareceu repentinamente, procure avaliação.' },
+      { question: 'E se a dor passar sozinha?', answer: 'Dor que passa sozinha não significa que o problema foi resolvido. Pode significar que o nervo do dente morreu, o que é pior. Se teve dor intensa que desapareceu repentinamente, procure um profissional.' },
       { question: 'Vocês atendem convênios?', answer: 'Nosso atendimento é particular. Na consulta de urgência, diagnosticamos a causa e apresentamos as opções de tratamento.' }
     ]
   },

@@ -24,7 +24,7 @@ const FinalServiceCTA = ({
   onClickOverride,
   locale = "pt",
 }: FinalServiceCTAProps) => {
-  const resolvedCtaText = ctaText ?? (locale === "en" ? "Book Your Evaluation" : "Agendar Avaliação");
+  const resolvedCtaText = ctaText ?? (locale === "en" ? "Book Your Consultation" : "Agendar Consulta");
   const resolvedFootnote = footnote ?? (locale === "en" ? "WhatsApp: (21) 99330-4045 | 24h Service" : "WhatsApp: (21) 99330-4045 | Atendimento 24h");
   const handleClick = () => {
     if (onClickOverride) {

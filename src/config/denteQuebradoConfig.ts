@@ -46,7 +46,7 @@ export const denteQuebradoConfig: LandingPageConfig = {
     steps: [
       { number: '1', title: 'WhatsApp Imediato', description: 'Mande uma foto do dente e descreva o que aconteceu. Orientamos sobre cuidados imediatos (guardar o fragmento, evitar morder do lado afetado).' },
       { number: '2', title: 'Encaixe Prioritário', description: 'Fraturas dentais têm prioridade na agenda. Faremos o possível para atender no mesmo dia.' },
-      { number: '3', title: 'Avaliação e Radiografia', description: 'Exame da extensão da fratura — se atingiu só o esmalte, se chegou à dentina ou se comprometeu o nervo. Define o tipo de tratamento.' },
+      { number: '3', title: 'Diagnóstico e Radiografia', description: 'Exame da extensão da fratura — se atingiu só o esmalte, se chegou à dentina ou se comprometeu o nervo. Define o tipo de tratamento.' },
       { number: '4', title: 'Restauração', description: 'Restauração direta em resina (casos simples) ou planejamento de coroa/faceta (casos mais extensos). O objetivo é resultado natural e funcional.' }
     ]
   },
@@ -70,7 +70,7 @@ export const denteQuebradoConfig: LandingPageConfig = {
     title: 'Dúvidas sobre Dente Quebrado',
     questions: [
       { question: 'Quebrei o dente — o que faço agora?', answer: 'Se encontrou o fragmento, guarde em leite ou soro. Evite morder do lado afetado. Entre em contato pelo WhatsApp com uma foto e orientaremos os próximos passos.' },
-      { question: 'Dá para colar o pedaço que quebrou?', answer: 'Em alguns casos, sim — especialmente se o fragmento estiver íntegro e for guardado corretamente. A avaliação clínica define se a colagem é viável ou se a restauração direta é a melhor opção.' },
+      { question: 'Dá para colar o pedaço que quebrou?', answer: 'Em alguns casos, sim — especialmente se o fragmento estiver íntegro e for guardado corretamente. A análise clínica define se a colagem é viável ou se a restauração direta é a melhor opção.' },
       { question: 'A restauração fica visível?', answer: 'Com resinas e cerâmicas atuais, a restauração reproduz a cor, translucidez e textura do dente natural. O objetivo é que seja imperceptível.' },
       { question: 'E se a fratura for grande?', answer: 'Fraturas mais extensas podem precisar de coroa ou, em casos raros, tratamento de canal antes da restauração. A radiografia na consulta define a extensão e o melhor caminho.' },
       { question: 'Vocês atendem convênios?', answer: 'Nosso atendimento é particular. Na consulta de urgência, resolvemos o problema e apresentamos as opções.' }

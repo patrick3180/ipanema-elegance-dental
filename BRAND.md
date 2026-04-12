@@ -121,7 +121,7 @@ O tom é o de uma **profissional experiente que conversa com seu paciente** — 
 > "Agende agora e garanta seu sorriso perfeito! Não perca essa oportunidade!"
 
 **✅ Certo:**
-> "Agende sua avaliação pelo WhatsApp. Respondemos inclusive nos fins de semana."
+> "Agende sua consulta pelo WhatsApp. Respondemos inclusive nos fins de semana."
 
 ---
 
@@ -143,13 +143,29 @@ Estas palavras/frases **nunca** devem aparecer em nenhum conteúdo do consultór
 | "100% natural" | "natural ao ponto de passar despercebido" |
 | "atendimento personalizado" | mostrar: "mínimo de 1 hora por consulta" |
 | "materiais de alta qualidade" | nomear o material real |
-| "agende agora" / "não perca" | "agende sua avaliação pelo WhatsApp" |
+| "agende agora" / "não perca" | "agende sua consulta pelo WhatsApp" |
+| "avaliação" (em CTAs/agendamento) | "consulta" — ver regra abaixo |
 | "recomendo" (em depoimentos) | remover — deixar o fato falar |
 | "incrível" / "perfeita" (em depoimentos) | remover — tom conversacional |
 
 ### Princípio Geral
 
 Se uma frase poderia ser usada por qualquer dentista do Brasil, ela é genérica demais. O conteúdo deve ser **específico o suficiente para só fazer sentido para este consultório**.
+
+### Regra Especial: "Avaliação" vs. "Consulta"
+
+> ⚠️ **Atualizado em Abril 2026 após incidentes reais com pacientes.**
+
+A palavra "avaliação" em contexto de agendamento leva pacientes a acreditar que a primeira consulta é **gratuita**. Regra:
+
+- **"Consulta"** → usar em CTAs, botões, mensagens WhatsApp, qualquer convite para agendamento
+- **"Avaliação"** → reservar EXCLUSIVAMENTE para contexto técnico/diagnóstico (ex: "avaliação periodontal", "avaliação tomográfica")
+- **NUNCA** usar "avaliação" quando o significado real é "primeira consulta"
+
+Exemplos:
+- ❌ "Agende sua avaliação" → ✅ "Agende sua consulta"
+- ❌ "Gostaria de agendar uma avaliação" (WhatsApp) → ✅ "Gostaria de agendar uma consulta"
+- ✅ "Avaliação periodontal completa" — manter, é técnico
 
 ---
 
@@ -264,6 +280,7 @@ Todas em `/lovable-uploads/`.
 - Tom pessoal e objetivo
 - Sempre identifica o contexto de origem (ex: "Vi o site sobre lentes de porcelana")
 - Formato: "Olá! [contexto]. [pedido específico]."
+- **Usar "consulta", NUNCA "avaliação"** em mensagens de agendamento (regra Abril/2026)
 - Nunca inclui preço
 - WhatsApp 24h é real (fluxo N8N humanizado responde fora do horário)
 
@@ -283,4 +300,5 @@ Antes de publicar qualquer conteúdo, verificar:
 - [ ] Dr. Bruno referenciado como "Dr. Bruno" (sem "Christoph")
 - [ ] CRO-RJ 27.509 visível quando aplicável
 - [ ] CTA direciona para WhatsApp com mensagem contextualizada
+- [ ] CTAs usam "consulta" e NÃO "avaliação" (Seção 5 — Regra Especial)
 - [ ] Tom seguro, direto e específico — sem clichês genéricos (Seção 4)
