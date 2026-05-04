@@ -10,12 +10,12 @@ export const clareamentoConfig: LandingPageConfig = {
 
   whatsapp: {
     number: "5521993304045",
-    message: "Olá! Tenho interesse em fazer clareamento dental PARTICULAR com a Dra. Carla Christoph. Pode me auxiliar?"
+    message: "Olá! Vi sobre clareamento dental e gostaria de agendar uma consulta para saber qual protocolo é indicado para mim."
   },
 
   hero: {
     headline: 'Dentes Amarelados? Clareamento com Resultado Natural em Ipanema',
-    subheadline: 'Protocolos seguros e personalizados para um sorriso mais claro — sem o risco de ficar artificial. Mais de 20 anos de experiência em estética dental.',
+    subheadline: 'Protocolos personalizados para uma cor natural, sem aparência artificial. Mais de 20 anos de experiência em estética dental.',
     ctaText: 'Quero Clarear Meu Sorriso',
     backgroundImage: "/lovable-uploads/doutora-em-pe-jaleco.webp"
   },
@@ -85,7 +85,7 @@ export const clareamentoConfig: LandingPageConfig = {
 
   contact: {
     whatsappNumber: "5521993304045",
-    whatsappMessage: "Olá! Tenho interesse em fazer clareamento dental PARTICULAR com a Dra. Carla Christoph. Pode me auxiliar?",
+    whatsappMessage: "Olá! Vi sobre clareamento dental e gostaria de agendar uma consulta para saber qual protocolo é indicado para mim.",
     doctorName: "Dra. Carla Christoph",
     clinicName: "Clínica Dra. Carla Christoph"
   },
