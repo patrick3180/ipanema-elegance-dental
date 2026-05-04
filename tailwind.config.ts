@@ -57,7 +57,7 @@ export default {
         dental: {
           purple: "#381F47",      // Deep purple for titles, noble backgrounds, footer
           beige: "hsl(var(--background))",  // Light beige as main background - use CSS variable
-          gray: "#6B6B6B",        // Neutral gray for secondary text and borders (contrast 5.4:1)
+          gray: "#525252",        // Neutral gray for secondary text and borders (contrast 4.95:1 vs dental-beige — passes WCAG AA)
           gold: "#B3955F",        // Copper gold for refined details and icons
           
           // Purple variations
