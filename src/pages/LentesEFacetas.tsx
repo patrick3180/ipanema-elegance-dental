@@ -17,8 +17,9 @@ import FinalServiceCTA from "@/components/treatment/FinalServiceCTA";
 import EmpatheticPainPoints from "@/components/treatment/EmpatheticPainPoints";
 import ScrollReveal from '@/components/ScrollReveal';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { CheckCircle, Star, ArrowRight, Play, Sparkles, Shield, Heart, Award, Search, HelpCircle, Droplet, Maximize2, Ruler, Palette, AlertCircle } from "lucide-react";
+import { CheckCircle, Star, Play, Sparkles, Shield, Heart, Award, Search, HelpCircle, Droplet, Maximize2, Ruler, Palette, AlertCircle } from "lucide-react";
 import { InternalLinkingOptimizer } from '@/components/seo/InternalLinkingOptimizer';
+import ConsultaInicialMidCTA from '@/components/landing/consulta/ConsultaInicialMidCTA';
 
 const LentesEFacetas = () => {
   // Placeholder para controlar exibição de casos
@@ -709,6 +710,16 @@ const LentesEFacetas = () => {
           </div>
         </section>
 
+        {/* MidCTA — momento de decisão após tabela comparativa */}
+        <ConsultaInicialMidCTA
+          whatsappNumber="5521993304045"
+          whatsappMessage="Olá! Vi a página sobre Lentes e Facetas e gostaria de saber qual seria a melhor opção pro meu caso."
+          heading="Qual seria a melhor opção pro seu caso?"
+          ctaLabel="Conversar pelo WhatsApp"
+          eventLabel="Mid CTA Button - Lentes e Facetas (Comparação)"
+          webhookSource="mid_cta_lentes_facetas_comparacao"
+        />
+
         <SectionDivider variant="with-icon" icon={<Star className="w-5 h-5" />} />
 
         <DoctorBioSection
@@ -873,23 +884,15 @@ const LentesEFacetas = () => {
           </div>
         </section>
 
-        {/* CTA Intermediário - Sprint 6 #6 */}
-        <section className="py-8 bg-dental-beige/30">
-          <div className="max-w-3xl mx-auto px-4 text-center">
-            <p className="text-xl text-dental-gray mb-6">
-              Quer fazer seu Test Drive do Sorriso?
-            </p>
-            <a
-              href="https://wa.me/5521993304045?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20para%20fazer%20o%20Test%20Drive%20do%20Sorriso"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 bg-dental-gold hover:bg-dental-gold/90 text-white font-semibold rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
-            >
-              Agendar Primeira Consulta
-              <ArrowRight size={20} className="ml-2" />
-            </a>
-          </div>
-        </section>
+        {/* CTA Intermediário — Test Drive do Sorriso (com tracking completo) */}
+        <ConsultaInicialMidCTA
+          whatsappNumber="5521993304045"
+          whatsappMessage="Olá! Gostaria de agendar uma consulta para fazer o Test Drive do Sorriso."
+          heading="Quer fazer seu Test Drive do Sorriso?"
+          ctaLabel="Agendar Primeira Consulta"
+          eventLabel="Mid CTA Button - Lentes e Facetas (Test Drive)"
+          webhookSource="mid_cta_lentes_facetas_test_drive"
+        />
 
         {/* Tecnologia Digital - Scanner iTero */}
         <section className="py-16 bg-white">

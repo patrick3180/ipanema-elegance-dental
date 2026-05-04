@@ -5,6 +5,8 @@ import { sendGCLIDToWebhook } from '@/utils/gclid';
 interface ConsultaInicialMidCTAProps {
   whatsappNumber: string;
   whatsappMessage: string;
+  /** Custom heading text shown above the button (default: "Quer conversar sobre o seu caso?") */
+  heading?: string;
   /** Custom CTA button label (default: "Agendar pelo WhatsApp") */
   ctaLabel?: string;
   /** Custom event label for GTM tracking (default: "Mid CTA Button - Consulta Inicial") */
@@ -16,6 +18,7 @@ interface ConsultaInicialMidCTAProps {
 const ConsultaInicialMidCTA: React.FC<ConsultaInicialMidCTAProps> = ({
   whatsappNumber,
   whatsappMessage,
+  heading = 'Quer conversar sobre o seu caso?',
   ctaLabel = 'Agendar pelo WhatsApp',
   eventLabel = 'Mid CTA Button - Consulta Inicial',
   webhookSource = 'mid_cta_button_consulta',
@@ -56,7 +59,7 @@ const ConsultaInicialMidCTA: React.FC<ConsultaInicialMidCTAProps> = ({
       <div className="container mx-auto px-4">
         <div className="max-w-xl mx-auto text-center space-y-5">
           <p className="text-lg text-[#381F47]/80 font-serif italic">
-            Quer conversar sobre o seu caso?
+            {heading}
           </p>
           <button
             onClick={handleWhatsAppClick}
