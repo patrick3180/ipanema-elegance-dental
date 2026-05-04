@@ -48,9 +48,15 @@ export default async function handler(req, res) {
       { url: '/en/about', priority: '0.5', changefreq: 'monthly' },
       { url: '/en/contact', priority: '0.6', changefreq: 'monthly' },
       { url: '/en/dental-implants', priority: '0.7', changefreq: 'monthly' },
-      { url: '/en/porcelain-veneers', priority: '0.7', changefreq: 'monthly' },
+      { url: '/en/veneers-and-lenses', priority: '0.7', changefreq: 'monthly' },
       { url: '/en/general-dentistry', priority: '0.7', changefreq: 'monthly' },
       { url: '/en/dental-emergency', priority: '0.7', changefreq: 'monthly' },
+      { url: '/en/dental-prosthetics', priority: '0.7', changefreq: 'monthly' },
+      { url: '/en/aesthetic-restorations', priority: '0.7', changefreq: 'monthly' },
+      { url: '/en/teeth-whitening', priority: '0.7', changefreq: 'monthly' },
+      { url: '/en/orthodontics', priority: '0.7', changefreq: 'monthly' },
+      { url: '/en/root-canal', priority: '0.7', changefreq: 'monthly' },
+      { url: '/en/gum-health', priority: '0.7', changefreq: 'monthly' },
     ];
 
     // Buscar posts do blog
