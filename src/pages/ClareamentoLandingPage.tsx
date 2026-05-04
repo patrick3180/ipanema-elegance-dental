@@ -151,7 +151,7 @@ const ClareamentoLandingPage: React.FC = () => {
               {
                 "@type": "Service",
                 "name": "Clareamento Dental",
-                "description": "Clareamento dental seguro e eficaz com protocolos individualizados — consultório e caseiro supervisionado. Resultado natural sem risco de artificialidade.",
+                "description": "Clareamento dental seguro e eficaz com protocolos individualizados — consultório e caseiro supervisionado. Resultado natural, com aparência preservada.",
                 "provider": {
                   "@id": "https://dracarlachristoph.com/#dentist"
                 },

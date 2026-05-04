@@ -132,9 +132,9 @@ export const limpezaDentalConfig: LandingPageConfig = {
   },
 
   seo: {
-    title: "Limpeza Dental em Ipanema - Profilaxia Sem Dor | Dra. Carla Christoph",
-    description: "Limpeza dental com tecnologia ultrassônica em Ipanema. Remoção de tártaro sem desconforto, prevenção de cáries e mau hálito. Dra. Carla Christoph - 20+ anos de experiência. Agende!",
-    keywords: ["limpeza dental ipanema", "limpeza no dente", "profilaxia dental", "remoção de tártaro", "limpeza sem dor", "dentista ipanema", "limpeza dental rj", "profilaxia ipanema"]
+    title: "Limpeza Dental em Ipanema | Profilaxia com Tecnologia | Dra. Carla Christoph",
+    description: "Limpeza dental com tecnologia ultrassônica em Ipanema. Remoção de tártaro confortável, prevenção de cáries e mau hálito. Dra. Carla Christoph - 20+ anos de experiência. Agende!",
+    keywords: ["limpeza dental ipanema", "limpeza no dente", "profilaxia dental", "remoção de tártaro", "limpeza confortável", "dentista ipanema", "limpeza dental rj", "profilaxia ipanema"]
   },
 
   tracking: {

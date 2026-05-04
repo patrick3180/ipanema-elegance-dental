@@ -54,7 +54,7 @@ const Hero = () => {
           </h1>
 
           <p className="hero-animate-3 body-lg mb-8 max-w-lg font-medium">
-            Para quem busca tratamento odontológico sem pressa, sem dor desnecessária e com resultado que parece natural
+            Para quem busca tratamento odontológico sem pressa, com mínimo desconforto e com resultado que parece natural
           </p>
 
           {/* Trust badges */}

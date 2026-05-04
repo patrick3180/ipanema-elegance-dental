@@ -382,7 +382,7 @@ const Ortodontia = () => {
                   <ul className="space-y-3 text-dental-gray">
                     <li className="flex items-start"><Zap className="w-5 h-5 text-dental-gold mr-2 mt-1" /> <span>Visualização imediata do resultado</span></li>
                     <li className="flex items-start"><Zap className="w-5 h-5 text-dental-gold mr-2 mt-1" /> <span>Planejamento digital preciso e alinhadores Invisalign</span></li>
-                    <li className="flex items-start"><Zap className="w-5 h-5 text-dental-gold mr-2 mt-1" /> <span>Acompanhamento milimétrico e foco na excelência</span></li>
+                    <li className="flex items-start"><Zap className="w-5 h-5 text-dental-gold mr-2 mt-1" /> <span>Acompanhamento milimétrico e atenção em cada detalhe</span></li>
                   </ul>
                 </div>
                 
