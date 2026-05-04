@@ -11,13 +11,13 @@ export const implantesDentariosConfig: LandingPageConfig = {
   
   whatsapp: {
     number: '5521993304045',
-    message: 'Olá! Vi o site e gostaria de agendar uma consulta de planejamento para implantes dentários.'
+    message: 'Olá! Vi sobre implantes dentários e gostaria de agendar uma consulta para entender o tratamento no meu caso.'
   },
-  
+
   hero: {
-    headline: 'Recupere a Segurança de um Sorriso Fixo e o Prazer de Mastigar sem Preocupação',
-    subheadline: 'Implantes dentários com planejamento individualizado. Volte a comer, falar e sorrir com a confiança de quem tem dentes que funcionam de verdade.',
-    ctaText: 'Agendar Consulta de Planejamento',
+    headline: 'Volte a Comer e Sorrir com Dentes Fixos',
+    subheadline: 'Implantes com planejamento digital individualizado. Especialista em Implantodontia com mais de 20 anos de experiência.',
+    ctaText: 'Agendar Minha Consulta',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
   
@@ -87,7 +87,7 @@ export const implantesDentariosConfig: LandingPageConfig = {
   
   contact: {
     whatsappNumber: '5521993304045',
-    whatsappMessage: 'Olá! Vi o site e gostaria de agendar uma consulta de planejamento para implantes dentários.',
+    whatsappMessage: 'Olá! Vi sobre implantes dentários e gostaria de agendar uma consulta para entender o tratamento no meu caso.',
     doctorName: 'Dra. Carla Christoph',
     clinicName: 'Consultório Odontológico'
   },
