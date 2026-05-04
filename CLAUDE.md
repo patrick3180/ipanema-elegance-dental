@@ -468,6 +468,9 @@ Estas decisões já foram tomadas e aprovadas:
 | Scanner = "iTero Element 5D" | Nome correto e diferenciador |
 | Sem "consulta sem compromisso" | Posicionamento premium/particular |
 | "Avaliação" → "Consulta" em CTAs | Pacientes confundiam com serviço gratuito (Auditoria Abril/2026) |
+| Conversion ID único = `AW-16894364517/OQZvCMXV0foZEOqP7vY9` | IDs customizados (`/LP_limpeza_*`) não existem no Google Ads → não contavam (Auditoria Maio/2026) |
+| English LPs capturam GCLID + tracking completo | Validado via grep — auditor anterior se enganou ao reportar gap (Maio/2026) |
+| AI Max — Final URL expansion OFF na Clínica Geral | Estava redirecionando tráfego paid para `/` (homepage), bypassando as 4 LPs corretas dos ad groups (Maio/2026) |
 
 ---
 
