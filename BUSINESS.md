@@ -161,9 +161,10 @@ Decisões já tomadas e aprovadas. **Não revisitar sem motivo forte:**
 | Contentful/Blog | ✅ Manter | Pipeline N8N funciona bem |
 | WhatsApp 24h | ✅ Real, comunicar | Fluxo N8N humanizado |
 | Formulário de contato | ❌ Removido | WhatsApp é suficiente |
-| Emergência em `/servicos` | ❌ Não incluir | Existe apenas como LP para demanda ociosa |
+| Emergência em `/servicos` | ❌ Não incluir | Existe como LP para preencher horários ociosos no expediente (Seg-Sex 9h-19h, com tentativa de encaixe ASAP). Não é atendimento 24h. |
 | Página `/servicos` | ✅ Está boa como está | — |
-| Clínica Geral layout | ✅ Manter template simples | Não migrar para rico |
+| Clínica Geral layout | ✅ **Já migrado para template rico** | TreatmentHero + ProcessTimeline + QuickAnswerBox + FAQPage schema — confirmado em Maio/2026. |
+| Service pages "simples" (Restaurações, Canal, Gengiva, Clínica Geral) | ✅ **Todas já em template rico** | Migração concluída — nenhuma usa template simples atualmente (Maio/2026). |
 | Dr. Bruno | Chamar de "Dr. Bruno" | Sem sobrenome "Christoph" |
 | Endodontia/Periodontia | Dra. Carla NÃO faz | Parceiros fazem, ela coordena |
 | Preços | ❌ Nunca mencionar | Proibido pelo CRO |
