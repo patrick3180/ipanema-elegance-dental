@@ -10,13 +10,13 @@ export const especialistaProteseConfig: LandingPageConfig = {
 
   whatsapp: {
     number: '5521993304045',
-    message: 'Olá! Vi o site e gostaria de agendar uma consulta de planejamento com a especialista em prótese dentária.'
+    message: 'Olá! Vi sobre prótese e reabilitação e gostaria de agendar uma consulta para entender o que é possível no meu caso.'
   },
 
   hero: {
-    headline: 'Reabilitação Oral com Especialista em Prótese — Planejamento Preciso para Casos que Exigem Experiência',
-    subheadline: 'A Dra. Carla Christoph é especialista em Prótese Dentária com mais de 20 anos de experiência, incluindo 8 anos como dentista militar na Marinha do Brasil. Casos complexos exigem planejamento detalhado — e é isso que ela faz.',
-    ctaText: 'Agendar Consulta de Planejamento',
+    headline: 'Sua Prótese Pode Funcionar Como Dentes de Verdade',
+    subheadline: 'Especialista em Prótese Dentária com mais de 20 anos. Cada caso é planejado em detalhes — para o resultado ficar natural e durar.',
+    ctaText: 'Agendar Minha Consulta',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
 
@@ -86,7 +86,7 @@ export const especialistaProteseConfig: LandingPageConfig = {
 
   contact: {
     whatsappNumber: '5521993304045',
-    whatsappMessage: 'Olá! Vi o site e gostaria de agendar uma consulta de planejamento com a especialista em prótese dentária.',
+    whatsappMessage: 'Olá! Vi sobre prótese e reabilitação e gostaria de agendar uma consulta para entender o que é possível no meu caso.',
     doctorName: 'Dra. Carla Christoph',
     clinicName: 'Consultório Odontológico'
   },
