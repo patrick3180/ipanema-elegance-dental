@@ -13,6 +13,11 @@
   <!-- Preconnect to Contentful CDN for blog images (LCP optimization) -->
   <link rel="preconnect" href="https://images.ctfassets.net" crossorigin />
 
+  <!-- DNS prefetch for tracking and external domains (saves ~100-200ms first navigation) -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+  <link rel="dns-prefetch" href="https://wa.me" />
+
   <title>Dentista em Ipanema | Clínica Odontológica Dra. Carla Christoph</title>
   <meta name="description"
     content="Procurando dentista em Ipanema? A Dra. Carla Christoph oferece odontologia estética e reabilitação oral com atendimento personalizado. Agende sua consulta!" />
@@ -263,7 +268,7 @@
   <!-- Hero image preload responsivo (LCP element) -->
   <link rel="preload" as="image" type="image/avif"
     imagesrcset="/lovable-uploads/hero-560w.avif 560w, /lovable-uploads/hero-800w.avif 800w, /lovable-uploads/hero-840w.avif 840w"
-    imagesizes="(max-width:640px) 280px, (max-width:1024px) 400px, 420px" />
+    imagesizes="(max-width:640px) 360px, (max-width:1024px) 400px, 420px" />
 
   <!-- Meta tags -->
   <meta property="og:title" content="Dentista em Ipanema | Dra. Carla Christoph" />
