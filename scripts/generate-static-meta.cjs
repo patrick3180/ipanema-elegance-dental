@@ -543,6 +543,10 @@ const landingPages = {
     title: 'Lentes de Porcelana em Ipanema | Dra. Carla Christoph',
     description: 'Lentes de porcelana e facetas em Ipanema. Resultado natural e duradouro. Dra. Carla Christoph.',
   },
+  '/lp/lentes-profissional-ipanema': {
+    title: 'Lentes de Contato Dental Porcelana Ipanema | Estética do Sorriso',
+    description: 'Lentes de porcelana em Ipanema com resultado natural e duradouro. Planejamento digital com iTero Element 5D e Test Drive do Sorriso. Dra. Carla Christoph.',
+  },
   '/lp/facetas-resina-ipanema': {
     title: 'Facetas de Resina em Ipanema | Dra. Carla Christoph',
     description: 'Facetas de resina direta em Ipanema. Transforme seu sorriso em uma única sessão com a Dra. Carla Christoph.',
