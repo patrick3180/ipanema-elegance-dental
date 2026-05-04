@@ -10,13 +10,13 @@ export const dorDeDenteConfig: LandingPageConfig = {
 
   whatsapp: {
     number: '5521993304045',
-    message: 'Olá! Estou com uma dor de dente forte e preciso de atendimento urgente. Podem me ajudar?'
+    message: 'Olá! Estou com uma dor de dente forte e gostaria de tentar um encaixe no consultório o quanto antes.'
   },
 
   hero: {
     headline: 'Dor de Dente em Ipanema? Atendimento Prioritário',
-    subheadline: 'Dor de dente pode ter várias causas — cárie profunda, infecção, fratura. O diagnóstico correto é o primeiro passo para o alívio. Encaixe prioritário pelo WhatsApp.',
-    ctaText: 'Pedir Atendimento Agora',
+    subheadline: 'Encaixe prioritário em dias úteis para diagnosticar a causa e dar alívio o quanto antes. WhatsApp responde 24h para orientação.',
+    ctaText: 'Pedir Encaixe pelo WhatsApp',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
 
@@ -78,14 +78,14 @@ export const dorDeDenteConfig: LandingPageConfig = {
 
   cta: {
     title: 'Não Aguente a Dor — Procure Atendimento',
-    subtitle: 'Mande mensagem pelo WhatsApp. Respondemos 24h e encaixamos o mais rápido possível.',
-    buttonText: 'Falar no WhatsApp Agora',
+    subtitle: 'Mande mensagem pelo WhatsApp. Respondemos 24h e buscamos o encaixe o quanto antes em dias úteis.',
+    buttonText: 'Pedir Encaixe pelo WhatsApp',
     urgency: 'Dor ignorada hoje vira tratamento mais complexo amanhã.'
   },
 
   contact: {
     whatsappNumber: '5521993304045',
-    whatsappMessage: 'Olá! Estou com uma dor de dente forte e preciso de atendimento urgente.',
+    whatsappMessage: 'Olá! Estou com uma dor de dente forte e gostaria de tentar um encaixe no consultório o quanto antes.',
     doctorName: 'Dra. Carla Christoph',
     clinicName: 'Consultório Odontológico'
   },
