@@ -41,7 +41,7 @@ const LimpezaDentalCTA: React.FC<LimpezaDentalCTAProps> = ({
       // Google Ads conversion
       if (window.gtag) {
         window.gtag('event', 'conversion', {
-          send_to: 'AW-16894364517/LP_limpeza_final',
+          send_to: 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
           value: 1,
           currency: 'BRL'
         });
