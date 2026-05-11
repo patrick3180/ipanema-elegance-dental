@@ -76,7 +76,7 @@ const GlobalSchemas = () => {
     // Address & Location
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Rua Visconde de Pirajá",
+      "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
       "addressLocality": "Ipanema",
       "addressRegion": "RJ",
       "postalCode": "22410-901",

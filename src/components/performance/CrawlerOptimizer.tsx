@@ -64,9 +64,10 @@ export const CrawlerOptimizer = () => {
           "url": "https://dracarlachristoph.com",
           "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Rua Visconde de Pirajá",
+            "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
             "addressLocality": "Ipanema",
             "addressRegion": "RJ",
+            "postalCode": "22410-901",
             "addressCountry": "BR"
           },
           "telephone": "+5521993304045",
