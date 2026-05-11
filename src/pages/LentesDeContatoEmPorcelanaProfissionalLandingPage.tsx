@@ -144,7 +144,7 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
               "latitude": "-22.9849",
               "longitude": "-43.2003"
             },
-            "openingHours": ["Mo-Fr 08:00-18:00"],
+            "openingHours": ["Mo-Fr 09:00-19:00"],
             "priceRange": "$$$",
             "serviceArea": {
               "@type": "GeoCircle",

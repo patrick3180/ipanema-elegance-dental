@@ -70,7 +70,7 @@ const EnHomePage = () => {
         },
         "telephone": "+5521993304045",
         "email": "contato@dracarlachristoph.com",
-        "priceRange": "$$",
+        "priceRange": "$$$",
         "paymentAccepted": "Cash, Credit Card, Bank Transfer, PIX",
         "currenciesAccepted": "BRL",
         "openingHoursSpecification": [

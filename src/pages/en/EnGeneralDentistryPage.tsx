@@ -347,12 +347,12 @@ const EnGeneralDentistryPage = () => {
           locale="en"
           sectionTitle="Your Dentist in Ipanema"
           paragraphs={[
-            "Dr. Carla Christoph graduated from the Federal University of Rio de Janeiro (UFRJ) and has dedicated over 20 years to dentistry — with specializations in prosthodontics and implant dentistry.",
+            "Dr. Carla Christoph has dedicated over 20 years to dentistry — with specializations in prosthodontics and implant dentistry (CRO-RJ 27.509) and 8 years of service as a dentist at the Brazilian Navy Central Dental Clinic.",
             "Her approach to general dentistry is rooted in prevention: every appointment is an opportunity to detect early signs of decay, gum disease, or functional issues before they become costly problems.",
             "Patients benefit from unhurried consultations (minimum 1 hour), digital diagnostics with iTero Element 5D, and a care plan that integrates every aspect of oral health."
           ]}
           credentials={[
-            { title: "UFRJ Graduate", description: "Federal University of Rio de Janeiro" },
+            { title: "Brazilian Navy Dentist", description: "8 years at Odontoclínica Central da Marinha" },
             { title: "Prosthodontics Specialist", description: "Advanced oral rehabilitation" },
             { title: "20+ Years", description: "Clinical experience in Ipanema" },
             { title: "Digital Diagnostics", description: "iTero Element 5D scanning" }

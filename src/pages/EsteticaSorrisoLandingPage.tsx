@@ -63,7 +63,7 @@ const EsteticaSorrisoLandingPage = () => {
         "name": "Dra. Carla Christoph - Estética Dental",
         "url": "https://dracarlachristoph.com/lp/estetica-dental-ipanema",
         "telephone": "+5521993304045",
-        "priceRange": "$$",
+        "priceRange": "$$$",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
@@ -77,7 +77,7 @@ const EsteticaSorrisoLandingPage = () => {
           "latitude": -22.9868,
           "longitude": -43.2018
         },
-        "openingHours": "Mo,Tu,We,Th,Fr 08:00-18:00",
+        "openingHours": "Mo-Fr 09:00-19:00",
         "specialty": "Estética Dental"
       },
       {

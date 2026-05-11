@@ -117,14 +117,14 @@ const Header = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-1.5 px-2 py-1 lg:px-3 lg:py-1.5 bg-white/50 backdrop-blur-sm rounded-full border border-dental-gold/20 hover:border-dental-gold/40 transition-all hover:shadow-sm group"
-          aria-label="Veja nossas avaliações no Google - 4.9 estrelas com 23 avaliações"
+          aria-label="Veja nossas avaliações no Google - 5.0 estrelas com 16 avaliações"
         >
           <div className="flex items-center gap-1">
             <Star size={14} className="fill-dental-gold text-dental-gold lg:w-4 lg:h-4" />
-            <span className="text-xs lg:text-sm font-semibold text-dental-purple">4.9</span>
+            <span className="text-xs lg:text-sm font-semibold text-dental-purple">5.0</span>
           </div>
           <span className="hidden md:inline text-xs text-dental-purple/70 group-hover:text-dental-purple transition-colors">
-            (23 avaliações)
+            (16 avaliações)
           </span>
         </a>
 

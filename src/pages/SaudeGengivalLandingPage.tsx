@@ -85,8 +85,8 @@ const SaudeGengivalLandingPage = () => {
           "latitude": "-22.9868",
           "longitude": "-43.2050"
         },
-        "openingHours": "Mo-Fr 08:00-18:00",
-        "priceRange": "$$",
+        "openingHours": "Mo-Fr 09:00-19:00",
+        "priceRange": "$$$",
         "image": "https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
       },
       {

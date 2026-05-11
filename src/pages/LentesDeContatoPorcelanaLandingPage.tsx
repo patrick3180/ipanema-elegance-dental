@@ -134,7 +134,7 @@ const LentesDeContatoPorcelanaLandingPage = () => {
               "latitude": "-22.9838",
               "longitude": "-43.2096"
             },
-            "openingHours": "Mo-Fr 08:00-18:00",
+            "openingHours": "Mo-Fr 09:00-19:00",
             "priceRange": "$$$"
           })}
         </script>

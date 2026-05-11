@@ -258,7 +258,7 @@ const BlogPost = () => {
             {/* Author Bio - Always show with fallback data */}
             <div className="max-w-4xl mx-auto">
               <AuthorBio
-                bio={post.authorBio || "Cirurgiã-dentista com mais de 20 anos de experiência em Ipanema, Rio de Janeiro. Especialista em Prótese Dentária e Implantodontia (CRO-RJ 27.509). Formada pela Faculdade de Odontologia da Universidade Federal do Rio de Janeiro, com 8 anos como dentista militar na Odontoclínica Central da Marinha."}
+                bio={post.authorBio || "Cirurgiã-dentista com mais de 20 anos de experiência em Ipanema, Rio de Janeiro. Especialista em Prótese Dentária e Implantodontia (CRO-RJ 27.509), com 8 anos como dentista militar na Odontoclínica Central da Marinha."}
                 author={post.author || "Dra. Carla Christoph"}
               />
             </div>

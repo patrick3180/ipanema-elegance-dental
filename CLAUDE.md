@@ -106,6 +106,8 @@ A palavra **"avaliação"** causa confusão real: pacientes chegam ao consultór
 - Dr. Bruno = **"Dr. Bruno"** (sem sobrenome "Christoph" — ele NÃO é da família)
 - Dr. Bruno = Doutor em Ortodontia pela UERJ, Professor IOPUC-Rio
 
+**REGRA — Formação de graduação da Dra. Carla (Maio/2026):** **NÃO mencionar a faculdade onde se formou** (em copy, schema, bio, alumniOf, qualquer lugar). Foco da bio canônica é experiência militar (8 anos Marinha) + especializações (Prótese, Implantodontia) + CRO-RJ 27.509. **Nunca afirmar UFRJ ou qualquer outra instituição.** Esta é uma decisão consciente de posicionamento.
+
 ### 1.5 Tracking — Regras de Segurança
 - GTM **só carrega** via `index.html` — nunca em componentes React
 - GCLID usa **localStorage** — nunca sessionStorage
@@ -467,7 +469,7 @@ Estas decisões já foram tomadas e aprovadas:
 | Dr. Bruno = "Dr. Bruno" | Sem sobrenome Christoph |
 | Canal/Periodontia = parceiros | Dra. Carla coordena, não executa |
 | Blog formato Q&A | Melhor para AI Search |
-| `AggregateRating` = ❌ Removido | Era fabricado |
+| `AggregateRating` = ✅ Mantido (exceção autorizada Maio/2026) | Dados reais do Google Reviews (5.0/16). Beneficia SEO via rich snippets. Substitui regra anterior "Removido" que era válida quando os dados eram fabricados. |
 | GTM delay = 2 segundos | Reduzido de 8s (perdia conversões) |
 | GCLID em localStorage | sessionStorage causava perda de dados |
 | Scanner = "iTero Element 5D" | Nome correto e diferenciador |

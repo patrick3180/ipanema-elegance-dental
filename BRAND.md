@@ -200,7 +200,7 @@ Exemplos:
 - ❌ Profissões fictícias
 - ❌ Palavras: "recomendo", "incrível", "perfeita", "maravilhosa", "nota 10"
 - ❌ Elogios genéricos sem fato concreto
-- ❌ AggregateRating ou qualquer schema de avaliação
+- ⚠️ AggregateRating: **permitido desde Maio/2026** com dados reais do Google Reviews (atualmente 5.0/16). Atualizar manualmente em GlobalSchemas.tsx, SEOHead.tsx, EnContactPage.tsx e generate-static-meta.cjs quando crescer. NÃO usar valores fabricados.
 
 ---
 

@@ -56,7 +56,7 @@ const EnContactPage = () => {
                     "telephone": "+5521993304045",
                     "email": "contato@dracarlachristoph.com",
                     "image": "https://dracarlachristoph.com/og-image.jpg",
-                    "priceRange": "$$",
+                    "priceRange": "$$$",
                     "currenciesAccepted": "BRL",
                     "paymentAccepted": "Cash, Credit Card, Debit Card, PIX",
                     "address": {
@@ -76,14 +76,8 @@ const EnContactPage = () => {
                         {
                             "@type": "OpeningHoursSpecification",
                             "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                            "opens": "08:00",
-                            "closes": "18:00"
-                        },
-                        {
-                            "@type": "OpeningHoursSpecification",
-                            "dayOfWeek": "Saturday",
-                            "opens": "08:00",
-                            "closes": "14:00"
+                            "opens": "09:00",
+                            "closes": "19:00"
                         }
                     ],
                     "areaServed": [
@@ -99,8 +93,8 @@ const EnContactPage = () => {
                     ],
                     "aggregateRating": {
                         "@type": "AggregateRating",
-                        "ratingValue": "4.9",
-                        "reviewCount": "23",
+                        "ratingValue": "5.0",
+                        "reviewCount": "16",
                         "bestRating": "5",
                         "worstRating": "1"
                     },

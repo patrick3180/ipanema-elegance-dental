@@ -29,7 +29,7 @@ const getStats = (locale: "pt" | "en"): StatItem[] => [
     },
     {
         icon: <Star className="w-5 h-5 text-dental-gold fill-dental-gold" />,
-        value: "4.9 ★",
+        value: "5.0 ★",
         label: locale === "en" ? "Google Rating" : "Avaliação Google",
     },
 ];

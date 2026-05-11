@@ -67,13 +67,6 @@ const EnAboutPage = () => {
                             "identifier": "CRO-RJ 27.509"
                         }
                     ],
-                    "alumniOf": [
-                        {
-                            "@type": "EducationalOrganization",
-                            "name": "UFRJ — Federal University of Rio de Janeiro",
-                            "department": "School of Dentistry"
-                        }
-                    ],
                     "knowsAbout": [
                         "Porcelain Veneers",
                         "Dental Implants",
@@ -128,7 +121,7 @@ const EnAboutPage = () => {
                                 <div>
                                     <h2 className="text-2xl font-display text-dental-purple mb-3">Background & Training</h2>
                                     <p className="text-dental-gray leading-relaxed">
-                                        Dr. Carla Christoph is a board-certified dental specialist in <strong>prosthodontics</strong> and <strong>implant dentistry</strong>, registered with the Regional Dental Council of Rio de Janeiro (CRO-RJ 27.509). She graduated from the Federal University of Rio de Janeiro (UFRJ) and has over two decades of clinical experience.
+                                        Dr. Carla Christoph is a board-certified dental specialist in <strong>prosthodontics</strong> and <strong>implant dentistry</strong>, registered with the Regional Dental Council of Rio de Janeiro (CRO-RJ 27.509), with over two decades of clinical experience.
                                     </p>
                                 </div>
 

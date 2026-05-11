@@ -38,21 +38,15 @@ const Index = () => {
     },
     "telephone": "+5521993304045",
     "email": "contato@dracarlachristoph.com",
-    "priceRange": "$$",
+    "priceRange": "$$$",
     "paymentAccepted": "Cash, Credit Card, Bank Transfer",
     "currenciesAccepted": "BRL",
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "08:00",
-        "closes": "18:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Saturday",
-        "opens": "08:00",
-        "closes": "14:00"
+        "opens": "09:00",
+        "closes": "19:00"
       }
     ],
     "areaServed": {
@@ -126,10 +120,6 @@ const Index = () => {
       "worksFor": {
         "@type": "Organization",
         "name": "Clínica Dra. Carla Christoph"
-      },
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "Faculdade de Odontologia"
       },
       "hasCredential": [
         {

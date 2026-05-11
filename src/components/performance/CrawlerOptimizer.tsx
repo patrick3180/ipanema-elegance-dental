@@ -69,9 +69,9 @@ export const CrawlerOptimizer = () => {
             "addressRegion": "RJ",
             "addressCountry": "BR"
           },
-          "telephone": "+55-21-XXXX-XXXX",
+          "telephone": "+5521993304045",
           "medicalSpecialty": "Dentistry",
-          "priceRange": "$$"
+          "priceRange": "$$$"
         };
 
         const existingLD = document.querySelector('script[type="application/ld+json"]');

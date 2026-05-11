@@ -69,18 +69,18 @@ const EnHeader = () => {
 
                 {/* Google Rating Badge */}
                 <a
-                    href="https://g.page/r/CYsX3fOl2dljEAI/review"
+                    href="https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-1.5 px-2 py-1 lg:px-3 lg:py-1.5 bg-white/50 backdrop-blur-sm rounded-full border border-dental-gold/20 hover:border-dental-gold/40 transition-all hover:shadow-sm group"
-                    aria-label="See our Google reviews - 4.9 stars with 23 reviews"
+                    aria-label="See our Google reviews - 5.0 stars with 16 reviews"
                 >
                     <div className="flex items-center gap-1">
                         <Star size={14} className="fill-dental-gold text-dental-gold lg:w-4 lg:h-4" />
-                        <span className="text-xs lg:text-sm font-semibold text-dental-purple">4.9</span>
+                        <span className="text-xs lg:text-sm font-semibold text-dental-purple">5.0</span>
                     </div>
                     <span className="hidden md:inline text-xs text-dental-purple/70 group-hover:text-dental-purple transition-colors">
-                        (23 reviews)
+                        (16 reviews)
                     </span>
                 </a>
 

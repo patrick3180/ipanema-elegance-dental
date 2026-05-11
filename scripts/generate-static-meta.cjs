@@ -88,14 +88,13 @@ function generateDentistSchema() {
     'telephone': '+5521993304045',
     'url': BASE_URL,
     'image': BASE_URL + '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
-    'priceRange': '$$',
+    'priceRange': '$$$',
     'address': PROVIDER.address,
     'openingHoursSpecification': [
-      { '@type': 'OpeningHoursSpecification', 'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], 'opens': '09:00', 'closes': '19:00' },
-      { '@type': 'OpeningHoursSpecification', 'dayOfWeek': 'Saturday', 'opens': '09:00', 'closes': '14:00' }
+      { '@type': 'OpeningHoursSpecification', 'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], 'opens': '09:00', 'closes': '19:00' }
     ],
     'hasCredential': { '@type': 'EducationalOccupationalCredential', 'credentialCategory': 'CRO-RJ', 'recognizedBy': { '@type': 'Organization', 'name': 'CRO-RJ' }, 'identifier': '27.509' },
-    'aggregateRating': { '@type': 'AggregateRating', 'ratingValue': '4.9', 'reviewCount': '127', 'bestRating': '5' },
+    'aggregateRating': { '@type': 'AggregateRating', 'ratingValue': '5.0', 'reviewCount': '16', 'bestRating': '5' },
     'availableLanguage': ['pt-BR', 'en']
   });
 }

@@ -148,7 +148,7 @@ const ProfilaxiaLandingPage: React.FC = () => {
               "addressCountry": "BR"
             },
             "telephone": "+5521993304045",
-            "priceRange": "$$",
+            "priceRange": "$$$",
             "hasOfferCatalog": {
               "@type": "OfferCatalog",
               "name": "Serviços Odontológicos",

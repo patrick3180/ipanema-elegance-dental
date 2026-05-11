@@ -29,7 +29,7 @@ const GlobalSchemas = () => {
     "image": "https://dracarlachristoph.com/og-image.jpg",
     "description": "Dentista especialista em Ipanema, Rio de Janeiro. Odontologia estética, implantes dentários, prótese dental e reabilitação oral com atenção personalizada e mais de 20 anos de experiência.",
     "email": "contato@dracarlachristoph.com",
-    "telephone": "+552199330-4045",
+    "telephone": "+5521993304045",
     "sameAs": [
       "https://instagram.com/dracarlachristoph",
       "https://wa.me/5521993304045",
@@ -40,10 +40,6 @@ const GlobalSchemas = () => {
       "name": "Carla Christoph",
       "jobTitle": "Dentista Especialista",
       "description": "Dentista com mais de 20 anos de experiência, especialista em odontologia estética e reabilitação oral. 8 anos de experiência na Marinha do Brasil.",
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "Universidade Federal do Rio de Janeiro"
-      },
       "hasCredential": {
         "@type": "EducationalOccupationalCredential",
         "credentialCategory": "professional license",
@@ -66,9 +62,9 @@ const GlobalSchemas = () => {
     "name": "Dra. Carla Christoph",
     "image": "https://dracarlachristoph.com/og-image.jpg",
     "url": "https://dracarlachristoph.com",
-    "telephone": "+552199330-4045",
+    "telephone": "+5521993304045",
     "email": "contato@dracarlachristoph.com",
-    "priceRange": "$$-$$$",
+    "priceRange": "$$$",
 
     // Professional Credentials
     "identifier": {
@@ -106,22 +102,16 @@ const GlobalSchemas = () => {
       {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "08:00",
-        "closes": "18:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Saturday",
-        "opens": "08:00",
-        "closes": "14:00"
+        "opens": "09:00",
+        "closes": "19:00"
       }
     ],
 
     // Ratings & Reviews (Real data from Google)
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "23",
+      "ratingValue": "5.0",
+      "reviewCount": "16",
       "bestRating": "5",
       "worstRating": "1"
     },

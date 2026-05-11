@@ -29,7 +29,7 @@ const stats: StatItem[] = [
   },
   {
     icon: <Star className="w-5 h-5" />,
-    value: 4.9,
+    value: 5.0,
     suffix: " ★",
     label: "Avaliação Google",
   },
