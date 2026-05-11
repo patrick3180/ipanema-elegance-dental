@@ -113,7 +113,7 @@ const Header = () => {
 
         {/* Google Rating Badge */}
         <a
-          href="https://g.page/r/CYsX3fOl2dljEAI/review"
+          href="https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-1.5 px-2 py-1 lg:px-3 lg:py-1.5 bg-white/50 backdrop-blur-sm rounded-full border border-dental-gold/20 hover:border-dental-gold/40 transition-all hover:shadow-sm group"
