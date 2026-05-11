@@ -183,7 +183,7 @@ Create a unified `LocalBusiness` schema on homepage with:
 | **Business Name** | "Dra. Carla Christoph" | ✅ Consistent |
 | **Address** | Rua Visconde de Pirajá, 550 - Sala 1107 | ✅ Consistent |
 | **City** | Ipanema, Rio de Janeiro - RJ | ✅ Consistent |
-| **Postal Code** | 22410-002 | ✅ Consistent |
+| **Postal Code** | 22410-901 | ✅ Consistent |
 | **Telephone** | +5521993304045 | ✅ Consistent (formatted correctly) |
 | **CRO-RJ** | 27.509 | ⚠️ Present in text but missing in schemas |
 | **Email** | contato@dracarlachristoph.com | ✅ Consistent (ContactPage.tsx line 99) |
@@ -741,7 +741,7 @@ Add Table schema:
 | Element | Location | Value | Status |
 |---------|----------|-------|--------|
 | Business Name | All pages | "Clínica Dra. Carla Christoph" / "Dra. Carla Christoph" | ✅ Consistent |
-| Address | ContactPage.tsx | "Rua Visconde de Pirajá, 550 - Sala 1107, Ipanema, Rio de Janeiro - RJ, CEP: 22410-002" | ✅ Full format |
+| Address | ContactPage.tsx | "Rua Visconde de Pirajá, 550 - Sala 1107, Ipanema, Rio de Janeiro - RJ, CEP: 22410-901" | ✅ Full format |
 | Address | Schemas | "Rua Visconde de Pirajá, 550 - Sala 1107" | ✅ Consistent |
 | Phone | ContactPage.tsx | "(21) 3738-7909" + "(21) 99330-4045" | ✅ |
 | Phone | Schemas | "+5521993304045" | ✅ International format |

@@ -62,7 +62,7 @@ const EnTeethWhiteningPage = () => {
           "name": "Professional Teeth Whitening", "description": "Teeth whitening procedure with in-office and supervised at-home techniques",
           "procedureType": "Dental", "inLanguage": "en",
           "provider": { "@type": "Dentist", "name": "Dr. Carla Christoph", "telephone": "+5521993304045",
-            "address": { "@type": "PostalAddress", "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107", "addressLocality": "Ipanema", "addressRegion": "RJ", "postalCode": "22410-002", "addressCountry": "BR" }
+            "address": { "@type": "PostalAddress", "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107", "addressLocality": "Ipanema", "addressRegion": "RJ", "postalCode": "22410-901", "addressCountry": "BR" }
           }
         }}
         additionalStructuredData={[

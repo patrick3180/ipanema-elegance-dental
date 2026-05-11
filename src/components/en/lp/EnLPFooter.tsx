@@ -8,7 +8,7 @@ const EnLPFooter: React.FC = () => {
           Dr. Carla Christoph — CRO-RJ 27.509 • Specialist in Prosthodontics and Implant Dentistry
         </p>
         <p className="text-white/40 text-xs mt-2">
-          Rua Visconde de Pirajá, 550 — Suite 1107, Ipanema, Rio de Janeiro, RJ 22410-002
+          Rua Visconde de Pirajá, 550 — Suite 1107, Ipanema, Rio de Janeiro, RJ 22410-901
         </p>
         <p className="text-white/30 text-[10px] mt-4">
           © {new Date().getFullYear()} Dr. Carla Christoph. All rights reserved. CRO-RJ 27.509.

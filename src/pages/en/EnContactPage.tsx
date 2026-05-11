@@ -64,7 +64,7 @@ const EnContactPage = () => {
                         "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107",
                         "addressLocality": "Ipanema, Rio de Janeiro",
                         "addressRegion": "RJ",
-                        "postalCode": "22410-002",
+                        "postalCode": "22410-901",
                         "addressCountry": "BR"
                     },
                     "geo": {
@@ -145,7 +145,7 @@ const EnContactPage = () => {
                                             <p className="text-dental-gray">
                                                 Rua Visconde de Pirajá, 550 - Suite 1107<br />
                                                 Ipanema, Rio de Janeiro - RJ<br />
-                                                ZIP: 22410-002, Brazil
+                                                ZIP: 22410-901, Brazil
                                             </p>
                                         </div>
                                     </div>

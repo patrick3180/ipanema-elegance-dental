@@ -115,15 +115,15 @@ const CTASection = ({
           <div className="mt-12 flex flex-wrap justify-center gap-8 text-white/70">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-              <span className="text-sm">Atendimento 24h</span>
+              <span className="text-sm">WhatsApp 24h</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-              <span className="text-sm">Primeira consulta gratuita</span>
+              <span className="text-sm">Mín. 1h por consulta</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-              <span className="text-sm">Parcelamento sem juros</span>
+              <span className="text-sm">100% particular</span>
             </div>
           </div>
         </div>

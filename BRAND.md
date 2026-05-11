@@ -11,7 +11,7 @@
 **Nome completo:** Dra. Carla Christoph  
 **CRO-RJ:** 27.509  
 **Especialidades formais:** Prótese Dentária e Implantodontia  
-**Localização:** Rua Visconde de Pirajá, 550 — Sala 1107, Ipanema, Rio de Janeiro — RJ, CEP 22410-002  
+**Localização:** Rua Visconde de Pirajá, 550 — Sala 1107, Ipanema, Rio de Janeiro — RJ, CEP 22410-901  
 **Tempo de atuação:** 20+ anos em Ipanema  
 **Background diferenciado:** 8 anos como dentista militar na Odontoclínica Central da Marinha do Brasil  
 **Tecnologia principal:** Scanner intraoral iTero Element 5D, planejamento digital do sorriso, Test Drive do Sorriso

@@ -21,7 +21,7 @@ interface SocialProofSectionProps {
 const SocialProofSection = ({ title, testimonials, stats }: SocialProofSectionProps) => {
   const defaultStats = [
     { number: "20+", label: "Anos de Experiência" },
-    { number: "WhatsApp", label: "Atendimento 24h" },
+    { number: "24h", label: "WhatsApp Disponível" },
     { number: "Particular", label: "Mínimo 1h por Consulta" },
     { number: "Ipanema", label: "Zona Sul — Rio de Janeiro" }
   ];

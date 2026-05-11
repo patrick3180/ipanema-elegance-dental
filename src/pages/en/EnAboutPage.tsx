@@ -91,7 +91,7 @@ const EnAboutPage = () => {
                             "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107",
                             "addressLocality": "Ipanema, Rio de Janeiro",
                             "addressRegion": "RJ",
-                            "postalCode": "22410-002",
+                            "postalCode": "22410-901",
                             "addressCountry": "BR"
                         }
                     },

@@ -67,7 +67,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       "streetAddress": "Rua Visconde de Pirajá, Ipanema",
       "addressLocality": "Rio de Janeiro",
       "addressRegion": "RJ",
-      "postalCode": "22410-000",
+      "postalCode": "22410-901",
       "addressCountry": "BR"
     },
     "geo": {

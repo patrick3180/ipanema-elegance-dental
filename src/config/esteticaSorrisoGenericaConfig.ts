@@ -79,7 +79,7 @@ export const esteticaSorrisoGenericaConfig: LandingPageConfig = {
 
   cta: {
     title: 'Quer Saber o que Faz Sentido para Seu Sorriso?',
-    subtitle: 'Na consulta, analisamos seu caso e mostramos as opções — sem compromisso de iniciar.',
+    subtitle: 'Na consulta, analisamos seu caso, mostramos as opções e o tempo previsto — você decide o ritmo.',
     buttonText: 'Agendar Consulta Estética',
     urgency: 'O primeiro passo é entender o que faz sentido para o seu caso — e isso começa com uma consulta.'
   },

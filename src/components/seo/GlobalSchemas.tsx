@@ -83,7 +83,7 @@ const GlobalSchemas = () => {
       "streetAddress": "Rua Visconde de Pirajá",
       "addressLocality": "Ipanema",
       "addressRegion": "RJ",
-      "postalCode": "22410-000",
+      "postalCode": "22410-901",
       "addressCountry": "BR"
     },
     "geo": {

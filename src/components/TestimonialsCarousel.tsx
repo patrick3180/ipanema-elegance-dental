@@ -4,33 +4,23 @@ import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Beatriz M.",
-    location: "Ipanema",
-    rating: 5,
+    name: "Beatriz M. — Ipanema",
     text: "Fiz as lentes de contato dental com a Dra. Carla. O que mais me impressionou foi o planejamento antes de começar — pude ver como ficaria antes de tomar a decisão. Hoje sorrio sem pensar duas vezes.",
   },
   {
-    name: "Roberto S.",
-    location: "Leblon",
-    rating: 5,
+    name: "Roberto S. — Leblon",
     text: "Passei anos com dificuldade para mastigar por causa de próteses antigas que não serviam mais. A reabilitação que a Dra. Carla fez devolveu meu conforto. Parece que tenho dentes novos.",
   },
   {
-    name: "Juliana P.",
-    location: "Copacabana",
-    rating: 5,
+    name: "Juliana P. — Copacabana",
     text: "Faço acompanhamento no consultório há mais de 5 anos. O que me fez ficar foi o tempo que dedicam a cada consulta. Nunca saí com a sensação de que foi apressado.",
   },
   {
-    name: "Fernando A.",
-    location: "Gávea",
-    rating: 5,
-    text: "Precisava de implantes e tinha muito medo. A Dra. Carla explicou tudo com paciência e o resultado ficou melhor do que eu imaginava. Recomendo de olhos fechados.",
+    name: "Fernando A. — Gávea",
+    text: "Precisava de implantes e tinha muito medo. A Dra. Carla explicou tudo com paciência e o resultado ficou melhor do que eu imaginava. Voltaria pra qualquer tratamento sem pensar duas vezes.",
   },
   {
-    name: "Mariana L.",
-    location: "Botafogo",
-    rating: 5,
+    name: "Mariana L. — Botafogo",
     text: "O clareamento ficou natural e bonito. Adorei que a Dra. Carla me explicou cada etapa e respeitou o meu tempo. Consultório lindo e equipe muito atenciosa.",
   },
 ];
@@ -110,16 +100,6 @@ const TestimonialsCarousel = () => {
                   {/* Quote icon */}
                   <Quote className="w-8 h-8 text-dental-gold/20 mb-4" />
 
-                  {/* Stars */}
-                  <div className="flex gap-1 mb-4">
-                    {Array.from({ length: t.rating }).map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-4 h-4 text-dental-gold fill-dental-gold"
-                      />
-                    ))}
-                  </div>
-
                   <p className="text-dental-purple/90 leading-relaxed mb-6 text-sm">
                     &ldquo;{t.text}&rdquo;
                   </p>
@@ -131,12 +111,9 @@ const TestimonialsCarousel = () => {
                         {t.name.charAt(0)}
                       </span>
                     </div>
-                    <div>
-                      <p className="font-semibold text-dental-purple text-sm">
-                        {t.name}
-                      </p>
-                      <p className="text-xs text-dental-gray">{t.location}</p>
-                    </div>
+                    <p className="font-semibold text-dental-purple text-sm">
+                      {t.name}
+                    </p>
                   </div>
                 </div>
               );

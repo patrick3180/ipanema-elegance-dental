@@ -92,7 +92,7 @@ export const consultaInicialConfig: LandingPageConfig = {
 
   seo: {
     title: "Consulta Odontológica Personalizada em Ipanema | Dra. Carla Christoph",
-    description: "Consulta odontológica sem pressa em Ipanema. Atendimento personalizado com a Dra. Carla Christoph, especialista com 20+ anos de experiência. Agende pelo WhatsApp 24h.",
+    description: "Consulta odontológica sem pressa em Ipanema. Mínimo de 1 hora por consulta com a Dra. Carla Christoph, especialista com 20+ anos de experiência. Agende pelo WhatsApp 24h.",
     keywords: ["consulta odontológica ipanema", "dentista particular ipanema", "dentista sem pressa", "consulta personalizada zona sul", "melhor dentista ipanema", "check-up dental ipanema"]
   },
 

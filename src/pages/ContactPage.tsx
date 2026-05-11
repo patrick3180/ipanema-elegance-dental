@@ -64,7 +64,7 @@ const ContactPage = () => {
             {/* WhatsApp CTA */}
             <div className="bg-dental-beige/50 p-8 rounded-lg text-center mb-12 max-w-2xl mx-auto">
               <h2 className="text-2xl font-display mb-4">Agende pelo WhatsApp</h2>
-              <p className="text-dental-gray mb-6">A forma mais rápida de agendar sua consulta. Atendimento 24h.</p>
+              <p className="text-dental-gray mb-6">A forma mais rápida de agendar sua consulta. Resposta rápida pelo WhatsApp 24h.</p>
               <Button onClick={handleWhatsAppClick} className="bg-dental-gold hover:bg-dental-gold/90 text-white px-8 py-6" size="lg">
                 <MessageCircle size={20} className="mr-2" />
                 Chamar no WhatsApp
@@ -83,7 +83,7 @@ const ContactPage = () => {
                       <p className="text-dental-gray">
                         Rua Visconde de Pirajá, 550 - Sala 1107<br />
                         Ipanema, Rio de Janeiro - RJ<br />
-                        CEP: 22410-002
+                        CEP: 22410-901
                       </p>
                     </div>
                   </div>

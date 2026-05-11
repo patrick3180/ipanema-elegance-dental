@@ -17,7 +17,7 @@
 | **Endereço** | Rua Visconde de Pirajá, 550 — Sala 1107 |
 | **Bairro** | Ipanema |
 | **Cidade** | Rio de Janeiro — RJ |
-| **CEP** | 22410-002 |
+| **CEP** | 22410-901 |
 | **Telefone/WhatsApp** | +55 21 99330-4045 |
 | **E-mail** | contato@dracarlachristoph.com |
 | **Instagram** | @dracarlachristoph |

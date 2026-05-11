@@ -50,11 +50,16 @@ Estas **jamais** devem aparecer em conteúdo do site:
 | "resultados excepcionais" | "resultados naturais e previsíveis" |
 | "100% natural" | "natural ao ponto de passar despercebido" |
 | "atendimento personalizado" | "mínimo de 1 hora por consulta" |
-| "materiais de alta qualidade" | nomear o material real |
+| "materiais de alta qualidade" | nomear o material real (ver exceção abaixo) |
 | "agende agora" / "não perca" | "agende sua consulta pelo WhatsApp" |
 | "avaliação" (em CTAs e agendamento) | "consulta" — ver regra de disambiguação abaixo |
 
 **Princípio**: Se uma frase poderia ser usada por qualquer dentista do Brasil, ela é genérica demais.
+
+**Exceções autorizadas (Maio/2026):**
+
+- **Clareamento — "materiais de alta qualidade":** o gel clareador varia conforme o caso e a preferência da Dra. Carla. Para LPs/seções de clareamento, expressões como "Materiais de Alta Qualidade" ou "somente as melhores marcas de materiais" são permitidas, pois nomear uma marca específica seria impreciso. Esta exceção NÃO se estende a outros tratamentos.
+- **Profilaxia — "investimento":** na frase "Prevenção é o Investimento Mais Inteligente em Saúde Bucal", "investimento" tem sentido amplo (tempo, cuidado, prioridade), não financeiro. Mantido como está. Esta exceção é específica a esse contexto (prevenção/saúde) — NÃO usar "investimento" em contextos onde possa ser lido como preço.
 
 ### 1.3 Disambiguação: "Avaliação" vs. "Consulta"
 
@@ -524,7 +529,8 @@ Estas decisões já foram tomadas e aprovadas:
 | CRO-RJ | 27.509 |
 | Especialidades | Prótese Dentária, Implantodontia |
 | Endereço | Rua Visconde de Pirajá, 550 — Sala 1107, Ipanema, RJ |
-| CEP | 22410-002 |
+| CEP | 22410-901 |
+| Telefone fixo | (21) 3738-7909 |
 | WhatsApp | +55 21 99330-4045 |
 | Email | contato@dracarlachristoph.com |
 | Instagram | @dracarlachristoph |

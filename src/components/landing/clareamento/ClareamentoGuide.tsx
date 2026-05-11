@@ -63,7 +63,7 @@ const ClareamentoGuide: React.FC<ClareamentoGuideProps> = ({
       {
         number: "4",
         title: "Monitoramento Profissional",
-        description: "Acompanhamento regular para ajustes e garantia de resultados seguros"
+        description: "Acompanhamento regular para ajustes e segurança do procedimento"
       }
     ]
   };

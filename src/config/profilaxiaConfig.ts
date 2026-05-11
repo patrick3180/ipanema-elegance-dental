@@ -10,7 +10,7 @@ export const profilaxiaConfig: LandingPageConfig = {
 
   whatsapp: {
     number: "5521993304045",
-    message: "Olá! Vi o site e gostaria de agendar uma profilaxia dental. Podem me informar valores e disponibilidade?"
+    message: "Olá! Gostaria de agendar uma consulta de profilaxia (limpeza). Qual a disponibilidade nas próximas semanas?"
   },
 
   hero: {

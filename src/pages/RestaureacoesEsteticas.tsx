@@ -69,7 +69,7 @@ const RestaureacoesEsteticas = () => {
                 "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
                 "addressLocality": "Ipanema",
                 "addressRegion": "RJ",
-                "postalCode": "22410-002",
+                "postalCode": "22410-901",
                 "addressCountry": "BR"
               }
             }
