@@ -27,11 +27,7 @@ export const transformBlogPostEntry = (entry: Entry<BlogPostSkeleton>): BlogPost
     tags: Array.isArray(getLocalizedValue(fields.tags)) ? getLocalizedValue(fields.tags) : [],
     
     // NOVOS CAMPOS
-    // Lê primeiro o campo correto `quickAnswerBox`; fallback ao campo histórico com typo durante migração.
-    quickAnswer:
-      getLocalizedValue((fields as any).quickAnswerBox) ||
-      getLocalizedValue(fields.quickAnswerBoquickAnswerBoxx) ||
-      '',
+    quickAnswer: getLocalizedValue(fields.quickAnswerBoquickAnswerBoxx) || '',
     keyTakeaways: Array.isArray(getLocalizedValue(fields.keyTakeaways)) ? getLocalizedValue(fields.keyTakeaways) : undefined,
     comparisonTable: transformComparisonTable(getLocalizedValue(fields.comparisonTable)),
     faqStructured: transformFAQStructured(getLocalizedValue(fields.faqStructured)),
