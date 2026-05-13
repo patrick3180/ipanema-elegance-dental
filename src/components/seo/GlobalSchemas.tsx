@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import AuthorSchema from './AuthorSchema';
 
 /**
  * GlobalSchemas - Organization + LocalBusiness structured data
@@ -185,17 +186,21 @@ const GlobalSchemas = () => {
   };
 
   return (
-    <Helmet>
-      {/* Organization Schema */}
-      <script type="application/ld+json">
-        {JSON.stringify(organizationSchema)}
-      </script>
+    <>
+      <Helmet>
+        {/* Organization Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify(organizationSchema)}
+        </script>
 
-      {/* LocalBusiness Schema */}
-      <script type="application/ld+json">
-        {JSON.stringify(localBusinessSchema)}
-      </script>
-    </Helmet>
+        {/* LocalBusiness Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify(localBusinessSchema)}
+        </script>
+      </Helmet>
+      {/* Person/Author Schema (separate component, top-level @id) */}
+      <AuthorSchema />
+    </>
   );
 };
 

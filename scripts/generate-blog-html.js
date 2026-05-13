@@ -56,7 +56,57 @@ const generateBlogPostHTML = (post) => {
   const imageUrl = post.fields?.imagemPrincipal?.fields?.file?.url || '';
   const author = post.fields?.autor || 'Dra. Carla Christoph';
   const date = post.sys?.createdAt || new Date().toISOString();
+  const lastUpdated = post.fields?.lastUpdated || post.fields?.publishDate || date;
   const category = post.fields?.categoria || 'Odontologia';
+
+  // AI Search fields — entram no HTML estático para Google/Perplexity/ChatGPT verem direto
+  const quickAnswerBox = post.fields?.quickAnswerBox || post.fields?.quickAnswerBoquickAnswerBoxx || '';
+  const keyTakeaways = Array.isArray(post.fields?.keyTakeaways) ? post.fields.keyTakeaways : [];
+  const faqStructured = Array.isArray(post.fields?.faqStructured) ? post.fields.faqStructured : [];
+  const peopleAlsoAsk = post.fields?.peopleAlsoAsk?.questions || [];
+
+  // FAQ schema JSON-LD (gerado dinamicamente)
+  const faqSchemaScript = faqStructured.length ? `
+  <script type="application/ld+json">
+  ${JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqStructured.map(f => ({
+      "@type": "Question",
+      "name": f.name || f.question || '',
+      "acceptedAnswer": { "@type": "Answer", "text": (f.acceptedAnswer && f.acceptedAnswer.text) || '' },
+    })),
+  })}
+  </script>` : '';
+
+  // HTML blocks para AI Search (visível para crawlers, ranqueia em featured snippets)
+  const quickAnswerHtml = quickAnswerBox ? `
+      <aside class="quick-answer" aria-label="Resposta rápida">
+        <h2>Resposta rápida</h2>
+        <p>${quickAnswerBox.replace(/</g, '&lt;')}</p>
+      </aside>` : '';
+
+  const keyTakeawaysHtml = keyTakeaways.length ? `
+      <section class="key-takeaways" aria-label="Pontos-chave">
+        <h2>Pontos-chave</h2>
+        <ul>${keyTakeaways.map(k => `<li>${String(k).replace(/</g, '&lt;')}</li>`).join('')}</ul>
+      </section>` : '';
+
+  const faqHtml = faqStructured.length ? `
+      <section class="faq" aria-label="Perguntas frequentes">
+        <h2>Perguntas frequentes</h2>
+        ${faqStructured.map(f => `
+          <details>
+            <summary>${(f.name || f.question || '').replace(/</g, '&lt;')}</summary>
+            <p>${((f.acceptedAnswer && f.acceptedAnswer.text) || '').replace(/</g, '&lt;')}</p>
+          </details>`).join('')}
+      </section>` : '';
+
+  const paaHtml = peopleAlsoAsk.length ? `
+      <section class="people-also-ask" aria-label="As pessoas também perguntam">
+        <h2>As pessoas também perguntam</h2>
+        <ul>${peopleAlsoAsk.map(q => `<li>${String(q).replace(/</g, '&lt;')}</li>`).join('')}</ul>
+      </section>` : '';
 
   let slug = post.fields?.slug;
   if (!slug && post.fields?.titulo) {
@@ -114,7 +164,7 @@ const generateBlogPostHTML = (post) => {
     "description": "${excerpt.replace(/"/g, '\\"')}",
     "image": "${imageUrl ? 'https:' + imageUrl : ''}",
     "datePublished": "${date}",
-    "dateModified": "${date}",
+    "dateModified": "${lastUpdated}",
     "author": {
       "@type": "Person",
       "name": "${author}",
@@ -157,6 +207,7 @@ const generateBlogPostHTML = (post) => {
     "inLanguage": "pt-BR"
   }
   </script>
+  ${faqSchemaScript}
 
   <style>
     body {
@@ -207,6 +258,42 @@ const generateBlogPostHTML = (post) => {
       padding: 40px;
       color: #999;
     }
+    .quick-answer {
+      background: #f7f4ee;
+      border-left: 4px solid #c4a46a;
+      padding: 20px 24px;
+      margin: 24px 0;
+      border-radius: 4px;
+    }
+    .quick-answer h2 {
+      margin: 0 0 12px 0;
+      font-size: 1.05em;
+      color: #553c6b;
+    }
+    .quick-answer p { margin: 0; color: #333; }
+    .key-takeaways, .people-also-ask {
+      background: #fafafa;
+      padding: 20px 24px;
+      margin: 24px 0;
+      border-radius: 4px;
+    }
+    .key-takeaways h2, .people-also-ask h2, .faq h2 {
+      font-size: 1.1em;
+      color: #553c6b;
+      margin: 0 0 12px 0;
+    }
+    .key-takeaways ul, .people-also-ask ul { margin: 0; padding-left: 20px; }
+    .faq { margin: 32px 0; }
+    .faq details {
+      border-bottom: 1px solid #eee;
+      padding: 12px 0;
+    }
+    .faq summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: #553c6b;
+    }
+    .faq details p { margin: 8px 0 0 0; color: #333; }
   </style>
 </head>
 <body>
@@ -218,9 +305,13 @@ const generateBlogPostHTML = (post) => {
       </div>
       ${optimizedImageUrl ? `<img src="${optimizedImageUrl}" alt="${title}" width="800" height="450" loading="eager" fetchpriority="high" decoding="async" style="aspect-ratio:16/9;object-fit:cover" />` : ''}
       <div class="excerpt">${excerpt}</div>
+      ${quickAnswerHtml}
+      ${keyTakeawaysHtml}
       <div class="content">
         ${content.substring(0, 1500)}${content.length > 1500 ? '...' : ''}
       </div>
+      ${faqHtml}
+      ${paaHtml}
     </article>
     <div style="margin-top: 32px; padding: 24px; background: #f9f9f9; border-radius: 8px; text-align: center;">
       <p style="margin: 0 0 16px 0; font-size: 1.1em;">Leia o artigo completo com imagens e recursos interativos:</p>

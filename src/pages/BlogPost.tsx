@@ -99,20 +99,10 @@ const BlogPost = () => {
     "headline": post.title,
     "description": post.metaDescription || post.excerpt,
     "image": post.imageUrl || "https://lovable.dev/opengraph-image-p98pqg.png",
-    "author": {
-      "@type": "Person",
-      "name": post.author || "Dra. Carla Christoph",
-      "jobTitle": "Cirurgiã-Dentista Especialista",
-      "url": "https://dracarlachristoph.com/sobre"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Clínica Dra. Carla Christoph",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://lovable.dev/opengraph-image-p98pqg.png"
-      }
-    },
+    // Referencia a Person canônica (definida em AuthorSchema.tsx via GlobalSchemas)
+    "author": { "@id": "https://dracarlachristoph.com/#author" },
+    // Referencia a Organization canônica (definida em GlobalSchemas.tsx)
+    "publisher": { "@id": "https://dracarlachristoph.com/#organization" },
     "datePublished": post.publishedAt || post.date,
     "dateModified": post.updatedAt || post.date,
     "mainEntityOfPage": {

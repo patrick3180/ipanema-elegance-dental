@@ -27,7 +27,11 @@ export const transformBlogPostEntry = (entry: Entry<BlogPostSkeleton>): BlogPost
     tags: Array.isArray(getLocalizedValue(fields.tags)) ? getLocalizedValue(fields.tags) : [],
     
     // NOVOS CAMPOS
-    quickAnswer: getLocalizedValue(fields.quickAnswerBoquickAnswerBoxx) || '',
+    // Lê primeiro o campo correto `quickAnswerBox`; fallback ao campo histórico com typo durante migração.
+    quickAnswer:
+      getLocalizedValue((fields as any).quickAnswerBox) ||
+      getLocalizedValue(fields.quickAnswerBoquickAnswerBoxx) ||
+      '',
     keyTakeaways: Array.isArray(getLocalizedValue(fields.keyTakeaways)) ? getLocalizedValue(fields.keyTakeaways) : undefined,
     comparisonTable: transformComparisonTable(getLocalizedValue(fields.comparisonTable)),
     faqStructured: transformFAQStructured(getLocalizedValue(fields.faqStructured)),
@@ -35,6 +39,13 @@ export const transformBlogPostEntry = (entry: Entry<BlogPostSkeleton>): BlogPost
     schemaType: getLocalizedValue(fields.schemaType) || 'Article',
     authorBio: getLocalizedValue(fields.authorBio) || '',
     publishDate: getLocalizedValue(fields.publishDate) || getLocalizedValue(fields.dataDePublicacao) || '',
+    // publishedAt e updatedAt usados pelo schema BlogPosting (datePublished / dateModified)
+    publishedAt: getLocalizedValue(fields.publishDate) || getLocalizedValue(fields.dataDePublicacao) || '',
+    updatedAt:
+      getLocalizedValue((fields as any).lastUpdated) ||
+      getLocalizedValue(fields.publishDate) ||
+      getLocalizedValue(fields.dataDePublicacao) ||
+      '',
   };
 };
 
