@@ -22,17 +22,17 @@ export const processImageUrl = ({ originalSrc, imageQuality, maxImageWidth }: Im
       url.searchParams.delete('fm');
       url.searchParams.delete('dpr');
       url.searchParams.delete('fit');
-      
-      // Apply new optimization settings - standardized to 85% quality
+
+      // Apply new optimization settings - standardized to 85% quality.
+      // Retina support: aumentamos `w` proporcionalmente ao devicePixelRatio
+      // (em vez de usar o parâmetro `dpr`, que retorna 400 "ParameterNotAllowed"
+      // no plano atual da Contentful Images API).
+      const retinaMultiplier = Math.min(window.devicePixelRatio || 1, 2);
+      const effectiveWidth = Math.min(Math.round(maxImageWidth * retinaMultiplier), 4000);
       url.searchParams.set('q', '85');
-      url.searchParams.set('w', maxImageWidth.toString());
+      url.searchParams.set('w', effectiveWidth.toString());
       url.searchParams.set('fm', 'webp');
       url.searchParams.set('fit', 'scale'); // Changed from 'fill' to 'scale' to maintain aspect ratio
-      
-      // Add retina support
-      if (window.devicePixelRatio > 1) {
-        url.searchParams.set('dpr', Math.min(window.devicePixelRatio, 2).toString());
-      }
       
       processedSrc = url.toString();
       console.log(`BlogContent: Optimizing Contentful image:`, {
