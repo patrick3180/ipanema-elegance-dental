@@ -153,6 +153,100 @@ function generateInfoFallbackHTML(data) {
     </footer>`;
 }
 
+// Landing-page fallback: rich semantic HTML mirroring the React LP body.
+// Content is sourced from landingPageContent (mirror of src/config/*Config.ts).
+// Crawler/QS bot reads this when JS is disabled; React hydrates over it for real users.
+function generateLPFallbackHTML(c, lang) {
+  const isEn = lang === 'en';
+  const L = {
+    treatments: isEn ? 'Treatments' : 'Tratamentos',
+    about: isEn ? 'About' : 'Sobre',
+    contact: isEn ? 'Contact' : 'Contato',
+    benefits: isEn ? 'Benefits' : 'Benefícios',
+    howItWorks: isEn ? 'How it works' : 'Como funciona',
+    testimonials: isEn ? 'Patient stories' : 'Pacientes contam',
+    faq: isEn ? 'Frequently Asked Questions' : 'Perguntas Frequentes',
+    hours: isEn ? 'Mon&ndash;Fri 9 AM&ndash;7 PM &bull; Sat 9 AM&ndash;2 PM' : 'Seg&ndash;Sex 9h&ndash;19h &bull; S&aacute;b 9h&ndash;14h',
+    addr: isEn ? 'Rua Visconde de Piraj&aacute; 550, Suite 1107, Ipanema, Rio de Janeiro' : 'Rua Visconde de Piraj&aacute;, 550 - Sala 1107, Ipanema, Rio de Janeiro',
+    whatsApp: isEn ? 'WhatsApp' : 'WhatsApp',
+    homeLink: isEn ? '/en' : '/',
+    servicesLink: isEn ? '/en' : '/servicos',
+    aboutLink: isEn ? '/en/about' : '/sobre',
+    contactLink: isEn ? '/en/contact' : '/contato',
+  };
+
+  const waNumber = c.whatsappNumber || '5521993304045';
+  const waMsg = encodeURIComponent(c.whatsappMessage || '');
+  const waHref = 'https://wa.me/' + waNumber + (waMsg ? '?text=' + waMsg : '');
+
+  const benefitsHtml = (c.benefits || []).map(b => '<li>' + escapeHtml(b) + '</li>').join('\n          ');
+  const problemsHtml = (c.problems || []).map(p => '<li>' + escapeHtml(p) + '</li>').join('\n          ');
+  const stepsHtml = (c.steps || []).map(s =>
+    '<li><strong>' + escapeHtml(s.title) + '.</strong> ' + escapeHtml(s.description) + '</li>'
+  ).join('\n          ');
+  const testimonialsHtml = (c.testimonials || []).map(t =>
+    '<blockquote><p>' + escapeHtml(t.text) + '</p><cite>&mdash; ' + escapeHtml(t.name) + '</cite></blockquote>'
+  ).join('\n        ');
+  const faqsHtml = (c.faqs || []).map(f =>
+    '<dt>' + escapeHtml(f.q) + '</dt><dd>' + escapeHtml(f.a) + '</dd>'
+  ).join('\n          ');
+
+  const ctaButtonText = c.ctaText || (isEn ? 'Book via WhatsApp' : 'Agendar pelo WhatsApp');
+
+  return `<header style="padding:16px 0;border-bottom:1px solid #eee">
+      <nav>
+        <a href="${L.homeLink}" style="font-weight:bold;color:#553c6b;text-decoration:none">Dra. Carla Christoph</a> |
+        <a href="${L.servicesLink}">${L.treatments}</a> |
+        <a href="${L.aboutLink}">${L.about}</a> |
+        <a href="${L.contactLink}">${L.contact}</a>
+      </nav>
+    </header>
+    <main style="max-width:800px;margin:0 auto;padding:24px 16px;font-family:system-ui,sans-serif;line-height:1.6;color:#333">
+      <h1>${escapeHtml(c.h1)}</h1>
+      <p>${escapeHtml(c.subhead)}</p>
+      <p><a href="${waHref}" style="display:inline-block;padding:12px 24px;background:#25D366;color:#fff;text-decoration:none;border-radius:6px;font-weight:600">${escapeHtml(ctaButtonText)}</a></p>
+      ${benefitsHtml ? `<section>
+        <h2>${L.benefits}</h2>
+        <ul>
+          ${benefitsHtml}
+        </ul>
+      </section>` : ''}
+      ${problemsHtml ? `<section>
+        <h2>${escapeHtml(c.problemTitle || (isEn ? 'Common situations' : 'Situa&ccedil;&otilde;es comuns'))}</h2>
+        <ul>
+          ${problemsHtml}
+        </ul>
+      </section>` : ''}
+      ${stepsHtml ? `<section>
+        <h2>${escapeHtml(c.guideTitle || L.howItWorks)}</h2>
+        <ol>
+          ${stepsHtml}
+        </ol>
+      </section>` : ''}
+      ${testimonialsHtml ? `<section>
+        <h2>${escapeHtml(c.testimonialsTitle || L.testimonials)}</h2>
+        ${testimonialsHtml}
+      </section>` : ''}
+      ${faqsHtml ? `<section>
+        <h2>${escapeHtml(c.faqTitle || L.faq)}</h2>
+        <dl>
+          ${faqsHtml}
+        </dl>
+      </section>` : ''}
+      <section>
+        <h2>${escapeHtml(c.ctaTitle || (isEn ? 'Ready to book?' : 'Pronto para agendar?'))}</h2>
+        ${c.ctaSubtitle ? '<p>' + escapeHtml(c.ctaSubtitle) + '</p>' : ''}
+        <p><a href="${waHref}" style="display:inline-block;padding:12px 24px;background:#25D366;color:#fff;text-decoration:none;border-radius:6px;font-weight:600">${escapeHtml(ctaButtonText)}</a></p>
+      </section>
+    </main>
+    <footer style="padding:24px 16px;border-top:1px solid #eee;text-align:center;color:#666;font-size:0.9em">
+      <p><strong>Dra. Carla Christoph</strong> &mdash; CRO-RJ 27.509</p>
+      <p>${L.addr}</p>
+      <p>Tel: (21) 99330-4045 | <a href="${waHref}">${L.whatsApp}</a></p>
+      <p>${L.hours}</p>
+    </footer>`;
+}
+
 // ============================================================
 // SERVICE PAGES — Full content + schemas + fallback
 // ============================================================
@@ -486,7 +580,8 @@ const englishPages = {
 };
 
 // ============================================================
-// LANDING PAGES — Meta only + noindex (no fallback/schemas)
+// LANDING PAGES — noindex + rich fallback HTML (Google Ads QS post-click)
+// Content lives in `landingPageContent` (below).
 // ============================================================
 
 const landingPages = {
@@ -568,6 +663,786 @@ const landingPages = {
     title: 'General Dental Consultation in Ipanema | Dr. Carla Christoph, Rio de Janeiro',
     description: 'Book your first dental consultation in Ipanema. Comprehensive evaluation with 3D digital scanner. Personalized treatment plan. Dr. Carla Christoph, CRO-RJ 27.509.',
   },
+};
+
+// ============================================================
+// LANDING PAGE CONTENT — Mirrors src/config/*Config.ts for fallback HTML
+// NOTE: If you edit copy in a LP config .ts file, also update the matching
+// entry here so the build-time fallback HTML stays in sync. Crawler/QS bot
+// reads this content when JS is disabled.
+// ============================================================
+
+const landingPageContent = {
+  '/lp/consulta-inicial': {
+    h1: 'Cada Caso É Único — Sua Consulta Também Deveria Ser',
+    subhead: 'Mínimo de 1 hora dedicada ao seu caso. Histórico completo, exame minucioso, explicação clara e plano de tratamento individualizado — sem pressa e sem surpresas.',
+    benefits: ['Mínimo de 1h dedicada ao seu caso', 'Exame + limpeza inclusos na consulta', 'Plano de tratamento sem surpresas', 'WhatsApp 24h para dúvidas'],
+    problemTitle: 'Você se Identifica com Alguma Dessas Situações?',
+    problems: [
+      'Faz tempo que não vai ao dentista e sente que pode ter problemas se acumulando.',
+      'Já saiu de consultas sem entender o diagnóstico porque tudo foi rápido demais.',
+      'Quer um profissional que ouça primeiro e explique tudo antes de propor qualquer tratamento.',
+      'Prefere prevenir do que remediar e busca acompanhamento regular com quem conhece seu histórico.'
+    ],
+    guideTitle: 'Como Funciona a Consulta com a Dra. Carla Christoph',
+    steps: [
+      { title: 'Conversa Inicial', description: 'Ouvimos seu histórico, suas queixas e o que você espera. Sem formulário apressado — uma conversa de verdade.' },
+      { title: 'Exame Clínico Completo', description: 'Avaliação detalhada dos dentes, gengiva, mordida e articulação. Radiografias quando necessário. Inclui profilaxia (limpeza profissional).' },
+      { title: 'Explicação do Diagnóstico', description: 'Mostramos o que foi encontrado, explicamos cada ponto e respondemos todas as suas dúvidas — com calma.' },
+      { title: 'Plano de Tratamento Individualizado', description: 'Se houver necessidade de tratamento, apresentamos as opções com valores transparentes. Você decide no seu tempo.' }
+    ],
+    testimonialsTitle: 'O Que Nossos Pacientes Contam Sobre a Consulta',
+    testimonials: [
+      { name: 'Ricardo M. — Ipanema', text: 'A consulta durou mais de uma hora. Ela explicou cada detalhe do exame, mostrou as radiografias e só depois falou sobre tratamento. Nunca tinha sido atendido assim.' },
+      { name: 'Claudia F. — Leblon', text: 'Tinha mudado de dentista várias vezes. Aqui, pela primeira vez, senti que alguém realmente ouviu o que eu tinha para dizer antes de começar a examinar.' },
+      { name: 'André S. — Copacabana', text: 'O que me impressionou foi a transparência. Ela explicou o que precisava ser feito, o que podia esperar e o que era prioridade. Sem pressão nenhuma.' }
+    ],
+    faqTitle: 'Dúvidas Sobre a Consulta Inicial',
+    faqs: [
+      { q: 'Por que a consulta dura no mínimo 1 hora?', a: 'Porque um diagnóstico bem feito exige tempo. Precisamos ouvir seu histórico, examinar com atenção, explicar os achados e discutir opções — tudo isso sem pressa. É assim que evitamos diagnósticos superficiais.' },
+      { q: 'O que está incluído na consulta?', a: 'Anamnese completa, exame clínico detalhado, avaliação periodontal, análise da mordida, radiografias quando necessário e profilaxia (limpeza profissional). Tudo explicado passo a passo.' },
+      { q: 'Posso ir apenas para uma segunda opinião?', a: 'Sim. Muitos pacientes nos procuram para uma avaliação independente. A consulta segue o mesmo formato completo — com exame clínico, diagnóstico detalhado e nossa visão sobre o caso.' },
+      { q: 'Por que o atendimento é particular?', a: 'O formato particular nos permite dedicar o tempo que cada caso exige, usar materiais selecionados e manter um número reduzido de pacientes por dia. É o que garante a qualidade do atendimento.' },
+      { q: 'Como funciona o agendamento?', a: 'Pelo WhatsApp, que funciona 24 horas. Você envia mensagem, escolhemos juntos o melhor horário e confirmamos. Respondemos inclusive nos fins de semana.' },
+      { q: 'Vocês atendem emergências?', a: 'Nosso atendimento é em horário de consultório, mas nos empenhamos em acomodar urgências. Entre em contato pelo WhatsApp e buscamos uma solução.' }
+    ],
+    ctaTitle: 'Pronto para uma Consulta Diferente?',
+    ctaSubtitle: 'Agende sua consulta e descubra como é ser atendido com tempo, atenção e transparência.',
+    ctaText: 'Agendar Minha Consulta',
+    whatsappNumber: '5521993304045',
+    whatsappMessage: 'Olá! Vi sobre a consulta odontológica personalizada e gostaria de agendar minha consulta com a Dra. Carla Christoph.'
+  },
+
+  '/lp/limpeza-dental-ipanema': {
+    h1: 'Tártaro e Sensibilidade? Limpeza com Ultrassom em Ipanema',
+    subhead: 'Profilaxia com ultrassom em consulta sem pressa. Remoção de tártaro, placa bacteriana e manchas. Dra. Carla Christoph, 20+ anos de experiência.',
+    benefits: ['Limpeza com ultrassom — confortável', 'Consulta sem pressa', 'WhatsApp 24h', '20+ anos de experiência'],
+    problemTitle: 'Há Quanto Tempo Você Não Faz uma Limpeza Profissional?',
+    problems: [
+      'Tártaro acumulado que a escovação não remove.',
+      'Gengiva que sangra ao escovar ou ao passar o fio dental.',
+      'Manchas de café, chá ou cigarro nos dentes.',
+      'Mau hálito persistente mesmo com boa higiene.',
+      'Sensação de dentes ásperos ou sujos mesmo após escovar.',
+      'Faz mais de 6 meses que não faz uma limpeza profissional.'
+    ],
+    guideTitle: 'Como é a Limpeza no Consultório',
+    steps: [
+      { title: 'Análise', description: 'Exame da condição dos dentes e gengiva. Identificação de áreas de acúmulo e verificação geral.' },
+      { title: 'Remoção de Tártaro com Ultrassom', description: 'O ultrassom remove tártaro e placa endurecida com vibração — mais confortável que a raspagem manual tradicional.' },
+      { title: 'Polimento', description: 'Polimento dos dentes para remover manchas superficiais e deixar a superfície lisa, dificultando novo acúmulo.' },
+      { title: 'Orientação Personalizada', description: 'Dicas de escovação e uso do fio dental para o seu caso específico. Definição do intervalo ideal para a próxima limpeza.' }
+    ],
+    testimonialsTitle: 'O Que Nossos Pacientes Contam',
+    testimonials: [
+      { name: 'Patricia M. — Ipanema', text: 'A limpeza foi mais tranquila do que eu esperava. O ultrassom é confortável e saí com sensação de dentes novos.' },
+      { name: 'Gustavo R. — Leblon', text: 'Fazia 2 anos sem ir ao dentista. Além da limpeza, a Dra. Carla identificou uma cárie inicial que nem doía ainda. Valeu pela prevenção.' },
+      { name: 'Carla F. — Copacabana', text: 'Faço limpeza a cada 6 meses no consultório. O que me fez ficar é o tempo que dedicam — nunca sinto que foi corrido.' }
+    ],
+    faqTitle: 'Dúvidas sobre Limpeza Dental',
+    faqs: [
+      { q: 'Limpeza dental dói?', a: 'Com ultrassom, o desconforto é mínimo. Pode haver sensibilidade em áreas com muito tártaro acumulado, mas é passageiro.' },
+      { q: 'De quanto em quanto tempo devo fazer limpeza?', a: 'Para a maioria das pessoas, a cada 6 meses. Quem tem histórico de gengivite ou acúmulo rápido de tártaro pode precisar a cada 3-4 meses.' },
+      { q: 'Limpeza clareia os dentes?', a: 'Remove manchas superficiais (café, chá), o que pode dar a impressão de dentes mais claros. Mas limpeza não substitui clareamento — são procedimentos diferentes.' },
+      { q: 'Quanto tempo leva?', a: 'Em torno de 40-60 minutos, dependendo da quantidade de tártaro e da condição da gengiva.' },
+      { q: 'Vocês atendem convênios?', a: 'Nosso atendimento é particular, o que nos permite dedicar tempo adequado a cada consulta.' }
+    ],
+    ctaTitle: 'Sua Boca Merece esse Cuidado',
+    ctaSubtitle: 'Agende sua limpeza profissional pelo WhatsApp.',
+    ctaText: 'Agendar Minha Limpeza',
+    whatsappNumber: '5521993304045',
+    whatsappMessage: 'Olá! Vi o site e gostaria de agendar uma limpeza dental profissional.'
+  },
+
+  '/lp/profilaxia-dental-ipanema': {
+    h1: 'Profilaxia Dental em Ipanema — Prevenção que Funciona',
+    subhead: 'Limpeza profissional completa com análise detalhada. Prevenir é mais simples, mais rápido e custa menos do que tratar.',
+    benefits: ['Limpeza completa com ultrassom', 'Análise preventiva incluída', 'WhatsApp 24h', '20+ anos de experiência'],
+    problemTitle: 'Prevenção é o Investimento Mais Inteligente em Saúde Bucal',
+    problems: [
+      'Faz tempo que não vai ao dentista para uma revisão.',
+      'Gengiva que sangra — sinal de inflamação que precisa de atenção.',
+      'Sensibilidade em algum dente que não sabe a causa.',
+      'Acúmulo de tártaro visível, especialmente nos dentes de baixo.',
+      'Quer manter a saúde bucal em dia mas não sabe a frequência ideal.',
+      'Prefere prevenir do que tratar problemas mais complexos depois.'
+    ],
+    guideTitle: 'O Que Inclui a Profilaxia',
+    steps: [
+      { title: 'Exame Clínico', description: 'Análise de dentes, gengiva e mucosa. Identificação de problemas em estágio inicial — cáries, gengivite, desgaste.' },
+      { title: 'Remoção de Tártaro e Placa', description: 'Limpeza com ultrassom e instrumentos adequados. Remoção do que a escovação diária não alcança.' },
+      { title: 'Polimento e Aplicação de Flúor', description: 'Polimento para remover manchas. Aplicação de flúor quando indicado para fortalecer o esmalte.' },
+      { title: 'Plano Preventivo', description: 'Orientações personalizadas de higiene e definição do intervalo ideal para o próximo retorno.' }
+    ],
+    testimonialsTitle: 'O Que Nossos Pacientes Contam',
+    testimonials: [
+      { name: 'Fernanda L. — Ipanema', text: 'Faço profilaxia a cada 6 meses. A Dra. Carla sempre identifica coisas que eu nem sentia. Prefiro prevenir do que remediar.' },
+      { name: 'Lucas T. — Leblon', text: 'Fui para a profilaxia de rotina e a Dra. Carla identificou uma cárie inicial que nem doía. Resolveu na hora com uma restauração pequena. Se esperasse, seria um canal.' },
+      { name: 'Ana Maria B. — Copacabana', text: 'O que valorizo é que ela não faz só a limpeza — ela examina tudo com calma. Saio sabendo exatamente como está minha boca.' }
+    ],
+    faqTitle: 'Dúvidas sobre Profilaxia',
+    faqs: [
+      { q: 'Profilaxia e limpeza são a mesma coisa?', a: 'Na prática, sim. Profilaxia é o termo técnico para a limpeza profissional preventiva. Inclui remoção de tártaro, polimento e, quando indicado, aplicação de flúor.' },
+      { q: 'Com que frequência devo fazer?', a: 'Para a maioria das pessoas, a cada 6 meses. Quem tem propensão a gengivite ou acúmulo rápido de tártaro pode precisar a cada 3-4 meses.' },
+      { q: 'Mesmo sem dor preciso ir ao dentista?', a: 'Sim. A maioria dos problemas dentários não dói no início — cáries iniciais, gengivite, desgaste. Quando começa a doer, o tratamento tende a ser mais complexo.' },
+      { q: 'Vocês atendem convênios?', a: 'Nosso atendimento é particular, o que nos permite dedicar tempo à análise completa, não apenas à limpeza.' }
+    ],
+    ctaTitle: 'Prevenção é o Melhor Tratamento',
+    ctaSubtitle: 'Agende sua profilaxia e mantenha sua saúde bucal em dia.',
+    ctaText: 'Agendar Minha Profilaxia',
+    whatsappNumber: '5521993304045',
+    whatsappMessage: 'Olá! Vi o site e gostaria de agendar uma profilaxia dental.'
+  },
+
+  '/lp/estetica-dental-ipanema': {
+    h1: 'Não Sabe se Precisa de Lentes, Clareamento ou Facetas? Descubra na Consulta',
+    subhead: 'Clareamento, lentes, restaurações, facetas. A Dra. Carla Christoph avalia o caso completo e indica o caminho mais adequado para o resultado que você busca.',
+    benefits: ['Visão integrada de estética dental', 'Test Drive do Sorriso disponível', 'WhatsApp 24h', '20+ anos em estética dental'],
+    problemTitle: 'Quer Melhorar Seu Sorriso mas Não Sabe por Onde Começar?',
+    problems: [
+      'Insatisfação com a cor dos dentes — amarelados ou manchados.',
+      'Dentes com formato irregular, lascados ou desalinhados.',
+      'Restaurações antigas escurecidas que destoam do sorriso.',
+      'Vontade de melhorar mas receio de ficar artificial.',
+      'Já pesquisou sobre vários tratamentos e não sabe qual é indicado.',
+      'Quer uma opinião profissional antes de tomar qualquer decisão.'
+    ],
+    guideTitle: 'Como a Dra. Carla Christoph Avalia Seu Caso',
+    steps: [
+      { title: 'Conversa e Análise', description: 'Entendemos o que te incomoda e o que você espera. Analisamos dentes, gengiva e harmonia facial.' },
+      { title: 'Diagnóstico das Opções', description: 'Apresentamos as possibilidades — clareamento, lentes, restaurações, facetas — com prós e contras de cada uma para o seu caso.' },
+      { title: 'Simulação quando indicado', description: 'Em casos de lentes e facetas, o Test Drive do Sorriso permite que você visualize o resultado antes de começar.' },
+      { title: 'Você Decide o Caminho', description: 'Sem pressão. Você sai da consulta com informação clara para tomar a decisão no seu tempo.' }
+    ],
+    testimonialsTitle: 'O Que Nossos Pacientes Contam',
+    testimonials: [
+      { name: 'Marina P. — Ipanema', text: 'Queria mudar meu sorriso mas não sabia se era caso de lentes ou clareamento. A Dra. Carla avaliou e indicou clareamento + 4 restaurações. Ficou natural e bonito.' },
+      { name: 'Fernanda G. — Leblon', text: 'Achava que precisava de lentes em todos os dentes. Na consulta, ela mostrou que só 4 dentes precisavam. Economizei e o resultado ficou harmonioso.' },
+      { name: 'Thiago R. — Copacabana', text: 'O Test Drive do Sorriso me convenceu. Pude ver como ficaria antes de decidir. Sem surpresas.' }
+    ],
+    faqTitle: 'Dúvidas sobre Estética Dental',
+    faqs: [
+      { q: 'Qual tratamento estético é indicado para mim?', a: 'Depende do caso. Dentes amarelados podem precisar de clareamento. Dentes com forma irregular podem precisar de lentes ou facetas. Restaurações antigas podem ser trocadas. A consulta define o melhor caminho.' },
+      { q: 'Lentes de porcelana ficam artificiais?', a: 'Com planejamento adequado, não. A porcelana moderna reproduz a translucidez natural do dente. O objetivo é que ninguém perceba — só notem que o sorriso está bonito.' },
+      { q: 'Posso combinar tratamentos?', a: 'Sim, é comum. Muitos pacientes combinam clareamento + restaurações, ou lentes nos dentes da frente + coroa em um dente posterior. A visão integrada é justamente o diferencial da consulta.' },
+      { q: 'O resultado é permanente?', a: 'Lentes e facetas de porcelana duram 15-20 anos. Clareamento é duradouro mas pode precisar de manutenção. Restaurações em resina duram em média 7-10 anos. Depende do tratamento.' },
+      { q: 'Vocês atendem convênios?', a: 'Nosso atendimento é particular, o que nos permite dedicar tempo ao planejamento e trabalhar com materiais selecionados.' }
+    ],
+    ctaTitle: 'Quer Saber o que Faz Sentido para Seu Sorriso?',
+    ctaSubtitle: 'Na consulta, analisamos seu caso, mostramos as opções e o tempo previsto — você decide o ritmo.',
+    ctaText: 'Agendar Consulta Estética',
+    whatsappNumber: '5521993304045',
+    whatsappMessage: 'Olá! Vi o site e gostaria de agendar uma consulta para avaliar e melhorar meu sorriso.'
+  },
+
+  '/lp/saude-gengival-ipanema': {
+    h1: 'Saúde da Gengiva em Ipanema — Sangramento e Retração Merecem Atenção',
+    subhead: 'Gengiva que sangra não é normal. Tratamento periodontal com acompanhamento individualizado. Dra. Carla Christoph coordena a jornada completa do seu tratamento.',
+    benefits: ['Tratamento integrado com periodontista', 'Acompanhamento contínuo pela Dra. Carla', 'WhatsApp 24h', '20+ anos de experiência'],
+    problemTitle: 'Sinais na Gengiva que Você Não Deveria Ignorar',
+    problems: [
+      'Gengiva que sangra ao escovar ou ao usar fio dental.',
+      'Gengivas vermelhas, inchadas ou sensíveis ao toque.',
+      'Mau hálito persistente mesmo com boa higiene.',
+      'Gengiva retraída — dentes parecem "mais longos" do que antes.',
+      'Receio de que o problema evolua e afete os dentes.',
+      'Quer tratar a gengiva para depois investir em estética ou implantes.'
+    ],
+    guideTitle: 'Como Cuidamos da Sua Gengiva',
+    steps: [
+      { title: 'Consulta Detalhada', description: 'Exame clínico da gengiva, sondagem periodontal e radiografias quando necessário para identificar o estágio do problema.' },
+      { title: 'Tratamento Periodontal', description: 'Limpeza profunda e tratamento com periodontista especializado quando indicado. Controle da inflamação e infecção.' },
+      { title: 'Reavaliação', description: 'Após o tratamento, avaliamos a resposta da gengiva e definimos os próximos passos — manutenção ou tratamentos complementares.' },
+      { title: 'Manutenção Periódica', description: 'Consultas regulares para manter o controle e prevenir recidivas. A frequência é definida individualmente.' }
+    ],
+    testimonialsTitle: 'O Que Nossos Pacientes Contam',
+    testimonials: [
+      { name: 'Sandra M. — Ipanema', text: 'Minha gengiva sangrava há anos e eu achava que era normal. Depois do tratamento, parou completamente. Deveria ter procurado antes.' },
+      { name: 'Roberto F. — Leblon', text: 'Queria fazer implante mas a gengiva não estava saudável. A Dra. Carla tratou primeiro a gengiva e depois fez o implante. Resultado seguro.' },
+      { name: 'Claudia V. — Copacabana', text: 'O acompanhamento é o diferencial. A Dra. Carla não faz só a limpeza — ela monitora a evolução a cada consulta.' }
+    ],
+    faqTitle: 'Dúvidas sobre Saúde Gengival',
+    faqs: [
+      { q: 'Gengiva que sangra ao escovar é normal?', a: 'Não. Sangramento é sinal de inflamação. Pode ser gengivite (reversível) ou periodontite (mais avançada).' },
+      { q: 'Periodontite tem cura?', a: 'É controlável com tratamento e manutenção periódica. Uma vez controlada, o objetivo é manter a estabilidade e evitar que progrida.' },
+      { q: 'Posso fazer lentes ou implantes se tenho problema gengival?', a: 'Primeiro tratamos a gengiva. Lentes e implantes precisam de base gengival saudável para funcionar e durar. A Dra. Carla integra o tratamento periodontal ao plano geral do caso.' },
+      { q: 'Mau hálito pode ser problema gengival?', a: 'Sim. Halitose persistente é frequentemente ligada a doença periodontal. Bactérias acumuladas em bolsas gengivais produzem compostos com odor. Tratar a gengiva costuma resolver.' },
+      { q: 'Vocês atendem convênios?', a: 'Nosso atendimento é particular, o que nos permite acompanhar cada caso com o tempo e a atenção necessários.' }
+    ],
+    ctaTitle: 'Gengiva Saudável é a Base de Tudo',
+    ctaSubtitle: 'Agende uma consulta gengival. Tratamento precoce faz toda a diferença.',
+    ctaText: 'Agendar Consulta Gengival',
+    whatsappNumber: '5521993304045',
+    whatsappMessage: 'Olá! Vi o site e gostaria de agendar uma consulta para cuidar da saúde da minha gengiva.'
+  },
+
+  '/lp/clareamento-dental': {
+    h1: 'Dentes Amarelados? Clareamento com Resultado Natural em Ipanema',
+    subhead: 'Protocolos personalizados para uma cor natural, sem aparência artificial. Mais de 20 anos de experiência em estética dental.',
+    benefits: ['Protocolo personalizado por caso', 'Resultado natural, sem "dente de chiclete"', 'WhatsApp 24h', '20+ anos de experiência'],
+    problemTitle: 'Você se identifica com alguma dessas situações?',
+    problems: [
+      'Dentes amarelados por café, vinho ou chá — o escurecimento é gradual e você só percebe quando compara com uma foto antiga.',
+      'Clareamento caseiro que não funciona — fitas, géis de farmácia ou receitas da internet com resultados fracos, irregulares ou que desaparecem em semanas.',
+      'Medo de sensibilidade — já ouviu que clareamento dá muita dor, mas com protocolo individualizado e acompanhamento profissional, isso é controlável.',
+      'Medo de ficar artificial — não querer dentes "branco azulejo". O objetivo é recuperar a cor natural, não exagerar.'
+    ],
+    guideTitle: 'Como a Dra. Carla Christoph Conduz o Clareamento',
+    steps: [
+      { title: 'Consulta e Diagnóstico', description: 'Análise da causa do escurecimento, condição dos dentes e gengiva. Definição do protocolo mais adequado para o seu caso.' },
+      { title: 'Preparação Cuidadosa', description: 'Proteção dos tecidos gengivais e análise da sensibilidade para garantir segurança e conforto durante o procedimento.' },
+      { title: 'Aplicação Profissional', description: 'Clareamento de consultório (sessão de 45-60 min) ou moldeiras para clareamento caseiro supervisionado — depende do caso. Utilizamos somente géis clareadores de primeira linha.' },
+      { title: 'Acompanhamento dos Resultados', description: 'Monitoramento do progresso e orientações para manutenção. A cor estabiliza ao longo de 2 semanas após o término.' }
+    ],
+    testimonialsTitle: 'O Que Nossos Pacientes Contam',
+    testimonials: [
+      { name: 'Juliana M. — Leblon', text: 'Fiz o clareamento antes do meu casamento. Estava com medo de ficar artificial, mas ficou tão natural que ninguém percebeu que era clareamento — só elogiaram o sorriso.' },
+      { name: 'Ricardo T. — Ipanema', text: 'Tomei café a vida inteira e meus dentes foram amarelando sem eu perceber. Depois do clareamento, minha filha disse que eu parecia 10 anos mais novo.' },
+      { name: 'Beatriz A. — Copacabana', text: 'Já tinha tentado clareamento de farmácia duas vezes sem resultado. Na clínica foi completamente diferente — resultado uniforme e sem a sensibilidade que eu esperava.' }
+    ],
+    faqTitle: 'Dúvidas Sobre Clareamento Dental',
+    faqs: [
+      { q: 'Clareamento dental estraga o esmalte?', a: 'Não. O clareamento profissional supervisionado não causa danos ao esmalte. O gel clareador age nos pigmentos internos do dente sem comprometer a estrutura.' },
+      { q: 'Clareamento caseiro de farmácia funciona?', a: 'Produtos de farmácia têm concentração muito baixa de agente clareador. O resultado é limitado, irregular e temporário. O clareamento profissional usa concentração adequada com supervisão, o que dá resultado uniforme e duradouro.' },
+      { q: 'Quanto tempo dura o resultado do clareamento?', a: 'Em média 2 a 3 anos, dependendo dos hábitos alimentares. Café, vinho e chá escurecem os dentes gradualmente. Manutenções periódicas são simples e mantêm o resultado.' },
+      { q: 'Clareamento dá muita sensibilidade?', a: 'Pode haver sensibilidade leve e temporária durante o tratamento, que dura de 24 a 48 horas. Com protocolo personalizado e dessensibilizante, a maioria dos pacientes relata desconforto mínimo.' },
+      { q: 'Posso fazer clareamento se tenho restaurações?', a: 'As restaurações existentes não clareiam — mantêm a cor original. Após o clareamento, avaliamos se alguma restauração precisa ser trocada para ficar na mesma cor dos dentes clareados.' },
+      { q: 'Clareamento funciona em todas as manchas?', a: 'Manchas por café, chá, vinho e tabaco respondem muito bem. Manchas internas por medicamento (tetraciclina) ou flúor têm resposta variável — nesses casos, avaliamos alternativas como lentes de porcelana.' },
+      { q: 'Já tenho dentes sensíveis. Posso fazer clareamento?', a: 'Sim, com adaptações no protocolo. Em pacientes com sensibilidade prévia, usamos géis em concentrações menores ao longo de mais sessões, aplicamos dessensibilizante antes e após cada aplicação, e indicamos pasta dental específica para sensibilidade durante o tratamento. Em alguns casos, fazemos uma fase preparatória só com dessensibilizante por uma semana antes de iniciar.' },
+      { q: 'Como aliviar a sensibilidade durante e após o clareamento?', a: 'Algumas medidas funcionam bem: usar pasta dental para sensibilidade nos dias do tratamento, evitar alimentos muito frios ou ácidos nas primeiras 48 horas, aplicar gel dessensibilizante (que fornecemos quando indicado) e tomar analgésico simples se houver desconforto. Avise sempre que sentir incômodo — ajustamos o protocolo na hora.' },
+      { q: 'A sensibilidade do clareamento pode ser permanente?', a: 'Não. A sensibilidade causada pelo clareamento é sempre transitória — passa em até 48 horas após cada aplicação e desaparece completamente quando o tratamento termina. O efeito é reversível porque o gel não causa lesão ao esmalte ou à dentina, apenas abre temporariamente os canais que conectam o exterior do dente à polpa.' }
+    ],
+    ctaTitle: 'Quer Saber Qual Clareamento é Indicado para Você?',
+    ctaSubtitle: 'O clareamento é um dos tratamentos mais simples da odontologia estética. Uma consulta inicial mostra qual protocolo é indicado para a cor e o tipo dos seus dentes.',
+    ctaText: 'Agendar Minha Consulta',
+    whatsappNumber: '5521993304045',
+    whatsappMessage: 'Olá! Vi sobre clareamento dental e gostaria de agendar uma consulta para saber qual protocolo é indicado para mim.'
+  },
+
+  '/lp/ortodontia-ipanema': {
+    h1: 'Ortodontia Conduzida por Doutor em Ortodontia pela UERJ',
+    subhead: 'Dr. Bruno, Doutor em Ortodontia pela UERJ e Professor no IOPUC-Rio, planeja cada caso com escaneamento digital iTero Element 5D. Opções de alinhadores Invisalign, aparelho estético e convencional.',
+    benefits: ['Doutor em Ortodontia (UERJ)', 'Escaneamento digital com iTero Element 5D', 'Invisalign, estético e convencional', 'WhatsApp 24h'],
+    problemTitle: 'Dentes Desalinhados Afetam Mais do que a Estética',
+    problems: [
+      'Dentes "encavalados" que dificultam a escovação e acumulam tártaro.',
+      'Mordida desalinhada que causa desconforto ou dor na articulação (ATM).',
+      'Espaços entre os dentes que incomodam esteticamente.',
+      'Evitar sorrir abertamente por causa da posição dos dentes.',
+      'Ser adulto e achar que "passou da idade" para usar aparelho.',
+      'Querer um tratamento discreto que não interfira na rotina profissional.'
+    ],
+    guideTitle: 'Como Funciona o Tratamento Ortodôntico com o Dr. Bruno',
+    steps: [
+      { title: 'Diagnóstico com iTero Element 5D', description: 'Escaneamento digital da boca — sem massinha de moldagem. O modelo 3D permite diagnóstico preciso e planejamento computadorizado do tratamento.' },
+      { title: 'Planejamento e Simulação', description: 'Dr. Bruno planeja cada movimento dos dentes digitalmente. Você visualiza uma simulação do resultado antes de começar.' },
+      { title: 'Escolha do Aparelho', description: 'Definição da melhor opção para o seu caso: alinhadores Invisalign, aparelho fixo estético (transparente) ou convencional. A indicação é clínica, não comercial.' },
+      { title: 'Acompanhamento até a Contenção', description: 'Consultas regulares para ajustes e monitoramento da evolução. Ao final, instalação da contenção para manter o resultado.' }
+    ],
+    testimonialsTitle: 'O Que Nossos Pacientes Contam',
+    testimonials: [
+      { name: 'Fernanda L. — Ipanema', text: 'Fiz com Invisalign e no trabalho ninguém notava que eu estava em tratamento. O planejamento digital me mostrou como ficaria antes de começar — isso me deu segurança.' },
+      { name: 'Lucas G. — Leblon', text: 'Tinha um caso complexo de mordida e o Dr. Bruno explicou cada etapa com calma. O iTero Element 5D substituiu a moldagem — muito mais confortável. O resultado ficou como o planejado.' },
+      { name: 'Mariana P. — Copacabana', text: 'Comecei o tratamento aos 35 anos. O aparelho estético foi discreto e o acompanhamento do Dr. Bruno foi atencioso do início à contenção.' }
+    ],
+    faqTitle: 'Dúvidas Sobre Tratamento Ortodôntico',
+    faqs: [
+      { q: 'Quem é o ortodontista responsável?', a: 'Dr. Bruno, Doutor em Ortodontia pela UERJ, Mestre em Clínica Odontológica pela UFF e Professor de Pós-Graduação em Ortodontia no IOPUC-Rio. Todo o tratamento é conduzido por ele, dentro do consultório da Dra. Carla Christoph.' },
+      { q: 'Adulto pode usar aparelho ortodôntico?', a: 'Sim. Não há limite de idade para ortodontia. O que importa é a condição dos dentes e do osso. Muitos dos nossos pacientes iniciam o tratamento após os 30 ou 40 anos.' },
+      { q: 'Invisalign funciona para casos complexos?', a: 'Em muitos casos, sim. O Invisalign evoluiu e hoje trata desde casos simples até os mais complexos. A análise com iTero Element 5D define se é a melhor opção para o seu caso específico.' },
+      { q: 'O tratamento ortodôntico dói?', a: 'É normal sentir pressão nos dentes nos primeiros dias após a instalação ou ajustes. A sensação é temporária e controlável com analgésicos simples. A maioria dos pacientes se adapta rapidamente.' },
+      { q: 'Quanto tempo dura o tratamento?', a: 'Varia conforme a complexidade. Casos simples podem levar de 6 a 12 meses; casos mais complexos, de 18 a 30 meses. O planejamento digital permite estimar a duração com mais precisão.' },
+      { q: 'Preciso usar contenção depois?', a: 'Sim. A contenção é parte essencial do tratamento — é o que mantém os dentes na posição corrigida. Pode ser fixa (colada atrás dos dentes) ou removível, dependendo do caso.' }
+    ],
+    ctaTitle: 'Quer Saber Qual Tratamento Ortodôntico é Indicado para Você?',
+    ctaSubtitle: 'Na consulta, o Dr. Bruno analisa seu caso com escaneamento digital iTero Element 5D e apresenta as opções mais adequadas.',
+    ctaText: 'Agendar Minha Consulta',
+    whatsappNumber: '5521993304045',
+    whatsappMessage: 'Olá! Vi o site e gostaria de agendar uma consulta de planejamento para tratamento ortodôntico.'
+  },
+
+  '/lp/dor-de-dente-urgencia-ipanema': {
+    h1: 'Dor de Dente em Ipanema? Atendimento Prioritário',
+    subhead: 'Encaixe prioritário em dias úteis para diagnosticar a causa e dar alívio o quanto antes. WhatsApp responde 24h para orientação.',
+    benefits: ['WhatsApp 24h — orientação imediata', 'Encaixe prioritário na agenda', 'Diagnóstico preciso da causa', '20+ anos de experiência'],
+    problemTitle: 'Dor de Dente Não É para Aguentar',
+    problems: [
+      'Dor ao morder ou mastigar — pulsante, latejante.',
+      'Dor que piora com bebida quente ou gelada.',
+      'Dor que acorda de madrugada e não passa com analgésico.',
+      'Inchaço no rosto ou na gengiva perto do dente que dói.',
+      'Sensação de pressão ou pulsação dentro do dente.',
+      'Não sabe a causa — só sabe que precisa resolver.'
+    ],
+    guideTitle: 'Do Alívio ao Tratamento Definitivo',
+    steps: [
+      { title: 'Contato pelo WhatsApp', description: 'Descreva a dor. Orientamos os primeiros cuidados (o que tomar, o que evitar) enquanto agenda o encaixe.' },
+      { title: 'Diagnóstico da Causa', description: 'Exame clínico e radiografia para identificar a origem exata da dor — cárie, fratura, infecção, problema gengival.' },
+      { title: 'Alívio Imediato', description: 'Tratamento para eliminar a dor. Pode ser medicação, drenagem de abscesso, restauração ou encaminhamento para canal.' },
+      { title: 'Tratamento Definitivo', description: 'Com a dor resolvida, planejamos o tratamento da causa para evitar recorrência.' }
+    ],
+    testimonialsTitle: 'Quem Precisou, Conta',
+    testimonials: [
+      { name: 'Felipe G. — Ipanema', text: 'Estava com uma dor que não me deixava dormir. Consegui encaixe no dia seguinte. A Dra. Carla identificou a infecção, resolveu a urgência e depois planejou o restante.' },
+      { name: 'Laura M. — Leblon', text: 'Tomei analgésico por 3 dias antes de ligar. Me arrependo de não ter ido antes — a solução foi simples quando diagnosticada.' },
+      { name: 'Roberto C. — Copacabana', text: 'Achei que ia precisar de canal. A Dra. Carla avaliou com calma e na verdade era só uma restauração infiltrada. Resolveu na hora.' }
+    ],
+    faqTitle: 'Dúvidas sobre Dor de Dente',
+    faqs: [
+      { q: 'Posso tomar analgésico enquanto espero a consulta?', a: 'Sim. Analgésicos comuns (dipirona, paracetamol, ibuprofeno) podem aliviar temporariamente. Evite aspirina se houver sangramento. Na dúvida, pergunte pelo WhatsApp antes de medicar.' },
+      { q: 'Dor de dente sempre significa canal?', a: 'Não. A dor pode ter várias causas — cárie, restauração infiltrada, fratura, problema gengival. Muitas vezes a solução é mais simples do que canal. O diagnóstico correto é fundamental.' },
+      { q: 'E se a dor passar sozinha?', a: 'Dor que passa sozinha não significa que o problema foi resolvido. Pode significar que o nervo do dente morreu, o que é pior. Se teve dor intensa que desapareceu repentinamente, procure um profissional.' },
+      { q: 'Vocês atendem convênios?', a: 'Nosso atendimento é particular. Na consulta de urgência, diagnosticamos a causa e apresentamos as opções de tratamento.' }
+    ],
+    ctaTitle: 'Não Aguente a Dor — Procure Atendimento',
+    ctaSubtitle: 'Mande mensagem pelo WhatsApp. Respondemos 24h e buscamos o encaixe o quanto antes em dias úteis.',
+    ctaText: 'Pedir Encaixe pelo WhatsApp',
+    whatsappNumber: '5521993304045',
+    whatsappMessage: 'Olá! Estou com uma dor de dente forte e gostaria de tentar um encaixe no consultório o quanto antes.'
+  },
+
+  '/lp/dente-quebrado-urgencia-ipanema': {
+    h1: 'Dente Quebrado? Restauração com Resultado Natural em Ipanema',
+    subhead: 'Encaixe prioritário para resolver rápido. A Dra. Carla Christoph restaura dentes fraturados com materiais que reproduzem a aparência natural do dente original.',
+    benefits: ['WhatsApp 24h — resposta imediata', 'Encaixe prioritário na agenda', 'Restauração com resultado natural', '20+ anos de experiência em estética'],
+    problemTitle: 'Dente Quebrou — E Agora?',
+    problems: [
+      'Dente quebrou e preciso resolver o mais rápido possível.',
+      'Bordas cortantes que machucam a língua ou a bochecha.',
+      'Sensibilidade ao frio, calor ou ao morder.',
+      'Não sei se preciso de restauração simples ou tratamento mais complexo.',
+      'Preciso resolver antes de um compromisso próximo.',
+      'Tenho medo de que o problema piore se não tratar logo.'
+    ],
+    guideTitle: 'Do Contato à Restauração — Rápido e com Resultado',
+    steps: [
+      { title: 'WhatsApp Imediato', description: 'Mande uma foto do dente e descreva o que aconteceu. Orientamos sobre cuidados imediatos (guardar o fragmento, evitar morder do lado afetado).' },
+      { title: 'Encaixe Prioritário', description: 'Fraturas dentais têm prioridade na agenda. Faremos o possível para atender no mesmo dia.' },
+      { title: 'Diagnóstico e Radiografia', description: 'Exame da extensão da fratura — se atingiu só o esmalte, se chegou à dentina ou se comprometeu o nervo. Define o tipo de tratamento.' },
+      { title: 'Restauração', description: 'Restauração direta em resina (casos simples) ou planejamento de coroa/faceta (casos mais extensos). O objetivo é resultado natural e funcional.' }
+    ],
+    testimonialsTitle: 'Quem Já Passou por Isso',
+    testimonials: [
+      { name: 'Ana Clara R. — Ipanema', text: 'Quebrei o dente da frente mordendo uma azeitona. Consegui atendimento no dia seguinte. A restauração ficou tão natural que eu mesma esqueço qual dente foi.' },
+      { name: 'Pedro H. — Leblon', text: 'Meu filho quebrou o dente num treino. A Dra. Carla encaixou no mesmo dia e restaurou com calma. Ele saiu sorrindo.' },
+      { name: 'Carla M. — Copacabana', text: 'Tinha um evento em 2 dias e lascou meu dente. Mandei foto no WhatsApp e resolveram rápido. Fui ao evento tranquila.' }
+    ],
+    faqTitle: 'Dúvidas sobre Dente Quebrado',
+    faqs: [
+      { q: 'Quebrei o dente — o que faço agora?', a: 'Se encontrou o fragmento, guarde em leite ou soro. Evite morder do lado afetado. Entre em contato pelo WhatsApp com uma foto e orientaremos os próximos passos.' },
+      { q: 'Dá para colar o pedaço que quebrou?', a: 'Em alguns casos, sim — especialmente se o fragmento estiver íntegro e for guardado corretamente. A análise clínica define se a colagem é viável ou se a restauração direta é a melhor opção.' },
+      { q: 'A restauração fica visível?', a: 'Com resinas e cerâmicas atuais, a restauração reproduz a cor, translucidez e textura do dente natural. O objetivo é que seja imperceptível.' },
+      { q: 'E se a fratura for grande?', a: 'Fraturas mais extensas podem precisar de coroa ou, em casos raros, tratamento de canal antes da restauração. A radiografia na consulta define a extensão e o melhor caminho.' },
+      { q: 'Vocês atendem convênios?', a: 'Nosso atendimento é particular. Na consulta de urgência, resolvemos o problema e apresentamos as opções.' }
+    ],
+    ctaTitle: 'Não Espere — Quanto Antes, Mais Simples',
+    ctaSubtitle: 'Mande foto do dente pelo WhatsApp. Respondemos 24h e encaixamos o mais rápido possível.',
+    ctaText: 'Falar no WhatsApp Agora',
+    whatsappNumber: '5521993304045',
+    whatsappMessage: 'Olá! Quebrei meu dente e preciso de atendimento urgente.'
+  },
+
+  '/lp/emergencia-odontologica-ipanema': {
+    h1: 'Emergência Odontológica em Ipanema — Encaixe Prioritário',
+    subhead: 'Dente quebrado, dor aguda, prótese solta ou inchaço. Entre em contato pelo WhatsApp e resolveremos o mais rápido possível.',
+    benefits: ['WhatsApp 24h — resposta imediata', 'Encaixe prioritário na agenda', 'Diagnóstico e resolução no mesmo dia', '20+ anos de experiência'],
+    problemTitle: 'Imprevistos Dentais Não Esperam',
+    problems: [
+      'Dente que quebrou ou lascou — precisa de restauração urgente.',
+      'Dor de dente intensa que não passa com analgésico.',
+      'Lente, faceta ou coroa que soltou — precisa cimentar.',
+      'Inchaço ou abscesso na gengiva.',
+      'Prótese que soltou ou quebrou.',
+      'Não sabe se é urgência — quer orientação rápida.'
+    ],
+    guideTitle: 'Como Funciona o Atendimento de Emergência',
+    steps: [
+      { title: 'WhatsApp Imediato', description: 'Descreva o que aconteceu. Nossa equipe responde 24h e orienta os primeiros cuidados enquanto agenda o encaixe.' },
+      { title: 'Encaixe Prioritário', description: 'Urgências têm preferência na agenda. Na maioria dos casos, conseguimos atender no mesmo dia.' },
+      { title: 'Diagnóstico e Tratamento', description: 'Avaliação completa, radiografia se necessário, e resolução imediata — restauração, cimentação, alívio da dor.' },
+      { title: 'Orientação de Continuidade', description: 'Você sai com o problema resolvido e um plano claro para tratamento definitivo, se necessário.' }
+    ],
+    testimonialsTitle: 'Quem Precisou, Conta',
+    testimonials: [
+      { name: 'Renata S. — Ipanema', text: 'Soltou minha lente num sábado. Mandei mensagem no WhatsApp e na segunda cedo já estava no consultório. Resolveu na hora.' },
+      { name: 'Marcos T. — Leblon', text: 'Acordei com dor forte num dente. Consegui encaixe no mesmo dia. A Dra. Carla diagnosticou, resolveu a urgência e planejou o tratamento definitivo.' },
+      { name: 'Ana Clara R. — Copacabana', text: 'Quebrei o dente da frente num acidente. O atendimento foi rápido e a restauração ficou natural. Ninguém percebe.' }
+    ],
+    faqTitle: 'Dúvidas sobre Emergências',
+    faqs: [
+      { q: 'Vocês atendem no mesmo dia?', a: 'Nos esforçamos para isso. Entre em contato pelo WhatsApp descrevendo a situação e faremos o possível para encaixar no primeiro horário disponível.' },
+      { q: 'Como saber se é emergência?', a: 'Se há dor intensa, sangramento que não para, dente quebrado visível, inchaço ou prótese solta — é emergência. Na dúvida, mande mensagem no WhatsApp e orientamos.' },
+      { q: 'O atendimento de emergência resolve de vez?', a: 'Depende do caso. Muitas vezes sim (restauração, cimentação). Em casos mais complexos, resolvemos a urgência e planejamos o tratamento definitivo para uma consulta seguinte.' },
+      { q: 'Vocês atendem convênios?', a: 'Nosso atendimento é particular. Na consulta de emergência, resolvemos o problema imediato e apresentamos as opções para continuidade.' }
+    ],
+    ctaTitle: 'Precisa de Atendimento Agora?',
+    ctaSubtitle: 'Mande mensagem pelo WhatsApp. Respondemos 24h e encaixamos o mais rápido possível.',
+    ctaText: 'Falar no WhatsApp Agora',
+    whatsappNumber: '5521993304045',
+    whatsappMessage: 'Olá! Tive uma emergência odontológica e preciso de atendimento prioritário. Podem me ajudar?'
+  },
+
+  '/lp/especialista-protese-ipanema': {
+    h1: 'Sua Prótese Pode Funcionar Como Dentes de Verdade',
+    subhead: 'Especialista em Prótese Dentária com mais de 20 anos. Cada caso é planejado em detalhes — para o resultado ficar natural e durar.',
+    benefits: ['Especialista em Prótese Dentária', 'Planejamento digital com iTero Element 5D', 'WhatsApp 24h', '20+ anos de experiência (8 na Marinha)'],
+    problemTitle: 'Quando o Caso Precisa de um Olhar Especializado',
+    problems: [
+      'Tratamentos anteriores que não deram certo ou já estão falhando.',
+      'Prótese antiga que não se adapta bem — solta, machuca ou limita a alimentação.',
+      'Múltiplos dentes ausentes e dúvida sobre a melhor solução.',
+      'Dentes muito desgastados ou com muitas restaurações antigas comprometidas.',
+      'Insegurança para sorrir ou comer em público por causa da condição dos dentes.',
+      'Sensação de que o caso é complexo demais e precisa de alguém com experiência específica.'
+    ],
+    guideTitle: 'A Abordagem da Especialista em Prótese',
+    steps: [
+      { title: 'Consulta de Planejamento', description: 'Análise clínica completa, fotografias, radiografias e escaneamento digital com iTero Element 5D. Entendemos o histórico e definimos os objetivos do tratamento.' },
+      { title: 'Projeto Protético Digital', description: 'Com base nos dados coletados, a Dra. Carla projeta a reabilitação — tipo de prótese, materiais, sequência de etapas. Tudo definido antes de começar.' },
+      { title: 'Execução por Etapas', description: 'O tratamento segue o cronograma planejado. Cada etapa é executada com precisão, usando somente materiais de primeira linha e provas intermediárias para garantir o ajuste.' },
+      { title: 'Acompanhamento de Longo Prazo', description: 'Após a entrega, consultas de acompanhamento garantem que a prótese se mantenha funcional e confortável ao longo dos anos.' }
+    ],
+    testimonialsTitle: 'O Que Nossos Pacientes Contam Sobre o Tratamento',
+    testimonials: [
+      { name: 'Maria Helena R. — Ipanema', text: 'Já tinha passado por outros dentistas sem resolver. A Dra. Carla fez um planejamento completo e hoje como de tudo com segurança. O processo foi longo, mas cada etapa fez sentido.' },
+      { name: 'João Carlos A. — Leblon', text: 'O que me deu confiança foi o planejamento. Ela mostrou o projeto antes de começar e explicou cada etapa. O resultado ficou natural — ninguém percebe que é prótese.' },
+      { name: 'Beatriz L. — Copacabana', text: 'Usava prótese removível há anos. Depois do tratamento com a Dra. Carla, tenho dentes fixos novamente. A diferença na qualidade de vida é enorme.' }
+    ],
+    faqTitle: 'Dúvidas Sobre Prótese e Reabilitação Oral',
+    faqs: [
+      { q: 'Qual a diferença entre um dentista generalista e uma especialista em prótese?', a: 'A especialista tem formação avançada em reabilitação oral — planejamento de casos complexos, domínio de materiais e técnicas específicas. Isso faz diferença principalmente em casos com múltiplas ausências ou desgaste severo.' },
+      { q: 'Quanto tempo dura uma prótese bem feita?', a: 'Com materiais adequados, técnica precisa e acompanhamento regular, uma prótese fixa em porcelana pode durar 15 a 20 anos ou mais. A longevidade depende também dos cuidados do paciente.' },
+      { q: 'Prótese fixa ou removível — como saber qual é melhor para mim?', a: 'Depende da condição dos dentes remanescentes, da quantidade de osso disponível e do caso como um todo. A análise clínica e os exames definem a indicação. A Dra. Carla apresenta as opções com prós e contras de cada uma.' },
+      { q: 'É possível trocar uma prótese antiga por uma nova?', a: 'Sim. Próteses antigas podem ser substituídas por soluções mais modernas, com melhor estética e função. A análise determina o que é viável para o seu caso.' },
+      { q: 'Vocês atendem convênios?', a: 'Nosso atendimento é particular, o que nos permite dedicar o tempo necessário ao planejamento e trabalhar com materiais selecionados. Na consulta, apresentamos o plano completo com valores transparentes.' }
+    ],
+    ctaTitle: 'Seu Caso Merece Atenção Especializada',
+    ctaSubtitle: 'Agende sua consulta de planejamento. A análise detalhada é o primeiro passo para um tratamento seguro e bem conduzido.',
+    ctaText: 'Agendar Minha Consulta',
+    whatsappNumber: '5521993304045',
+    whatsappMessage: 'Olá! Vi sobre prótese e reabilitação e gostaria de agendar uma consulta para entender o que é possível no meu caso.'
+  },
+
+  '/lp/implantes-dentarios-ipanema': {
+    h1: 'Volte a Comer e Sorrir com Dentes Fixos',
+    subhead: 'Implantes com planejamento digital individualizado. Especialista em Implantodontia com mais de 20 anos de experiência.',
+    benefits: ['Especialista em Implantodontia', 'Planejamento com tomografia digital', 'WhatsApp 24h', '20+ anos de experiência'],
+    problemTitle: 'Você se identifica com alguma dessas situações?',
+    problems: [
+      'Dificuldade para mastigar — evitar alimentos mais firmes, cortar tudo em pedaços pequenos ou mastigar só de um lado.',
+      'Insegurança com o espaço do dente perdido — evitar sorrir abertamente, cobrir a boca ao falar ou sentir desconforto em fotos.',
+      'Prótese removível que incomoda — solta, machuca a gengiva, acumula alimento ou limita o que você pode comer.',
+      'Perda óssea avançando — cada mês sem o dente, o osso da região continua sendo reabsorvido, o que pode dificultar o implante no futuro.'
+    ],
+    guideTitle: 'Como a Dra. Carla Christoph Planeja Seu Tratamento com Implantes',
+    steps: [
+      { title: 'Consulta e Tomografia', description: 'Análise clínica detalhada e tomografia computadorizada para mapear a estrutura óssea com precisão.' },
+      { title: 'Planejamento Digital do Caso', description: 'Definição da posição, angulação e tipo de implante mais adequado — tudo planejado antes da cirurgia.' },
+      { title: 'Cirurgia de Instalação', description: 'Procedimento com anestesia local, de forma tranquila. Na maioria dos casos, o pós é mais simples do que se imagina.' },
+      { title: 'Cicatrização e Integração', description: 'O implante se integra ao osso ao longo de alguns meses. Durante esse período, você pode usar uma prótese provisória.' },
+      { title: 'Prótese Definitiva pela Dra. Carla', description: 'Moldagem digital e confecção da coroa ou prótese final — com materiais de primeira linha selecionados individualmente para cada caso.' }
+    ],
+    testimonialsTitle: 'O Que Nossos Pacientes Contam Sobre o Tratamento',
+    testimonials: [
+      { name: 'Roberto S. — Copacabana', text: 'Passei anos com prótese removível e já tinha me conformado. Depois do implante, voltei a comer de tudo — parece que recuperei algo que achei que tinha perdido.' },
+      { name: 'Márcia L. — Ipanema', text: 'Tinha muito medo da cirurgia, mas foi mais tranquilo do que arrancar um dente. O que mais me surpreendeu foi o acompanhamento — a Dra. Carla estava presente em cada etapa.' },
+      { name: 'Paulo H. — Leblon', text: 'Fiz a reabilitação completa, arcada superior inteira. Demorou alguns meses, mas hoje tenho dentes fixos e como qualquer coisa sem pensar duas vezes.' }
+    ],
+    faqTitle: 'Dúvidas Sobre Implantes Dentários',
+    faqs: [
+      { q: 'Implante dentário dói muito?', a: 'A cirurgia é feita com anestesia local e a maioria dos pacientes relata menos desconforto do que em uma extração. O pós-operatório costuma ser controlado com medicação simples por poucos dias.' },
+      { q: 'Implante dentário pode ser rejeitado pelo corpo?', a: 'Implantes de titânio têm taxa de sucesso superior a 95%. O titânio é biocompatível — o osso se integra a ele naturalmente. Rejeição verdadeira é extremamente rara.' },
+      { q: 'Quanto tempo leva do início ao dente definitivo?', a: 'O tempo total varia de 3 a 8 meses, dependendo da necessidade de enxerto ósseo e da região. Durante esse período, você não fica sem dente — usamos provisórios enquanto o implante se integra ao osso.' },
+      { q: 'Existe idade máxima para colocar implante?', a: 'Não existe limite de idade. O que avaliamos é a saúde geral e a qualidade óssea do paciente. Pessoas com 70, 80 anos fazem implantes com sucesso rotineiramente.' },
+      { q: 'Implante ou prótese removível — qual é melhor?', a: 'O implante é fixo, preserva o osso, não machuca a gengiva e permite mastigar normalmente. A prótese removível é uma alternativa quando o implante não é possível, mas tem limitações funcionais e de conforto.' },
+      { q: 'Preciso fazer enxerto ósseo antes do implante?', a: 'Depende do volume de osso disponível. A análise com tomografia e planejamento digital mostra exatamente se há necessidade. Quando necessário, o enxerto é feito antes ou junto com o implante.' }
+    ],
+    ctaTitle: 'A Perda Óssea é Progressiva',
+    ctaSubtitle: 'Quanto mais cedo o diagnóstico, menos complexo tende a ser o procedimento.',
+    ctaText: 'Agendar Consulta de Planejamento',
+    whatsappNumber: '5521993304045',
+    whatsappMessage: 'Olá! Vi sobre implantes dentários e gostaria de agendar uma consulta para entender o tratamento no meu caso.'
+  },
+
+  '/lp/lentes-porcelana-ipanema': {
+    h1: 'Escondendo o Sorriso? Lentes de Porcelana com Test Drive — Visualize na Própria Boca',
+    subhead: 'Lentes de porcelana que respeitam a individualidade do seu rosto. Com planejamento digital e Test Drive do Sorriso — uma aplicação de resina não-adesiva — você visualiza e aprova o resultado antes de começar.',
+    benefits: ['Test Drive do Sorriso antes de começar', 'Resultado natural que combina com seu rosto', 'WhatsApp 24h', '20+ anos em estética dental'],
+    problemTitle: 'Você se identifica com alguma dessas situações?',
+    problems: [
+      'Evitar sorrir de boca aberta em fotos, tapar a boca com a mão ou deletar fotos por causa dos dentes.',
+      'Dentes com manchas internas, escurecimento por medicamento na infância ou cor irregular que nenhum clareamento consegue uniformizar.',
+      'Dentes com tamanhos diferentes, pequenos espaços, bordas irregulares ou leves desalinhamentos que incomodam esteticamente.',
+      'Receio de ficar com aspecto artificial — branco demais ou todos iguais. Querer melhorar sem que pareça que fez alguma coisa.'
+    ],
+    guideTitle: 'Como Funciona o Tratamento com a Dra. Carla Christoph',
+    steps: [
+      { title: 'Consulta e Análise Facial', description: 'Conversa sobre suas expectativas. Análise facial, fotografias e escaneamento digital para entender o que combina com você.' },
+      { title: 'Test Drive do Sorriso', description: 'Você experimenta um modelo provisório na sua boca antes de iniciar. Vê, sente e aprova. Se não gostar, ajustamos até ficar do seu jeito.' },
+      { title: 'Confecção das Lentes', description: 'Com o projeto aprovado, cada lente é confeccionada em porcelana de alta translucidez — somente materiais de primeira linha. Reproduz a cor e o brilho dos dentes naturais.' },
+      { title: 'Aplicação e Finalização', description: 'As lentes são cimentadas com precisão. O processo é confortável e o resultado é imediato — você sai sorrindo.' }
+    ],
+    testimonialsTitle: 'O Que Nossas Pacientes Contam',
+    testimonials: [
+      { name: 'Fernanda R. — Ipanema', text: 'Eu tinha pavor de ficar com aquele sorriso todo igual, artificial. A Dra. Carla fez questão de ajustar dente por dente. Ninguém percebe que são lentes — só elogiam o sorriso.' },
+      { name: 'Cristina M. — Leblon', text: 'Fiz o Test Drive antes e vi exatamente como ia ficar. Isso me deu segurança para seguir. O resultado ficou tão natural que minha irmã quis fazer também.' },
+      { name: 'André L. — Barra da Tijuca', text: 'Sempre tive os dentes manchados desde criança por causa de antibiótico. Nenhum clareamento resolvia. Com as lentes, finalmente tenho um sorriso que não preciso esconder.' }
+    ],
+    faqTitle: 'Dúvidas Sobre Lentes de Porcelana',
+    faqs: [
+      { q: 'Lente de contato dental dura quanto tempo?', a: 'Lentes de porcelana bem cuidadas duram em média 15 a 20 anos. A durabilidade depende dos hábitos do paciente — ranger os dentes e morder objetos duros são os principais fatores que reduzem a vida útil.' },
+      { q: 'Qual a diferença entre lente de contato e faceta de porcelana?', a: 'A lente é mais fina (0,3 a 0,5mm) e exige pouco ou nenhum desgaste do dente. A faceta é levemente mais espessa e indicada quando há necessidade de correções maiores. Na consulta, avaliamos qual é a melhor opção para o seu caso.' },
+      { q: 'Lente de porcelana estraga o dente?', a: 'Não. Na maioria dos casos, o preparo é mínimo ou até inexistente. O dente natural é preservado ao máximo. A porcelana é colada sobre o esmalte de forma permanente e segura.' },
+      { q: 'Como funciona o Test Drive do Sorriso?', a: 'Antes de fazer qualquer desgaste, montamos uma simulação em resina sobre os seus dentes para você ver, tocar e aprovar o resultado. Se quiser ajustar formato, tamanho ou proporção, fazemos na hora.' },
+      { q: 'Posso fazer lentes só nos dentes da frente?', a: 'Sim, a maioria dos casos envolve de 6 a 10 dentes superiores — os que aparecem no sorriso. A quantidade exata depende da largura do seu sorriso e do resultado desejado.' },
+      { q: 'Dentes com restauração antiga podem receber lentes?', a: 'Depende do tamanho e estado da restauração. Em muitos casos, a lente pode cobrir e substituir restaurações escurecidas. Avaliamos caso a caso na consulta.' }
+    ],
+    ctaTitle: 'Cada Lente é Planejada Individualmente',
+    ctaSubtitle: 'Nem todos os casos se beneficiam de lentes. Na consulta, vemos se é a melhor opção para o seu sorriso.',
+    ctaText: 'Agendar Minha Consulta',
+    whatsappNumber: '5521993304045',
+    whatsappMessage: 'Olá! Vi o site sobre lentes de porcelana e gostaria de agendar uma consulta para renovar meu sorriso.'
+  },
+
+  '/lp/lentes-profissional-ipanema': {
+    h1: 'Lentes de Porcelana em Ipanema — Resultado Natural que Dura mais de 15 Anos',
+    subhead: 'Porcelana de alta translucidez, planejamento digital com iTero Element 5D e Test Drive do Sorriso antes de começar. Dra. Carla Christoph, especialista com mais de 20 anos em estética dental.',
+    benefits: ['Porcelana de alta translucidez', 'Test Drive do Sorriso antes de começar', 'WhatsApp 24h', '20+ anos em estética dental'],
+    problemTitle: 'Você se identifica com alguma dessas situações?',
+    problems: [
+      'Evitar sorrir de boca aberta em fotos, tapar a boca com a mão ou deletar fotos por causa dos dentes.',
+      'Dentes com manchas internas, escurecimento por medicamento na infância ou cor irregular que nenhum clareamento consegue uniformizar.',
+      'Dentes com tamanhos diferentes, pequenos espaços, bordas irregulares ou leves desalinhamentos que incomodam esteticamente.',
+      'Receio de ficar com aspecto artificial — branco demais ou todos iguais. Querer melhorar sem que pareça que fez alguma coisa.'
+    ],
+    guideTitle: 'Como a Dra. Carla Christoph Planeja Suas Lentes',
+    steps: [
+      { title: 'Consulta e Análise Facial', description: 'Conversa sobre suas expectativas. Análise facial, fotografias e escaneamento digital para entender o que combina com o seu rosto.' },
+      { title: 'Test Drive do Sorriso', description: 'Você experimenta um modelo provisório na boca antes de iniciar. Vê, sente e aprova. Se não gostar, ajustamos até ficar do seu jeito.' },
+      { title: 'Confecção em Laboratório', description: 'Com o projeto aprovado, cada lente é confeccionada em porcelana de alta translucidez — o material que mais se aproxima da aparência natural dos dentes.' },
+      { title: 'Cimentação e Resultado', description: 'As lentes são cimentadas com precisão pela Dra. Carla. Somente materiais de primeira linha são utilizados. Você sai sorrindo.' }
+    ],
+    testimonialsTitle: 'O Que Nossas Pacientes Contam',
+    testimonials: [
+      { name: 'Fernanda R. — Ipanema', text: 'Eu tinha pavor de ficar com aquele sorriso todo igual, artificial. A Dra. Carla fez questão de ajustar dente por dente. Ninguém percebe que são lentes — só elogiam o sorriso.' },
+      { name: 'Cristina M. — Leblon', text: 'Fiz o Test Drive antes e vi exatamente como ia ficar. Isso me deu segurança para seguir. O resultado ficou tão natural que minha irmã quis fazer também.' },
+      { name: 'André L. — Barra da Tijuca', text: 'Sempre tive os dentes manchados desde criança por causa de antibiótico. Nenhum clareamento resolvia. Com as lentes, finalmente tenho um sorriso que não preciso esconder.' }
+    ],
+    faqTitle: 'Dúvidas Frequentes sobre Lentes de Porcelana',
+    faqs: [
+      { q: 'Lente de contato dental dura quanto tempo?', a: 'Lentes de porcelana bem cuidadas duram em média 15 a 20 anos. A durabilidade depende dos hábitos do paciente — ranger os dentes e morder objetos duros são os principais fatores que reduzem a vida útil.' },
+      { q: 'Qual a diferença entre lente de contato e faceta de porcelana?', a: 'A lente é mais fina (0,3 a 0,5mm) e exige pouco ou nenhum desgaste do dente. A faceta é levemente mais espessa e indicada quando há necessidade de correções maiores. Na consulta, avaliamos qual é a melhor opção para o seu caso.' },
+      { q: 'Lente de porcelana estraga o dente?', a: 'Não. Na maioria dos casos, o preparo é mínimo ou até inexistente. O dente natural é preservado ao máximo. A porcelana é colada sobre o esmalte de forma permanente e segura.' },
+      { q: 'Como funciona o Test Drive do Sorriso?', a: 'Antes de fazer qualquer desgaste, montamos uma simulação em resina sobre os seus dentes para você ver, tocar e aprovar o resultado. Se quiser ajustar formato, tamanho ou proporção, fazemos na hora.' },
+      { q: 'Posso fazer lentes só nos dentes da frente?', a: 'Sim, a maioria dos casos envolve de 6 a 10 dentes superiores — os que aparecem no sorriso. A quantidade exata depende da largura do seu sorriso e do resultado desejado.' },
+      { q: 'Dentes com restauração antiga podem receber lentes?', a: 'Depende do tamanho e estado da restauração. Em muitos casos, a lente pode cobrir e substituir restaurações escurecidas. Avaliamos caso a caso na consulta.' }
+    ],
+    ctaTitle: 'Quer Ver Como Seu Sorriso Pode Ficar?',
+    ctaSubtitle: 'Agende sua consulta e faça o Test Drive do Sorriso antes de tomar qualquer decisão.',
+    ctaText: 'Agendar Consulta com Test Drive',
+    whatsappNumber: '5521993304045',
+    whatsappMessage: 'Olá! Vi o site sobre lentes de porcelana e gostaria de agendar uma consulta para renovar meu sorriso.'
+  },
+
+  '/lp/facetas-resina-ipanema': {
+    h1: 'Insatisfação com o Sorriso? Facetas de Resina em Ipanema — Resultado no Mesmo Dia',
+    subhead: 'Facetas esculpidas diretamente no dente pela Dra. Carla Christoph. Você acompanha e aprova cada etapa antes de finalizar — sem pressa e sem surpresas.',
+    benefits: ['Resultado no mesmo dia — uma única sessão', 'Procedimento minimamente invasivo', 'WhatsApp 24h — tire dúvidas agora', '20+ anos de experiência em estética dental'],
+    problemTitle: 'Você Se Identifica com Alguma Dessas Situações?',
+    problems: [
+      'Um evento importante está se aproximando e você quer um sorriso mais bonito nas fotos.',
+      'Seus dentes têm manchas, lascas ou espaços que te incomodam no dia a dia.',
+      'Você quer melhorar a estética do sorriso, mas sem o investimento das lentes de porcelana no momento.',
+      'Prefere um tratamento minimamente invasivo, que preserve ao máximo a estrutura dos seus dentes.',
+      'Quer acompanhar e aprovar o resultado durante o procedimento — sem surpresas.',
+      'Busca um atendimento com profissional experiente, em clínica especializada em Ipanema.'
+    ],
+    guideTitle: 'Como Funciona o Processo com a Dra. Carla Christoph',
+    steps: [
+      { title: 'Conversa Inicial', description: 'Mande uma mensagem no WhatsApp. Nós iremos entender o que te incomoda, tirar suas dúvidas e agendar um horário para você.' },
+      { title: 'Consulta e Planejamento', description: 'Na consulta, a Dra. Carla examina seus dentes, ouve com atenção o que você deseja e explica o que é possível alcançar com as facetas de resina no seu caso — com total transparência.' },
+      { title: 'Test Drive do Sorriso', description: 'Caso tenha dúvidas sobre o resultado, a Dra. Carla pode aplicar uma resina removível para que você visualize e aprove o resultado final antes de colocar a resina definitiva.' },
+      { title: 'Escultura com Aprovação em Tempo Real', description: 'As facetas são esculpidas dente a dente, diretamente na sua boca. Você acompanha cada etapa e aprova o resultado antes de finalizar.' },
+      { title: 'Acabamento e Polimento', description: 'A sessão termina com acabamento de alta precisão e polimento com brilho natural. Você sai no mesmo dia com o sorriso pronto e orientações claras de cuidados.' }
+    ],
+    testimonialsTitle: 'A Felicidade de um Sorriso Renovado no Mesmo Dia',
+    testimonials: [
+      { name: 'Camila R. — Ipanema', text: 'Tinha um casamento em duas semanas e estava infeliz com meus dentes. A Dra. Carla fez as facetas de resina em uma sessão. Me senti muito mais confiante nas fotos.' },
+      { name: 'Pedro N. — Leblon', text: 'O processo de ver como ia ficar antes de fazer me deu muita segurança. O resultado ficou natural, ninguém diz que é resina.' },
+      { name: 'Sofia L. — Copacabana', text: 'Eu queria fazer pequenos ajustes e o processo foi bem mais simples do que eu imaginava. O resultado ficou delicado e natural — exatamente como eu queria.' }
+    ],
+    faqTitle: 'Dúvidas Comuns sobre Facetas de Resina',
+    faqs: [
+      { q: 'Qual a durabilidade das facetas de resina?', a: 'Com os devidos cuidados e manutenções anuais (polimento), as facetas de resina compostas nanoparticuladas podem durar em média de 5 a 7 anos, mantendo a estética e o brilho.' },
+      { q: 'A resina mancha com o tempo?', a: 'Resinas de alta performance, como as que utilizamos, têm alta resistência a manchas. No entanto, cuidados com alimentos muito pigmentados e o polimento anual são importantes para manter a cor estável por mais tempo.' },
+      { q: 'Qual a principal diferença para a porcelana?', a: 'A resina é uma solução mais rápida (feita em 1 dia) e com um investimento mais acessível. A porcelana, feita em laboratório, oferece maior durabilidade (15+ anos) e resistência total a manchas, sendo um investimento a longo prazo.' },
+      { q: 'Como saberei como ficará o resultado final?', a: 'Antes de qualquer trabalho definitivo, a Dra. Carla pode aplicar uma resina removível para que você visualize e aprove o resultado. Uma vez que esteja tudo aprovado, ela faz o trabalho com a resina definitiva, de alta performance.' },
+      { q: 'Como funciona o agendamento?', a: 'Envie uma mensagem pelo WhatsApp descrevendo o que você deseja e nós iremos encontrar o melhor horário para você. A consulta com a Dra. Carla é feita sem pressa.' },
+      { q: 'O atendimento é particular?', a: 'Sim. O atendimento da Dra. Carla é particular, o que permite dedicar tempo real ao seu caso e usar materiais de primeira linha. Emitimos recibo para solicitação de reembolso ao seu convênio, caso o seu plano permita.' }
+    ],
+    ctaTitle: 'Seu Sorriso Merece essa Atenção',
+    ctaSubtitle: 'Mande uma mensagem no WhatsApp e converse com a equipe da Dra. Carla sobre as suas facetas. Consulta individual com tempo dedicado ao seu caso e resultado no mesmo dia.',
+    ctaText: 'Quero Falar Sobre Minhas Facetas',
+    whatsappNumber: '5521993304045',
+    whatsappMessage: 'Olá! Vi no site sobre facetas de resina e gostaria de agendar uma consulta com a Dra. Carla.'
+  },
+
+  '/en/lp/cosmetic-dentistry': {
+    h1: 'Regain Confidence in Your Smile — in Ipanema, Rio de Janeiro',
+    subhead: 'Cosmetic dentistry by Dr. Carla Christoph — specialist in prosthodontics with 20+ years in Ipanema. Same dentist from start to finish.',
+    benefits: ['20+ years of cosmetic dentistry experience', 'Digital smile planning with iTero 5D scanner', 'Same dentist from start to finish', 'Minimum 1-hour appointments — no rushed procedures', 'Smile Test Drive — try your new smile before committing', 'We reply in your language via WhatsApp'],
+    problemTitle: 'Does any of this sound familiar?',
+    problems: [
+      'Stained or discolored teeth from years of coffee, wine, or tea — the yellowing happens so gradually you only notice when you see an old photo.',
+      'Chipped, worn, or uneven teeth that make you self-conscious in photos or meetings — you have learned to smile with your lips closed.',
+      'Old dental work that looks obvious — dark metal edges, bulky crowns, or fillings that do not match your natural teeth.',
+      'Fear of overtreatment abroad — you want honest, conservative dentistry, not unnecessary procedures.'
+    ],
+    guideTitle: 'How Dr. Carla Christoph Approaches Cosmetic Dentistry',
+    steps: [
+      { title: 'Digital Assessment', description: 'Full examination with iTero Element 5D scanner — 3D digital impressions with no gooey molds. We identify the exact issues and discuss realistic options.' },
+      { title: 'Smile Test Drive', description: 'For veneers and smile design cases, Dr. Carla applies non-adherent resin directly on your teeth so you can see, feel, and approve the final shape in your own mouth — before any permanent work begins.' },
+      { title: 'Precise Treatment', description: 'Whether porcelain veneers, professional whitening, or composite bonding — each procedure is performed with magnification and meticulous attention to detail.' },
+      { title: 'Follow-Up & Care', description: 'Digital records are shared via WhatsApp. If you return home, we continue monitoring remotely. Your treatment does not end when you leave the chair.' }
+    ],
+    testimonialsTitle: 'What Our Patients Say',
+    testimonials: [
+      { name: 'Gerald G. — United Kingdom', text: 'Excellent dentist, very gentle, calm and will explain the process with you. The office space is very clean. The outcome was brilliant.' },
+      { name: 'Haley H. — International Patient', text: 'Amazing experience! Had pain and she completely resolved my problem and fixed a chipped tooth! My new tooth looks great.' },
+      { name: 'Marina P. — Ipanema', text: 'I wanted to change my smile but did not know if I needed veneers or whitening. Dr. Carla evaluated everything and recommended whitening plus 4 restorations. It turned out natural and beautiful.' }
+    ],
+    faqTitle: 'Common Questions from International Patients',
+    faqs: [
+      { q: 'Is it safe to get dental work done in Brazil?', a: 'Absolutely. Brazilian dentistry is world-renowned for its quality. Dr. Carla Christoph is registered with CRO-RJ (27.509) and uses only FDA-approved materials and CE-marked equipment, including the iTero Element 5D digital scanner.' },
+      { q: 'How many appointments will I need for veneers?', a: 'Porcelain veneers typically require 2-3 appointments over 7-10 days. The first visit includes the digital scan, smile design, and tooth preparation. The final visit is for bonding the veneers.' },
+      { q: 'Do you accept international insurance?', a: 'We provide detailed invoices with procedure codes that most international insurance providers accept for reimbursement. Payment is made directly to the clinic, and you submit the documentation to your insurer.' },
+      { q: 'What if I have a problem after I return home?', a: 'We maintain contact via WhatsApp after your treatment. If any issue arises, we can consult remotely with photos and video.' },
+      { q: 'Can I get a virtual consultation before traveling?', a: 'Yes. Send us photos and a description of what you would like to improve via WhatsApp. Dr. Carla will review your case and provide an initial assessment with estimated timeline and investment.' }
+    ],
+    ctaTitle: 'Ready to Improve Your Smile in Ipanema?',
+    ctaSubtitle: 'Send us a message on WhatsApp with a photo of your smile. Dr. Carla will personally review your case and respond — in your language.',
+    ctaText: 'Book Your Consultation',
+    whatsappNumber: '5521993304045',
+    whatsappMessage: "Hello! I'm interested in cosmetic dentistry with Dr. Carla Christoph. Can you help me?"
+  },
+
+  '/en/lp/dental-implants': {
+    h1: 'Replace Missing Teeth with Confidence — in Ipanema, Rio de Janeiro',
+    subhead: 'Dental implants by Dr. Carla Christoph — specialist in prosthodontics and implant dentistry with 20+ years in Ipanema. 3D digital planning for predictable, lasting results.',
+    benefits: ['Specialist in implant dentistry — 20+ years of experience', '3D digital planning with iTero 5D scanner', 'Same dentist from planning to final prosthesis', 'Minimum 1-hour appointments — no rushed procedures', 'Internationally recognized implant brands', 'We reply in your language via WhatsApp'],
+    problemTitle: 'Does any of this sound familiar?',
+    problems: [
+      'You avoid certain foods because chewing is painful or your denture loosens — meals that used to be enjoyable now feel like a challenge.',
+      'You feel self-conscious about gaps in your smile — you have stopped smiling in photos or cover your mouth when laughing.',
+      'Your removable denture requires daily adhesive and still slips when you speak — you have adapted, but it is exhausting.',
+      'You have been told you need bone grafting and are unsure if implants are even possible — you want an honest, realistic assessment.'
+    ],
+    guideTitle: 'How Dr. Carla Christoph Approaches Dental Implants',
+    steps: [
+      { title: 'Digital Assessment & Planning', description: 'Full examination with iTero Element 5D scanner and imaging analysis. We evaluate bone quality, quantity, and overall health to determine the best implant strategy for your case.' },
+      { title: 'Implant Placement', description: 'Minimally invasive surgery under local anesthesia. The titanium implant is precisely positioned based on digital planning. Provisional prosthesis provided when indicated.' },
+      { title: 'Osseointegration Period', description: '3 to 6 months for the implant to fuse with your jawbone. You wear a provisional prosthesis during this time. Dr. Carla monitors healing via periodic check-ups.' },
+      { title: 'Final Prosthesis & Follow-Up', description: 'Digital impression for your definitive ceramic crown, bridge, or full-arch prosthesis. Natural color, shape, and function restored. Remote follow-up available via WhatsApp after you return home.' }
+    ],
+    testimonialsTitle: 'What Our Patients Say',
+    testimonials: [
+      { name: 'Gerald G. — United Kingdom', text: 'Excellent dentist, very gentle, calm and will explain the process with you. The office space is very clean. The outcome was brilliant.' },
+      { name: 'Haley H. — International Patient', text: 'Amazing experience! Had pain and she completely resolved my problem and fixed a chipped tooth!' },
+      { name: 'Marina P. — Ipanema', text: 'I needed a full rehabilitation with implants and prosthetics. Dr. Carla planned everything digitally and the result exceeded my expectations.' }
+    ],
+    faqTitle: 'Common Questions About Dental Implants',
+    faqs: [
+      { q: 'Is it safe to get dental implants in Brazil?', a: 'Absolutely. Brazilian implant dentistry is world-renowned. Dr. Carla Christoph is registered with CRO-RJ (27.509), uses internationally recognized implant brands with FDA clearance, and follows strict sterilization protocols that meet international standards.' },
+      { q: 'How many appointments will I need?', a: 'The initial evaluation and implant placement typically require 2-3 visits over a few days. After the osseointegration period (3-6 months), you will return for 2-3 more visits for the final prosthesis.' },
+      { q: 'Is the implant procedure painful?', a: 'The surgery is performed under local anesthesia — you feel no pain during the procedure. Post-operative recovery is generally smooth, with mild discomfort managed by medication.' },
+      { q: 'Can I get implants if I have limited bone?', a: 'Yes. Bone grafting techniques or sinus lift procedures can increase bone volume when needed. Short or angled implants are also alternatives. Imaging analysis during your evaluation determines the best approach.' },
+      { q: 'What if I have a problem after I return home?', a: 'We maintain contact via WhatsApp after your treatment. If any issue arises, we consult remotely with photos and video.' },
+      { q: 'Can I get a virtual consultation before traveling?', a: 'Yes. Send us photos and X-rays via WhatsApp. Dr. Carla will review your case and provide an initial assessment with estimated timeline and treatment plan.' }
+    ],
+    ctaTitle: 'Ready to Restore Your Smile with Dental Implants?',
+    ctaSubtitle: 'Send us a message on WhatsApp with your X-rays or a photo. Dr. Carla will personally review your case and respond — in your language.',
+    ctaText: 'Book Your Implant Consultation',
+    whatsappNumber: '5521993304045',
+    whatsappMessage: "Hello! I'm interested in dental implants with Dr. Carla Christoph. Can you help me?"
+  },
+
+  '/en/lp/dental-emergency': {
+    h1: 'Dental Emergency in Rio? Same-Day Care in Ipanema',
+    subhead: 'Toothache, broken tooth, or lost crown while traveling? Dr. Carla Christoph sees emergency patients during business hours — Mon-Fri, 9 AM-6 PM. WhatsApp monitored around the clock.',
+    benefits: ['Same-day emergency appointments when available', 'WhatsApp monitored around the clock — we respond quickly', '20+ years of clinical experience in Ipanema', 'Private practice — no waiting rooms, no rushed care', 'Digital X-rays and iTero 5D scanner on-site', 'We reply in your language'],
+    problemTitle: 'What happened?',
+    problems: [
+      'You have a severe toothache that will not go away — throbbing pain that is keeping you from eating, sleeping, or enjoying your trip.',
+      'You broke or chipped a tooth from an accident or biting something hard — the exposed area is sharp, sensitive, or painful.',
+      'A crown or filling came loose — the tooth underneath is exposed and sensitive, and you are not sure if it can be re-cemented.',
+      'You notice swelling, pus, or a bump on your gums — this may indicate a dental abscess that requires prompt treatment to prevent the infection from spreading.'
+    ],
+    guideTitle: 'What to Do Right Now',
+    steps: [
+      { title: 'Message Us on WhatsApp', description: 'Describe your situation and send a photo if possible. We monitor messages around the clock and will respond with guidance and an appointment time.' },
+      { title: 'Manage Your Pain', description: 'Take an over-the-counter painkiller (ibuprofen, paracetamol). Apply a cold compress to the outside of your cheek if there is swelling. Avoid very hot or cold foods.' },
+      { title: 'Save Any Broken Pieces', description: 'If a tooth broke, save the fragments. If a crown came loose, keep it — it may be re-cemented. If a tooth was knocked out, keep it in milk and contact us immediately.' },
+      { title: 'Come to Our Office', description: 'We will see you as soon as possible during business hours. Dr. Carla will examine your situation, take digital X-rays, and provide immediate treatment or a clear plan.' }
+    ],
+    testimonialsTitle: 'What Our Patients Say',
+    testimonials: [
+      { name: 'Haley H. — International Patient', text: 'Amazing experience! Had pain and she completely resolved my problem and fixed a chipped tooth! My new tooth looks great. I am super happy with her services!' },
+      { name: 'Gerald G. — United Kingdom', text: 'Excellent dentist, very gentle, calm and will explain the process with you. The office space is very clean. I had 2 sensitive teeth and she managed to rectify that for me.' }
+    ],
+    faqTitle: 'Common Questions About Dental Emergencies',
+    faqs: [
+      { q: 'What should I do if I have a dental emergency in Ipanema?', a: 'Contact us via WhatsApp immediately. We accommodate emergency patients during business hours (Monday-Friday, 9 AM-6 PM). Describe your situation and we will prioritize your appointment.' },
+      { q: 'Can I be seen the same day?', a: 'We do our best to accommodate dental emergencies on the same day. Contact us as early as possible to improve your chances of same-day care.' },
+      { q: 'What if my emergency happens after hours or on a weekend?', a: 'Send us a WhatsApp message describing your situation. Our team monitors messages around the clock and will respond with guidance and schedule your appointment for the earliest available time.' },
+      { q: "I'm visiting Rio as a tourist. Can you help?", a: 'Absolutely. We regularly see patients visiting Rio de Janeiro who need urgent dental care. We communicate in English, Spanish, and Portuguese. Contact us via WhatsApp and we will do our best to fit you in quickly.' },
+      { q: 'How much does emergency treatment cost?', a: 'The cost depends on the type of treatment needed. We provide transparent pricing before any procedure begins. As a private practice, we do not accept insurance, but we ensure you receive dedicated, unhurried care.' },
+      { q: 'What types of emergencies do you treat?', a: 'We treat severe toothaches, broken or chipped teeth, lost crowns and fillings, dental abscesses, knocked-out teeth, and post-operative complications.' }
+    ],
+    ctaTitle: 'Do not Wait — Get Help Now',
+    ctaSubtitle: 'Dental emergencies can worsen quickly. Send us a WhatsApp message and we will do our best to see you as soon as possible.',
+    ctaText: 'WhatsApp Now',
+    whatsappNumber: '5521993304045',
+    whatsappMessage: 'Hello! I have a dental emergency and need to be seen as soon as possible.'
+  },
+
+  '/en/lp/general-consultation': {
+    h1: 'Your Dentist in Ipanema — Checkups, Cleaning & Preventive Care',
+    subhead: 'Comprehensive dental exams with 3D digital scanning, professional cleaning, and personalized care plans — all in a private practice that dedicates a minimum of 1 full hour to every appointment.',
+    benefits: ['1-hour minimum appointments — never rushed', 'iTero Element 5D digital scanner — no traditional molds', '20+ years of clinical experience in Ipanema', 'Private practice — personalized, one-on-one attention', 'Fluent in English, Portuguese & Spanish', 'Transparent pricing — no surprises'],
+    problemTitle: 'Why Patients Put Off Checkups',
+    problems: [
+      'I just do not have time for the dentist. — We respect your schedule. Appointments are punctual, efficient, and completed within 1 hour — including cleaning and exam.',
+      'Nothing hurts, so I must be fine. — Most dental problems are painless in the early stages. Cavities, gum disease, and even cracks develop silently until they become expensive to treat.',
+      'I had a bad experience before. — We hear this often. Dr. Carla explains every step before proceeding and creates a calm, unhurried environment with no pressure.',
+      'I am only in Rio temporarily — can I even see a dentist? — Absolutely. Many of our patients are expats, digital nomads, and tourists. We communicate in your language and provide all documentation you need.'
+    ],
+    guideTitle: 'What to Expect at Your Appointment',
+    steps: [
+      { title: '3D Digital Scan', description: 'We begin with a full intraoral scan using the iTero Element 5D — capturing a precise 3D model of your teeth, gums, and bite alignment without radiation or discomfort.' },
+      { title: 'Clinical Examination', description: 'Dr. Carla performs a thorough inspection of each tooth, checking for cavities, cracks, gum recession, and early signs of oral conditions.' },
+      { title: 'Professional Cleaning', description: 'Ultrasonic scaling removes tartar and plaque — especially in areas brushing and flossing cannot reach — followed by polishing for a smooth, fresh feel.' },
+      { title: 'Prevention Plan', description: 'Based on the findings, we create a personalized plan: recommended visit schedule, any needed treatments with clear pricing, and oral hygiene guidance.' }
+    ],
+    testimonialsTitle: 'What Our Patients Say',
+    testimonials: [
+      { name: 'Gerald G. — United Kingdom', text: 'Excellent dentist, very gentle, calm and will explain the process with you. The office space is very clean. I had 2 sensitive teeth and she managed to rectify that for me.' },
+      { name: 'Haley H. — International Patient', text: 'Amazing experience! Had pain and she completely resolved my problem and fixed a chipped tooth! My new tooth looks great.' }
+    ],
+    faqTitle: 'Frequently Asked Questions',
+    faqs: [
+      { q: 'What does a dental checkup include?', a: 'A comprehensive exam including clinical inspection, digital 3D scan with the iTero Element 5D, risk assessment for cavities and gum disease, professional cleaning (scaling and polishing), and personalized oral hygiene guidance.' },
+      { q: 'How often should I schedule a checkup?', a: 'For most adults, every 6 months is recommended. Patients with a history of gum disease or higher cavity risk may benefit from visits every 3-4 months.' },
+      { q: 'Does dental cleaning hurt?', a: 'Ultrasonic cleaning is very comfortable — most patients describe only a mild vibration. For very sensitive areas, we can apply topical numbing gel.' },
+      { q: 'Do you accept dental insurance?', a: 'We are a private practice. This allows us to dedicate proper time to each patient and use only high-quality materials. We provide clear, detailed cost estimates before any treatment begins.' },
+      { q: 'What should I bring to my first appointment?', a: 'Bring any recent dental X-rays or records you may have and a list of medications you are currently taking. If you do not have any of these, no worries — we will gather everything we need during your visit.' },
+      { q: 'How long does a checkup appointment take?', a: 'We dedicate a minimum of 1 hour for every checkup. This ensures time for a thorough examination, unhurried cleaning, and a proper discussion of findings and any treatment options.' }
+    ],
+    ctaTitle: 'Due for a Checkup?',
+    ctaSubtitle: 'Prevention is the most intelligent investment in oral health. Book your exam and cleaning — we will take the time to explain everything we find.',
+    ctaText: 'Book on WhatsApp',
+    whatsappNumber: '5521993304045',
+    whatsappMessage: "Hello! I'd like to book a dental checkup with Dr. Carla Christoph."
+  }
 };
 
 // ============================================================
@@ -692,18 +1567,24 @@ for (const [routePath, data] of Object.entries(englishPages)) {
   console.log('Generated (english): ' + routePath + '.html');
 }
 
-// 4. Landing pages (noindex, meta only)
+// 4. Landing pages (noindex + rich fallback HTML for QS crawler)
 for (const [routePath, meta] of Object.entries(landingPages)) {
   const filePath = path.join(distDir, routePath + '.html');
   const fileDir = path.dirname(filePath);
   fs.mkdirSync(fileDir, { recursive: true });
-  fs.writeFileSync(filePath, generatePage(routePath, meta, { noindex: true }));
+
+  const isEn = routePath.startsWith('/en/');
+  const lang = isEn ? 'en' : 'pt-BR';
+  const content = landingPageContent[routePath];
+  const fallbackContent = content ? generateLPFallbackHTML(content, lang) : '';
+
+  fs.writeFileSync(filePath, generatePage(routePath, meta, { noindex: true, fallbackContent, lang }));
   count++;
-  console.log('Generated (noindex): ' + routePath + '.html');
+  console.log('Generated (LP ' + (fallbackContent ? 'full' : 'meta-only') + '): ' + routePath + '.html');
 }
 
 console.log('\nDone! Generated ' + count + ' static HTML files.');
 console.log('  - ' + Object.keys(servicePages).length + ' service pages (with schemas + fallback content)');
 console.log('  - ' + Object.keys(infoPages).length + ' info pages (with Dentist schema + fallback)');
 console.log('  - ' + Object.keys(englishPages).length + ' english pages (lang=en, Dentist schema + fallback)');
-console.log('  - ' + Object.keys(landingPages).length + ' landing pages (noindex, meta only)');
+console.log('  - ' + Object.keys(landingPages).length + ' landing pages (noindex + fallback HTML)');
