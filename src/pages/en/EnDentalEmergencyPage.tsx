@@ -100,7 +100,7 @@ const EnDentalEmergencyPage = () => {
         },
         {
             q: "What if my emergency happens after hours or on a weekend?",
-            a: "Send us a WhatsApp message describing your situation. Our team monitors messages around the clock and will respond with guidance and schedule your appointment for the earliest available time."
+            a: "Send a WhatsApp message anytime — our team responds 24/7 and will book the earliest available slot. In-person emergency care is available Mon–Fri, 9 AM–7 PM (BRT). For life-threatening emergencies (uncontrolled bleeding, facial swelling affecting breathing), go to the nearest hospital ER immediately."
         },
         {
             q: "How much does emergency treatment cost?",
@@ -190,7 +190,7 @@ const EnDentalEmergencyPage = () => {
                                 </button>
                             </div>
                             <p className="text-xs text-dental-gray/60 mt-4 text-center md:text-left">
-                                Messages are monitored 24/7. We respond as quickly as possible, even outside office hours.
+                                Send a WhatsApp message anytime — we reply and book your slot 24/7. In-person care is Mon–Fri, 9 AM – 7 PM (BRT). Not a 24-hour emergency clinic; for life-threatening emergencies, go to the nearest hospital ER.
                             </p>
                         </div>
                     </div>
@@ -229,9 +229,9 @@ const EnDentalEmergencyPage = () => {
                                 <Clock size={28} className="text-dental-gold mx-auto mb-3" />
                                 <h3 className="font-display text-dental-purple mb-2">Office Hours</h3>
                                 <p className="text-dental-gray text-sm">
-                                    Monday – Friday<br />
-                                    9 AM – 7 PM (GMT-3)<br />
-                                    WhatsApp monitored 24/7
+                                    In-person: Mon – Fri<br />
+                                    9 AM – 7 PM (BRT)<br />
+                                    Book via WhatsApp 24/7
                                 </p>
                             </div>
                             <div className="bg-white rounded-xl p-6 shadow-soft text-center">
