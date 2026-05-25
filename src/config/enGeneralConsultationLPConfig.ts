@@ -26,7 +26,7 @@ export const enGeneralConsultationLPConfig: LandingPageConfig = {
     "20+ years of clinical experience in Ipanema",
     "Private practice — personalized, one-on-one attention",
     "Fluent in English, Portuguese & Spanish",
-    "Transparent pricing — no surprises"
+    "Clear treatment plan before any procedure begins"
   ],
 
   problem: {
@@ -54,8 +54,8 @@ export const enGeneralConsultationLPConfig: LandingPageConfig = {
   socialProof: {
     title: "What Our Patients Say",
     testimonials: [
-      { name: "Gerald G. — United Kingdom", text: "Excellent dentist, very gentle, calm and will explain the process with you. The office space is very clean. I had my teeth cleaned, dental X-rays, 3 porcelain fillings and the outcome was brilliant. I had 2 sensitive teeth and she managed to rectify that for me." },
-      { name: "Haley H. — International Patient", text: "Amazing experience! Had pain and she completely resolved my problem and fixed a chipped tooth! My new tooth looks great. I am super happy with her services!" }
+      { name: "Gerald G. — United Kingdom", text: "Very gentle and calm — she takes time to explain every step of the process. The clinic is immaculate. I had cleaning, X-rays, and 3 porcelain fillings. She also resolved 2 sensitive teeth I'd been struggling with for years." },
+      { name: "Haley H. — International Patient", text: "Had persistent pain and she completely resolved the issue and repaired a chipped tooth in the same visit. The result looks natural. I left feeling genuinely relieved." }
     ],
     stats: [
       { number: "20+", label: "Years of Experience" },

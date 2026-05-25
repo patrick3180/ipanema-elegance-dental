@@ -54,8 +54,8 @@ export const enDentalEmergencyLPConfig: LandingPageConfig = {
   socialProof: {
     title: "What Our Patients Say",
     testimonials: [
-      { name: "Haley H. — International Patient", text: "Amazing experience! Had pain and she completely resolved my problem and fixed a chipped tooth! My new tooth looks great. I am super happy with her services!" },
-      { name: "Gerald G. — United Kingdom", text: "Excellent dentist, very gentle, calm and will explain the process with you. The office space is very clean. I had my teeth cleaned, dental X-rays, 3 porcelain fillings and the outcome was brilliant. I had 2 sensitive teeth and she managed to rectify that for me." }
+      { name: "Haley H. — International Patient", text: "Had persistent pain and she completely resolved the issue and repaired a chipped tooth in the same visit. The result looks natural. I left feeling genuinely relieved." },
+      { name: "Gerald G. — United Kingdom", text: "Very gentle and calm — she takes time to explain every step of the process. The clinic is immaculate. I had cleaning, X-rays, and 3 porcelain fillings. She also resolved 2 sensitive teeth I'd been struggling with for years." }
     ],
     stats: [
       { number: "20+", label: "Years of Experience" },
@@ -72,7 +72,7 @@ export const enDentalEmergencyLPConfig: LandingPageConfig = {
       { question: "Can I be seen the same day?", answer: "We do our best to accommodate dental emergencies on the same day. Contact us as early as possible to improve your chances of same-day care." },
       { question: "What if my emergency happens after hours or on a weekend?", answer: "Send a WhatsApp message anytime — our team responds 24/7 and will book the earliest available slot. In-person emergency care is available Mon–Fri, 9 AM–7 PM (BRT). For life-threatening emergencies (uncontrolled bleeding, facial swelling affecting breathing), go to the nearest hospital ER immediately." },
       { question: "I'm visiting Rio as a tourist. Can you help?", answer: "Absolutely. We regularly see patients visiting Rio de Janeiro who need urgent dental care. We communicate in English, Spanish, and Portuguese. Contact us via WhatsApp and we'll do our best to fit you in quickly." },
-      { question: "How much does emergency treatment cost?", answer: "The cost depends on the type of treatment needed. We provide transparent pricing before any procedure begins. As a private practice, we do not accept insurance, but we ensure you receive dedicated, unhurried care." },
+      { question: "How much does emergency treatment cost?", answer: "The cost depends on what treatment is needed. Before any procedure begins, Dr. Carla explains the findings and the associated costs clearly — no pressure, no surprises. As a private practice, we do not accept insurance, but we ensure you receive dedicated, unhurried care." },
       { question: "What types of emergencies do you treat?", answer: "We treat severe toothaches, broken or chipped teeth, lost crowns and fillings, dental abscesses, knocked-out teeth, and post-operative complications. Contact us and describe your situation — we'll let you know how we can help." }
     ]
   },

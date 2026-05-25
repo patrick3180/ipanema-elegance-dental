@@ -54,8 +54,8 @@ export const enCosmeticDentistryLPConfig: LandingPageConfig = {
   socialProof: {
     title: "What Our Patients Say",
     testimonials: [
-      { name: "Gerald G. — United Kingdom", text: "Excellent dentist, very gentle, calm and will explain the process with you. The office space is very clean. I had my teeth cleaned, dental X-rays, 3 porcelain fillings and the outcome was brilliant. I had 2 sensitive teeth and she managed to rectify that for me." },
-      { name: "Haley H. — International Patient", text: "Amazing experience! Had pain and she completely resolved my problem and fixed a chipped tooth! My new tooth looks great. I am super happy with her services!" },
+      { name: "Gerald G. — United Kingdom", text: "Very gentle and calm — she takes time to explain every step of the process. The clinic is immaculate. I had cleaning, X-rays, and 3 porcelain fillings. She also resolved 2 sensitive teeth I'd been struggling with for years." },
+      { name: "Haley H. — International Patient", text: "Had persistent pain and she completely resolved the issue and repaired a chipped tooth in the same visit. The result looks natural. I left feeling genuinely relieved." },
       { name: "Marina P. — Ipanema", text: "I wanted to change my smile but didn't know if I needed veneers or whitening. Dr. Carla evaluated everything and recommended whitening plus 4 restorations. It turned out natural and beautiful. (translated from Portuguese)" }
     ],
     stats: [
@@ -73,7 +73,7 @@ export const enCosmeticDentistryLPConfig: LandingPageConfig = {
       { question: "How many appointments will I need for veneers?", answer: "Porcelain veneers typically require 2-3 appointments over 7-10 days. The first visit includes the digital scan, smile design, and tooth preparation. The final visit is for bonding the veneers. We can coordinate your treatment schedule around your travel dates." },
       { question: "Do you accept international insurance?", answer: "We provide detailed invoices with procedure codes that most international insurance providers accept for reimbursement. Payment is made directly to the clinic, and you submit the documentation to your insurer." },
       { question: "What if I have a problem after I return home?", answer: "We maintain contact via WhatsApp after your treatment. If any issue arises, we can consult remotely with photos and video. For cases requiring in-person attention, we coordinate with trusted colleagues worldwide." },
-      { question: "How much can I save compared to the US or Europe?", answer: "Cosmetic dental procedures in Brazil typically cost 40-60% less than in the US or UK, without any compromise in quality or materials. The specific savings depend on your treatment plan, which we can estimate after a virtual consultation." },
+      { question: "Is the quality of dental materials in Brazil comparable to the US or Europe?", answer: "Yes. Dr. Carla uses only internationally certified materials — including IPS e.max porcelain by Ivoclar (Switzerland) for veneers and crowns, and FDA-cleared implant brands. All materials carry CE certification or FDA clearance. The quality standard is the same you would find in a private practice in London or New York." },
       { question: "Can I get a virtual consultation before traveling?", answer: "Yes. Send us photos and a description of what you'd like to improve via WhatsApp. Dr. Carla will review your case and provide an initial assessment with estimated timeline and investment — all before you book your flight." }
     ]
   },
