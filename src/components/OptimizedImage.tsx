@@ -70,11 +70,15 @@ const OptimizedImage = ({
   }
 
   return (
-    <div className="relative" ref={imgRef}>
+    <div className="relative w-full" ref={imgRef}>
       {!isLoaded && isInView && (
-        <Skeleton 
-          className={cn("absolute inset-0", className)} 
-          style={{ width, height }}
+        <Skeleton
+          // NOTE: NÃO passar `className` aqui — quando a prop traz `relative`
+          // ou outra classe de position, tailwind-merge anula o `absolute`
+          // e o Skeleton sai do absolute layer, ficando em fluxo normal com
+          // width/height inline (ex: 600x750), o que estoura o viewport mobile.
+          // Mantemos o aspect-ratio do parent via o próprio <img> (aspectRatio inline).
+          className="absolute inset-0 w-full h-full"
         />
       )}
       
