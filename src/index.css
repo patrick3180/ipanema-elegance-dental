@@ -95,6 +95,10 @@
 
   html {
     scroll-padding-top: 100px;
+    /* Defesa contra overflow horizontal acidental (ex: imagens com width
+       intrínseca grande, skeletons mal-mergeados, elementos com largura
+       fixa). Em mobile, qualquer overflow lateral quebra a leitura. */
+    overflow-x: hidden;
   }
 
   /* Ensure anchored sections clear the fixed header */
@@ -104,6 +108,7 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    overflow-x: hidden;
   }
 
   h1,
