@@ -60,7 +60,7 @@ export const enDentalImplantsLPConfig: LandingPageConfig = {
     ],
     stats: [
       { number: "20+", label: "Years of Experience" },
-      { number: "95%+", label: "Implant Success Rate" },
+      { number: "95%+", label: "Implant Success Rate (peer-reviewed literature)" },
       { number: "iTero 5D", label: "Digital Scanner" },
       { number: "24h", label: "WhatsApp Available" }
     ]

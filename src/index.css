@@ -136,7 +136,7 @@
   }
 
   .container-custom {
-    @apply container mx-auto px-6 lg:px-8;
+    @apply container mx-auto;
   }
 
   .content-container {

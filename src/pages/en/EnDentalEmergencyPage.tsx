@@ -183,7 +183,7 @@ const EnDentalEmergencyPage = () => {
                                 </div>
                                 <button
                                     onClick={handleWhatsAppClick}
-                                    className="inline-flex items-center gap-2 bg-[#128C4A] hover:bg-[#0F7540] text-white px-8 py-4 rounded-lg shadow-lg transition-all duration-300 font-medium text-lg whitespace-nowrap"
+                                    className="inline-flex items-center gap-2 bg-[#128C4A] hover:bg-[#0F7540] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg shadow-lg transition-all duration-300 font-medium text-base sm:text-lg"
                                 >
                                     <MessageCircle size={22} />
                                     WhatsApp Now

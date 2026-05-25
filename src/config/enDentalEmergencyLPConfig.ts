@@ -59,7 +59,7 @@ export const enDentalEmergencyLPConfig: LandingPageConfig = {
     ],
     stats: [
       { number: "20+", label: "Years of Experience" },
-      { number: "Same-Day", label: "Emergency Availability" },
+      { number: "Same-Day", label: "When Possible" },
       { number: "24/7", label: "Book Your Slot via WhatsApp" },
       { number: "Mon–Fri", label: "In-Person Care, 9 AM – 7 PM" }
     ]

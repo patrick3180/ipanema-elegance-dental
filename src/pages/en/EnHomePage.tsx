@@ -247,7 +247,7 @@ const EnHomePage = () => {
                         {/* Hero Image */}
                         <div className="hero-animate-image order-2 lg:order-2 flex justify-center lg:justify-end">
                             <div
-                                className="w-[280px] sm:w-[320px] md:w-[400px] lg:w-[460px] h-[420px] sm:h-[480px] md:h-[560px] lg:h-[640px]"
+                                className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[460px] h-[420px] sm:h-[480px] md:h-[560px] lg:h-[640px]"
                                 style={{
                                     WebkitMaskImage: `
                                         linear-gradient(to left, black 60%, transparent 100%),

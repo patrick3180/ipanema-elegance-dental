@@ -106,12 +106,12 @@ const EnLPHero: React.FC<EnLPHeroProps> = ({
 
           {/* Right: Image */}
           <div className="order-1 lg:order-2 flex justify-center">
-            <div className="relative w-full max-w-md lg:max-w-lg">
+            <div className="relative w-full max-w-[min(100%,28rem)] lg:max-w-lg">
               <div className="absolute inset-0 bg-gradient-to-br from-dental-gold/20 to-dental-purple/10 rounded-2xl -rotate-3 scale-[1.03] blur-sm" />
               <OptimizedImage
                 src={backgroundImage}
                 alt="Dr. Carla Christoph — Cosmetic Dentist in Ipanema, Rio de Janeiro"
-                className="relative rounded-2xl shadow-elegant w-full object-cover"
+                className="relative rounded-2xl shadow-elegant w-full object-cover max-h-[420px] sm:max-h-none"
                 width={600}
                 height={750}
                 loading="eager"

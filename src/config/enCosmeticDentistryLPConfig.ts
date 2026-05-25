@@ -54,8 +54,8 @@ export const enCosmeticDentistryLPConfig: LandingPageConfig = {
   socialProof: {
     title: "What Our Patients Say",
     testimonials: [
-      { name: "Gerald G. — United Kingdom", text: "Very gentle and calm — she takes time to explain every step of the process. The clinic is immaculate. I had cleaning, X-rays, and 3 porcelain fillings. She also resolved 2 sensitive teeth I'd been struggling with for years." },
-      { name: "Haley H. — International Patient", text: "Had persistent pain and she completely resolved the issue and repaired a chipped tooth in the same visit. The result looks natural. I left feeling genuinely relieved." },
+      { name: "Gerald G. — United Kingdom", text: "Very gentle, calm, and explains the process with you. The office space is very clean. I had my teeth cleaned, dental X-rays, 3 porcelain fillings and I'm very happy with the results. I had 2 sensitive teeth and she managed to fix that for me." },
+      { name: "Haley H. — International Patient", text: "Had pain and she completely resolved my problem and fixed a chipped tooth. My new tooth looks natural and I'm very happy with her work." },
       { name: "Marina P. — Ipanema", text: "I wanted to change my smile but didn't know if I needed veneers or whitening. Dr. Carla evaluated everything and recommended whitening plus 4 restorations. It turned out natural and beautiful. (translated from Portuguese)" }
     ],
     stats: [
