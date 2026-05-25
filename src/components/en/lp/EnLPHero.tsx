@@ -59,7 +59,7 @@ const EnLPHero: React.FC<EnLPHeroProps> = ({
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left: Content */}
-          <div className="order-2 lg:order-1 space-y-6 animate-fade-in-up min-w-0 overflow-hidden">
+          <div className="space-y-6 animate-fade-in-up min-w-0 overflow-hidden">
             {/* Trust badge */}
             <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-dental-gold/20 rounded-full px-4 py-1.5 text-xs text-dental-purple font-medium">
               <Globe size={14} className="text-dental-gold" />
@@ -105,7 +105,7 @@ const EnLPHero: React.FC<EnLPHeroProps> = ({
           </div>
 
           {/* Right: Image */}
-          <div className="order-1 lg:order-2 flex justify-center min-w-0">
+          <div className="flex justify-center min-w-0">
             <div className="relative w-full max-w-[min(100%,28rem)] lg:max-w-lg">
               <div className="absolute inset-0 bg-gradient-to-br from-dental-gold/20 to-dental-purple/10 rounded-2xl -rotate-3 scale-[1.03] blur-sm" />
               <OptimizedImage
