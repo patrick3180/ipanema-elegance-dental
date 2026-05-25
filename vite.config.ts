@@ -52,48 +52,69 @@ export default defineConfig(({ mode }) => ({
 
     rollupOptions: {
       output: {
-        // Bundle splitting otimizado para landing page - LCP crítico
-        manualChunks: {
-          // Critical chunks para LCP
-          'landing-critical': ['react', 'react-dom', 'react-helmet-async'],
-          'landing-hero': ['@/components/landing/clareamento/ClareamentoHero'],
-          'landing-header': ['@/components/landing/clareamento/ClareamentoHeader'],
+        // Bundle splitting otimizado para landing page - LCP crítico.
+        // Forma-função (Rollup 4 / Vite 5+): chunka APENAS módulos realmente
+        // presentes no graph. A forma-objeto antiga tentava forçar pacotes
+        // Radix v1 (com `exports` ESM estrito) como entry points e quebrava
+        // o build com `Could not resolve entry module "@radix-ui/react-dialog"`.
+        manualChunks(id: string) {
+          // ───────────── Source chunks (componentes locais) ─────────────
+          // Hero/header críticos para LCP das LPs principais
+          if (id.includes('/components/landing/clareamento/ClareamentoHero')) return 'landing-hero';
+          if (id.includes('/components/landing/clareamento/ClareamentoHeader')) return 'landing-header';
+          if (id.includes('/components/landing/clareamento/ClareamentoSocialProof') ||
+              id.includes('/components/landing/consulta/ConsultaInicialSocialProof')) return 'landing-lazy-social';
+          if (id.includes('/components/landing/clareamento/ClareamentoFAQ') ||
+              id.includes('/components/landing/consulta/ConsultaInicialFAQ')) return 'landing-lazy-faq';
+          if (id.includes('/components/landing/clareamento/ClareamentoFooter')) return 'landing-lazy-footer';
 
-          // Consulta inicial critical chunks
-          'consulta-critical': ['@/components/landing/consulta/ConsultaInicialHero', '@/components/landing/consulta/ConsultaInicialHeader'],
-          'consulta-problem': ['@/components/landing/consulta/ConsultaInicialProblem'],
-          'consulta-guide': ['@/components/landing/consulta/ConsultaInicialGuide'],
+          // Consulta inicial
+          if (id.includes('/components/landing/consulta/ConsultaInicialHero') ||
+              id.includes('/components/landing/consulta/ConsultaInicialHeader')) return 'consulta-critical';
+          if (id.includes('/components/landing/consulta/ConsultaInicialProblem')) return 'consulta-problem';
+          if (id.includes('/components/landing/consulta/ConsultaInicialGuide')) return 'consulta-guide';
 
-          // Lazy chunks para componentes below-the-fold  
-          'landing-lazy-social': ['@/components/landing/clareamento/ClareamentoSocialProof', '@/components/landing/consulta/ConsultaInicialSocialProof'],
-          'landing-lazy-faq': ['@/components/landing/clareamento/ClareamentoFAQ', '@/components/landing/consulta/ConsultaInicialFAQ'],
-          'landing-lazy-footer': ['@/components/landing/clareamento/ClareamentoFooter'],
+          // Tracking & performance utils
+          if (id.includes('/utils/gclid')) return 'tracking';
+          if (id.includes('/hooks/useCriticalImagePreload') ||
+              id.includes('/components/performance/CriticalResourcePreloader')) return 'performance';
 
-          // UI chunks otimizados
-          'landing-icons': ['lucide-react'],
-          'landing-ui': ['@radix-ui/react-accordion', '@radix-ui/react-collapsible'],
+          // ───────────── Vendor chunks (node_modules) ─────────────
+          if (id.includes('node_modules')) {
+            // Critical-path React
+            if (id.includes('/react-helmet-async/') ||
+                id.match(/[\\/]node_modules[\\/](react|react-dom)[\\/]/)) return 'landing-critical';
 
-          // Tracking e performance separados
-          'tracking': ['@/utils/gclid'],
-          'performance': ['@/hooks/useCriticalImagePreload', '@/components/performance/CriticalResourcePreloader'],
+            // Routing
+            if (id.includes('/react-router-dom/') || id.includes('/react-router/')) return 'vendor';
 
-          // Chunks para outras páginas (contentful só carrega quando necessário)
-          'vendor': ['react-router-dom'],
-          'ui-core': [
-            '@radix-ui/react-dialog',
-            '@radix-ui/react-dropdown-menu',
-            '@radix-ui/react-toast',
-            '@radix-ui/react-slot',
-            '@radix-ui/react-label'
-          ],
-          'ui-extra': [
-            '@radix-ui/react-alert-dialog',
-            '@radix-ui/react-avatar',
-            '@radix-ui/react-checkbox'
-          ],
-          'query': ['@tanstack/react-query'],
-          'charts': ['recharts'],
-          'utils': ['class-variance-authority', 'clsx', 'tailwind-merge'],
+            // Ícones — lucide é GRANDE, isolar em chunk próprio
+            if (id.includes('/lucide-react/')) return 'landing-icons';
+
+            // Radix — separado em duas tranches por frequência de uso
+            if (id.includes('/@radix-ui/react-accordion/') ||
+                id.includes('/@radix-ui/react-collapsible/')) return 'landing-ui';
+            if (id.includes('/@radix-ui/react-dialog/') ||
+                id.includes('/@radix-ui/react-dropdown-menu/') ||
+                id.includes('/@radix-ui/react-toast/') ||
+                id.includes('/@radix-ui/react-slot/') ||
+                id.includes('/@radix-ui/react-label/')) return 'ui-core';
+            if (id.includes('/@radix-ui/react-alert-dialog/') ||
+                id.includes('/@radix-ui/react-avatar/') ||
+                id.includes('/@radix-ui/react-checkbox/')) return 'ui-extra';
+
+            // Data layer
+            if (id.includes('/@tanstack/react-query/')) return 'query';
+
+            // Charts (heavy, raramente usado)
+            if (id.includes('/recharts/')) return 'charts';
+
+            // Utils de className
+            if (id.includes('/class-variance-authority/') ||
+                id.includes('/clsx/') ||
+                id.includes('/tailwind-merge/')) return 'utils';
+          }
+          // Sem retorno = Rollup decide (default chunk)
         },
 
         // Nomes determinísticos para melhor cache
