@@ -6,6 +6,9 @@
 #   • CLAUDE.md  → usado pelo Claude Code / Claude CLI
 #   • AGENTS.md  → usado pelo Antigravity IDE / Gemini
 #
+# Nota: Caso sua versão legada ou customizada do Antigravity/Claude procure por 'claude.umd' ou 'agents.umd',
+# estes são os arquivos canônicos correspondentes (CLAUDE.md e AGENTS.md) e devem ser mantidos sempre em sync.
+#
 # Se alterar um, atualize o outro imediatamente.
 # Última sincronização: 2026-05-25
 #
@@ -122,6 +125,7 @@ A palavra **"avaliação"** causa confusão real: pacientes chegam ao consultór
 - GTM **só carrega** via `index.html` — nunca em componentes React
 - GCLID usa **localStorage** — nunca sessionStorage
 - Toda ação de WhatsApp DEVE: disparar `dataLayer.push` + `gtag conversion` + `sendGCLIDToWebhook()`
+- `sendGCLIDToWebhook()` chama a rota proxy interna segura `/api/send-gclid` (ocultando endpoints externos do cliente). O endpoint real é resolvido no servidor via env `N8N_GCLID_WEBHOOK` ou `SUPABASE_GCLID_WEBHOOK` no Vercel.
 - Conversion ID: `AW-16894364517/OQZvCMXV0foZEOqP7vY9` — nunca mudar sem atualizar todos os pontos
 - Delay do GTM: **2 segundos** — não aumentar sem justificativa
 

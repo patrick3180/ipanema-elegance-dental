@@ -75,9 +75,9 @@ export const sendGCLIDToWebhook = async (source: string): Promise<void> => {
   };
 
   try {
-    console.log('📤 Sending GCLID to webhook:', webhookData);
+    console.log('📤 Sending GCLID through secure serverless proxy:', webhookData);
     
-    const response = await fetch('https://oqszkriirsodegxpfazz.supabase.co/functions/v1/gc-gclid-track', {
+    const response = await fetch('/api/send-gclid', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -86,11 +86,11 @@ export const sendGCLIDToWebhook = async (source: string): Promise<void> => {
     });
 
     if (response.ok) {
-      console.log('✅ GCLID sent to webhook successfully:', webhookData);
+      console.log('✅ GCLID sent through proxy successfully:', webhookData);
     } else {
-      console.error('❌ Failed to send GCLID to webhook:', response.status, await response.text());
+      console.error('❌ Failed to send GCLID through proxy:', response.status, await response.text());
     }
   } catch (error) {
-    console.error('❌ Error sending GCLID to webhook:', error);
+    console.error('❌ Error sending GCLID through proxy:', error);
   }
 };

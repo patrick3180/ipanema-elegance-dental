@@ -153,6 +153,65 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     }
   };
 
+  // Auto-generate alternate hreflang tags if not explicitly provided
+  const getAutoHreflang = () => {
+    if (hreflangAlternates) return hreflangAlternates;
+    if (noIndex) return null;
+
+    try {
+      const path = window.location.pathname;
+      
+      // LPs are noindex, no need for hreflang alternates
+      if (path.includes('/lp/')) return null;
+
+      // Define translations map (mirroring public routes)
+      const routesMap: { [key: string]: { pt: string; en: string } } = {
+        '/': { pt: '/', en: '/en' },
+        '/sobre': { pt: '/sobre', en: '/en/about' },
+        '/contato': { pt: '/contato', en: '/en/contact' },
+        '/implantes-dentarios': { pt: '/implantes-dentarios', en: '/en/dental-implants' },
+        '/lentes-de-contato-dental-e-facetas-de-resina': { pt: '/lentes-de-contato-dental-e-facetas-de-resina', en: '/en/veneers-and-lenses' },
+        '/clareamento-dental': { pt: '/clareamento-dental', en: '/en/teeth-whitening' },
+        '/protese-dentaria': { pt: '/protese-dentaria', en: '/en/dental-prosthetics' },
+        '/ortodontia': { pt: '/ortodontia', en: '/en/orthodontics' },
+        '/saude-da-gengiva': { pt: '/saude-da-gengiva', en: '/en/gum-health' },
+        '/tratamento-de-canal': { pt: '/tratamento-de-canal', en: '/en/root-canal' },
+        '/restauracoes-esteticas': { pt: '/restauracoes-esteticas', en: '/en/aesthetic-restorations' },
+        '/clinica-geral-e-prevencao': { pt: '/clinica-geral-e-prevencao', en: '/en/general-dentistry' }
+      };
+
+      // Find if the path (with/without trailing slash) matches any route
+      let matchedKey = '';
+      const normalizedPath = path.replace(/\/$/, '') || '/';
+      
+      if (normalizedPath === '/' || normalizedPath === '/en') {
+        matchedKey = '/';
+      } else {
+        // Find matching key
+        for (const key of Object.keys(routesMap)) {
+          if (key === normalizedPath || routesMap[key].en === normalizedPath) {
+            matchedKey = key;
+            break;
+          }
+        }
+      }
+
+      if (matchedKey && routesMap[matchedKey]) {
+        const config = routesMap[matchedKey];
+        return [
+          { lang: 'pt-br', href: `https://dracarlachristoph.com${config.pt}` },
+          { lang: 'en', href: `https://dracarlachristoph.com${config.en}` },
+          { lang: 'x-default', href: `https://dracarlachristoph.com${config.pt}` }
+        ];
+      }
+    } catch (e) {
+      console.warn('Hreflang auto-generation skipped:', e);
+    }
+
+    return null;
+  };
+
+  const autoAlternates = getAutoHreflang();
   const finalStructuredData = structuredData || defaultStructuredData;
 
   return (
@@ -236,7 +295,11 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="ICBM" content="-22.9868, -43.2005" />
 
       {/* Language alternatives */}
-      {hreflangAlternates ? (
+      {autoAlternates ? (
+        autoAlternates.map(alt => (
+          <link key={alt.lang} rel="alternate" hrefLang={alt.lang} href={alt.href} />
+        ))
+      ) : hreflangAlternates ? (
         hreflangAlternates.map(alt => (
           <link key={alt.lang} rel="alternate" hrefLang={alt.lang} href={alt.href} />
         ))

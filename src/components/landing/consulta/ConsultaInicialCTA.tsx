@@ -82,7 +82,7 @@ const ConsultaInicialCTA: React.FC<ConsultaInicialCTAProps> = ({
           <div className="flex justify-center">
             <button
               onClick={handleWhatsAppClick}
-              className="bg-[#25D366] hover:bg-[#1ea952] text-white rounded-lg px-8 md:px-12 py-4 md:py-5 flex items-center gap-3 text-lg md:text-xl font-semibold transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
+              className="bg-[#25D366] hover:bg-[#1ea952] text-white rounded-lg px-8 md:px-12 py-4 md:py-5 flex items-center gap-3 text-lg md:text-xl font-semibold transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 max-w-full"
               aria-label="Conversar pelo WhatsApp"
               data-gtm-category="Contact"
               data-gtm-action="Click"

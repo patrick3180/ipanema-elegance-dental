@@ -48,7 +48,7 @@ const EnLPMidCTA: React.FC<EnLPMidCTAProps> = ({
         </p>
         <Button
           onClick={handleWhatsAppClick}
-          className="bg-dental-gold hover:bg-dental-gold-dark text-white rounded-lg px-8 py-6 text-base shadow-gold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-hover"
+          className="bg-dental-gold hover:bg-dental-gold-dark text-white rounded-lg px-8 py-6 text-base shadow-gold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-hover max-w-full"
         >
           <MessageCircle size={18} className="mr-3" />
           Send Your Photos via WhatsApp
