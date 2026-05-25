@@ -118,7 +118,7 @@ const EnContactPage = () => {
                         </div>
 
                         {/* WhatsApp CTA */}
-                        <div className="bg-dental-beige/50 p-8 rounded-lg text-center mb-12 max-w-2xl mx-auto">
+                        <div className="bg-dental-beige/50 p-4 sm:p-8 rounded-lg text-center mb-12 max-w-2xl mx-auto">
                             <h2 className="text-2xl font-display mb-4">Book via WhatsApp</h2>
                             <p className="text-dental-gray mb-6">The fastest way to schedule your appointment. Available 24/7.</p>
                             <Button onClick={handleWhatsAppClick} className="bg-dental-gold hover:bg-dental-gold/90 text-white px-8 py-6" size="lg">
@@ -129,7 +129,7 @@ const EnContactPage = () => {
 
                         {/* Info + Map grid */}
                         <div className="grid md:grid-cols-2 gap-12">
-                            <div className="bg-white rounded-lg p-8 shadow-sm">
+                            <div className="bg-white rounded-lg p-4 sm:p-8 shadow-sm">
                                 <h2 className="text-2xl font-display mb-6">Contact Information</h2>
                                 <div className="space-y-6">
                                     <div className="flex items-start gap-3">
@@ -173,7 +173,7 @@ const EnContactPage = () => {
                                 </div>
                             </div>
 
-                            <div className="bg-white rounded-lg p-8 shadow-sm">
+                            <div className="bg-white rounded-lg p-4 sm:p-8 shadow-sm">
                                 <h2 className="text-2xl font-display mb-6">Location</h2>
                                 <p className="text-dental-gray text-sm mb-4">
                                     We're in the heart of Ipanema, 2 blocks from Ipanema Beach. The building is between Rua Barão da Torre and Rua Prudente de Morais.

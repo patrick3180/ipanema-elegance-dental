@@ -88,7 +88,7 @@ const EnLPHero: React.FC<EnLPHeroProps> = ({
             <div className="pt-2">
               <Button
                 onClick={handleWhatsAppClick}
-                className="bg-green-600 hover:bg-green-700 text-white rounded-lg px-8 py-7 text-base sm:text-lg shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl w-full sm:w-auto"
+                className="bg-green-600 hover:bg-green-700 text-white rounded-lg px-6 sm:px-8 py-7 text-base sm:text-lg shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl w-full sm:w-auto max-w-full"
               >
                 <MessageCircle size={20} className="mr-3" />
                 <div className="flex flex-col text-left leading-tight">
