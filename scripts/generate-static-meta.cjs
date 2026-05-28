@@ -1446,50 +1446,6 @@ const landingPageContent = {
 };
 
 // ============================================================
-// HREFLANG ALTERNATE MAP (SEO INTERNATIONAL)
-// ============================================================
-
-const HREFLANG_MAP = {
-  // Home
-  '/': { pt: '/', en: '/en' },
-  '/en': { pt: '/', en: '/en' },
-  
-  // Info pages
-  '/sobre': { pt: '/sobre', en: '/en/about' },
-  '/en/about': { pt: '/sobre', en: '/en/about' },
-  '/contato': { pt: '/contato', en: '/en/contact' },
-  '/en/contact': { pt: '/contato', en: '/en/contact' },
-  
-  // Service pages
-  '/implantes-dentarios': { pt: '/implantes-dentarios', en: '/en/dental-implants' },
-  '/en/dental-implants': { pt: '/implantes-dentarios', en: '/en/dental-implants' },
-  
-  '/lentes-de-contato-dental-e-facetas-de-resina': { pt: '/lentes-de-contato-dental-e-facetas-de-resina', en: '/en/veneers-and-lenses' },
-  '/en/veneers-and-lenses': { pt: '/lentes-de-contato-dental-e-facetas-de-resina', en: '/en/veneers-and-lenses' },
-  
-  '/clareamento-dental': { pt: '/clareamento-dental', en: '/en/teeth-whitening' },
-  '/en/teeth-whitening': { pt: '/clareamento-dental', en: '/en/teeth-whitening' },
-  
-  '/protese-dentaria': { pt: '/protese-dentaria', en: '/en/dental-prosthetics' },
-  '/en/dental-prosthetics': { pt: '/protese-dentaria', en: '/en/dental-prosthetics' },
-  
-  '/ortodontia': { pt: '/ortodontia', en: '/en/orthodontics' },
-  '/en/orthodontics': { pt: '/ortodontia', en: '/en/orthodontics' },
-  
-  '/saude-da-gengiva': { pt: '/saude-da-gengiva', en: '/en/gum-health' },
-  '/en/gum-health': { pt: '/saude-da-gengiva', en: '/en/gum-health' },
-  
-  '/tratamento-de-canal': { pt: '/tratamento-de-canal', en: '/en/root-canal' },
-  '/en/root-canal': { pt: '/tratamento-de-canal', en: '/en/root-canal' },
-  
-  '/restauracoes-esteticas': { pt: '/restauracoes-esteticas', en: '/en/aesthetic-restorations' },
-  '/en/aesthetic-restorations': { pt: '/restauracoes-esteticas', en: '/en/aesthetic-restorations' },
-  
-  '/clinica-geral-e-prevencao': { pt: '/clinica-geral-e-prevencao', en: '/en/general-dentistry' },
-  '/en/general-dentistry': { pt: '/clinica-geral-e-prevencao', en: '/en/general-dentistry' }
-};
-
-// ============================================================
 // PAGE GENERATOR
 // ============================================================
 
@@ -1536,14 +1492,6 @@ function generatePage(routePath, meta, options = {}) {
 
   if (noindex) {
     extraTags.push('<meta name="robots" content="noindex, nofollow" />');
-  } else {
-    // Inject hreflang alternate language link alternate headers
-    const langConfig = HREFLANG_MAP[routePath];
-    if (langConfig) {
-      extraTags.push('<link rel="alternate" hreflang="pt-br" href="' + BASE_URL + langConfig.pt + '" />');
-      extraTags.push('<link rel="alternate" hreflang="en" href="' + BASE_URL + langConfig.en + '" />');
-      extraTags.push('<link rel="alternate" hreflang="x-default" href="' + BASE_URL + langConfig.pt + '" />');
-    }
   }
 
   // Add JSON-LD schemas

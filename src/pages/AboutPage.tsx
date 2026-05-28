@@ -164,7 +164,7 @@ const AboutPage = () => {
               <h2 className="heading-md mb-6 text-center">Como Funciona o Atendimento</h2>
               <div className="prose mx-auto">
                 <p>
-                  Cada consulta tem no mínimo 1 hora de duração. Nesse tempo, a Dra. Carla faz uma avaliação completa, explica cada opção de tratamento com calma e monta um plano personalizado. Somente materiais de primeira linha são utilizados — cerâmicas, resinas e componentes de implante com comprovação científica e rastreabilidade.
+                  Cada consulta tem no mínimo 1 hora de duração. Nesse tempo, a Dra. Carla realiza um exame clínico completo, explica cada opção de tratamento com calma e monta um plano personalizado. Somente materiais de primeira linha são utilizados — cerâmicas, resinas e componentes de implante com comprovação científica e rastreabilidade.
                 </p>
               </div>
             </div>
@@ -190,7 +190,7 @@ const AboutPage = () => {
               <h2 className="heading-md mb-6 text-center">O Que Esperar da Primeira Consulta</h2>
               <div className="bg-dental-beige/50 p-8 rounded-lg">
                 <p className="text-dental-gray">
-                  Na primeira consulta, a Dra. Carla faz uma avaliação completa com exame clínico, fotografias e, quando indicado, escaneamento com iTero Element 5D. Você sai entendendo exatamente o que precisa ser feito, em que ordem, e quanto tempo leva. Sem surpresas.
+                  Na primeira consulta, a Dra. Carla realiza um mapeamento clínico completo com exame detalhado, fotografias e, quando indicado, escaneamento com iTero Element 5D. Você sai entendendo exatamente o que precisa ser feito, em que ordem, e quanto tempo leva. Sem surpresas.
                 </p>
               </div>
             </div>

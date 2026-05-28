@@ -188,7 +188,7 @@ locale="en"               answer="Dental contact lenses are ultra-thin porcelain
         <section className="py-12 bg-white">
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-dental-purple mb-4">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
                 Why Choose Lenses or Veneers?
               </h2>
               <p className="text-lg text-dental-gray">Results that go beyond aesthetics</p>
@@ -247,7 +247,7 @@ locale="en"               answer="Dental contact lenses are ultra-thin porcelain
         <section className="py-12 bg-white">
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-dental-purple mb-4">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">
                 Lenses or Veneers: Understand the Differences
               </h2>
               <p className="text-lg text-dental-gray">Every smile is unique. Learn about the options for an informed choice.</p>
@@ -377,7 +377,7 @@ locale="en"               answer="Dental contact lenses are ultra-thin porcelain
         <section className="py-12 pb-8 bg-dental-beige/20">
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-dental-purple mb-4">Detailed Comparison: Lenses vs. Veneers</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">Detailed Comparison: Lenses vs. Veneers</h2>
               <p className="text-lg text-dental-gray">Side-by-side comparison of each treatment's characteristics</p>
             </div>
             <div className="overflow-x-auto">
@@ -419,7 +419,7 @@ locale="en"               answer="Dental contact lenses are ultra-thin porcelain
                 <Star className="w-5 h-5 text-dental-gold" />
                 <span className="text-dental-gold font-semibold text-sm">KEY DIFFERENTIATOR</span>
               </div>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-dental-purple mb-4">Smile Test Drive (Mock-up)</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">Smile Test Drive (Mock-up)</h2>
               <p className="text-xl text-dental-gray">See and approve your new smile BEFORE any definitive procedure</p>
             </div>
 
@@ -491,7 +491,7 @@ locale="en"               answer="Dental contact lenses are ultra-thin porcelain
         <section className="py-16 bg-white">
           <div className="max-w-4xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-dental-purple mb-4">Digital Technology: iTero Element 5D Scanner</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">Digital Technology: iTero Element 5D Scanner</h2>
               <p className="text-lg text-dental-gray">Millimetric precision without discomfort</p>
             </div>
             <div className="bg-gradient-to-br from-dental-beige/30 to-white p-10 rounded-3xl shadow-lg">
@@ -525,7 +525,7 @@ locale="en"               answer="Dental contact lenses are ultra-thin porcelain
                   <div className="w-12 h-px bg-gradient-to-r from-dental-gold via-transparent to-transparent"></div>
                 </div>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-dental-purple mb-6">What Few Explain About Lenses and Veneers</h2>
+              <h2 className="text-4xl md:text-5xl font-display font-bold text-dental-purple mb-6">What Few Explain About Lenses and Veneers</h2>
               <p className="text-lg md:text-xl text-dental-gray max-w-3xl mx-auto leading-relaxed">Dental aesthetics involves more than appearance. Understand the technical aspects that determine the success of your treatment.</p>
             </div>
 
@@ -615,7 +615,7 @@ locale="en"               answer="Dental contact lenses are ultra-thin porcelain
         <section id="indications" className="py-16 md:py-20 bg-dental-beige/10">
           <div className="max-w-6xl mx-auto px-6 md:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-dental-purple mb-4">When Are Lenses and Veneers Indicated?</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-dental-purple mb-4">When Are Lenses and Veneers Indicated?</h2>
               <div className="w-24 h-1 bg-gradient-to-r from-transparent via-dental-gold to-transparent mx-auto mb-6"></div>
               <p className="text-lg md:text-xl text-dental-gray max-w-3xl mx-auto leading-relaxed">Find out if lenses or veneers are the ideal solution to renew your smile</p>
             </div>
@@ -645,7 +645,7 @@ locale="en"               answer="Dental contact lenses are ultra-thin porcelain
         <section className="py-16 bg-white">
           <div className="max-w-4xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-dental-purple mb-4">Your Journey to Your Dream Smile</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-dental-purple mb-4">Your Journey to Your Dream Smile</h2>
               <p className="text-lg text-dental-gray">A transparent, carefully planned process at every step</p>
             </div>
             <ProcessTimeline steps={[

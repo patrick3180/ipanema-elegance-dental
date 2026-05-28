@@ -42,11 +42,6 @@ const DifferentialsSection = () => {
             Por que a Dra. Carla Christoph?
           </h2>
           <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />
-          <p className="text-dental-gray">
-            Em um mercado com muitas opções, escolher o profissional certo faz
-            toda a diferença. Conheça o que torna nossa clínica em Ipanema
-            diferente.
-          </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">

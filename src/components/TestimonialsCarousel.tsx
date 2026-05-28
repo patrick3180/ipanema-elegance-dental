@@ -71,8 +71,7 @@ const TestimonialsCarousel = () => {
           </h2>
           <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />
           <p className="text-dental-gray">
-            A experiência de cada paciente é o que nos move. Veja os
-            depoimentos de quem já confia no nosso cuidado em Ipanema.
+            Histórias de pacientes que confiaram à Dra. Carla casos de reabilitação, estética e prevenção.
           </p>
         </div>
 

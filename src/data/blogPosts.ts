@@ -98,7 +98,7 @@ export const blogPosts: BlogPost[] = [
       <h2>Mito: Implantes exigem cuidados especiais complexos</h2>
       <p>Verdade: Os cuidados com implantes são semelhantes aos necessários para dentes naturais: escovação regular, uso de fio dental e visitas periódicas ao dentista.</p>
       
-      <p>Se você está considerando implantes dentais, agende uma consulta em nossa clínica para uma avaliação personalizada. Com as técnicas e materiais mais modernos disponíveis, podemos oferecer o tratamento mais adequado às suas necessidades específicas.</p>
+      <p>Se você está considerando implantes dentais, agende uma consulta em nossa clínica para um planejamento personalizado. Com as técnicas e materiais mais modernos disponíveis, podemos oferecer o tratamento mais adequado às suas necessidades específicas.</p>
     `,
     author: "Dra. Carla Christoph",
     date: "10 de Março de 2023",

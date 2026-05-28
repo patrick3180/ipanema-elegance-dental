@@ -26,7 +26,7 @@ export const enGeneralConsultationLPConfig: LandingPageConfig = {
     "20+ years of clinical experience in Ipanema",
     "Private practice — personalized, one-on-one attention",
     "Fluent in English, Portuguese & Spanish",
-    "Clear treatment plan before any procedure begins"
+    "Transparent pricing — no surprises"
   ],
 
   problem: {
@@ -47,15 +47,15 @@ export const enGeneralConsultationLPConfig: LandingPageConfig = {
       { number: "1", title: "3D Digital Scan", description: "We begin with a full intraoral scan using the iTero Element 5D — capturing a precise 3D model of your teeth, gums, and bite alignment without radiation or discomfort." },
       { number: "2", title: "Clinical Examination", description: "Dr. Carla performs a thorough inspection of each tooth, checking for cavities, cracks, gum recession, and early signs of oral conditions." },
       { number: "3", title: "Professional Cleaning", description: "Ultrasonic scaling removes tartar and plaque — especially in areas brushing and flossing can't reach — followed by polishing for a smooth, fresh feel." },
-      { number: "4", title: "Prevention Plan", description: "Based on the findings, we create a personalized plan: recommended visit schedule, any needed treatments with clear explanations, and oral hygiene guidance." }
+      { number: "4", title: "Prevention Plan", description: "Based on the findings, we create a personalized plan: recommended visit schedule, any needed treatments with clear pricing, and oral hygiene guidance." }
     ]
   },
 
   socialProof: {
     title: "What Our Patients Say",
     testimonials: [
-      { name: "Gerald G. — United Kingdom", text: "Very gentle and calm — she takes time to explain every step of the process. The clinic is immaculate. I had cleaning, X-rays, and 3 porcelain fillings. She also resolved 2 sensitive teeth I'd been struggling with for years." },
-      { name: "Haley H. — International Patient", text: "Had persistent pain and she completely resolved the issue and repaired a chipped tooth in the same visit. The result looks natural. I left feeling genuinely relieved." }
+      { name: "Gerald G. — United Kingdom", text: "Excellent dentist, very gentle, calm and will explain the process with you. The office space is very clean. I had my teeth cleaned, dental X-rays, 3 porcelain fillings and the outcome was brilliant. I had 2 sensitive teeth and she managed to rectify that for me." },
+      { name: "Haley H. — International Patient", text: "Amazing experience! Had pain and she completely resolved my problem and fixed a chipped tooth! My new tooth looks great. I am super happy with her services!" }
     ],
     stats: [
       { number: "20+", label: "Years of Experience" },
@@ -71,7 +71,7 @@ export const enGeneralConsultationLPConfig: LandingPageConfig = {
       { question: "What does a dental checkup include?", answer: "A comprehensive exam including clinical inspection, digital 3D scan with the iTero Element 5D, risk assessment for cavities and gum disease, professional cleaning (scaling and polishing), and personalized oral hygiene guidance." },
       { question: "How often should I schedule a checkup?", answer: "For most adults, every 6 months is recommended. Patients with a history of gum disease or higher cavity risk may benefit from visits every 3–4 months. We'll recommend the right schedule for your needs." },
       { question: "Does dental cleaning hurt?", answer: "Ultrasonic cleaning is very comfortable — most patients describe only a mild vibration. For very sensitive areas, we can apply topical numbing gel." },
-      { question: "Do you accept dental insurance?", answer: "We are a private practice. This allows us to dedicate proper time to each patient and use only high-quality materials. We provide clear, detailed treatment plans before any procedure begins." },
+      { question: "Do you accept dental insurance?", answer: "We are a private practice. This allows us to dedicate proper time to each patient and use only high-quality materials. We provide clear, detailed cost estimates before any treatment begins." },
       { question: "What should I bring to my first appointment?", answer: "Bring any recent dental X-rays or records you may have and a list of medications you're currently taking. If you don't have any of these, no worries — we'll gather everything we need during your visit." },
       { question: "How long does a checkup appointment take?", answer: "We dedicate a minimum of 1 hour for every checkup. This ensures time for a thorough examination, unhurried cleaning, and a proper discussion of findings and any treatment options." }
     ]

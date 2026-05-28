@@ -54,13 +54,13 @@ export const enDentalImplantsLPConfig: LandingPageConfig = {
   socialProof: {
     title: "What Our Patients Say",
     testimonials: [
-      { name: "Gerald G. — United Kingdom", text: "Very gentle and calm — she takes time to explain every step of the process. The clinic is immaculate. I had cleaning, X-rays, and 3 porcelain fillings. She also resolved 2 sensitive teeth I'd been struggling with for years." },
-      { name: "Haley H. — International Patient", text: "Had persistent pain and she completely resolved the issue and repaired a chipped tooth in the same visit. The result looks natural. I left feeling genuinely relieved." },
+      { name: "Gerald G. — United Kingdom", text: "Excellent dentist, very gentle, calm and will explain the process with you. The office space is very clean. I had my teeth cleaned, dental X-rays, 3 porcelain fillings and the outcome was brilliant. I had 2 sensitive teeth and she managed to rectify that for me." },
+      { name: "Haley H. — International Patient", text: "Amazing experience! Had pain and she completely resolved my problem and fixed a chipped tooth! My new tooth looks great. I am super happy with her services!" },
       { name: "Marina P. — Ipanema", text: "I needed a full rehabilitation with implants and prosthetics. Dr. Carla planned everything digitally and the result exceeded my expectations. She followed each step personally. (translated from Portuguese)" }
     ],
     stats: [
       { number: "20+", label: "Years of Experience" },
-      { number: "95%+", label: "Implant Success Rate (peer-reviewed literature)" },
+      { number: "95%+", label: "Implant Success Rate" },
       { number: "iTero 5D", label: "Digital Scanner" },
       { number: "24h", label: "WhatsApp Available" }
     ]

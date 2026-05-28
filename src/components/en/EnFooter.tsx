@@ -40,7 +40,7 @@ const EnFooter = () => {
 
                     <div>
                         <h3 className="text-xl font-display mb-4">Navigation</h3>
-                        <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
+                        <ul className="space-y-2">
                             {[
                                 { label: "Home", path: "/en" },
                                 { label: "About", path: "/en/about" },
@@ -101,7 +101,7 @@ const EnFooter = () => {
                             <p>
                                 <a
                                     href="mailto:contato@dracarlachristoph.com"
-                                    className="hover:text-dental-gold transition-colors break-all"
+                                    className="hover:text-dental-gold transition-colors"
                                 >
                                     contato@dracarlachristoph.com
                                 </a>

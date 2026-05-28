@@ -46,7 +46,7 @@ export const emergenciaOdontologicaConfig: LandingPageConfig = {
     steps: [
       { number: '1', title: 'WhatsApp Imediato', description: 'Descreva o que aconteceu. Nossa equipe responde 24h e orienta os primeiros cuidados enquanto agenda o encaixe.' },
       { number: '2', title: 'Encaixe Prioritário', description: 'Urgências têm preferência na agenda. Na maioria dos casos, conseguimos atender no mesmo dia.' },
-      { number: '3', title: 'Diagnóstico e Tratamento', description: 'Avaliação completa, radiografia se necessário, e resolução imediata — restauração, cimentação, alívio da dor.' },
+      { number: '3', title: 'Diagnóstico e Tratamento', description: 'Exame clínico detalhado, radiografia se necessário, e resolução imediata — restauração, cimentação, alívio da dor.' },
       { number: '4', title: 'Orientação de Continuidade', description: 'Você sai com o problema resolvido e um plano claro para tratamento definitivo, se necessário.' }
     ]
   },

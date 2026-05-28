@@ -85,11 +85,11 @@ const ServicesSection = () => {
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-8">
           <h2 className="heading-lg mb-4">
-            Nossos Tratamentos Odontológicos para seu Sorriso em Ipanema
+            O que tratamos no consultório
           </h2>
           <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />
           <p className="text-dental-gray mb-6">
-            Em nossa clínica odontológica em Ipanema, a Dra. Carla Christoph oferece uma gama completa de tratamentos odontológicos, desde a prevenção e cuidados essenciais até a mais avançada odontologia estética e reabilitação oral. Explore nossas soluções e descubra como podemos cuidar do seu sorriso.
+            Implantes, próteses, lentes e clareamento conduzidos diretamente pela Dra. Carla. Endodontia, ortodontia e periodontia em parceria — com acompanhamento integral do início ao fim.
           </p>
         </div>
 

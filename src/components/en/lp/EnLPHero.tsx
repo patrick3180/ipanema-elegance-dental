@@ -59,7 +59,7 @@ const EnLPHero: React.FC<EnLPHeroProps> = ({
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left: Content */}
-          <div className="space-y-6 animate-fade-in-up min-w-0 overflow-hidden">
+          <div className="order-2 lg:order-1 space-y-6 animate-fade-in-up">
             {/* Trust badge */}
             <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-dental-gold/20 rounded-full px-4 py-1.5 text-xs text-dental-purple font-medium">
               <Globe size={14} className="text-dental-gold" />
@@ -70,7 +70,7 @@ const EnLPHero: React.FC<EnLPHeroProps> = ({
               {headline}
             </h1>
 
-            <p className="text-base sm:text-lg text-dental-gray leading-relaxed lg:max-w-xl">
+            <p className="text-base sm:text-lg text-dental-gray leading-relaxed max-w-xl">
               {subheadline}
             </p>
 
@@ -88,7 +88,7 @@ const EnLPHero: React.FC<EnLPHeroProps> = ({
             <div className="pt-2">
               <Button
                 onClick={handleWhatsAppClick}
-                className="bg-green-600 hover:bg-green-700 text-white rounded-lg px-6 sm:px-8 py-7 text-base sm:text-lg shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl w-full sm:w-auto max-w-full"
+                className="bg-green-600 hover:bg-green-700 text-white rounded-lg px-8 py-7 text-base sm:text-lg shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl w-full sm:w-auto"
               >
                 <MessageCircle size={20} className="mr-3" />
                 <div className="flex flex-col text-left leading-tight">
@@ -105,13 +105,13 @@ const EnLPHero: React.FC<EnLPHeroProps> = ({
           </div>
 
           {/* Right: Image */}
-          <div className="flex justify-center min-w-0">
-            <div className="relative w-full max-w-[min(100%,28rem)] lg:max-w-lg">
+          <div className="order-1 lg:order-2 flex justify-center">
+            <div className="relative w-full max-w-md lg:max-w-lg">
               <div className="absolute inset-0 bg-gradient-to-br from-dental-gold/20 to-dental-purple/10 rounded-2xl -rotate-3 scale-[1.03] blur-sm" />
               <OptimizedImage
                 src={backgroundImage}
                 alt="Dr. Carla Christoph — Cosmetic Dentist in Ipanema, Rio de Janeiro"
-                className="relative rounded-2xl shadow-elegant w-full object-cover max-h-[420px] sm:max-h-none"
+                className="relative rounded-2xl shadow-elegant w-full object-cover"
                 width={600}
                 height={750}
                 loading="eager"
