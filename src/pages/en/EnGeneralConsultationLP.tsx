@@ -1,12 +1,10 @@
 import React, { lazy, Suspense, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { captureGCLID } from "@/utils/gclid";
 import { enGeneralConsultationLPConfig } from "@/config/enGeneralConsultationLPConfig";
 
 // Performance
 import LazySection from "@/components/performance/LazySection";
-import ContentfulBlocker from "@/components/performance/ContentfulBlocker";
-import ErrorBoundary from "@/components/performance/ErrorBoundary";
+const ErrorBoundary = lazy(() => import("@/components/performance/ErrorBoundary"));
 
 // Critical above-the-fold (eager)
 import EnLPHeader from "@/components/en/lp/EnLPHeader";
@@ -38,8 +36,6 @@ const EnGeneralConsultationLP: React.FC = () => {
   const config = enGeneralConsultationLPConfig;
 
   useEffect(() => {
-    captureGCLID();
-
     if (typeof window !== "undefined") {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({

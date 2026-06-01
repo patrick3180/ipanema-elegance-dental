@@ -1,6 +1,5 @@
 import React, { lazy, Suspense, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { captureGCLID } from '@/utils/gclid';
 import { facetasResinaDiretaConfig } from '@/config/facetasResinaDiretaConfig';
 import { GTMManager } from '@/components/performance/GTMManager';
 import useScrollTracking from '@/hooks/useScrollTracking';
@@ -8,7 +7,7 @@ import useScrollTracking from '@/hooks/useScrollTracking';
 // Performance Components (critical path only)
 import LazySection from '@/components/performance/LazySection';
 import ContentfulBlocker from '@/components/performance/ContentfulBlocker';
-import ErrorBoundary from '@/components/performance/ErrorBoundary';
+const ErrorBoundary = lazy(() => import('@/components/performance/ErrorBoundary'));
 
 // Critical above-the-fold components (eager loading)
 import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
@@ -49,9 +48,6 @@ const FacetasResinaDiretaLandingPage = () => {
   const pageConfig = facetasResinaDiretaConfig;
 
   useEffect(() => {
-    // Capture GCLID for conversion tracking
-    captureGCLID();
-
     // Push page_view event (GTM is loaded via index.html)
     if (typeof window !== 'undefined') {
       window.dataLayer = window.dataLayer || [];

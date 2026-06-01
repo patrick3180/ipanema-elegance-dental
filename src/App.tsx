@@ -1,16 +1,13 @@
-import { lazy, Suspense, useEffect } from "react";
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { Skeleton } from "@/components/ui/skeleton";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import BlogLayout from "@/layouts/BlogLayout";
 
-// COMPONENTES DE PERFORMANCE - CRÍTICOS
-import ContentfulBlockerForNonBlogPages from '@/components/performance/ContentfulBlockerForNonBlogPages';
-
+// Lazy-loaded UI feedback (only needed when toast() is called — Home ContactSection)
+const Toaster = lazy(() => import("@/components/ui/toaster").then(m => ({ default: m.Toaster })));
+const Sonner = lazy(() => import("@/components/ui/sonner").then(m => ({ default: m.Toaster })));
 
 // SEO - Schema.org markup global
 import GlobalSchemas from '@/components/seo/GlobalSchemas';
@@ -96,44 +93,18 @@ const queryClient = new QueryClient({
 });
 
 const App = () => {
-  // BLOQUEIO DO CONTENTFUL EM LANDING PAGES
-  useEffect(() => {
-    const currentPath = window.location.pathname;
-    console.log('🚀 App initialized at path:', currentPath);
-
-    // Debug para encontrar chamadas do Contentful
-    if (process.env.NODE_ENV === 'development') {
-      const originalFetch = window.fetch;
-      window.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
-        const url = typeof input === 'string' ? input : input.toString();
-
-        if (url.includes('contentful')) {
-          console.warn('📍 Contentful call detected:', {
-            url: url.substring(0, 100),
-            path: window.location.pathname,
-            stack: new Error().stack?.split('\n').slice(2, 5)
-          });
-        }
-
-        return originalFetch(input, init);
-      };
-    }
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
     <HelmetProvider>
       {/* SEO - Global Schema.org markup for Organization + LocalBusiness */}
       <GlobalSchemas />
 
-      <TooltipProvider>
         <BrowserRouter>
-          {/* BLOQUEADORES DE PERFORMANCE - ORDEM IMPORTA! */}
-          <ContentfulBlockerForNonBlogPages />
-
-
-          <Toaster />
-          <Sonner />
+          {/* Lazy-loaded UI feedback — only hydrated when a toast is triggered */}
+          <Suspense fallback={null}>
+            <Toaster />
+            <Sonner />
+          </Suspense>
 
           <Suspense fallback={<PageLoadingFallback />}>
             <Routes>
@@ -213,7 +184,6 @@ const App = () => {
             </Routes>
           </Suspense>
         </BrowserRouter>
-      </TooltipProvider>
     </HelmetProvider>
     </QueryClientProvider>
   );

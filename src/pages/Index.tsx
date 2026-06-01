@@ -1,7 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import PageLayout from "@/components/PageLayout";
 import SEOHead from "@/components/SEOHead";
-import ScrollReveal from "@/components/ScrollReveal";
 import Hero from "@/components/Hero";
 import HomepageStatsBar from "@/components/HomepageStatsBar";
 import LazySection from "@/components/performance/LazySection";
@@ -160,29 +159,23 @@ const Index = () => {
 
         {/* 3. Sobre — Bio + foto + CTA */}
         <LazySection fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-          <ScrollReveal animation="fade-up">
-            <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-              <AboutSection />
-            </Suspense>
-          </ScrollReveal>
+          <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+            <AboutSection />
+          </Suspense>
         </LazySection>
 
         {/* 4. Diferenciais — Por que a Dra. Carla? */}
         <LazySection fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-          <ScrollReveal animation="fade-up" delay={100}>
-            <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-              <DifferentialsSection />
-            </Suspense>
-          </ScrollReveal>
+          <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+            <DifferentialsSection />
+          </Suspense>
         </LazySection>
 
         {/* 5. Tratamentos — Grid 3x3 */}
         <LazySection fallback={<div className="h-[600px] w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-          <ScrollReveal animation="fade-up">
-            <Suspense fallback={<div className="h-[600px] w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-              <ServicesSection />
-            </Suspense>
-          </ScrollReveal>
+          <Suspense fallback={<div className="h-[600px] w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+            <ServicesSection />
+          </Suspense>
         </LazySection>
 
         {/* Separador visual entre Tratamentos e Tecnologia */}
@@ -194,47 +187,37 @@ const Index = () => {
 
         {/* 6. Tecnologia — iTero Element 5D showcase */}
         <LazySection fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-          <ScrollReveal animation="fade-in" duration={800}>
-            <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-              <TechnologyShowcase />
-            </Suspense>
-          </ScrollReveal>
+          <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+            <TechnologyShowcase />
+          </Suspense>
         </LazySection>
 
         {/* 7. Depoimentos — Carousel */}
         <LazySection fallback={<div className="h-80 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-          <ScrollReveal animation="fade-up">
-            <Suspense fallback={<div className="h-80 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-              <TestimonialsCarousel />
-            </Suspense>
-          </ScrollReveal>
+          <Suspense fallback={<div className="h-80 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+            <TestimonialsCarousel />
+          </Suspense>
         </LazySection>
 
         {/* 8. Blog — 3 artigos recentes */}
         <LazySection fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-          <ScrollReveal animation="fade-up" delay={50}>
-            <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-              <BlogPreview />
-            </Suspense>
-          </ScrollReveal>
+          <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+            <BlogPreview />
+          </Suspense>
         </LazySection>
 
         {/* 9. CTA Final — WhatsApp */}
         <LazySection fallback={<div className="h-64 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-          <ScrollReveal animation="scale-in" duration={500}>
-            <Suspense fallback={<div className="h-64 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-              <FinalCTA />
-            </Suspense>
-          </ScrollReveal>
+          <Suspense fallback={<div className="h-64 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+            <FinalCTA />
+          </Suspense>
         </LazySection>
 
         {/* 10. Contato — Form + info + mapa */}
         <LazySection fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-          <ScrollReveal animation="fade-up">
-            <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-              <ContactSection />
-            </Suspense>
-          </ScrollReveal>
+          <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+            <ContactSection />
+          </Suspense>
         </LazySection>
 
       </PageLayout>

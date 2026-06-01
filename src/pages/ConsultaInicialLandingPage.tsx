@@ -1,6 +1,5 @@
 import React, { lazy, Suspense, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { captureGCLID } from '@/utils/gclid';
 import { consultaInicialConfig } from '@/config/consultaInicialConfig';
 import { GTMManager } from '@/components/performance/GTMManager';
 import useScrollTracking from '@/hooks/useScrollTracking';
@@ -46,9 +45,6 @@ const criticalStyles = `
 
 const ConsultaInicialLandingPage = () => {
   useEffect(() => {
-    // Capture GCLID for conversion tracking
-    captureGCLID();
-
     // Push page_view event (GTM is loaded via index.html)
     if (typeof window !== 'undefined') {
       window.dataLayer = window.dataLayer || [];

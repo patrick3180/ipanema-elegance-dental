@@ -85,9 +85,9 @@ export default defineConfig(({ mode }) => ({
 
           // ───────────── Vendor chunks (node_modules) ─────────────
           if (id.includes('node_modules')) {
-            // Critical-path React
-            if (id.includes('/react-helmet-async/') ||
-                id.match(/[\\/]node_modules[\\/](react|react-dom)[\\/]/)) return 'landing-critical';
+            // Critical-path React — split into highly-cacheable core vs. helmet
+            if (id.match(/[\\/]node_modules[\\/](react|react-dom)[\\/]/)) return 'react-core';
+            if (id.includes('/react-helmet-async/')) return 'helmet';
 
             // Routing
             if (id.includes('/react-router-dom/') || id.includes('/react-router/')) return 'vendor';
@@ -128,28 +128,20 @@ export default defineConfig(({ mode }) => ({
       },
     },
 
-    // Minificação ultra agressiva para PageSpeed 90+
     minify: mode === 'production' ? 'terser' : false,
     terserOptions: mode === 'production' ? {
       compress: {
         drop_console: true,
         drop_debugger: true,
         pure_funcs: ['console.log', 'console.info', 'console.warn', 'console.debug'],
-        unsafe_proto: true,
-        unsafe_math: true,
-        unsafe_methods: true,
-        passes: 3, // Multiple passes for better compression
-        toplevel: true,
+        passes: 1,
         pure_getters: true,
-        unsafe_comps: true,
       },
       mangle: {
         safari10: true,
-        toplevel: true,
-        properties: false, // Don't mangle properties to avoid breaking
       },
       format: {
-        comments: false, // Remove all comments
+        comments: false,
       }
     } : undefined,
 

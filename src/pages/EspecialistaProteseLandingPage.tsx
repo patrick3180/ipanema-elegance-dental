@@ -1,12 +1,10 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { especialistaProteseConfig } from '@/config/especialistaProteseConfig';
-import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
 import { useScrollTracking } from '@/hooks/useScrollTracking';
-import { captureGCLID } from '@/utils/gclid';
 
 // Performance components
-import ErrorBoundary from '@/components/performance/ErrorBoundary';
+const ErrorBoundary = lazy(() => import('@/components/performance/ErrorBoundary'));
 import LazySection from '@/components/performance/LazySection';
 
 
@@ -30,13 +28,9 @@ const SectionFallback = () => (
 
 const EspecialistaProteseLandingPage = () => {
   // Performance hooks
-  useCriticalImagePreload({ images: [{ src: especialistaProteseConfig.hero.backgroundImage }] });
   useScrollTracking({ pagePath: '/lp/especialista-protese-ipanema' });
 
   useEffect(() => {
-    // Capture GCLID for conversion tracking
-    captureGCLID();
-
     // Push page view to dataLayer
     if (typeof window !== 'undefined' && window.dataLayer) {
       window.dataLayer.push({
@@ -45,11 +39,7 @@ const EspecialistaProteseLandingPage = () => {
         page_location: window.location.href,
         campaign: especialistaProteseConfig.campaign
       });
-
-      console.log('[LP Especialista Prótese] Page view tracked');
     }
-
-    // GTM is now loaded via index.html - no duplicate loading needed
   }, []);
 
   return (
