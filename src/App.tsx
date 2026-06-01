@@ -9,6 +9,9 @@ import BlogLayout from "@/layouts/BlogLayout";
 const Toaster = lazy(() => import("@/components/ui/toaster").then(m => ({ default: m.Toaster })));
 const Sonner = lazy(() => import("@/components/ui/sonner").then(m => ({ default: m.Toaster })));
 
+// Performance — block Contentful on non-blog pages (prevents 150KB+ of unnecessary API calls)
+import ContentfulBlockerForNonBlogPages from '@/components/performance/ContentfulBlockerForNonBlogPages';
+
 // SEO - Schema.org markup global
 import GlobalSchemas from '@/components/seo/GlobalSchemas';
 
@@ -100,6 +103,9 @@ const App = () => {
       <GlobalSchemas />
 
         <BrowserRouter>
+          {/* Block Contentful API on non-blog pages — prevents re-renders that cause CLS */}
+          <ContentfulBlockerForNonBlogPages />
+
           {/* Lazy-loaded UI feedback — only hydrated when a toast is triggered */}
           <Suspense fallback={null}>
             <Toaster />

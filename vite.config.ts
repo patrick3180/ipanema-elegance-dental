@@ -85,9 +85,9 @@ export default defineConfig(({ mode }) => ({
 
           // ───────────── Vendor chunks (node_modules) ─────────────
           if (id.includes('node_modules')) {
-            // Critical-path React — split into highly-cacheable core vs. helmet
-            if (id.match(/[\\/]node_modules[\\/](react|react-dom)[\\/]/)) return 'react-core';
-            if (id.includes('/react-helmet-async/')) return 'helmet';
+            // Critical-path React — single chunk for atomic hydration (prevents CLS)
+            if (id.includes('/react-helmet-async/') ||
+                id.match(/[\\/]node_modules[\\/](react|react-dom)[\\/]/)) return 'landing-critical';
 
             // Routing
             if (id.includes('/react-router-dom/') || id.includes('/react-router/')) return 'vendor';
