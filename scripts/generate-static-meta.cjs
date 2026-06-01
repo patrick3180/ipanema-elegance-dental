@@ -191,6 +191,34 @@ function generateLPFallbackHTML(c, lang) {
     '<dt>' + escapeHtml(f.q) + '</dt><dd>' + escapeHtml(f.a) + '</dd>'
   ).join('\n          ');
 
+  const deriveAvifPaths = (webpSrc) => {
+    if (!webpSrc) return null;
+    const base = webpSrc.replace(/\.webp$/, '');
+    return {
+      mobile: `${base}-480.avif`,
+      desktop: `${base}-1024.avif`,
+    };
+  };
+
+  const avifPaths = c.backgroundImage ? deriveAvifPaths(c.backgroundImage) : null;
+  let heroImageHtml = '';
+  if (c.backgroundImage) {
+    if (avifPaths) {
+      heroImageHtml = `
+      <div style="margin:24px 0;text-align:center;aspect-ratio:760/996;max-width:380px;margin-left:auto;margin-right:auto">
+        <picture>
+          <source srcset="${avifPaths.mobile} 480w, ${avifPaths.desktop} 1024w" sizes="(max-width:767px) 100vw, (min-width:768px) 50vw, 40vw" type="image/avif" />
+          <img src="${c.backgroundImage}" alt="${escapeHtml(c.h1)}" style="width:100%;height:auto;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.08)" width="760" height="996" fetchpriority="high" decoding="async" />
+        </picture>
+      </div>`;
+    } else {
+      heroImageHtml = `
+      <div style="margin:24px 0;text-align:center;max-width:380px;margin-left:auto;margin-right:auto">
+        <img src="${c.backgroundImage}" alt="${escapeHtml(c.h1)}" style="width:100%;height:auto;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.08)" fetchpriority="high" decoding="async" />
+      </div>`;
+    }
+  }
+
   const ctaButtonText = c.ctaText || (isEn ? 'Book via WhatsApp' : 'Agendar pelo WhatsApp');
 
   return `<header style="padding:16px 0;border-bottom:1px solid #eee">
@@ -204,7 +232,9 @@ function generateLPFallbackHTML(c, lang) {
     <main style="max-width:800px;margin:0 auto;padding:24px 16px;font-family:system-ui,sans-serif;line-height:1.6;color:#333">
       <h1>${escapeHtml(c.h1)}</h1>
       <p>${escapeHtml(c.subhead)}</p>
+      ${heroImageHtml}
       <p><a href="${waHref}" style="display:inline-block;padding:12px 24px;background:#25D366;color:#fff;text-decoration:none;border-radius:6px;font-weight:600">${escapeHtml(ctaButtonText)}</a></p>
+
       ${benefitsHtml ? `<section>
         <h2>${L.benefits}</h2>
         <ul>
@@ -1466,7 +1496,10 @@ const ROUTE_HERO_MAP = {
   '/en/lp/cosmetic-dentistry': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
   '/en/lp/dental-implants': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
   '/en/lp/dental-emergency': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
+  '/lp/lentes-porcelana-ipanema': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
+  '/lp/lentes-profissional-ipanema': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
 };
+
 
 function generatePage(routePath, meta, options = {}) {
   const { noindex = false, schemas = [], fallbackContent = '', lang = 'pt-BR' } = options;
@@ -1627,3 +1660,39 @@ console.log('  - ' + Object.keys(servicePages).length + ' service pages (with sc
 console.log('  - ' + Object.keys(infoPages).length + ' info pages (with Dentist schema + fallback)');
 console.log('  - ' + Object.keys(englishPages).length + ' english pages (lang=en, Dentist schema + fallback)');
 console.log('  - ' + Object.keys(landingPages).length + ' landing pages (noindex + fallback HTML)');
+
+// 5. Update dist/index.html (Home page fallback content for faster FCP/LCP)
+console.log('\nUpdating dist/index.html for static Home LCP optimization...');
+const homeFallback = `
+<header style="padding:16px 0;border-bottom:1px solid #eee">
+  <nav style="max-width:800px;margin:0 auto;padding:0 16px;display:flex;gap:16px;font-family:system-ui,sans-serif">
+    <a href="/" style="font-weight:bold;color:#553c6b;text-decoration:none">Dra. Carla Christoph</a> |
+    <a href="/servicos" style="color:#333;text-decoration:none">Tratamentos</a> |
+    <a href="/sobre" style="color:#333;text-decoration:none">Sobre</a> |
+    <a href="/blog" style="color:#333;text-decoration:none">Blog</a> |
+    <a href="/contato" style="color:#333;text-decoration:none">Contato</a>
+  </nav>
+</header>
+<main style="max-width:800px;margin:0 auto;padding:24px 16px;font-family:system-ui,sans-serif;line-height:1.6;color:#333">
+  <h1>Dentista em Ipanema Especializada em Reabilitação Oral e Estética Natural</h1>
+  <p>Para quem busca tratamento odontológico sem pressa, com mínimo desconforto e com resultado que parece natural</p>
+  <div style="margin:24px 0;text-align:center;aspect-ratio:460/640;max-width:380px;margin-left:auto;margin-right:auto">
+    <picture>
+      <source srcset="/lovable-uploads/hero-560w.avif 560w, /lovable-uploads/hero-800w.avif 800w, /lovable-uploads/hero-840w.avif 840w" sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px" type="image/avif" />
+      <source srcset="/lovable-uploads/hero-560w.webp 560w, /lovable-uploads/hero-800w.webp 800w, /lovable-uploads/hero-840w.webp 840w" sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px" type="image/webp" />
+      <img src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png" alt="Dra. Carla Christoph" style="width:100%;height:auto;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.08)" width="460" height="640" fetchpriority="high" decoding="async" />
+    </picture>
+  </div>
+  <p><a href="https://wa.me/5521993304045?text=Ol%C3%A1!%20Vi%20o%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." style="display:inline-block;padding:12px 24px;background:#25D366;color:#fff;text-decoration:none;border-radius:6px;font-weight:600">Agendar pelo WhatsApp</a></p>
+</main>
+<footer style="padding:24px 16px;border-top:1px solid #eee;text-align:center;color:#666;font-size:0.9em;font-family:system-ui,sans-serif">
+  <p><strong>Dra. Carla Christoph</strong> — CRO-RJ 27.509</p>
+  <p>Rua Visconde de Pirajá, 550 - Sala 1107, Ipanema, Rio de Janeiro</p>
+  <p>Tel: (21) 99330-4045 | Seg-Sex 9h-19h</p>
+</footer>
+`;
+
+const updatedHomeHtml = indexHtml.replace('<div id="root"></div>', '<div id="root">' + homeFallback + '</div>');
+fs.writeFileSync(path.join(distDir, 'index.html'), updatedHomeHtml);
+console.log('✅ Success: Inlined Home LCP hero in dist/index.html');
+

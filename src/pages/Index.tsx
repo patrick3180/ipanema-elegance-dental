@@ -4,6 +4,8 @@ import SEOHead from "@/components/SEOHead";
 import ScrollReveal from "@/components/ScrollReveal";
 import Hero from "@/components/Hero";
 import HomepageStatsBar from "@/components/HomepageStatsBar";
+import LazySection from "@/components/performance/LazySection";
+
 
 // Lazy-loaded sections below the fold
 const AboutSection = lazy(() => import("@/components/AboutSection"));
@@ -157,25 +159,31 @@ const Index = () => {
         <HomepageStatsBar />
 
         {/* 3. Sobre — Bio + foto + CTA */}
-        <ScrollReveal animation="fade-up">
-          <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-            <AboutSection />
-          </Suspense>
-        </ScrollReveal>
+        <LazySection fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+          <ScrollReveal animation="fade-up">
+            <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+              <AboutSection />
+            </Suspense>
+          </ScrollReveal>
+        </LazySection>
 
         {/* 4. Diferenciais — Por que a Dra. Carla? */}
-        <ScrollReveal animation="fade-up" delay={100}>
-          <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-            <DifferentialsSection />
-          </Suspense>
-        </ScrollReveal>
+        <LazySection fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+          <ScrollReveal animation="fade-up" delay={100}>
+            <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+              <DifferentialsSection />
+            </Suspense>
+          </ScrollReveal>
+        </LazySection>
 
         {/* 5. Tratamentos — Grid 3x3 */}
-        <ScrollReveal animation="fade-up">
-          <Suspense fallback={<div className="h-[600px] w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-            <ServicesSection />
-          </Suspense>
-        </ScrollReveal>
+        <LazySection fallback={<div className="h-[600px] w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+          <ScrollReveal animation="fade-up">
+            <Suspense fallback={<div className="h-[600px] w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+              <ServicesSection />
+            </Suspense>
+          </ScrollReveal>
+        </LazySection>
 
         {/* Separador visual entre Tratamentos e Tecnologia */}
         <div className="w-full px-4">
@@ -185,39 +193,50 @@ const Index = () => {
         </div>
 
         {/* 6. Tecnologia — iTero Element 5D showcase */}
-        <ScrollReveal animation="fade-in" duration={800}>
-          <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-            <TechnologyShowcase />
-          </Suspense>
-        </ScrollReveal>
+        <LazySection fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+          <ScrollReveal animation="fade-in" duration={800}>
+            <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+              <TechnologyShowcase />
+            </Suspense>
+          </ScrollReveal>
+        </LazySection>
 
         {/* 7. Depoimentos — Carousel */}
-        <ScrollReveal animation="fade-up">
-          <Suspense fallback={<div className="h-80 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-            <TestimonialsCarousel />
-          </Suspense>
-        </ScrollReveal>
+        <LazySection fallback={<div className="h-80 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+          <ScrollReveal animation="fade-up">
+            <Suspense fallback={<div className="h-80 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+              <TestimonialsCarousel />
+            </Suspense>
+          </ScrollReveal>
+        </LazySection>
 
         {/* 8. Blog — 3 artigos recentes */}
-        <ScrollReveal animation="fade-up" delay={50}>
-          <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-            <BlogPreview />
-          </Suspense>
-        </ScrollReveal>
+        <LazySection fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+          <ScrollReveal animation="fade-up" delay={50}>
+            <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+              <BlogPreview />
+            </Suspense>
+          </ScrollReveal>
+        </LazySection>
 
         {/* 9. CTA Final — WhatsApp */}
-        <ScrollReveal animation="scale-in" duration={500}>
-          <Suspense fallback={<div className="h-64 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-            <FinalCTA />
-          </Suspense>
-        </ScrollReveal>
+        <LazySection fallback={<div className="h-64 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+          <ScrollReveal animation="scale-in" duration={500}>
+            <Suspense fallback={<div className="h-64 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+              <FinalCTA />
+            </Suspense>
+          </ScrollReveal>
+        </LazySection>
 
         {/* 10. Contato — Form + info + mapa */}
-        <ScrollReveal animation="fade-up">
-          <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
-            <ContactSection />
-          </Suspense>
-        </ScrollReveal>
+        <LazySection fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+          <ScrollReveal animation="fade-up">
+            <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+              <ContactSection />
+            </Suspense>
+          </ScrollReveal>
+        </LazySection>
+
       </PageLayout>
     </>
   );

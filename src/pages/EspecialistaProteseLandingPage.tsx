@@ -6,14 +6,9 @@ import { useScrollTracking } from '@/hooks/useScrollTracking';
 import { captureGCLID } from '@/utils/gclid';
 
 // Performance components
-import CriticalCSSInline from '@/components/performance/CriticalCSSInline';
-import ResourceHintsOptimizer from '@/components/performance/ResourceHintsOptimizer';
-import SmartContentfulCache from '@/components/performance/SmartContentfulCache';
-import CoreWebVitalsMonitor from '@/components/performance/CoreWebVitalsMonitor';
-import AggressiveLCPOptimizer from '@/components/performance/AggressiveLCPOptimizer';
-import LCPOptimizer from '@/components/performance/LCPOptimizer';
 import ErrorBoundary from '@/components/performance/ErrorBoundary';
 import LazySection from '@/components/performance/LazySection';
+
 
 // Critical components (above the fold)
 import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
@@ -155,13 +150,7 @@ const EspecialistaProteseLandingPage = () => {
         </script>
       </Helmet>
 
-      {/* Performance Optimization Components */}
-      <CriticalCSSInline />
-      <ResourceHintsOptimizer />
-      <SmartContentfulCache />
-      <CoreWebVitalsMonitor />
-      <AggressiveLCPOptimizer />
-      <LCPOptimizer />
+
 
       {/* GTM NoScript Fallback */}
       <noscript>

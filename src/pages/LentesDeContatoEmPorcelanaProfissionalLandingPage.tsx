@@ -4,13 +4,9 @@ import { useScrollTracking } from '@/hooks/useScrollTracking';
 import { lentesPorcelanaProfissionalConfig } from '@/config/lentesPorcelanaProfissionalConfig';
 
 // Performance Components
-import CriticalCSSInline from '@/components/performance/CriticalCSSInline';
-import ResourceHintsOptimizer from '@/components/performance/ResourceHintsOptimizer';
-import NonCriticalCSSLoader from '@/components/performance/NonCriticalCSSLoader';
-import SmartContentfulCache from '@/components/performance/SmartContentfulCache';
-import CoreWebVitalsMonitor from '@/components/performance/CoreWebVitalsMonitor';
 import ErrorBoundary from '@/components/performance/ErrorBoundary';
 import LazySection from '@/components/performance/LazySection';
+
 
 // Critical Above-The-Fold Components (not lazy-loaded)
 import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
@@ -57,12 +53,7 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
 
   return (
     <>
-      {/* Performance Optimization Components */}
-      <CriticalCSSInline />
-      <ResourceHintsOptimizer />
-      <NonCriticalCSSLoader />
-      <SmartContentfulCache enableBlocking={true} />
-      <CoreWebVitalsMonitor />
+
 
 
       <Helmet>

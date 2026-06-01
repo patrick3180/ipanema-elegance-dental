@@ -4,9 +4,7 @@ import { useCriticalImagePreload } from "@/hooks/useCriticalImagePreload";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
 import ErrorBoundary from "@/components/performance/ErrorBoundary";
 import LazySection from "@/components/performance/LazySection";
-import ResourceHintsOptimizer from "@/components/performance/ResourceHintsOptimizer";
-import CriticalCSSInliner from "@/components/performance/CriticalCSSInliner";
-import SimpleLCPOptimizer from "@/components/performance/SimpleLCPOptimizer";
+
 import ConsultaInicialHeader from "@/components/landing/consulta/ConsultaInicialHeader";
 import ConsultaInicialHero from "@/components/landing/consulta/ConsultaInicialHero";
 import { lentesPorcelanaAcolhedorConfig } from "@/config/lentesPorcelanaAcolhedorConfig";
@@ -63,10 +61,7 @@ const LentesDeContatoPorcelanaLandingPage = () => {
 
   return (
     <>
-      {/* Performance optimization components */}
-      <ResourceHintsOptimizer />
-      <CriticalCSSInliner />
-      <SimpleLCPOptimizer />
+
 
       <Helmet>
         {/* Primary Meta Tags */}

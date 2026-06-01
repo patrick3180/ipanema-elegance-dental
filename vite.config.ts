@@ -59,8 +59,12 @@ export default defineConfig(({ mode }) => ({
         // o build com `Could not resolve entry module "@radix-ui/react-dialog"`.
         manualChunks(id: string) {
           // ───────────── Source chunks (componentes locais) ─────────────
+          // English Landing Pages components (isolate to prevent unused JS)
+          if (id.includes('/components/en/lp/')) return 'en-landing-bundle';
+
           // Hero/header críticos para LCP das LPs principais
           if (id.includes('/components/landing/clareamento/ClareamentoHero')) return 'landing-hero';
+
           if (id.includes('/components/landing/clareamento/ClareamentoHeader')) return 'landing-header';
           if (id.includes('/components/landing/clareamento/ClareamentoSocialProof') ||
               id.includes('/components/landing/consulta/ConsultaInicialSocialProof')) return 'landing-lazy-social';
