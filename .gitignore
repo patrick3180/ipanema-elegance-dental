@@ -44,3 +44,8 @@ bigquery-credentials.json
 # Analytics data exports
 *.csv
 ga4*.csv
+
+# Secrets / API Keys
+.secrets/
+pagespeed-api-key.txt
+

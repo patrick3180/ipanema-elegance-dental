@@ -1,18 +1,19 @@
-
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import PageLayout from "@/components/PageLayout";
 import SEOHead from "@/components/SEOHead";
 import ScrollReveal from "@/components/ScrollReveal";
 import Hero from "@/components/Hero";
 import HomepageStatsBar from "@/components/HomepageStatsBar";
-import AboutSection from "@/components/AboutSection";
-import DifferentialsSection from "@/components/DifferentialsSection";
-import ServicesSection from "@/components/ServicesSection";
-import TechnologyShowcase from "@/components/TechnologyShowcase";
-import TestimonialsCarousel from "@/components/TestimonialsCarousel";
-import BlogPreview from "@/components/BlogPreview";
-import FinalCTA from "@/components/FinalCTA";
-import ContactSection from "@/components/ContactSection";
+
+// Lazy-loaded sections below the fold
+const AboutSection = lazy(() => import("@/components/AboutSection"));
+const DifferentialsSection = lazy(() => import("@/components/DifferentialsSection"));
+const ServicesSection = lazy(() => import("@/components/ServicesSection"));
+const TechnologyShowcase = lazy(() => import("@/components/TechnologyShowcase"));
+const TestimonialsCarousel = lazy(() => import("@/components/TestimonialsCarousel"));
+const BlogPreview = lazy(() => import("@/components/BlogPreview"));
+const FinalCTA = lazy(() => import("@/components/FinalCTA"));
+const ContactSection = lazy(() => import("@/components/ContactSection"));
 
 const Index = () => {
   const structuredData = {
@@ -157,17 +158,23 @@ const Index = () => {
 
         {/* 3. Sobre — Bio + foto + CTA */}
         <ScrollReveal animation="fade-up">
-          <AboutSection />
+          <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+            <AboutSection />
+          </Suspense>
         </ScrollReveal>
 
         {/* 4. Diferenciais — Por que a Dra. Carla? */}
         <ScrollReveal animation="fade-up" delay={100}>
-          <DifferentialsSection />
+          <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+            <DifferentialsSection />
+          </Suspense>
         </ScrollReveal>
 
         {/* 5. Tratamentos — Grid 3x3 */}
         <ScrollReveal animation="fade-up">
-          <ServicesSection />
+          <Suspense fallback={<div className="h-[600px] w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+            <ServicesSection />
+          </Suspense>
         </ScrollReveal>
 
         {/* Separador visual entre Tratamentos e Tecnologia */}
@@ -179,27 +186,37 @@ const Index = () => {
 
         {/* 6. Tecnologia — iTero Element 5D showcase */}
         <ScrollReveal animation="fade-in" duration={800}>
-          <TechnologyShowcase />
+          <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+            <TechnologyShowcase />
+          </Suspense>
         </ScrollReveal>
 
         {/* 7. Depoimentos — Carousel */}
         <ScrollReveal animation="fade-up">
-          <TestimonialsCarousel />
+          <Suspense fallback={<div className="h-80 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+            <TestimonialsCarousel />
+          </Suspense>
         </ScrollReveal>
 
         {/* 8. Blog — 3 artigos recentes */}
         <ScrollReveal animation="fade-up" delay={50}>
-          <BlogPreview />
+          <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+            <BlogPreview />
+          </Suspense>
         </ScrollReveal>
 
         {/* 9. CTA Final — WhatsApp */}
         <ScrollReveal animation="scale-in" duration={500}>
-          <FinalCTA />
+          <Suspense fallback={<div className="h-64 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+            <FinalCTA />
+          </Suspense>
         </ScrollReveal>
 
         {/* 10. Contato — Form + info + mapa */}
         <ScrollReveal animation="fade-up">
-          <ContactSection />
+          <Suspense fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>
+            <ContactSection />
+          </Suspense>
         </ScrollReveal>
       </PageLayout>
     </>

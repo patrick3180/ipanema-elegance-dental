@@ -1,6 +1,5 @@
 import React, { Suspense, useEffect, lazy } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useCriticalImagePreload } from '@/hooks/useCriticalImagePreload';
 import { useScrollTracking } from '@/hooks/useScrollTracking';
 import { lentesPorcelanaProfissionalConfig } from '@/config/lentesPorcelanaProfissionalConfig';
 
@@ -10,7 +9,6 @@ import ResourceHintsOptimizer from '@/components/performance/ResourceHintsOptimi
 import NonCriticalCSSLoader from '@/components/performance/NonCriticalCSSLoader';
 import SmartContentfulCache from '@/components/performance/SmartContentfulCache';
 import CoreWebVitalsMonitor from '@/components/performance/CoreWebVitalsMonitor';
-import HeroImagePreloader from '@/components/performance/HeroImagePreloader';
 import ErrorBoundary from '@/components/performance/ErrorBoundary';
 import LazySection from '@/components/performance/LazySection';
 
@@ -28,14 +26,6 @@ const LandingFooter = lazy(() => import('@/components/landing/LandingFooter'));
 const FloatingWhatsApp = lazy(() => import('@/components/landing/FloatingWhatsApp'));
 
 const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
-  // Critical image preloading for hero
-  useCriticalImagePreload({
-    images: [
-      { src: lentesPorcelanaProfissionalConfig.hero.backgroundImage || '', width: 1920 },
-      { src: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp', width: 800 }
-    ],
-    enabled: true
-  });
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -73,15 +63,7 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
       <NonCriticalCSSLoader />
       <SmartContentfulCache enableBlocking={true} />
       <CoreWebVitalsMonitor />
-      <HeroImagePreloader
-        images={[
-          {
-            src: lentesPorcelanaProfissionalConfig.hero.backgroundImage || '',
-            type: 'webp',
-            priority: true
-          }
-        ]}
-      />
+
 
       <Helmet>
         <title>{lentesPorcelanaProfissionalConfig.seo.title}</title>
@@ -116,12 +98,7 @@ const LentesDeContatoEmPorcelanaProfissionalLandingPage = () => {
         <link rel="preload" href="/fonts/montserrat-500.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/playfair-display-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
 
-        <link
-          rel="preload"
-          href={lentesPorcelanaProfissionalConfig.hero.backgroundImage}
-          as="image"
-          type="image/webp"
-        />
+
 
         <script type="application/ld+json">
           {JSON.stringify({

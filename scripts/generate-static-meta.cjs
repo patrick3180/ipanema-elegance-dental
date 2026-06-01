@@ -1449,11 +1449,50 @@ const landingPageContent = {
 // PAGE GENERATOR
 // ============================================================
 
+const ROUTE_HERO_MAP = {
+  '/lp/consulta-inicial': '/lovable-uploads/RIT08058-vertical-doutora-site',
+  '/en/lp/general-consultation': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
+  '/lp/especialista-protese-ipanema': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
+  '/lp/facetas-resina-ipanema': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
+  '/lp/clareamento-dental': '/lovable-uploads/doutora-em-pe-jaleco',
+  '/lp/limpeza-dental-ipanema': '/lovable-uploads/vertical-de-jaleco',
+  '/lp/profilaxia-dental-ipanema': '/lovable-uploads/vertical-de-jaleco',
+  '/lp/saude-gengival-ipanema': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
+  '/lp/ortodontia-ipanema': '/lovable-uploads/DrBruno_site',
+  '/lp/implantes-dentarios-ipanema': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
+  '/lp/dor-de-dente-urgencia-ipanema': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
+  '/lp/dente-quebrado-urgencia-ipanema': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
+  '/lp/emergencia-odontologica-ipanema': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
+  '/en/lp/cosmetic-dentistry': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
+  '/en/lp/dental-implants': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
+  '/en/lp/dental-emergency': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
+};
+
 function generatePage(routePath, meta, options = {}) {
   const { noindex = false, schemas = [], fallbackContent = '', lang = 'pt-BR' } = options;
   let html = indexHtml;
 
   const fullUrl = BASE_URL + routePath;
+
+  // Replace LCP hero preload based on route
+  const heroImageBase = ROUTE_HERO_MAP[routePath];
+  if (heroImageBase) {
+    const specificPreload = `<!-- Hero image preload responsivo (LCP element) -->
+  <link rel="preload" as="image" type="image/avif"
+    imagesrcset="${heroImageBase}-480.avif 480w, ${heroImageBase}-1024.avif 1024w"
+    imagesizes="(max-width:767px) 100vw, (min-width:768px) 50vw, 40vw" fetchpriority="high" />`;
+    
+    html = html.replace(
+      /<!-- Hero image preload responsivo \(LCP element\) -->\s*<link rel="preload" as="image" type="image\/avif"[\s\S]*?\/>/,
+      specificPreload
+    );
+  } else if (routePath !== '/') {
+    // Remove hero preload for non-home pages to save bandwidth
+    html = html.replace(
+      /<!-- Hero image preload responsivo \(LCP element\) -->\s*<link rel="preload" as="image" type="image\/avif"[\s\S]*?\/>/,
+      ''
+    );
+  }
 
   // Replace title
   html = html.replace(

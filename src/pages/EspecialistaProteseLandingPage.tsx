@@ -10,10 +10,8 @@ import CriticalCSSInline from '@/components/performance/CriticalCSSInline';
 import ResourceHintsOptimizer from '@/components/performance/ResourceHintsOptimizer';
 import SmartContentfulCache from '@/components/performance/SmartContentfulCache';
 import CoreWebVitalsMonitor from '@/components/performance/CoreWebVitalsMonitor';
-import HeroImagePreloader from '@/components/performance/HeroImagePreloader';
 import AggressiveLCPOptimizer from '@/components/performance/AggressiveLCPOptimizer';
 import LCPOptimizer from '@/components/performance/LCPOptimizer';
-import CriticalResourcePreloader from '@/components/performance/CriticalResourcePreloader';
 import ErrorBoundary from '@/components/performance/ErrorBoundary';
 import LazySection from '@/components/performance/LazySection';
 
@@ -92,15 +90,6 @@ const EspecialistaProteseLandingPage = () => {
         <link rel="preload" href="/fonts/montserrat-500.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/playfair-display-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
 
-        {/* Critical Image Preload */}
-        <link
-          rel="preload"
-          href="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
-          as="image"
-          type="image/webp"
-          fetchPriority="high"
-        />
-
         {/* DNS Prefetch and Preconnect */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
@@ -171,18 +160,8 @@ const EspecialistaProteseLandingPage = () => {
       <ResourceHintsOptimizer />
       <SmartContentfulCache />
       <CoreWebVitalsMonitor />
-      <HeroImagePreloader
-        images={[
-          {
-            src: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
-            type: 'webp',
-            priority: true
-          }
-        ]}
-      />
       <AggressiveLCPOptimizer />
       <LCPOptimizer />
-      <CriticalResourcePreloader heroImageUrl={especialistaProteseConfig.hero.backgroundImage} />
 
       {/* GTM NoScript Fallback */}
       <noscript>

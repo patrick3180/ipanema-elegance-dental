@@ -2,7 +2,7 @@ import React from "react";
 import { MessageCircle, ArrowRight, Check, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { sendGCLIDToWebhook } from "@/utils/gclid";
-import OptimizedImage from "@/components/OptimizedImage";
+import UltraOptimizedPicture from "@/components/performance/UltraOptimizedPicture";
 
 interface EnLPHeroProps {
   headline: string;
@@ -23,6 +23,15 @@ const EnLPHero: React.FC<EnLPHeroProps> = ({
   whatsappNumber,
   whatsappMessage,
 }) => {
+  const deriveAvifPaths = (webpSrc: string) => {
+    const base = webpSrc.replace(/\.webp$/, '');
+    return {
+      mobile: `${base}-480.avif`,
+      desktop: `${base}-1024.avif`,
+    };
+  };
+  const avifPaths = backgroundImage ? deriveAvifPaths(backgroundImage) : null;
+
   const handleWhatsAppClick = async () => {
     if (window.dataLayer) {
       window.dataLayer.push({
@@ -108,13 +117,15 @@ const EnLPHero: React.FC<EnLPHeroProps> = ({
           <div className="order-1 lg:order-2 flex justify-center">
             <div className="relative w-full max-w-md lg:max-w-lg">
               <div className="absolute inset-0 bg-gradient-to-br from-dental-gold/20 to-dental-purple/10 rounded-2xl -rotate-3 scale-[1.03] blur-sm" />
-              <OptimizedImage
-                src={backgroundImage}
+              <UltraOptimizedPicture
+                src={backgroundImage || "/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"}
                 alt="Dr. Carla Christoph — Cosmetic Dentist in Ipanema, Rio de Janeiro"
-                className="relative rounded-2xl shadow-elegant w-full object-cover"
+                priority={true}
                 width={600}
                 height={750}
-                loading="eager"
+                mobileSrc={avifPaths?.mobile}
+                desktopSrc={avifPaths?.desktop}
+                className="relative rounded-2xl shadow-elegant w-full object-cover"
               />
             </div>
           </div>
