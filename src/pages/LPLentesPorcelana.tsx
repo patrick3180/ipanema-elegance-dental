@@ -1,10 +1,12 @@
 import React, { Suspense, useEffect } from 'react';
 import { Helmet } from "react-helmet-async";
 import { CheckCircle } from "lucide-react";
-import { sendGCLIDToWebhook, captureGCLID } from "@/utils/gclid";
+// Sprint 5: Removed captureGCLID import — already runs in boot (main.tsx)
+import { sendGCLIDToWebhook } from "@/utils/gclid";
 import { lentesPorcelanaAcolhedorConfig } from '@/config/lentesPorcelanaAcolhedorConfig';
 import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
 import LazySection from '@/components/performance/LazySection';
+import ContentfulBlocker from '@/components/performance/ContentfulBlocker';
 
 const ConsultaInicialProblem = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialProblem'));
 const ConsultaInicialGuide = React.lazy(() => import('@/components/landing/consulta/ConsultaInicialGuide'));
@@ -18,7 +20,7 @@ const config = lentesPorcelanaAcolhedorConfig;
 
 const LPLentesPorcelana = () => {
   useEffect(() => {
-    captureGCLID();
+    // Sprint 5: Removed captureGCLID() — already runs synchronously in boot (main.tsx)
     if (window.dataLayer) {
       window.dataLayer.push({
         event: 'page_view',
@@ -111,6 +113,9 @@ const LPLentesPorcelana = () => {
         messageMatch={config.messageMatch}
       />
 
+      {/* CONTENTFUL BLOCKER — Sprint 5 */}
+      <ContentfulBlocker />
+
       {/* SEÇÃO 1: HERO LANDING */}
       <section className="bg-gradient-to-b from-dental-beige/30 to-white py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4">
@@ -154,13 +159,24 @@ const LPLentesPorcelana = () => {
               </button>
             </div>
 
-            {/* Coluna Direita - Imagem */}
-            <div className="order-2">
-              <img
-                src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
-                alt="Dra. Carla Christoph - Especialista em Lentes de Porcelana"
-                className="rounded-2xl shadow-elegant object-cover w-full h-full"
-              />
+            {/* Coluna Direita — Imagem (Sprint 5: <picture> with AVIF to match preload + width/height for CLS) */}
+            <div className="order-2" style={{ aspectRatio: '3/4' }}>
+              <picture>
+                <source
+                  srcSet="/lovable-uploads/dra-carla-jaleco-bracos-cruzados-480.avif 480w, /lovable-uploads/dra-carla-jaleco-bracos-cruzados-768.avif 768w, /lovable-uploads/dra-carla-jaleco-bracos-cruzados-1024.avif 1024w"
+                  sizes="(max-width: 767px) 100vw, 50vw"
+                  type="image/avif"
+                />
+                <img
+                  src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+                  alt="Dra. Carla Christoph - Especialista em Lentes de Porcelana"
+                  className="rounded-2xl shadow-elegant object-cover w-full h-full"
+                  width="600"
+                  height="800"
+                  loading="eager"
+                  fetchPriority="high"
+                />
+              </picture>
             </div>
           </div>
         </div>
@@ -181,6 +197,8 @@ const LPLentesPorcelana = () => {
                   src="/lovable-uploads/Dentes manchados.webp"
                   alt="Dentes manchados que não respondem ao clareamento"
                   className="w-full h-full object-cover"
+                  width="400"
+                  height="300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent" />
 
@@ -203,6 +221,8 @@ const LPLentesPorcelana = () => {
                   src="/lovable-uploads/Diastema.webp"
                   alt="Harmonização de forma e alinhamento dental"
                   className="w-full h-full object-cover"
+                  width="400"
+                  height="300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent" />
 
@@ -225,6 +245,8 @@ const LPLentesPorcelana = () => {
                   src="/lovable-uploads/Dentes irregulares.webp"
                   alt="Correção de desgastes e fraturas dentais"
                   className="w-full h-full object-cover"
+                  width="400"
+                  height="300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dental-purple/90 via-dental-purple/50 to-transparent" />
 

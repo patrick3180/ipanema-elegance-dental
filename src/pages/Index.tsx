@@ -2,7 +2,8 @@ import React, { lazy, Suspense } from "react";
 import PageLayout from "@/components/PageLayout";
 import SEOHead from "@/components/SEOHead";
 import Hero from "@/components/Hero";
-import HomepageStatsBar from "@/components/HomepageStatsBar";
+// Sprint 5: HomepageStatsBar lazy-loaded — below hero fold on mobile
+const HomepageStatsBar = lazy(() => import("@/components/HomepageStatsBar"));
 import LazySection from "@/components/performance/LazySection";
 
 
@@ -154,8 +155,12 @@ const Index = () => {
         {/* 1. Hero — Eyebrow + H1 + Trust Badges + 2 CTAs + Photo */}
         <Hero />
 
-        {/* 2. Stats Bar — Prova social imediata */}
-        <HomepageStatsBar />
+        {/* 2. Stats Bar — Prova social imediata (Sprint 5: lazy — below hero fold on mobile) */}
+        <LazySection fallback={<div className="h-20 w-full bg-dental-beige/20" />} threshold={0} rootMargin="200px">
+          <Suspense fallback={<div className="h-20 w-full bg-dental-beige/20" />}>
+            <HomepageStatsBar />
+          </Suspense>
+        </LazySection>
 
         {/* 3. Sobre — Bio + foto + CTA */}
         <LazySection fallback={<div className="h-96 w-full bg-dental-beige/20 animate-pulse rounded-[20px]" />}>

@@ -1631,6 +1631,20 @@ function generatePage(routePath, meta, options = {}) {
       /<!-- Hero image preload responsivo \(LCP element\) -->\s*<link rel="preload" as="image" type="image\/avif"[\s\S]*?\/>/,
       ''
     );
+  } else {
+    // Sprint 5: Home page — inject custom preload matching Hero.tsx <picture> sizes
+    // Home hero files use 560w/800w/840w pattern (NOT the 480/1024 pattern of LPs)
+    const homePreload = `<!-- Hero image preload responsivo (LCP element) -->
+  <link rel="preload" as="image" type="image/avif"
+    imagesrcset="/lovable-uploads/hero-560w.avif 560w, /lovable-uploads/hero-800w.avif 800w, /lovable-uploads/hero-840w.avif 840w"
+    imagesizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px" fetchpriority="high" />`;
+    // Try to replace existing preload first, otherwise inject before </head>
+    const preloadRegex = /<!-- Hero image preload responsivo \(LCP element\) -->\s*<link rel="preload" as="image" type="image\/avif"[\s\S]*?\/>/;
+    if (preloadRegex.test(html)) {
+      html = html.replace(preloadRegex, homePreload);
+    } else {
+      html = html.replace('</head>', homePreload + '\n</head>');
+    }
   }
 
   // Replace title
