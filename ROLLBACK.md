@@ -91,3 +91,44 @@ Antes de fazer alterações futuras, você pode rodar o build e a geração est�
    cmd /c node scripts/generate-static-meta.cjs
    ```
 3. Verificar a pasta `/dist` para se certificar de que os arquivos foram gerados corretamente.
+
+---
+
+## 🆕 Sprint 3 — Fix do CLS 0.408 nas Landing Pages (02/Jun/2026)
+
+### O que foi feito
+- **Arquivo modificado:** `scripts/generate-static-meta.cjs`
+- **Função alterada:** `generateLPFallbackHTML()` — reescrita para produzir HTML estático que espelha visualmente o layout React
+- **Commit:** `815f18e` (fix(sprint3): rewrite LP fallback HTML to match React layout)
+- **Commit estável anterior (pré-Sprint 3):** `fe70177`
+
+### Problema resolvido
+O fallback HTML injetado no `<div id="root">` das LPs tinha layout completamente diferente do React:
+- **Antes:** Header simples com `border-bottom` + `<main max-width:800px>` → quando React hidratava e substituía, tudo mudava de posição → **CLS ~0.408**
+- **Depois:** Header com `position:fixed; top:0; z-index:50` + Hero com `min-height:100vh; padding-top:90px; background:#FAF7F2` → mesmas dimensões do React → **CLS ~0**
+
+### Como fazer rollback CIRÚRGICO (apenas Sprint 3)
+Dentro de `scripts/generate-static-meta.cjs`:
+1. Localize a função `generateLPFallbackHTML_ORIGINAL_PRE_SPRINT3` (preservada no arquivo)
+2. Renomeie-a para `generateLPFallbackHTML`
+3. Delete a nova função `generateLPFallbackHTML` (a que tem o comentário "SPRINT 3")
+4. Commit e push
+
+### Como fazer rollback COMPLETO (Sprint 1 + 2 + 3)
+```bash
+git checkout -b backup-sprint3-2026
+git checkout main
+git reset --hard c18c002b6f6e453c04a5fa8b1a4747f739605896
+git push origin main --force
+```
+
+### Histórico de commits (mais recente primeiro)
+| Hash | Sprint | Descrição |
+|---|---|---|
+| `815f18e` | **Sprint 3** | Reescrita do fallback HTML das LPs para match com React layout |
+| `fe70177` | Sprint 2 | Revert chunk split + restaurar ContentfulBlocker |
+| `371c48f` | Sprint 2 | Revert CSS inline (external file causava CLS) |
+| `a53c3ef` | Sprint 2 | Boot cleanup, chunk split, lazy UI, dedup GCLID |
+| `2b64f61` | Sprint 1 | Static LCP heroes, lazy hydration, manualChunks |
+| `c18c002` | — | **Estado estável pré-performance** (rollback seguro) |
+
