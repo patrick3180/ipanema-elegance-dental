@@ -18,6 +18,16 @@ const FloatingWhatsApp = React.lazy(() => import('@/components/landing/FloatingW
 
 const config = lentesPorcelanaAcolhedorConfig;
 
+// Sprint 6: Inline critical CSS to stabilize hero layout and prevent CLS
+const criticalStyles = `
+  .header-fixed{position:fixed;top:0;left:0;right:0;z-index:50;background:#fff;box-shadow:0 1px 3px 0 rgba(0,0,0,.1)}
+  .lp-lentes-hero{padding-top:calc(72px + 4rem);padding-bottom:5rem;background:linear-gradient(to bottom,rgba(207,203,180,0.3),#fff)}
+  .lp-lentes-hero .hero-grid{display:grid;grid-template-columns:1fr;gap:2rem;max-width:80rem;margin:0 auto;padding:0 1rem;align-items:center}
+  @media(min-width:768px){.lp-lentes-hero .hero-grid{grid-template-columns:1fr 1fr;gap:3rem}}
+  .lp-lentes-hero .hero-image{aspect-ratio:3/4;border-radius:1rem;overflow:hidden}
+  .lp-lentes-hero .hero-image img{width:100%;height:100%;object-fit:cover}
+`;
+
 const LPLentesPorcelana = () => {
   useEffect(() => {
     // Sprint 5: Removed captureGCLID() — already runs synchronously in boot (main.tsx)
@@ -104,6 +114,9 @@ const LPLentesPorcelana = () => {
             "procedureType": "Dental Cosmetic Procedure"
           })}
         </script>
+
+        {/* Sprint 6: Critical CSS for hero layout stabilization (prevents CLS) */}
+        <style>{criticalStyles}</style>
       </Helmet>
 
       <ConsultaInicialHeader
@@ -116,10 +129,10 @@ const LPLentesPorcelana = () => {
       {/* CONTENTFUL BLOCKER — Sprint 5 */}
       <ContentfulBlocker />
 
-      {/* SEÇÃO 1: HERO LANDING */}
-      <section className="bg-gradient-to-b from-dental-beige/30 to-white py-16 md:py-20">
+      {/* SEÇÃO 1: HERO LANDING (Sprint 6: paddingTop compensates fixed header) */}
+      <section className="lp-lentes-hero">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div className="hero-grid">
             {/* Coluna Esquerda - Texto */}
             <div className="order-1">
               <h1 className="text-4xl md:text-5xl font-display font-bold text-dental-purple mb-4">
@@ -160,7 +173,7 @@ const LPLentesPorcelana = () => {
             </div>
 
             {/* Coluna Direita — Imagem (Sprint 5: <picture> with AVIF to match preload + width/height for CLS) */}
-            <div className="order-2" style={{ aspectRatio: '3/4' }}>
+            <div className="order-2 hero-image">
               <picture>
                 <source
                   srcSet="/lovable-uploads/dra-carla-jaleco-bracos-cruzados-480.avif 480w, /lovable-uploads/dra-carla-jaleco-bracos-cruzados-768.avif 768w, /lovable-uploads/dra-carla-jaleco-bracos-cruzados-1024.avif 1024w"
