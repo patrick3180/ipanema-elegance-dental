@@ -15,7 +15,7 @@
 
 **Site:** https://dracarlachristoph.com
 **Consultório:** Dra. Carla Christoph — Dentista Especialista em Ipanema
-**Última atualização:** Maio 2026
+**Última atualização:** Junho 2026 (Sprint 4 — Performance)
 **Propósito:** Documento único e autoritativo para qualquer agente que trabalhe neste projeto. Leia inteiro antes de qualquer ação.
 
 ---
@@ -365,8 +365,9 @@ api/
 - **noindex, nofollow** obrigatório
 - Headline = message match com keyword do Google Ads
 - Sem navegação do site (LP é isolada)
-- `captureGCLID()` no `useEffect`
+- `captureGCLID()` roda no boot (`main.tsx`) — **NÃO** duplicar no `useEffect` da LP (ver Seção 10.2)
 - Cada CTA chama `sendGCLIDToWebhook()` com label único
+- Header + Hero como **import estático** (eager) — ver Seção 10.2 para padrão completo
 
 ---
 
@@ -452,24 +453,139 @@ Upload manual ao Google Ads (cada 15 dias)
 
 ---
 
-## 10. Performance — Estado Atual
+## 10. Performance — Sprints de Otimização (Jun/2026)
 
-### Implementado ✅
-- Fontes self-hosted WOFF2 + `font-display: swap`
-- Imagens WebP + lazy loading (`OptimizedImage`, `UltraOptimizedPicture`)
-- `React.lazy()` + `Suspense` em todas as pages
-- `ContentfulBlockerForNonBlogPages` — evita chamadas desnecessárias
-- Async CSS plugin (non-blocking em produção)
-- Terser ultra-agressivo (3 passes, drop_console)
-- Manual chunks otimizados no Vite (LCP-first)
+### 10.1 Estado Atual (pós-Sprint 4 — 02/Jun/2026)
 
-### Problemas Conhecidos ⚠️
-| Problema | Impacto | Status |
-|----------|---------|--------|
-| FCP 3.1s / LCP 3.6s homepage mobile | Core Web Vitals | ⚠️ Não resolvido |
-| Blog posts sem HTML estático nativo | SEO | ⚠️ Mitigado com script |
-| Sitemap com dependência runtime Contentful | Confiabilidade | ⚠️ Fallback implementado |
-| iOS converte 2.4x mais que Android | UX mobile | ⚠️ Investigar |
+**Score médio mobile PSI:** ~91 (excluindo anomalias API)
+**CLS:** Eliminado (máximo 0.042 em qualquer página)
+
+| Métrica | Pré-Sprints | Pós-Sprint 4 |
+|---|---|---|
+| Score médio mobile | ~65-75 | **~91** |
+| CLS máximo | 0.418 | **0.042** |
+| Páginas ≥ 90 | 0-2 | **13-15/19** |
+| LCP médio LPs | 4.0-5.0s | **2.6-3.0s** |
+| TBT médio LPs | 500-1800ms | **100-200ms** |
+
+### 10.2 Arquitetura de Performance das Landing Pages
+
+> ⚠️ **PADRÃO OBRIGATÓRIO para qualquer nova LP ou edição de LP existente.**
+
+Todas as LPs otimizadas seguem este padrão. Não desviar.
+
+```typescript
+// ═══ IMPORTS OBRIGATÓRIOS (EAGER — acima-da-dobra) ═══
+import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
+import ConsultaInicialHero from '@/components/landing/consulta/ConsultaInicialHero';
+import LazySection from '@/components/performance/LazySection';
+import ContentfulBlocker from '@/components/performance/ContentfulBlocker';
+const ErrorBoundary = lazy(() => import('@/components/performance/ErrorBoundary'));
+
+// ═══ IMPORTS OBRIGATÓRIOS (LAZY — abaixo-da-dobra) ═══
+const ConsultaInicialProblem = lazy(() => import('...'));
+const ConsultaInicialGuide = lazy(() => import('...'));
+// ... todos os demais componentes
+
+// ═══ CRITICAL CSS INLINE (obrigatório) ═══
+const criticalStyles = `
+  .hero-section{min-height:100vh;display:flex;align-items:center;background:#FAF7F2;padding-top:90px;...}
+  .header-fixed{position:fixed;top:0;left:0;right:0;z-index:50;...}
+  ...
+`;
+// Injetado via <Helmet><style>{criticalStyles}</style></Helmet>
+```
+
+**Regras:**
+| ✅ FAZER | ❌ NÃO FAZER |
+|---|---|
+| Header + Hero como `import` estático | ~~Header/Hero como `lazy()`~~ |
+| `ErrorBoundary` como `lazy()` | ~~ErrorBoundary como `import` estático~~ |
+| `ContentfulBlocker` em toda LP | ~~Omitir ContentfulBlocker~~ |
+| `criticalStyles` inline via Helmet | ~~Depender do CSS bundle para hero styling~~ |
+| Below-fold em `<LazySection>` + `<Suspense>` | ~~Componentes below-fold como import estático~~ |
+| Fallback simples `<div className="h-96" />` | ~~Skeleton components como lazy imports~~ |
+| GCLID capturado no boot (`main.tsx`) | ~~`captureGCLID()` dentro de `useEffect`~~ |
+| GTM via `index.html` global | ~~GTM duplicado em `<Helmet>` ou via componente~~ |
+| Fontes self-hosted via `@fontsource` | ~~Google Fonts via `<link>` no Helmet~~ |
+
+**Componentes PROIBIDOS em LPs** (causam TBT desnecessário):
+- ~~`SimpleLCPOptimizer`~~ — removido no Sprint 2/4
+- ~~`CoreWebVitalsOptimizer`~~ — removido no Sprint 2/4
+- ~~`useCriticalImagePreload`~~ — substituído por preload estático no build
+- ~~`SmartContentfulCache`~~ — substituído por `ContentfulBlocker`
+- ~~`CriticalCSSInline`~~ — substituído por `criticalStyles` inline
+
+### 10.3 Fallback HTML Estático (`generate-static-meta.cjs`)
+
+O script `scripts/generate-static-meta.cjs` injeta HTML estático no `<div id="root">` para:
+1. Dar conteúdo semântico para crawlers (AI bots, Google QS bot)
+2. Melhorar FCP/LCP com conteúdo pré-renderizado
+3. Prover preload da hero image via `<link rel="preload">` no `<head>`
+
+**CLS Fix (Sprint 3):** O fallback HTML acima-da-dobra deve espelhar o layout React:
+- Header: `position:fixed; top:0; z-index:50; background:#fff; box-shadow`
+- Hero: `min-height:100vh; padding-top:90px; background:#FAF7F2`
+- CTA: `background:#381F47` (mesmo do React)
+- Imagem: mesmas dimensões e border-radius
+
+A função original está preservada como `generateLPFallbackHTML_ORIGINAL_PRE_SPRINT3` para rollback.
+
+### 10.4 Histórico de Sprints
+
+#### Sprint 1 (01/Jun/2026)
+- Commit: `2b64f61`
+- **O que:** Static LCP heroes via `generate-static-meta.cjs`, lazy hydration abaixo-da-dobra na Home, `manualChunks` splitting no Vite, gating do `gptengineer.js` para dev
+- **Resultado:** Score mobile da Home de ~65 para ~85
+
+#### Sprint 2 (01/Jun/2026)
+- Commits: `a53c3ef`, `371c48f`, `fe70177`
+- **O que:** Boot cleanup (dedup GCLID, lazy ErrorBoundary), chunk splitting, extract critical CSS, remoção de runtime optimizers das LPs (Prótese, Lentes, Ortodontia)
+- **Revert:** CSS externo causou CLS 0.418 → revertido para inline. Chunk split separado (react-core/helmet) causou gap de hidratação → revertido para `landing-critical` monolítico
+- **Resultado:** 7/19 páginas acima de 90
+
+#### Sprint 3 (02/Jun/2026)
+- Commit: `815f18e`
+- **O que:** Reescrita de `generateLPFallbackHTML()` para espelhar layout React (header fixo + hero full-viewport). Eliminação total do CLS 0.408 intermitente
+- **Causa-raiz:** O fallback HTML tinha layout `<header border-bottom>` + `<main max-width:800px>`, mas React renderizava `<header position:fixed>` + `<section min-height:100vh>`. Na hidratação, tudo mudava de posição
+- **Resultado:** CLS → 0 em todas as LPs. 12/19 páginas acima de 90
+
+#### Sprint 4 (02/Jun/2026)
+- Commit: `261e6eb`
+- **O que:** Otimização de 5 LPs que não haviam passado pelos sprints anteriores
+  - **Estética Dental** (73→97): Header/Hero de lazy para eager, removidos SimpleLCPOptimizer + CoreWebVitalsOptimizer + useCriticalImagePreload + 4 skeleton imports, adicionados criticalStyles + ContentfulBlocker
+  - **Saúde Gengival** (76→95): Mesmo padrão + removido GTM duplicado do Helmet
+  - **Limpeza Dental** (82→95*): Removido captureGCLID duplicado, ErrorBoundary lazy, Google Fonts removido
+  - **Implantes** (81→91): Mesmo padrão da Limpeza
+  - **Consulta Inicial** (88→94*): Google Fonts removido do Helmet
+- **Resultado:** 13-15/19 páginas acima de 90 (variação CDN nos scores restantes)
+
+*\* Scores com variância de CDN — em runs favoráveis atingem 94-96*
+
+### 10.5 Rollback
+
+Documentação completa em [ROLLBACK.md](ROLLBACK.md).
+
+| Hash | Sprint | Descrição |
+|---|---|---|
+| `261e6eb` | **Sprint 4** | Otimização 5 LPs (eager Header/Hero, remoção runtime optimizers) |
+| `c9cf6b0` | Sprint 3 docs | ROLLBACK.md atualizado |
+| `815f18e` | **Sprint 3** | Reescrita do fallback HTML das LPs (CLS fix) |
+| `fe70177` | Sprint 2 | Revert chunk split + restaurar ContentfulBlocker |
+| `371c48f` | Sprint 2 | Revert CSS externo (causava CLS) |
+| `a53c3ef` | Sprint 2 | Boot cleanup, chunk split, lazy UI, dedup GCLID |
+| `2b64f61` | Sprint 1 | Static LCP heroes, lazy hydration, manualChunks |
+| `c18c002` | — | **Estado estável pré-performance** (rollback seguro total) |
+
+**Rollback cirúrgico Sprint 3 (CLS fix):** Dentro de `generate-static-meta.cjs`, renomear `generateLPFallbackHTML_ORIGINAL_PRE_SPRINT3` de volta para `generateLPFallbackHTML`.
+
+**Rollback completo:** `git reset --hard c18c002 && git push origin main --force`
+
+### 10.6 Variância de CDN (Vercel)
+
+Scores PSI variam entre rodadas devido a cold starts do CDN Vercel. Páginas que atingem 94-97 numa rodada podem cair para 80-82 na seguinte (LCP 3.7-4.0s vs 2.0-2.7s). Isto NÃO é problema de código — é variância do servidor.
+
+Páginas mais afetadas: Consulta Inicial, Limpeza Dental, Facetas, EN Emergency.
 
 ---
 
@@ -496,6 +612,12 @@ Estas decisões já foram tomadas e aprovadas:
 | Conversion ID único = `AW-16894364517/OQZvCMXV0foZEOqP7vY9` | IDs customizados (`/LP_limpeza_*`) não existem no Google Ads → não contavam (Auditoria Maio/2026) |
 | English LPs capturam GCLID + tracking completo | Validado via grep — auditor anterior se enganou ao reportar gap (Maio/2026) |
 | AI Max — Final URL expansion OFF na Clínica Geral | Estava redirecionando tráfego paid para `/` (homepage), bypassando as 4 LPs corretas dos ad groups (Maio/2026) |
+| LP Header/Hero = **import estático** (eager) | Sprint 4: lazy loading de above-the-fold causa LCP 7.6s (Jun/2026) |
+| ErrorBoundary = **lazy** em LPs | Sprint 4: ~3KB economizados do critical path, crash resilience mantida (Jun/2026) |
+| `captureGCLID()` somente no boot | Sprint 2/4: duplicatas no useEffect de LPs causavam TBT extra (Jun/2026) |
+| Sem Google Fonts via Helmet | Sprint 4: fontes são self-hosted via @fontsource; link externo era request desnecessário (Jun/2026) |
+| Sem SimpleLCPOptimizer/CoreWebVitalsOptimizer | Sprint 2/4: runtime overhead sem benefício real — preloading agora é estático (Jun/2026) |
+| Fallback HTML espelha layout React | Sprint 3: layout diferente causava CLS 0.408 na hidratação (Jun/2026) |
 
 ---
 
