@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { captureGCLID } from '@/utils/gclid';
+// Sprint 4: Removed captureGCLID import — already runs in boot (main.tsx)
 import { implantesDentariosConfig } from '@/config/implantesDentariosConfig';
 import { GTMManager } from '@/components/performance/GTMManager';
 import useScrollTracking from '@/hooks/useScrollTracking';
@@ -8,7 +8,8 @@ import useScrollTracking from '@/hooks/useScrollTracking';
 // Performance Components (critical path only)
 import LazySection from '@/components/performance/LazySection';
 import ContentfulBlocker from '@/components/performance/ContentfulBlocker';
-import ErrorBoundary from '@/components/performance/ErrorBoundary';
+// Sprint 4: ErrorBoundary lazy-loaded (saves ~3KB from critical path)
+const ErrorBoundary = lazy(() => import('@/components/performance/ErrorBoundary'));
 
 // Critical above-the-fold components (eager loading)
 import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';
@@ -49,8 +50,7 @@ const ImplantesDentariosLandingPage: React.FC = () => {
   const pageConfig = implantesDentariosConfig;
 
   useEffect(() => {
-    // Capture GCLID for conversion tracking
-    captureGCLID();
+    // Sprint 4: Removed captureGCLID() — already runs synchronously in boot (main.tsx)
 
     // Push page_view event
     if (typeof window !== 'undefined') {
@@ -88,18 +88,8 @@ const ImplantesDentariosLandingPage: React.FC = () => {
         <meta name="robots" content="noindex, nofollow" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-        {/* Critical Resource Preloads */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        {/* Sprint 4: Removed Google Fonts preconnect + stylesheet — fonts are self-hosted via @fontsource */}
         <link rel="dns-prefetch" href="//api.whatsapp.com" />
-
-        {/* Optimized font loading - load asynchronously */}
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-          media="print"
-          onLoad={(e: any) => { e.target.media = 'all'; }}
-        />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
