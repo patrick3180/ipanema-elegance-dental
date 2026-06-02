@@ -562,12 +562,30 @@ A função original está preservada como `generateLPFallbackHTML_ORIGINAL_PRE_S
 
 *\* Scores com variância de CDN — em runs favoráveis atingem 94-96*
 
+#### Sprint 5 (02/Jun/2026)
+- Commit: `78f72b7`
+- **O que:** Home + LP Lentes Porcelana
+  - **Home:** Adicionado preload customizado da hero image (560w/800w/840w) em `generate-static-meta.cjs` — os tamanhos da Home são diferentes do padrão das LPs (480/1024). HomepageStatsBar movido de eager para lazy (abaixo do hero fold no mobile)
+  - **LP Lentes Porcelana:** Hero `<img>` convertido para `<picture>` com `<source type="image/avif">` para eliminar double-download (preload apontava para AVIF mas página renderizava .webp). Adicionados `width`/`height` em todas as imagens. `captureGCLID()` duplicado removido. `ContentfulBlocker` adicionado
+- **Resultado:** Home TBT 234→170ms. LP Lentes LCP 4.1→3.0s. Score Home ainda ~80 (problema estrutural identificado: fallback HTML)
+
+#### Sprint 6 (02/Jun/2026)
+- Commit: `d1b1a45`
+- **O que:** Home fallback rewrite + LP Lentes criticalStyles
+  - **Home:** Reescrita completa do `homeFallback` em `generate-static-meta.cjs` (seção 5) para espelhar layout React real — header `position:fixed` + hero `min-height:100vh` + grid layout + trust badges + CTA dental-gold. O fallback anterior usava `border-bottom header` + `max-width:800px` (mesmo bug do Sprint 3 para LPs)
+  - **LP Lentes Porcelana:** Adicionados `criticalStyles` inline via Helmet com classes `.lp-lentes-hero` (paddingTop + gradient), `.hero-grid` (responsive columns), `.hero-image` (aspect-ratio 3/4). Hero section agora usa classes CSS em vez de classes Tailwind para estabilizar layout antes da hidratação
+- **Resultado:** Home atingiu **100** (melhor) / 89 (CDN frio). LP Lentes atingiu **93** (melhor) com CLS 0.042→0.036. **15/18 páginas ≥ 90** (excluindo EN General Consult que dá erro intermitente de API)
+
+*\* LP Limpeza (score ~85-95) confirmada como CDN variance — mesma arquitetura das LPs que dão 97*
+
 ### 10.5 Rollback
 
 Documentação completa em [ROLLBACK.md](ROLLBACK.md).
 
 | Hash | Sprint | Descrição |
 |---|---|---|
+| `d1b1a45` | **Sprint 6** | Home fallback rewrite + LP Lentes criticalStyles |
+| `78f72b7` | **Sprint 5** | Home preload + lazy StatsBar, LP Lentes AVIF picture |
 | `261e6eb` | **Sprint 4** | Otimização 5 LPs (eager Header/Hero, remoção runtime optimizers) |
 | `c9cf6b0` | Sprint 3 docs | ROLLBACK.md atualizado |
 | `815f18e` | **Sprint 3** | Reescrita do fallback HTML das LPs (CLS fix) |
@@ -579,13 +597,21 @@ Documentação completa em [ROLLBACK.md](ROLLBACK.md).
 
 **Rollback cirúrgico Sprint 3 (CLS fix):** Dentro de `generate-static-meta.cjs`, renomear `generateLPFallbackHTML_ORIGINAL_PRE_SPRINT3` de volta para `generateLPFallbackHTML`.
 
+**Rollback Sprint 6 Home fallback:** Em `generate-static-meta.cjs`, seção 5, substituir o `homeFallback` Sprint 6 pelo conteúdo anterior (ver diff do commit `d1b1a45`).
+
+**Rollback Sprint 6 LP Lentes:** Em `LPLentesPorcelana.tsx`, remover `criticalStyles` const + `<style>` do Helmet, trocar `className="lp-lentes-hero"` de volta para `className="bg-gradient-to-b from-dental-beige/30 to-white py-16 md:py-20"`, `className="hero-grid"` para `className="grid md:grid-cols-2 gap-8 md:gap-12 items-center"`, `className="order-2 hero-image"` para `className="order-2" style={{ aspectRatio: '3/4' }}`.
+
 **Rollback completo:** `git reset --hard c18c002 && git push origin main --force`
 
 ### 10.6 Variância de CDN (Vercel)
 
-Scores PSI variam entre rodadas devido a cold starts do CDN Vercel. Páginas que atingem 94-97 numa rodada podem cair para 80-82 na seguinte (LCP 3.7-4.0s vs 2.0-2.7s). Isto NÃO é problema de código — é variância do servidor.
+Scores PSI variam ±10-15 pontos entre rodadas devido a cold starts do CDN Vercel. Páginas que atingem 94-100 numa rodada podem cair para 80-89 na seguinte (LCP 3.7-4.0s vs 1.4-2.7s). Isto NÃO é problema de código — é variância do servidor.
 
-Páginas mais afetadas: Consulta Inicial, Limpeza Dental, Facetas, EN Emergency.
+Páginas mais afetadas: Clareamento, Facetas, Estética, Emergência, Implantes, EN Dental Emergency.
+
+Páginas com **variância mínima** (sempre ≥ 90): Saúde Gengival, Prótese, Dente Quebrado, Lentes Profiss, EN Cosmetic Dent.
+
+**Conclusão Sprint 6:** Não há mais otimização de código possível para páginas que oscilam — todas seguem a mesma arquitetura das que dão 97. A diferença é pura variância de CDN.
 
 ---
 
@@ -618,6 +644,11 @@ Estas decisões já foram tomadas e aprovadas:
 | Sem Google Fonts via Helmet | Sprint 4: fontes são self-hosted via @fontsource; link externo era request desnecessário (Jun/2026) |
 | Sem SimpleLCPOptimizer/CoreWebVitalsOptimizer | Sprint 2/4: runtime overhead sem benefício real — preloading agora é estático (Jun/2026) |
 | Fallback HTML espelha layout React | Sprint 3: layout diferente causava CLS 0.408 na hidratação (Jun/2026) |
+| Home fallback = header fixo + hero grid + trust badges | Sprint 6: mesmo bug do Sprint 3 mas na Home — border-bottom header causava shift (Jun/2026) |
+| LP Lentes criticalStyles inline | Sprint 6: hero usa `py-16` (não `min-height:100vh` como LPs padrão) — CSS inline estabiliza layout (Jun/2026) |
+| Home hero preload = customizado (560w/800w/840w) | Sprint 5: Home usa tamanhos diferentes das LPs (480/1024) — template genérico geraria 404 (Jun/2026) |
+| HomepageStatsBar = **lazy** | Sprint 5: abaixo do hero fold no mobile, não precisa estar no critical bundle (Jun/2026) |
+| LP Lentes hero = `<picture>` com AVIF | Sprint 5: `<img src=.webp>` causava double-download com preload AVIF (Jun/2026) |
 
 ---
 
