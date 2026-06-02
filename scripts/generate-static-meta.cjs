@@ -153,10 +153,28 @@ function generateInfoFallbackHTML(data) {
     </footer>`;
 }
 
-// Landing-page fallback: rich semantic HTML mirroring the React LP body.
-// Content is sourced from landingPageContent (mirror of src/config/*Config.ts).
-// Crawler/QS bot reads this when JS is disabled; React hydrates over it for real users.
-function generateLPFallbackHTML(c, lang) {
+// ────────────────────────────────────────────────────────────────
+// SPRINT 3 — CLS FIX: Rewritten LP fallback to match React layout
+// ────────────────────────────────────────────────────────────────
+// PROBLEM: The old fallback used a simple <header border-bottom> + <main max-width:800px>
+// layout, but React renders a <header position:fixed> + <section min-height:100vh> layout.
+// When React hydrated and replaced the fallback, everything shifted → CLS ~0.408.
+//
+// FIX: The new fallback mirrors the React ConsultaInicial template's CSS:
+// - Header: position:fixed, top:0, z-index:50, white background, shadow
+// - Hero: min-height:100vh, padding-top:90px, background:#FAF7F2
+// - Image: same aspect-ratio and max-width as React
+// - CTA button: same colors (#381F47) and sizing as React
+//
+// ROLLBACK: To revert, rename generateLPFallbackHTML_ORIGINAL_PRE_SPRINT3
+//           back to generateLPFallbackHTML and delete the new version.
+// ────────────────────────────────────────────────────────────────
+
+/**
+ * PRESERVED FOR ROLLBACK — Original function before Sprint 3 CLS fix.
+ * To rollback: rename this to generateLPFallbackHTML, delete the new one.
+ */
+function generateLPFallbackHTML_ORIGINAL_PRE_SPRINT3(c, lang) {
   const isEn = lang === 'en';
   const L = {
     treatments: isEn ? 'Treatments' : 'Tratamentos',
@@ -174,11 +192,9 @@ function generateLPFallbackHTML(c, lang) {
     aboutLink: isEn ? '/en/about' : '/sobre',
     contactLink: isEn ? '/en/contact' : '/contato',
   };
-
   const waNumber = c.whatsappNumber || '5521993304045';
   const waMsg = encodeURIComponent(c.whatsappMessage || '');
   const waHref = 'https://wa.me/' + waNumber + (waMsg ? '?text=' + waMsg : '');
-
   const benefitsHtml = (c.benefits || []).map(b => '<li>' + escapeHtml(b) + '</li>').join('\n          ');
   const problemsHtml = (c.problems || []).map(p => '<li>' + escapeHtml(p) + '</li>').join('\n          ');
   const stepsHtml = (c.steps || []).map(s =>
@@ -190,16 +206,11 @@ function generateLPFallbackHTML(c, lang) {
   const faqsHtml = (c.faqs || []).map(f =>
     '<dt>' + escapeHtml(f.q) + '</dt><dd>' + escapeHtml(f.a) + '</dd>'
   ).join('\n          ');
-
   const deriveAvifPaths = (webpSrc) => {
     if (!webpSrc) return null;
     const base = webpSrc.replace(/\.webp$/, '');
-    return {
-      mobile: `${base}-480.avif`,
-      desktop: `${base}-1024.avif`,
-    };
+    return { mobile: `${base}-480.avif`, desktop: `${base}-1024.avif` };
   };
-
   const avifPaths = c.backgroundImage ? deriveAvifPaths(c.backgroundImage) : null;
   let heroImageHtml = '';
   if (c.backgroundImage) {
@@ -218,9 +229,7 @@ function generateLPFallbackHTML(c, lang) {
       </div>`;
     }
   }
-
   const ctaButtonText = c.ctaText || (isEn ? 'Book via WhatsApp' : 'Agendar pelo WhatsApp');
-
   return `<header style="padding:16px 0;border-bottom:1px solid #eee">
       <nav>
         <a href="${L.homeLink}" style="font-weight:bold;color:#553c6b;text-decoration:none">Dra. Carla Christoph</a> |
@@ -234,35 +243,132 @@ function generateLPFallbackHTML(c, lang) {
       <p>${escapeHtml(c.subhead)}</p>
       ${heroImageHtml}
       <p><a href="${waHref}" style="display:inline-block;padding:12px 24px;background:#25D366;color:#fff;text-decoration:none;border-radius:6px;font-weight:600">${escapeHtml(ctaButtonText)}</a></p>
+      ${benefitsHtml ? `<section><h2>${L.benefits}</h2><ul>${benefitsHtml}</ul></section>` : ''}
+      ${problemsHtml ? `<section><h2>${escapeHtml(c.problemTitle || (isEn ? 'Common situations' : 'Situa&ccedil;&otilde;es comuns'))}</h2><ul>${problemsHtml}</ul></section>` : ''}
+      ${stepsHtml ? `<section><h2>${escapeHtml(c.guideTitle || L.howItWorks)}</h2><ol>${stepsHtml}</ol></section>` : ''}
+      ${testimonialsHtml ? `<section><h2>${escapeHtml(c.testimonialsTitle || L.testimonials)}</h2>${testimonialsHtml}</section>` : ''}
+      ${faqsHtml ? `<section><h2>${escapeHtml(c.faqTitle || L.faq)}</h2><dl>${faqsHtml}</dl></section>` : ''}
+      <section>
+        <h2>${escapeHtml(c.ctaTitle || (isEn ? 'Ready to book?' : 'Pronto para agendar?'))}</h2>
+        ${c.ctaSubtitle ? '<p>' + escapeHtml(c.ctaSubtitle) + '</p>' : ''}
+        <p><a href="${waHref}" style="display:inline-block;padding:12px 24px;background:#25D366;color:#fff;text-decoration:none;border-radius:6px;font-weight:600">${escapeHtml(ctaButtonText)}</a></p>
+      </section>
+    </main>
+    <footer style="padding:24px 16px;border-top:1px solid #eee;text-align:center;color:#666;font-size:0.9em">
+      <p><strong>Dra. Carla Christoph</strong> &mdash; CRO-RJ 27.509</p>
+      <p>${L.addr}</p>
+      <p>Tel: (21) 99330-4045 | <a href="${waHref}">${L.whatsApp}</a></p>
+      <p>${L.hours}</p>
+    </footer>`;
+}
 
-      ${benefitsHtml ? `<section>
-        <h2>${L.benefits}</h2>
-        <ul>
-          ${benefitsHtml}
-        </ul>
-      </section>` : ''}
-      ${problemsHtml ? `<section>
-        <h2>${escapeHtml(c.problemTitle || (isEn ? 'Common situations' : 'Situa&ccedil;&otilde;es comuns'))}</h2>
-        <ul>
-          ${problemsHtml}
-        </ul>
-      </section>` : ''}
-      ${stepsHtml ? `<section>
-        <h2>${escapeHtml(c.guideTitle || L.howItWorks)}</h2>
-        <ol>
-          ${stepsHtml}
-        </ol>
-      </section>` : ''}
-      ${testimonialsHtml ? `<section>
-        <h2>${escapeHtml(c.testimonialsTitle || L.testimonials)}</h2>
-        ${testimonialsHtml}
-      </section>` : ''}
-      ${faqsHtml ? `<section>
-        <h2>${escapeHtml(c.faqTitle || L.faq)}</h2>
-        <dl>
-          ${faqsHtml}
-        </dl>
-      </section>` : ''}
+/**
+ * SPRINT 3 — CLS-safe LP fallback HTML.
+ *
+ * Mirrors the React ConsultaInicial template layout to prevent CLS when
+ * React hydrates and replaces this content. The above-the-fold section
+ * (header + hero) uses the SAME CSS properties as the React components:
+ * - ConsultaInicialHeader: position:fixed, white bg, shadow, z-50
+ * - ConsultaInicialHero: min-height:100vh, padding-top:90px, bg:#FAF7F2
+ *
+ * Below-the-fold content stays semantic (simple HTML) since it's outside
+ * the viewport at initial paint and doesn't contribute to CLS.
+ */
+function generateLPFallbackHTML(c, lang) {
+  const isEn = lang === 'en';
+  const L = {
+    benefits: isEn ? 'Benefits' : 'Benefícios',
+    howItWorks: isEn ? 'How it works' : 'Como funciona',
+    testimonials: isEn ? 'Patient stories' : 'Pacientes contam',
+    faq: isEn ? 'Frequently Asked Questions' : 'Perguntas Frequentes',
+    hours: isEn ? 'Mon&ndash;Fri 9 AM&ndash;7 PM &bull; Sat 9 AM&ndash;2 PM' : 'Seg&ndash;Sex 9h&ndash;19h &bull; S&aacute;b 9h&ndash;14h',
+    addr: isEn ? 'Rua Visconde de Piraj&aacute; 550, Suite 1107, Ipanema, Rio de Janeiro' : 'Rua Visconde de Piraj&aacute;, 550 - Sala 1107, Ipanema, Rio de Janeiro',
+    whatsApp: isEn ? 'WhatsApp 24h' : 'WhatsApp 24h',
+    privateLabel: isEn ? 'Private Care' : 'Atendimento Particular',
+    location: 'Ipanema',
+  };
+
+  const waNumber = c.whatsappNumber || '5521993304045';
+  const waMsg = encodeURIComponent(c.whatsappMessage || '');
+  const waHref = 'https://wa.me/' + waNumber + (waMsg ? '?text=' + waMsg : '');
+  const ctaButtonText = c.ctaText || (isEn ? 'Book via WhatsApp' : 'Agendar pelo WhatsApp');
+
+  // ── Hero image (same dimensions/aspect as React UltraOptimizedPicture) ──
+  const deriveAvifPaths = (webpSrc) => {
+    if (!webpSrc) return null;
+    const base = webpSrc.replace(/\.webp$/, '');
+    return { mobile: `${base}-480.avif`, desktop: `${base}-1024.avif` };
+  };
+  const avifPaths = c.backgroundImage ? deriveAvifPaths(c.backgroundImage) : null;
+  let heroImageHtml = '';
+  if (c.backgroundImage) {
+    // Match React's image container: rounded corners, shadow, responsive sizing
+    const imgStyle = 'width:100%;height:auto;border-radius:0.5rem;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1)';
+    if (avifPaths) {
+      heroImageHtml = `
+        <div style="flex:1;min-width:0;text-align:center">
+          <picture>
+            <source srcset="${avifPaths.mobile} 480w, ${avifPaths.desktop} 1024w" sizes="(max-width:767px) 100vw, (min-width:768px) 50vw, 40vw" type="image/avif" />
+            <img src="${c.backgroundImage}" alt="${escapeHtml(c.h1)}" style="${imgStyle}" width="760" height="996" fetchpriority="high" decoding="async" />
+          </picture>
+        </div>`;
+    } else {
+      heroImageHtml = `
+        <div style="flex:1;min-width:0;text-align:center">
+          <img src="${c.backgroundImage}" alt="${escapeHtml(c.h1)}" style="${imgStyle}" fetchpriority="high" decoding="async" />
+        </div>`;
+    }
+  }
+
+  // ── Benefits list as inline badges (matches React's Check icon + text layout) ──
+  const benefitsBadges = (c.benefits || []).map(b =>
+    `<span style="display:inline-flex;align-items:center;gap:6px;background:rgba(56,31,71,0.08);padding:6px 14px;border-radius:9999px;font-size:0.875rem;color:#381F47;white-space:nowrap">✓ ${escapeHtml(b)}</span>`
+  ).join('\n            ');
+
+  // ── Below-fold content (simple semantic HTML — outside viewport, no CLS impact) ──
+  const problemsHtml = (c.problems || []).map(p => '<li>' + escapeHtml(p) + '</li>').join('');
+  const stepsHtml = (c.steps || []).map(s =>
+    '<li><strong>' + escapeHtml(s.title) + '.</strong> ' + escapeHtml(s.description) + '</li>'
+  ).join('');
+  const testimonialsHtml = (c.testimonials || []).map(t =>
+    '<blockquote><p>' + escapeHtml(t.text) + '</p><cite>&mdash; ' + escapeHtml(t.name) + '</cite></blockquote>'
+  ).join('');
+  const faqsHtml = (c.faqs || []).map(f =>
+    '<dt>' + escapeHtml(f.q) + '</dt><dd>' + escapeHtml(f.a) + '</dd>'
+  ).join('');
+
+  // ══════════════════════════════════════════════════════════════
+  // ABOVE-THE-FOLD: Must be pixel-perfect match with React layout
+  // ══════════════════════════════════════════════════════════════
+  return `<header style="position:fixed;top:0;left:0;right:0;z-index:50;background:#fff;box-shadow:0 1px 3px 0 rgba(0,0,0,0.1)">
+      <div style="max-width:1200px;margin:0 auto;padding:12px 16px;display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <span style="font-size:1.125rem;font-weight:700;color:#381F47;font-family:system-ui,sans-serif">Dra. Carla Christoph</span><br/>
+          <span style="font-size:0.75rem;color:#6b7280">CRO-RJ 27509</span>
+        </div>
+        <div style="display:none"></div>
+        <a href="${waHref}" style="background:#25D366;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:500;font-size:0.875rem;display:inline-flex;align-items:center;gap:8px" aria-label="${L.whatsApp}">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span>${L.whatsApp}</span>
+        </a>
+      </div>
+    </header>
+    <section style="min-height:100vh;display:flex;align-items:center;background:#FAF7F2;padding-top:90px;padding-bottom:4rem">
+      <div style="max-width:1200px;margin:0 auto;padding:0 1rem;display:flex;flex-direction:column;gap:3rem;width:100%">
+        <div style="flex:1;min-width:0">
+          <h1 style="font-size:clamp(1.875rem,5vw,3rem);font-weight:700;line-height:1.2;margin:0 0 1rem;color:#381F47;font-family:Georgia,serif">${escapeHtml(c.h1)}</h1>
+          <p style="font-size:clamp(1.125rem,2.5vw,1.25rem);margin:0 0 1.5rem;color:#333;line-height:1.6">${escapeHtml(c.subhead)}</p>
+          ${benefitsBadges ? `<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.5rem">${benefitsBadges}</div>` : ''}
+          <a href="${waHref}" style="background:#381F47;color:#fff;padding:1rem 2rem;border-radius:0.5rem;font-weight:600;display:inline-flex;align-items:center;gap:0.75rem;font-size:1.125rem;text-decoration:none;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);border:none">${escapeHtml(ctaButtonText)}</a>
+        </div>
+        ${heroImageHtml}
+      </div>
+    </section>
+    <main style="max-width:800px;margin:0 auto;padding:24px 16px;font-family:system-ui,sans-serif;line-height:1.6;color:#333">
+      ${problemsHtml ? `<section><h2>${escapeHtml(c.problemTitle || (isEn ? 'Common situations' : 'Situa&ccedil;&otilde;es comuns'))}</h2><ul>${problemsHtml}</ul></section>` : ''}
+      ${stepsHtml ? `<section><h2>${escapeHtml(c.guideTitle || L.howItWorks)}</h2><ol>${stepsHtml}</ol></section>` : ''}
+      ${testimonialsHtml ? `<section><h2>${escapeHtml(c.testimonialsTitle || L.testimonials)}</h2>${testimonialsHtml}</section>` : ''}
+      ${faqsHtml ? `<section><h2>${escapeHtml(c.faqTitle || L.faq)}</h2><dl>${faqsHtml}</dl></section>` : ''}
       <section>
         <h2>${escapeHtml(c.ctaTitle || (isEn ? 'Ready to book?' : 'Pronto para agendar?'))}</h2>
         ${c.ctaSubtitle ? '<p>' + escapeHtml(c.ctaSubtitle) + '</p>' : ''}
