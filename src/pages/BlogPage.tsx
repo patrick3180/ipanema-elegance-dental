@@ -1,18 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import SEOHead from "@/components/SEOHead";
-import BlogSEOOptimizer from "@/components/BlogSEOOptimizer";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { useNavigate } from "react-router-dom";
 import { getAllBlogPosts } from "@/services/contentful/queries";
 import { useQuery } from "@tanstack/react-query";
 import { BlogPost } from "@/types/BlogPost";
 import { Loader } from "lucide-react";
+
+// Sprint 7: Lazy-load non-critical components
+const BlogSEOOptimizer = lazy(() => import("@/components/BlogSEOOptimizer"));
+const Pagination = lazy(() => import("@/components/ui/pagination").then(m => ({ default: m.Pagination })));
+const PaginationContent = lazy(() => import("@/components/ui/pagination").then(m => ({ default: m.PaginationContent })));
+const PaginationItem = lazy(() => import("@/components/ui/pagination").then(m => ({ default: m.PaginationItem })));
+const PaginationLink = lazy(() => import("@/components/ui/pagination").then(m => ({ default: m.PaginationLink })));
+const PaginationNext = lazy(() => import("@/components/ui/pagination").then(m => ({ default: m.PaginationNext })));
+const PaginationPrevious = lazy(() => import("@/components/ui/pagination").then(m => ({ default: m.PaginationPrevious })));
 
 const BlogPage = () => {
   const navigate = useNavigate();
@@ -104,7 +111,10 @@ const BlogPage = () => {
         canonicalUrl="https://dracarlachristoph.com/blog"
         structuredData={structuredData}
       />
-      <BlogSEOOptimizer posts={posts} />
+      {/* Sprint 7: BlogSEOOptimizer is invisible — lazy-load it */}
+      <Suspense fallback={null}>
+        <BlogSEOOptimizer posts={posts} />
+      </Suspense>
       <PageLayout>
         <section className="section-spacing">
           <div className="container-custom">
@@ -179,15 +189,20 @@ const BlogPage = () => {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                {filteredPosts.map((post: BlogPost) => (
+                {filteredPosts.map((post: BlogPost, index: number) => (
                   <Card key={post.id} className="border-none shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
                     <div className="cursor-pointer" onClick={() => navigate(`/blog/${post.slug}`)}>
                       <div className="relative">
                         <AspectRatio ratio={16 / 9}>
+                          {/* Sprint 7: Only first 3 images eager, rest lazy to reduce LCP */}
                           <img 
                             src={post.imageUrl || '/placeholder.svg'} 
                             alt={post.title} 
                             className="object-cover w-full h-full rounded-t-md"
+                            loading={index < 3 ? "eager" : "lazy"}
+                            decoding={index < 3 ? "auto" : "async"}
+                            width="400"
+                            height="225"
                           />
                         </AspectRatio>
                         <div className="absolute top-3 right-3 bg-dental-purple/90 text-white text-xs px-3 py-1 rounded-full">
@@ -209,27 +224,29 @@ const BlogPage = () => {
               </div>
             )}
 
-            {/* Pagination - we'll leave this for future implementation */}
-            <Pagination className="my-8">
-              <PaginationContent>
-                <PaginationItem>
-                  <PaginationPrevious href="#" className="text-dental-purple" />
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#" isActive className="bg-dental-gold text-white hover:bg-dental-gold/90 border-dental-gold">
-                    1
-                  </PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#" className="text-dental-purple">
-                    2
-                  </PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationNext href="#" className="text-dental-purple" />
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination>
+            {/* Pagination - Sprint 7: lazy-loaded (below fold) */}
+            <Suspense fallback={null}>
+              <Pagination className="my-8">
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious href="#" className="text-dental-purple" />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#" isActive className="bg-dental-gold text-white hover:bg-dental-gold/90 border-dental-gold">
+                      1
+                    </PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#" className="text-dental-purple">
+                      2
+                    </PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext href="#" className="text-dental-purple" />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </Suspense>
           </div>
         </section>
       </PageLayout>

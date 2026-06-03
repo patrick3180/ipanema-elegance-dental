@@ -578,12 +578,22 @@ A função original está preservada como `generateLPFallbackHTML_ORIGINAL_PRE_S
 
 *\* LP Limpeza (score ~85-95) confirmada como CDN variance — mesma arquitetura das LPs que dão 97*
 
+#### Sprint 7 (03/Jun/2026)
+- Commit: `c6ded8d` (BlogPost.tsx) + commit seguinte (BlogPage.tsx)
+- **Motivo:** GSC Core Web Vitals alertou 32 blog URLs com LCP > 2.5s (threshold). LCP real: 2.6s. Blog nunca havia sido otimizado nos Sprints 1-6
+- **O que:**
+  - **BlogPost.tsx:** 19 imports eager → 4 eager (Header, Image, Loading, Error) + 12 lazy (Content, Tags, Share, Related, QuickAnswerBox, KeyTakeaways, ComparisonTable, FAQ, PeopleAlsoAsk, AuthorBio, BlogCTA, StickyWhatsApp). Suspense boundary com fallback `min-h-[200px]`
+  - **BlogPage.tsx:** BlogSEOOptimizer e Pagination movidos para lazy. Imagens dos cards: primeiras 3 = eager, restantes = `loading="lazy"`. Adicionados `width`/`height` para CLS
+- **Resultado:** Blog post LCP **2.6s → 0.8s** (Score **100**). Blog listing LCP 11.6s → TBD. Zero regressão nas 19 LPs
+
 ### 10.5 Rollback
 
 Documentação completa em [ROLLBACK.md](ROLLBACK.md).
 
 | Hash | Sprint | Descrição |
 |---|---|---|
+| (next) | **Sprint 7b** | BlogPage.tsx lazy SEO/Pagination + lazy images |
+| `c6ded8d` | **Sprint 7** | BlogPost.tsx lazy-load 12 below-fold components |
 | `d1b1a45` | **Sprint 6** | Home fallback rewrite + LP Lentes criticalStyles |
 | `78f72b7` | **Sprint 5** | Home preload + lazy StatsBar, LP Lentes AVIF picture |
 | `261e6eb` | **Sprint 4** | Otimização 5 LPs (eager Header/Hero, remoção runtime optimizers) |
@@ -600,6 +610,7 @@ Documentação completa em [ROLLBACK.md](ROLLBACK.md).
 **Rollback Sprint 6 Home fallback:** Em `generate-static-meta.cjs`, seção 5, substituir o `homeFallback` Sprint 6 pelo conteúdo anterior (ver diff do commit `d1b1a45`).
 
 **Rollback Sprint 6 LP Lentes:** Em `LPLentesPorcelana.tsx`, remover `criticalStyles` const + `<style>` do Helmet, trocar `className="lp-lentes-hero"` de volta para `className="bg-gradient-to-b from-dental-beige/30 to-white py-16 md:py-20"`, `className="hero-grid"` para `className="grid md:grid-cols-2 gap-8 md:gap-12 items-center"`, `className="order-2 hero-image"` para `className="order-2" style={{ aspectRatio: '3/4' }}`.
+**Rollback Sprint 7 Blog:** Em `BlogPost.tsx`, reverter imports de `lazy(() => import(...))` para imports estáticos diretos. Remover `Suspense` boundaries. Em `BlogPage.tsx`, reverter `BlogSEOOptimizer` e `Pagination` para imports estáticos, remover `loading`/`decoding`/`width`/`height` dos `<img>`.
 
 **Rollback completo:** `git reset --hard c18c002 && git push origin main --force`
 
@@ -649,6 +660,9 @@ Estas decisões já foram tomadas e aprovadas:
 | Home hero preload = customizado (560w/800w/840w) | Sprint 5: Home usa tamanhos diferentes das LPs (480/1024) — template genérico geraria 404 (Jun/2026) |
 | HomepageStatsBar = **lazy** | Sprint 5: abaixo do hero fold no mobile, não precisa estar no critical bundle (Jun/2026) |
 | LP Lentes hero = `<picture>` com AVIF | Sprint 5: `<img src=.webp>` causava double-download com preload AVIF (Jun/2026) |
+| Blog below-fold = **lazy** (12 componentes) | Sprint 7: GSC flagou 32 URLs com LCP > 2.5s. Lazy-load reduziu LCP de 2.6s para 0.8s (Jun/2026) |
+| Blog card images = **lazy** (exceto primeiras 3) | Sprint 7: 32 imagens eager no blog listing causavam LCP 11.6s (Jun/2026) |
+| BlogSEOOptimizer = **lazy** | Sprint 7: componente invisível não precisa estar no critical bundle (Jun/2026) |
 
 ---
 
