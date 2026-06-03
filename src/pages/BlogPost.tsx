@@ -1,27 +1,33 @@
 
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import SEOHead from "@/components/SEOHead";
 import { getBlogPostBySlug, getAllBlogPosts } from "@/services/contentful/queries";
 import { useQuery } from "@tanstack/react-query";
-import BlogContent from "@/components/BlogContent";
+
+// Above-the-fold: eager (critical for LCP)
 import BlogPostHeader from "@/components/blog/BlogPostHeader";
 import BlogPostImage from "@/components/blog/BlogPostImage";
-import BlogPostTags from "@/components/blog/BlogPostTags";
-import BlogPostShare from "@/components/blog/BlogPostShare";
-import BlogPostRelated from "@/components/blog/BlogPostRelated";
 import BlogPostLoading from "@/components/blog/BlogPostLoading";
 import BlogPostError from "@/components/blog/BlogPostError";
-import QuickAnswerBox from '@/components/blog/QuickAnswerBox';
-import KeyTakeaways from '@/components/blog/KeyTakeaways';
-import ComparisonTable from '@/components/blog/ComparisonTable';
-import FAQSectionBlog from '@/components/blog/FAQSectionBlog';
-import PeopleAlsoAsk from '@/components/blog/PeopleAlsoAsk';
-import AuthorBio from '@/components/blog/AuthorBio';
-import BlogCTA from '@/components/blog/BlogCTA';
-import BlogStickyWhatsApp from '@/components/blog/BlogStickyWhatsApp';
+
+// Below-the-fold: lazy-loaded to reduce critical JS bundle (~40-60KB saved)
+// Sprint 7: Blog LCP optimization — GSC flagged 32 blog URLs with LCP > 2.5s
+const BlogContent = lazy(() => import("@/components/BlogContent"));
+const BlogPostTags = lazy(() => import("@/components/blog/BlogPostTags"));
+const BlogPostShare = lazy(() => import("@/components/blog/BlogPostShare"));
+const BlogPostRelated = lazy(() => import("@/components/blog/BlogPostRelated"));
+const QuickAnswerBox = lazy(() => import('@/components/blog/QuickAnswerBox'));
+const KeyTakeaways = lazy(() => import('@/components/blog/KeyTakeaways'));
+const ComparisonTable = lazy(() => import('@/components/blog/ComparisonTable'));
+const FAQSectionBlog = lazy(() => import('@/components/blog/FAQSectionBlog'));
+const PeopleAlsoAsk = lazy(() => import('@/components/blog/PeopleAlsoAsk'));
+const AuthorBio = lazy(() => import('@/components/blog/AuthorBio'));
+const BlogCTA = lazy(() => import('@/components/blog/BlogCTA'));
+const BlogStickyWhatsApp = lazy(() => import('@/components/blog/BlogStickyWhatsApp'));
+
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>(); // Fixed: changed from postSlug to slug
@@ -174,92 +180,97 @@ const BlogPost = () => {
 
             <BlogPostImage imageUrl={post.imageUrl} title={post.title} />
 
-            {/* Quick Answer Box */}
-            {post.quickAnswer && (
-              <div className="max-w-4xl mx-auto">
-                <QuickAnswerBox answer={post.quickAnswer} />
-              </div>
-            )}
-
-            {/* Key Takeaways */}
-            {post.keyTakeaways && post.keyTakeaways.length > 0 && (
-              <div className="max-w-4xl mx-auto">
-                <KeyTakeaways takeaways={post.keyTakeaways} />
-              </div>
-            )}
-
-            <BlogPostTags tags={post.tags} />
-
-            {/* Content */}
-            <div className="max-w-3xl mx-auto mb-16">
-              {hasContent ? (
-                <BlogContent
-                  content={post.content}
-                  className="prose prose-lg"
-                />
-              ) : (
-                <div className="text-center py-8">
-                  <div className="bg-dental-beige/30 rounded-lg p-6 mb-6">
-                    <p className="text-dental-gray mb-4">{post.excerpt}</p>
-                    <p className="text-sm text-dental-gray/70">
-                      O conteúdo completo está sendo carregado. Se o problema persistir,
-                      entre em contato conosco.
-                    </p>
-                  </div>
+            {/* Sprint 7: Below-the-fold content wrapped in Suspense for lazy loading */}
+            <Suspense fallback={<div className="min-h-[200px]" />}>
+              {/* Quick Answer Box */}
+              {post.quickAnswer && (
+                <div className="max-w-4xl mx-auto">
+                  <QuickAnswerBox answer={post.quickAnswer} />
                 </div>
               )}
-            </div>
 
-            {/* Blog CTA - WhatsApp conversion */}
-            <div className="max-w-3xl mx-auto">
-              <BlogCTA category={post.category} />
-            </div>
+              {/* Key Takeaways */}
+              {post.keyTakeaways && post.keyTakeaways.length > 0 && (
+                <div className="max-w-4xl mx-auto">
+                  <KeyTakeaways takeaways={post.keyTakeaways} />
+                </div>
+              )}
 
-            {/* Comparison Table */}
-            {post.comparisonTable && post.comparisonTable.length > 0 && (
-              <div className="max-w-4xl mx-auto">
-                <ComparisonTable data={post.comparisonTable} />
+              <BlogPostTags tags={post.tags} />
+
+              {/* Content */}
+              <div className="max-w-3xl mx-auto mb-16">
+                {hasContent ? (
+                  <BlogContent
+                    content={post.content}
+                    className="prose prose-lg"
+                  />
+                ) : (
+                  <div className="text-center py-8">
+                    <div className="bg-dental-beige/30 rounded-lg p-6 mb-6">
+                      <p className="text-dental-gray mb-4">{post.excerpt}</p>
+                      <p className="text-sm text-dental-gray/70">
+                        O conteúdo completo está sendo carregado. Se o problema persistir,
+                        entre em contato conosco.
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
 
-            {/* People Also Ask */}
-            {post.peopleAlsoAsk?.questions && post.peopleAlsoAsk.questions.length > 0 && (
+              {/* Blog CTA - WhatsApp conversion */}
+              <div className="max-w-3xl mx-auto">
+                <BlogCTA category={post.category} />
+              </div>
+
+              {/* Comparison Table */}
+              {post.comparisonTable && post.comparisonTable.length > 0 && (
+                <div className="max-w-4xl mx-auto">
+                  <ComparisonTable data={post.comparisonTable} />
+                </div>
+              )}
+
+              {/* People Also Ask */}
+              {post.peopleAlsoAsk?.questions && post.peopleAlsoAsk.questions.length > 0 && (
+                <div className="max-w-4xl mx-auto">
+                  <PeopleAlsoAsk
+                    questions={post.peopleAlsoAsk.questions}
+                    onQuestionClick={(question) => {
+                      const contentElement = document.querySelector('.blog-content');
+                      if (contentElement) {
+                        const top = contentElement.getBoundingClientRect().top + window.scrollY - 100;
+                        window.scrollTo({ top, behavior: 'smooth' });
+                      }
+                    }}
+                  />
+                </div>
+              )}
+
+              {/* FAQ Section */}
+              {post.faqStructured && post.faqStructured.length > 0 && (
+                <div className="max-w-4xl mx-auto">
+                  <FAQSectionBlog faqs={post.faqStructured} />
+                </div>
+              )}
+
+              {/* Author Bio - Always show with fallback data */}
               <div className="max-w-4xl mx-auto">
-                <PeopleAlsoAsk
-                  questions={post.peopleAlsoAsk.questions}
-                  onQuestionClick={(question) => {
-                    const contentElement = document.querySelector('.blog-content');
-                    if (contentElement) {
-                      const top = contentElement.getBoundingClientRect().top + window.scrollY - 100;
-                      window.scrollTo({ top, behavior: 'smooth' });
-                    }
-                  }}
+                <AuthorBio
+                  bio={post.authorBio || "Cirurgiã-dentista com mais de 20 anos de experiência em Ipanema, Rio de Janeiro. Especialista em Prótese Dentária e Implantodontia (CRO-RJ 27.509), com 8 anos como dentista militar na Odontoclínica Central da Marinha."}
+                  author={post.author || "Dra. Carla Christoph"}
                 />
               </div>
-            )}
 
-            {/* FAQ Section */}
-            {post.faqStructured && post.faqStructured.length > 0 && (
-              <div className="max-w-4xl mx-auto">
-                <FAQSectionBlog faqs={post.faqStructured} />
-              </div>
-            )}
+              <BlogPostShare post={post} />
 
-            {/* Author Bio - Always show with fallback data */}
-            <div className="max-w-4xl mx-auto">
-              <AuthorBio
-                bio={post.authorBio || "Cirurgiã-dentista com mais de 20 anos de experiência em Ipanema, Rio de Janeiro. Especialista em Prótese Dentária e Implantodontia (CRO-RJ 27.509), com 8 anos como dentista militar na Odontoclínica Central da Marinha."}
-                author={post.author || "Dra. Carla Christoph"}
-              />
-            </div>
-
-            <BlogPostShare post={post} />
-
-            <BlogPostRelated relatedPosts={relatedPosts} />
+              <BlogPostRelated relatedPosts={relatedPosts} />
+            </Suspense>
           </div>
         </section>
         {/* Sticky WhatsApp CTA for mobile */}
-        <BlogStickyWhatsApp />
+        <Suspense fallback={null}>
+          <BlogStickyWhatsApp />
+        </Suspense>
       </PageLayout>
     </>
   );
