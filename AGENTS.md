@@ -586,12 +586,22 @@ A função original está preservada como `generateLPFallbackHTML_ORIGINAL_PRE_S
   - **BlogPage.tsx:** BlogSEOOptimizer e Pagination movidos para lazy. Imagens dos cards: primeiras 3 = eager, restantes = `loading="lazy"`. Adicionados `width`/`height` para CLS
 - **Resultado:** Blog post LCP **2.6s → 0.8s** (Score **100**). Blog listing LCP 11.6s → TBD. Zero regressão nas 19 LPs
 
+#### Sprint 8 (17/Jun/2026)
+- Commit: `25722cf`
+- **Motivo:** PSI mobile da Home (78, LCP 3.8s) e LP Facetas (83, TBT 328ms) abaixo do alvo de 90.
+- **O que:**
+  - **LP Facetas Resina:** Removidos preconnects e stylesheets do Google Fonts (`FacetasResinaDiretaLandingPage.tsx`), eliminando requests extras na inicialização.
+  - **Layout Global (PageLayout.tsx):** Footer e WhatsAppButton importados dinamicamente (`lazy()`) com wrappers `<LazySection>` e `<Suspense>`, poupando thread principal na inicialização below-the-fold.
+  - **Gerador de Meta Tags Estáticas (generate-static-meta.cjs):** Filtragem de modulepreloads supérfluos no index de páginas portuguesas/Home. Reescrita do fallback do Hero da Home (`homeFallback`) adicionando CSS responsivo e aplicando no container da imagem as mesmas dimensões e máscara de degradê do React, eliminando layout shift e TBT na hidratação.
+- **Resultado:** Home e LP Facetas atingiram o alvo de 90+ no PSI.
+
 ### 10.5 Rollback
 
 Documentação completa em [ROLLBACK.md](ROLLBACK.md).
 
 | Hash | Sprint | Descrição |
 |---|---|---|
+| `25722cf` | **Sprint 8** | Fontes locais Facetas, lazy footer/wa e Home Hero fallback responsivo com mask-image |
 | (next) | **Sprint 7b** | BlogPage.tsx lazy SEO/Pagination + lazy images |
 | `c6ded8d` | **Sprint 7** | BlogPost.tsx lazy-load 12 below-fold components |
 | `d1b1a45` | **Sprint 6** | Home fallback rewrite + LP Lentes criticalStyles |
@@ -611,6 +621,7 @@ Documentação completa em [ROLLBACK.md](ROLLBACK.md).
 
 **Rollback Sprint 6 LP Lentes:** Em `LPLentesPorcelana.tsx`, remover `criticalStyles` const + `<style>` do Helmet, trocar `className="lp-lentes-hero"` de volta para `className="bg-gradient-to-b from-dental-beige/30 to-white py-16 md:py-20"`, `className="hero-grid"` para `className="grid md:grid-cols-2 gap-8 md:gap-12 items-center"`, `className="order-2 hero-image"` para `className="order-2" style={{ aspectRatio: '3/4' }}`.
 **Rollback Sprint 7 Blog:** Em `BlogPost.tsx`, reverter imports de `lazy(() => import(...))` para imports estáticos diretos. Remover `Suspense` boundaries. Em `BlogPage.tsx`, reverter `BlogSEOOptimizer` e `Pagination` para imports estáticos, remover `loading`/`decoding`/`width`/`height` dos `<img>`.
+**Rollback Sprint 8:** Em `generate-static-meta.cjs`, reverter filtragem de preloads e o HTML do `homeFallback`. Em `PageLayout.tsx`, reverter Footer/WhatsAppButton para imports estáticos. Em `FacetasResinaDiretaLandingPage.tsx`, restaurar links de fontes do Google.
 
 **Rollback completo:** `git reset --hard c18c002 && git push origin main --force`
 
