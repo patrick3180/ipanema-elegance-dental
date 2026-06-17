@@ -179,3 +179,46 @@ git push origin main
    ```
    *Nota: Isso acionará instantaneamente o deploy de rollback para o estado anterior da Sprint 8b no Vercel.*
 
+
+## 🆕 Sprint 9 / V5 — Otimização Focada em 3 Páginas (17/Jun/2026)
+
+### O que foi feito
+- **Arquivos modificados:**
+  - `scripts/generate-static-meta.cjs`
+  - `src/pages/LPLentesPorcelana.tsx`
+  - `src/pages/LimpezaDentalLandingPage.tsx`
+  - `src/pages/en/EnCosmeticDentistryLP.tsx`
+- **Alterações:**
+  - **Granular Preloading:** Removidos preloads de `landing-hero` e `landing-header` para Limpeza e Lentes Porcelana (visto que não são usados nelas). Removido preload de `en-landing-bundle` para EN Cosmetic.
+  - **Localização de Heros:** Inlined/localizadas as estruturas de Header e Hero em `LimpezaDentalLandingPage.tsx` e `EnCosmeticDentistryLP.tsx` para eliminar dependências de boot e arquivos compartilhados.
+  - **Alinhamento de LCP `<picture>`:** Ajustados os elementos `<picture>` e `<img>` em todas as três LPs para baterem exatamente com o `srcset`, `sizes` e `width`/`height` gerados na injeção estática e preloads, eliminando double-downloads de imagens.
+- **Commit:** `a08ac4a` (perf(sprint9): granular preloading and local hero optimizations for EN Cosmetic, Limpeza, and Lentes Porcelana LPs)
+- **Commit estável anterior (pré-Sprint 9):** `cc315e6`
+
+### Como fazer rollback CIRÚRGICO (apenas Sprint 9)
+Para desfazer as otimizações da Sprint 9 mantendo as sprints anteriores intactas, você pode reverter o commit localmente e em produção:
+```bash
+git revert a08ac4a --no-edit
+git push origin main
+```
+
+### Como fazer rollback COMPLETO (reverter para antes da Sprint 9)
+1. **Abra o terminal na pasta do projeto:** `c:\IA\Projetos\Teste site Carla\ipanema-elegance-dental\`
+2. **Crie uma branch de backup:**
+   ```bash
+   git checkout -b backup-performance-sprint9
+   ```
+3. **Volte para a branch principal (`main`):**
+   ```bash
+   git checkout main
+   ```
+4. **Resete de forma forçada para o commit estável anterior (`cc315e6`):**
+   ```bash
+   git reset --hard cc315e6
+   ```
+5. **Envie as alterações revertidas de forma forçada para o GitHub:**
+   ```bash
+   git push origin main --force
+   ```
+   *Nota: Isso acionará instantaneamente o deploy de rollback para o estado anterior da Sprint 9 no Vercel.*
+
