@@ -24,7 +24,7 @@ const criticalStyles = `
   .lp-lentes-hero{padding-top:calc(72px + 4rem);padding-bottom:5rem;background:linear-gradient(to bottom,rgba(207,203,180,0.3),#fff)}
   .lp-lentes-hero .hero-grid{display:grid;grid-template-columns:1fr;gap:2rem;max-width:80rem;margin:0 auto;padding:0 1rem;align-items:center}
   @media(min-width:768px){.lp-lentes-hero .hero-grid{grid-template-columns:1fr 1fr;gap:3rem}}
-  .lp-lentes-hero .hero-image{aspect-ratio:3/4;border-radius:1rem;overflow:hidden}
+  .lp-lentes-hero .hero-image{aspect-ratio:760/996;border-radius:1rem;overflow:hidden}
   .lp-lentes-hero .hero-image img{width:100%;height:100%;object-fit:cover}
 `;
 
