@@ -172,22 +172,23 @@ const LPLentesPorcelana = () => {
               </button>
             </div>
 
-            {/* Coluna Direita — Imagem (Sprint 5: <picture> with AVIF to match preload + width/height for CLS) */}
+            {/* Coluna Direita — Imagem (Sprint 9 / V5: matched exactly with preload to prevent double download) */}
             <div className="order-2 hero-image">
               <picture>
                 <source
-                  srcSet="/lovable-uploads/dra-carla-jaleco-bracos-cruzados-480.avif 480w, /lovable-uploads/dra-carla-jaleco-bracos-cruzados-768.avif 768w, /lovable-uploads/dra-carla-jaleco-bracos-cruzados-1024.avif 1024w"
-                  sizes="(max-width: 767px) 100vw, 50vw"
+                  srcSet="/lovable-uploads/dra-carla-jaleco-bracos-cruzados-480.avif 480w, /lovable-uploads/dra-carla-jaleco-bracos-cruzados-1024.avif 1024w"
+                  sizes="(max-width:767px) 100vw, (min-width:768px) 50vw, 40vw"
                   type="image/avif"
                 />
                 <img
                   src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
                   alt="Dra. Carla Christoph - Especialista em Lentes de Porcelana"
                   className="rounded-2xl shadow-elegant object-cover w-full h-full"
-                  width="600"
-                  height="800"
+                  width="760"
+                  height="996"
                   loading="eager"
                   fetchPriority="high"
+                  style={{ aspectRatio: "760/996" }}
                 />
               </picture>
             </div>

@@ -8,9 +8,10 @@ import LazySection from "@/components/performance/LazySection";
 import ContentfulBlocker from "@/components/performance/ContentfulBlocker";
 import ErrorBoundary from "@/components/performance/ErrorBoundary";
 
-// Critical above-the-fold (eager)
-import EnLPHeader from "@/components/en/lp/EnLPHeader";
-import EnLPHero from "@/components/en/lp/EnLPHero";
+// Critical above-the-fold (eager local implementation)
+import { MessageCircle, ArrowRight, Check, Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { sendGCLIDToWebhook } from "@/utils/gclid";
 
 // Below-the-fold (lazy)
 const EnLPProblem = lazy(() => import("@/components/en/lp/EnLPProblem"));
@@ -37,6 +38,64 @@ const criticalStyles = `
 
 const EnCosmeticDentistryLP: React.FC = () => {
   const config = enCosmeticDentistryLPConfig;
+
+  const handleHeaderWhatsAppClick = async () => {
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: "whatsapp_click",
+        event_category: "Contact",
+        event_action: "Click",
+        event_label: "WhatsApp EN LP Header",
+        campaign: config.campaign,
+        ad_group: config.messageMatch.adGroup,
+      });
+    }
+
+    if (window.gtag) {
+      window.gtag("event", "conversion", {
+        send_to: "AW-16894364517/OQZvCMXV0foZEOqP7vY9",
+        event_callback: function () {
+          console.log("Google Ads conversion tracked - EN LP Header");
+        },
+      });
+    }
+
+    await sendGCLIDToWebhook("en_lp_header_cta");
+
+    const encodedMsg = encodeURIComponent(config.whatsapp.message);
+    window.open(
+      `https://wa.me/${config.whatsapp.number}?text=${encodedMsg}`,
+      "_blank"
+    );
+  };
+
+  const handleHeroWhatsAppClick = async () => {
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: "whatsapp_click",
+        event_category: "Contact",
+        event_action: "Click",
+        event_label: "WhatsApp EN LP Hero",
+      });
+    }
+
+    if (window.gtag) {
+      window.gtag("event", "conversion", {
+        send_to: "AW-16894364517/OQZvCMXV0foZEOqP7vY9",
+        event_callback: function () {
+          console.log("Google Ads conversion tracked - EN LP Hero");
+        },
+      });
+    }
+
+    await sendGCLIDToWebhook("en_lp_hero_cta");
+
+    const encodedMsg = encodeURIComponent(config.whatsapp.message);
+    window.open(
+      `https://wa.me/${config.whatsapp.number}?text=${encodedMsg}`,
+      "_blank"
+    );
+  };
 
   useEffect(() => {
     captureGCLID();
@@ -160,23 +219,117 @@ const EnCosmeticDentistryLP: React.FC = () => {
 
       <ErrorBoundary>
         <main className="min-h-screen bg-white">
-          {/* === ABOVE THE FOLD === */}
-          <EnLPHeader
-            whatsappNumber={config.whatsapp.number}
-            whatsappMessage={config.whatsapp.message}
-            campaign={config.campaign}
-            messageMatch={config.messageMatch}
-          />
+          {/* === ABOVE THE FOLD LOCAL HEADER === */}
+          <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex items-center justify-between h-16 sm:h-20">
+                {/* Logo — no navigation links */}
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-dental-purple rounded-full flex items-center justify-center">
+                    <span className="text-white font-display font-bold text-sm">CC</span>
+                  </div>
+                  <div className="hidden sm:block">
+                    <p className="font-display font-semibold text-dental-purple text-sm leading-tight">
+                      Dr. Carla Christoph
+                    </p>
+                    <p className="text-[10px] text-dental-gray tracking-wide uppercase">
+                      Cosmetic Dentist • Ipanema
+                    </p>
+                  </div>
+                </div>
 
-          <EnLPHero
-            headline={config.hero.headline}
-            subheadline={config.hero.subheadline}
-            ctaText={config.hero.ctaText}
-            benefits={config.benefits}
-            backgroundImage={config.hero.backgroundImage!}
-            whatsappNumber={config.whatsapp.number}
-            whatsappMessage={config.whatsapp.message}
-          />
+                {/* Single CTA — no menu items */}
+                <button
+                  onClick={handleHeaderWhatsAppClick}
+                  className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-medium text-sm px-5 py-2.5 rounded-lg transition-all duration-300 hover:-translate-y-0.5 shadow-md hover:shadow-lg"
+                >
+                  <MessageCircle size={18} />
+                  <span className="hidden sm:inline">Book via WhatsApp</span>
+                  <span className="sm:hidden">WhatsApp</span>
+                </button>
+              </div>
+            </div>
+          </header>
+
+          {/* === ABOVE THE FOLD LOCAL HERO === */}
+          <section className="relative min-h-[100dvh] flex items-center bg-dental-beige pt-20 pb-12 md:pt-24 md:pb-16 overflow-hidden">
+            {/* Subtle decorative gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-dental-beige via-white/50 to-dental-beige pointer-events-none" />
+
+            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+              <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                {/* Left: Content */}
+                <div className="order-2 lg:order-1 space-y-6 animate-fade-in-up">
+                  {/* Trust badge */}
+                  <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-dental-gold/20 rounded-full px-4 py-1.5 text-xs text-dental-purple font-medium">
+                    <Globe size={14} className="text-dental-gold" />
+                    We reply in your language
+                  </div>
+
+                  <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-5xl font-display font-bold text-dental-purple leading-[1.15] tracking-tight">
+                    {config.hero.headline}
+                  </h1>
+
+                  <p className="text-base sm:text-lg text-dental-gray leading-relaxed max-w-xl">
+                    {config.hero.subheadline}
+                  </p>
+
+                  {/* Benefits */}
+                  <ul className="space-y-2.5">
+                    {config.benefits.map((benefit, idx) => (
+                      <li key={idx} className="flex items-start gap-2.5 text-sm text-dental-gray">
+                        <Check size={16} className="text-dental-gold mt-0.5 flex-shrink-0" />
+                        {benefit}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* CTA */}
+                  <div className="pt-2">
+                    <Button
+                      onClick={handleHeroWhatsAppClick}
+                      className="bg-green-600 hover:bg-green-700 text-white rounded-lg px-8 py-7 text-base sm:text-lg shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl w-full sm:w-auto"
+                    >
+                      <MessageCircle size={20} className="mr-3" />
+                      <div className="flex flex-col text-left leading-tight">
+                        <span className="font-semibold">{config.hero.ctaText}</span>
+                      </div>
+                      <ArrowRight size={16} className="ml-3" />
+                    </Button>
+                  </div>
+
+                  {/* Micro trust line */}
+                  <p className="text-xs text-dental-gray/60">
+                    CRO-RJ 27.509 • Rua Visconde de Pirajá, 550 — Ipanema
+                  </p>
+                </div>
+
+                {/* Right: Image (Sprint 9 / V5 matched exactly with preload) */}
+                <div className="order-1 lg:order-2 flex justify-center">
+                  <div className="relative w-full max-w-md lg:max-w-lg">
+                    <div className="absolute inset-0 bg-gradient-to-br from-dental-gold/20 to-dental-purple/10 rounded-2xl -rotate-3 scale-[1.03] blur-sm" />
+                    <picture className="bg-transparent block relative rounded-2xl shadow-elegant w-full object-cover">
+                      <source
+                        srcSet="/lovable-uploads/dra-carla-jaleco-bracos-cruzados-480.avif 480w, /lovable-uploads/dra-carla-jaleco-bracos-cruzados-1024.avif 1024w"
+                        sizes="(max-width:767px) 100vw, (min-width:768px) 50vw, 40vw"
+                        type="image/avif"
+                      />
+                      <img
+                        src={config.hero.backgroundImage || "/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"}
+                        alt="Dr. Carla Christoph — Cosmetic Dentist in Ipanema, Rio de Janeiro"
+                        className="rounded-2xl shadow-elegant w-full object-cover"
+                        width="760"
+                        height="996"
+                        loading="eager"
+                        fetchPriority="high"
+                        style={{ aspectRatio: "760/996" }}
+                      />
+                    </picture>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
           {/* === BELOW THE FOLD (lazy) === */}
 

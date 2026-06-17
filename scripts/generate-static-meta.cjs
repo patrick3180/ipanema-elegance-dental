@@ -1721,6 +1721,16 @@ function generatePage(routePath, meta, options = {}) {
     html = html.replace(/<link rel="modulepreload"[^>]*?href="[^"]*?en-landing-bundle[^"]*?"[^>]*?>\s*/gi, '');
   }
 
+  // Sprint 9 / V5 granular preloading optimizations
+  if (routePath === '/lp/limpeza-dental-ipanema' || routePath === '/lp/lentes-porcelana-ipanema') {
+    html = html.replace(/<link rel="modulepreload"[^>]*?href="[^"]*?landing-hero[^"]*?"[^>]*?>\s*/gi, '');
+    html = html.replace(/<link rel="modulepreload"[^>]*?href="[^"]*?landing-header[^"]*?"[^>]*?>\s*/gi, '');
+  }
+
+  if (routePath === '/en/lp/cosmetic-dentistry') {
+    html = html.replace(/<link rel="modulepreload"[^>]*?href="[^"]*?en-landing-bundle[^"]*?"[^>]*?>\s*/gi, '');
+  }
+
   return html;
 }
 
