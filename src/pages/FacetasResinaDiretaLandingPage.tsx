@@ -85,17 +85,7 @@ const FacetasResinaDiretaLandingPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
         {/* Critical Resource Preloads */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="dns-prefetch" href="//api.whatsapp.com" />
-
-        {/* Optimized font loading - load asynchronously */}
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-          media="print"
-          onLoad={(e: any) => { e.target.media = 'all'; }}
-        />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />

@@ -1701,6 +1701,22 @@ function generatePage(routePath, meta, options = {}) {
     );
   }
 
+  // Sprint 8: Filter modulepreloads to remove unused chunks on specific routes
+  const isEnRoute = routePath.startsWith('/en');
+  if (!isEnRoute) {
+    // Remove English LP chunks from Portuguese pages and Homepage
+    html = html.replace(/<link rel="modulepreload"[^>]*?href="[^"]*?en-landing-bundle[^"]*?"[^>]*?>\s*/gi, '');
+  }
+  
+  if (routePath === '/') {
+    // Homepage does not use any LP chunks (Portuguese or English)
+    html = html.replace(/<link rel="modulepreload"[^>]*?href="[^"]*?en-landing-bundle[^"]*?"[^>]*?>\s*/gi, '');
+    html = html.replace(/<link rel="modulepreload"[^>]*?href="[^"]*?consulta-critical[^"]*?"[^>]*?>\s*/gi, '');
+    html = html.replace(/<link rel="modulepreload"[^>]*?href="[^"]*?landing-hero[^"]*?"[^>]*?>\s*/gi, '');
+    html = html.replace(/<link rel="modulepreload"[^>]*?href="[^"]*?landing-header[^"]*?"[^>]*?>\s*/gi, '');
+    html = html.replace(/<link rel="modulepreload"[^>]*?href="[^"]*?landing-lazy-[^"]*?"[^>]*?>\s*/gi, '');
+  }
+
   return html;
 }
 
@@ -1786,11 +1802,70 @@ console.log('  - ' + Object.keys(landingPages).length + ' landing pages (noindex
 // ORIGINAL (pre-Sprint 6) used border-bottom header + max-width:800px — caused layout shift
 console.log('\nUpdating dist/index.html for static Home LCP optimization...');
 const homeFallback = `
-<header style="position:fixed;top:0;left:0;right:0;z-index:60;background:#FAF7F2;padding:12px 24px 12px 24px;box-shadow:0 1px 3px 0 rgba(0,0,0,.1);font-family:system-ui,sans-serif">
+<header style="position:fixed;top:0;left:0;right:0;z-index:60;background:#FAF7F2;padding:12px 24px;box-shadow:0 1px 3px 0 rgba(0,0,0,.1);font-family:system-ui,sans-serif">
   <a href="/" style="font-weight:bold;color:#381F47;text-decoration:none;font-size:1.1em">Dra. Carla Christoph</a>
 </header>
+<style>
+  .fallback-hero-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+    width: 100%;
+  }
+  .fallback-image-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .fallback-image-container {
+    width: 280px;
+    height: 420px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(74,45,94,0.08);
+    -webkit-mask-image: linear-gradient(to left, black 60%, transparent 100%), linear-gradient(to bottom, black 65%, transparent 100%);
+    mask-image: linear-gradient(to left, black 60%, transparent 100%), linear-gradient(to bottom, black 65%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+  .fallback-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  @media (min-width: 640px) {
+    .fallback-image-container {
+      width: 320px;
+      height: 480px;
+    }
+  }
+  @media (min-width: 768px) {
+    .fallback-image-container {
+      width: 400px;
+      height: 560px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .fallback-hero-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+    }
+    .fallback-image-wrapper {
+      justify-content: flex-end;
+    }
+    .fallback-image-container {
+      width: 460px;
+      height: 640px;
+    }
+  }
+</style>
 <section style="min-height:100vh;padding-top:112px;padding-bottom:4rem;display:flex;align-items:center;background:#FAF7F2;font-family:system-ui,sans-serif">
-  <div style="max-width:1200px;margin:0 auto;padding:0 1rem;display:grid;grid-template-columns:1fr;gap:2rem;align-items:center">
+  <div class="fallback-hero-grid">
     <div>
       <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.2em;color:#B3955F;margin-bottom:1rem;font-weight:500">Especialista em Prótese e Implantodontia</p>
       <h1 style="font-size:clamp(1.875rem,5vw,3rem);font-weight:700;line-height:1.2;color:#381F47;margin-bottom:1.5rem;font-family:serif">Dentista em Ipanema Especializada em Reabilitação Oral e <span style="color:#B3955F">Estética Natural</span></h1>
@@ -1802,12 +1877,14 @@ const homeFallback = `
       </div>
       <a href="https://wa.me/5521993304045?text=Ol%C3%A1!%20Vi%20o%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." style="display:inline-block;padding:1rem 2rem;background:#B3955F;color:#fff;text-decoration:none;border-radius:.375rem;font-weight:500;font-size:1rem;box-shadow:0 4px 6px -1px rgba(0,0,0,.1)">Agendar minha consulta</a>
     </div>
-    <div style="text-align:center">
-      <picture>
-        <source srcset="/lovable-uploads/hero-560w.avif 560w, /lovable-uploads/hero-800w.avif 800w, /lovable-uploads/hero-840w.avif 840w" sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px" type="image/avif" />
-        <source srcset="/lovable-uploads/hero-560w.webp 560w, /lovable-uploads/hero-800w.webp 800w, /lovable-uploads/hero-840w.webp 840w" sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px" type="image/webp" />
-        <img src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png" alt="Dra. Carla Christoph, dentista especialista em Ipanema" style="width:100%;height:auto;max-width:400px;object-fit:cover;object-position:top" width="460" height="640" fetchpriority="high" decoding="async" />
-      </picture>
+    <div class="fallback-image-wrapper">
+      <div class="fallback-image-container">
+        <picture>
+          <source srcset="/lovable-uploads/hero-560w.avif 560w, /lovable-uploads/hero-800w.avif 800w, /lovable-uploads/hero-840w.avif 840w" sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px" type="image/avif" />
+          <source srcset="/lovable-uploads/hero-560w.webp 560w, /lovable-uploads/hero-800w.webp 800w, /lovable-uploads/hero-840w.webp 840w" sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px" type="image/webp" />
+          <img src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png" alt="Dra. Carla Christoph, dentista especialista em Ipanema" width="460" height="640" fetchpriority="high" decoding="async" />
+        </picture>
+      </div>
     </div>
   </div>
 </section>
