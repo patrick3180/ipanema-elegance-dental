@@ -10,23 +10,23 @@
 # estes são os arquivos canônicos correspondentes (CLAUDE.md e AGENTS.md) e devem ser mantidos sempre em sync.
 #
 # Se alterar um, atualize o outro imediatamente.
-# Última sincronização: 2026-05-25
+# Última sincronização: 2026-06-17 (Sprint 8b / V4)
 #
 
 **Site:** https://dracarlachristoph.com
 **Consultório:** Dra. Carla Christoph — Dentista Especialista em Ipanema
-**Última atualização:** Junho 2026 (Sprint 4 — Performance)
+**Última atualização:** Junho 2026 (Sprint 8b / V4 — Performance)
 **Propósito:** Documento único e autoritativo para qualquer agente que trabalhe neste projeto. Leia inteiro antes de qualquer ação.
 
 ---
 
 ## 0. Hierarquia de Documentos
 
-Este projeto possui documentação modular. O AGENTS.md (e seu espelho CLAUDE.md) é o ponto de entrada — ele sintetiza e aponta para os documentos especializados:
+Este projeto possui documentação modular. O CLAUDE.md é o ponto de entrada — ele sintetiza e aponta para os documentos especializados:
 
 | Documento | Escopo | Quando Ler |
 |-----------|--------|------------|
-| **AGENTS.md** / **CLAUDE.md** (este) | Visão 360°, regras invioláveis, contexto rápido | **Sempre — primeiro** |
+| **CLAUDE.md** (este) / **AGENTS.md** | Visão 360°, regras invioláveis, contexto rápido | **Sempre — primeiro** |
 | [BRAND.md](BRAND.md) | Tom de voz, palavras banidas, posicionamento, depoimentos | Antes de escrever qualquer conteúdo |
 | [TECH.md](TECH.md) | Stack, design system, componentes, pastas, SEO técnico | Antes de qualquer alteração de código |
 | [BUSINESS.md](BUSINESS.md) | Números do negócio, público-alvo, concorrência, automações | Decisões estratégicas |
@@ -248,6 +248,13 @@ ENGLISH MICRO-SITE:
 /en/porcelain-veneers
 /en/general-dentistry
 /en/dental-emergency
+/en/dental-prosthetics
+/en/teeth-whitening
+/en/veneers-and-lenses
+/en/orthodontics
+/en/root-canal
+/en/gum-health
+/en/aesthetic-restorations
 
 ENGLISH LANDING PAGES (Google Ads — noindex):
 /en/lp/cosmetic-dentistry
@@ -740,7 +747,7 @@ Estas decisões já foram tomadas e aprovadas:
 ## 15. Checklist Rápido — Antes de Qualquer Mudança
 
 ```
-□ Li este AGENTS.md (ou CLAUDE.md) por completo
+□ Li este CLAUDE.md por completo
 □ Verifiquei se o que vou implementar já não existe (grep/busca)
 □ Verifiquei BRAND.md para palavras banidas se vou escrever copy
 □ Verifiquei TRACKING.md se vou criar/editar CTAs

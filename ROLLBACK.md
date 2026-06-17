@@ -132,3 +132,50 @@ git push origin main --force
 | `2b64f61` | Sprint 1 | Static LCP heroes, lazy hydration, manualChunks |
 | `c18c002` | — | **Estado estável pré-performance** (rollback seguro) |
 
+
+## 🆕 Sprint 8b / V4 — Otimização Cirúrgica de Regressões (17/Jun/2026)
+
+### O que foi feito
+- **Arquivos modificados:**
+  - `scripts/generate-static-meta.cjs`
+  - `src/pages/EsteticaSorrisoLandingPage.tsx`
+  - `src/pages/SaudeGengivalLandingPage.tsx`
+  - `src/pages/EspecialistaProteseLandingPage.tsx`
+  - `src/pages/FacetasResinaDiretaLandingPage.tsx`
+  - `src/pages/LimpezaDentalLandingPage.tsx`
+  - `src/pages/ImplantesDentariosLandingPage.tsx`
+  - `src/pages/en/EnGeneralConsultationLP.tsx`
+- **Alterações:**
+  - **Filtragem Granular de Preloads:** Chunks de LPs em PT (`consulta-critical`) preloaded somente em rotas `/lp/*`, chunks em EN (`en-landing-bundle`) preloaded somente em rotas `/en/lp/*`, e nenhum em páginas institucionais/Home.
+  - **Injeção de Hero LCP no Fallback:** Resolvido o caminho do Hero Image no fallback HTML estático via `ROUTE_HERO_MAP[routePath]` quando a propriedade `c.backgroundImage` estiver ausente, injetando a tag `<picture>` com AVIF desktop/mobile.
+  - **Remoção de Bloqueio de Hidratação:** Alterado o import de `ErrorBoundary` de dynamic lazy para import estático. Nas LPs de Estética e Saúde Gengival, removido o wrapper `<Suspense>` que envolvia a página inteira, eliminando o delay crítico de boot above-the-fold.
+- **Commit:** `42831e7` (perf(sprint8b): fix LCP/TBT regressions, filter modulepreloads, inline fallback hero images, remove dynamic ErrorBoundary page-blocking suspense)
+- **Commit estável anterior (pré-Sprint 8b):** `3078395`
+
+### Como fazer rollback CIRÚRGICO (apenas Sprint 8b)
+Para desfazer as otimizações da Sprint 8b mantendo as sprints anteriores intactas, você pode reverter o commit localmente e em produção:
+```bash
+git revert 42831e7 --no-edit
+git push origin main
+```
+
+### Como fazer rollback COMPLETO (reverter para antes da Sprint 8b)
+1. **Abra o terminal na pasta do projeto:** `c:\IA\Projetos\Teste site Carla\ipanema-elegance-dental\`
+2. **Crie uma branch de backup:**
+   ```bash
+   git checkout -b backup-performance-sprint8b
+   ```
+3. **Volte para a branch principal (`main`):**
+   ```bash
+   git checkout main
+   ```
+4. **Resete de forma forçada para o commit estável anterior (`3078395`):**
+   ```bash
+   git reset --hard 3078395
+   ```
+5. **Envie as alterações revertidas de forma forçada para o GitHub:**
+   ```bash
+   git push origin main --force
+   ```
+   *Nota: Isso acionará instantaneamente o deploy de rollback para o estado anterior da Sprint 8b no Vercel.*
+

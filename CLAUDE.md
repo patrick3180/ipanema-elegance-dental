@@ -7,15 +7,15 @@
 #   • AGENTS.md  → usado pelo Antigravity IDE / Gemini
 #
 # Nota: Caso sua versão legada ou customizada do Antigravity/Claude procure por 'claude.umd' ou 'agents.umd',
-# estes são os arquivos canônicos correspondentes (CLAUDE.md e AGENTS.md) e devem ser mantidos sempre in sync.
+# estes são os arquivos canônicos correspondentes (CLAUDE.md e AGENTS.md) e devem ser mantidos sempre em sync.
 #
 # Se alterar um, atualize o outro imediatamente.
-# Última sincronização: 2026-06-17
+# Última sincronização: 2026-06-17 (Sprint 8b / V4)
 #
 
 **Site:** https://dracarlachristoph.com
 **Consultório:** Dra. Carla Christoph — Dentista Especialista em Ipanema
-**Última atualização:** Junho 2026 (Sprint 8 — Performance)
+**Última atualização:** Junho 2026 (Sprint 8b / V4 — Performance)
 **Propósito:** Documento único e autoritativo para qualquer agente que trabalhe neste projeto. Leia inteiro antes de qualquer ação.
 
 ---
