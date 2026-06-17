@@ -7,7 +7,7 @@ import useScrollTracking from '@/hooks/useScrollTracking';
 // Performance Components (critical path only)
 import LazySection from '@/components/performance/LazySection';
 import ContentfulBlocker from '@/components/performance/ContentfulBlocker';
-const ErrorBoundary = lazy(() => import('@/components/performance/ErrorBoundary'));
+import ErrorBoundary from '@/components/performance/ErrorBoundary';
 
 // Sprint 4: Removed SimpleLCPOptimizer, CoreWebVitalsOptimizer, useCriticalImagePreload,
 // skeleton imports, and duplicate GTM script from Helmet.
@@ -144,114 +144,112 @@ const SaudeGengivalLandingPage = () => {
       <ContentfulBlocker />
 
       {/* Page Content */}
-      <Suspense fallback={<div className="min-h-screen bg-[#FAF7F2]" />}>
-        <ErrorBoundary>
-          <main className="min-h-screen bg-white">
-            {/* Critical Above-the-fold Content (EAGER — Sprint 4 fix) */}
-            <ConsultaInicialHeader
-              whatsappNumber={config.whatsapp.number}
-              whatsappMessage={config.whatsapp.message}
-              campaign={config.campaign}
-              messageMatch={config.messageMatch}
-            />
+      <ErrorBoundary>
+        <main className="min-h-screen bg-white">
+          {/* Critical Above-the-fold Content (EAGER — Sprint 4 fix) */}
+          <ConsultaInicialHeader
+            whatsappNumber={config.whatsapp.number}
+            whatsappMessage={config.whatsapp.message}
+            campaign={config.campaign}
+            messageMatch={config.messageMatch}
+          />
 
-            <ConsultaInicialHero
-              headline={config.hero.headline}
-              subheadline={config.hero.subheadline}
-              ctaText={config.hero.ctaText}
-              whatsappNumber={config.whatsapp.number}
-              whatsappMessage={config.whatsapp.message}
-              backgroundImage={config.hero.backgroundImage}
-              benefits={config.benefits}
-            />
+          <ConsultaInicialHero
+            headline={config.hero.headline}
+            subheadline={config.hero.subheadline}
+            ctaText={config.hero.ctaText}
+            whatsappNumber={config.whatsapp.number}
+            whatsappMessage={config.whatsapp.message}
+            backgroundImage={config.hero.backgroundImage}
+            benefits={config.benefits}
+          />
 
-            {/* Problem Section */}
-            <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.05} rootMargin="200px">
-              <Suspense fallback={<div className="h-96 bg-gray-50" />}>
-                <div className="animate-fade-in-up">
-                  <ProblemSection
-                    title={config.problem.title}
-                    description={config.problem.description}
-                    problems={config.problem.problems}
-                  />
-                </div>
-              </Suspense>
-            </LazySection>
-
-            {/* Guide Section */}
-            <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.05} rootMargin="200px">
-              <Suspense fallback={<div className="h-96 bg-white" />}>
-                <div className="animate-fade-in-up">
-                  <GuideSection
-                    title={config.guide.title}
-                    subtitle={config.guide.subtitle}
-                    steps={config.guide.steps}
-                  />
-                </div>
-              </Suspense>
-            </LazySection>
-
-            {/* Social Proof Section */}
-            <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.1} rootMargin="50px">
-              <Suspense fallback={<div className="h-96 bg-gray-50" />}>
-                <div className="animate-fade-in-up">
-                  <SocialProofSection
-                    title={config.socialProof.title}
-                    testimonials={config.socialProof.testimonials}
-                    stats={config.socialProof.stats}
-                  />
-                </div>
-              </Suspense>
-            </LazySection>
-
-            {/* FAQ Section */}
-            <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.1} rootMargin="50px">
-              <Suspense fallback={<div className="h-96 bg-white" />}>
-                <div className="animate-fade-in-up">
-                  <FAQSection
-                    title={config.faq.title}
-                    questions={config.faq.questions}
-                  />
-                </div>
-              </Suspense>
-            </LazySection>
-
-            {/* CTA Section */}
-            <LazySection fallback={<div className="h-32 bg-[#381F47] animate-pulse" />} threshold={0.1}>
-              <Suspense fallback={<div className="h-32 bg-[#381F47]" />}>
-                <CTASection
-                  title={config.cta.title}
-                  subtitle={config.cta.subtitle}
-                  buttonText={config.cta.buttonText}
-                  campaign={config.campaign}
-                  phoneNumber={config.whatsapp.number}
-                  whatsappMessage={config.whatsapp.message}
-                  messageMatch={config.messageMatch}
+          {/* Problem Section */}
+          <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.05} rootMargin="200px">
+            <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+              <div className="animate-fade-in-up">
+                <ProblemSection
+                  title={config.problem.title}
+                  description={config.problem.description}
+                  problems={config.problem.problems}
                 />
-              </Suspense>
-            </LazySection>
+              </div>
+            </Suspense>
+          </LazySection>
 
-            {/* Footer */}
-            <LazySection fallback={<div className="h-64 bg-[#381F47] animate-pulse" />} threshold={0.1}>
-              <Suspense fallback={<div className="h-64 bg-[#381F47]" />}>
-                <LandingFooter doctorName="Dra. Carla Christoph" clinicName="Ipanema Elegance Dental" phoneNumber="(21) 99330-4045" />
-              </Suspense>
-            </LazySection>
-
-            {/* Floating WhatsApp */}
-            <LazySection fallback={null} threshold={0} rootMargin="0px">
-              <Suspense fallback={null}>
-                <FloatingWhatsApp
-                  phoneNumber={config.whatsapp.number}
-                  message={config.whatsapp.message}
-                  campaign={config.campaign}
-                  messageMatch={config.messageMatch}
+          {/* Guide Section */}
+          <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.05} rootMargin="200px">
+            <Suspense fallback={<div className="h-96 bg-white" />}>
+              <div className="animate-fade-in-up">
+                <GuideSection
+                  title={config.guide.title}
+                  subtitle={config.guide.subtitle}
+                  steps={config.guide.steps}
                 />
-              </Suspense>
-            </LazySection>
-          </main>
-        </ErrorBoundary>
-      </Suspense>
+              </div>
+            </Suspense>
+          </LazySection>
+
+          {/* Social Proof Section */}
+          <LazySection fallback={<div className="h-96 bg-gray-50 animate-pulse" />} threshold={0.1} rootMargin="50px">
+            <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+              <div className="animate-fade-in-up">
+                <SocialProofSection
+                  title={config.socialProof.title}
+                  testimonials={config.socialProof.testimonials}
+                  stats={config.socialProof.stats}
+                />
+              </div>
+            </Suspense>
+          </LazySection>
+
+          {/* FAQ Section */}
+          <LazySection fallback={<div className="h-96 bg-white animate-pulse" />} threshold={0.1} rootMargin="50px">
+            <Suspense fallback={<div className="h-96 bg-white" />}>
+              <div className="animate-fade-in-up">
+                <FAQSection
+                  title={config.faq.title}
+                  questions={config.faq.questions}
+                />
+              </div>
+            </Suspense>
+          </LazySection>
+
+          {/* CTA Section */}
+          <LazySection fallback={<div className="h-32 bg-[#381F47] animate-pulse" />} threshold={0.1}>
+            <Suspense fallback={<div className="h-32 bg-[#381F47]" />}>
+              <CTASection
+                title={config.cta.title}
+                subtitle={config.cta.subtitle}
+                buttonText={config.cta.buttonText}
+                campaign={config.campaign}
+                phoneNumber={config.whatsapp.number}
+                whatsappMessage={config.whatsapp.message}
+                messageMatch={config.messageMatch}
+              />
+            </Suspense>
+          </LazySection>
+
+          {/* Footer */}
+          <LazySection fallback={<div className="h-64 bg-[#381F47] animate-pulse" />} threshold={0.1}>
+            <Suspense fallback={<div className="h-64 bg-[#381F47]" />}>
+              <LandingFooter doctorName="Dra. Carla Christoph" clinicName="Ipanema Elegance Dental" phoneNumber="(21) 99330-4045" />
+            </Suspense>
+          </LazySection>
+
+          {/* Floating WhatsApp */}
+          <LazySection fallback={null} threshold={0} rootMargin="0px">
+            <Suspense fallback={null}>
+              <FloatingWhatsApp
+                phoneNumber={config.whatsapp.number}
+                message={config.whatsapp.message}
+                campaign={config.campaign}
+                messageMatch={config.messageMatch}
+              />
+            </Suspense>
+          </LazySection>
+        </main>
+      </ErrorBoundary>
     </>
   );
 };

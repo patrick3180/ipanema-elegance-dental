@@ -4,7 +4,7 @@ import { enGeneralConsultationLPConfig } from "@/config/enGeneralConsultationLPC
 
 // Performance
 import LazySection from "@/components/performance/LazySection";
-const ErrorBoundary = lazy(() => import("@/components/performance/ErrorBoundary"));
+import ErrorBoundary from "@/components/performance/ErrorBoundary";
 
 // Critical above-the-fold (eager)
 import EnLPHeader from "@/components/en/lp/EnLPHeader";

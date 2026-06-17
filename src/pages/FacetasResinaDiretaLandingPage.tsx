@@ -7,7 +7,7 @@ import useScrollTracking from '@/hooks/useScrollTracking';
 // Performance Components (critical path only)
 import LazySection from '@/components/performance/LazySection';
 import ContentfulBlocker from '@/components/performance/ContentfulBlocker';
-const ErrorBoundary = lazy(() => import('@/components/performance/ErrorBoundary'));
+import ErrorBoundary from '@/components/performance/ErrorBoundary';
 
 // Critical above-the-fold components (eager loading)
 import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicialHeader';

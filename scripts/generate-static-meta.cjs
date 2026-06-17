@@ -274,7 +274,7 @@ function generateLPFallbackHTML_ORIGINAL_PRE_SPRINT3(c, lang) {
  * Below-the-fold content stays semantic (simple HTML) since it's outside
  * the viewport at initial paint and doesn't contribute to CLS.
  */
-function generateLPFallbackHTML(c, lang) {
+function generateLPFallbackHTML(c, lang, routePath) {
   const isEn = lang === 'en';
   const L = {
     benefits: isEn ? 'Benefits' : 'Benefícios',
@@ -294,28 +294,29 @@ function generateLPFallbackHTML(c, lang) {
   const ctaButtonText = c.ctaText || (isEn ? 'Book via WhatsApp' : 'Agendar pelo WhatsApp');
 
   // ── Hero image (same dimensions/aspect as React UltraOptimizedPicture) ──
-  const deriveAvifPaths = (webpSrc) => {
-    if (!webpSrc) return null;
-    const base = webpSrc.replace(/\.webp$/, '');
+  const heroImageBase = c.backgroundImage ? c.backgroundImage.replace(/\.webp$/, '') : (ROUTE_HERO_MAP[routePath] || '');
+  const deriveAvifPaths = (base) => {
+    if (!base) return null;
     return { mobile: `${base}-480.avif`, desktop: `${base}-1024.avif` };
   };
-  const avifPaths = c.backgroundImage ? deriveAvifPaths(c.backgroundImage) : null;
+  const avifPaths = deriveAvifPaths(heroImageBase);
   let heroImageHtml = '';
-  if (c.backgroundImage) {
+  if (heroImageBase) {
     // Match React's image container: rounded corners, shadow, responsive sizing
     const imgStyle = 'width:100%;height:auto;border-radius:0.5rem;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1)';
+    const defaultImgSrc = c.backgroundImage || `${heroImageBase}.webp`;
     if (avifPaths) {
       heroImageHtml = `
         <div style="flex:1;min-width:0;text-align:center">
           <picture>
             <source srcset="${avifPaths.mobile} 480w, ${avifPaths.desktop} 1024w" sizes="(max-width:767px) 100vw, (min-width:768px) 50vw, 40vw" type="image/avif" />
-            <img src="${c.backgroundImage}" alt="${escapeHtml(c.h1)}" style="${imgStyle}" width="760" height="996" fetchpriority="high" decoding="async" />
+            <img src="${defaultImgSrc}" alt="${escapeHtml(c.h1)}" style="${imgStyle}" width="760" height="996" fetchpriority="high" decoding="async" />
           </picture>
         </div>`;
     } else {
       heroImageHtml = `
         <div style="flex:1;min-width:0;text-align:center">
-          <img src="${c.backgroundImage}" alt="${escapeHtml(c.h1)}" style="${imgStyle}" fetchpriority="high" decoding="async" />
+          <img src="${defaultImgSrc}" alt="${escapeHtml(c.h1)}" style="${imgStyle}" fetchpriority="high" decoding="async" />
         </div>`;
     }
   }
@@ -1701,20 +1702,23 @@ function generatePage(routePath, meta, options = {}) {
     );
   }
 
-  // Sprint 8: Filter modulepreloads to remove unused chunks on specific routes
-  const isEnRoute = routePath.startsWith('/en');
-  if (!isEnRoute) {
-    // Remove English LP chunks from Portuguese pages and Homepage
-    html = html.replace(/<link rel="modulepreload"[^>]*?href="[^"]*?en-landing-bundle[^"]*?"[^>]*?>\s*/gi, '');
-  }
-  
-  if (routePath === '/') {
-    // Homepage does not use any LP chunks (Portuguese or English)
-    html = html.replace(/<link rel="modulepreload"[^>]*?href="[^"]*?en-landing-bundle[^"]*?"[^>]*?>\s*/gi, '');
+  // Sprint 8b / V4: Strict route-based modulepreload filtering to minimize TBT
+  const isPtLp = routePath.startsWith('/lp/');
+  const isEnLp = routePath.startsWith('/en/lp/');
+
+  if (!isPtLp) {
+    // Remove all Portuguese LP chunks
     html = html.replace(/<link rel="modulepreload"[^>]*?href="[^"]*?consulta-critical[^"]*?"[^>]*?>\s*/gi, '');
+    html = html.replace(/<link rel="modulepreload"[^>]*?href="[^"]*?consulta-problem[^"]*?"[^>]*?>\s*/gi, '');
+    html = html.replace(/<link rel="modulepreload"[^>]*?href="[^"]*?consulta-guide[^"]*?"[^>]*?>\s*/gi, '');
     html = html.replace(/<link rel="modulepreload"[^>]*?href="[^"]*?landing-hero[^"]*?"[^>]*?>\s*/gi, '');
     html = html.replace(/<link rel="modulepreload"[^>]*?href="[^"]*?landing-header[^"]*?"[^>]*?>\s*/gi, '');
     html = html.replace(/<link rel="modulepreload"[^>]*?href="[^"]*?landing-lazy-[^"]*?"[^>]*?>\s*/gi, '');
+  }
+
+  if (!isEnLp) {
+    // Remove all English LP chunks
+    html = html.replace(/<link rel="modulepreload"[^>]*?href="[^"]*?en-landing-bundle[^"]*?"[^>]*?>\s*/gi, '');
   }
 
   return html;
@@ -1784,7 +1788,7 @@ for (const [routePath, meta] of Object.entries(landingPages)) {
   const isEn = routePath.startsWith('/en/');
   const lang = isEn ? 'en' : 'pt-BR';
   const content = landingPageContent[routePath];
-  const fallbackContent = content ? generateLPFallbackHTML(content, lang) : '';
+  const fallbackContent = content ? generateLPFallbackHTML(content, lang, routePath) : '';
 
   fs.writeFileSync(filePath, generatePage(routePath, meta, { noindex: true, fallbackContent, lang }));
   count++;

@@ -4,7 +4,7 @@ import { especialistaProteseConfig } from '@/config/especialistaProteseConfig';
 import { useScrollTracking } from '@/hooks/useScrollTracking';
 
 // Performance components
-const ErrorBoundary = lazy(() => import('@/components/performance/ErrorBoundary'));
+import ErrorBoundary from '@/components/performance/ErrorBoundary';
 import LazySection from '@/components/performance/LazySection';
 
 
