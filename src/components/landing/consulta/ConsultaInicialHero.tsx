@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, Star } from 'lucide-react';
 import { sendGCLIDToWebhook } from "@/utils/gclid";
 import UltraOptimizedPicture from "@/components/performance/UltraOptimizedPicture";
 
@@ -82,6 +82,11 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Content - 60% on desktop */}
           <div className="w-full lg:w-3/5 space-y-7">
+            {/* Message-match eyebrow — ancora keywords de maior conversão */}
+            <p className="text-xs md:text-sm font-semibold tracking-wide uppercase text-[#8B7340]">
+              Dentista em Ipanema · Zona Sul
+            </p>
+
             {/* Credential badges */}
             <div className="flex flex-wrap gap-3">
               <span className="inline-flex items-center bg-[#381F47]/10 text-[#381F47] text-xs font-semibold px-3 py-1.5 rounded-full">
@@ -131,6 +136,19 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
                 <span className="text-green-500 text-[8px]">●</span>
                 <span className="text-[11px] text-gray-500">WhatsApp 24h</span>
               </div>
+
+              {/* Prova social do Google — dado real 5,0/17 (BRAND.md §6) */}
+              <a
+                href="https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Avaliações no Google: 5,0 estrelas com 17 avaliações"
+                className="inline-flex items-center gap-1.5 mt-1 px-3 py-1.5 bg-white border border-[#B3955F]/30 rounded-full w-fit"
+              >
+                <Star size={16} className="fill-[#B3955F] text-[#B3955F]" />
+                <span className="text-sm font-semibold text-[#381F47]">5,0</span>
+                <span className="text-xs text-[#381F47]/70">no Google · 17 avaliações</span>
+              </a>
             </div>
           </div>
 

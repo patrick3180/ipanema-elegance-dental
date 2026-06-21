@@ -1,61 +1,65 @@
-import React from 'react';
-import UltraOptimizedPicture from '@/components/performance/UltraOptimizedPicture';
+import React from "react";
+import OptimizedImage from "@/components/OptimizedImage";
 
 const ConsultaInicialDoctorBio: React.FC = () => {
-  const credentials = [
-    'CRO-RJ 27.509',
-    'Especialista em Prótese',
-    'Implantodontia',
-    '20+ Anos de Experiência',
-  ];
-
   return (
-    <section className="bg-white py-16 lg:py-20" aria-label="Sobre a Dra. Carla Christoph">
-      <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-            {/* Photo */}
-            <div className="w-48 h-48 md:w-56 md:h-56 flex-shrink-0">
-              <div className="rounded-2xl overflow-hidden shadow-[0_6px_24px_rgba(56,31,71,0.1)]">
-                <UltraOptimizedPicture
-                  src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
-                  alt="Dra. Carla Christoph — Especialista em Prótese e Implantodontia"
-                  width={224}
-                  height={224}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+    <section className="py-16 md:py-20 bg-dental-beige/40" aria-label="Sobre a Dra. Carla Christoph">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid md:grid-cols-[280px_1fr] gap-8 md:gap-12 items-center">
+          {/* Foto (mantida) */}
+          <div className="flex justify-center md:justify-start">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-dental-gold/20 to-dental-purple/10 rounded-2xl rotate-2 scale-[1.03]" />
+              <OptimizedImage
+                src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+                alt="Dra. Carla Christoph — Dentista Especialista em Ipanema"
+                className="relative rounded-2xl shadow-elegant w-60 md:w-full object-cover"
+                width={280}
+                height={350}
+              />
+            </div>
+          </div>
+
+          {/* Bio */}
+          <div className="space-y-4">
+            <p className="text-xs uppercase tracking-[0.2em] text-dental-gold font-medium">
+              Sua Dentista
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-display font-bold text-dental-purple">
+              Dra. Carla Christoph
+            </h2>
+            <p className="text-xs text-dental-gray uppercase tracking-wide">
+              CRO-RJ 27.509 • Especialista em Prótese Dentária e em Implantodontia
+            </p>
+
+            <div className="space-y-3 text-sm text-dental-gray leading-relaxed">
+              <p>
+                Com mais de <strong>20 anos de experiência clínica em Ipanema</strong>, a Dra. Carla é especialista em <strong>Prótese Dentária e em Implantodontia</strong> — as duas áreas no centro da reabilitação do sorriso.
+              </p>
+              <p>
+                Sua formação inclui <strong>8 anos como dentista militar na Odontoclínica Central da Marinha</strong>, em paralelo à prática particular — experiência que trouxe disciplina, precisão e compromisso com a segurança do paciente.
+              </p>
+              <p>
+                No diagnóstico, conta com o <strong>scanner iTero Element 5D</strong> e registro digital quando indicado, para um exame preciso. E há continuidade: a Dra. Carla acompanha você da primeira consulta à finalização — quando um tratamento especializado é necessário, traz profissionais de confiança que atuam sob sua supervisão, no próprio consultório.
+              </p>
             </div>
 
-            {/* Bio Content */}
-            <div className="flex-1 text-center md:text-left space-y-4">
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-[#381F47] font-serif">
-                  Dra. Carla Christoph
-                </h2>
-                <p className="text-sm text-[#B3955F] font-medium mt-1">
-                  CRO-RJ 27.509 · Especialista em Prótese e Implantodontia
-                </p>
-              </div>
-
-              <p className="text-[#333333] leading-relaxed text-base">
-                Com mais de 20 anos de experiência clínica em Ipanema, a Dra. Carla conduz cada
-                consulta com atenção ao detalhe e comunicação transparente. Seu atendimento é
-                particular e com número reduzido de pacientes por dia — para que cada pessoa
-                receba o tempo que seu caso requer.
-              </p>
-
-              {/* Credential Pills */}
-              <div className="flex flex-wrap justify-center md:justify-start gap-2 pt-2">
-                {credentials.map((cred, index) => (
-                  <span
-                    key={index}
-                    className="inline-flex items-center bg-[#381F47]/5 text-[#381F47] text-xs font-medium px-3 py-1.5 rounded-full border border-[#381F47]/10"
-                  >
-                    {cred}
-                  </span>
-                ))}
-              </div>
+            {/* Credenciais */}
+            <div className="flex flex-wrap gap-3 pt-2">
+              {[
+                "Especialista em Prótese Dentária",
+                "Implantodontia",
+                "20+ Anos",
+                "8 anos na Marinha",
+                "iTero Element 5D",
+              ].map((credential) => (
+                <span
+                  key={credential}
+                  className="text-[11px] font-medium text-dental-purple bg-white border border-dental-purple/10 rounded-full px-3 py-1"
+                >
+                  {credential}
+                </span>
+              ))}
             </div>
           </div>
         </div>

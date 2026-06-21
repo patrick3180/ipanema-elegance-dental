@@ -658,7 +658,7 @@ Estas decisões já foram tomadas e aprovadas:
 | Dr. Bruno = "Dr. Bruno" | Sem sobrenome Christoph |
 | Canal/Periodontia = parceiros | Dra. Carla coordena, não executa |
 | Blog formato Q&A | Melhor para AI Search |
-| `AggregateRating` = ✅ Mantido (exceção autorizada Maio/2026) | Dados reais do Google Reviews (5.0/16). Beneficia SEO via rich snippets. Substitui regra anterior "Removido" que era válida quando os dados eram fabricados. |
+| `AggregateRating` = ✅ Mantido (exceção autorizada Maio/2026) | Dados reais do Google Reviews (5.0/17). Beneficia SEO via rich snippets. Substitui regra anterior "Removido" que era válida quando os dados eram fabricados. |
 | GTM delay = 2 segundos | Reduzido de 8s (perdia conversões) |
 | GCLID em localStorage | sessionStorage causava perda de dados |
 | Scanner = "iTero Element 5D" | Nome correto e diferenciador |

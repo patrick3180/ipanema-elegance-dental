@@ -22,7 +22,7 @@ export const consultaInicialConfig: LandingPageConfig = {
 
   benefits: [
     "Mínimo de 1h dedicada ao seu caso",
-    "Exame + limpeza inclusos na consulta",
+    "Limpeza profissional (profilaxia) já inclusa na consulta",
     "Plano de tratamento sem surpresas",
     "WhatsApp 24h para dúvidas"
   ],
@@ -43,7 +43,7 @@ export const consultaInicialConfig: LandingPageConfig = {
     subtitle: "Especialista em Prótese e Implantodontia, com mais de 20 anos de experiência clínica em Ipanema.",
     steps: [
       { number: "1", title: "Conversa Inicial", description: "Ouvimos seu histórico, suas queixas e o que você espera. Sem formulário apressado — uma conversa de verdade." },
-      { number: "2", title: "Exame Clínico Completo", description: "Avaliação detalhada dos dentes, gengiva, mordida e articulação. Radiografias quando necessário. Inclui profilaxia (limpeza profissional)." },
+      { number: "2", title: "Exame Clínico Completo", description: "Avaliação detalhada dos dentes, gengiva, mordida e articulação. Quando indicado, usamos o scanner iTero Element 5D e radiografias para um diagnóstico preciso. A profilaxia (limpeza profissional) já está inclusa na própria consulta inicial." },
       { number: "3", title: "Explicação do Diagnóstico", description: "Mostramos o que foi encontrado, explicamos cada ponto e respondemos todas as suas dúvidas — com calma." },
       { number: "4", title: "Plano de Tratamento Individualizado", description: "Se houver necessidade de tratamento, apresentamos as opções com valores transparentes. Você decide no seu tempo." }
     ]
