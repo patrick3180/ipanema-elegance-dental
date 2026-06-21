@@ -191,13 +191,16 @@ git push origin main
 - **Alterações:**
   - **Granular Preloading:** Removidos preloads de `landing-hero` e `landing-header` para Limpeza e Lentes Porcelana (visto que não são usados nelas). Removido preload de `en-landing-bundle` para EN Cosmetic.
   - **Localização de Heros:** Inlined/localizadas as estruturas de Header e Hero em `LimpezaDentalLandingPage.tsx` e `EnCosmeticDentistryLP.tsx` para eliminar dependências de boot e arquivos compartilhados.
-  - **Alinhamento de LCP `<picture>`:** Ajustados os elementos `<picture>` e `<img>` em todas as três LPs para baterem exatamente com o `srcset`, `sizes` e `width`/`height` gerados na injeção estática e preloads, eliminando double-downloads de imagens.
-- **Commit:** `a08ac4a` (perf(sprint9): granular preloading and local hero optimizations for EN Cosmetic, Limpeza, and Lentes Porcelana LPs)
+  - **Alinhamento de LCP `<picture>` & Aspect Ratio:** Ajustados os elementos `<picture>` e `<img>` em todas as três LPs para baterem exatamente com o `srcset`, `sizes` e `width`/`height` gerados na injeção estática e preloads, eliminando double-downloads de imagens. Corrigido o `aspect-ratio` do wrapper da imagem do hero de `3/4` para `760/996` em `LPLentesPorcelana.tsx` para bater perfeitamente com a proporção do fallback HTML estático e eliminar CLS residual na hidratação.
+- **Commits:** 
+  - `a08ac4a` (perf(sprint9): granular preloading and local hero optimizations for EN Cosmetic, Limpeza, and Lentes Porcelana LPs)
+  - `d66826c` (perf(lentes-porcelana): fix hero image wrapper aspect-ratio to match static fallback exactly)
 - **Commit estável anterior (pré-Sprint 9):** `cc315e6`
 
 ### Como fazer rollback CIRÚRGICO (apenas Sprint 9)
-Para desfazer as otimizações da Sprint 9 mantendo as sprints anteriores intactas, você pode reverter o commit localmente e em produção:
+Para desfazer as otimizações da Sprint 9 mantendo as sprints anteriores intactas, você pode reverter os commits localmente e em produção:
 ```bash
+git revert d66826c --no-edit
 git revert a08ac4a --no-edit
 git push origin main
 ```
