@@ -40,7 +40,7 @@ const ConsultaInicialDoctorBio: React.FC = () => {
                 Sua formação inclui <strong>8 anos como dentista militar na Odontoclínica Central da Marinha</strong>, em paralelo à prática particular — experiência que trouxe disciplina, precisão e compromisso com a segurança do paciente.
               </p>
               <p>
-                No diagnóstico, conta com o <strong>scanner iTero Element 5D</strong> e registro digital quando indicado, para um exame preciso. E há continuidade: a Dra. Carla acompanha você da primeira consulta à finalização — quando um tratamento especializado é necessário, traz profissionais de confiança que atuam sob sua supervisão, no próprio consultório.
+                No diagnóstico, conta com o <strong>scanner iTero Element 5D</strong> e registro digital quando indicado, para um exame preciso. E você resolve tudo em um só lugar: cada etapa do seu tratamento acontece no mesmo consultório, com o <strong>acompanhamento e a supervisão da Dra. Carla do início ao fim</strong> — sem precisar pular de endereço em endereço a cada especialidade.
               </p>
             </div>
 
@@ -48,7 +48,7 @@ const ConsultaInicialDoctorBio: React.FC = () => {
             <div className="flex flex-wrap gap-3 pt-2">
               {[
                 "Especialista em Prótese Dentária",
-                "Implantodontia",
+                "Especialista em Implantodontia",
                 "20+ Anos",
                 "8 anos na Marinha",
                 "iTero Element 5D",

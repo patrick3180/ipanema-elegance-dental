@@ -93,7 +93,7 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
                 CRO-RJ 27.509
               </span>
               <span className="inline-flex items-center bg-[#B3955F]/15 text-[#8B7340] text-xs font-semibold px-3 py-1.5 rounded-full">
-                Atendimento Particular · Ipanema
+                Atendimento Particular
               </span>
             </div>
 
@@ -132,11 +132,6 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
                 <MessageCircle size={20} />
                 {ctaText}
               </button>
-              <div className="flex items-center gap-1.5 md:pl-1">
-                <span className="text-green-500 text-[8px]">●</span>
-                <span className="text-[11px] text-gray-500">WhatsApp 24h</span>
-              </div>
-
               {/* Prova social do Google — dado real 5,0/17 (BRAND.md §6) */}
               <a
                 href="https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/"

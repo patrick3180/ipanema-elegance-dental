@@ -15,7 +15,7 @@ export const consultaInicialConfig: LandingPageConfig = {
 
   hero: {
     headline: "Cada Caso É Único — Sua Consulta Também Deveria Ser",
-    subheadline: "Mínimo de 1 hora dedicada ao seu caso. Histórico completo, exame minucioso, explicação clara e plano de tratamento individualizado — sem pressa e sem surpresas.",
+    subheadline: "Tempo de verdade para entender o seu caso: ouvimos primeiro, examinamos com calma e explicamos cada passo — antes de propor qualquer tratamento.",
     ctaText: "Agendar Minha Consulta",
     backgroundImage: "/lovable-uploads/RIT08058-vertical-doutora-site.webp"
   },
@@ -34,7 +34,8 @@ export const consultaInicialConfig: LandingPageConfig = {
       "Faz tempo que não vai ao dentista e sente que pode ter problemas se acumulando.",
       "Já saiu de consultas sem entender o diagnóstico porque tudo foi rápido demais.",
       "Quer um profissional que ouça primeiro e explique tudo antes de propor qualquer tratamento.",
-      "Prefere prevenir do que remediar e busca acompanhamento regular com quem conhece seu histórico."
+      "Prefere prevenir do que remediar e busca acompanhamento regular com quem conhece seu histórico.",
+      "Já precisou pular de um consultório para outro — um dentista para cada especialidade — só para concluir o tratamento."
     ]
   },
 
