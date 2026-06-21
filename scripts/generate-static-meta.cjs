@@ -367,6 +367,7 @@ function generateLPFallbackHTML(c, lang, routePath) {
     </section>
     <main style="max-width:800px;margin:0 auto;padding:24px 16px;font-family:system-ui,sans-serif;line-height:1.6;color:#333">
       ${problemsHtml ? `<section><h2>${escapeHtml(c.problemTitle || (isEn ? 'Common situations' : 'Situa&ccedil;&otilde;es comuns'))}</h2><ul>${problemsHtml}</ul></section>` : ''}
+      ${c.doctorBio ? `<section><h2>${escapeHtml(c.doctorBioTitle || (isEn ? 'Your Dentist' : 'Sua Dentista'))}</h2>${c.doctorBioCredential ? '<p><strong>' + escapeHtml(c.doctorBioCredential) + '</strong></p>' : ''}${c.doctorBio.map(p => '<p>' + escapeHtml(p) + '</p>').join('')}${(c.credentials || []).length ? '<ul>' + c.credentials.map(cr => '<li>' + escapeHtml(cr) + '</li>').join('') + '</ul>' : ''}</section>` : ''}
       ${stepsHtml ? `<section><h2>${escapeHtml(c.guideTitle || L.howItWorks)}</h2><ol>${stepsHtml}</ol></section>` : ''}
       ${testimonialsHtml ? `<section><h2>${escapeHtml(c.testimonialsTitle || L.testimonials)}</h2>${testimonialsHtml}</section>` : ''}
       ${faqsHtml ? `<section><h2>${escapeHtml(c.faqTitle || L.faq)}</h2><dl>${faqsHtml}</dl></section>` : ''}
@@ -744,7 +745,7 @@ const landingPages = {
   },
   '/lp/consulta-inicial': {
     title: 'Consulta Inicial | Dra. Carla Christoph - Dentista em Ipanema',
-    description: 'Agende sua primeira consulta com a Dra. Carla Christoph em Ipanema. Avaliação completa e plano de tratamento personalizado.',
+    description: 'Agende sua consulta inicial com a Dra. Carla Christoph, dentista em Ipanema (Zona Sul). Mínimo de 1 hora, scanner iTero Element 5D, limpeza inclusa e plano de tratamento sem surpresas. CRO-RJ 27.509.',
   },
   '/lp/ortodontia-ipanema': {
     title: 'Ortodontia em Ipanema | Dr. Bruno Neves & Dra. Carla Christoph',
@@ -812,19 +813,19 @@ const landingPages = {
 const landingPageContent = {
   '/lp/consulta-inicial': {
     h1: 'Cada Caso É Único — Sua Consulta Também Deveria Ser',
-    subhead: 'Mínimo de 1 hora dedicada ao seu caso. Histórico completo, exame minucioso, explicação clara e plano de tratamento individualizado — sem pressa e sem surpresas.',
-    benefits: ['Mínimo de 1h dedicada ao seu caso', 'Exame + limpeza inclusos na consulta', 'Plano de tratamento sem surpresas', 'WhatsApp 24h para dúvidas'],
+    subhead: 'Tempo de verdade para entender o seu caso: ouvimos primeiro, examinamos com calma e explicamos cada passo — antes de propor qualquer tratamento.',
+    benefits: ['Mínimo de 1h dedicada ao seu caso', 'Limpeza profissional (profilaxia) já inclusa na consulta', 'Plano de tratamento sem surpresas', 'WhatsApp 24h para dúvidas'],
     problemTitle: 'Você se Identifica com Alguma Dessas Situações?',
     problems: [
       'Faz tempo que não vai ao dentista e sente que pode ter problemas se acumulando.',
-      'Já saiu de consultas sem entender o diagnóstico porque tudo foi rápido demais.',
-      'Quer um profissional que ouça primeiro e explique tudo antes de propor qualquer tratamento.',
-      'Prefere prevenir do que remediar e busca acompanhamento regular com quem conhece seu histórico.'
+      'Já saiu de consultas rápidas demais, sem entender o diagnóstico, e quer alguém que ouça e explique antes de propor qualquer tratamento.',
+      'Prefere prevenir do que remediar e busca acompanhamento regular com quem conhece seu histórico.',
+      'Já precisou pular de um consultório para outro — um dentista para cada especialidade — só para concluir o tratamento.'
     ],
     guideTitle: 'Como Funciona a Consulta com a Dra. Carla Christoph',
     steps: [
       { title: 'Conversa Inicial', description: 'Ouvimos seu histórico, suas queixas e o que você espera. Sem formulário apressado — uma conversa de verdade.' },
-      { title: 'Exame Clínico Completo', description: 'Avaliação detalhada dos dentes, gengiva, mordida e articulação. Radiografias quando necessário. Inclui profilaxia (limpeza profissional).' },
+      { title: 'Exame Clínico Completo', description: 'Avaliação detalhada dos dentes, gengiva, mordida e articulação. Quando indicado, usamos o scanner iTero Element 5D e radiografias para um diagnóstico preciso. A profilaxia (limpeza profissional) já está inclusa na própria consulta inicial.' },
       { title: 'Explicação do Diagnóstico', description: 'Mostramos o que foi encontrado, explicamos cada ponto e respondemos todas as suas dúvidas — com calma.' },
       { title: 'Plano de Tratamento Individualizado', description: 'Se houver necessidade de tratamento, apresentamos as opções com valores transparentes. Você decide no seu tempo.' }
     ],
@@ -838,7 +839,7 @@ const landingPageContent = {
     faqs: [
       { q: 'Por que a consulta dura no mínimo 1 hora?', a: 'Porque um diagnóstico bem feito exige tempo. Precisamos ouvir seu histórico, examinar com atenção, explicar os achados e discutir opções — tudo isso sem pressa. É assim que evitamos diagnósticos superficiais.' },
       { q: 'O que está incluído na consulta?', a: 'Anamnese completa, exame clínico detalhado, avaliação periodontal, análise da mordida, radiografias quando necessário e profilaxia (limpeza profissional). Tudo explicado passo a passo.' },
-      { q: 'Posso ir apenas para uma segunda opinião?', a: 'Sim. Muitos pacientes nos procuram para uma avaliação independente. A consulta segue o mesmo formato completo — com exame clínico, diagnóstico detalhado e nossa visão sobre o caso.' },
+      { q: 'Posso ir apenas para uma segunda opinião?', a: 'Sim. Muitos pacientes nos procuram para uma segunda opinião independente. A consulta segue o mesmo formato completo — com exame clínico, diagnóstico detalhado e nossa visão sobre o caso.' },
       { q: 'Por que o atendimento é particular?', a: 'O formato particular nos permite dedicar o tempo que cada caso exige, usar materiais selecionados e manter um número reduzido de pacientes por dia. É o que garante a qualidade do atendimento.' },
       { q: 'Como funciona o agendamento?', a: 'Pelo WhatsApp, que funciona 24 horas. Você envia mensagem, escolhemos juntos o melhor horário e confirmamos. Respondemos inclusive nos fins de semana.' },
       { q: 'Vocês atendem emergências?', a: 'Nosso atendimento é em horário de consultório, mas nos empenhamos em acomodar urgências. Entre em contato pelo WhatsApp e buscamos uma solução.' }
@@ -847,7 +848,16 @@ const landingPageContent = {
     ctaSubtitle: 'Agende sua consulta e descubra como é ser atendido com tempo, atenção e transparência.',
     ctaText: 'Agendar Minha Consulta',
     whatsappNumber: '5521993304045',
-    whatsappMessage: 'Olá! Vi sobre a consulta odontológica personalizada e gostaria de agendar minha consulta com a Dra. Carla Christoph.'
+    whatsappMessage: 'Olá! Vi sobre a consulta odontológica personalizada e gostaria de agendar minha consulta com a Dra. Carla Christoph.',
+    doctorBioTitle: 'Quem Vai Te Atender — Dra. Carla Christoph',
+    doctorBioCredential: 'CRO-RJ 27.509 · Especialista em Prótese Dentária e em Implantodontia',
+    doctorBio: [
+      'Com mais de 20 anos de experiência clínica em Ipanema, a Dra. Carla é especialista em Prótese Dentária e em Implantodontia — as duas áreas no centro da reabilitação do sorriso.',
+      'Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, em paralelo à prática particular — experiência que trouxe disciplina, precisão e compromisso com a segurança do paciente.',
+      'No diagnóstico, conta com o scanner iTero Element 5D e registro digital quando indicado, para um exame preciso. E você resolve tudo em um só lugar: cada etapa do seu tratamento acontece no mesmo consultório, com o acompanhamento e a supervisão da Dra. Carla do início ao fim — sem precisar pular de endereço em endereço a cada especialidade.'
+    ],
+    credentials: ['Especialista em Prótese Dentária', 'Especialista em Implantodontia', '20+ anos em Ipanema', '8 anos na Marinha', 'Scanner iTero Element 5D'],
+    service: { name: 'Consulta Odontológica Personalizada', description: 'Consulta inicial com mínimo de 1 hora dedicada ao caso do paciente em Ipanema. Inclui anamnese, exame clínico completo, scanner iTero Element 5D quando indicado, radiografias quando necessário e profilaxia (limpeza profissional).' }
   },
 
   '/lp/limpeza-dental-ipanema': {
@@ -1800,7 +1810,22 @@ for (const [routePath, meta] of Object.entries(landingPages)) {
   const content = landingPageContent[routePath];
   const fallbackContent = content ? generateLPFallbackHTML(content, lang, routePath) : '';
 
-  fs.writeFileSync(filePath, generatePage(routePath, meta, { noindex: true, fallbackContent, lang }));
+  // JSON-LD para grounding de Busca IA. LPs são noindex → sem risco de FAQPage duplicado no Google.
+  const lpSchemas = [];
+  if (content) {
+    lpSchemas.push(generateDentistSchema());
+    if (content.service) {
+      lpSchemas.push(JSON.stringify({
+        '@context': 'https://schema.org', '@type': 'Service',
+        'name': content.service.name, 'description': content.service.description,
+        'provider': { '@type': 'Dentist', 'name': 'Dra. Carla Christoph' },
+        'areaServed': { '@type': 'City', 'name': 'Rio de Janeiro' }
+      }));
+    }
+    if (content.faqs && content.faqs.length) lpSchemas.push(generateFAQPageSchema(content.faqs));
+  }
+
+  fs.writeFileSync(filePath, generatePage(routePath, meta, { noindex: true, fallbackContent, lang, schemas: lpSchemas }));
   count++;
   console.log('Generated (LP ' + (fallbackContent ? 'full' : 'meta-only') + '): ' + routePath + '.html');
 }
