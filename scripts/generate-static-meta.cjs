@@ -783,6 +783,10 @@ const landingPages = {
     title: 'Facetas de Resina em Ipanema | Dra. Carla Christoph',
     description: 'Facetas de resina direta em Ipanema. Transforme seu sorriso em uma única sessão com a Dra. Carla Christoph.',
   },
+  '/lp/lentes-resina-ou-porcelana-ipanema': {
+    title: 'Lente de Contato Dental em Ipanema: Resina ou Porcelana? | Dra. Carla',
+    description: 'Lente de contato dental em Ipanema: resina ou porcelana? Entenda durabilidade, manchas e investimento e descubra a melhor opção para o seu sorriso com a Dra. Carla Christoph.',
+  },
 
   // English landing pages (Google Ads — noindex)
   '/en/lp/cosmetic-dentistry': {
@@ -1434,6 +1438,46 @@ const landingPageContent = {
     whatsappMessage: 'Olá! Vi no site sobre facetas de resina e gostaria de agendar uma consulta com a Dra. Carla.'
   },
 
+  '/lp/lentes-resina-ou-porcelana-ipanema': {
+    h1: 'Lente de Contato Dental em Ipanema: Resina ou Porcelana?',
+    subhead: 'Lente de contato dental pode ser feita em porcelana ou em resina — e cada material tem a sua indicação. Com o Test Drive do Sorriso e o scanner iTero Element 5D, a Dra. Carla Christoph ajuda você a descobrir qual combina com o seu sorriso, na consulta.',
+    benefits: ['Resina ou porcelana? Descubra na consulta', 'Test Drive do Sorriso antes de decidir', 'Scanner iTero Element 5D quando indicado', '20+ anos em estética dental — CRO-RJ 27.509'],
+    problemTitle: 'Você quer fechar um diastema ou mudar o formato do dente — mas não sabe qual material?',
+    problems: [
+      'Tem um espaço entre os dentes da frente (diastema) e quer fechá-lo, mas não sabe se faz com resina ou porcelana.',
+      'Quer mudar o formato, o tamanho ou a cor dos dentes e ficou na dúvida entre lente de contato dental e faceta de resina.',
+      'Pesquisou os dois materiais, viu durabilidades e custos diferentes, e ficou ainda mais confuso sobre qual escolher.',
+      'Quer um resultado natural, sem aspecto artificial — e teme escolher o material errado para o seu caso.'
+    ],
+    guideTitle: 'Como a Dra. Carla decide com você: resina ou porcelana',
+    steps: [
+      { title: 'Conversa e Análise do seu Caso', description: 'Você conta o que te incomoda — diastema, formato, cor. A Dra. Carla examina seus dentes e explica o que é possível com resina e com porcelana no seu caso específico.' },
+      { title: 'Test Drive do Sorriso', description: 'Antes de qualquer decisão definitiva, a Dra. Carla pode aplicar uma resina provisória não adesiva sobre os seus dentes. Você vê, sente e aprova o novo formato — sem desgaste.' },
+      { title: 'Escaneamento iTero, quando indicado', description: 'Em casos de porcelana, o scanner iTero Element 5D faz o planejamento digital sem moldagem com massa — preciso e confortável.' },
+      { title: 'Você Escolhe com Clareza', description: 'Com tudo explicado — durabilidade, manutenção, número de sessões e investimento de cada opção — você decide o material com tranquilidade, no seu tempo.' }
+    ],
+    testimonialsTitle: 'Pacientes que vieram indecisos — e saíram com o sorriso resolvido',
+    testimonials: [
+      { name: 'Marina V. — Ipanema', text: 'Cheguei sem saber se queria resina ou porcelana. A Dra. Carla me explicou os dois com calma e fizemos o Test Drive. Fechei o espaço entre os dentes e ficou super natural.' },
+      { name: 'Rafael S. — Botafogo', text: 'Pesquisei muito na internet e só me confundia. Na consulta entendi que, no meu caso, a resina resolvia o formato do dente sem precisar de porcelana. Foi direto e honesto.' },
+      { name: 'Letícia A. — Leblon', text: 'Eu queria algo duradouro e que não manchasse. Optamos pela porcelana depois de ver tudo no planejamento digital. Ninguém percebe que são lentes.' }
+    ],
+    faqTitle: 'Resina ou Porcelana: Dúvidas Frequentes',
+    faqs: [
+      { q: 'Qual a diferença entre lente de porcelana e faceta de resina?', a: 'A lente de contato dental em porcelana é uma lâmina ultrafina de cerâmica (0,2 a 0,5mm), feita em laboratório, com durabilidade de 15 a 20 anos e que não mancha. A faceta de resina é esculpida diretamente no dente, em 1 a 2 sessões, com durabilidade de 5 a 8 anos e investimento mais acessível. Na consulta, a Dra. Carla avalia qual indicação faz sentido para o seu caso.' },
+      { q: 'Lente de resina mancha?', a: 'A resina composta pode absorver pigmentos de café, vinho e cigarro ao longo dos anos, por isso pede polimento periódico para manter o brilho. Já a porcelana é impermeável e mantém a cor estável. Esse é um dos pontos que pesam na escolha do material.' },
+      { q: 'Dá para fechar diastema (espaço entre os dentes) com lente de contato dental?', a: 'Sim. Tanto a resina quanto a porcelana fecham diastemas. Em espaços pequenos, a resina costuma resolver de forma rápida e conservadora; em casos que pedem mais durabilidade e estabilidade de cor, a porcelana pode ser a melhor indicação. A Dra. Carla define isso com você na consulta.' },
+      { q: 'Consigo mudar o formato do dente?', a: 'Sim. Lentes e facetas permitem ajustar formato, tamanho, bordas e proporção dos dentes. Com o Test Drive do Sorriso você visualiza o novo formato na própria boca antes de decidir.' },
+      { q: 'Preciso desgastar muito o dente?', a: 'Não. A filosofia do consultório é preservar ao máximo a estrutura dentária. Para lentes de porcelana, o preparo é mínimo e às vezes inexistente. Para resina, o preparo também é conservador.' },
+      { q: 'Quanto custa? Resina é mais barata que porcelana?', a: 'Sim, a resina costuma ter investimento mais acessível. A porcelana é mais durável e resistente a manchas, por isso o investimento é maior e pensado para o longo prazo. Os valores dependem do número de dentes e do planejamento do seu caso, e são apresentados com clareza na consulta — você decide no seu tempo.' }
+    ],
+    ctaTitle: 'A melhor escolha aparece na consulta',
+    ctaSubtitle: 'Mande uma mensagem no WhatsApp e converse com a equipe da Dra. Carla. Na consulta, você entende qual material — resina ou porcelana — combina com o seu sorriso, com tempo dedicado ao seu caso e valores apresentados com clareza.',
+    ctaText: 'Agendar Minha Consulta',
+    whatsappNumber: '5521993304045',
+    whatsappMessage: 'Olá! Vi a página sobre lentes de contato dental e quero entender qual indicação para meu caso — resina ou porcelana.'
+  },
+
   '/en/lp/cosmetic-dentistry': {
     h1: 'Regain Confidence in Your Smile — in Ipanema, Rio de Janeiro',
     subhead: 'Cosmetic dentistry by Dr. Carla Christoph — specialist in prosthodontics with 20+ years in Ipanema. Same dentist from start to finish.',
@@ -1601,6 +1645,7 @@ const ROUTE_HERO_MAP = {
   '/en/lp/general-consultation': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
   '/lp/especialista-protese-ipanema': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
   '/lp/facetas-resina-ipanema': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
+  '/lp/lentes-resina-ou-porcelana-ipanema': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
   '/lp/clareamento-dental': '/lovable-uploads/doutora-em-pe-jaleco',
   '/lp/limpeza-dental-ipanema': '/lovable-uploads/vertical-de-jaleco',
   '/lp/profilaxia-dental-ipanema': '/lovable-uploads/vertical-de-jaleco',
