@@ -13,7 +13,6 @@ import ConsultaInicialHeader from '@/components/landing/consulta/ConsultaInicial
 import ConsultaInicialHero from '@/components/landing/consulta/ConsultaInicialHero';
 
 // Lazy-loaded components for below-the-fold content
-const StatsBar = lazy(() => import('@/components/treatment/StatsBar'));
 const ConsultaInicialProblem = lazy(() => import('@/components/landing/consulta/ConsultaInicialProblem'));
 const ConsultaInicialDoctorBio = lazy(() => import('@/components/landing/consulta/ConsultaInicialDoctorBio'));
 const ConsultaInicialGuide = lazy(() => import('@/components/landing/consulta/ConsultaInicialGuide'));
@@ -174,17 +173,6 @@ const ConsultaInicialLandingPage = () => {
           whatsappNumber={consultaInicialConfig.whatsapp.number}
           whatsappMessage={consultaInicialConfig.whatsapp.message}
         />
-
-        {/* StatsBar - Authority signal (lazy loaded, just below fold) */}
-        <LazySection
-          fallback={<div className="h-20 bg-[#FAF7F2]" />}
-          threshold={0}
-          rootMargin="200px"
-        >
-          <Suspense fallback={<div className="h-20 bg-[#FAF7F2]" />}>
-            <StatsBar />
-          </Suspense>
-        </LazySection>
 
         {/* Empathetic Problem Section */}
         <LazySection

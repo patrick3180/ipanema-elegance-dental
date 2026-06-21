@@ -89,9 +89,6 @@ const ConsultaInicialHero: React.FC<ConsultaInicialHeroProps> = ({
 
             {/* Credential badges */}
             <div className="flex flex-wrap gap-3">
-              <span className="inline-flex items-center bg-[#381F47]/10 text-[#381F47] text-xs font-semibold px-3 py-1.5 rounded-full">
-                CRO-RJ 27.509
-              </span>
               <span className="inline-flex items-center bg-[#B3955F]/15 text-[#8B7340] text-xs font-semibold px-3 py-1.5 rounded-full">
                 Atendimento Particular
               </span>

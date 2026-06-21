@@ -32,8 +32,7 @@ export const consultaInicialConfig: LandingPageConfig = {
     description: "",
     problems: [
       "Faz tempo que não vai ao dentista e sente que pode ter problemas se acumulando.",
-      "Já saiu de consultas sem entender o diagnóstico porque tudo foi rápido demais.",
-      "Quer um profissional que ouça primeiro e explique tudo antes de propor qualquer tratamento.",
+      "Já saiu de consultas rápidas demais, sem entender o diagnóstico, e quer alguém que ouça e explique antes de propor qualquer tratamento.",
       "Prefere prevenir do que remediar e busca acompanhamento regular com quem conhece seu histórico.",
       "Já precisou pular de um consultório para outro — um dentista para cada especialidade — só para concluir o tratamento."
     ]

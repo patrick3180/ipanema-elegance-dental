@@ -63,16 +63,6 @@ const ConsultaInicialHeader: React.FC<ConsultaInicialHeaderProps> = ({
             <span className="text-xs text-gray-600">CRO-RJ 27509</span>
           </div>
           
-          {/* Info Central */}
-          <div className="hidden md:flex items-center gap-6">
-            <span className="text-sm text-gray-700 font-medium">
-              Atendimento Particular
-            </span>
-            <span className="text-xs text-gray-500">
-              Ipanema
-            </span>
-          </div>
-
           {/* WhatsApp Button */}
           <button
             onClick={handleWhatsAppClick}
