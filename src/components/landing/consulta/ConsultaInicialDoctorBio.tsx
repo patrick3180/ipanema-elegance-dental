@@ -11,8 +11,8 @@ const ConsultaInicialDoctorBio: React.FC = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-dental-gold/20 to-dental-purple/10 rounded-2xl rotate-2 scale-[1.03]" />
               <OptimizedImage
-                src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
-                alt="Dra. Carla Christoph — Dentista Especialista em Ipanema"
+                src="/lovable-uploads/dra-carla-mesa-consultorio.webp"
+                alt="Dra. Carla Christoph em seu consultório em Ipanema — Especialista em Prótese e Implantodontia"
                 className="relative rounded-2xl shadow-elegant w-60 md:w-full object-cover"
                 width={280}
                 height={350}
