@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, Droplet, Layers, CalendarDays, Wrench, Wallet, Sparkles, Gem } from 'lucide-react';
+import { Clock, Droplet, Layers, CalendarDays, Wrench, Wallet, Gem } from 'lucide-react';
 
 interface CriterioRow {
   icon: React.ReactNode;
@@ -15,7 +15,6 @@ const linhas: CriterioRow[] = [
   { icon: <Clock size={18} />, criterio: 'Durabilidade', resina: '5 a 8 anos', porcelana: '15 a 20 anos' },
   { icon: <Droplet size={18} />, criterio: 'Manchamento', resina: 'Pode manchar com o tempo', porcelana: 'Não mancha' },
   { icon: <CalendarDays size={18} />, criterio: 'Nº de sessões', resina: '1 a 2 (resultado rápido)', porcelana: '2 a 3 (15 a 20 dias)' },
-  { icon: <Sparkles size={18} />, criterio: 'Desgaste do dente', resina: 'Mínimo a moderado', porcelana: 'Mínimo, às vezes inexistente' },
   { icon: <Wrench size={18} />, criterio: 'Reparos', resina: 'Permite reparos pontuais', porcelana: 'Substituição, não reparo pontual' },
   { icon: <Wallet size={18} />, criterio: 'Investimento', resina: 'Mais acessível', porcelana: 'Maior — pensado para o longo prazo' },
   { icon: <Gem size={18} />, criterio: 'Naturalidade', resina: 'Muito boa', porcelana: 'Translucidez superior' },
@@ -100,7 +99,7 @@ const ComparacaoResinaPorcelana: React.FC = () => {
                 <li>• Você quer resultado mais rápido, em 1 ou 2 sessões.</li>
                 <li>• Busca um investimento mais acessível neste momento.</li>
                 <li>• Casos de ajustes pontuais de formato, cor ou pequenos espaços.</li>
-                <li>• Prefere uma solução conservadora e que permita reparos.</li>
+                <li>• Permite ajustes e reparos pontuais ao longo do tempo.</li>
               </ul>
             </div>
             <div className="bg-white rounded-2xl p-7 border-t-4 border-[#381F47]/50 shadow-[0_4px_16px_rgba(56,31,71,0.06)]">

@@ -27,7 +27,7 @@ export const lentesComparacaoConfig: LandingPageConfig = {
     'Resina ou porcelana? Descubra na consulta',
     'Test Drive do Sorriso antes de decidir',
     'Scanner iTero Element 5D quando indicado',
-    '20+ anos em estética dental — CRO-RJ 27.509'
+    'Fecha diastema e ajusta o formato do dente'
   ],
 
   problem: {
@@ -43,10 +43,10 @@ export const lentesComparacaoConfig: LandingPageConfig = {
 
   guide: {
     title: 'Como a Dra. Carla decide com você: resina ou porcelana',
-    subtitle: 'A escolha do material é individual e definida na consulta, com você participando de cada etapa. 20+ anos em estética dental — CRO-RJ 27.509.',
+    subtitle: 'A escolha do material é individual e definida na consulta, com você participando de cada etapa — com a experiência de quem atua há mais de duas décadas em estética dental.',
     steps: [
       { number: '1', title: 'Conversa e Análise do seu Caso', description: 'Você conta o que te incomoda — diastema, formato, cor. A Dra. Carla examina seus dentes e explica o que é possível com resina e com porcelana no seu caso específico.' },
-      { number: '2', title: 'Test Drive do Sorriso', description: 'Antes de qualquer decisão definitiva, a Dra. Carla pode aplicar uma resina provisória não adesiva sobre os seus dentes. Você vê, sente e aprova o novo formato — sem desgaste.' },
+      { number: '2', title: 'Test Drive do Sorriso', description: 'Antes de qualquer decisão definitiva, a Dra. Carla pode aplicar uma resina provisória não adesiva sobre os seus dentes. Você vê, sente e aprova o novo formato antes de decidir.' },
       { number: '3', title: 'Escaneamento iTero, quando indicado', description: 'Em casos de porcelana, o scanner iTero Element 5D faz o planejamento digital sem moldagem com massa — preciso e confortável.' },
       { number: '4', title: 'Você Escolhe com Clareza', description: 'Com tudo explicado — durabilidade, manutenção, número de sessões e investimento de cada opção — você decide o material com tranquilidade, no seu tempo.' }
     ]
@@ -72,9 +72,8 @@ export const lentesComparacaoConfig: LandingPageConfig = {
     questions: [
       { question: 'Qual a diferença entre lente de porcelana e faceta de resina?', answer: 'A lente de contato dental em porcelana é uma lâmina ultrafina de cerâmica (0,2 a 0,5mm), feita em laboratório, com durabilidade de 15 a 20 anos e que não mancha. A faceta de resina é esculpida diretamente no dente, em 1 a 2 sessões, com durabilidade de 5 a 8 anos e investimento mais acessível. Na consulta, a Dra. Carla avalia qual indicação faz sentido para o seu caso.' },
       { question: 'Lente de resina mancha?', answer: 'A resina composta pode absorver pigmentos de café, vinho e cigarro ao longo dos anos, por isso pede polimento periódico para manter o brilho. Já a porcelana é impermeável e mantém a cor estável. Esse é um dos pontos que pesam na escolha do material.' },
-      { question: 'Dá para fechar diastema (espaço entre os dentes) com lente de contato dental?', answer: 'Sim. Tanto a resina quanto a porcelana fecham diastemas. Em espaços pequenos, a resina costuma resolver de forma rápida e conservadora; em casos que pedem mais durabilidade e estabilidade de cor, a porcelana pode ser a melhor indicação. A Dra. Carla define isso com você na consulta.' },
+      { question: 'Dá para fechar diastema (espaço entre os dentes) com lente de contato dental?', answer: 'Sim. Tanto a resina quanto a porcelana fecham diastemas. Em espaços pequenos, a resina costuma resolver de forma rápida; em casos que pedem mais durabilidade e estabilidade de cor, a porcelana pode ser a melhor indicação. A Dra. Carla define isso com você na consulta.' },
       { question: 'Consigo mudar o formato do dente?', answer: 'Sim. Lentes e facetas permitem ajustar formato, tamanho, bordas e proporção dos dentes. Com o Test Drive do Sorriso você visualiza o novo formato na própria boca antes de decidir.' },
-      { question: 'Preciso desgastar muito o dente?', answer: 'Não. A filosofia do consultório é preservar ao máximo a estrutura dentária. Para lentes de porcelana, o preparo é mínimo e às vezes inexistente. Para resina, o preparo também é conservador.' },
       { question: 'Quanto custa? Resina é mais barata que porcelana?', answer: 'Sim, a resina costuma ter investimento mais acessível. A porcelana é mais durável e resistente a manchas, por isso o investimento é maior e pensado para o longo prazo. Os valores dependem do número de dentes e do planejamento do seu caso, e são apresentados com clareza na consulta — você decide no seu tempo.' },
       { question: 'O atendimento é particular?', answer: 'Sim. O atendimento da Dra. Carla é particular, o que permite dedicar tempo real ao seu caso e usar materiais de primeira linha. Emitimos recibo para solicitação de reembolso ao seu convênio, caso o seu plano permita.' }
     ]
