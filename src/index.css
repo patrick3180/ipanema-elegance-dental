@@ -298,6 +298,12 @@
   .hero-fb-h1 { font-size: 2.625rem; }
 }
 
+/* ===== Sobre — hero revista (foto da recepção full-width) ===== */
+.about-photo-band img { display: block; width: 100%; height: clamp(380px, 56vh, 620px); object-fit: cover; object-position: 50% 20%; }
+@media (max-width: 767px) {
+  .about-photo-band img { height: 46vh; object-position: 60% 18%; }
+}
+
 /* NOTE: shadow-elegant, shadow-soft, shadow-gold, bg-gradient-purple-soft
    are defined in @layer utilities above. Do NOT re-declare here.
    Legacy duplicates removed in Phase 3 cleanup (01/04/2026). */

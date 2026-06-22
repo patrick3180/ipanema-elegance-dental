@@ -4,7 +4,6 @@ import SEOHead from "@/components/SEOHead";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Award, Anchor, ScanLine, Stethoscope } from "lucide-react";
-import OptimizedImage from "@/components/OptimizedImage";
 import { sendGCLIDToWebhook } from "@/utils/gclid";
 
 const AboutPage = () => {
@@ -126,37 +125,59 @@ const AboutPage = () => {
         structuredData={structuredData}
       />
       <PageLayout>
+        {/* Hero revista — título + foto full-width da recepção */}
+        <section style={{ paddingTop: "var(--header-height, 112px)" }}>
+          <div className="container-custom pt-8 md:pt-12">
+            <div className="max-w-[760px] mx-auto text-center">
+              <p className="text-xs uppercase tracking-[0.2em] text-dental-gold font-medium mb-4">
+                Especialista em Prótese e Implantodontia · CRO-RJ 27.509
+              </p>
+              <h1 className="heading-lg text-balance">
+                Dra. Carla Christoph: <span className="text-dental-gold">sua dentista especialista em Ipanema</span>
+              </h1>
+              <Separator className="w-24 h-1 bg-dental-gold mx-auto my-6" />
+              <p className="text-dental-gray text-lg max-w-xl mx-auto">
+                Mais de 20 anos dedicados à reabilitação oral e odontologia estética em Ipanema
+              </p>
+              <div className="mt-8 flex justify-center">
+                <Button onClick={handleWhatsAppClick} className="bg-dental-gold hover:bg-dental-gold/90 text-white rounded-md px-8 py-6" size="lg">
+                  <MessageCircle size={20} className="mr-2" />
+                  <div className="flex flex-col text-left leading-tight">
+                    <span className="font-medium">Agendar consulta</span>
+                    <span className="text-xs text-white/80">WhatsApp 24h</span>
+                  </div>
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          <div className="about-photo-band mt-10 md:mt-12">
+            <picture>
+              <source type="image/avif" srcSet="/lovable-uploads/about-hero-768.avif 768w, /lovable-uploads/about-hero-1280.avif 1280w, /lovable-uploads/about-hero-1920.avif 1920w" sizes="100vw" />
+              <source type="image/webp" srcSet="/lovable-uploads/about-hero-768.webp 768w, /lovable-uploads/about-hero-1280.webp 1280w, /lovable-uploads/about-hero-1920.webp 1920w" sizes="100vw" />
+              <img
+                src="/lovable-uploads/about-hero-1280.webp"
+                alt="Dra. Carla Christoph na recepção do consultório em Ipanema, com o logo da clínica ao fundo"
+                width={1280}
+                height={853}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
+            </picture>
+          </div>
+        </section>
+
         <section className="section-spacing">
           <div className="container-custom">
-            {/* Header */}
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <h1 className="heading-lg mb-4">Dra. Carla Christoph: Sua Dentista Especialista em Ipanema</h1>
-              <Separator className="w-24 h-1 bg-dental-gold mx-auto mb-6" />
-              <p className="text-dental-gray mb-6">Mais de 20 anos dedicados à reabilitação oral e odontologia estética em Ipanema</p>
-            </div>
-
-            {/* Bio + Photo */}
-            <div className="grid md:grid-cols-2 gap-16 items-center mb-16">
-              <div className="aspect-square rounded-2xl overflow-hidden">
-                <OptimizedImage
-                  src="/lovable-uploads/b1c1cbdb-bde0-4d9e-912e-74cf74cf716d.png"
-                  alt="Dra. Carla Christoph, dentista em Ipanema, sentada em seu consultório odontológico, especialista em odontologia estética e com ampla formação acadêmica."
-                  className="w-full h-full object-cover"
-                  width={600}
-                  height={600}
-                  priority={true}
-                  responsive={true}
-                />
-              </div>
-
-              <div className="prose max-w-none">
-                <p>
-                  Com mais de duas décadas em Ipanema, a Dra. Carla Christoph construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Especialista em Prótese Dentária e Implantodontia (CRO-RJ 27.509), sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha — experiência que trouxe disciplina e precisão para sua prática clínica.
-                </p>
-                <p>
-                  A Dra. Carla utiliza o iTero Element 5D e ferramentas de planejamento do sorriso para oferecer previsibilidade e segurança em cada tratamento. Cada caso é tratado como único, com o tempo necessário para ouvir, planejar e executar.
-                </p>
-              </div>
+            {/* Bio */}
+            <div className="prose max-w-[760px] mx-auto mb-16">
+              <p>
+                Com mais de duas décadas em Ipanema, a Dra. Carla Christoph construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Possui <strong>título de especialista em Prótese Dentária e em Implantodontia</strong> (CRO-RJ 27.509) — duas formações que se completam na reabilitação oral, unindo função e estética. Sua trajetória inclui ainda 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
+              </p>
+              <p>
+                A Dra. Carla utiliza o iTero Element 5D e ferramentas de planejamento do sorriso para oferecer previsibilidade e segurança em cada tratamento. Cada caso é tratado como único, com o tempo necessário para ouvir, planejar e executar.
+              </p>
             </div>
 
             {/* Como Funciona o Atendimento */}
