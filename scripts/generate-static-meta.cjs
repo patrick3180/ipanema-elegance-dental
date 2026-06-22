@@ -1690,11 +1690,14 @@ function generatePage(routePath, meta, options = {}) {
     // Sprint 5: Home page — inject custom preload matching Hero.tsx <picture> sizes
     // Home hero files use 560w/800w/840w pattern (NOT the 480/1024 pattern of LPs)
     const homePreload = `<!-- Hero image preload responsivo (LCP element) -->
-  <link rel="preload" as="image" type="image/avif"
-    imagesrcset="/lovable-uploads/hero-v1-560w.avif 560w, /lovable-uploads/hero-v1-800w.avif 800w, /lovable-uploads/hero-v1-840w.avif 840w"
-    imagesizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px" fetchpriority="high" />`;
+  <link rel="preload" as="image" type="image/avif" media="(max-width: 767px)"
+    imagesrcset="/lovable-uploads/hero-fb-m-480.avif 480w, /lovable-uploads/hero-fb-m-768.avif 768w"
+    imagesizes="100vw" fetchpriority="high" />
+  <link rel="preload" as="image" type="image/avif" media="(min-width: 768px)"
+    imagesrcset="/lovable-uploads/hero-fb-1280.avif 1280w, /lovable-uploads/hero-fb-1920.avif 1920w"
+    imagesizes="100vw" fetchpriority="high" />`;
     // Try to replace existing preload first, otherwise inject before </head>
-    const preloadRegex = /<!-- Hero image preload responsivo \(LCP element\) -->\s*<link rel="preload" as="image" type="image\/avif"[\s\S]*?\/>/;
+    const preloadRegex = /<!-- Hero image preload responsivo \(LCP element\)[\s\S]*?-->\s*(?:<link rel="preload" as="image" type="image\/avif"[\s\S]*?\/>\s*){1,2}/;
     if (preloadRegex.test(html)) {
       html = html.replace(preloadRegex, homePreload);
     } else {
@@ -1889,84 +1892,48 @@ const homeFallback = `
   <a href="/" style="font-weight:bold;color:#381F47;text-decoration:none;font-size:1.1em">Dra. Carla Christoph</a>
 </header>
 <style>
-  .fallback-hero-grid {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    align-items: center;
-    width: 100%;
-  }
-  .fallback-image-wrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-  .fallback-image-container {
-    width: 280px;
-    height: 420px;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(74,45,94,0.08);
-    -webkit-mask-image: linear-gradient(to left, black 60%, transparent 100%), linear-gradient(to bottom, black 65%, transparent 100%);
-    mask-image: linear-gradient(to left, black 60%, transparent 100%), linear-gradient(to bottom, black 65%, transparent 100%);
-    -webkit-mask-composite: source-in;
-    mask-composite: intersect;
-  }
-  .fallback-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-  }
-  @media (min-width: 640px) {
-    .fallback-image-container {
-      width: 320px;
-      height: 480px;
-    }
-  }
-  @media (min-width: 768px) {
-    .fallback-image-container {
-      width: 400px;
-      height: 560px;
-    }
-  }
-  @media (min-width: 1024px) {
-    .fallback-hero-grid {
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 3rem;
-    }
-    .fallback-image-wrapper {
-      justify-content: flex-end;
-    }
-    .fallback-image-container {
-      width: 460px;
-      height: 640px;
-    }
+  .hero-fb{position:relative;background:#E4DBCA;padding-top:112px;overflow:hidden;font-family:system-ui,sans-serif}
+  .hero-fb-photo img{display:block;width:100%;height:320px;object-fit:cover;object-position:50% 8%}
+  .hero-fb-scrim{display:none}
+  .hero-fb-text{background:#E4DBCA;padding:1.75rem 1.5rem 2.5rem}
+  .hero-fb-copy{max-width:600px;margin:0 auto}
+  .hero-fb-eyebrow{font-size:.75rem;text-transform:uppercase;letter-spacing:.18em;color:#B3955F;font-weight:600;margin-bottom:1rem}
+  .hero-fb-h1{font-size:clamp(1.75rem,5.2vw,2.625rem);font-weight:600;line-height:1.14;color:#381F47;margin-bottom:1.25rem;font-family:Georgia,'Times New Roman',serif}
+  .hero-fb-h1 span{color:#B3955F}
+  .hero-fb-sub{font-size:1rem;color:#5C5647;line-height:1.6;margin-bottom:1.5rem;max-width:33rem}
+  .hero-fb-badges{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;margin-bottom:1.75rem}
+  .hero-fb-badges span{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:#8A7444;font-weight:600}
+  .hero-fb-cta{display:inline-flex;flex-direction:column;padding:.9rem 1.75rem;background:#B3955F;color:#fff;text-decoration:none;border-radius:.5rem;font-weight:600;box-shadow:0 8px 20px -8px rgba(179,149,95,.6)}
+  .hero-fb-cta b{font-size:1rem}
+  .hero-fb-cta small{font-size:.7rem;opacity:.85;font-weight:400}
+  @media(min-width:768px){
+    .hero-fb{min-height:86vh;padding-top:0}
+    .hero-fb-photo{position:absolute;top:112px;left:0;right:0;bottom:0}
+    .hero-fb-photo img{height:100%;object-position:50% 14%}
+    .hero-fb-scrim{display:block;position:absolute;top:112px;left:0;right:0;bottom:0;pointer-events:none;background:linear-gradient(to right,rgba(228,219,202,.99) 0%,rgba(228,219,202,.96) 33%,rgba(228,219,202,.55) 49%,rgba(228,219,202,0) 70%)}
+    .hero-fb-text{position:relative;background:transparent;padding:0;min-height:86vh;display:flex;align-items:center}
+    .hero-fb-textwrap{max-width:1200px;margin:0 auto;padding:0 2rem;width:100%;box-sizing:border-box}
+    .hero-fb-copy{max-width:560px;margin:0}
+    .hero-fb-h1{font-size:2.625rem}
   }
 </style>
-<section style="min-height:100vh;padding-top:112px;padding-bottom:4rem;display:flex;align-items:center;background:#FAF7F2;font-family:system-ui,sans-serif">
-  <div class="fallback-hero-grid">
-    <div>
-      <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.2em;color:#B3955F;margin-bottom:1rem;font-weight:500">Especialista em Prótese e Implantodontia</p>
-      <h1 style="font-size:clamp(1.875rem,5vw,3rem);font-weight:700;line-height:1.2;color:#381F47;margin-bottom:1.5rem;font-family:serif">Dentista em Ipanema Especializada em Reabilitação Oral e <span style="color:#B3955F">Estética Natural</span></h1>
-      <p style="font-size:1.125rem;color:#333;margin-bottom:2rem;line-height:1.6;max-width:32rem">Para quem busca tratamento odontológico sem pressa, com mínimo desconforto e com resultado que parece natural</p>
-      <div style="display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:2.5rem">
-        <span style="font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:#B3955F;font-weight:500">● 20+ anos em Ipanema</span>
-        <span style="font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:#B3955F;font-weight:500">● CRO-RJ 27.509</span>
-        <span style="font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:#B3955F;font-weight:500">● 1h+ por consulta</span>
-      </div>
-      <a href="https://wa.me/5521993304045?text=Ol%C3%A1!%20Vi%20o%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." style="display:inline-block;padding:1rem 2rem;background:#B3955F;color:#fff;text-decoration:none;border-radius:.375rem;font-weight:500;font-size:1rem;box-shadow:0 4px 6px -1px rgba(0,0,0,.1)">Agendar minha consulta</a>
-    </div>
-    <div class="fallback-image-wrapper">
-      <div class="fallback-image-container">
-        <picture>
-          <source srcset="/lovable-uploads/hero-v1-560w.avif 560w, /lovable-uploads/hero-v1-800w.avif 800w, /lovable-uploads/hero-v1-840w.avif 840w" sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px" type="image/avif" />
-          <source srcset="/lovable-uploads/hero-v1-560w.webp 560w, /lovable-uploads/hero-v1-800w.webp 800w, /lovable-uploads/hero-v1-840w.webp 840w" sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px" type="image/webp" />
-          <img src="/lovable-uploads/hero-v1.png" alt="Dra. Carla Christoph, dentista especialista em Ipanema" width="460" height="640" fetchpriority="high" decoding="async" />
-        </picture>
+<section class="hero-fb">
+  <picture class="hero-fb-photo">
+    <source media="(max-width:767px)" type="image/avif" srcset="/lovable-uploads/hero-fb-m-480.avif 480w, /lovable-uploads/hero-fb-m-768.avif 768w" sizes="100vw" />
+    <source media="(max-width:767px)" type="image/webp" srcset="/lovable-uploads/hero-fb-m-480.webp 480w, /lovable-uploads/hero-fb-m-768.webp 768w" sizes="100vw" />
+    <source media="(min-width:768px)" type="image/avif" srcset="/lovable-uploads/hero-fb-1280.avif 1280w, /lovable-uploads/hero-fb-1920.avif 1920w" sizes="100vw" />
+    <source media="(min-width:768px)" type="image/webp" srcset="/lovable-uploads/hero-fb-1280.webp 1280w, /lovable-uploads/hero-fb-1920.webp 1920w" sizes="100vw" />
+    <img src="/lovable-uploads/hero-fb-1280.webp" alt="Dra. Carla Christoph, dentista em Ipanema, no consultório" width="1280" height="650" fetchpriority="high" decoding="async" />
+  </picture>
+  <div class="hero-fb-scrim"></div>
+  <div class="hero-fb-text">
+    <div class="hero-fb-textwrap">
+      <div class="hero-fb-copy">
+        <p class="hero-fb-eyebrow">Especialista em Prótese e Implantodontia</p>
+        <h1 class="hero-fb-h1">Dentista em Ipanema especializada em reabilitação oral e <span>estética natural</span></h1>
+        <p class="hero-fb-sub">No mínimo uma hora por consulta. Tempo para ouvir, examinar e planejar cada caso.</p>
+        <div class="hero-fb-badges"><span>20+ anos em Ipanema</span><span>CRO-RJ 27.509</span><span>Do plano à finalização</span></div>
+        <a class="hero-fb-cta" href="https://wa.me/5521993304045?text=Ol%C3%A1!%20Vi%20o%20site%20e%20gostaria%20de%20agendar%20uma%20consulta."><b>Agendar minha consulta</b><small>WhatsApp 24h</small></a>
       </div>
     </div>
   </div>

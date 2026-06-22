@@ -1,10 +1,7 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import { sendGCLIDToWebhook } from "@/utils/gclid";
 
 const Hero = () => {
-
   const handleWhatsAppClick = async () => {
     // Track event with Google Tag Manager
     if (window.dataLayer) {
@@ -35,119 +32,71 @@ const Hero = () => {
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
   };
 
+  const handleExploreClick = () => {
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'hero_explore_click',
+        event_category: 'Navigation',
+        event_action: 'Click',
+        event_label: 'Hero Secondary CTA'
+      });
+    }
+    const el = document.getElementById('tratamentos');
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section
-      id="início"
-      className="hero-section min-h-screen relative overflow-hidden section-spacing"
-      style={{ paddingTop: "var(--header-height, 112px)" }}
-    >
-      <div className="container-custom grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
-        <div className="order-1 lg:order-1">
-          {/* Eyebrow */}
-          <p className="hero-animate-1 text-xs uppercase tracking-[0.2em] text-dental-gold font-medium mb-4">
-            Especialista em Prótese e Implantodontia
-          </p>
+    <section id="início" className="hero-fb">
+      {/* Foto — full-bleed no desktop / topo no mobile */}
+      <picture className="hero-fb-photo">
+        <source media="(max-width: 767px)" type="image/avif" srcSet="/lovable-uploads/hero-fb-m-480.avif 480w, /lovable-uploads/hero-fb-m-768.avif 768w" sizes="100vw" />
+        <source media="(max-width: 767px)" type="image/webp" srcSet="/lovable-uploads/hero-fb-m-480.webp 480w, /lovable-uploads/hero-fb-m-768.webp 768w" sizes="100vw" />
+        <source media="(min-width: 768px)" type="image/avif" srcSet="/lovable-uploads/hero-fb-1280.avif 1280w, /lovable-uploads/hero-fb-1920.avif 1920w" sizes="100vw" />
+        <source media="(min-width: 768px)" type="image/webp" srcSet="/lovable-uploads/hero-fb-1280.webp 1280w, /lovable-uploads/hero-fb-1920.webp 1920w" sizes="100vw" />
+        <img
+          src="/lovable-uploads/hero-fb-1280.webp"
+          alt="Dra. Carla Christoph, dentista em Ipanema, no consultório"
+          width={1280}
+          height={650}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+        />
+      </picture>
 
-          <h1 className="hero-animate-2 heading-xl mb-6 text-balance">
-            Dentista em Ipanema Especializada em Reabilitação Oral e{' '}
-            <span className="text-dental-gold">Estética Natural</span>
-          </h1>
+      <div className="hero-fb-scrim" aria-hidden="true" />
 
-          <p className="hero-animate-3 body-lg mb-8 max-w-lg font-medium">
-            Para quem busca tratamento odontológico sem pressa, com mínimo desconforto e com resultado que parece natural
-          </p>
+      <div className="hero-fb-text">
+        <div className="hero-fb-textwrap">
+          <div className="hero-fb-copy">
+            <p className="hero-fb-eyebrow hero-animate-1">Especialista em Prótese e Implantodontia</p>
 
-          {/* Trust badges */}
-          <div className="hero-animate-4 flex flex-wrap items-center gap-x-6 gap-y-3 mb-10">
-            <span className="flex items-center gap-2 text-xs uppercase tracking-widest text-dental-gold font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-dental-gold" />
-              20+ anos em Ipanema
-            </span>
-            <span className="flex items-center gap-2 text-xs uppercase tracking-widest text-dental-gold font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-dental-gold" />
-              CRO-RJ 27.509
-            </span>
-            <span className="flex items-center gap-2 text-xs uppercase tracking-widest text-dental-gold font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-dental-gold" />
-              1h+ por consulta
-            </span>
-          </div>
+            <h1 className="hero-fb-h1 font-display hero-animate-2">
+              Dentista em Ipanema especializada em reabilitação oral e <span>estética natural</span>
+            </h1>
 
-          {/* CTAs */}
-          <div className="hero-animate-5 flex flex-wrap gap-4">
-            <Button
-              onClick={handleWhatsAppClick}
-              className="bg-dental-gold hover:bg-dental-gold-dark text-white rounded-md px-8 py-6 text-base shadow-gold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-hover"
-            >
-              <div className="flex flex-col text-left leading-tight">
-                <span className="font-medium">Agendar minha consulta</span>
-                <span className="text-xs text-white/80">WhatsApp 24h</span>
-              </div>
-              <ArrowRight size={16} className="ml-3" />
-            </Button>
-            <Button
-              variant="outline"
-              className="border-dental-purple/30 text-dental-purple hover:bg-dental-purple/5 rounded-md px-8 py-6 text-base transition-all duration-300"
-              onClick={() => {
-                if (window.dataLayer) {
-                  window.dataLayer.push({
-                    event: 'hero_explore_click',
-                    event_category: 'Navigation',
-                    event_action: 'Click',
-                    event_label: 'Hero Secondary CTA'
-                  });
-                }
-                const el = document.getElementById('tratamentos');
-                if (el) {
-                  const top = el.getBoundingClientRect().top + window.scrollY - 100;
-                  window.scrollTo({ top, behavior: 'smooth' });
-                }
-              }}
-            >
-              Conheça nossos tratamentos
-            </Button>
-          </div>
-        </div>
+            <p className="hero-fb-sub hero-animate-3">
+              No mínimo uma hora por consulta. Tempo para ouvir, examinar e planejar cada caso.
+            </p>
 
-        {/* Imagem — fluid integration with mask-image gradient */}
-        <div className="hero-animate-image order-2 lg:order-2 flex justify-center lg:justify-end">
-          <div
-            className="w-[280px] sm:w-[320px] md:w-[400px] lg:w-[460px] h-[420px] sm:h-[480px] md:h-[560px] lg:h-[640px]"
-            style={{
-              WebkitMaskImage: `
-                linear-gradient(to left, black 90%, transparent 100%),
-                linear-gradient(to bottom, black 92%, transparent 100%)
-              `,
-              maskImage: `
-                linear-gradient(to left, black 90%, transparent 100%),
-                linear-gradient(to bottom, black 92%, transparent 100%)
-              `,
-              WebkitMaskComposite: 'source-in',
-              maskComposite: 'intersect',
-            }}
-          >
-            <picture>
-              <source
-                srcSet="/lovable-uploads/hero-v1-560w.avif 560w, /lovable-uploads/hero-v1-800w.avif 800w, /lovable-uploads/hero-v1-840w.avif 840w"
-                sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px"
-                type="image/avif"
-              />
-              <source
-                srcSet="/lovable-uploads/hero-v1-560w.webp 560w, /lovable-uploads/hero-v1-800w.webp 800w, /lovable-uploads/hero-v1-840w.webp 840w"
-                sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px"
-                type="image/webp"
-              />
-              <img
-                src="/lovable-uploads/hero-v1.png"
-                alt="Dra. Carla Christoph, dentista especialista em Ipanema"
-                className="w-full h-full object-cover object-top"
-                width="460"
-                height="640"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-              />
-            </picture>
+            <div className="hero-fb-badges hero-animate-4">
+              <span>20+ anos em Ipanema</span>
+              <span>CRO-RJ 27.509</span>
+              <span>Do plano à finalização</span>
+            </div>
+
+            <div className="hero-fb-actions hero-animate-5">
+              <button type="button" className="hero-fb-cta" onClick={handleWhatsAppClick}>
+                <b>Agendar minha consulta</b>
+                <small>WhatsApp 24h</small>
+              </button>
+              <button type="button" className="hero-fb-explore" onClick={handleExploreClick}>
+                Conheça os tratamentos
+              </button>
+            </div>
           </div>
         </div>
       </div>
