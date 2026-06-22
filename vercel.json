@@ -50,6 +50,10 @@
   ],
   "rewrites": [
     {
+      "source": "/go/whatsapp",
+      "destination": "/api/go-whatsapp"
+    },
+    {
       "source": "/sitemap.xml",
       "destination": "/api/sitemap"
     },
