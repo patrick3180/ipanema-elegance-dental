@@ -127,19 +127,19 @@ const AboutPage = () => {
       <PageLayout>
         {/* Hero revista — título + foto full-width da recepção */}
         <section style={{ paddingTop: "var(--header-height, 112px)" }}>
-          <div className="container-custom pt-8 md:pt-12">
+          <div className="container-custom pt-3 md:pt-5">
             <div className="max-w-[760px] mx-auto text-center">
-              <p className="text-xs uppercase tracking-[0.2em] text-dental-gold font-medium mb-4">
+              <p className="text-xs uppercase tracking-[0.2em] text-dental-gold font-medium mb-3">
                 Especialista em Prótese e Implantodontia · CRO-RJ 27.509
               </p>
               <h1 className="heading-lg text-balance">
                 Dra. Carla Christoph: <span className="text-dental-gold">sua dentista especialista em Ipanema</span>
               </h1>
-              <Separator className="w-24 h-1 bg-dental-gold mx-auto my-6" />
+              <Separator className="w-24 h-1 bg-dental-gold mx-auto my-4" />
               <p className="text-dental-gray text-lg max-w-xl mx-auto">
                 Mais de 20 anos dedicados à reabilitação oral e odontologia estética em Ipanema
               </p>
-              <div className="mt-8 flex justify-center">
+              <div className="mt-6 flex justify-center">
                 <Button onClick={handleWhatsAppClick} className="bg-dental-gold hover:bg-dental-gold/90 text-white rounded-md px-8 py-6" size="lg">
                   <MessageCircle size={20} className="mr-2" />
                   <div className="flex flex-col text-left leading-tight">
@@ -151,7 +151,7 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <div className="about-photo-band mt-10 md:mt-12">
+          <div className="about-photo-band mt-6 md:mt-8">
             <picture>
               <source type="image/avif" srcSet="/lovable-uploads/about-hero-768.avif 768w, /lovable-uploads/about-hero-1280.avif 1280w, /lovable-uploads/about-hero-1920.avif 1920w" sizes="100vw" />
               <source type="image/webp" srcSet="/lovable-uploads/about-hero-768.webp 768w, /lovable-uploads/about-hero-1280.webp 1280w, /lovable-uploads/about-hero-1920.webp 1920w" sizes="100vw" />
