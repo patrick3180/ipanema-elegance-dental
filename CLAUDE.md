@@ -452,6 +452,43 @@ WhatsApp click → Webhook N8N → Supabase →
 Upload manual ao Google Ads (cada 15 dias)
 ```
 
+### Atribuição Instagram → `/go/whatsapp` (Jun/2026)
+Resolve a falha "UTM não sobrevive ao `wa.me`" na jornada Instagram → WhatsApp.
+Spec: `Agencia de MKT/relatorios/spec-rotas-site-atribuicao-2026-06-22.md`.
+
+```
+Post IG (link na bio) → /go/whatsapp?utm_*&ref&assunto (302 invisível) →
+captura em attribution_clicks (Supabase) → wa.me + Sofia →
+cron diário cruza por horário → telefone/paciente atribuído
+```
+
+- **Rota:** `https://dracarlachristoph.com/go/whatsapp` → Vercel Function `api/go-whatsapp.js`
+  (rewrite no `vercel.json` **antes** do catch-all SPA). Commit `3fccd83`.
+- **Function:** gera `click_id` (uuid), coleta `utm_*`/`ref`/`assunto`/`referrer`/`user_agent`
+  + `ip_hash` (SHA-256, LGPD — nunca IP puro). Grava com orçamento de 1,5s:
+  **primária** = insert PostgREST (`NEXT_PUBLIC_SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY`)
+  → **fallback** = Edge Function `attribution-capture`. A gravação **nunca bloqueia** o 302.
+- **Cookie:** `cc_click_id` (HttpOnly, Secure, SameSite=Lax, 90 dias) — costura sessão no site
+  (NÃO sobrevive ao salto pro WhatsApp).
+- **Mensagem pré-preenchida:** limpa, **SEM** código `Ref:` (decisão Patrick — feio pro paciente).
+  Default: *"Olá! Vi a página no Instagram..."*. Com `?assunto=implantes` → frase natural com o tema.
+- **Edge Function `attribution-capture`:** `verify_jwt=true` + checagem `role='service_role'`
+  no corpo → só o servidor (com a service role key) grava; anon key é rejeitada.
+- **Tabela `attribution_clicks`** (projeto Supabase `oqszkriirsodegxpfazz` — o mesmo do GCLID):
+  `click_id, ref, utm_*, assunto, referrer, user_agent, ip_hash, created_at` + colunas de match.
+  RLS ligada, sem policies públicas.
+- **Cruzamento (espelho do GCLID):** função `attribution_fn_match_clicks()`, cron
+  `attribution-match-instagram-daily` (6:15, logo após o GCLID das 6:00). Janela **±2h**
+  (mensagem depois do clique), expiração **14 dias**. `session_id` do `gc_chat_history` (`human`)
+  é o telefone → resolve `gc_patients`. Carimba `origin_channel='instagram'` só se vazio e sem
+  GCLID (não sobrescreve Google Ads). **Guard:** telefone já reivindicado por clique GCLID na
+  mesma janela não é roubado pelo IG.
+- **Limitação:** atribuição é **heurística por horário** (igual GCLID), não determinística.
+  Determinístico exigiria token na mensagem (descartado) ou Click-to-WhatsApp pago da Meta (`ctwa_clid`).
+- **Link p/ marketing:**
+  `…/go/whatsapp?utm_source=instagram&utm_medium=organic_social&utm_campaign=<camp>&utm_content=<post>&ref=IG-B04&assunto=implantes`
+- **Taxonomia `ref`:** `IG-<SÉRIE><NÚMERO>` (ex.: `IG-A03`, `IG-B04`, `IG-FOTO01`).
+
 ### Sofia (Assistente WhatsApp)
 - Versão atual: V2.1
 - Workflow N8N com knowledge base
