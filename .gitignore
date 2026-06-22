@@ -49,3 +49,12 @@ ga4*.csv
 .secrets/
 pagespeed-api-key.txt
 
+
+# Pipeline de blog (tooling interno + segredos) � nao versionar no repo do site
+Blog/
+
+# Rascunhos / fotos brutas / variacoes de imagem (NAO versionar - inclui fotos pessoais)
+drafts/
+
+# Python cache
+__pycache__/

@@ -1691,7 +1691,7 @@ function generatePage(routePath, meta, options = {}) {
     // Home hero files use 560w/800w/840w pattern (NOT the 480/1024 pattern of LPs)
     const homePreload = `<!-- Hero image preload responsivo (LCP element) -->
   <link rel="preload" as="image" type="image/avif"
-    imagesrcset="/lovable-uploads/hero-560w.avif 560w, /lovable-uploads/hero-800w.avif 800w, /lovable-uploads/hero-840w.avif 840w"
+    imagesrcset="/lovable-uploads/hero-v1-560w.avif 560w, /lovable-uploads/hero-v1-800w.avif 800w, /lovable-uploads/hero-v1-840w.avif 840w"
     imagesizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px" fetchpriority="high" />`;
     // Try to replace existing preload first, otherwise inject before </head>
     const preloadRegex = /<!-- Hero image preload responsivo \(LCP element\) -->\s*<link rel="preload" as="image" type="image\/avif"[\s\S]*?\/>/;
@@ -1963,9 +1963,9 @@ const homeFallback = `
     <div class="fallback-image-wrapper">
       <div class="fallback-image-container">
         <picture>
-          <source srcset="/lovable-uploads/hero-560w.avif 560w, /lovable-uploads/hero-800w.avif 800w, /lovable-uploads/hero-840w.avif 840w" sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px" type="image/avif" />
-          <source srcset="/lovable-uploads/hero-560w.webp 560w, /lovable-uploads/hero-800w.webp 800w, /lovable-uploads/hero-840w.webp 840w" sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px" type="image/webp" />
-          <img src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png" alt="Dra. Carla Christoph, dentista especialista em Ipanema" width="460" height="640" fetchpriority="high" decoding="async" />
+          <source srcset="/lovable-uploads/hero-v1-560w.avif 560w, /lovable-uploads/hero-v1-800w.avif 800w, /lovable-uploads/hero-v1-840w.avif 840w" sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px" type="image/avif" />
+          <source srcset="/lovable-uploads/hero-v1-560w.webp 560w, /lovable-uploads/hero-v1-800w.webp 800w, /lovable-uploads/hero-v1-840w.webp 840w" sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px" type="image/webp" />
+          <img src="/lovable-uploads/hero-v1.png" alt="Dra. Carla Christoph, dentista especialista em Ipanema" width="460" height="640" fetchpriority="high" decoding="async" />
         </picture>
       </div>
     </div>

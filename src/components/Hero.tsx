@@ -115,12 +115,12 @@ const Hero = () => {
             className="w-[280px] sm:w-[320px] md:w-[400px] lg:w-[460px] h-[420px] sm:h-[480px] md:h-[560px] lg:h-[640px]"
             style={{
               WebkitMaskImage: `
-                linear-gradient(to left, black 60%, transparent 100%),
-                linear-gradient(to bottom, black 65%, transparent 100%)
+                linear-gradient(to left, black 90%, transparent 100%),
+                linear-gradient(to bottom, black 92%, transparent 100%)
               `,
               maskImage: `
-                linear-gradient(to left, black 60%, transparent 100%),
-                linear-gradient(to bottom, black 65%, transparent 100%)
+                linear-gradient(to left, black 90%, transparent 100%),
+                linear-gradient(to bottom, black 92%, transparent 100%)
               `,
               WebkitMaskComposite: 'source-in',
               maskComposite: 'intersect',
@@ -128,17 +128,17 @@ const Hero = () => {
           >
             <picture>
               <source
-                srcSet="/lovable-uploads/hero-560w.avif 560w, /lovable-uploads/hero-800w.avif 800w, /lovable-uploads/hero-840w.avif 840w"
+                srcSet="/lovable-uploads/hero-v1-560w.avif 560w, /lovable-uploads/hero-v1-800w.avif 800w, /lovable-uploads/hero-v1-840w.avif 840w"
                 sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px"
                 type="image/avif"
               />
               <source
-                srcSet="/lovable-uploads/hero-560w.webp 560w, /lovable-uploads/hero-800w.webp 800w, /lovable-uploads/hero-840w.webp 840w"
+                srcSet="/lovable-uploads/hero-v1-560w.webp 560w, /lovable-uploads/hero-v1-800w.webp 800w, /lovable-uploads/hero-v1-840w.webp 840w"
                 sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px"
                 type="image/webp"
               />
               <img
-                src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png"
+                src="/lovable-uploads/hero-v1.png"
                 alt="Dra. Carla Christoph, dentista especialista em Ipanema"
                 className="w-full h-full object-cover object-top"
                 width="460"
