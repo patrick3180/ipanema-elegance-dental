@@ -1940,8 +1940,24 @@ const homeFallback = `
 </section>
 `;
 
-const updatedHomeHtml = indexHtml.replace('<div id="root"></div>', '<div id="root">' + homeFallback + '</div>');
+// Pré-renderiza SEO no <head> da home (canonical, hreflang, og:image/url, JSON-LD Dentist)
+// para crawlers sem JS / bots de IA. Em runtime o react-helmet também injeta — aceito
+// como nas demais 49 páginas (Google deduplica). 'og:type/title/description' já vêm do template.
+const homeHeadTags = [
+  '<link rel="canonical" href="' + BASE_URL + '/" />',
+  '<link rel="alternate" hreflang="pt-BR" href="' + BASE_URL + '/" />',
+  '<link rel="alternate" hreflang="en" href="' + BASE_URL + '/en" />',
+  '<link rel="alternate" hreflang="x-default" href="' + BASE_URL + '/" />',
+  '<meta property="og:url" content="' + BASE_URL + '/" />',
+  '<meta property="og:image" content="' + OG_IMAGE + '" />',
+  '<meta name="twitter:card" content="summary_large_image" />',
+  '<meta name="twitter:image" content="' + OG_IMAGE + '" />',
+  '<script type="application/ld+json">' + generateDentistSchema() + '</script>'
+].join('\n  ');
+
+let updatedHomeHtml = indexHtml.replace('</head>', '  ' + homeHeadTags + '\n</head>');
+updatedHomeHtml = updatedHomeHtml.replace('<div id="root"></div>', '<div id="root">' + homeFallback + '</div>');
 fs.writeFileSync(path.join(distDir, 'index.html'), updatedHomeHtml);
-console.log('✅ Success: Inlined Home LCP hero in dist/index.html (Sprint 6 layout)');
+console.log('✅ Success: Inlined Home LCP hero + SEO head (canonical/hreflang/og/JSON-LD) in dist/index.html');
 
 
