@@ -35,6 +35,7 @@ const DorDeDenteLandingPage = lazy(() => import("./pages/DorDeDenteLandingPage")
 const DenteQuebradoLandingPage = lazy(() => import("./pages/DenteQuebradoLandingPage"));
 const EmergenciaOdontologicaLandingPage = lazy(() => import("./pages/EmergenciaOdontologicaLandingPage"));
 const EspecialistaProteseLandingPage = lazy(() => import("./pages/EspecialistaProteseLandingPage"));
+const EspecialistaProteseLandingPageV2 = lazy(() => import("./pages/EspecialistaProteseLandingPageV2"));
 const ImplantesDentariosLandingPage = lazy(() => import("./pages/ImplantesDentariosLandingPage"));
 const LPLentesPorcelana = lazy(() => import("./pages/LPLentesPorcelana"));
 const LentesDeContatoEmPorcelanaProfissionalLandingPage = lazy(() => import("./pages/LentesDeContatoEmPorcelanaProfissionalLandingPage"));
@@ -136,7 +137,8 @@ const App = () => {
               <Route path="/lp/dor-de-dente-urgencia-ipanema" element={<DorDeDenteLandingPage />} />
               <Route path="/lp/dente-quebrado-urgencia-ipanema" element={<DenteQuebradoLandingPage />} />
               <Route path="/lp/emergencia-odontologica-ipanema" element={<EmergenciaOdontologicaLandingPage />} />
-              <Route path="/lp/especialista-protese-ipanema" element={<EspecialistaProteseLandingPage />} />
+              <Route path="/lp/especialista-protese-ipanema" element={<EspecialistaProteseLandingPageV2 />} />
+              <Route path="/lp/especialista-protese-ipanema-v1" element={<EspecialistaProteseLandingPage />} />
               <Route path="/lp/implantes-dentarios-ipanema" element={<ImplantesDentariosLandingPage />} />
               <Route path="/lp/lentes-porcelana-ipanema" element={<LPLentesPorcelana />} />
               <Route path="/lp/lentes-profissional-ipanema" element={<LentesDeContatoEmPorcelanaProfissionalLandingPage />} />

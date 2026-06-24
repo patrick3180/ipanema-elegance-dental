@@ -385,6 +385,132 @@ function generateLPFallbackHTML(c, lang, routePath) {
     </footer>`;
 }
 
+// ════════════════════════════════════════════════════════════════════
+// PRÓTESE V2 — Fallback full-bleed (espelha o hero de ProteseHero.tsx)
+// ⚠️ MANTER EM SYNC com criticalStyles de EspecialistaProteseLandingPageV2.tsx
+//    (apenas a parte do hero — a barra sticky não entra no fallback).
+// ════════════════════════════════════════════════════════════════════
+const PROTESE_HERO_CRITICAL_CSS = `
+.ph-hero{position:relative;padding-top:68px;background:#E4DBCA}
+.ph-hero-photo{display:block}
+.ph-hero-photo img{display:block;width:100%;height:44vh;min-height:280px;max-height:420px;object-fit:cover;object-position:50% 16%}
+.ph-hero-scrim{display:none}
+.ph-hero-text{background:#E4DBCA;padding:1.5rem 1.25rem 2rem}
+.ph-hero-inner{width:100%}
+.ph-hero-copy{max-width:600px;margin:0 auto}
+.ph-hero-eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:#8A7444;font-weight:600;margin:0 0 .75rem}
+.ph-hero-h1{font-size:clamp(1.6rem,5.4vw,2.4rem);font-weight:700;line-height:1.14;color:#381F47;margin:0 0 .9rem;font-family:Georgia,serif}
+.ph-hero-sub{font-size:.98rem;color:#5C5647;line-height:1.55;margin:0 0 1.1rem}
+.ph-hero-badges{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.25rem 0 0}
+.ph-hero-badge{display:inline-flex;align-items:center;gap:.4rem;background:#fff;border:1px solid rgba(179,149,95,.4);border-radius:999px;padding:.35rem .7rem;font-size:.8rem;color:#381F47;font-weight:500}
+.ph-hero-dot{color:#B3955F;font-size:8px}
+.ph-hero-cta-row{display:flex;flex-direction:column;gap:.75rem;align-items:flex-start}
+.ph-hero-cta{display:inline-flex;align-items:center;gap:.6rem;width:100%;justify-content:center;background:linear-gradient(135deg,#25D366 0%,#20BD5A 100%);color:#fff;border:none;cursor:pointer;border-radius:10px;padding:.85rem 1.5rem;font-family:inherit;text-decoration:none}
+.ph-hero-cta b{font-size:.95rem;font-weight:700}
+.ph-hero-cta small{font-size:.7rem;opacity:.9;font-weight:400}
+.ph-hero-proof{display:inline-flex;align-items:center;gap:.4rem;background:#fff;border:1px solid rgba(179,149,95,.3);border-radius:999px;padding:.4rem .8rem;text-decoration:none}
+.ph-hero-proof b{color:#381F47;font-size:.9rem}
+.ph-hero-proof span{color:rgba(56,31,71,.7);font-size:.75rem}
+.ph-hero-trust{display:flex;flex-wrap:wrap;gap:.4rem 1rem;margin-top:1rem}
+.ph-hero-trust span{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:#8A7444;font-weight:600}
+@media (min-width:768px){
+.ph-hero{min-height:86vh;padding-top:0}
+.ph-hero-photo{position:absolute;top:72px;left:0;right:0;bottom:0}
+.ph-hero-photo img{height:100%;min-height:0;max-height:none;object-position:78% 18%}
+.ph-hero-scrim{display:block;position:absolute;top:72px;left:0;right:0;bottom:0;pointer-events:none;background:linear-gradient(90deg,rgba(250,247,242,.97) 0%,rgba(250,247,242,.88) 34%,rgba(250,247,242,.5) 54%,rgba(250,247,242,0) 72%)}
+.ph-hero-text{position:relative;background:transparent;padding:0;min-height:86vh;display:flex;align-items:center}
+.ph-hero-inner{max-width:1200px;margin:0 auto;padding:0 2rem}
+.ph-hero-copy{max-width:540px;margin:0}
+.ph-hero-h1{font-size:2.7rem}
+.ph-hero-sub{font-size:1.05rem}
+.ph-hero-cta-row{flex-direction:row;align-items:center;gap:1.25rem}
+.ph-hero-cta{width:auto}
+}`;
+
+function generateProteseFullBleedFallback(c) {
+  const waNumber = c.whatsappNumber || '5521993304045';
+  const waMsg = encodeURIComponent(c.whatsappMessage || '');
+  const waHref = 'https://wa.me/' + waNumber + (waMsg ? '?text=' + waMsg : '');
+  const ctaButtonText = c.ctaText || 'Agendar minha consulta';
+  const googleHref = 'https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/';
+
+  const badges = (c.benefits || []).map(b =>
+    `<span class="ph-hero-badge"><span class="ph-hero-dot">&bull;</span>${escapeHtml(b)}</span>`
+  ).join('');
+  const trust = ['20+ anos em Ipanema', 'CRO-RJ 27.509', '4.000+ pacientes'].map(t =>
+    `<span>${escapeHtml(t)}</span>`
+  ).join('');
+
+  // Below-fold (semântico — fora do viewport, sem impacto de CLS, bom p/ crawlers de IA)
+  const seletorHtml = (c.seletor || []).map(s =>
+    `<div><h3>${escapeHtml(s.label)}</h3><p><strong>${escapeHtml(s.tag)}</strong></p><p>${escapeHtml(s.description)}</p></div>`
+  ).join('');
+  const valueHtml = (c.valueProps || []).map(v =>
+    `<li><strong>${escapeHtml(v.title)}.</strong> ${escapeHtml(v.description)}</li>`
+  ).join('');
+  const problemsHtml = (c.problems || []).map(p => '<li>' + escapeHtml(p) + '</li>').join('');
+  const stepsHtml = (c.steps || []).map(s => '<li><strong>' + escapeHtml(s.title) + '.</strong> ' + escapeHtml(s.description) + '</li>').join('');
+  const testimonialsHtml = (c.testimonials || []).map(t => '<blockquote><p>' + escapeHtml(t.text) + '</p><cite>&mdash; ' + escapeHtml(t.name) + '</cite></blockquote>').join('');
+  const faqsHtml = (c.faqs || []).map(f => '<dt>' + escapeHtml(f.q) + '</dt><dd>' + escapeHtml(f.a) + '</dd>').join('');
+
+  return `<header style="position:fixed;top:0;left:0;right:0;z-index:50;background:#fff;box-shadow:0 1px 3px 0 rgba(0,0,0,0.1)">
+      <div style="max-width:1200px;margin:0 auto;padding:12px 16px;display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <span style="font-size:1.125rem;font-weight:700;color:#381F47;font-family:system-ui,sans-serif">Dra. Carla Christoph</span><br/>
+          <span style="font-size:0.75rem;color:#6b7280">CRO-RJ 27509</span>
+        </div>
+        <a href="${waHref}" style="background:#25D366;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:500;font-size:0.875rem;display:inline-flex;align-items:center;gap:8px" aria-label="WhatsApp 24h">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span>WhatsApp 24h</span>
+        </a>
+      </div>
+    </header>
+    <section class="ph-hero">
+      <picture class="ph-hero-photo">
+        <source media="(max-width: 767px)" type="image/avif" srcset="/lovable-uploads/hero-fb-m-480.avif 480w, /lovable-uploads/hero-fb-m-768.avif 768w" sizes="100vw" />
+        <source media="(max-width: 767px)" type="image/webp" srcset="/lovable-uploads/hero-fb-m-480.webp 480w, /lovable-uploads/hero-fb-m-768.webp 768w" sizes="100vw" />
+        <source media="(min-width: 768px)" type="image/avif" srcset="/lovable-uploads/hero-fb-1280.avif 1280w, /lovable-uploads/hero-fb-1920.avif 1920w" sizes="100vw" />
+        <source media="(min-width: 768px)" type="image/webp" srcset="/lovable-uploads/hero-fb-1280.webp 1280w, /lovable-uploads/hero-fb-1920.webp 1920w" sizes="100vw" />
+        <img src="/lovable-uploads/hero-fb-1280.webp" alt="Dra. Carla Christoph, especialista em prótese dentária, no consultório em Ipanema" width="1280" height="650" fetchpriority="high" decoding="async" />
+      </picture>
+      <div class="ph-hero-scrim" aria-hidden="true"></div>
+      <div class="ph-hero-text">
+        <div class="ph-hero-inner">
+          <div class="ph-hero-copy">
+            <p class="ph-hero-eyebrow">Especialista em Prótese e Implantodontia &middot; CRO-RJ 27.509</p>
+            <h1 class="ph-hero-h1">${escapeHtml(c.h1)}</h1>
+            <p class="ph-hero-sub">${escapeHtml(c.subhead)}</p>
+            <div class="ph-hero-cta-row">
+              <a href="${waHref}" class="ph-hero-cta"><b>${escapeHtml(ctaButtonText)}</b><small>WhatsApp 24h</small></a>
+              <a href="${googleHref}" class="ph-hero-proof" target="_blank" rel="noopener noreferrer" aria-label="5,0 estrelas no Google, 17 avaliações"><b>5,0</b><span>no Google &middot; 17 avaliações</span></a>
+            </div>
+            <div class="ph-hero-badges">${badges}</div>
+            <div class="ph-hero-trust">${trust}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <main style="max-width:800px;margin:0 auto;padding:24px 16px;font-family:system-ui,sans-serif;line-height:1.6;color:#333">
+      ${seletorHtml ? `<section><h2>${escapeHtml(c.seletorTitle || 'Qual prótese para o seu caso?')}</h2>${seletorHtml}</section>` : ''}
+      ${problemsHtml ? `<section><h2>${escapeHtml(c.problemTitle || 'O seu caso tem solução')}</h2><ul>${problemsHtml}</ul></section>` : ''}
+      ${valueHtml ? `<section><h2>${escapeHtml(c.valuePropsTitle || 'Por que a prótese de uma especialista é diferente')}</h2><ul>${valueHtml}</ul></section>` : ''}
+      ${stepsHtml ? `<section><h2>${escapeHtml(c.guideTitle || 'Como funciona')}</h2><ol>${stepsHtml}</ol></section>` : ''}
+      ${testimonialsHtml ? `<section><h2>${escapeHtml(c.testimonialsTitle || 'Pacientes contam')}</h2>${testimonialsHtml}</section>` : ''}
+      ${faqsHtml ? `<section><h2>${escapeHtml(c.faqTitle || 'Perguntas Frequentes')}</h2><dl>${faqsHtml}</dl></section>` : ''}
+      <section>
+        <h2>${escapeHtml(c.ctaTitle || 'Pronto para agendar?')}</h2>
+        ${c.ctaSubtitle ? '<p>' + escapeHtml(c.ctaSubtitle) + '</p>' : ''}
+        <p><a href="${waHref}" style="display:inline-block;padding:12px 24px;background:#25D366;color:#fff;text-decoration:none;border-radius:6px;font-weight:600">${escapeHtml(ctaButtonText)}</a></p>
+      </section>
+    </main>
+    <footer style="padding:24px 16px;border-top:1px solid #eee;text-align:center;color:#666;font-size:0.9em">
+      <p><strong>Dra. Carla Christoph</strong> &mdash; CRO-RJ 27.509</p>
+      <p>Rua Visconde de Piraj&aacute;, 550 - Sala 1107, Ipanema, Rio de Janeiro</p>
+      <p>Tel: (21) 99330-4045 | <a href="${waHref}">WhatsApp 24h</a></p>
+      <p>Seg&ndash;Sex 9h&ndash;19h &bull; S&aacute;b 9h&ndash;14h</p>
+    </footer>`;
+}
+
 // ============================================================
 // SERVICE PAGES — Full content + schemas + fallback
 // ============================================================
@@ -764,8 +890,8 @@ const landingPages = {
     description: 'Emergência odontológica em Ipanema. Atendimento rápido e humanizado. Dra. Carla Christoph.',
   },
   '/lp/especialista-protese-ipanema': {
-    title: 'Especialista em Prótese Dentária em Ipanema | Dra. Carla Christoph',
-    description: 'Especialista em prótese dentária em Ipanema. Mais de 20 anos de experiência em reabilitação oral. Dra. Carla Christoph.',
+    title: 'Especialista em Prótese Dentária Ipanema | Reabilitação Oral',
+    description: 'Reabilitação oral para casos complexos em Ipanema. Dra. Carla Christoph, especialista em prótese dentária, planeja e executa seu novo sorriso com precisão.',
   },
   '/lp/implantes-dentarios-ipanema': {
     title: 'Implantes Dentários em Ipanema | Dra. Carla Christoph',
@@ -1234,44 +1360,58 @@ const landingPageContent = {
   },
 
   '/lp/especialista-protese-ipanema': {
-    h1: 'Sua Prótese Pode Funcionar Como Dentes de Verdade',
-    subhead: 'Especialista em Prótese Dentária com mais de 20 anos. Cada caso é planejado em detalhes — para o resultado ficar natural e durar.',
-    benefits: ['Especialista em Prótese Dentária', 'Planejamento digital com iTero Element 5D', 'WhatsApp 24h', '20+ anos de experiência (8 na Marinha)'],
-    problemTitle: 'Quando o Caso Precisa de um Olhar Especializado',
+    // V2 — mantido em sync com src/config/especialistaProteseV2Config.ts
+    h1: 'Sua prótese pode funcionar como dentes de verdade',
+    subhead: 'Especialista em Prótese e Implantodontia, com mais de 20 anos em Ipanema. Coroas de porcelana, próteses fixas e sobre implante — cada caso planejado em detalhe para ficar natural.',
+    benefits: ['Especialista em Prótese e Implantodontia', 'Planejamento individual de cada caso', 'Do diagnóstico à finalização, em um só lugar', 'WhatsApp 24h'],
+    seletorTitle: 'Qual prótese para o seu caso?',
+    seletor: [
+      { label: 'Prótese Fixa', tag: 'Dente fixo, sem precisar de implante', description: 'Coroas e pontes fixas em porcelana, apoiadas nos seus dentes ou raízes aproveitáveis. Não sai da boca.' },
+      { label: 'Prótese Sobre Implante', tag: 'Dentes fixos quando faltam dentes de suporte', description: 'O implante substitui a raiz e a prótese é fixada sobre ele. Estabilidade para mastigar com segurança.' },
+      { label: 'Prótese Removível Moderna', tag: 'Quando a fixa ou o implante não é a melhor indicação agora', description: 'Confeccionada sob medida, com encaixe preciso e estética natural, pensada para o conforto do dia a dia.' }
+    ],
+    problemTitle: 'O seu caso tem solução',
     problems: [
-      'Tratamentos anteriores que não deram certo ou já estão falhando.',
-      'Prótese antiga que não se adapta bem — solta, machuca ou limita a alimentação.',
-      'Múltiplos dentes ausentes e dúvida sobre a melhor solução.',
-      'Dentes muito desgastados ou com muitas restaurações antigas comprometidas.',
-      'Insegurança para sorrir ou comer em público por causa da condição dos dentes.',
-      'Sensação de que o caso é complexo demais e precisa de alguém com experiência específica.'
+      'Vários dentes ausentes e dúvida sobre a melhor solução.',
+      'Prótese antiga que solta, machuca ou limita a alimentação.',
+      'Um caso que você adiou por um tempo e quer finalmente resolver com segurança.',
+      'Dentes muito desgastados ou com restaurações antigas comprometidas.',
+      'Insegurança para sorrir ou comer em público por causa dos dentes.',
+      'Sensação de que o caso é complexo demais e precisa de experiência específica.'
     ],
-    guideTitle: 'A Abordagem da Especialista em Prótese',
+    valuePropsTitle: 'Por que a prótese de uma especialista é diferente',
+    valueProps: [
+      { title: 'Planejamento antes de começar', description: 'O projeto protético é definido antes da primeira etapa — com escaneamento iTero Element 5D quando indicado. Você entende o plano antes de qualquer procedimento.' },
+      { title: 'Materiais selecionados, caso a caso', description: 'Porcelana de alta translucidez e componentes com rastreabilidade — selecionados conforme a necessidade de cada paciente, não por padrão.' },
+      { title: 'Do início ao fim, no mesmo lugar', description: 'Do diagnóstico à entrega, com acompanhamento da Dra. Carla — sem pular de endereço a cada etapa do tratamento.' }
+    ],
+    guideTitle: 'A abordagem da especialista em prótese',
     steps: [
-      { title: 'Consulta de Planejamento', description: 'Análise clínica completa, fotografias, radiografias e escaneamento digital com iTero Element 5D. Entendemos o histórico e definimos os objetivos do tratamento.' },
-      { title: 'Projeto Protético Digital', description: 'Com base nos dados coletados, a Dra. Carla projeta a reabilitação — tipo de prótese, materiais, sequência de etapas. Tudo definido antes de começar.' },
-      { title: 'Execução por Etapas', description: 'O tratamento segue o cronograma planejado. Cada etapa é executada com precisão, usando somente materiais de primeira linha e provas intermediárias para garantir o ajuste.' },
-      { title: 'Acompanhamento de Longo Prazo', description: 'Após a entrega, consultas de acompanhamento garantem que a prótese se mantenha funcional e confortável ao longo dos anos.' }
+      { title: 'Consulta de planejamento', description: 'Análise clínica completa, fotografias e radiografias. Quando indicado, também o escaneamento digital com iTero Element 5D. Entendemos o histórico e definimos os objetivos do tratamento.' },
+      { title: 'Projeto protético digital', description: 'Com base nos dados coletados, a Dra. Carla projeta a reabilitação — tipo de prótese, materiais, sequência de etapas. Tudo definido antes de começar.' },
+      { title: 'Execução por etapas', description: 'O tratamento segue o cronograma planejado. Cada etapa é executada com precisão, usando somente materiais de primeira linha e provas intermediárias para garantir o ajuste.' },
+      { title: 'Acompanhamento de longo prazo', description: 'Após a entrega, consultas de acompanhamento garantem que a prótese se mantenha funcional e confortável ao longo do tempo.' }
     ],
-    testimonialsTitle: 'O Que Nossos Pacientes Contam Sobre o Tratamento',
+    testimonialsTitle: 'O que nossos pacientes contam sobre o tratamento',
     testimonials: [
-      { name: 'Maria Helena R. — Ipanema', text: 'Já tinha passado por outros dentistas sem resolver. A Dra. Carla fez um planejamento completo e hoje como de tudo com segurança. O processo foi longo, mas cada etapa fez sentido.' },
+      { name: 'Maria Helena R. — Ipanema', text: 'Meu caso era mais complexo e eu estava insegura. A Dra. Carla fez um planejamento completo e hoje como de tudo com segurança. O processo foi longo, mas cada etapa fez sentido.' },
       { name: 'João Carlos A. — Leblon', text: 'O que me deu confiança foi o planejamento. Ela mostrou o projeto antes de começar e explicou cada etapa. O resultado ficou natural — ninguém percebe que é prótese.' },
       { name: 'Beatriz L. — Copacabana', text: 'Usava prótese removível há anos. Depois do tratamento com a Dra. Carla, tenho dentes fixos novamente. A diferença na qualidade de vida é enorme.' }
     ],
-    faqTitle: 'Dúvidas Sobre Prótese e Reabilitação Oral',
+    faqTitle: 'Dúvidas sobre prótese e reabilitação oral',
     faqs: [
+      { q: 'Dá para ter dente fixo sem implante?', a: 'Em muitos casos, sim. Quando há dentes ou raízes que sirvam de suporte, é possível instalar coroas e pontes fixas sem implante. Quando não há suporte suficiente, o implante entra como base. A indicação depende do exame clínico e dos exames de imagem.' },
       { q: 'Qual a diferença entre um dentista generalista e uma especialista em prótese?', a: 'A especialista tem formação avançada em reabilitação oral — planejamento de casos complexos, domínio de materiais e técnicas específicas. Isso faz diferença principalmente em casos com múltiplas ausências ou desgaste severo.' },
-      { q: 'Quanto tempo dura uma prótese bem feita?', a: 'Com materiais adequados, técnica precisa e acompanhamento regular, uma prótese fixa em porcelana pode durar 15 a 20 anos ou mais. A longevidade depende também dos cuidados do paciente.' },
-      { q: 'Prótese fixa ou removível — como saber qual é melhor para mim?', a: 'Depende da condição dos dentes remanescentes, da quantidade de osso disponível e do caso como um todo. A análise clínica e os exames definem a indicação. A Dra. Carla apresenta as opções com prós e contras de cada uma.' },
-      { q: 'É possível trocar uma prótese antiga por uma nova?', a: 'Sim. Próteses antigas podem ser substituídas por soluções mais modernas, com melhor estética e função. A análise determina o que é viável para o seu caso.' },
+      { q: 'Prótese fixa ou removível — como saber qual é a melhor para mim?', a: 'Depende da condição dos dentes remanescentes, da quantidade de osso disponível e do caso como um todo. A análise clínica e os exames definem a indicação. A Dra. Carla apresenta as opções com prós e contras de cada uma.' },
+      { q: 'Prótese sobre implante é um processo demorado?', a: 'Tem etapas e respeita o tempo de cicatrização, que varia de caso a caso. No planejamento inicial, a Dra. Carla explica o cronograma do seu caso com clareza, do começo ao fim.' },
+      { q: 'O que faz uma prótese durar mais?', a: 'Materiais adequados, encaixe preciso e acompanhamento regular. Próteses bem planejadas e bem cuidadas se mantêm funcionais por muitos anos — a longevidade depende também dos seus cuidados e das visitas de manutenção.' },
       { q: 'Vocês atendem convênios?', a: 'Nosso atendimento é particular, o que nos permite dedicar o tempo necessário ao planejamento e trabalhar com materiais selecionados. Na consulta, apresentamos o plano completo com valores transparentes.' }
     ],
-    ctaTitle: 'Seu Caso Merece Atenção Especializada',
+    ctaTitle: 'Seu caso merece atenção especializada',
     ctaSubtitle: 'Agende sua consulta de planejamento. A análise detalhada é o primeiro passo para um tratamento seguro e bem conduzido.',
-    ctaText: 'Agendar Minha Consulta',
+    ctaText: 'Agendar minha consulta',
     whatsappNumber: '5521993304045',
-    whatsappMessage: 'Olá! Vi sobre prótese e reabilitação e gostaria de agendar uma consulta para entender o que é possível no meu caso.'
+    whatsappMessage: 'Olá! Vi a página sobre prótese e reabilitação e gostaria de agendar uma consulta para entender o que é possível no meu caso.'
   },
 
   '/lp/implantes-dentarios-ipanema': {
@@ -1642,7 +1782,7 @@ const landingPageContent = {
 const ROUTE_HERO_MAP = {
   '/lp/consulta-inicial': '/lovable-uploads/RIT08058-vertical-doutora-site',
   '/en/lp/general-consultation': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
-  '/lp/especialista-protese-ipanema': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
+  // '/lp/especialista-protese-ipanema' — V2 usa hero full-bleed (hero-fb); preload e fallback dedicados abaixo.
   '/lp/facetas-resina-ipanema': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
   '/lp/lentes-resina-ou-porcelana-ipanema': '/lovable-uploads/dra-carla-jaleco-bracos-cruzados',
   '/lp/clareamento-dental': '/lovable-uploads/doutora-em-pe-jaleco',
@@ -1670,7 +1810,22 @@ function generatePage(routePath, meta, options = {}) {
 
   // Replace LCP hero preload based on route
   const heroImageBase = ROUTE_HERO_MAP[routePath];
-  if (heroImageBase) {
+  const isProteseV2Route = routePath === '/lp/especialista-protese-ipanema';
+  if (isProteseV2Route) {
+    // V2: hero full-bleed com as imagens do Hero.tsx da home (480/768 mobile, 1280/1920 desktop)
+    const proteseHeroPreload = `<!-- Hero image preload responsivo (LCP element) -->
+  <link rel="preload" as="image" type="image/avif" media="(max-width: 767px)"
+    imagesrcset="/lovable-uploads/hero-fb-m-480.avif 480w, /lovable-uploads/hero-fb-m-768.avif 768w"
+    imagesizes="100vw" fetchpriority="high" />
+  <link rel="preload" as="image" type="image/avif" media="(min-width: 768px)"
+    imagesrcset="/lovable-uploads/hero-fb-1280.avif 1280w, /lovable-uploads/hero-fb-1920.avif 1920w"
+    imagesizes="100vw" fetchpriority="high" />`;
+    const protesePreloadRegex = /<!-- Hero image preload responsivo \(LCP element\)[\s\S]*?-->\s*(?:<link rel="preload" as="image" type="image\/avif"[\s\S]*?\/>\s*){1,2}/;
+    if (protesePreloadRegex.test(html)) html = html.replace(protesePreloadRegex, proteseHeroPreload);
+    else html = html.replace('</head>', proteseHeroPreload + '\n</head>');
+    // Critical CSS do hero injetado no <head> estático → fallback pré-hidratação idêntico ao React (sem CLS)
+    html = html.replace('</head>', '  <style id="ph-critical">' + PROTESE_HERO_CRITICAL_CSS + '</style>\n</head>');
+  } else if (heroImageBase) {
     const specificPreload = `<!-- Hero image preload responsivo (LCP element) -->
   <link rel="preload" as="image" type="image/avif"
     imagesrcset="${heroImageBase}-480.avif 480w, ${heroImageBase}-1024.avif 1024w"
@@ -1855,7 +2010,11 @@ for (const [routePath, meta] of Object.entries(landingPages)) {
   const isEn = routePath.startsWith('/en/');
   const lang = isEn ? 'en' : 'pt-BR';
   const content = landingPageContent[routePath];
-  const fallbackContent = content ? generateLPFallbackHTML(content, lang, routePath) : '';
+  const fallbackContent = content
+    ? (routePath === '/lp/especialista-protese-ipanema'
+        ? generateProteseFullBleedFallback(content)
+        : generateLPFallbackHTML(content, lang, routePath))
+    : '';
 
   // JSON-LD para grounding de Busca IA. LPs são noindex → sem risco de FAQPage duplicado no Google.
   const lpSchemas = [];
