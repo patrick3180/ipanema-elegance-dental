@@ -419,10 +419,23 @@ O site é SPA. Sem pre-rendering, crawlers não veem conteúdo.
 1. `git add .` → `git commit -m "descrição"` → `git push origin main`
 2. Vercel detecta o push e faz build + deploy automático
 3. Verificar em https://vercel.com se o deploy passou
+4. **Registrar a mudança** no histórico mestre de marketing ⬇️ (OBRIGATÓRIO)
 
 - **Vercel** com deploy automático de `main`
 - Região: `gru1` (São Paulo)
 - **Rollback de emergência**: `git revert -m 1 f7cf2ce`
+
+### 📋 Registro de Mudanças (OBRIGATÓRIO — análise antes/depois de marketing)
+> ⚠️ **TODA alteração relevante do site (hero, copy, layout, nova página/seção, SEO, tracking, imagens-chave) DEVE ser registrada em:**
+>
+> **`C:\IA\Projetos\Agencia de MKT\HISTORICO_MUDANCAS.md`**
+>
+> É a linha do tempo única de TODAS as mudanças (Google Ads, LPs, site, Instagram) e permite à equipe medir **antes/depois** de cada alteração no GA4/Ads.
+
+- Adicione uma linha na tabela do mês com **Data/hora | Área (ex.: `Site (Home)`) | Mudança | Fonte (`[git] <hash>`)**. A data = horário do commit (deploy live ~1–3 min depois).
+- Mudanças com impacto visual/UX → registre também um **ponto de referência** na seção "🔬 Pontos de referência para análise antes/depois" do mesmo arquivo.
+- **Não** registrar refactors internos sem efeito ao usuário (rename de variável, ajuste de build invisível).
+- Esse arquivo vive em **outro projeto** (`Agencia de MKT`) e **não** é versionado no repo do site — é a memória permanente de marketing.
 
 ### Vercel Config Crítico
 - `cleanUrls: true` — URLs sem extensão
@@ -796,4 +809,5 @@ Estas decisões já foram tomadas e aprovadas:
 □ Testei visualmente se mexi no CSS global
 □ Meta tags e Schema.org estão presentes se criei página nova
 □ noindex/nofollow se for landing page
+□ Registrei a mudança em HISTORICO_MUDANCAS.md (Agencia de MKT) se for alteração relevante de site
 ```
