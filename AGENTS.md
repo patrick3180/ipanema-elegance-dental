@@ -432,7 +432,7 @@ O site é SPA. Sem pre-rendering, crawlers não veem conteúdo.
 >
 > É a linha do tempo única de TODAS as mudanças (Google Ads, LPs, site, Instagram) e permite à equipe medir **antes/depois** de cada alteração no GA4/Ads.
 
-- Adicione uma linha na tabela do mês com **Data/hora | Área (ex.: `Site (Home)`) | Mudança | Fonte (`[git] <hash>`)**. A data = horário do commit (deploy live ~1–3 min depois).
+- **Uma linha por mudança relevante — NÃO por commit/push** (o detalhe fino já está no GitHub; aqui é nível de marketing). Ex.: "Home — novo hero + copy nova", não uma linha por arquivo/deploy. Formato: **Data | Área (ex.: `Site (Home)`) | Mudança | Fonte `[git] *(agente do site)*`**.
 - Mudanças com impacto visual/UX → registre também um **ponto de referência** na seção "🔬 Pontos de referência para análise antes/depois" do mesmo arquivo.
 - **Não** registrar refactors internos sem efeito ao usuário (rename de variável, ajuste de build invisível).
 - Esse arquivo vive em **outro projeto** (`Agencia de MKT`) e **não** é versionado no repo do site — é a memória permanente de marketing.
