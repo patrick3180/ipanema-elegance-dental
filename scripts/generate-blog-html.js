@@ -1,422 +1,436 @@
 /**
- * Blog Pre-rendering Script
+ * Blog Pre-rendering Script — v2 (SPA-shell + full content)
  *
- * Generates static HTML snapshots of blog posts for better SEO and AI discoverability.
+ * O QUE MUDOU (Jul/2026 — fix de indexação/AI Search):
+ * A versão antiga gerava uma PÁGINA ESTÁTICA AUTÔNOMA por post, SEM o app React,
+ * com o corpo do artigo TRUNCADO em 1500 caracteres e um botão "Ver artigo completo"
+ * que apontava para a própria URL (loop). Resultado: Googlebot e crawlers de IA
+ * (que NÃO executam JS) só viam ~230 palavras → "Rastreada, mas não indexada".
  *
- * Usage:
- * 1. Run after build: node scripts/generate-blog-html.js
- * 2. This creates static HTML files in dist/blog/ folder
+ * Esta versão espelha o padrão que JÁ FUNCIONA em generate-static-meta.cjs:
+ *   1. Parte do SHELL real do SPA (dist/index.html) — com #root + bundles JS + GTM.
+ *   2. Injeta o ARTIGO COMPLETO (rich text → HTML semântico, sem truncar) dentro
+ *      do <div id="root">, como fallback para crawlers.
+ *   3. Injeta title/description/canonical/OG/JSON-LD por post no <head>.
+ *   4. O React carrega por cima e renderiza a versão interativa para usuários reais.
  *
- * Benefits:
- * - Google and other crawlers can index content immediately
- * - AI bots (ChatGPT, Perplexity, Claude) can read full content
- * - Faster initial page load
- * - Better SEO ranking
+ * ⚠️ ORDEM DE BUILD: este script precisa rodar ANTES de generate-static-meta.cjs
+ *    (que sobrescreve dist/index.html com a home). Ver buildCommand no vercel.json:
+ *    vite build → generate-blog-html.js → generate-static-meta.cjs
+ *
+ * Usage: node scripts/generate-blog-html.js   (após `vite build`)
  */
-
 
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { pathToFileURL } from 'url';
 import dotenv from 'dotenv';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Load environment variables
 dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
-// Contentful configuration from environment variables
 const SPACE_ID = process.env.VITE_CONTENTFUL_SPACE_ID;
 const ACCESS_TOKEN = process.env.VITE_CONTENTFUL_ACCESS_TOKEN;
 const BASE_URL = 'https://dracarlachristoph.com';
+const OG_FALLBACK = BASE_URL + '/lovable-uploads/doutora-em-pe-jaleco.webp';
 
-// Helper to extract plain text from Contentful rich text
-function extractPlainTextFromRichText(richText) {
-  if (!richText || typeof richText === 'string') return richText || '';
-  if (!richText.content || !Array.isArray(richText.content)) return '';
+// ============================================================
+// HELPERS
+// ============================================================
 
-  function extractTextFromNode(node) {
-    if (!node) return '';
-    if (node.nodeType === 'text') return node.value || '';
-    if (node.content && Array.isArray(node.content)) {
-      return node.content.map(extractTextFromNode).join(' ');
-    }
-    return '';
-  }
-
-  return richText.content.map(extractTextFromNode).join('\n\n').trim();
+function escapeHtml(str) {
+  return String(str == null ? '' : str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
-// HTML template for blog posts
-const generateBlogPostHTML = (post) => {
-  const title = post.fields?.titulo || post.fields?.title || 'Blog Post';
-  const excerpt = post.fields?.resumo || post.fields?.excerpt || '';
-  const content = extractPlainTextFromRichText(post.fields?.conteudo || post.fields?.content) || '';
-  const imageUrl = post.fields?.imagemPrincipal?.fields?.file?.url || '';
-  const author = post.fields?.autor || 'Dra. Carla Christoph';
-  const date = post.sys?.createdAt || new Date().toISOString();
-  const lastUpdated = post.fields?.lastUpdated || post.fields?.publishDate || date;
-  const category = post.fields?.categoria || 'Odontologia';
+// Otimiza URL de imagem do Contentful (webp, largura, qualidade)
+function optimizeContentfulImg(url, w = 800) {
+  if (!url) return '';
+  let full = url.startsWith('//') ? 'https:' + url : url;
+  if (full.includes('ctfassets.net')) {
+    const sep = full.includes('?') ? '&' : '?';
+    full = `${full}${sep}w=${w}&fm=webp&q=80`;
+  }
+  return full;
+}
 
-  // AI Search fields — entram no HTML estático para Google/Perplexity/ChatGPT verem direto
-  const quickAnswerBox = post.fields?.quickAnswerBox || post.fields?.quickAnswerBoquickAnswerBoxx || '';
-  const keyTakeaways = Array.isArray(post.fields?.keyTakeaways) ? post.fields.keyTakeaways : [];
-  const faqStructured = Array.isArray(post.fields?.faqStructured) ? post.fields.faqStructured : [];
-  const peopleAlsoAsk = post.fields?.peopleAlsoAsk?.questions || [];
-
-  // FAQ schema JSON-LD (gerado dinamicamente)
-  const faqSchemaScript = faqStructured.length ? `
-  <script type="application/ld+json">
-  ${JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqStructured.map(f => ({
-      "@type": "Question",
-      "name": f.name || f.question || '',
-      "acceptedAnswer": { "@type": "Answer", "text": (f.acceptedAnswer && f.acceptedAnswer.text) || '' },
-    })),
-  })}
-  </script>` : '';
-
-  // HTML blocks para AI Search (visível para crawlers, ranqueia em featured snippets)
-  const quickAnswerHtml = quickAnswerBox ? `
-      <aside class="quick-answer" aria-label="Resposta rápida">
-        <h2>Resposta rápida</h2>
-        <p>${quickAnswerBox.replace(/</g, '&lt;')}</p>
-      </aside>` : '';
-
-  const keyTakeawaysHtml = keyTakeaways.length ? `
-      <section class="key-takeaways" aria-label="Pontos-chave">
-        <h2>Pontos-chave</h2>
-        <ul>${keyTakeaways.map(k => `<li>${String(k).replace(/</g, '&lt;')}</li>`).join('')}</ul>
-      </section>` : '';
-
-  const faqHtml = faqStructured.length ? `
-      <section class="faq" aria-label="Perguntas frequentes">
-        <h2>Perguntas frequentes</h2>
-        ${faqStructured.map(f => `
-          <details>
-            <summary>${(f.name || f.question || '').replace(/</g, '&lt;')}</summary>
-            <p>${((f.acceptedAnswer && f.acceptedAnswer.text) || '').replace(/</g, '&lt;')}</p>
-          </details>`).join('')}
-      </section>` : '';
-
-  const paaHtml = peopleAlsoAsk.length ? `
-      <section class="people-also-ask" aria-label="As pessoas também perguntam">
-        <h2>As pessoas também perguntam</h2>
-        <ul>${peopleAlsoAsk.map(q => `<li>${String(q).replace(/</g, '&lt;')}</li>`).join('')}</ul>
-      </section>` : '';
-
+// Slug a partir do campo ou derivado do título
+function resolveSlug(post) {
   let slug = post.fields?.slug;
   if (!slug && post.fields?.titulo) {
     slug = post.fields.titulo
       .toLowerCase()
       .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[̀-ͯ]/g, '')
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '')
       .replace(/--+/g, '-');
   }
+  return slug || '';
+}
 
-  // Optimize Contentful image URL for mobile LCP
-  const optimizedImageUrl = imageUrl
-    ? `https:${imageUrl}?w=800&fm=webp&q=80`
-    : '';
-  const fullImageUrl = imageUrl ? 'https:' + imageUrl : '';
-
-  return `<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${title} | Blog Dra. Carla Christoph</title>
-  <meta name="description" content="${excerpt.substring(0, 160)}" />
-  <meta name="author" content="${author}" />
-  <link rel="canonical" href="${BASE_URL}/blog/${slug}" />
-
-  <!-- LCP Optimization: preconnect + preload hero image -->
-  <link rel="preconnect" href="https://images.ctfassets.net" crossorigin />
-  ${optimizedImageUrl ? `<link rel="preload" as="image" href="${optimizedImageUrl}" fetchpriority="high" />` : ''}
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="${title}" />
-  <meta property="og:description" content="${excerpt.substring(0, 160)}" />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="${BASE_URL}/blog/${slug}" />
-  <meta property="og:image" content="${fullImageUrl}" />
-  <meta property="article:published_time" content="${date}" />
-  <meta property="article:author" content="${author}" />
-  <meta property="article:section" content="${category}" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="${title}" />
-  <meta name="twitter:description" content="${excerpt.substring(0, 160)}" />
-  <meta name="twitter:image" content="${fullImageUrl}" />
-
-  <!-- Schema.org BlogPosting -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "${title}",
-    "description": "${excerpt.replace(/"/g, '\\"')}",
-    "image": "${imageUrl ? 'https:' + imageUrl : ''}",
-    "datePublished": "${date}",
-    "dateModified": "${lastUpdated}",
-    "author": {
-      "@type": "Person",
-      "name": "${author}",
-      "jobTitle": "Dentista Especialista em Prótese Dental",
-      "hasCredential": {
-        "@type": "EducationalOccupationalCredential",
-        "credentialCategory": "CRO-RJ",
-        "recognizedBy": {
-          "@type": "Organization",
-          "name": "Conselho Regional de Odontologia do Rio de Janeiro"
-        },
-        "identifier": "27.509"
+// ------------------------------------------------------------
+// Rich text (Contentful) → HTML semântico.
+// Espelha src/services/contentful/transformers.ts (mesmas regras),
+// mas sem classes Tailwind (o fallback é substituído pelo React;
+// o que importa para crawlers é a estrutura semântica: h2/p/ul/li).
+// ------------------------------------------------------------
+function buildRichTextOptions(assetMap) {
+  return {
+    renderMark: {
+      [MARKS.BOLD]: (t) => `<strong>${t}</strong>`,
+      [MARKS.ITALIC]: (t) => `<em>${t}</em>`,
+      [MARKS.UNDERLINE]: (t) => `<u>${t}</u>`,
+      [MARKS.CODE]: (t) => `<code>${t}</code>`,
+    },
+    renderNode: {
+      [BLOCKS.PARAGRAPH]: (node, next) => `<p>${next(node.content)}</p>`,
+      [BLOCKS.HEADING_1]: (node, next) => `<h2>${next(node.content)}</h2>`, // H1 já é o título do post
+      [BLOCKS.HEADING_2]: (node, next) => `<h2>${next(node.content)}</h2>`,
+      [BLOCKS.HEADING_3]: (node, next) => `<h3>${next(node.content)}</h3>`,
+      [BLOCKS.HEADING_4]: (node, next) => `<h4>${next(node.content)}</h4>`,
+      [BLOCKS.HEADING_5]: (node, next) => `<h5>${next(node.content)}</h5>`,
+      [BLOCKS.HEADING_6]: (node, next) => `<h6>${next(node.content)}</h6>`,
+      [BLOCKS.UL_LIST]: (node, next) => `<ul>${next(node.content)}</ul>`,
+      [BLOCKS.OL_LIST]: (node, next) => `<ol>${next(node.content)}</ol>`,
+      [BLOCKS.LIST_ITEM]: (node, next) => `<li>${next(node.content)}</li>`,
+      [BLOCKS.QUOTE]: (node, next) => `<blockquote>${next(node.content)}</blockquote>`,
+      [BLOCKS.HR]: () => '<hr/>',
+      [BLOCKS.EMBEDDED_ASSET]: (node) => {
+        const id = node.data?.target?.sys?.id;
+        const asset = (id && assetMap.get(id)) || node.data?.target;
+        const file = asset?.fields?.file;
+        const url = file?.url;
+        if (!url) return '';
+        const title = asset.fields.title || 'Imagem do artigo';
+        const src = optimizeContentfulImg(url, 800);
+        return `<figure><img src="${escapeHtml(src)}" alt="${escapeHtml(title)}" loading="lazy" decoding="async" /></figure>`;
       },
-      "worksFor": {
-        "@type": "Dentist",
-        "name": "Clínica Dra. Carla Christoph",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Rua Visconde de Pirajá, 550 - Sala 1107",
-          "addressLocality": "Ipanema",
-          "addressRegion": "RJ",
-          "postalCode": "22410-901",
-          "addressCountry": "BR"
-        }
-      }
+      [INLINES.HYPERLINK]: (node, next) => {
+        const url = node.data?.uri || '#';
+        return `<a href="${escapeHtml(url)}" rel="noopener">${next(node.content)}</a>`;
+      },
+      [INLINES.ENTRY_HYPERLINK]: (node, next) => `${next(node.content)}`,
     },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Clínica Dra. Carla Christoph",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "${BASE_URL}/lovable-uploads/logo.png"
-      }
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "${BASE_URL}/blog/${slug}"
-    },
-    "articleSection": "${category}",
-    "inLanguage": "pt-BR"
-  }
-  </script>
-  ${faqSchemaScript}
+  };
+}
 
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      background: #f5f5f5;
-    }
-    .container {
-      background: white;
-      padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    h1 {
-      color: #553c6b;
-      margin-bottom: 16px;
-    }
-    .meta {
-      color: #666;
-      font-size: 0.9em;
-      margin-bottom: 24px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid #eee;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin: 24px 0;
-    }
-    .excerpt {
-      font-size: 1.1em;
-      color: #555;
-      font-style: italic;
-      margin: 24px 0;
-      padding-left: 20px;
-      border-left: 4px solid #c4a46a;
-    }
-    .content {
-      margin-top: 32px;
-    }
-    .loading {
-      text-align: center;
-      padding: 40px;
-      color: #999;
-    }
-    .quick-answer {
-      background: #f7f4ee;
-      border-left: 4px solid #c4a46a;
-      padding: 20px 24px;
-      margin: 24px 0;
-      border-radius: 4px;
-    }
-    .quick-answer h2 {
-      margin: 0 0 12px 0;
-      font-size: 1.05em;
-      color: #553c6b;
-    }
-    .quick-answer p { margin: 0; color: #333; }
-    .key-takeaways, .people-also-ask {
-      background: #fafafa;
-      padding: 20px 24px;
-      margin: 24px 0;
-      border-radius: 4px;
-    }
-    .key-takeaways h2, .people-also-ask h2, .faq h2 {
-      font-size: 1.1em;
-      color: #553c6b;
-      margin: 0 0 12px 0;
-    }
-    .key-takeaways ul, .people-also-ask ul { margin: 0; padding-left: 20px; }
-    .faq { margin: 32px 0; }
-    .faq details {
-      border-bottom: 1px solid #eee;
-      padding: 12px 0;
-    }
-    .faq summary {
-      cursor: pointer;
-      font-weight: 600;
-      color: #553c6b;
-    }
-    .faq details p { margin: 8px 0 0 0; color: #333; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <article>
-      <h1>${title}</h1>
-      <div class="meta">
-        Por ${author} • ${new Date(date).toLocaleDateString('pt-BR')} • ${category}
-      </div>
-      ${optimizedImageUrl ? `<img src="${optimizedImageUrl}" alt="${title}" width="800" height="450" loading="eager" fetchpriority="high" decoding="async" style="aspect-ratio:16/9;object-fit:cover" />` : ''}
-      <div class="excerpt">${excerpt}</div>
-      ${quickAnswerHtml}
-      ${keyTakeawaysHtml}
-      <div class="content">
-        ${content.substring(0, 1500)}${content.length > 1500 ? '...' : ''}
-      </div>
-      ${faqHtml}
-      ${paaHtml}
-    </article>
-    <div style="margin-top: 32px; padding: 24px; background: #f9f9f9; border-radius: 8px; text-align: center;">
-      <p style="margin: 0 0 16px 0; font-size: 1.1em;">Leia o artigo completo com imagens e recursos interativos:</p>
-      <a href="${BASE_URL}/blog/${slug}" style="display: inline-block; padding: 12px 24px; background: #553c6b; color: white; text-decoration: none; border-radius: 6px; font-weight: 600;">Ver artigo completo no site</a>
-    </div>
-  </div>
-</body>
-</html>`;
-};
+function renderRichText(doc, assetMap) {
+  try {
+    if (!doc || !doc.nodeType) return '';
+    return documentToHtmlString(doc, buildRichTextOptions(assetMap));
+  } catch (e) {
+    console.warn('  ⚠️  rich text render falhou:', e.message);
+    return '';
+  }
+}
+
+// ============================================================
+// GERAÇÃO DA PÁGINA DO POST (shell do SPA + fallback completo)
+// ============================================================
+
+/**
+ * @param post        entry do Contentful
+ * @param shellHtml   conteúdo pristino de dist/index.html (com #root vazio + JS)
+ * @param assetMap    Map(assetId → asset) para imagens embutidas
+ * @param related     [{slug, title}] outros posts, para links internos
+ */
+export function buildBlogPostPage(post, shellHtml, assetMap, related = []) {
+  const f = post.fields || {};
+  const slug = resolveSlug(post);
+  const title = f.titulo || f.title || 'Artigo';
+  const excerpt = f.resumo || f.excerpt || '';
+  const metaDesc = (f.metaDescription || excerpt || '').substring(0, 160);
+  const author = f.autor || f.author || 'Dra. Carla Christoph';
+  const category = f.categoria || 'Odontologia';
+  const date = post.sys?.createdAt || new Date().toISOString();
+  const lastUpdated = f.lastUpdated || f.publishDate || date;
+
+  const contentHtml = renderRichText(f.conteudo || f.content, assetMap);
+
+  const rawImg = f.imagemPrincipal?.fields?.file?.url || '';
+  const heroImg = rawImg ? optimizeContentfulImg(rawImg, 800) : '';
+  const ogImg = rawImg ? (rawImg.startsWith('//') ? 'https:' + rawImg : rawImg) : OG_FALLBACK;
+
+  // ── AI Search fields ──
+  const quickAnswer = f.quickAnswerBox || f.quickAnswerBoquickAnswerBoxx || '';
+  const keyTakeaways = Array.isArray(f.keyTakeaways) ? f.keyTakeaways : [];
+  const faqStructured = Array.isArray(f.faqStructured) ? f.faqStructured : [];
+  const peopleAlsoAsk = f.peopleAlsoAsk?.questions || (Array.isArray(f.peopleAlsoAsk) ? f.peopleAlsoAsk : []);
+
+  const canonical = `${BASE_URL}/blog/${slug}`;
+
+  // ────────────────────────────────────────────────────────
+  // <head> — replaces + extra tags (espelha generate-static-meta.cjs)
+  // ────────────────────────────────────────────────────────
+  let html = shellHtml;
+
+  // Remove preloads de imagem da HOME (o hero da home não é o LCP do post)
+  html = html.replace(/<link rel="preload" as="image"[^>]*>/g, '');
+  // Preload da imagem do post (LCP)
+  const heroPreload = heroImg
+    ? `<link rel="preload" as="image" href="${escapeHtml(heroImg)}" fetchpriority="high" />`
+    : '';
+
+  // title / description / og
+  html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(title)} | Blog Dra. Carla Christoph</title>`);
+  html = html.replace(/<meta name="description" content="[^"]*"/, `<meta name="description" content="${escapeHtml(metaDesc)}"`);
+  html = html.replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${escapeHtml(title)}" />`);
+  html = html.replace(/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${escapeHtml(metaDesc)}" />`);
+  html = html.replace(/<meta property="og:type" content="[^"]*" \/>/, `<meta property="og:type" content="article" />`);
+
+  const blogPostingSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: title,
+    description: excerpt,
+    image: ogImg,
+    datePublished: date,
+    dateModified: lastUpdated,
+    author: {
+      '@type': 'Person',
+      name: author,
+      jobTitle: 'Dentista Especialista em Prótese Dentária e Implantodontia',
+      hasCredential: {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'CRO-RJ',
+        recognizedBy: { '@type': 'Organization', name: 'Conselho Regional de Odontologia do Rio de Janeiro' },
+        identifier: '27.509',
+      },
+      worksFor: {
+        '@type': 'Dentist',
+        name: 'Dra. Carla Christoph',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+          addressLocality: 'Ipanema',
+          addressRegion: 'RJ',
+          postalCode: '22410-901',
+          addressCountry: 'BR',
+        },
+      },
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Dra. Carla Christoph',
+      logo: { '@type': 'ImageObject', url: BASE_URL + '/lovable-uploads/logo.png' },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+    articleSection: category,
+    inLanguage: 'pt-BR',
+  };
+
+  const faqSchema = faqStructured.length
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqStructured.map((q) => ({
+          '@type': 'Question',
+          name: q.name || q.question || '',
+          acceptedAnswer: { '@type': 'Answer', text: (q.acceptedAnswer && q.acceptedAnswer.text) || '' },
+        })),
+      }
+    : null;
+
+  const extraTags = [
+    heroPreload,
+    `<link rel="canonical" href="${canonical}" />`,
+    `<meta property="og:url" content="${canonical}" />`,
+    `<meta property="og:image" content="${escapeHtml(ogImg)}" />`,
+    `<meta property="og:site_name" content="Dra. Carla Christoph" />`,
+    `<meta property="og:locale" content="pt_BR" />`,
+    `<meta property="article:published_time" content="${date}" />`,
+    `<meta property="article:author" content="${escapeHtml(author)}" />`,
+    `<meta property="article:section" content="${escapeHtml(category)}" />`,
+    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:title" content="${escapeHtml(title)}" />`,
+    `<meta name="twitter:description" content="${escapeHtml(metaDesc)}" />`,
+    `<meta name="twitter:image" content="${escapeHtml(ogImg)}" />`,
+    `<script type="application/ld+json">${JSON.stringify(blogPostingSchema)}</script>`,
+    faqSchema ? `<script type="application/ld+json">${JSON.stringify(faqSchema)}</script>` : '',
+  ].filter(Boolean);
+
+  html = html.replace('</head>', '    ' + extraTags.join('\n    ') + '\n  </head>');
+
+  // ────────────────────────────────────────────────────────
+  // Fallback dentro do #root (conteúdo COMPLETO para crawlers)
+  // ────────────────────────────────────────────────────────
+  const dateBr = new Date(date).toLocaleDateString('pt-BR');
+
+  const heroImgHtml = heroImg
+    ? `<img src="${escapeHtml(heroImg)}" alt="${escapeHtml(title)}" width="800" height="450" style="width:100%;height:auto;border-radius:8px;margin:20px 0" fetchpriority="high" decoding="async" />`
+    : '';
+
+  const quickAnswerHtml = quickAnswer
+    ? `<aside aria-label="Resposta rápida" style="background:#f7f4ee;border-left:4px solid #c4a46a;padding:16px 20px;margin:20px 0;border-radius:4px"><h2 style="margin-top:0">Resposta rápida</h2><p>${escapeHtml(quickAnswer)}</p></aside>`
+    : '';
+
+  const keyTakeawaysHtml = keyTakeaways.length
+    ? `<section aria-label="Pontos-chave" style="background:#fafafa;padding:16px 20px;margin:20px 0;border-radius:4px"><h2>Pontos-chave</h2><ul>${keyTakeaways.map((k) => `<li>${escapeHtml(k)}</li>`).join('')}</ul></section>`
+    : '';
+
+  const faqHtml = faqStructured.length
+    ? `<section aria-label="Perguntas frequentes" style="margin:32px 0"><h2>Perguntas frequentes</h2>${faqStructured
+        .map(
+          (q) =>
+            `<details><summary>${escapeHtml(q.name || q.question || '')}</summary><p>${escapeHtml(
+              (q.acceptedAnswer && q.acceptedAnswer.text) || ''
+            )}</p></details>`
+        )
+        .join('')}</section>`
+    : '';
+
+  const paaHtml = peopleAlsoAsk.length
+    ? `<section aria-label="As pessoas também perguntam" style="margin:24px 0"><h2>As pessoas também perguntam</h2><ul>${peopleAlsoAsk
+        .map((q) => `<li>${escapeHtml(q)}</li>`)
+        .join('')}</ul></section>`
+    : '';
+
+  // Links internos (resolve "posts órfãos": crawler encontra outros posts no HTML)
+  const relatedHtml = related.length
+    ? `<nav aria-label="Leia também" style="margin:32px 0;padding-top:24px;border-top:1px solid #eee"><h2>Leia também</h2><ul>${related
+        .map((r) => `<li><a href="${BASE_URL}/blog/${r.slug}">${escapeHtml(r.title)}</a></li>`)
+        .join('')}</ul></nav>`
+    : '';
+
+  const fallback = `
+    <header style="padding:14px 16px;border-bottom:1px solid #eee">
+      <nav>
+        <a href="/" style="font-weight:bold;color:#553c6b;text-decoration:none">Dra. Carla Christoph</a> |
+        <a href="/servicos">Tratamentos</a> |
+        <a href="/sobre">Sobre</a> |
+        <a href="/blog">Blog</a> |
+        <a href="/contato">Contato</a>
+      </nav>
+    </header>
+    <main style="max-width:760px;margin:0 auto;padding:24px 16px;font-family:Montserrat,system-ui,sans-serif;line-height:1.7;color:#333">
+      <nav aria-label="breadcrumb" style="font-size:.85rem;margin-bottom:16px;color:#666">
+        <a href="/">Início</a> &rsaquo; <a href="/blog">Blog</a> &rsaquo; ${escapeHtml(title)}
+      </nav>
+      <article>
+        <h1 style="color:#381F47;line-height:1.2">${escapeHtml(title)}</h1>
+        <p style="color:#666;font-size:.9rem;border-bottom:1px solid #eee;padding-bottom:12px">Por ${escapeHtml(
+          author
+        )} &bull; ${dateBr} &bull; ${escapeHtml(category)}</p>
+        ${heroImgHtml}
+        ${excerpt ? `<p style="font-size:1.1em;color:#555;font-style:italic;border-left:4px solid #c4a46a;padding-left:16px;margin:20px 0">${escapeHtml(excerpt)}</p>` : ''}
+        ${quickAnswerHtml}
+        ${keyTakeawaysHtml}
+        <div class="post-content">
+          ${contentHtml}
+        </div>
+        ${faqHtml}
+        ${paaHtml}
+      </article>
+      ${relatedHtml}
+    </main>
+    <footer style="padding:24px 16px;border-top:1px solid #eee;text-align:center;color:#666;font-size:.9em">
+      <p><strong>Dra. Carla Christoph</strong> &mdash; CRO-RJ 27.509 &bull; Especialista em Prótese e Implantodontia</p>
+      <p>Rua Visconde de Piraj&aacute;, 550 - Sala 1107, Ipanema, Rio de Janeiro</p>
+      <p><a href="https://wa.me/5521993304045">Agendar consulta pelo WhatsApp</a></p>
+    </footer>`;
+
+  html = html.replace('<div id="root"></div>', '<div id="root">' + fallback + '</div>');
+
+  return html;
+}
+
+// ============================================================
+// FETCH + MAIN
+// ============================================================
 
 async function fetchBlogPosts() {
   try {
     const url = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?content_type=blogCarla&limit=200&access_token=${ACCESS_TOKEN}&include=2`;
-
     const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(`Contentful API error: ${response.status}`);
-    }
-
+    if (!response.ok) throw new Error(`Contentful API error: ${response.status}`);
     const data = await response.json();
-    return data.items || [];
+    return { items: data.items || [], assets: data.includes?.Asset || [] };
   } catch (error) {
     console.error('❌ Error fetching blog posts:', error.message);
-    return [];
+    return { items: [], assets: [] };
   }
 }
 
 async function generateStaticBlogPages() {
-  console.log('🚀 Starting blog pre-rendering...\n');
+  console.log('🚀 Blog pre-rendering v2 (SPA-shell + conteúdo completo)...\n');
 
-  // Fetch all blog posts
-  const posts = await fetchBlogPosts();
+  const distDir = path.join(__dirname, '..', 'dist');
+  const shellPath = path.join(distDir, 'index.html');
+  if (!fs.existsSync(shellPath)) {
+    console.error('❌ dist/index.html não encontrado. Rode `vite build` antes deste script.');
+    process.exit(1);
+  }
+  const shellHtml = fs.readFileSync(shellPath, 'utf-8');
+  if (!shellHtml.includes('<div id="root"></div>')) {
+    console.error('❌ dist/index.html não tem <div id="root"></div> vazio.');
+    console.error('   Este script DEVE rodar ANTES de generate-static-meta.cjs (que injeta a home no #root).');
+    process.exit(1);
+  }
 
+  const { items: posts, assets } = await fetchBlogPosts();
   if (posts.length === 0) {
-    console.log('⚠️  No blog posts found. Check Contentful configuration.');
+    console.log('⚠️  Nenhum post encontrado. Verifique as credenciais do Contentful.');
     return;
   }
+  console.log(`📝 ${posts.length} posts encontrados, ${assets.length} assets.\n`);
 
-  console.log(`📝 Found ${posts.length} blog posts\n`);
+  const assetMap = new Map();
+  assets.forEach((a) => a?.sys?.id && assetMap.set(a.sys.id, a));
 
-  // Create dist/blog directory if it doesn't exist
-  const distBlogDir = path.join(__dirname, '..', 'dist', 'blog');
-  if (!fs.existsSync(distBlogDir)) {
-    fs.mkdirSync(distBlogDir, { recursive: true });
-  }
+  // Índice de posts para links internos ("Leia também")
+  const allMeta = posts
+    .map((p) => ({ slug: resolveSlug(p), title: p.fields?.titulo || p.fields?.title || '' }))
+    .filter((m) => m.slug && m.title);
 
-  let successCount = 0;
-  let errorCount = 0;
+  const blogDir = path.join(distDir, 'blog');
+  if (!fs.existsSync(blogDir)) fs.mkdirSync(blogDir, { recursive: true });
 
-  // Generate HTML for each post
-  for (const post of posts) {
+  let ok = 0;
+  let err = 0;
+
+  posts.forEach((post, i) => {
     try {
-      let slug = post.fields?.slug;
-
-      if (!slug && post.fields?.titulo) {
-        slug = post.fields.titulo
-          .toLowerCase()
-          .normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, '')
-          .replace(/[^a-z0-9]+/g, '-')
-          .replace(/^-+|-+$/g, '')
-          .replace(/--+/g, '-');
-      }
-
+      const slug = resolveSlug(post);
       if (!slug || slug.length < 3) {
-        console.log(`⏭️  Skipping post without valid slug`);
-        errorCount++;
-        continue;
+        console.log('⏭️  Post sem slug válido, pulando.');
+        err++;
+        return;
+      }
+      // 4 posts seguintes (circular) como "Leia também"
+      const related = [];
+      for (let k = 1; k <= 4 && k < allMeta.length; k++) {
+        const cand = allMeta[(i + k) % allMeta.length];
+        if (cand.slug !== slug) related.push(cand);
       }
 
-      const html = generateBlogPostHTML(post);
-      const title = post.fields?.titulo || 'Untitled';
+      const html = buildBlogPostPage(post, shellHtml, assetMap, related);
 
-      // Create directory for this post
-      const postDir = path.join(distBlogDir, slug);
-      if (!fs.existsSync(postDir)) {
-        fs.mkdirSync(postDir, { recursive: true });
-      }
+      const postDir = path.join(blogDir, slug);
+      if (!fs.existsSync(postDir)) fs.mkdirSync(postDir, { recursive: true });
+      fs.writeFileSync(path.join(postDir, 'index.html'), html, 'utf-8');
 
-      // Write index.html
-      const htmlPath = path.join(postDir, 'index.html');
-      fs.writeFileSync(htmlPath, html, 'utf-8');
-
-      console.log(`✅ Generated: /blog/${slug}/ - "${title}"`);
-      successCount++;
-
+      console.log(`✅ /blog/${slug}`);
+      ok++;
     } catch (error) {
-      console.error(`❌ Error generating post:`, error.message);
-      errorCount++;
+      console.error('❌ Erro no post:', error.message);
+      err++;
     }
-  }
+  });
 
-  console.log(`\n✨ Pre-rendering complete!`);
-  console.log(`   ✅ Success: ${successCount} pages`);
-  console.log(`   ❌ Errors: ${errorCount} pages`);
-  console.log(`\n💡 Next steps:`);
-  console.log(`   1. Deploy dist/ folder to production`);
-  console.log(`   2. Test with: curl -I ${BASE_URL}/blog/[slug]/`);
-  console.log(`   3. Verify in Google Search Console`);
-  console.log(`\n📊 Expected impact:`);
-  console.log(`   • 100% content visibility for crawlers`);
-  console.log(`   • Faster Google indexing`);
-  console.log(`   • Better AI bot comprehension (ChatGPT, Perplexity, Claude)`);
-  console.log(`   • Improved SEO ranking for blog posts`);
+  console.log(`\n✨ Concluído: ${ok} páginas geradas, ${err} erros.`);
 }
 
-generateStaticBlogPages().catch(console.error);
+// Auto-run apenas quando executado diretamente (permite import para testes)
+const isDirectRun = import.meta.url === pathToFileURL(process.argv[1] || '').href;
+if (isDirectRun) {
+  generateStaticBlogPages().catch(console.error);
+}
