@@ -732,12 +732,9 @@ const infoPages = {
     h1: 'Tratamentos Odontológicos em Ipanema',
     summary: 'A Dra. Carla Christoph oferece tratamentos completos em Ipanema: implantes dentários, lentes de contato dental e facetas, prótese dentária, clareamento dental, restaurações estéticas, tratamento de canal, saúde da gengiva, clínica geral e prevenção, e ortodontia com Dr. Bruno Neves. Mais de 20 anos de experiência, CRO-RJ 27.509.'
   },
-  '/blog': {
-    title: 'Blog Dra. Carla Christoph | Dicas de Saúde Bucal em Ipanema',
-    description: 'Blog de odontologia da Dra. Carla Christoph. Dicas de saúde bucal, artigos informativos e novidades sobre tratamentos dentários.',
-    h1: 'Blog — Dicas de Saúde Bucal',
-    summary: 'Artigos informativos sobre saúde bucal, tratamentos odontológicos e dicas de prevenção pela Dra. Carla Christoph, dentista especialista em Ipanema, Rio de Janeiro.'
-  },
+  // NOTA: '/blog' é gerado por generate-blog-html.js (que roda ANTES deste script e
+  // tem a lista de posts do Contentful), com fallback listando todos os posts.
+  // Removido daqui para não sobrescrever aquele índice mais rico.
   '/contato': {
     title: 'Contato | Dra. Carla Christoph - Dentista em Ipanema',
     description: 'Entre em contato com a Dra. Carla Christoph. Consultório em Ipanema, Rio de Janeiro. Agende sua consulta pelo WhatsApp.',

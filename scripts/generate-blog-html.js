@@ -156,7 +156,13 @@ export function buildBlogPostPage(post, shellHtml, assetMap, related = []) {
 
   const contentHtml = renderRichText(f.conteudo || f.content, assetMap);
 
-  const rawImg = f.imagemPrincipal?.fields?.file?.url || '';
+  // Imagem principal: o campo é `featuredImage` (link p/ Asset), resolvido via includes.Asset
+  // (REST cru NÃO inlina links). Fallbacks: nome legado `imagemPrincipal` e campo já resolvido.
+  const imgRef = f.featuredImage || f.imagemPrincipal;
+  let rawImg = imgRef?.fields?.file?.url || '';
+  if (!rawImg && imgRef?.sys?.id) {
+    rawImg = assetMap.get(imgRef.sys.id)?.fields?.file?.url || '';
+  }
   const heroImg = rawImg ? optimizeContentfulImg(rawImg, 800) : '';
   const ogImg = rawImg ? (rawImg.startsWith('//') ? 'https:' + rawImg : rawImg) : OG_FALLBACK;
 
@@ -343,6 +349,90 @@ export function buildBlogPostPage(post, shellHtml, assetMap, related = []) {
   return html;
 }
 
+/**
+ * Índice /blog — lista TODOS os posts como links no HTML cru.
+ * Resolve os "posts órfãos" (Falha D): antes o /blog só montava a lista via JS,
+ * então o crawler não via link nenhum para os posts (só o sitemap os conhecia).
+ */
+export function buildBlogIndexPage(posts, shellHtml) {
+  const title = 'Blog Dra. Carla Christoph | Dicas de Saúde Bucal em Ipanema';
+  const description =
+    'Blog de odontologia da Dra. Carla Christoph. Dicas de saúde bucal, artigos informativos e novidades sobre tratamentos dentários em Ipanema.';
+  const canonical = `${BASE_URL}/blog`;
+
+  const meta = posts
+    .map((p) => ({
+      slug: resolveSlug(p),
+      title: p.fields?.titulo || p.fields?.title || '',
+      excerpt: p.fields?.resumo || p.fields?.excerpt || '',
+    }))
+    .filter((m) => m.slug && m.title);
+
+  let html = shellHtml;
+  html = html.replace(/<link rel="preload" as="image"[^>]*>/g, '');
+  html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(title)}</title>`);
+  html = html.replace(/<meta name="description" content="[^"]*"/, `<meta name="description" content="${escapeHtml(description)}"`);
+  html = html.replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${escapeHtml(title)}" />`);
+  html = html.replace(/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${escapeHtml(description)}" />`);
+
+  const blogSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: title,
+    description,
+    url: canonical,
+    inLanguage: 'pt-BR',
+    publisher: { '@type': 'Organization', name: 'Dra. Carla Christoph' },
+    blogPost: meta.slice(0, 60).map((m) => ({
+      '@type': 'BlogPosting',
+      headline: m.title,
+      url: `${BASE_URL}/blog/${m.slug}`,
+    })),
+  };
+
+  const extra = [
+    `<link rel="canonical" href="${canonical}" />`,
+    `<meta property="og:url" content="${canonical}" />`,
+    `<meta property="og:image" content="${OG_FALLBACK}" />`,
+    `<script type="application/ld+json">${JSON.stringify(blogSchema)}</script>`,
+  ];
+  html = html.replace('</head>', '    ' + extra.join('\n    ') + '\n  </head>');
+
+  const items = meta
+    .map(
+      (m) =>
+        `<li style="margin-bottom:14px"><a href="/blog/${m.slug}" style="font-weight:600;color:#381F47">${escapeHtml(
+          m.title
+        )}</a>${m.excerpt ? `<br/><span style="color:#666;font-size:.9em">${escapeHtml(m.excerpt.substring(0, 140))}</span>` : ''}</li>`
+    )
+    .join('\n        ');
+
+  const fallback = `
+    <header style="padding:14px 16px;border-bottom:1px solid #eee">
+      <nav>
+        <a href="/" style="font-weight:bold;color:#553c6b;text-decoration:none">Dra. Carla Christoph</a> |
+        <a href="/servicos">Tratamentos</a> |
+        <a href="/sobre">Sobre</a> |
+        <a href="/blog">Blog</a> |
+        <a href="/contato">Contato</a>
+      </nav>
+    </header>
+    <main style="max-width:800px;margin:0 auto;padding:24px 16px;font-family:Montserrat,system-ui,sans-serif;line-height:1.6;color:#333">
+      <h1 style="color:#381F47">Blog — Dicas de Saúde Bucal</h1>
+      <p>Artigos sobre saúde bucal, tratamentos odontológicos e prevenção pela Dra. Carla Christoph, especialista em Ipanema, Rio de Janeiro.</p>
+      <ul style="list-style:none;padding:0">
+        ${items}
+      </ul>
+    </main>
+    <footer style="padding:24px 16px;border-top:1px solid #eee;text-align:center;color:#666;font-size:.9em">
+      <p><strong>Dra. Carla Christoph</strong> &mdash; CRO-RJ 27.509</p>
+      <p><a href="https://wa.me/5521993304045">Agendar consulta pelo WhatsApp</a></p>
+    </footer>`;
+
+  html = html.replace('<div id="root"></div>', '<div id="root">' + fallback + '</div>');
+  return html;
+}
+
 // ============================================================
 // FETCH + MAIN
 // ============================================================
@@ -426,7 +516,16 @@ async function generateStaticBlogPages() {
     }
   });
 
-  console.log(`\n✨ Concluído: ${ok} páginas geradas, ${err} erros.`);
+  // Índice /blog com todos os links (resolve posts órfãos)
+  try {
+    const indexHtml = buildBlogIndexPage(posts, shellHtml);
+    fs.writeFileSync(path.join(blogDir, 'index.html'), indexHtml, 'utf-8');
+    console.log(`✅ /blog (índice com ${allMeta.length} links)`);
+  } catch (error) {
+    console.error('❌ Erro no índice /blog:', error.message);
+  }
+
+  console.log(`\n✨ Concluído: ${ok} posts + índice, ${err} erros.`);
 }
 
 // Auto-run apenas quando executado diretamente (permite import para testes)
