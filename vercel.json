@@ -46,6 +46,26 @@
       "source": "/blog/odontologia-egito-antigo",
       "destination": "/blog",
       "statusCode": 301
+    },
+    {
+      "source": "/blog/clareamento-dental-mitos-e-verdades",
+      "destination": "/clareamento-dental",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/como-cuidar-dos-dentes",
+      "destination": "/clinica-geral-e-prevencao",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/saude-bucal-dentista-sem-dor",
+      "destination": "/clinica-geral-e-prevencao",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/saude-bucal-historia-da-odontologia-vikings",
+      "destination": "/blog",
+      "statusCode": 301
     }
   ],
   "rewrites": [
