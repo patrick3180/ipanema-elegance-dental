@@ -20,6 +20,7 @@ export interface BlogPostEntry {
 export interface BlogData {
   posts: BlogPostEntry[];
   assetMap: Map<string, ContentfulAsset>;
+  entryMap: Map<string, any>; // entries linkadas (ex.: categoria) via includes.Entry
 }
 
 let cache: BlogData | null = null;
@@ -40,7 +41,11 @@ export async function getBlogData(): Promise<BlogData> {
   for (const a of data.includes?.Asset ?? []) {
     if (a?.sys?.id) assetMap.set(a.sys.id, a);
   }
-  cache = { posts: data.items ?? [], assetMap };
+  const entryMap = new Map<string, any>();
+  for (const e of data.includes?.Entry ?? []) {
+    if (e?.sys?.id) entryMap.set(e.sys.id, e);
+  }
+  cache = { posts: data.items ?? [], assetMap, entryMap };
   return cache;
 }
 
@@ -60,12 +65,23 @@ export function resolveSlug(post: BlogPostEntry): string {
   return slug || '';
 }
 
-export function postMeta(post: BlogPostEntry, assetMap: Map<string, ContentfulAsset>) {
+export function postMeta(
+  post: BlogPostEntry,
+  assetMap: Map<string, ContentfulAsset>,
+  entryMap?: Map<string, any>
+) {
   const f = post.fields ?? {};
   const imgRef = f.featuredImage || f.imagemPrincipal;
   let rawImg: string = imgRef?.fields?.file?.url || '';
   if (!rawImg && imgRef?.sys?.id) rawImg = assetMap.get(imgRef.sys.id)?.fields?.file?.url || '';
   const fullImg = rawImg ? (rawImg.startsWith('//') ? 'https:' + rawImg : rawImg) : '';
+
+  // Categoria: o campo `category` é um LINK p/ entry (content type 'categoria', fields.name)
+  const catRef = f.category || f.categoria;
+  let categoryName = '';
+  if (typeof catRef === 'string') categoryName = catRef;
+  else if (catRef?.fields?.name) categoryName = catRef.fields.name;
+  else if (catRef?.sys?.id && entryMap) categoryName = entryMap.get(catRef.sys.id)?.fields?.name || '';
 
   return {
     slug: resolveSlug(post),
@@ -73,7 +89,7 @@ export function postMeta(post: BlogPostEntry, assetMap: Map<string, ContentfulAs
     excerpt: f.resumo || f.excerpt || '',
     metaDescription: String(f.metaDescription || f.resumo || f.excerpt || '').substring(0, 160),
     author: f.autor || f.author || 'Dra. Carla Christoph',
-    category: f.categoria || 'Odontologia',
+    category: categoryName || 'Odontologia',
     date: f.publishDate || f.dataDePublicacao || post.sys?.createdAt || '',
     lastUpdated: f.lastUpdated || f.publishDate || post.sys?.updatedAt || '',
     contentDoc: f.conteudo || f.content || null,

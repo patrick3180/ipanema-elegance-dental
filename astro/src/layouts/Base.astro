@@ -120,7 +120,7 @@ const {
       body {
         font-family: Montserrat, system-ui, -apple-system, sans-serif;
         color: #333;
-        background: #fff;
+        background: #e8dfd2; /* dental-beige — mesmo fundo do site atual (index.css) */
       }
       h1, h2, h3, h4, h5, h6 {
         font-family: 'Playfair Display', Georgia, serif;
@@ -171,6 +171,24 @@ const {
         color: var(--dental-purple);
         font-size: 0.9rem;
       }
+      .review-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: #f6f3ec;
+        border: 1px solid rgba(179, 149, 95, 0.35);
+        border-radius: 999px;
+        padding: 5px 12px;
+        text-decoration: none;
+        font-size: 0.8rem;
+        color: var(--dental-purple);
+      }
+      .review-badge b {
+        font-size: 0.9rem;
+      }
+      .review-badge span {
+        color: var(--dental-gray);
+      }
       .wa-btn {
         display: inline-flex;
         align-items: center;
@@ -212,6 +230,13 @@ const {
           <b>Dra. Carla Christoph</b>
           <small>CRO-RJ 27.509 · Especialista em Prótese e Implantodontia</small>
         </a>
+        <a
+          class="review-badge"
+          href="https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="5,0 estrelas no Google, 17 avaliações"
+        >★ <b>5.0</b> <span>(17 avaliações)</span></a>
         <nav class="site-nav">
           <a href="/servicos">Tratamentos</a>
           <a href="/sobre">Sobre</a>
