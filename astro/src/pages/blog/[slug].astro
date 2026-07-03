@@ -1,0 +1,317 @@
+---
+/**
+ * Post do blog — HTML 100% estático no build (Fase 1 do piloto Astro).
+ * URLs idênticas ao site atual: /blog/<slug>.
+ */
+import Base from '../../layouts/Base.astro';
+import { getBlogData, postMeta, resolveSlug } from '../../lib/contentful';
+import { richTextToHtml } from '../../lib/richtext';
+
+export async function getStaticPaths() {
+  const { posts, assetMap } = await getBlogData();
+  const valid = posts.filter((p) => resolveSlug(p).length >= 3);
+  return valid.map((post, i) => {
+    // 4 posts "Leia também" (circular), como no fallback atual
+    const related = [];
+    for (let k = 1; k <= 4 && k < valid.length; k++) {
+      const cand = valid[(i + k) % valid.length];
+      const slug = resolveSlug(cand);
+      if (slug !== resolveSlug(post)) {
+        related.push({ slug, title: cand.fields?.titulo || cand.fields?.title || '' });
+      }
+    }
+    return { params: { slug: resolveSlug(post) }, props: { post, related, assetEntries: [...assetMap.entries()] } };
+  });
+}
+
+const { post, related, assetEntries } = Astro.props;
+const assetMap = new Map(assetEntries);
+const m = postMeta(post, assetMap);
+const contentHtml = richTextToHtml(m.contentDoc, assetMap);
+const canonical = `https://dracarlachristoph.com/blog/${m.slug}`;
+const dateBr = m.date ? new Date(m.date).toLocaleDateString('pt-BR') : '';
+
+const blogPostingSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: m.title,
+  description: m.excerpt,
+  image: m.imageUrl || 'https://dracarlachristoph.com/lovable-uploads/doutora-em-pe-jaleco.webp',
+  datePublished: m.date,
+  dateModified: m.lastUpdated,
+  author: {
+    '@type': 'Person',
+    name: m.author,
+    jobTitle: 'Dentista Especialista em Prótese Dentária e Implantodontia',
+    hasCredential: {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'CRO-RJ',
+      recognizedBy: { '@type': 'Organization', name: 'Conselho Regional de Odontologia do Rio de Janeiro' },
+      identifier: '27.509',
+    },
+    worksFor: {
+      '@type': 'Dentist',
+      name: 'Dra. Carla Christoph',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+        addressLocality: 'Ipanema',
+        addressRegion: 'RJ',
+        postalCode: '22410-901',
+        addressCountry: 'BR',
+      },
+    },
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Dra. Carla Christoph',
+    logo: { '@type': 'ImageObject', url: 'https://dracarlachristoph.com/lovable-uploads/logo.png' },
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+  articleSection: m.category,
+  inLanguage: 'pt-BR',
+});
+
+const faqSchema = m.faqStructured.length
+  ? JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: m.faqStructured.map((q) => ({
+        '@type': 'Question',
+        name: q.name || q.question || '',
+        acceptedAnswer: { '@type': 'Answer', text: q.acceptedAnswer?.text || '' },
+      })),
+    })
+  : null;
+
+const schemas = faqSchema ? [blogPostingSchema, faqSchema] : [blogPostingSchema];
+---
+
+<Base
+  title={`${m.title} | Blog Dra. Carla Christoph`}
+  description={m.metaDescription}
+  canonical={canonical}
+  ogType="article"
+  ogImage={m.imageUrl || undefined}
+  preloadImage={m.imageOptimized || undefined}
+  schemas={schemas}
+>
+  <main class="container">
+    <nav aria-label="breadcrumb" class="breadcrumb">
+      <a href="/">Início</a> › <a href="/blog">Blog</a> › <span>{m.title}</span>
+    </nav>
+
+    <article>
+      <h1>{m.title}</h1>
+      <p class="post-meta">Por {m.author} • {dateBr} • {m.category}</p>
+
+      {m.imageOptimized && (
+        <img class="post-hero" src={m.imageOptimized} alt={m.title} width="800" height="450" fetchpriority="high" decoding="async" />
+      )}
+
+      {m.excerpt && <p class="post-excerpt">{m.excerpt}</p>}
+
+      {m.quickAnswer && (
+        <aside class="quick-answer" aria-label="Resposta rápida">
+          <h2>Resposta rápida</h2>
+          <p>{m.quickAnswer}</p>
+        </aside>
+      )}
+
+      {m.keyTakeaways.length > 0 && (
+        <section class="key-takeaways" aria-label="Pontos-chave">
+          <h2>Pontos-chave</h2>
+          <ul>{m.keyTakeaways.map((k) => <li>{k}</li>)}</ul>
+        </section>
+      )}
+
+      <div class="post-content" set:html={contentHtml} />
+
+      {m.faqStructured.length > 0 && (
+        <section class="faq" aria-label="Perguntas frequentes">
+          <h2>Perguntas frequentes</h2>
+          {m.faqStructured.map((q) => (
+            <details>
+              <summary>{q.name || q.question || ''}</summary>
+              <p>{q.acceptedAnswer?.text || ''}</p>
+            </details>
+          ))}
+        </section>
+      )}
+
+      {m.peopleAlsoAsk.length > 0 && (
+        <section class="paa" aria-label="As pessoas também perguntam">
+          <h2>As pessoas também perguntam</h2>
+          <ul>{m.peopleAlsoAsk.map((q) => <li>{q}</li>)}</ul>
+        </section>
+      )}
+    </article>
+
+    <section class="post-cta">
+      <h2>Cuide do seu sorriso com quem tem mais de 20 anos de experiência em Ipanema</h2>
+      <p>Dra. Carla Christoph — Especialista em Prótese Dentária e Implantodontia, CRO-RJ 27.509.</p>
+      <a
+        class="wa-btn js-wa-cta"
+        data-label="blog_post_cta_whatsapp"
+        href="https://wa.me/5521993304045?text=Ol%C3%A1!%20Li%20um%20artigo%20no%20blog%20e%20gostaria%20de%20agendar%20uma%20consulta."
+        rel="noopener"
+      >Agendar consulta pelo WhatsApp</a>
+    </section>
+
+    {related.length > 0 && (
+      <nav class="related" aria-label="Leia também">
+        <h2>Leia também</h2>
+        <ul>{related.map((r) => <li><a href={`/blog/${r.slug}`}>{r.title}</a></li>)}</ul>
+      </nav>
+    )}
+  </main>
+</Base>
+
+<style>
+  .breadcrumb {
+    font-size: 0.85rem;
+    color: var(--dental-gray);
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-size: clamp(1.7rem, 4.5vw, 2.4rem);
+    margin-bottom: 8px;
+  }
+  .post-meta {
+    color: var(--dental-gray);
+    font-size: 0.9rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+  .post-hero {
+    width: 100%;
+    border-radius: 10px;
+    margin: 18px 0;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+  .post-excerpt {
+    font-size: 1.1rem;
+    color: #555;
+    font-style: italic;
+    border-left: 4px solid var(--dental-gold-soft);
+    padding-left: 16px;
+    margin: 20px 0;
+  }
+  .quick-answer {
+    background: var(--dental-beige);
+    border-left: 4px solid var(--dental-gold-soft);
+    padding: 16px 20px;
+    margin: 20px 0;
+    border-radius: 6px;
+  }
+  .quick-answer h2, .key-takeaways h2, .faq h2, .paa h2, .related h2 {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+  }
+  .key-takeaways {
+    background: #fafafa;
+    padding: 16px 20px;
+    margin: 20px 0;
+    border-radius: 6px;
+  }
+  .key-takeaways ul, .paa ul {
+    padding-left: 20px;
+  }
+  .key-takeaways li, .paa li {
+    margin: 6px 0;
+  }
+  .post-content :global(p) {
+    margin: 0 0 1.1em;
+    line-height: 1.75;
+  }
+  .post-content :global(h2) {
+    margin: 1.6em 0 0.6em;
+    font-size: 1.45rem;
+  }
+  .post-content :global(h3) {
+    margin: 1.3em 0 0.5em;
+    font-size: 1.2rem;
+  }
+  .post-content :global(ul),
+  .post-content :global(ol) {
+    padding-left: 24px;
+    margin: 0 0 1.1em;
+  }
+  .post-content :global(li) {
+    margin: 4px 0;
+  }
+  .post-content :global(blockquote) {
+    border-left: 4px solid var(--dental-gold);
+    background: var(--dental-beige);
+    padding: 12px 18px;
+    margin: 1.2em 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+  }
+  .post-content :global(strong) {
+    color: var(--dental-purple);
+  }
+  .post-content :global(figure.post-figure) {
+    margin: 1.5em 0;
+    text-align: center;
+  }
+  .post-content :global(figure.post-figure img) {
+    border-radius: 10px;
+    margin: 0 auto;
+  }
+  .faq {
+    margin: 28px 0;
+  }
+  .faq details {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+  }
+  .faq summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--dental-purple);
+  }
+  .faq details p {
+    margin: 8px 0 0;
+  }
+  .paa {
+    background: #fafafa;
+    padding: 16px 20px;
+    border-radius: 6px;
+    margin: 20px 0;
+  }
+  .post-cta {
+    background: var(--dental-purple);
+    color: #eee;
+    border-radius: 12px;
+    padding: 26px 22px;
+    margin: 36px 0;
+    text-align: center;
+  }
+  .post-cta h2 {
+    color: #fff;
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+  }
+  .post-cta p {
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+  }
+  .post-cta .wa-btn {
+    font-size: 1rem;
+    padding: 12px 22px;
+  }
+  .related {
+    margin: 28px 0 12px;
+    padding-top: 18px;
+    border-top: 1px solid #eee;
+  }
+  .related ul {
+    padding-left: 20px;
+  }
+  .related li {
+    margin: 6px 0;
+  }
+</style>

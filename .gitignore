@@ -51,7 +51,7 @@ pagespeed-api-key.txt
 
 
 # Pipeline de blog (tooling interno + segredos) � nao versionar no repo do site
-Blog/
+/Blog/
 
 # Rascunhos / fotos brutas / variacoes de imagem (NAO versionar - inclui fotos pessoais)
 drafts/
