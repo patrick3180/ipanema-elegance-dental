@@ -58,3 +58,4 @@ drafts/
 
 # Python cache
 __pycache__/
+astro/dist
