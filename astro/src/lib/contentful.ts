@@ -72,9 +72,14 @@ export function postMeta(
 ) {
   const f = post.fields ?? {};
   const imgRef = f.featuredImage || f.imagemPrincipal;
-  let rawImg: string = imgRef?.fields?.file?.url || '';
-  if (!rawImg && imgRef?.sys?.id) rawImg = assetMap.get(imgRef.sys.id)?.fields?.file?.url || '';
+  const imgAsset = imgRef?.fields ? imgRef : imgRef?.sys?.id ? assetMap.get(imgRef.sys.id) : null;
+  const imgFile: any = imgAsset?.fields?.file || null;
+  const rawImg: string = imgFile?.url || '';
   const fullImg = rawImg ? (rawImg.startsWith('//') ? 'https:' + rawImg : rawImg) : '';
+  // Dimensões reais do asset (as featured do blog são 1024x1024) — evita crop/CLS
+  const imgDims = imgFile?.details?.image || null;
+  const imageWidth = 800;
+  const imageHeight = imgDims?.width ? Math.round((800 * imgDims.height) / imgDims.width) : 800;
 
   // Categoria: o campo `category` é um LINK p/ entry (content type 'categoria', fields.name)
   const catRef = f.category || f.categoria;
@@ -95,6 +100,8 @@ export function postMeta(
     contentDoc: f.conteudo || f.content || null,
     imageUrl: fullImg,
     imageOptimized: fullImg && fullImg.includes('ctfassets.net') ? `${fullImg}?w=800&fm=webp&q=80` : fullImg,
+    imageWidth,
+    imageHeight,
     quickAnswer: f.quickAnswerBox || f.quickAnswerBoquickAnswerBoxx || '',
     keyTakeaways: (Array.isArray(f.keyTakeaways) ? f.keyTakeaways : []) as string[],
     faqStructured: (Array.isArray(f.faqStructured) ? f.faqStructured : []) as Array<{

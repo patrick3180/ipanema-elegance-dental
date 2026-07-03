@@ -117,7 +117,15 @@ const schemas = faqSchema ? [blogPostingSchema, faqSchema] : [blogPostingSchema]
       <p class="post-meta">Por {m.author} • {dateBr} • {m.category}</p>
 
       {m.imageOptimized && (
-        <img class="post-hero" src={m.imageOptimized} alt={m.title} width="800" height="450" fetchpriority="high" decoding="async" />
+        <img
+          class="post-hero"
+          src={m.imageOptimized}
+          alt={m.title}
+          width={m.imageWidth}
+          height={m.imageHeight}
+          fetchpriority="high"
+          decoding="async"
+        />
       )}
 
       {m.excerpt && <p class="post-excerpt">{m.excerpt}</p>}
@@ -216,11 +224,13 @@ const schemas = faqSchema ? [blogPostingSchema, faqSchema] : [blogPostingSchema]
     margin-bottom: 16px;
   }
   .post-hero {
+    /* Sem crop: as featured do blog são quadradas (1024x1024) — exibe na proporção natural */
     width: 100%;
+    max-width: 620px;
+    height: auto;
     border-radius: 10px;
-    margin: 18px 0;
-    aspect-ratio: 16/9;
-    object-fit: cover;
+    margin: 18px auto;
+    display: block;
   }
   .post-excerpt {
     font-size: 1.1rem;

@@ -189,6 +189,10 @@ const {
       .review-badge span {
         color: var(--dental-gray);
       }
+      .review-badge .star {
+        color: var(--dental-gold); /* mesma cor do Header.tsx original (fill-dental-gold) */
+        font-size: 0.95rem;
+      }
       .wa-btn {
         display: inline-flex;
         align-items: center;
@@ -236,7 +240,7 @@ const {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="5,0 estrelas no Google, 17 avaliações"
-        >★ <b>5.0</b> <span>(17 avaliações)</span></a>
+        ><span class="star">★</span> <b>5.0</b> <span>(17 avaliações)</span></a>
         <nav class="site-nav">
           <a href="/servicos">Tratamentos</a>
           <a href="/sobre">Sobre</a>
