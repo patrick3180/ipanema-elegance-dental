@@ -4,8 +4,11 @@
  * Mesma query do site atual (generate-blog-html.js / api/sitemap.js).
  */
 
-const SPACE_ID = import.meta.env.CONTENTFUL_SPACE_ID;
-const CDA_TOKEN = import.meta.env.CONTENTFUL_CDA_TOKEN;
+// Credenciais Contentful (build-time). Aceita os nomes próprios do Astro (astro/.env local)
+// E os que JÁ existem na Vercel do site atual (VITE_*), para o build de produção funcionar
+// sem precisar criar env vars novas. VITE_CONTENTFUL_ACCESS_TOKEN é um token CDA (delivery).
+const SPACE_ID = import.meta.env.CONTENTFUL_SPACE_ID || import.meta.env.VITE_CONTENTFUL_SPACE_ID;
+const CDA_TOKEN = import.meta.env.CONTENTFUL_CDA_TOKEN || import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
 
 export interface ContentfulAsset {
   sys: { id: string };

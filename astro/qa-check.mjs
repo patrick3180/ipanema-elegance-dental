@@ -57,6 +57,17 @@ for (const file of pages) {
   const route = routeOf(file) || '/';
   const html = fs.readFileSync(file, 'utf8');
   const isLP = /^\/(en\/)?lp\//.test(route);
+  const is404 = route === '/404' || route === '/404.html';
+  // A página 404 é especial: DEVE ser noindex, não precisa de schema/canonical/h1 únicos.
+  if (is404) {
+    // valida só o essencial: tem título, tem tracking e CTA WhatsApp correto
+    if (!/<title>/.test(html)) fail('404 sem <title>');
+    if (!html.includes('GTM-WZRDNBKQ')) fail('404 sem GTM');
+    for (const m of html.matchAll(/<a\b[^>]*href="(https:\/\/wa\.me\/[^"]*)"[^>]*>/g)) {
+      if (!m[0].includes('js-wa-cta') || !m[0].includes('target="_blank"')) fail('404: CTA wa.me mal configurado');
+    }
+    continue;
+  }
   const fail = (msg) => failures.push(`${route} — ${msg}`);
   const warn = (msg) => warns.push(`${route} — ${msg}`);
   checked++;
