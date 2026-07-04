@@ -14,7 +14,7 @@ export const lentesPorcelanaProfissionalConfig: LandingPageConfig = {
   },
 
   hero: {
-    headline: 'Lentes de Porcelana em Ipanema — Resultado Natural que Dura mais de 15 Anos',
+    headline: 'Lentes de porcelana com a aparência de dentes naturais',
     subheadline: 'Porcelana de alta translucidez, planejamento digital com iTero Element 5D e Test Drive do Sorriso antes de começar. Dra. Carla Christoph, especialista com mais de 20 anos em estética dental.',
     ctaText: 'Agendar Minha Consulta',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
