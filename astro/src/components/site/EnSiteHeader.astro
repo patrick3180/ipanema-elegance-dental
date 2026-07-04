@@ -12,7 +12,11 @@
 import { getEquivalentPath } from '@/utils/languageMap';
 
 const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
-const ptPath = getEquivalentPath(path, 'pt');
+// Rotas PT que NÃO existem como página (emergência só existe como LP noindex).
+// Nesses casos o seletor de idioma cai para a home PT — nunca para um 404.
+const PT_SEM_EQUIVALENTE = new Set(['/emergencia-odontologica', '/emergencia-dental']);
+const rawPtPath = getEquivalentPath(path, 'pt');
+const ptPath = PT_SEM_EQUIVALENTE.has(rawPtPath) ? '/' : rawPtPath;
 
 const treatmentItems = [
   { title: 'Dental Implants', path: '/en/dental-implants' },

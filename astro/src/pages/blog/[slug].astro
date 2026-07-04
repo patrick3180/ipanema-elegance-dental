@@ -4,6 +4,7 @@
  * URLs idênticas ao site atual: /blog/<slug>.
  */
 import Base from '../../layouts/Base.astro';
+import FloatingWhatsAppButton from '../../components/treatment/FloatingWhatsAppButton.astro';
 import { getBlogData, postMeta, resolveSlug } from '../../lib/contentful';
 import { richTextToHtml } from '../../lib/richtext';
 
@@ -204,6 +205,7 @@ const schemas = faqSchema ? [blogPostingSchema, faqSchema] : [blogPostingSchema]
       </nav>
     )}
   </main>
+  <FloatingWhatsAppButton waLabel="floating_whatsapp_button" />
 </Base>
 
 <style>

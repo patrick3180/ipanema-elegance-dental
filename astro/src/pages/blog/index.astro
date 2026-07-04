@@ -6,6 +6,7 @@
  * Todos os posts como links no HTML cru (zero órfãos).
  */
 import Base from '../../layouts/Base.astro';
+import FloatingWhatsAppButton from '../../components/treatment/FloatingWhatsAppButton.astro';
 import { getBlogData, postMeta } from '../../lib/contentful';
 
 const { posts, assetMap, entryMap } = await getBlogData();
@@ -88,6 +89,7 @@ const blogSchema = JSON.stringify({
       ))}
     </section>
   </main>
+  <FloatingWhatsAppButton waLabel="floating_whatsapp_button" />
 </Base>
 
 <style>

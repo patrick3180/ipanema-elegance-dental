@@ -6,17 +6,55 @@
  * Meta title: igual no SEOHead do React e no infoPages['/contato'] do
  * generate-static-meta.cjs; description copiada do generate-static-meta.cjs
  * (fonte da verdade das meta tags).
- * A página React não define schema próprio — nenhum JSON-LD adicional aqui.
+ * Schema: Dentist (mesmo payload do generate-static-meta.cjs — dados reais,
+ * AggregateRating 5.0/17 = exceção autorizada Maio/2026).
  */
 import SiteLayout from '../layouts/SiteLayout.astro';
 
 const WA_HREF = `https://wa.me/5521993304045?text=${encodeURIComponent('Olá! Gostaria de agendar uma consulta.')}`;
+
+const dentistSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Dentist',
+  name: 'Dra. Carla Christoph',
+  description:
+    'Dentista especialista em Prótese Dental e Reabilitação Oral em Ipanema, Rio de Janeiro. Mais de 20 anos de experiência.',
+  telephone: '+5521993304045',
+  url: 'https://dracarlachristoph.com',
+  image: 'https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
+  priceRange: '$$$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+    addressLocality: 'Ipanema',
+    addressRegion: 'RJ',
+    postalCode: '22410-901',
+    addressCountry: 'BR',
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '19:00',
+    },
+  ],
+  hasCredential: {
+    '@type': 'EducationalOccupationalCredential',
+    credentialCategory: 'CRO-RJ',
+    recognizedBy: { '@type': 'Organization', name: 'CRO-RJ' },
+    identifier: '27.509',
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '17', bestRating: '5' },
+  availableLanguage: ['pt-BR', 'en'],
+});
 ---
 
 <SiteLayout
   title="Contato | Dra. Carla Christoph - Dentista em Ipanema"
   description="Entre em contato com a Dra. Carla Christoph. Consultório em Ipanema, Rio de Janeiro. Agende sua consulta pelo WhatsApp."
   canonical="https://dracarlachristoph.com/contato"
+  schemas={[dentistSchema]}
 >
   <main id="main-content">
     <section class="section-spacing">

@@ -37,6 +37,17 @@ const builtRoutes = new Set(pages.map((f) => routeOf(f) || '/'));
 builtRoutes.add('/');
 // rotas servidas fora do Astro (functions/rewrites/estático) — não são 404
 const EXTERNAL_ROUTES = new Set(['/go/whatsapp', '/sitemap.xml', '/robots.txt', '/links', '/gone', '/api/send-gclid']);
+// redirects 301 do vercel.json: um link para a origem NÃO é quebrado (Vercel redireciona)
+try {
+  const vercel = JSON.parse(fs.readFileSync(path.join(here, '..', 'vercel.json'), 'utf8'));
+  for (const r of vercel.redirects ?? []) {
+    if (r.source && !r.source.includes(':') && !r.source.includes('*')) EXTERNAL_ROUTES.add(r.source.replace(/\/$/, ''));
+  }
+} catch {}
+// rotas Navigate do App.tsx que virarão 301 no cutover (PATTERNS.md §6)
+for (const nav of ['/diferenciais', '/lentes-de-contato-dental-e-facetas-de-porcelana', '/en/porcelain-veneers', '/lp/profilaxia-dental-ipanema']) {
+  EXTERNAL_ROUTES.add(nav);
+}
 
 const failures = [];
 const warns = [];
