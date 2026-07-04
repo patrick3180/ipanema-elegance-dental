@@ -1,0 +1,882 @@
+---
+/**
+ * /restauracoes-esteticas — porte VERBATIM de src/pages/RestaureacoesEsteticas.tsx.
+ * Meta/canonical: scripts/generate-static-meta.cjs ('/restauracoes-esteticas').
+ * Schemas: MedicalProcedure + Dentist (generate-static-meta.cjs) +
+ * FAQPage (mesmos textos do Helmet do React) + BreadcrumbList (hero).
+ */
+import SiteLayout from '../layouts/SiteLayout.astro';
+import TreatmentHero from '../components/treatment/TreatmentHero.astro';
+import StatsBar from '../components/treatment/StatsBar.astro';
+import SectionDivider from '../components/treatment/SectionDivider.astro';
+import ProcessTimeline from '../components/treatment/ProcessTimeline.astro';
+import QuickAnswerBox from '../components/treatment/QuickAnswerBox.astro';
+import DoctorBioSection from '../components/treatment/DoctorBioSection.astro';
+import EmpatheticPainPoints from '../components/treatment/EmpatheticPainPoints.astro';
+import ServiceFAQ from '../components/treatment/ServiceFAQ.astro';
+import FinalServiceCTA from '../components/treatment/FinalServiceCTA.astro';
+import RelatedTreatments from '../components/treatment/RelatedTreatments.astro';
+import Icon from '../components/treatment/Icon.astro';
+import '../styles/treatment.css';
+
+// FAQs exibidas na página (copy verbatim do .tsx — respostas com HTML preservam listas/links)
+const faqs = [
+  { question: 'O que é uma restauração dental estética?', answer: 'É um procedimento que reconstrói dentes comprometidos por cáries, fraturas ou trincas utilizando materiais de última geração (resina composta ou porcelana) que mimetizam perfeitamente a cor, brilho e textura dos dentes naturais. Diferente das antigas "obturações" escuras de amálgama, as restaurações estéticas são praticamente invisíveis.' },
+  { question: 'Quando uma restauração é necessária?', html: true, answer: '<p class="mb-3">Restaurações são indicadas em diversas situações:</p><ul class="sfaq-ul"><li>Presença de cáries (pequenas, médias ou extensas)</li><li>Fraturas dentais por trauma ou desgaste</li><li>Trincas que causam sensibilidade</li><li>Substituição de restaurações antigas escurecidas</li><li>Correção de formato ou fechamento de pequenos espaços</li><li>Reconstrução após <a href="/tratamento-de-canal" class="sfaq-link">tratamento de canal</a></li></ul>' },
+  { question: 'Qual material é usado nas restaurações estéticas?', answer: 'Utilizamos resinas compostas de última geração com nanotecnologia, que oferecem alta resistência, estética natural e durabilidade. Para casos que exigem máxima longevidade (grandes restaurações posteriores), indicamos porcelanas ou resinas laboratoriais (inlay/onlay), que são confeccionadas em laboratório e proporcionam ainda mais resistência.' },
+  { question: 'Fazer restauração dói?', answer: 'Não. Utilizamos anestesia local com técnica confortável. A maioria dos pacientes relata não sentir desconforto durante o procedimento. Após o término do efeito anestésico, pode haver sensibilidade leve por 24-48h, facilmente controlada com analgésicos comuns se necessário.' },
+  { question: 'Quanto tempo dura uma restauração estética?', html: true, answer: 'A durabilidade varia conforme o tipo de restauração e cuidados do paciente:<ul class="sfaq-ul mt-3"><li><strong>Restaurações diretas (resina):</strong> 5 a 8 anos em média</li><li><strong>Restaurações indiretas (inlay/onlay de porcelana):</strong> 12 a 15 anos ou mais</li></ul><p class="mt-3">Fatores que prolongam a vida útil: boa higiene oral, check-ups regulares, não roer unhas, evitar abrir embalagens com os dentes e usar placa para bruxismo quando indicado.</p>' },
+  { question: 'Posso trocar minhas restaurações antigas escuras?', answer: 'Sim! A substituição de restaurações antigas de amálgama (metálicas) por restaurações estéticas em resina é um dos procedimentos mais procurados. Além do benefício estético, eliminamos o risco de microinfiltrações comuns em restaurações antigas e removemos o metal da boca. A troca é feita de forma conservadora, preservando o máximo de estrutura dental sadia.' },
+  { question: 'Restauração em resina mancha com o tempo?', answer: 'As resinas compostas modernas apresentam excelente estabilidade de cor. Com os cuidados adequados (boa higiene, polimentos periódicos no dentista e moderação no consumo de alimentos muito pigmentados como café, vinho tinto e açaí), as restaurações mantêm sua cor original por muitos anos. Quando necessário, é possível fazer polimento profissional para renovar o brilho.' },
+  { question: 'Qual a diferença entre restauração e obturação?', answer: 'Na prática odontológica moderna, os termos são sinônimos — ambos se referem ao preenchimento de uma cavidade dental. "Obturação" é um termo mais antigo, frequentemente associado às restaurações em amálgama (metálicas). "Restauração" é o termo técnico correto e mais abrangente, pois enfatiza o objetivo do tratamento: restaurar forma, função e estética. Hoje, priorizamos sempre restaurações estéticas em materiais tooth-colored (da cor do dente).' },
+];
+
+const PROVIDER = {
+  '@type': 'Dentist',
+  name: 'Dra. Carla Christoph',
+  telephone: '+5521993304045',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+    addressLocality: 'Ipanema',
+    addressRegion: 'RJ',
+    postalCode: '22410-901',
+    addressCountry: 'BR',
+  },
+};
+
+// FAQPage — mesmos textos do Helmet do React (versões em texto puro)
+const faqSchemaEntries = [
+  { q: 'O que é uma restauração dental estética?', a: 'É um procedimento que reconstrói dentes comprometidos por cáries, fraturas ou trincas utilizando materiais de última geração (resina composta ou porcelana) que mimetizam perfeitamente a cor, brilho e textura dos dentes naturais. Diferente das antigas obturações escuras de amálgama, as restaurações estéticas são praticamente invisíveis.' },
+  { q: 'Quando uma restauração é necessária?', a: 'Restaurações são indicadas em diversas situações: presença de cáries, fraturas dentais por trauma ou desgaste, trincas que causam sensibilidade, substituição de restaurações antigas escurecidas, correção de formato ou fechamento de pequenos espaços, e reconstrução após tratamento de canal.' },
+  { q: 'Qual material é usado nas restaurações estéticas?', a: 'Utilizamos resinas compostas de última geração com nanotecnologia, que oferecem alta resistência, estética natural e durabilidade. Para casos que exigem máxima longevidade, indicamos porcelanas ou resinas laboratoriais (inlay/onlay), confeccionadas em laboratório para ainda mais resistência.' },
+  { q: 'Fazer restauração dói?', a: 'Não. Utilizamos anestesia local com técnica confortável. A maioria dos pacientes relata não sentir desconforto durante o procedimento. Após o término do efeito anestésico, pode haver sensibilidade leve por 24-48h, facilmente controlada com analgésicos comuns.' },
+  { q: 'Quanto tempo dura uma restauração estética?', a: 'Restaurações diretas em resina duram de 5 a 8 anos em média. Restaurações indiretas (inlay/onlay de porcelana) duram 12 a 15 anos ou mais. Fatores que prolongam a vida útil: boa higiene oral, check-ups regulares e uso de placa para bruxismo quando indicado.' },
+  { q: 'Posso trocar minhas restaurações antigas escuras?', a: 'Sim! A substituição de restaurações antigas de amálgama por restaurações estéticas em resina é um dos procedimentos mais procurados. Além do benefício estético, eliminamos o risco de microinfiltrações comuns em restaurações antigas. A troca é feita de forma conservadora, preservando o máximo de estrutura dental sadia.' },
+  { q: 'Restauração em resina mancha com o tempo?', a: 'As resinas compostas modernas apresentam excelente estabilidade de cor. Com cuidados adequados (boa higiene, polimentos periódicos e moderação no consumo de alimentos muito pigmentados como café, vinho tinto e açaí), as restaurações mantêm sua cor original por muitos anos.' },
+  { q: 'Qual a diferença entre restauração e obturação?', a: 'Na prática odontológica moderna, os termos são sinônimos — ambos se referem ao preenchimento de uma cavidade dental. Obturação é um termo mais antigo, frequentemente associado às restaurações em amálgama. Restauração é o termo técnico correto e mais abrangente. Hoje, priorizamos sempre restaurações estéticas em materiais da cor do dente.' },
+];
+
+const schemas = [
+  // MedicalProcedure — copiado de generate-static-meta.cjs ('/restauracoes-esteticas')
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'MedicalProcedure',
+    name: 'Restauração Dental Estética',
+    description: 'Restauração dental estética com resina nanoparticulada para tratamento de cáries, fraturas e trincas com resultado natural',
+    procedureType: 'Dental',
+    url: 'https://dracarlachristoph.com/restauracoes-esteticas',
+    provider: PROVIDER,
+  }),
+  // Dentist — generateDentistSchema() de generate-static-meta.cjs
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Dentist',
+    name: 'Dra. Carla Christoph',
+    description: 'Dentista especialista em Prótese Dental e Reabilitação Oral em Ipanema, Rio de Janeiro. Mais de 20 anos de experiência.',
+    telephone: '+5521993304045',
+    url: 'https://dracarlachristoph.com',
+    image: 'https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
+    priceRange: '$$$',
+    address: PROVIDER.address,
+    openingHoursSpecification: [
+      { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '19:00' },
+    ],
+    hasCredential: { '@type': 'EducationalOccupationalCredential', credentialCategory: 'CRO-RJ', recognizedBy: { '@type': 'Organization', name: 'CRO-RJ' }, identifier: '27.509' },
+    aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '17', bestRating: '5' },
+    availableLanguage: ['pt-BR', 'en'],
+  }),
+  // FAQPage — textos do Helmet do React
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqSchemaEntries.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: { '@type': 'Answer', text: faq.a },
+    })),
+  }),
+];
+
+// Dados das seções (copy verbatim do .tsx)
+const cardDireta = {
+  img: '/lovable-uploads/Restauracao direta.webp',
+  alt: 'Restauração Direta em Resina Composta',
+  title: 'Restauração Direta em Resina',
+  overlay: 'Realizada em uma única sessão no consultório',
+  body: 'Realizada em uma única sessão, onde a resina nanoparticulada é aplicada e esculpida diretamente no dente comprometido.',
+  indicacoes: ['Cáries pequenas a médias', 'Fraturas de pequena extensão', 'Trincas superficiais', 'Fechamento de pequenos espaços (diastemas)', 'Correção de formato'],
+  caracteristicas: [
+    { label: 'Confecção:', value: 'Consultório (1 sessão)' },
+    { label: 'Tempo:', value: '40-90 minutos por dente' },
+    { label: 'Durabilidade:', value: '5-8 anos' },
+    { label: 'Investimento:', value: 'Mais acessível' },
+    { label: 'Preparo:', value: 'Mínimo conservador' },
+  ],
+};
+const cardIndireta = {
+  img: '/lovable-uploads/inlay de porcelana.webp',
+  alt: 'Restauração Indireta - Inlay e Onlay de Porcelana',
+  title: 'Restauração Indireta (Inlay/Onlay)',
+  overlay: 'Confeccionada em laboratório especializado',
+  body: 'Confeccionada em laboratório e cimentada em segunda sessão, oferecendo maior resistência e longevidade.',
+  indicacoes: ['Cáries extensas', 'Grande perda estrutural', 'Fraturas amplas em dentes posteriores', 'Substituição de grandes restaurações antigas', 'Necessidade de máxima durabilidade'],
+  caracteristicas: [
+    { label: 'Confecção:', value: 'Laboratório (2 sessões)' },
+    { label: 'Material:', value: 'Porcelana ou resina laboratorial' },
+    { label: 'Durabilidade:', value: '12-15 anos' },
+    { label: 'Investimento:', value: 'Mais significativo' },
+    { label: 'Precisão:', value: 'Adaptação milimétrica' },
+  ],
+};
+
+const beneficios = [
+  { icon: 'sparkles', iconClass: 're-ic-purple', bg: 're-bg-purple-50', title: 'Estética Superior', text: 'Cor e brilho idênticos aos dentes naturais. Resultado praticamente invisível.' },
+  { icon: 'shield', iconClass: 're-ic-green', bg: 're-bg-green-50', title: 'Preservação Dental', text: 'Técnica conservadora que mantém o máximo de estrutura sadia do dente.' },
+  { icon: 'link', iconClass: 're-ic-blue', bg: 're-bg-blue-50', title: 'Adesão Química', text: 'União química ao dente proporcionando selamento eficaz contra infiltrações.' },
+  { icon: 'ban', iconClass: 're-ic-red', bg: 're-bg-red-50', title: 'Ausência de Metais', text: 'Zero mercúrio ou metais. Material biocompatível e seguro para sua saúde.' },
+  { icon: 'target', iconClass: 're-ic-gold', bg: 're-bg-yellow-50', title: 'Versatilidade', text: 'Aplicável em dentes anteriores e posteriores, adaptando-se a cada situação.' },
+  { icon: 'wrench', iconClass: 're-ic-orange', bg: 're-bg-orange-50', title: 'Reparo Facilitado', text: 'Possibilidade de ajustes e reparos sem necessidade de trocar toda a restauração.' },
+  { icon: 'clock', iconClass: 're-ic-indigo', bg: 're-bg-indigo-50', title: 'Durabilidade Comprovada', text: 'Materiais de alta resistência que proporcionam longevidade ao tratamento.', center: true },
+];
+
+const diferenciais = [
+  { icon: 'heart-pulse', iconClass: 're-ic-red', bg: 're-bg-red-50', title: 'Protocolo Saúde Primeiro', text: 'Tratamento de inflamações gengivais e controle de cáries ativas antes de qualquer restauração estética.' },
+  { icon: 'award', iconClass: 're-ic-gold', bg: 're-bg-yellow-50', title: 'Materiais Certificados', text: 'Resinas compostas com certificação internacional, nanotecnologia e ampla paleta de cores para mimetização perfeita.' },
+  { icon: 'layers', iconClass: 're-ic-purple', bg: 're-bg-purple-50', title: 'Técnica de Estratificação', text: 'Aplicação em múltiplas camadas com diferentes graus de opacidade e translucidez, imitando a estrutura natural do dente.' },
+  { icon: 'focus', iconClass: 're-ic-blue', bg: 're-bg-blue-50', title: 'Análise Oclusal Detalhada', text: 'Verificação da distribuição correta das forças mastigatórias para evitar sobrecarga e garantir longevidade.' },
+  { icon: 'gem', iconClass: 're-ic-pink', bg: 're-bg-pink-50', title: 'Acabamento de Alto Brilho', text: 'Polimento de alta performance que confere brilho vítreo e textura que imitam perfeitamente o esmalte dental natural.' },
+  { icon: 'shield', iconClass: 're-ic-green', bg: 're-bg-green-50', title: 'Protocolo para Bruxismo', text: 'Confecção de placa miorrelaxante quando necessário para proteger as restaurações e prevenir desgastes precoces.' },
+];
+
+const iteroFeatures = [
+  { icon: 'search', iconClass: 're-ic-purple', bg: 're-bg-purple-50', title: 'Detecção Precoce de Cáries', text: 'Identificação de lesões invisíveis a olho nu, permitindo tratamento preventivo.' },
+  { icon: 'shield', iconClass: 're-ic-blue', bg: 're-bg-blue-50', title: 'Análise de Desgastes', text: 'Mapeamento de áreas de atrito excessivo por bruxismo ou má oclusão.' },
+  { icon: 'sparkles', iconClass: 're-ic-green', bg: 're-bg-green-50', title: 'Moldagem Digital', text: 'Captura 3D sem desconforto, náuseas ou materiais de moldagem tradicionais.' },
+  { icon: 'award', iconClass: 're-ic-gold', bg: 're-bg-yellow-50', title: 'Comunicação Visual', text: 'Visualização em tempo real na tela, facilitando compreensão do diagnóstico e plano de tratamento.' },
+];
+
+const comoEscolher = ['Extensão do dano', 'Localização (anterior/posterior)', 'Forças mastigatórias', 'Estrutura dental remanescente', 'Objetivos estéticos', 'Investimento disponível'];
+---
+
+<SiteLayout
+  title="Restaurações Estéticas em Ipanema | Dra. Carla Christoph"
+  description="Restauração dental estética em Ipanema com resina nanoparticulada. Tratamento de cáries, dentes quebrados e trincados. Resultado natural e duradouro. Dra. Carla Christoph CRO-RJ 27.509."
+  canonical="https://dracarlachristoph.com/restauracoes-esteticas"
+  preloadImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+  schemas={schemas}
+>
+  <main id="main-content">
+    <TreatmentHero
+      title="Restaurações Estéticas em Ipanema"
+      subtitle="Beleza e Função para seu Sorriso"
+      description="Recupere dentes comprometidos por cáries, fraturas ou trincas com resinas compostas de última geração que imitam perfeitamente a cor e textura natural."
+      badges={['Resinas de Alta Performance', 'Resultado Natural', 'Técnica Conservadora']}
+      doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+      breadcrumbs={[
+        { label: 'Início', href: '/' },
+        { label: 'Tratamentos', href: '/servicos' },
+        { label: 'Restaurações Estéticas' },
+      ]}
+      waLabel="restauracoes-esteticas_hero_whatsapp"
+    />
+
+    <section class="qa-section">
+      <div class="container-custom">
+        <QuickAnswerBox answer="Restaurações estéticas são tratamentos que recuperam dentes comprometidos por cáries, fraturas ou trincas usando resinas nanoparticuladas ou cerâmicas de última geração. Na clínica da Dra. Carla Christoph em Ipanema (CRO-RJ 27.509), utilizamos materiais de última geração com estratificação de cor que reproduzem perfeitamente a translucidez natural dos dentes. O tratamento é conservador, preservando ao máximo a estrutura dentária, e o resultado é indistinguível dos dentes naturais. Com 20+ anos de experiência, realizamos desde pequenas restaurações até reconstruções complexas em uma ou poucas sessões." />
+      </div>
+    </section>
+
+    <EmpatheticPainPoints
+      title="Você já escondeu o sorriso por causa de um dente comprometido?"
+      painPoints={[
+        { icon: 'gem', iconColor: 'purple', strong: 'Restaurações que passam despercebidas', description: 'Usamos resinas e cerâmicas estratificadas que reproduzem a translucidez e textura natural do seu dente — não são obturações, são reconstruções.', borderColor: 'purple' },
+        { icon: 'shield', iconColor: 'gold', strong: 'Técnica conservadora — preservamos o máximo', description: 'Cada restauração é planejada para remover apenas o necessário. Quanto mais estrutura natural preservada, melhor o resultado a longo prazo.', borderColor: 'gold' },
+        { icon: 'heart', iconColor: 'purple-soft', strong: 'Cada caso planejado individualmente', description: 'A Dra. Carla reserva tempo para entender seu histórico antes de qualquer procedimento — sem pressa, sem protocolo padrão.', borderColor: 'purple-soft' },
+      ]}
+    >
+      <Fragment slot="conclusion">Cáries, fraturas e trincas são mais comuns do que imagina — e o impacto vai além da estética.<br class="md-only" /> Vamos encontrar a melhor solução para o seu caso.</Fragment>
+    </EmpatheticPainPoints>
+
+    <SectionDivider variant="with-icon" icon="award" />
+
+    <DoctorBioSection
+      sectionTitle="Restaurações com Precisão Técnica e Arte"
+      badgeText="20+ Anos de Experiência"
+      credentials={[
+        { title: 'Formação', description: 'Especialista em Prótese Dentária e Implantodontia' },
+        { title: 'Experiência', description: '20+ anos tratando casos de todas as complexidades' },
+        { title: 'Atualização', description: 'Formação contínua em técnicas avançadas' },
+        { title: 'Tecnologia', description: 'Scanner intraoral iTero Element 5D' },
+      ]}
+    >
+      <p>Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.</p>
+      <p>Nas restaurações, utiliza resinas e cerâmicas que reproduzem a translucidez natural do dente. O objetivo é que a restauração passe despercebida — que o dente tratado seja indistinguível dos demais.</p>
+    </DoctorBioSection>
+
+    <SectionDivider variant="with-icon" icon="shield" />
+
+    <!-- Modalidades: Direta vs Indireta -->
+    <section class="sec-white">
+      <div class="re-wrap">
+        <div class="re-head">
+          <h2 class="re-h2">Restauração Direta ou Indireta: Qual é a Ideal para Você?</h2>
+          <p class="re-sub">Cada técnica tem suas indicações específicas. A escolha depende da extensão do dano, localização do dente e objetivos do tratamento.</p>
+        </div>
+
+        <div class="re-cards-grid">
+          {[cardDireta, cardIndireta].map((card) => (
+            <div class="re-card shadow-soft">
+              <div class="re-card-img">
+                <img src={card.img} alt={card.alt} width="600" height="400" loading="lazy" decoding="async" />
+                <div class="re-card-overlay"></div>
+                <div class="re-card-caption">
+                  <h3>{card.title}</h3>
+                  <p>{card.overlay}</p>
+                </div>
+              </div>
+              <div class="re-card-body">
+                <p class="re-card-text">{card.body}</p>
+                <div class="re-indicacoes">
+                  <h4>Indicações:</h4>
+                  <ul>
+                    {card.indicacoes.map((item) => (
+                      <li>
+                        <Icon name="check-circle" size={20} class="tx-gold re-check" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <details class="re-acc">
+                  <summary class="re-acc-q">
+                    <span>Ver Características Detalhadas</span>
+                    <svg class="re-acc-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                  </summary>
+                  <div class="re-acc-a">
+                    {card.caracteristicas.map((row) => (
+                      <div class="re-acc-row">
+                        <span class="re-acc-label">{row.label}</span>
+                        <span class="re-acc-value">{row.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                </details>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Box informativo -->
+        <div class="re-choose">
+          <div class="re-choose-row">
+            <div class="re-choose-icon">
+              <Icon name="help-circle" size={24} class="tx-gold" />
+            </div>
+            <div>
+              <h4 class="re-choose-title">Como Escolher?</h4>
+              <p class="re-choose-text">A escolha não é "melhor ou pior", mas <span class="re-choose-em">indicação técnica</span>. Analisamos:</p>
+              <div class="re-choose-grid">
+                {comoEscolher.map((item) => (
+                  <div class="re-choose-item">
+                    <Icon name="check-circle" size={20} class="tx-gold re-check" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+              <p class="re-choose-final">Prioridade: preservar o máximo de estrutura dental sadia e oferecer a solução mais duradoura para seu caso.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="heart" />
+
+    <!-- Benefícios -->
+    <section class="re-sec-beige">
+      <div class="re-wrap">
+        <div class="re-head">
+          <h2 class="re-h2">Vantagens das Restaurações Estéticas</h2>
+          <p class="re-sub">Tecnologia e materiais de última geração para resultados naturais e duradouros</p>
+        </div>
+        <div class="re-benef-grid">
+          {beneficios.map((b) => (
+            <div class:list={['re-benef-card', 'shadow-soft', { 're-benef-center': b.center }]}>
+              <div class:list={['re-benef-icon', b.bg]}>
+                <Icon name={b.icon} size={28} class={b.iconClass} />
+              </div>
+              <h3 class="re-card-title">{b.title}</h3>
+              <p class="re-card-p">{b.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="search" />
+
+    <!-- Processo -->
+    <section class="sec-white">
+      <div class="re-wrap">
+        <div class="re-head">
+          <h2 class="re-h2">Seu Tratamento: Passo a Passo</h2>
+          <p class="re-sub">Processo estruturado para garantir o melhor resultado com máximo conforto</p>
+        </div>
+        <ProcessTimeline
+          steps={[
+            { number: 1, title: 'Diagnóstico Preciso', description: 'Exame clínico completo • Radiografias digitais • Análise oclusal detalhada • iTero Element 5D para casos complexos • Avaliação de bruxismo e hábitos parafuncionais', icon: 'stethoscope', duration: '1ª Consulta' },
+            { number: 2, title: 'Anestesia e Conforto', description: 'Técnica de anestesia confortável • Isolamento absoluto do campo operatório • Ambiente tranquilo e acolhedor • Acompanhamento contínuo durante todo o procedimento', icon: 'syringe', duration: 'Início do procedimento' },
+            { number: 3, title: 'Preparo Conservador', description: 'Remoção apenas do tecido comprometido • Preservação máxima da estrutura sadia • Preparo com instrumentos de precisão • Condicionamento ácido e sistema adesivo de última geração', icon: 'scissors', duration: '20-30 minutos' },
+            { number: 4, title: 'Aplicação e Escultura', description: 'Seleção criteriosa da cor • Técnica de estratificação em camadas incrementais • Fotopolimerização controlada • Escultura anatômica respeitando forma e função naturais', icon: 'sparkles', duration: '30-60 minutos' },
+            { number: 5, title: 'Ajuste e Polimento', description: 'Verificação minuciosa da mordida • Ajuste oclusal com carbono • Polimento sequencial com discos e pastas diamantadas • Acabamento com brilho vítreo', icon: 'check-circle', duration: '15-20 minutos' },
+          ]}
+        />
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="award" />
+
+    <!-- Diferenciais -->
+    <section class="re-sec-beige-30">
+      <div class="re-wrap">
+        <div class="re-head">
+          <h2 class="re-h2">Diferenciais do Tratamento</h2>
+          <p class="re-sub">Protocolos avançados que fazem a diferença no resultado final</p>
+        </div>
+        <div class="re-dif-grid">
+          {diferenciais.map((d) => (
+            <div class="re-dif-card shadow-soft">
+              <div class="re-dif-row">
+                <div class:list={['re-dif-icon', d.bg]}>
+                  <Icon name={d.icon} size={24} class={d.iconClass} />
+                </div>
+                <div>
+                  <h3 class="re-card-title re-mb-2">{d.title}</h3>
+                  <p class="re-card-p">{d.text}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="scan" />
+
+    <!-- Tecnologia iTero -->
+    <section class="sec-white">
+      <div class="re-wrap">
+        <div class="re-itero-grid">
+          <div class="re-itero-img-col">
+            <div class="re-itero-frame shadow-elegant">
+              <img src="/lovable-uploads/scanner 3d.webp" alt="iTero Element 5D - Tecnologia de diagnóstico digital" width="600" height="400" loading="lazy" decoding="async" />
+            </div>
+            <div class="re-itero-blur" aria-hidden="true"></div>
+          </div>
+          <div>
+            <div class="re-itero-head">
+              <div class="re-itero-head-icon">
+                <Icon name="scan" size={28} class="tx-purple" />
+              </div>
+              <h2 class="re-h2 re-left">Diagnóstico Digital de Alta Precisão</h2>
+            </div>
+            <p class="re-itero-lead">O <span class="re-choose-em">iTero Element 5D</span> é o escaneamento intraoral mais avançado do mercado, oferecendo diagnóstico em tempo real e precisão milimétrica.</p>
+            <div class="re-itero-features">
+              {iteroFeatures.map((f) => (
+                <div class="re-itero-feature">
+                  <div class:list={['re-itero-fic', f.bg]}>
+                    <Icon name={f.icon} size={20} class={f.iconClass} />
+                  </div>
+                  <div>
+                    <h3 class="re-feat-title">{f.title}</h3>
+                    <p class="re-card-p">{f.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="help-circle" />
+
+    <ServiceFAQ title="Perguntas Frequentes" faqs={faqs} />
+
+    <SectionDivider variant="with-icon" icon="arrow-right" />
+
+    <FinalServiceCTA
+      title="Recupere a Saúde e a Beleza do Seu Sorriso"
+      description="Restaurações estéticas que unem precisão técnica, resinas compostas nanoparticuladas e resultado natural."
+      ctaText="Agendar Consulta pelo WhatsApp"
+      waMessage="Olá! Vi a página sobre restaurações estéticas e gostaria de agendar uma consulta com a Dra. Carla Christoph."
+      waLabel="restauracoes-esteticas_final_whatsapp"
+    />
+
+    <StatsBar />
+
+    <RelatedTreatments currentPage="restauracoes-esteticas" />
+  </main>
+
+</SiteLayout>
+
+<style>
+  .qa-section {
+    padding-block: 2rem;
+    background: #fff;
+  }
+
+  /* Wrapper max-w-6xl mx-auto px-4 */
+  .re-wrap {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  .re-head {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .re-h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.875rem;
+    line-height: 1.2;
+    color: var(--dc-purple);
+    margin: 0 0 1rem;
+  }
+  @media (min-width: 768px) {
+    .re-h2 {
+      font-size: 2.25rem;
+    }
+  }
+  .re-left {
+    text-align: left;
+    margin: 0;
+  }
+  .re-sub {
+    font-size: 1.125rem;
+    color: var(--dc-gray);
+    max-width: 48rem;
+    margin: 0 auto;
+  }
+
+  /* Backgrounds de seção */
+  .re-sec-beige {
+    padding-block: 4rem;
+    background: rgba(207, 203, 180, 0.2);
+  }
+  .re-sec-beige-30 {
+    padding-block: 4rem;
+    background: rgba(207, 203, 180, 0.3);
+  }
+
+  /* Cards Direta/Indireta */
+  .re-cards-grid {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  @media (min-width: 768px) {
+    .re-cards-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .re-card {
+    background: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+  }
+  .re-card:hover {
+    box-shadow: 0 10px 40px -10px rgba(56, 31, 71, 0.2);
+  }
+  .re-card-img {
+    aspect-ratio: 4 / 3;
+    position: relative;
+    overflow: hidden;
+  }
+  .re-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s;
+  }
+  .re-card:hover .re-card-img img {
+    transform: scale(1.05);
+  }
+  .re-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(56, 31, 71, 0.9), rgba(56, 31, 71, 0.5), transparent);
+  }
+  .re-card-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    color: #fff;
+  }
+  .re-card-caption h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem;
+  }
+  .re-card-caption p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  .re-card-body {
+    padding: 1.5rem;
+  }
+  .re-card-text {
+    color: var(--dc-gray);
+    line-height: 1.625;
+    margin: 0 0 1.5rem;
+  }
+  .re-indicacoes {
+    margin-bottom: 1.5rem;
+  }
+  .re-indicacoes h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--dc-purple);
+    margin: 0 0 0.75rem;
+  }
+  .re-indicacoes ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .re-indicacoes li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    color: var(--dc-gray);
+  }
+  .re-indicacoes li + li {
+    margin-top: 0.5rem;
+  }
+  .re-check {
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+
+  /* Accordion "Ver Características Detalhadas" (shadcn → details/summary) */
+  .re-acc {
+    border-bottom: 1px solid rgba(56, 31, 71, 0.2);
+  }
+  .re-acc-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 600;
+    color: var(--dc-purple);
+    padding-block: 1rem;
+    transition: color 0.2s;
+  }
+  .re-acc-q::-webkit-details-marker {
+    display: none;
+  }
+  .re-acc-q:hover {
+    color: var(--dc-gold);
+  }
+  .re-acc-chev {
+    flex-shrink: 0;
+    color: var(--dc-gray);
+    transition: transform 0.2s;
+  }
+  .re-acc[open] .re-acc-chev {
+    transform: rotate(180deg);
+  }
+  .re-acc-a {
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+  }
+  .re-acc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .re-acc-row + .re-acc-row {
+    margin-top: 0.75rem;
+  }
+  .re-acc-label {
+    color: var(--dc-gray);
+    font-weight: 600;
+  }
+  .re-acc-value {
+    color: var(--dc-purple);
+  }
+
+  /* Box "Como Escolher?" */
+  .re-choose {
+    margin-top: 3rem;
+    background: rgba(207, 203, 180, 0.2);
+    border: 2px solid rgba(179, 149, 95, 0.3);
+    border-radius: 0.75rem;
+    padding: 2rem;
+  }
+  .re-choose-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .re-choose-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    background: rgba(179, 149, 95, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .re-choose-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--dc-purple);
+    margin: 0 0 0.75rem;
+  }
+  .re-choose-text {
+    color: var(--dc-gray);
+    line-height: 1.625;
+    margin: 0 0 1rem;
+  }
+  .re-choose-em {
+    font-weight: 600;
+    color: var(--dc-purple);
+  }
+  .re-choose-grid {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 768px) {
+    .re-choose-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .re-choose-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--dc-gray);
+  }
+  .re-choose-item .re-check {
+    margin-top: 0;
+  }
+  .re-choose-final {
+    color: var(--dc-purple);
+    font-weight: 600;
+    margin: 1rem 0 0;
+  }
+
+  /* Benefícios */
+  .re-benef-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .re-benef-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .re-benef-center {
+      grid-column-start: 2;
+    }
+  }
+  .re-benef-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    transition: box-shadow 0.3s;
+  }
+  .re-benef-card:hover {
+    box-shadow: 0 10px 40px -10px rgba(56, 31, 71, 0.2);
+  }
+  .re-benef-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .re-card-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--dc-purple);
+    margin: 0 0 0.75rem;
+  }
+  .re-mb-2 {
+    margin-bottom: 0.5rem;
+  }
+  .re-card-p {
+    color: var(--dc-gray);
+    line-height: 1.625;
+    margin: 0;
+  }
+
+  /* Diferenciais */
+  .re-dif-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .re-dif-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .re-dif-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    transition: box-shadow 0.3s;
+  }
+  .re-dif-card:hover {
+    box-shadow: 0 10px 40px -10px rgba(56, 31, 71, 0.2);
+  }
+  .re-dif-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .re-dif-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* iTero */
+  .re-itero-grid {
+    display: grid;
+    gap: 3rem;
+    align-items: center;
+  }
+  @media (min-width: 768px) {
+    .re-itero-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .re-itero-img-col {
+    position: relative;
+  }
+  .re-itero-frame {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  .re-itero-frame img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
+  .re-itero-blur {
+    position: absolute;
+    bottom: -1.5rem;
+    right: -1.5rem;
+    width: 8rem;
+    height: 8rem;
+    background: rgba(56, 31, 71, 0.2);
+    border-radius: 9999px;
+    filter: blur(64px);
+  }
+  .re-itero-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .re-itero-head-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 9999px;
+    background: rgba(56, 31, 71, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .re-itero-lead {
+    font-size: 1.125rem;
+    color: var(--dc-gray);
+    line-height: 1.625;
+    margin: 0 0 2rem;
+  }
+  .re-itero-features > * + * {
+    margin-top: 1.5rem;
+  }
+  .re-itero-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .re-itero-fic {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .re-feat-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--dc-purple);
+    margin: 0 0 0.25rem;
+  }
+
+  /* Cores Tailwind usadas nos ícones/fundos (purple-50, green-50 etc.) */
+  .re-bg-purple-50 { background: #faf5ff; }
+  .re-bg-green-50 { background: #f0fdf4; }
+  .re-bg-blue-50 { background: #eff6ff; }
+  .re-bg-red-50 { background: #fef2f2; }
+  .re-bg-yellow-50 { background: #fefce8; }
+  .re-bg-orange-50 { background: #fff7ed; }
+  .re-bg-indigo-50 { background: #eef2ff; }
+  .re-bg-pink-50 { background: #fdf2f8; }
+</style>
+
+<style is:global>
+  /* Ícones coloridos (Tailwind text-*-600) usados via class no Icon.astro */
+  .re-ic-purple { color: var(--dc-purple); }
+  .re-ic-gold { color: var(--dc-gold); }
+  .re-ic-green { color: #16a34a; }
+  .re-ic-blue { color: #2563eb; }
+  .re-ic-red { color: #dc2626; }
+  .re-ic-orange { color: #ea580c; }
+  .re-ic-indigo { color: #4f46e5; }
+  .re-ic-pink { color: #db2777; }
+
+  /* FAQ com respostas em HTML (listas/links verbatim do React) */
+  .sfaq-a p.mb-3 { margin: 0 0 0.75rem; }
+  .sfaq-a p.mt-3 { margin: 0.75rem 0 0; }
+  .sfaq-a ul.sfaq-ul {
+    list-style: disc;
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  .sfaq-a ul.sfaq-ul.mt-3 { margin-top: 0.75rem; }
+  .sfaq-a ul.sfaq-ul > li + li { margin-top: 0.5rem; }
+  .sfaq-a a.sfaq-link {
+    color: var(--dc-gold);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .sfaq-a a.sfaq-link:hover { color: var(--dc-purple); }
+</style>

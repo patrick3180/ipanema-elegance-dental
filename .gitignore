@@ -51,10 +51,23 @@ pagespeed-api-key.txt
 
 
 # Pipeline de blog (tooling interno + segredos) � nao versionar no repo do site
-Blog/
+/Blog/
 
 # Rascunhos / fotos brutas / variacoes de imagem (NAO versionar - inclui fotos pessoais)
 drafts/
 
 # Python cache
 __pycache__/
+astro/dist
+
+# Astro: assets copiados de ../public no build (fonte da verdade e public/)
+astro/public/lovable-uploads/
+astro/public/links/
+astro/public/*.png
+astro/public/*.ico
+astro/public/*.svg
+astro/public/*.webp
+astro/public/*.txt
+astro/public/*.js
+astro/public/*.json
+astro/public/*.xml

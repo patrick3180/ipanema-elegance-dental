@@ -1,0 +1,197 @@
+---
+/**
+ * EnInternationalPatients — porte fiel de src/components/en/EnInternationalPatients.tsx.
+ * CTA WhatsApp: label do React = sendGCLIDToWebhook("en_home_international_section").
+ */
+const WA_HREF = "https://wa.me/5521993304045?text=Hello!%20I'd%20like%20to%20book%20an%20appointment.";
+
+const features = [
+  {
+    icon: 'globe',
+    title: 'We Reply in Your Language',
+    description:
+      'Our AI-powered concierge, Sofia, replies in your language via WhatsApp — 24/7. Schedule your appointment in English, Spanish, French, or any language you prefer.',
+  },
+  {
+    icon: 'clock',
+    title: 'Office Hours',
+    description:
+      'Monday–Friday: 9 AM – 7 PM (GMT-3, Brasília time). We also respond to WhatsApp messages outside office hours.',
+  },
+  {
+    icon: 'mappin',
+    title: 'Ipanema Location',
+    description:
+      "Rua Visconde de Pirajá, 550 — Suite 1107, Ipanema. Steps from the beach, in one of Rio's safest neighborhoods. Easily accessible by taxi, metro, or rideshare.",
+  },
+];
+---
+<section class="intl-sec">
+  <div class="container">
+    <div class="sec-head">
+      <p class="eyebrow">International Patients</p>
+      <h2 class="heading-lg">Visiting Rio? We're Ready for You.</h2>
+      <div class="gold-sep" role="none"></div>
+      <p class="sec-sub">
+        Whether you're an expat living in Rio or visiting for a few weeks,
+        our practice in Ipanema is ready to welcome you with the same
+        unhurried, personalized care we offer all our patients.
+      </p>
+    </div>
+
+    <div class="intl-grid">
+      {features.map((item) => (
+        <div class="intl-card">
+          <div class="intl-ic">
+            {item.icon === 'globe' && (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            )}
+            {item.icon === 'clock' && (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            )}
+            {item.icon === 'mappin' && (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            )}
+          </div>
+          <h3 class="intl-title">{item.title}</h3>
+          <p class="intl-desc">{item.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="intl-cta">
+      <a
+        class="btn-gold js-wa-cta"
+        data-label="en_home_international_section"
+        href={WA_HREF}
+        target="_blank"
+        rel="noopener"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+        Message Us on WhatsApp
+      </a>
+      <p class="intl-note">
+        Private practice only — no insurance plans accepted.
+        This allows us to dedicate proper time and materials to each patient.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .intl-sec {
+    background: hsl(51 22% 76%); /* bg-dental-beige */
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+  @media (min-width: 768px) {
+    .intl-sec { padding-top: 80px; padding-bottom: 80px; }
+  }
+  @media (min-width: 1024px) {
+    .intl-sec { padding-top: 96px; padding-bottom: 96px; }
+  }
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  @media (min-width: 1024px) {
+    .container { padding: 0 32px; }
+  }
+  .sec-head {
+    max-width: 48rem;
+    margin: 0 auto 56px;
+    text-align: center;
+  }
+  .eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--dental-gold);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .heading-lg {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    font-size: 1.875rem;
+    color: var(--dental-purple);
+    margin-bottom: 16px;
+  }
+  @media (min-width: 768px) {
+    .heading-lg { font-size: 2.25rem; }
+  }
+  .gold-sep {
+    width: 96px;
+    height: 4px;
+    background: var(--dental-gold);
+    margin: 0 auto 24px;
+  }
+  .sec-sub { color: #525252; }
+
+  .intl-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 56rem;
+    margin: 0 auto 48px;
+  }
+  @media (min-width: 768px) {
+    .intl-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .intl-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08); /* shadow-soft */
+    text-align: center;
+  }
+  .intl-ic {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 24px;
+    border-radius: 12px;
+    background: rgb(179 149 95 / 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dental-gold);
+  }
+  .intl-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--dental-purple);
+    margin-bottom: 12px;
+  }
+  .intl-desc {
+    font-size: 0.875rem;
+    color: #525252;
+    line-height: 1.6;
+  }
+
+  .intl-cta { text-align: center; }
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--dental-gold);
+    color: #fff;
+    padding: 16px 32px;
+    border-radius: 8px;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* shadow-lg */
+    transition: all 0.3s;
+    font-weight: 500;
+    font-size: 1.125rem;
+    text-decoration: none;
+  }
+  .btn-gold:hover {
+    background: rgb(179 149 95 / 0.9);
+    transform: translateY(-2px);
+  }
+  .intl-note {
+    font-size: 0.875rem;
+    color: #525252;
+    margin-top: 16px;
+  }
+</style>

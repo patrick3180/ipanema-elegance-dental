@@ -1,0 +1,108 @@
+---
+/**
+ * /lp/estetica-dental-ipanema — porte de src/pages/EsteticaSorrisoLandingPage.tsx
+ * Config: esteticaSorrisoGenericaConfig. Seções: Hero → Problem → Guide →
+ * SocialProof → FAQ → FinalCTA (sem StatsBar/DoctorBio/MidCTA — igual ao React).
+ */
+import LPLayout from '../../layouts/LPLayout.astro';
+import LPHero from '../../components/lp/LPHero.astro';
+import LPProblem from '../../components/lp/LPProblem.astro';
+import LPGuide from '../../components/lp/LPGuide.astro';
+import LPSocialProof from '../../components/lp/LPSocialProof.astro';
+import LPFAQ from '../../components/lp/LPFAQ.astro';
+import LPFinalCTA from '../../components/lp/LPFinalCTA.astro';
+import LPFloatingWhatsApp from '../../components/lp/LPFloatingWhatsApp.astro';
+import { esteticaSorrisoGenericaConfig as config } from '@/config/esteticaSorrisoGenericaConfig';
+
+const waHref = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(config.whatsapp.message)}`;
+const prefix = 'lp-estetica-dental';
+
+// Schema — copiado verbatim do Helmet de EsteticaSorrisoLandingPage.tsx
+const schemas = [
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'LocalBusiness',
+        '@id': 'https://dracarlachristoph.com/#dentist',
+        name: 'Dra. Carla Christoph - Estética Dental',
+        url: 'https://dracarlachristoph.com/lp/estetica-dental-ipanema',
+        telephone: '+5521993304045',
+        priceRange: '$$$',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+          addressLocality: 'Ipanema',
+          addressRegion: 'RJ',
+          postalCode: '22410-901',
+          addressCountry: 'BR',
+        },
+        geo: { '@type': 'GeoCoordinates', latitude: -22.9868, longitude: -43.2018 },
+        openingHours: 'Mo-Fr 09:00-19:00',
+        specialty: 'Estética Dental',
+      },
+      {
+        '@type': 'MedicalProcedure',
+        name: 'Estética Dental',
+        description: config.seo.description,
+        procedureType: 'Dental Esthetic Procedure',
+      },
+    ],
+  }),
+];
+---
+
+<LPLayout
+  title={config.seo.title}
+  description={config.seo.description}
+  canonical="https://dracarlachristoph.com/lp/estetica-dental-ipanema"
+  ogImage="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+  schemas={schemas}
+  whatsappHref={waHref}
+  waLabelPrefix={prefix}
+>
+  <main id="main-content" class="lp-main">
+    <LPHero
+      headline={config.hero.headline}
+      subheadline={config.hero.subheadline}
+      ctaText={config.hero.ctaText}
+      benefits={config.benefits}
+      backgroundImage={config.hero.backgroundImage || ''}
+      whatsappHref={waHref}
+      waLabel={`${prefix}_hero_whatsapp`}
+      imgWidth={800}
+      imgHeight={1200}
+    />
+
+    <LPProblem
+      title={config.problem.title}
+      description={config.problem.description}
+      problems={config.problem.problems}
+    />
+
+    <LPGuide title={config.guide.title} subtitle={config.guide.subtitle} steps={config.guide.steps} />
+
+    <LPSocialProof
+      title={config.socialProof.title}
+      testimonials={config.socialProof.testimonials}
+      stats={config.socialProof.stats}
+    />
+
+    <LPFAQ title={config.faq.title} questions={config.faq.questions} />
+
+    <LPFinalCTA
+      title={config.cta.title}
+      subtitle={config.cta.subtitle}
+      buttonText={config.cta.buttonText}
+      urgency={config.cta.urgency}
+      whatsappHref={waHref}
+      waLabel={`${prefix}_final_whatsapp`}
+    />
+
+    <LPFloatingWhatsApp whatsappHref={waHref} waLabel={`${prefix}_floating_whatsapp`} />
+  </main>
+</LPLayout>
+
+<style>
+  .lp-main { background: #fff; min-height: 100vh; }
+</style>

@@ -1,0 +1,132 @@
+---
+/**
+ * /en/lp/dental-implants — LP EN de Google Ads (noindex via LPLayout).
+ * Porte fiel de src/pages/en/EnDentalImplantsLP.tsx (copy verbatim do
+ * enDentalImplantsLPConfig). Sem seção Services (mesma composição do SPA).
+ */
+import LPLayout from '../../../layouts/LPLayout.astro';
+import EnLPHero from '../../../components/en/lp/EnLPHero.astro';
+import EnLPProblem from '../../../components/en/lp/EnLPProblem.astro';
+import EnLPDoctorBio from '../../../components/en/lp/EnLPDoctorBio.astro';
+import EnLPGuide from '../../../components/en/lp/EnLPGuide.astro';
+import EnLPMidCTA from '../../../components/en/lp/EnLPMidCTA.astro';
+import EnLPSocialProof from '../../../components/en/lp/EnLPSocialProof.astro';
+import EnLPFAQ from '../../../components/en/lp/EnLPFAQ.astro';
+import EnLPFinalCTA from '../../../components/en/lp/EnLPFinalCTA.astro';
+import EnLPFloatingWhatsApp from '../../../components/en/lp/EnLPFloatingWhatsApp.astro';
+import { enDentalImplantsLPConfig as config } from '@/config/enDentalImplantsLPConfig';
+
+const labelPrefix = 'en-lp-implants';
+const waHref = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(config.whatsapp.message)}`;
+
+// Schema @graph copiado VERBATIM do Helmet de EnDentalImplantsLP.tsx
+const schemas = [
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Dentist',
+        '@id': 'https://dracarlachristoph.com/#dentist',
+        name: 'Dr. Carla Christoph',
+        description: config.seo.description,
+        url: 'https://dracarlachristoph.com/en/lp/dental-implants',
+        telephone: '+5521993304045',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+          addressLocality: 'Ipanema',
+          addressRegion: 'RJ',
+          postalCode: '22410-901',
+          addressCountry: 'BR',
+        },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: '-22.9866',
+          longitude: '-43.2024',
+        },
+        speciality: ['Prosthodontics', 'Implant Dentistry'],
+        availableLanguage: ['Portuguese', 'English', 'Spanish'],
+        image: 'https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
+      },
+      {
+        '@type': 'WebPage',
+        url: 'https://dracarlachristoph.com/en/lp/dental-implants',
+        datePublished: '2026-04-10',
+        dateModified: '2026-04-10',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'MedicalProcedure',
+        name: 'Dental Implants',
+        description:
+          'Oral rehabilitation with biocompatible titanium implants and implant-supported prostheses. Single implants, bridges, All-on-4 protocols, and overdentures.',
+        procedureType: 'Dental',
+        provider: { '@id': 'https://dracarlachristoph.com/#dentist' },
+        areaServed: { '@type': 'City', name: 'Rio de Janeiro' },
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: config.faq.questions.map((q) => ({
+          '@type': 'Question',
+          name: q.question,
+          acceptedAnswer: { '@type': 'Answer', text: q.answer },
+        })),
+      },
+    ],
+  }),
+];
+---
+
+<LPLayout
+  title={config.seo.title}
+  description={config.seo.description}
+  canonical="https://dracarlachristoph.com/en/lp/dental-implants"
+  ogImage="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+  schemas={schemas}
+  lang="en"
+  whatsappHref={waHref}
+  waLabelPrefix={labelPrefix}
+>
+  <main id="main-content">
+    <EnLPHero
+      headline={config.hero.headline}
+      subheadline={config.hero.subheadline}
+      ctaText={config.hero.ctaText}
+      benefits={config.benefits}
+      whatsappHref={waHref}
+      labelPrefix={labelPrefix}
+    />
+
+    <EnLPProblem
+      title={config.problem.title}
+      description={config.problem.description}
+      problems={config.problem.problems}
+    />
+
+    <EnLPDoctorBio />
+
+    <EnLPGuide title={config.guide.title} subtitle={config.guide.subtitle} steps={config.guide.steps} />
+
+    <EnLPMidCTA whatsappHref={waHref} labelPrefix={labelPrefix} />
+
+    <EnLPSocialProof
+      title={config.socialProof.title}
+      testimonials={config.socialProof.testimonials}
+      stats={config.socialProof.stats}
+    />
+
+    <EnLPFAQ title={config.faq.title} questions={config.faq.questions} />
+
+    <EnLPFinalCTA
+      title={config.cta.title}
+      subtitle={config.cta.subtitle}
+      buttonText={config.cta.buttonText}
+      urgency={config.cta.urgency}
+      whatsappHref={waHref}
+      labelPrefix={labelPrefix}
+    />
+
+    <EnLPFloatingWhatsApp whatsappHref={waHref} labelPrefix={labelPrefix} />
+  </main>
+</LPLayout>

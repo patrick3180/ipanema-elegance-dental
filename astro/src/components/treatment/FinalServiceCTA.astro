@@ -1,0 +1,138 @@
+---
+/**
+ * FinalServiceCTA — porte fiel de src/components/treatment/FinalServiceCTA.tsx (pt).
+ * Seção final com gradiente roxo→dourado e CTA WhatsApp (tracking js-wa-cta global).
+ * waLabel: "<slug>_final_whatsapp"; waMessage = copy verbatim da página React.
+ */
+import Icon from './Icon.astro';
+import '../../styles/treatment.css';
+
+interface Props {
+  /** opcional — algumas páginas React não passam ícone (span vazio) */
+  icon?: string;
+  title: string;
+  description: string;
+  ctaText?: string;
+  waMessage: string;
+  waLabel: string;
+  variant?: 'default' | 'urgency';
+  footnote?: string;
+}
+
+const {
+  icon,
+  title,
+  description,
+  ctaText = 'Agendar Consulta',
+  waMessage,
+  waLabel,
+  variant = 'default',
+  footnote = 'WhatsApp: (21) 99330-4045 | Atendimento 24h',
+} = Astro.props;
+
+const waHref = `https://wa.me/5521993304045?text=${encodeURIComponent(waMessage)}`;
+---
+
+<section class="fcta bg-gradient-purple-gold">
+  <div class="container-custom fcta-inner">
+    <div class="fcta-head">
+      <span class="fcta-icon">
+        {icon && <Icon name={icon} size={32} />}
+      </span>
+      <h2 class="heading-lg fcta-title">{title}</h2>
+    </div>
+
+    <p class="fcta-desc">{description}</p>
+
+    <div class="fcta-actions">
+      <a
+        class:list={['fcta-btn', 'js-wa-cta', { 'fcta-btn-urgency': variant === 'urgency' }]}
+        data-label={waLabel}
+        href={waHref}
+        target="_blank"
+        rel="noopener"
+      >
+        <Icon name="arrow-right" size={20} />
+        {ctaText}
+      </a>
+    </div>
+
+    {footnote && <p class="fcta-footnote">{footnote}</p>}
+  </div>
+</section>
+
+<style>
+  .fcta {
+    padding-block: 5rem;
+    color: #fff;
+  }
+  .fcta-inner {
+    text-align: center;
+  }
+  .fcta-head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .fcta-icon {
+    width: 2rem;
+    height: 2rem;
+    color: var(--dc-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .fcta-title {
+    color: #fff;
+    margin: 0;
+  }
+  .fcta-desc {
+    font-size: 1.25rem;
+    margin: 0 auto 2rem;
+    opacity: 0.9;
+    max-width: 42rem;
+  }
+  .fcta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
+  @media (min-width: 640px) {
+    .fcta-actions {
+      flex-direction: row;
+    }
+  }
+  .fcta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--dc-gold);
+    color: var(--dc-purple);
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 1.125rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .fcta-btn:hover {
+    opacity: 0.9;
+  }
+  .fcta-btn-urgency {
+    background: #dc2626;
+    color: #fff;
+  }
+  .fcta-btn-urgency:hover {
+    background: #b91c1c;
+    opacity: 1;
+  }
+  .fcta-footnote {
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    opacity: 0.75;
+  }
+</style>

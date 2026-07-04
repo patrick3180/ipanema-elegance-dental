@@ -1,11 +1,11 @@
 {
-  "buildCommand": "npm run build && node scripts/generate-blog-html.js && node scripts/generate-static-meta.cjs",
-  "outputDirectory": "dist",
-  "framework": "vite",
+  "buildCommand": "cd astro && npm install && npm run build",
+  "outputDirectory": "astro/dist",
   "regions": [
     "gru1"
   ],
   "cleanUrls": true,
+  "trailingSlash": false,
   "redirects": [
     {
       "source": "/lp/profilaxia-dental-ipanema",
@@ -18,8 +18,23 @@
       "statusCode": 301
     },
     {
+      "source": "/diferenciais",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
       "source": "/lentes-de-contato-dental-e-facetas",
       "destination": "/lentes-de-contato-dental-e-facetas-de-resina",
+      "statusCode": 301
+    },
+    {
+      "source": "/lentes-de-contato-dental-e-facetas-de-porcelana",
+      "destination": "/lentes-de-contato-dental-e-facetas-de-resina",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/porcelain-veneers",
+      "destination": "/en/veneers-and-lenses",
       "statusCode": 301
     },
     {
@@ -80,14 +95,6 @@
     {
       "source": "/robots.txt",
       "destination": "/api/robots"
-    },
-    {
-      "source": "/en/lp/:path*",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
     }
   ],
   "headers": [

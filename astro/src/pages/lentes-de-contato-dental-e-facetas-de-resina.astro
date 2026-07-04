@@ -1,0 +1,1995 @@
+---
+/**
+ * /lentes-de-contato-dental-e-facetas-de-resina — porte VERBATIM de
+ * src/pages/LentesEFacetas.tsx.
+ * Meta/canonical: scripts/generate-static-meta.cjs
+ * ('/lentes-de-contato-dental-e-facetas-de-resina').
+ * Schemas: MedicalProcedure + Dentist (generate-static-meta.cjs) +
+ * FAQPage (faqs da página, como o Helmet do React) +
+ * MedicalWebPage (verbatim do Helmet do .tsx) + BreadcrumbList (hero).
+ * Accordions (Radix) → <details>/<summary> nativos; ComparisonTable do blog
+ * portada como tabela estática com a mesma lógica de células (Sim/Não → ícones).
+ */
+import SiteLayout from '../layouts/SiteLayout.astro';
+import TreatmentHero from '../components/treatment/TreatmentHero.astro';
+import StatsBar from '../components/treatment/StatsBar.astro';
+import SectionDivider from '../components/treatment/SectionDivider.astro';
+import ProcessTimeline from '../components/treatment/ProcessTimeline.astro';
+import QuickAnswerBox from '../components/treatment/QuickAnswerBox.astro';
+import DoctorBioSection from '../components/treatment/DoctorBioSection.astro';
+import EmpatheticPainPoints from '../components/treatment/EmpatheticPainPoints.astro';
+import ServiceFAQ from '../components/treatment/ServiceFAQ.astro';
+import FinalServiceCTA from '../components/treatment/FinalServiceCTA.astro';
+import RelatedTreatments from '../components/treatment/RelatedTreatments.astro';
+import Icon from '../components/treatment/Icon.astro';
+import '../styles/treatment.css';
+
+// FAQs otimizadas - 12 perguntas completas (verbatim do .tsx)
+const faqs = [
+  { question: 'Qual a diferença entre lente de contato dental e faceta de resina?', answer: 'Lentes de contato dental são lâminas ultrafinas de porcelana (0,2-0,5mm) que exigem preparo mínimo do dente, ideais para mudanças estéticas duradouras com máxima naturalidade. Facetas de resina são restaurações mais espessas (0,7-1,5mm) feitas diretamente no consultório, com custo mais acessível. Lentes duram 15-20 anos e não mancham, enquanto facetas de resina duram 5-8 anos e podem necessitar polimento periódico.' },
+  { question: 'É necessário desgastar muito os meus dentes?', answer: 'Não. A filosofia do consultório é a máxima preservação da estrutura dentária. Para lentes, o preparo é mínimo (0,1-0,3mm quando necessário), limitado ao esmalte superficial. Para facetas de resina, o preparo também é conservador. O importante é garantir adaptação perfeita e resultado estético duradouro preservando ao máximo seus dentes naturais.' },
+  { question: 'Quanto tempo dura o tratamento completo?', answer: 'Lentes de contato dental: 2-3 consultas em 15-20 dias. Primeira consulta para planejamento e moldagem digital, segunda para aprovação do Test Drive do Sorriso, terceira para cimentação. Facetas de resina: 1-2 consultas, pois são confeccionadas diretamente no consultório. Trabalhamos com agenda espaçada para garantir tempo adequado em cada sessão.' },
+  { question: 'O tratamento para melhorar a estética do sorriso dói?', answer: 'Não. Todos os procedimentos estéticos são realizados com o máximo de conforto, utilizando anestesia local sempre que necessário. A cimentação das lentes é um processo delicado que não causa dor. Pode haver sensibilidade leve nos primeiros dias, facilmente controlada com analgésicos simples se necessário. A prioridade é uma experiência tranquila e confortável.' },
+  { question: 'O que é o Test Drive do Sorriso (mock-up)?', answer: 'É uma técnica onde criamos seu novo sorriso com resina provisória não adesiva diretamente na sua boca, sem desgastar os dentes. Você pode se olhar no espelho, tirar fotos, vídeos, falar, sorrir. É uma experiência única! Ajustamos juntos até ficar do seu jeito. Só depois de você aprovar 100% é que partimos para o tratamento definitivo. Este é um dos nossos maiores diferenciais.' },
+  { question: 'As lentes podem parecer artificiais?', answer: 'Este é um dos maiores medos, e a nossa maior preocupação é evitá-lo. Quando bem executadas por uma especialista, absolutamente não. Usamos cerâmicas de última geração que mimetizam perfeitamente a beleza do dente natural. O segredo está na análise facial completa, estratificação de cor personalizada e proporções individualizadas. O resultado é um sorriso elogiado pela naturalidade.' },
+  { question: 'Posso fazer lentes mesmo tendo os dentes tortos?', answer: 'Sim, desde que o desalinhamento seja leve. Lentes podem corrigir pequenos desalinhamentos, giros e espaços. Porém, em casos de apinhamento severo ou problemas de mordida significativos, pode ser necessário ortodontia prévia para um resultado duradouro e saudável. Na consulta, avalio seu caso específico e recomendo a melhor abordagem.' },
+  { question: 'Preciso fazer em todos os dentes?', answer: 'Não necessariamente. Muitos casos envolvem apenas os dentes anteriores superiores (4 a 10 dentes). Na consulta, analiso seu sorriso para determinar quantos dentes precisam ser incluídos para um resultado harmonioso. O planejamento é individualizado para cada pessoa.' },
+  { question: 'Qual o investimento para lentes de contato dental e facetas em Ipanema?', answer: 'O investimento varia conforme o número de dentes tratados, complexidade do caso e tipo de material escolhido. Lentes de contato dental requerem maior investimento devido ao material cerâmico importado e durabilidade superior (15-20 anos). Facetas de resina oferecem excelente custo-benefício para quem busca resultado imediato com investimento mais acessível. Oferecemos planos de pagamento facilitados. O valor reflete toda a experiência, tecnologia avançada e acompanhamento personalizado. Consulte valores detalhados na consulta.' },
+  { question: 'Lentes podem manchar com café, vinho ou cigarro?', answer: 'A cerâmica utilizada nas lentes não mancha. Diferente das facetas de resina, o material cerâmico é impermeável e mantém o brilho e cor originais permanentemente. Você pode continuar consumindo café, vinho tinto, chá e outros alimentos sem preocupação. Apenas os dentes naturais adjacentes requerem atenção com clareamento prévio para não criarem contraste.' },
+  { question: 'Como é a manutenção das lentes e facetas?', answer: 'Lentes de cerâmica: Higiene oral normal (escova, fio dental, enxaguante), evitar morder objetos duros (canetas, unhas, gelo), uso de placa miorrelaxante se você range os dentes à noite. Retornos semestrais para acompanhamento e polimento profissional. Facetas de resina: Mesmos cuidados, porém requerem polimento profissional a cada 6 meses para manter o brilho. Ambas podem durar muitos anos com os cuidados adequados.' },
+  { question: 'Como funciona a consulta de planejamento?', answer: 'É uma conversa aprofundada para entendermos seus desejos e expectativas. Realizamos escaneamento digital com iTero Element 5D e uma análise completa do seu sorriso e face. Juntos, definimos o melhor plano de tratamento, explicando os prós e contras de cada opção (lentes vs facetas). Você sairá da consulta com todas as informações necessárias para tomar uma decisão informada.' },
+];
+
+// Tabela comparativa (verbatim do comparisonData do .tsx — header + 9 linhas)
+const comparisonRows = [
+  { c: 'Espessura', a: '0,2-0,5mm', b: '0,7-1,5mm' },
+  { c: 'Preparo dental', a: 'Mínimo', b: 'Mínimo a moderado' },
+  { c: 'Durabilidade', a: '15-20 anos', b: '5-8 anos' },
+  { c: 'Manchamento', a: 'Não mancha', b: 'Pode manchar' },
+  { c: 'Consultas necessárias', a: '2-3 (15-20 dias)', b: '1-2 (imediato)' },
+  { c: 'Possibilidade de reparo', a: 'Não', b: 'Sim' },
+  { c: 'Estética', a: 'Translucidez superior', b: 'Muito boa' },
+  { c: 'Investimento', a: 'Maior investimento', b: 'Acessível' },
+  { c: 'Resistência', a: 'Alta', b: 'Moderada' },
+];
+
+// Cards "Quando as Lentes e Facetas São Indicadas?" (verbatim do .tsx)
+const indicacoes = [
+  { icon: 'droplet', iconClass: 'ind-ic-purple', gradClass: 'ind-grad-purple', title: 'Dentes Manchados', description: 'Manchas resistentes ao clareamento, por tetraciclina ou fluorose' },
+  { icon: 'maximize-2', iconClass: 'ind-ic-blue', gradClass: 'ind-grad-blue', title: 'Espaços entre Dentes', description: 'Diastemas que comprometem a harmonia do sorriso' },
+  { icon: 'ruler', iconClass: 'ind-ic-green', gradClass: 'ind-grad-green', title: 'Formato Irregular', description: 'Dentes pequenos, desgastados ou com forma inadequada' },
+  { icon: 'palette', iconClass: 'ind-ic-yellow', gradClass: 'ind-grad-yellow', title: 'Cor Inadequada', description: 'Dentes escurecidos ou com tonalidade desigual' },
+  { icon: 'alert-circle', iconClass: 'ind-ic-red', gradClass: 'ind-grad-red', title: 'Fraturas e Lascas', description: 'Pequenos defeitos que afetam a estética' },
+  { icon: 'sparkles', iconClass: 'ind-ic-pink', gradClass: 'ind-grad-pink', title: 'Renovação do Sorriso', description: 'Desejo de um sorriso mais harmônico e jovem' },
+];
+
+const waMidComparacao = `https://wa.me/5521993304045?text=${encodeURIComponent('Olá! Vi a página sobre Lentes e Facetas e gostaria de saber qual seria a melhor opção pro meu caso.')}`;
+const waMidTestDrive = `https://wa.me/5521993304045?text=${encodeURIComponent('Olá! Gostaria de agendar uma consulta para fazer o Test Drive do Sorriso.')}`;
+
+const PROVIDER = {
+  '@type': 'Dentist',
+  name: 'Dra. Carla Christoph',
+  telephone: '+5521993304045',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+    addressLocality: 'Ipanema',
+    addressRegion: 'RJ',
+    postalCode: '22410-901',
+    addressCountry: 'BR',
+  },
+};
+
+const schemas = [
+  // MedicalProcedure — copiado de generate-static-meta.cjs ('/lentes-de-contato-dental-e-facetas-de-resina')
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'MedicalProcedure',
+    name: 'Lentes de Contato Dental e Facetas',
+    description: 'Aplicação de lâminas ultrafinas de porcelana ou facetas de resina para correção estética dental com preparo mínimo e Test Drive do Sorriso',
+    procedureType: 'Dental',
+    url: 'https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina',
+    provider: PROVIDER,
+  }),
+  // Dentist — generateDentistSchema() de generate-static-meta.cjs
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Dentist',
+    name: 'Dra. Carla Christoph',
+    description: 'Dentista especialista em Prótese Dental e Reabilitação Oral em Ipanema, Rio de Janeiro. Mais de 20 anos de experiência.',
+    telephone: '+5521993304045',
+    url: 'https://dracarlachristoph.com',
+    image: 'https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
+    priceRange: '$$$',
+    address: PROVIDER.address,
+    openingHoursSpecification: [
+      { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '19:00' },
+    ],
+    hasCredential: { '@type': 'EducationalOccupationalCredential', credentialCategory: 'CRO-RJ', recognizedBy: { '@type': 'Organization', name: 'CRO-RJ' }, identifier: '27.509' },
+    aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '17', bestRating: '5' },
+    availableLanguage: ['pt-BR', 'en'],
+  }),
+  // FAQPage — mesmas perguntas/respostas exibidas na página (Helmet do React)
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  }),
+  // MedicalWebPage — verbatim do Helmet do .tsx
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'MedicalWebPage',
+    name: 'Lentes de Contato Dental e Facetas de Resina em Ipanema',
+    description: 'Lentes de contato dental ultrafinas e facetas de resina com Dra. Carla Christoph, especialista em Prótese. 20+ anos de experiência em Ipanema.',
+    url: 'https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina',
+    medicalSpecialty: 'Cosmetic Dentistry',
+    author: {
+      '@type': 'Dentist',
+      name: 'Dra. Carla Christoph',
+      qualification: 'Especialista em Prótese Dental',
+      experienceYears: 20,
+      areaServed: { '@type': 'City', name: 'Ipanema, Rio de Janeiro' },
+    },
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'BRL',
+      availability: 'https://schema.org/InStock',
+      description: 'Consulte valores personalizados na consulta',
+    },
+  }),
+];
+---
+
+<SiteLayout
+  title="Lentes de Contato Dental e Facetas de Resina em Ipanema | Dra. Carla Christoph"
+  description="Lentes de contato dental e facetas de resina em Ipanema com Dra. Carla Christoph. Test Drive do Sorriso exclusivo. 20+ anos de experiência. CRO-RJ 27.509."
+  canonical="https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina"
+  preloadImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+  schemas={schemas}
+>
+  <Fragment slot="head">
+    <meta name="keywords" content="lentes de contato dental, facetas de resina, ipanema, dra carla christoph, test drive sorriso, porcelana, especialista protese" />
+    <link rel="alternate" hreflang="pt-BR" href="https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina" />
+    <link rel="alternate" hreflang="en" href="https://dracarlachristoph.com/en/veneers-and-lenses" />
+    <link rel="alternate" hreflang="x-default" href="https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina" />
+  </Fragment>
+
+  <main id="main-content">
+    <TreatmentHero
+      title="Estética Dental que Não Parece Artificial — Test Drive do Sorriso"
+      subtitle="Estética Dental com a Dra. Carla Christoph"
+      description="Simulação provisória na sua boca antes de começar. Você vê, sente e aprova. Lentes de porcelana ou facetas de resina — cada caso tem sua indicação. Escaneamento digital com iTero Element 5D e cerâmica de alta translucidez."
+      badges={['20+ anos de experiência', 'Test Drive do Sorriso', 'CRO-RJ 27.509']}
+      doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+      breadcrumbs={[
+        { label: 'Início', href: '/' },
+        { label: 'Tratamentos', href: '/servicos' },
+        { label: 'Lentes e Facetas' },
+      ]}
+      waLabel="lentes-e-facetas_hero_whatsapp"
+    />
+
+    <!-- Quick Answer Box -->
+    <section class="qa-section">
+      <div class="container-custom">
+        <QuickAnswerBox answer="Lentes de contato dental são lâminas ultrafinas de porcelana (0,2-0,5mm) aplicadas sobre os dentes com preparo mínimo, ideais para mudanças estéticas duradouras. Facetas de resina são restaurações mais espessas (0,7-1,5mm) feitas diretamente no consultório. No consultório da Dra. Carla Christoph em Ipanema, oferecemos Test Drive do Sorriso (mock-up) para você visualizar o resultado antes. Lentes duram 15-20 anos e não mancham; facetas duram 5-8 anos. O tratamento leva de 2-3 consultas (15-20 dias) para lentes e 1-2 consultas para facetas." />
+      </div>
+    </section>
+
+    <!-- Seção Empática -->
+    <EmpatheticPainPoints
+      title="Você se identifica com alguma dessas situações?"
+      painPoints={[
+        { icon: 'sparkles', iconColor: 'purple', strong: 'Insatisfação com a cor ou forma dos dentes', description: 'que faz você evitar sorrir com naturalidade em fotos e conversas?', borderColor: 'purple' },
+        { icon: 'alert-circle', iconColor: 'gold', strong: 'Dentes desalinhados, com espaços ou lascados', description: 'que afetam sua confiança profissional e social?', borderColor: 'gold' },
+        { icon: 'heart', iconColor: 'purple-soft', strong: 'Medo de um resultado artificial', description: 'ou de um desgaste excessivo dos dentes naturais?', borderColor: 'purple-soft' },
+      ]}
+    >
+      <Fragment slot="conclusion">Lentes e facetas bem planejadas entregam naturalidade e harmonia — sem exageros.<br class="md-only" /> Oferecemos o Test Drive do Sorriso para você aprovar antes de começar.</Fragment>
+    </EmpatheticPainPoints>
+
+    <SectionDivider variant="with-icon" icon="sparkles" />
+
+    <!-- Três Cards de Benefícios Genéricos -->
+    <section class="benefits">
+      <div class="wrap-6xl">
+        <div class="sec-head">
+          <h2 class="sec-h2">Por Que Escolher Lentes ou Facetas?</h2>
+          <p class="sec-sub">Resultados que vão além da estética</p>
+        </div>
+
+        <div class="ben-grid">
+          <div class="ben-card shadow-soft">
+            <div class="ben-head">
+              <div class="ben-icon ben-icon-red">
+                <Icon name="heart" size={24} class="ic-red" />
+              </div>
+              <h3 class="ben-title">Autoestima e Confiança</h3>
+            </div>
+            <ul class="ben-list">
+              <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Mude a forma como você se vê e é visto</span></li>
+              <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Sorria sem medo em fotos e eventos sociais</span></li>
+              <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Recupere a confiança para se expressar plenamente</span></li>
+              <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Impacto positivo nas relações pessoais e profissionais</span></li>
+              <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Sensação de bem-estar e satisfação com a própria imagem</span></li>
+            </ul>
+          </div>
+
+          <div class="ben-card shadow-soft">
+            <div class="ben-head">
+              <div class="ben-icon ben-icon-purple">
+                <Icon name="sparkles" size={24} class="tx-purple" />
+              </div>
+              <h3 class="ben-title">Naturalidade e Harmonia Facial</h3>
+            </div>
+            <ul class="ben-list">
+              <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Análise facial completa para harmonia com suas características únicas</span></li>
+              <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Proporções individualizadas respeitando sua idade e personalidade</span></li>
+              <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Resultado natural que recebe elogios pela beleza, não pela aparência de 'dentes feitos'</span></li>
+              <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Textura e cor que imitam perfeitamente dentes naturais</span></li>
+              <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Harmonização que realça sua beleza natural</span></li>
+            </ul>
+          </div>
+
+          <div class="ben-card shadow-soft">
+            <div class="ben-head">
+              <div class="ben-icon ben-icon-blue">
+                <Icon name="shield" size={24} class="ic-blue" />
+              </div>
+              <h3 class="ben-title">Tecnologia e Cuidado Integrado</h3>
+            </div>
+            <ul class="ben-list">
+              <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>iTero Element 5D: moldagem digital sem desconforto</span></li>
+              <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Test Drive do Sorriso: aprove ANTES do tratamento definitivo</span></li>
+              <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Saúde sempre antes da estética (avaliação periodontal completa)</span></li>
+              <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Técnicas conservadoras que preservam seus dentes naturais</span></li>
+              <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Acompanhamento de longo prazo para longevidade do tratamento</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Modalidades - Lentes vs Facetas -->
+    <section class="modalidades">
+      <div class="wrap-6xl">
+        <div class="sec-head">
+          <h2 class="sec-h2">Lentes ou Facetas: Entenda as Diferenças</h2>
+          <p class="sec-sub">Cada sorriso é único. Conheça as opções para uma escolha informada.</p>
+        </div>
+
+        <div class="mod-grid">
+          <!-- Card 1 - Lentes de Contato Dental -->
+          <div class="mod-card shadow-soft">
+            <div class="mod-img-wrap">
+              <img
+                src="/Lentes.webp"
+                alt="Lentes de contato dental em cerâmica ultra-finas"
+                width="512"
+                height="512"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="mod-overlay"></div>
+              <div class="mod-caption">
+                <h3>Lentes de Contato Dental em Cerâmica</h3>
+                <p>As lentes de contato dental são lâminas ultra-finas de cerâmica (0,2-0,5mm) que se aderem à superfície frontal dos dentes. Indicadas para quem busca mudança estética significativa com máxima conservação da estrutura dental original.</p>
+              </div>
+            </div>
+
+            <div class="mod-acc">
+              <details class="mod-item">
+                <summary><span>Características Principais</span><svg class="mod-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                <div class="mod-body">
+                  <ul class="mod-ul">
+                    <li><span class="mod-arrow">▸</span><span><strong>Espessura:</strong> 0,2 a 0,5mm (ultra-fina)</span></li>
+                    <li><span class="mod-arrow">▸</span><span><strong>Material:</strong> Cerâmica de dissilicato de lítio ou feldspática</span></li>
+                    <li><span class="mod-arrow">▸</span><span><strong>Preparo:</strong> Mínimo (0,1-0,3mm) quando necessário</span></li>
+                    <li><span class="mod-arrow">▸</span><span><strong>Durabilidade:</strong> 15 a 20 anos</span></li>
+                    <li><span class="mod-arrow">▸</span><span><strong>Estética:</strong> Translucidez superior, aspecto natural</span></li>
+                    <li><span class="mod-arrow">▸</span><span><strong>Resistência:</strong> Não mancha com alimentos ou bebidas</span></li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="mod-item">
+                <summary><span>Vantagens e Considerações</span><svg class="mod-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                <div class="mod-body">
+                  <div class="mod-vc">
+                    <div>
+                      <h4 class="mod-h4-green"><Icon name="check-circle" size={16} /> Vantagens</h4>
+                      <ul class="mod-ul">
+                        <li><span class="mod-tick">✓</span><span>Máxima preservação dental (até 95%)</span></li>
+                        <li><span class="mod-tick">✓</span><span>Resultado extremamente natural</span></li>
+                        <li><span class="mod-tick">✓</span><span>Não altera sensibilidade na maioria dos casos</span></li>
+                        <li><span class="mod-tick">✓</span><span>Resistente a manchas permanentemente</span></li>
+                        <li><span class="mod-tick">✓</span><span>Biocompatível e sem alergias</span></li>
+                        <li><span class="mod-tick">✓</span><span>Durabilidade comprovada de longo prazo</span></li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 class="mod-h4-gray">Considerações</h4>
+                      <ul class="mod-ul">
+                        <li><span class="mod-dot">•</span><span>Investimento mais elevado</span></li>
+                        <li><span class="mod-dot">•</span><span>Requer 2-3 consultas (15-20 dias de processo)</span></li>
+                        <li><span class="mod-dot">•</span><span>Laboratório especializado (tempo de confecção)</span></li>
+                        <li><span class="mod-dot">•</span><span>Não permite reparos parciais</span></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </details>
+
+              <details class="mod-item">
+                <summary><span>Ideal Para</span><svg class="mod-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                <div class="mod-body">
+                  <div class="mod-ideal">
+                    <p>Quem busca o máximo em estética e durabilidade, deseja preservar ao máximo os dentes naturais e está disposto a investir em um tratamento de cerâmica de longa duração.</p>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <!-- Card 2 - Facetas de Resina -->
+          <div class="mod-card shadow-soft">
+            <div class="mod-img-wrap">
+              <img
+                src="/lovable-uploads/Faceta de Resina.webp"
+                alt="Facetas de resina composta sendo aplicadas"
+                width="800"
+                height="800"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="mod-overlay"></div>
+              <div class="mod-caption">
+                <h3>Facetas de Resina Composta</h3>
+                <p>Restaurações diretas confeccionadas artesanalmente no próprio consultório. Excelente opção para quem busca melhoria estética imediata com investimento mais acessível.</p>
+              </div>
+            </div>
+
+            <div class="mod-acc">
+              <details class="mod-item">
+                <summary><span>Características Principais</span><svg class="mod-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                <div class="mod-body">
+                  <ul class="mod-ul">
+                    <li><span class="mod-arrow">▸</span><span><strong>Espessura:</strong> 0,7 a 1,5mm</span></li>
+                    <li><span class="mod-arrow">▸</span><span><strong>Material:</strong> Resina composta nanoparticulada</span></li>
+                    <li><span class="mod-arrow">▸</span><span><strong>Preparo:</strong> Mínimo a moderado</span></li>
+                    <li><span class="mod-arrow">▸</span><span><strong>Durabilidade:</strong> 5 a 8 anos</span></li>
+                    <li><span class="mod-arrow">▸</span><span><strong>Estética:</strong> Muito boa, resultado imediato</span></li>
+                    <li><span class="mod-arrow">▸</span><span><strong>Aplicação:</strong> Direto na boca em 1-2 consultas</span></li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="mod-item">
+                <summary><span>Vantagens e Considerações</span><svg class="mod-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                <div class="mod-body">
+                  <div class="mod-vc">
+                    <div>
+                      <h4 class="mod-h4-green"><Icon name="check-circle" size={16} /> Vantagens</h4>
+                      <ul class="mod-ul">
+                        <li><span class="mod-tick">✓</span><span>Investimento mais acessível</span></li>
+                        <li><span class="mod-tick">✓</span><span>Resultado em 1-2 consultas (processo rápido)</span></li>
+                        <li><span class="mod-tick">✓</span><span>Confecção direta sem laboratório</span></li>
+                        <li><span class="mod-tick">✓</span><span>Reparos possíveis se necessário</span></li>
+                        <li><span class="mod-tick">✓</span><span>Ótima relação custo-benefício</span></li>
+                        <li><span class="mod-tick">✓</span><span>Resultado em menos tempo</span></li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 class="mod-h4-gray">Considerações</h4>
+                      <ul class="mod-ul">
+                        <li><span class="mod-dot">•</span><span>Durabilidade menor que cerâmica</span></li>
+                        <li><span class="mod-dot">•</span><span>Pode manchar com o tempo (requer polimento periódico)</span></li>
+                        <li><span class="mod-dot">•</span><span>Menos resistente a fraturas</span></li>
+                        <li><span class="mod-dot">•</span><span>Necessita substituição mais frequente</span></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </details>
+
+              <details class="mod-item">
+                <summary><span>Ideal Para</span><svg class="mod-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                <div class="mod-body">
+                  <div class="mod-ideal">
+                    <p>Quem deseja melhorar o sorriso com investimento menor, casos menos complexos, resultado imediato, ou como opção temporária enquanto planeja um tratamento definitivo.</p>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="sparkles" />
+
+    <!-- Tabela Comparativa -->
+    <section class="cmp-section">
+      <div class="wrap-6xl">
+        <div class="sec-head">
+          <h2 class="sec-h2">Comparação Detalhada: Lentes vs Facetas</h2>
+          <p class="sec-sub">Entenda lado a lado as características de cada tratamento</p>
+        </div>
+
+        <div class="cmp-scroll">
+          <div class="cmp-block">
+            <h3 class="cmp-h3">Comparação</h3>
+            <div class="cmp-scroll">
+              <table class="cmp-table">
+                <thead>
+                  <tr>
+                    <th class="cmp-th-left">Critério</th>
+                    <th>Lentes de Cerâmica</th>
+                    <th>Facetas de Resina</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonRows.map((row) => (
+                    <tr>
+                      <td class="cmp-crit">{row.c}</td>
+                      <td class="cmp-center">
+                        {row.a === 'Sim' ? <Icon name="check" size={20} class="cmp-yes" /> : row.a === 'Não' ? <Icon name="x" size={20} class="cmp-no" /> : <span class="cmp-val">{row.a}</span>}
+                      </td>
+                      <td class="cmp-center">
+                        {row.b === 'Sim' ? <Icon name="check" size={20} class="cmp-yes" /> : row.b === 'Não' ? <Icon name="x" size={20} class="cmp-no" /> : <span class="cmp-val">{row.b}</span>}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="cmp-note">
+          <p>A escolha ideal depende do seu caso específico. Na consulta, avalio detalhadamente e recomendo a melhor opção para você.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MidCTA — momento de decisão após tabela comparativa -->
+    <section class="midcta" aria-label="Agendar consulta">
+      <div class="midcta-container">
+        <div class="midcta-inner">
+          <p class="midcta-heading">Qual seria a melhor opção pro seu caso?</p>
+          <a
+            class="midcta-btn js-wa-cta"
+            data-label="lentes-e-facetas_mid-comparacao_whatsapp"
+            href={waMidComparacao}
+            target="_blank"
+            rel="noopener"
+          >
+            <Icon name="message-circle" size={20} />
+            Conversar pelo WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="star" />
+
+    <DoctorBioSection
+      sectionTitle="Sua Dentista para Estética Dental"
+      doctorName="Dra. Carla Christoph"
+      doctorSubtitle="CRO-RJ 27.509 | Especialista em Prótese Dentária"
+      doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+      credentials={[
+        { icon: 'award', title: 'Formação', description: 'Especialista em Prótese Dentária e Implantodontia' },
+        { icon: 'star', title: 'Experiência', description: 'Centenas de casos de lentes e facetas realizados' },
+        { icon: 'sparkles', title: 'Atualização', description: 'Formação contínua em Design de Sorrisos e técnicas avançadas' },
+        { icon: 'shield', title: 'Tecnologia', description: 'iTero Element 5D e planejamento digital avançado' },
+      ]}
+      quote="Meu objetivo não é criar sorrisos perfeitos, mas sorrisos verdadeiros. Cada pessoa tem uma beleza única que merece ser realçada, nunca padronizada."
+    >
+      <p>Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.</p>
+      <p>Em estética dental, utiliza escaneamento iTero e o Test Drive do Sorriso para que o paciente visualize o resultado antes de começar. Cada lente e cada faceta é planejada para harmonizar com as características faciais e o estilo do paciente.</p>
+    </DoctorBioSection>
+
+    <!-- Test Drive do Sorriso - Destaque Especial -->
+    <section class="td-section">
+      <div class="wrap-5xl">
+        <div class="sec-head">
+          <div class="td-badge">
+            <Icon name="star" size={20} class="tx-gold" />
+            <span>GRANDE DIFERENCIAL</span>
+          </div>
+          <h2 class="sec-h2">Test Drive do Sorriso (Mock-up)</h2>
+          <p class="td-sub">Veja e aprove seu novo sorriso ANTES de qualquer procedimento definitivo</p>
+        </div>
+
+        <div class="td-card">
+          <div class="td-grid">
+            <!-- Coluna Esquerda - Destaque -->
+            <div class="td-left">
+              <div class="td-left-head">
+                <div class="td-left-icon">
+                  <Icon name="sparkles" size={28} />
+                </div>
+                <div>
+                  <h3>A Experiência do Test Drive</h3>
+                  <p>Você experimenta seu novo sorriso antes de qualquer procedimento definitivo!</p>
+                </div>
+              </div>
+
+              <div class="td-steps">
+                <div class="td-step">
+                  <div class="td-step-num"><span>1</span></div>
+                  <div>
+                    <h4>Resina Provisória Não Adesiva</h4>
+                    <p>Aplicada diretamente sobre seus dentes, sem desgaste algum</p>
+                  </div>
+                </div>
+                <div class="td-step">
+                  <div class="td-step-num"><span>2</span></div>
+                  <div>
+                    <h4>Veja-se no Espelho</h4>
+                    <p>Observe de todos os ângulos, em luz natural e artificial</p>
+                  </div>
+                </div>
+                <div class="td-step">
+                  <div class="td-step-num"><span>3</span></div>
+                  <div>
+                    <h4>Tire Fotos e Vídeos</h4>
+                    <p>Registre, fale, sorria - veja como fica em movimento</p>
+                  </div>
+                </div>
+                <div class="td-step">
+                  <div class="td-step-num"><span>4</span></div>
+                  <div>
+                    <h4>Ajustes em Tempo Real</h4>
+                    <p>Modificamos juntos até ficar perfeito para você</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Coluna Direita - Benefícios -->
+            <div class="td-right">
+              <h3>Por Que o Test Drive É Revolucionário?</h3>
+
+              <div class="td-benefits">
+                <div class="td-benefit">
+                  <Icon name="check-circle" size={20} class="tx-gold td-benefit-ic" />
+                  <div>
+                    <strong>Zero Ansiedade</strong>
+                    <p>Você sabe exatamente como vai ficar antes de começar</p>
+                  </div>
+                </div>
+                <div class="td-benefit">
+                  <Icon name="check-circle" size={20} class="tx-gold td-benefit-ic" />
+                  <div>
+                    <strong>Participação Ativa</strong>
+                    <p>Você decide junto comigo, ajustamos até sua aprovação 100%</p>
+                  </div>
+                </div>
+                <div class="td-benefit">
+                  <Icon name="check-circle" size={20} class="tx-gold td-benefit-ic" />
+                  <div>
+                    <strong>Resultado Real</strong>
+                    <p>Não é simulação digital - é real na sua boca, você sente e vive</p>
+                  </div>
+                </div>
+                <div class="td-benefit">
+                  <Icon name="check-circle" size={20} class="tx-gold td-benefit-ic" />
+                  <div>
+                    <strong>Confiança Total</strong>
+                    <p>Só partimos para o definitivo quando você estiver 100% feliz</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="td-quote">
+                <p>"É impressionante! Ver exatamente como vai ficar seu novo sorriso antes de fazer qualquer coisa. Não é uma simulação no computador - é REAL, na sua boca!"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Intermediário — Test Drive do Sorriso -->
+    <section class="midcta" aria-label="Agendar consulta">
+      <div class="midcta-container">
+        <div class="midcta-inner">
+          <p class="midcta-heading">Quer fazer seu Test Drive do Sorriso?</p>
+          <a
+            class="midcta-btn js-wa-cta"
+            data-label="lentes-e-facetas_mid-testdrive_whatsapp"
+            href={waMidTestDrive}
+            target="_blank"
+            rel="noopener"
+          >
+            <Icon name="message-circle" size={20} />
+            Agendar Primeira Consulta
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tecnologia Digital - Scanner iTero -->
+    <section class="itero">
+      <div class="wrap-4xl">
+        <div class="sec-head">
+          <h2 class="sec-h2">Tecnologia Digital: Scanner iTero Element 5D</h2>
+          <p class="sec-sub">Precisão milimétrica sem desconforto</p>
+        </div>
+
+        <div class="itero-card">
+          <p class="itero-lead">Utilizamos o iTero Element 5D para planejamento técnico preciso: escaneamento digital sem moldagens com massa, modelo 3D preciso para o laboratório, comunicação digital com técnicos e arquivo digital do seu tratamento.</p>
+
+          <div class="itero-grid">
+            <div class="itero-item">
+              <div class="itero-ic"><Icon name="check-circle" size={24} class="tx-purple" /></div>
+              <div>
+                <h4>Escaneamento Digital</h4>
+                <p>Sem moldagens com massa, sem desconforto</p>
+              </div>
+            </div>
+            <div class="itero-item">
+              <div class="itero-ic"><Icon name="check-circle" size={24} class="tx-purple" /></div>
+              <div>
+                <h4>Modelo 3D Preciso</h4>
+                <p>Para o laboratório trabalhar com exatidão</p>
+              </div>
+            </div>
+            <div class="itero-item">
+              <div class="itero-ic"><Icon name="check-circle" size={24} class="tx-purple" /></div>
+              <div>
+                <h4>Comunicação Digital</h4>
+                <p>Com técnicos especializados em cerâmica</p>
+              </div>
+            </div>
+            <div class="itero-item">
+              <div class="itero-ic"><Icon name="check-circle" size={24} class="tx-purple" /></div>
+              <div>
+                <h4>Arquivo Digital</h4>
+                <p>Do seu tratamento para acompanhamento futuro</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- O Que Poucos Explicam - Versão Visual Rica -->
+    <section class="expl">
+      <div class="expl-pattern" aria-hidden="true"></div>
+
+      <div class="wrap-6xl expl-inner">
+        <div class="expl-head">
+          <div class="expl-deco">
+            <div class="expl-deco-line expl-deco-r"></div>
+            <Icon name="sparkles" size={24} class="tx-gold" />
+            <div class="expl-deco-line expl-deco-l"></div>
+          </div>
+          <h2 class="expl-title">O Que Poucos Explicam Sobre Lentes e Facetas</h2>
+          <p class="expl-sub">A estética dental envolve mais do que aparência. Entenda os aspectos técnicos que determinam o sucesso do seu tratamento.</p>
+        </div>
+
+        <!-- Seção 1: Desafios Técnicos -->
+        <div class="expl-block">
+          <div class="expl-block-head">
+            <h3>Desafios Técnicos Reais</h3>
+            <p>Aspectos que exigem expertise e atenção</p>
+          </div>
+
+          <div class="expl-grid">
+            <div class="expl-card">
+              <div class="expl-num" aria-hidden="true">01</div>
+              <div class="expl-card-inner">
+                <div class="expl-card-head">
+                  <div class="expl-card-ic expl-ic-purple">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="12" cy="12" r="9" stroke-width="2" />
+                      <path d="M12 7v6l3 3" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4>Adaptação Marginal</h4>
+                    <div class="expl-card-line"></div>
+                  </div>
+                </div>
+                <p>Quando a interface entre a restauração e o dente não é perfeita, forma-se um espaço microscópico que pode acumular bactérias. Com o tempo, isso pode levar à inflamação gengival e sensibilidade.</p>
+              </div>
+            </div>
+
+            <div class="expl-card">
+              <div class="expl-num" aria-hidden="true">02</div>
+              <div class="expl-card-inner">
+                <div class="expl-card-head">
+                  <div class="expl-card-ic expl-ic-blue">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <rect x="4" y="4" width="16" height="16" rx="2" stroke-width="2" />
+                      <path d="M9 9h6M9 12h6M9 15h4" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4>Perfil de Emergência</h4>
+                    <div class="expl-card-line"></div>
+                  </div>
+                </div>
+                <p>O contorno na região da gengiva deve respeitar a anatomia natural. Um perfil inadequado dificulta a higienização e pode causar inchaço e sangramento gengival crônico.</p>
+              </div>
+            </div>
+
+            <div class="expl-card">
+              <div class="expl-num" aria-hidden="true">03</div>
+              <div class="expl-card-inner">
+                <div class="expl-card-head">
+                  <div class="expl-card-ic expl-ic-green">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 2L2 7l10 5 10-5-10-5z" stroke-width="2" stroke-linejoin="round" />
+                      <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke-width="2" stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4>Equilíbrio Oclusal</h4>
+                    <div class="expl-card-line"></div>
+                  </div>
+                </div>
+                <p>A forma como os dentes superiores e inferiores se encontram é crucial. Facetas mal planejadas podem gerar sobrecarga em pontos específicos, causando desconforto e até fraturas.</p>
+              </div>
+            </div>
+
+            <div class="expl-card">
+              <div class="expl-num" aria-hidden="true">04</div>
+              <div class="expl-card-inner">
+                <div class="expl-card-head">
+                  <div class="expl-card-ic expl-ic-amber">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" stroke-width="2" />
+                      <path d="M12 6v6l4 2" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4>Biocompatibilidade</h4>
+                    <div class="expl-card-line"></div>
+                  </div>
+                </div>
+                <p>A escolha dos materiais e técnicas adesivas impacta diretamente a resposta dos tecidos. Alguns protocolos podem causar sensibilidade prolongada ou irritação gengival.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divisor elegante -->
+        <div class="expl-div">
+          <div class="expl-div-row">
+            <div class="expl-div-line expl-div-line-r"></div>
+            <div class="expl-div-heart">
+              <div class="expl-div-glow" aria-hidden="true"></div>
+              <Icon name="heart" size={32} class="tx-gold expl-div-heart-ic" />
+            </div>
+            <div class="expl-div-line expl-div-line-l"></div>
+          </div>
+        </div>
+
+        <!-- Seção 2: Nossa Abordagem -->
+        <div class="expl-block2">
+          <div class="expl-block-head">
+            <h3>Nossa Abordagem Diferenciada</h3>
+            <p>Quatro pilares da precisão técnica</p>
+          </div>
+
+          <div class="expl-approach">
+            <div class="expl-ap-item">
+              <div class="expl-ap-ic"><Icon name="shield" size={32} class="tx-purple" /></div>
+              <div class="expl-ap-body">
+                <h4>Avaliação Periodontal Prévia</h4>
+                <p><a href="/saude-da-gengiva" class="expl-link">Saúde gengival</a> é pré-requisito. Tratamos qualquer inflamação antes de iniciar o trabalho estético.</p>
+              </div>
+            </div>
+            <div class="expl-ap-item">
+              <div class="expl-ap-ic"><Icon name="award" size={32} class="tx-purple" /></div>
+              <div class="expl-ap-body">
+                <h4>Planejamento Oclusal Criterioso</h4>
+                <p>Analisamos a mordida em detalhes para garantir distribuição equilibrada das forças mastigatórias.</p>
+              </div>
+            </div>
+            <div class="expl-ap-item">
+              <div class="expl-ap-ic"><Icon name="sparkles" size={32} class="tx-purple" /></div>
+              <div class="expl-ap-body">
+                <h4>Protocolo Conservador</h4>
+                <p>Preparos mínimos que preservam estrutura dental sadia e mantêm vitalidade pulpar.</p>
+              </div>
+            </div>
+            <div class="expl-ap-item">
+              <div class="expl-ap-ic"><Icon name="heart" size={32} class="tx-purple" /></div>
+              <div class="expl-ap-body">
+                <h4>Acompanhamento Longitudinal</h4>
+                <p>Consultas periódicas para monitorar saúde gengival, integridade das restaurações e conforto oclusal.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quote Final -->
+        <div class="expl-quote-wrap">
+          <div class="expl-quote">
+            <div class="expl-quote-blur expl-quote-blur-tr" aria-hidden="true"></div>
+            <div class="expl-quote-blur expl-quote-blur-bl" aria-hidden="true"></div>
+            <div class="expl-quote-mark expl-quote-open" aria-hidden="true">"</div>
+            <div class="expl-quote-mark expl-quote-close" aria-hidden="true">"</div>
+            <div class="expl-quote-content">
+              <p>A verdadeira beleza de um sorriso está na harmonia entre estética e função. Quando respeitamos a biologia, o resultado é duradouro e saudável.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="check-circle" />
+
+    <!-- Indicações e Casos Tratados -->
+    <section id="indicacoes" class="ind">
+      <div class="wrap-6xl ind-pad">
+        <div class="ind-head">
+          <h2 class="ind-title">Quando as Lentes e Facetas São Indicadas?</h2>
+          <div class="ind-title-line"></div>
+          <p class="ind-sub">Descubra se lentes ou facetas são a solução ideal para renovar o seu sorriso</p>
+        </div>
+
+        <div class="ind-grid">
+          {indicacoes.map((item) => (
+            <div class="ind-card">
+              <div class:list={['ind-ic-wrap', item.gradClass]}>
+                <Icon name={item.icon} size={32} class={item.iconClass} />
+              </div>
+              <h3 class="ind-card-title">{item.title}</h3>
+              <div class="ind-card-line"></div>
+              <p class="ind-card-desc">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="star" />
+
+    <!-- Timeline do Processo -->
+    <section class="jour">
+      <div class="wrap-4xl">
+        <div class="sec-head">
+          <h2 class="sec-h2">Sua Jornada Para o Sorriso dos Sonhos</h2>
+          <p class="sec-sub">Processo transparente e planejado em cada etapa</p>
+        </div>
+
+        <ProcessTimeline
+          steps={[
+            { number: '1', title: 'Consulta Inicial e Planejamento Digital', description: 'Consulta inicial com análise facial completa e fotográfica. iTero Element 5D: moldagem digital sem massa, sem desconforto. Avaliação da saúde bucal e periodontal. Estudo das proporções ideais para harmonização facial. Apresentação do plano de tratamento personalizado.', icon: 'search' },
+            { number: '2', title: 'Test Drive do Sorriso (Mock-up)', description: 'O GRANDE DIFERENCIAL! Criação do seu novo sorriso com resina provisória não adesiva. Você vê, sente e aprova o resultado ANTES do tratamento definitivo. Tire fotos, vídeos, sorria, fale naturalmente. Ajustamos juntos até alcançar o resultado ideal. Momento emocionante de visualizar seu novo sorriso ao vivo.', icon: 'star' },
+            { number: '3', title: 'Preparo Conservador', description: 'Com o mock-up 100% aprovado, iniciamos o preparo. Lentes: preparo mínimo preservando ao máximo a estrutura dental. Facetas de resina: escultura direta no consultório (1-2 consultas). Novo escaneamento com iTero Element 5D para laboratório (apenas lentes). Provisórios estéticos enquanto aguarda (se necessário).', icon: 'shield' },
+            { number: '4', title: 'Confecção Artesanal', description: 'Lentes: laboratório especializado em cerâmica de alta translucidez (7-10 dias). Facetas de resina: confeccionadas diretamente pela Dra. Carla. Personalização total de cor, forma e textura. Controle de qualidade rigoroso antes da entrega.', icon: 'sparkles' },
+            { number: '5', title: 'Cimentação e Finalização', description: 'Prova final e ajustes necessários. Cimentação adesiva de alta precisão (lentes) ou finalização (facetas). Polimento e acabamento impecável. Orientações de cuidados e higienização. Agendamento do retorno para acompanhamento.', icon: 'check-circle' },
+          ]}
+        />
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="help-circle" />
+
+    <!-- FAQs -->
+    <ServiceFAQ title="Perguntas Frequentes sobre Lentes e Facetas" faqs={faqs} />
+
+    <SectionDivider variant="with-icon" icon="star" />
+
+    <!-- CTA Final -->
+    <FinalServiceCTA
+      title="Ver se Lentes São Indicadas para o Seu Caso"
+      description="Na consulta, analisamos seu caso com iTero Element 5D, realizamos um checkup completo da saúde bucal e apresentamos as possibilidades — lentes, facetas ou outros tratamentos mais adequados."
+      waMessage="Olá! Vi a página sobre Lentes e Facetas e gostaria de agendar uma consulta."
+      waLabel="lentes-e-facetas_final_whatsapp"
+    />
+
+    <StatsBar />
+
+    <RelatedTreatments currentPage="lentes-de-contato-dental-e-facetas" />
+  </main>
+
+</SiteLayout>
+
+<style>
+  /* ── wrappers ── */
+  .wrap-6xl {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  .wrap-5xl {
+    max-width: 64rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  .wrap-4xl {
+    max-width: 56rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  .sec-head {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .sec-h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    color: var(--dc-purple);
+    margin: 0 0 1rem;
+  }
+  @media (min-width: 768px) {
+    .sec-h2 {
+      font-size: 2.25rem;
+      line-height: 2.5rem;
+    }
+  }
+  .sec-sub {
+    font-size: 1.125rem;
+    color: var(--dc-gray);
+    margin: 0;
+  }
+
+  .qa-section {
+    padding-block: 2rem;
+    background: #fff;
+  }
+
+  /* ── Benefícios (3 cards) ── */
+  .benefits {
+    padding-block: 3rem;
+    background: #fff;
+  }
+  .ben-grid {
+    display: grid;
+    gap: 2rem;
+  }
+  @media (min-width: 768px) {
+    .ben-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .ben-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    transition: box-shadow 0.3s;
+  }
+  .ben-card:hover {
+    box-shadow: 0 10px 40px -10px rgba(56, 31, 71, 0.2);
+  }
+  .ben-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .ben-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .ben-icon-red { background: #fef2f2; }
+  .ben-icon-purple { background: #faf5ff; }
+  .ben-icon-blue { background: #eff6ff; }
+  .ic-red { color: #ef4444; }
+  .ic-blue { color: #2563eb; }
+  .ben-title {
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: var(--dc-purple);
+    margin: 0;
+  }
+  .ben-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: var(--dc-gray);
+    font-size: 0.875rem;
+  }
+  .ben-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .ben-list li + li {
+    margin-top: 0.5rem;
+  }
+  .ben-check {
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+
+  /* ── Modalidades (2 cards com accordion) ── */
+  .modalidades {
+    padding-block: 3rem;
+    background: #fff;
+  }
+  .mod-grid {
+    display: grid;
+    gap: 2rem;
+  }
+  @media (min-width: 768px) {
+    .mod-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .mod-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    transition: box-shadow 0.3s;
+  }
+  .mod-card:hover {
+    box-shadow: 0 10px 40px -10px rgba(56, 31, 71, 0.2);
+  }
+  .mod-img-wrap {
+    position: relative;
+    aspect-ratio: 4 / 3;
+  }
+  .mod-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .mod-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(56, 31, 71, 0.9), rgba(56, 31, 71, 0.5), transparent);
+  }
+  .mod-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    color: #fff;
+  }
+  .mod-caption h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem;
+  }
+  .mod-caption p {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 1rem;
+    line-height: 1.5;
+  }
+  .mod-acc {
+    background: #fff;
+    padding: 1.5rem;
+  }
+  .mod-item {
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .mod-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 1rem;
+    cursor: pointer;
+    list-style: none;
+    text-align: left;
+    color: inherit;
+    transition: color 0.2s;
+  }
+  .mod-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .mod-item summary:hover {
+    color: var(--dc-purple);
+  }
+  .mod-item summary span {
+    font-weight: 600;
+  }
+  .mod-chev {
+    flex-shrink: 0;
+    color: var(--dc-gray);
+    transition: transform 0.2s;
+  }
+  .mod-item[open] .mod-chev {
+    transform: rotate(180deg);
+  }
+  .mod-body {
+    padding-bottom: 1rem;
+  }
+  .mod-ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: var(--dc-gray);
+    font-size: 0.875rem;
+  }
+  .mod-ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .mod-ul li + li {
+    margin-top: 0.5rem;
+  }
+  .mod-arrow {
+    color: var(--dc-gold);
+    margin-top: 0.25rem;
+  }
+  .mod-tick {
+    color: #16a34a;
+    margin-top: 0.25rem;
+  }
+  .mod-dot {
+    color: var(--dc-gray);
+    margin-top: 0.25rem;
+  }
+  .mod-vc > * + * {
+    margin-top: 1rem;
+  }
+  .mod-h4-green {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: #15803d;
+    font-size: 1rem;
+    margin: 0 0 0.5rem;
+  }
+  .mod-h4-gray {
+    font-weight: 600;
+    color: var(--dc-gray);
+    font-size: 1rem;
+    margin: 0 0 0.5rem;
+  }
+  .mod-ideal {
+    background: #eff6ff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+  .mod-ideal p {
+    color: var(--dc-gray);
+    font-size: 0.875rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ── Tabela Comparativa ── */
+  .cmp-section {
+    padding: 3rem 0 2rem;
+    background: rgba(207, 203, 180, 0.2);
+  }
+  .cmp-scroll {
+    overflow-x: auto;
+  }
+  .cmp-block {
+    margin-bottom: 2rem;
+  }
+  .cmp-h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--dc-purple);
+    margin: 0 0 1rem;
+  }
+  .cmp-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  .cmp-table thead tr {
+    background: var(--dc-purple);
+    color: #fff;
+  }
+  .cmp-table th {
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    text-align: center;
+  }
+  .cmp-table th.cmp-th-left {
+    text-align: left;
+  }
+  .cmp-table tbody tr:nth-child(odd) {
+    background: #f9fafb;
+  }
+  .cmp-table tbody tr:nth-child(even) {
+    background: #fff;
+  }
+  .cmp-table td {
+    padding: 0.75rem 1rem;
+  }
+  .cmp-crit {
+    color: var(--dc-purple);
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+  .cmp-center {
+    text-align: center;
+  }
+  .cmp-val {
+    color: var(--dc-gray);
+    font-size: 0.875rem;
+  }
+  .cmp-center :global(svg.cmp-yes) {
+    color: #16a34a;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .cmp-center :global(svg.cmp-no) {
+    color: #dc2626;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .cmp-note {
+    margin-top: 2rem;
+    text-align: center;
+  }
+  .cmp-note p {
+    color: var(--dc-gray);
+    font-style: italic;
+    margin: 0;
+  }
+
+  /* ── MidCTA (porte de ConsultaInicialMidCTA) ── */
+  .midcta {
+    padding-block: 3rem;
+    background: rgba(56, 31, 71, 0.03);
+  }
+  .midcta-container {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  .midcta-inner {
+    max-width: 36rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+  .midcta-heading {
+    font-size: 1.125rem;
+    color: rgba(56, 31, 71, 0.8);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    margin: 0 0 1.25rem;
+  }
+  .midcta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    color: #fff;
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    background: linear-gradient(135deg, #25d366 0%, #20bd5a 100%);
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+    transition: all 0.3s;
+  }
+  .midcta-btn:hover {
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    transform: scale(1.05);
+  }
+  @media (min-width: 768px) {
+    .midcta-btn {
+      width: auto;
+    }
+  }
+
+  /* ── Test Drive do Sorriso ── */
+  .td-section {
+    padding-block: 4rem;
+    background: linear-gradient(to bottom right, rgba(56, 31, 71, 0.05), rgba(179, 149, 95, 0.05));
+  }
+  .td-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(179, 149, 95, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+  }
+  .td-badge span {
+    color: var(--dc-gold);
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+  .td-sub {
+    font-size: 1.25rem;
+    color: var(--dc-gray);
+    margin: 0;
+  }
+  .td-card {
+    background: #fff;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  .td-grid {
+    display: grid;
+  }
+  @media (min-width: 768px) {
+    .td-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .td-left {
+    background: linear-gradient(to bottom right, #381f47, rgba(56, 31, 71, 0.9));
+    color: #fff;
+    padding: 2.5rem;
+  }
+  .td-left-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .td-left-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #fff;
+  }
+  .td-left-head h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem;
+  }
+  .td-left-head p {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+  }
+  .td-steps > * + * {
+    margin-top: 1.5rem;
+  }
+  .td-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .td-step-num {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    background: var(--dc-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .td-step-num span {
+    font-weight: 700;
+    color: #fff;
+  }
+  .td-step h4 {
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+  }
+  .td-step p {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+  }
+  .td-right {
+    padding: 2.5rem;
+    background: rgba(207, 203, 180, 0.2);
+  }
+  .td-right > h3 {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--dc-purple);
+    margin: 0 0 1.5rem;
+  }
+  .td-benefits > * + * {
+    margin-top: 1.25rem;
+  }
+  .td-benefit {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .td-benefit-ic {
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+  .td-benefit strong {
+    display: block;
+    color: var(--dc-purple);
+  }
+  .td-benefit p {
+    color: var(--dc-gray);
+    font-size: 0.875rem;
+    margin: 0;
+  }
+  .td-quote {
+    margin-top: 2rem;
+    background: linear-gradient(to bottom right, rgba(179, 149, 95, 0.1), rgba(56, 31, 71, 0.05));
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(179, 149, 95, 0.2);
+  }
+  .td-quote p {
+    color: var(--dc-gray);
+    font-size: 0.875rem;
+    font-style: italic;
+    line-height: 1.625;
+    margin: 0;
+  }
+
+  /* ── Scanner iTero ── */
+  .itero {
+    padding-block: 4rem;
+    background: #fff;
+  }
+  .itero-card {
+    background: linear-gradient(to bottom right, rgba(207, 203, 180, 0.3), #fff);
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  }
+  .itero-lead {
+    color: var(--dc-gray);
+    line-height: 1.625;
+    text-align: center;
+    font-size: 1.125rem;
+    margin: 0;
+  }
+  .itero-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  @media (min-width: 768px) {
+    .itero-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .itero-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .itero-ic {
+    width: 3rem;
+    height: 3rem;
+    background: rgba(56, 31, 71, 0.1);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .itero-item h4 {
+    font-weight: 600;
+    color: var(--dc-purple);
+    margin: 0 0 0.25rem;
+  }
+  .itero-item p {
+    color: var(--dc-gray);
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  /* ── O Que Poucos Explicam ── */
+  .expl {
+    padding-block: 5rem;
+    background: linear-gradient(to bottom, #fff, rgba(207, 203, 180, 0.1), #fff);
+    position: relative;
+    overflow: hidden;
+  }
+  .expl-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: radial-gradient(circle at 25px 25px, #381f47 2%, transparent 0%),
+      radial-gradient(circle at 75px 75px, #381f47 2%, transparent 0%);
+    background-size: 100px 100px;
+  }
+  .expl-inner {
+    position: relative;
+    z-index: 10;
+  }
+  .expl-head {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+  .expl-deco {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .expl-deco-line {
+    width: 3rem;
+    height: 1px;
+  }
+  .expl-deco-r {
+    background: linear-gradient(to right, transparent, var(--dc-gold), transparent);
+  }
+  .expl-deco-l {
+    background: linear-gradient(to right, var(--dc-gold), transparent, transparent);
+  }
+  .expl-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 2.25rem;
+    color: var(--dc-purple);
+    margin: 0 0 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .expl-title {
+      font-size: 3rem;
+    }
+  }
+  .expl-sub {
+    font-size: 1.125rem;
+    color: var(--dc-gray);
+    max-width: 48rem;
+    margin-inline: auto;
+    line-height: 1.625;
+  }
+  @media (min-width: 768px) {
+    .expl-sub {
+      font-size: 1.25rem;
+    }
+  }
+  .expl-block {
+    margin-bottom: 5rem;
+  }
+  .expl-block2 {
+    margin-bottom: 4rem;
+  }
+  .expl-block-head {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .expl-block-head h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--dc-purple);
+    margin: 0 0 0.75rem;
+  }
+  .expl-block-head p {
+    color: var(--dc-gray);
+    margin: 0;
+  }
+  .expl-grid {
+    display: grid;
+    gap: 2rem;
+  }
+  @media (min-width: 768px) {
+    .expl-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .expl-card {
+    position: relative;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(207, 203, 180, 0.3);
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .expl-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    border-color: rgba(179, 149, 95, 0.3);
+  }
+  .expl-num {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 6rem;
+    color: rgba(56, 31, 71, 0.05);
+    user-select: none;
+    line-height: 1;
+  }
+  .expl-card-inner {
+    position: relative;
+    z-index: 10;
+  }
+  .expl-card-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+  .expl-card-ic {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.3s;
+  }
+  .expl-card:hover .expl-card-ic {
+    transform: scale(1.1);
+  }
+  .expl-ic-purple {
+    background: linear-gradient(to bottom right, #faf5ff, #f3e8ff);
+    color: var(--dc-purple);
+  }
+  .expl-ic-blue {
+    background: linear-gradient(to bottom right, #eff6ff, #dbeafe);
+    color: #2563eb;
+  }
+  .expl-ic-green {
+    background: linear-gradient(to bottom right, #f0fdf4, #dcfce7);
+    color: #16a34a;
+  }
+  .expl-ic-amber {
+    background: linear-gradient(to bottom right, #fffbeb, #fef3c7);
+    color: #d97706;
+  }
+  .expl-card-head h4 {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--dc-purple);
+    margin: 0 0 0.5rem;
+    transition: color 0.2s;
+  }
+  .expl-card:hover .expl-card-head h4 {
+    color: var(--dc-gold);
+  }
+  .expl-card-line {
+    width: 3rem;
+    height: 0.25rem;
+    background: linear-gradient(to right, var(--dc-gold), transparent);
+    border-radius: 9999px;
+  }
+  .expl-card-inner > p {
+    color: var(--dc-gray);
+    font-size: 0.875rem;
+    line-height: 1.625;
+    margin: 0;
+  }
+  .expl-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-block: 4rem;
+  }
+  .expl-div-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .expl-div-line {
+    width: 8rem;
+    height: 1px;
+  }
+  .expl-div-line-r {
+    background: linear-gradient(to right, transparent, var(--dc-gold), var(--dc-gold));
+  }
+  .expl-div-line-l {
+    background: linear-gradient(to left, transparent, var(--dc-gold), var(--dc-gold));
+  }
+  .expl-div-heart {
+    position: relative;
+  }
+  .expl-div-glow {
+    position: absolute;
+    inset: 0;
+    background: rgba(179, 149, 95, 0.2);
+    filter: blur(24px);
+    border-radius: 9999px;
+    animation: expl-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  @keyframes expl-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  .expl-div-heart-ic {
+    position: relative;
+    z-index: 10;
+    display: block;
+  }
+  .expl-approach {
+    max-width: 56rem;
+    margin-inline: auto;
+  }
+  .expl-approach > * + * {
+    margin-top: 1.25rem;
+  }
+  .expl-ap-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    background: #fff;
+    padding: 1.75rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(207, 203, 180, 0.3);
+    transition: all 0.3s;
+  }
+  .expl-ap-item:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    border-color: rgba(56, 31, 71, 0.3);
+    transform: translateY(-0.25rem);
+  }
+  .expl-ap-ic {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
+    background: linear-gradient(to bottom right, rgba(56, 31, 71, 0.1), rgba(56, 31, 71, 0.05));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.3s;
+  }
+  .expl-ap-item:hover .expl-ap-ic {
+    transform: scale(1.1) rotate(3deg);
+  }
+  .expl-ap-body {
+    flex: 1 1 0%;
+  }
+  .expl-ap-body h4 {
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: var(--dc-purple);
+    margin: 0 0 0.5rem;
+    transition: color 0.2s;
+  }
+  .expl-ap-item:hover .expl-ap-body h4 {
+    color: var(--dc-gold);
+  }
+  .expl-ap-body p {
+    color: var(--dc-gray);
+    font-size: 0.875rem;
+    line-height: 1.625;
+    margin: 0;
+  }
+  .expl-link {
+    color: var(--dc-gold);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .expl-link:hover {
+    color: var(--dc-purple);
+  }
+  .expl-quote-wrap {
+    max-width: 56rem;
+    margin-inline: auto;
+  }
+  .expl-quote {
+    position: relative;
+    background: linear-gradient(to bottom right, rgba(207, 203, 180, 0.4), rgba(207, 203, 180, 0.2), #fff);
+    padding: 3rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  .expl-quote-blur {
+    position: absolute;
+    width: 16rem;
+    height: 16rem;
+    border-radius: 9999px;
+    filter: blur(64px);
+  }
+  .expl-quote-blur-tr {
+    top: 0;
+    right: 0;
+    background: rgba(179, 149, 95, 0.05);
+  }
+  .expl-quote-blur-bl {
+    bottom: 0;
+    left: 0;
+    background: rgba(56, 31, 71, 0.05);
+  }
+  .expl-quote-mark {
+    position: absolute;
+    font-size: 4.5rem;
+    color: rgba(179, 149, 95, 0.2);
+    font-family: Georgia, serif;
+    line-height: 1;
+  }
+  .expl-quote-open {
+    top: 2rem;
+    left: 2rem;
+  }
+  .expl-quote-close {
+    bottom: 2rem;
+    right: 2rem;
+  }
+  .expl-quote-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding-inline: 2rem;
+  }
+  .expl-quote-content p {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5rem;
+    color: var(--dc-purple);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.625;
+    margin: 0;
+  }
+  @media (min-width: 768px) {
+    .expl-quote-content p {
+      font-size: 1.875rem;
+    }
+  }
+
+  /* ── Indicações ── */
+  .ind {
+    padding-block: 4rem;
+    background: rgba(207, 203, 180, 0.1);
+  }
+  @media (min-width: 768px) {
+    .ind {
+      padding-block: 5rem;
+    }
+  }
+  .ind-pad {
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .ind-pad {
+      padding-inline: 2rem;
+    }
+  }
+  .ind-head {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .ind-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.875rem;
+    color: var(--dc-purple);
+    margin: 0 0 1rem;
+  }
+  @media (min-width: 768px) {
+    .ind-title {
+      font-size: 2.25rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .ind-title {
+      font-size: 3rem;
+    }
+  }
+  .ind-title-line {
+    width: 6rem;
+    height: 0.25rem;
+    background: linear-gradient(to right, transparent, var(--dc-gold), transparent);
+    margin: 0 auto 1.5rem;
+  }
+  .ind-sub {
+    font-size: 1.125rem;
+    color: var(--dc-gray);
+    max-width: 48rem;
+    margin-inline: auto;
+    line-height: 1.625;
+  }
+  @media (min-width: 768px) {
+    .ind-sub {
+      font-size: 1.25rem;
+    }
+  }
+  .ind-grid {
+    display: grid;
+    gap: 2rem;
+  }
+  @media (min-width: 768px) {
+    .ind-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 1024px) {
+    .ind-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .ind-card {
+    height: 100%;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(207, 203, 180, 0.3);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .ind-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    border-color: rgba(179, 149, 95, 0.3);
+  }
+  .ind-ic-wrap {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s;
+  }
+  .ind-card:hover .ind-ic-wrap {
+    transform: scale(1.1);
+  }
+  .ind-grad-purple { background: linear-gradient(to bottom right, #faf5ff, #f3e8ff); }
+  .ind-grad-blue { background: linear-gradient(to bottom right, #eff6ff, #dbeafe); }
+  .ind-grad-green { background: linear-gradient(to bottom right, #f0fdf4, #dcfce7); }
+  .ind-grad-yellow { background: linear-gradient(to bottom right, #fefce8, #fef9c3); }
+  .ind-grad-red { background: linear-gradient(to bottom right, #fef2f2, #fee2e2); }
+  .ind-grad-pink { background: linear-gradient(to bottom right, #fdf2f8, #fce7f3); }
+  .ind-ic-wrap :global(svg.ind-ic-purple) { color: #9333ea; }
+  .ind-ic-wrap :global(svg.ind-ic-blue) { color: #2563eb; }
+  .ind-ic-wrap :global(svg.ind-ic-green) { color: #16a34a; }
+  .ind-ic-wrap :global(svg.ind-ic-yellow) { color: #ca8a04; }
+  .ind-ic-wrap :global(svg.ind-ic-red) { color: #ef4444; }
+  .ind-ic-wrap :global(svg.ind-ic-pink) { color: #ec4899; }
+  .ind-card-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--dc-purple);
+    margin: 0 0 1rem;
+    transition: color 0.2s;
+  }
+  @media (min-width: 768px) {
+    .ind-card-title {
+      font-size: 1.5rem;
+    }
+  }
+  .ind-card:hover .ind-card-title {
+    color: var(--dc-gold);
+  }
+  .ind-card-line {
+    width: 3rem;
+    height: 0.125rem;
+    background: linear-gradient(to right, var(--dc-gold), transparent);
+    margin-bottom: 1rem;
+  }
+  .ind-card-desc {
+    color: var(--dc-gray);
+    font-size: 1rem;
+    line-height: 1.625;
+    margin: 0;
+  }
+
+  /* ── Timeline section ── */
+  .jour {
+    padding-block: 4rem;
+    background: #fff;
+  }
+</style>

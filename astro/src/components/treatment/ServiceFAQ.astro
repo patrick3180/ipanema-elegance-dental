@@ -1,0 +1,101 @@
+---
+/**
+ * ServiceFAQ — porte de src/components/treatment/ServiceFAQ.tsx.
+ * Accordion shadcn/Radix → <details>/<summary> nativos com o mesmo visual
+ * (cards brancos, borda roxa/20, pergunta semibold, chevron girando).
+ * O schema FAQPage NÃO é emitido aqui — a página o passa via prop `schemas`.
+ */
+import '../../styles/treatment.css';
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+  /** true quando `answer` contém HTML (listas/links verbatim do React, ex.: Restaurações Estéticas) */
+  html?: boolean;
+}
+
+interface Props {
+  title: string;
+  faqs: FAQItem[];
+}
+const { title, faqs } = Astro.props;
+---
+
+<section class="sfaq">
+  <div class="container-custom">
+    <h2 class="heading-lg sfaq-title tx-purple">{title}</h2>
+
+    <div class="sfaq-list">
+      {faqs.map((faq) => (
+        <details class="sfaq-item">
+          <summary class="sfaq-q">
+            <span>{faq.question}</span>
+            <svg class="sfaq-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          {faq.html ? (
+            <div class="sfaq-a" set:html={faq.answer} />
+          ) : (
+            <div class="sfaq-a">{faq.answer}</div>
+          )}
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .sfaq {
+    padding-block: 4rem;
+    background: rgba(207, 203, 180, 0.2);
+  }
+  .sfaq-title {
+    text-align: center;
+    margin: 0 0 2rem;
+  }
+  .sfaq-list {
+    max-width: 56rem;
+    margin-inline: auto;
+  }
+  .sfaq-list > * + * {
+    margin-top: 1rem;
+  }
+  .sfaq-item {
+    background: #fff;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(56, 31, 71, 0.2);
+    padding-inline: 1.5rem;
+  }
+  .sfaq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    cursor: pointer;
+    list-style: none;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dc-purple);
+    padding-block: 1.5rem;
+    transition: color 0.2s;
+  }
+  .sfaq-q::-webkit-details-marker {
+    display: none;
+  }
+  .sfaq-q:hover {
+    color: var(--dc-gold);
+  }
+  .sfaq-chev {
+    flex-shrink: 0;
+    color: var(--dc-gray);
+    transition: transform 0.2s;
+  }
+  .sfaq-item[open] .sfaq-chev {
+    transform: rotate(180deg);
+  }
+  .sfaq-a {
+    color: var(--dc-gray);
+    line-height: 1.625;
+    padding-bottom: 1.5rem;
+  }
+</style>

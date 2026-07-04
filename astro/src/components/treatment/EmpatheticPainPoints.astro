@@ -1,0 +1,198 @@
+---
+/**
+ * EmpatheticPainPoints — porte fiel de src/components/treatment/EmpatheticPainPoints.tsx (pt).
+ * painPoints: icon = nome lucide; iconColor e borderColor = 'purple' | 'gold' | 'purple-soft'.
+ * conclusion: usar o slot "conclusion" (permite <br> etc. — copy verbatim).
+ * callout opcional (caixa "Importante" com borda dourada).
+ */
+import Icon from './Icon.astro';
+import '../../styles/treatment.css';
+
+export interface PainPointItem {
+  icon: string;
+  iconColor?: 'purple' | 'gold' | 'purple-soft';
+  strong: string;
+  description: string;
+  borderColor?: 'purple' | 'gold' | 'purple-soft';
+}
+
+interface Props {
+  title?: string;
+  painPoints: PainPointItem[];
+  callout?: { icon: string; title: string; text: string };
+}
+
+const { title = 'Você se identifica com alguma dessas situações?', painPoints, callout } = Astro.props;
+
+const cycle: Array<'purple' | 'gold' | 'purple-soft'> = ['purple', 'gold', 'purple-soft'];
+const hasConclusion = Astro.slots.has('conclusion');
+---
+
+<section class="epp">
+  <div class="epp-container">
+    <h2 class="epp-title">{title}</h2>
+
+    <div class="epp-list">
+      {painPoints.map((point, index) => (
+        <div class:list={['epp-card', `epp-border-${point.borderColor || cycle[index % 3]}`]}>
+          <div class="epp-icon">
+            <Icon name={point.icon} size={24} class={`epp-ic-${point.iconColor || cycle[index % 3]}`} />
+          </div>
+          <div>
+            <strong class="epp-strong">{point.strong}</strong>
+            <span class="epp-desc">{point.description}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {hasConclusion && (
+      <p class="epp-conclusion"><slot name="conclusion" /></p>
+    )}
+
+    {callout && (
+      <div class="epp-callout-wrap">
+        <div class="epp-callout shadow-elegant">
+          <div class="epp-callout-row">
+            <div class="epp-callout-icon">
+              <Icon name={callout.icon} size={20} class="tx-gold" />
+            </div>
+            <div>
+              <p class="epp-callout-title">{callout.title}</p>
+              <p class="epp-callout-text">{callout.text}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .epp {
+    padding-block: 4rem;
+    background: linear-gradient(to bottom right, rgba(207, 203, 180, 0.2), #fff, rgba(207, 203, 180, 0.1));
+  }
+  .epp-container {
+    max-width: 56rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  .epp-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dc-purple);
+    margin: 0 0 2.5rem;
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .epp-title {
+      font-size: 1.875rem;
+    }
+  }
+  .epp-list > * + * {
+    margin-top: 1.25rem;
+  }
+  .epp-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border-left: 4px solid;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s;
+  }
+  .epp-card:hover {
+    box-shadow: 0 10px 40px -10px rgba(56, 31, 71, 0.2);
+  }
+  .epp-border-purple { border-left-color: var(--dc-purple); }
+  .epp-border-gold { border-left-color: var(--dc-gold); }
+  .epp-border-purple-soft { border-left-color: var(--dc-purple-soft); }
+  .epp-ic-purple { color: var(--dc-purple); }
+  .epp-ic-gold { color: var(--dc-gold); }
+  .epp-ic-purple-soft { color: var(--dc-purple-soft); }
+
+  .epp-icon {
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    background: rgba(56, 31, 71, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  .epp-card:hover .epp-icon {
+    background: rgba(56, 31, 71, 0.2);
+  }
+  .epp-strong {
+    display: block;
+    color: var(--dc-purple);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  .epp-desc {
+    color: var(--dc-gray);
+    line-height: 1.625;
+  }
+  .epp-conclusion {
+    text-align: center;
+    color: var(--dc-gray);
+    margin-top: 2.5rem;
+    font-size: 1.125rem;
+    line-height: 1.625;
+  }
+  .epp-callout-wrap {
+    max-width: 42rem;
+    margin: 2rem auto 0;
+  }
+  .epp-callout {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 2px solid var(--dc-gold);
+  }
+  .epp-callout-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .epp-callout-icon {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    background: rgba(179, 149, 95, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .epp-callout-title {
+    color: var(--dc-purple);
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+  .epp-callout-text {
+    color: var(--dc-gray);
+    line-height: 1.625;
+    font-size: 0.875rem;
+    margin: 0;
+  }
+</style>
+
+<style is:global>
+  /* <br class="hidden md:block"> usado nas conclusions verbatim */
+  .epp-conclusion br.md-only {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .epp-conclusion br.md-only {
+      display: inline;
+    }
+  }
+</style>

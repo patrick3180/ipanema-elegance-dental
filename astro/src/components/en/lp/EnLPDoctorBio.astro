@@ -1,0 +1,143 @@
+---
+/** EnLPDoctorBio — porte fiel de src/components/en/lp/EnLPDoctorBio.tsx (copy verbatim). */
+const credentials = [
+  'Prosthodontics Specialist',
+  'Private Practice Only',
+  '20+ Years',
+  'Brazilian Navy',
+  'iTero 5D',
+];
+---
+
+<section class="enlp-bio">
+  <div class="enlp-bio-container">
+    <div class="enlp-bio-grid">
+      <!-- Photo -->
+      <div class="enlp-bio-photocol">
+        <div class="enlp-bio-photowrap">
+          <div class="enlp-bio-photoglow" aria-hidden="true"></div>
+          <img
+            src="/lovable-uploads/RIT08058-vertical-doutora-site.webp"
+            alt="Dr. Carla Christoph — Cosmetic Dentist in Ipanema"
+            width="500"
+            height="750"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+
+      <!-- Bio -->
+      <div class="enlp-bio-content">
+        <p class="enlp-bio-kicker">Your Dentist</p>
+        <h2>Dr. Carla Christoph</h2>
+        <p class="enlp-bio-cro">CRO-RJ 27.509 • Specialist in Prosthodontics &amp; Implant Dentistry</p>
+
+        <div class="enlp-bio-text">
+          <p>
+            With over <strong>20 years of clinical experience</strong> in Ipanema, Dr. Carla holds specializations in both <strong>prosthodontics and implant dentistry</strong> — the two disciplines at the heart of cosmetic smile rehabilitation.
+          </p>
+          <p>
+            She also served <strong>8 years as a dental officer in the Brazilian Navy</strong> while maintaining her private practice — an experience that shaped her precision, discipline, and commitment to patient safety.
+          </p>
+          <p>
+            Her practice runs on a philosophy of <strong>continuity</strong>: Dr. Carla is your dentist from first consultation to final follow-up. When specialized treatment is needed — endodontics, periodontics, orthodontics — she brings in trusted specialists who work under her direct supervision, right in her office. You always have the same doctor by your side.
+          </p>
+        </div>
+
+        <!-- Credentials -->
+        <div class="enlp-bio-credentials">
+          {credentials.map((credential) => (
+            <span>{credential}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .enlp-bio {
+    padding: 64px 0;
+    background: hsla(51, 22%, 76%, 0.4); /* bg-dental-beige/40 */
+  }
+  @media (min-width: 768px) { .enlp-bio { padding: 80px 0; } }
+  .enlp-bio-container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  @media (min-width: 640px) { .enlp-bio-container { padding: 0 24px; } }
+  @media (min-width: 1024px) { .enlp-bio-container { padding: 0 32px; } }
+  .enlp-bio-grid {
+    display: grid;
+    gap: 32px;
+    align-items: center;
+  }
+  @media (min-width: 768px) {
+    .enlp-bio-grid { grid-template-columns: 280px 1fr; gap: 48px; }
+  }
+  .enlp-bio-photocol { display: flex; justify-content: center; }
+  @media (min-width: 768px) { .enlp-bio-photocol { justify-content: flex-start; } }
+  .enlp-bio-photowrap { position: relative; }
+  .enlp-bio-photoglow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom right, rgba(179, 149, 95, 0.2), rgba(56, 31, 71, 0.1));
+    border-radius: 16px;
+    transform: rotate(2deg) scale(1.03);
+  }
+  .enlp-bio-photowrap img {
+    position: relative;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px -10px rgba(56, 31, 71, 0.2); /* shadow-elegant */
+    width: 240px; /* w-60 */
+    height: auto;
+    object-fit: cover;
+  }
+  @media (min-width: 768px) { .enlp-bio-photowrap img { width: 100%; } }
+  .enlp-bio-content { display: flex; flex-direction: column; gap: 16px; }
+  .enlp-bio-kicker {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #b3955f;
+    font-weight: 500;
+  }
+  .enlp-bio-content h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    color: #381f47;
+    font-size: 1.5rem;
+  }
+  @media (min-width: 640px) { .enlp-bio-content h2 { font-size: 1.875rem; } }
+  .enlp-bio-cro {
+    font-size: 0.75rem;
+    color: #525252;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+  .enlp-bio-text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 0.875rem;
+    color: #525252;
+    line-height: 1.625;
+  }
+  .enlp-bio-credentials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 8px;
+  }
+  .enlp-bio-credentials span {
+    font-size: 11px;
+    font-weight: 500;
+    color: #381f47;
+    background: #fff;
+    border: 1px solid rgba(56, 31, 71, 0.1);
+    border-radius: 9999px;
+    padding: 4px 12px;
+  }
+</style>

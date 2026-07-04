@@ -1,0 +1,629 @@
+---
+/**
+ * /protese-dentaria — porte VERBATIM de src/pages/ProteseDentaria.tsx.
+ * Meta/canonical: scripts/generate-static-meta.cjs ('/protese-dentaria').
+ * Schemas: MedicalProcedure + Dentist (generate-static-meta.cjs) +
+ * FAQPage (faqs da página, como o Helmet do React) + BreadcrumbList (hero).
+ * Nota: seção de vídeo do React está atrás de hasVideo=false — não portada.
+ */
+import SiteLayout from '../layouts/SiteLayout.astro';
+import TreatmentHero from '../components/treatment/TreatmentHero.astro';
+import StatsBar from '../components/treatment/StatsBar.astro';
+import SectionDivider from '../components/treatment/SectionDivider.astro';
+import ProcessTimeline from '../components/treatment/ProcessTimeline.astro';
+import QuickAnswerBox from '../components/treatment/QuickAnswerBox.astro';
+import DoctorBioSection from '../components/treatment/DoctorBioSection.astro';
+import EmpatheticPainPoints from '../components/treatment/EmpatheticPainPoints.astro';
+import ServiceFAQ from '../components/treatment/ServiceFAQ.astro';
+import FinalServiceCTA from '../components/treatment/FinalServiceCTA.astro';
+import RelatedTreatments from '../components/treatment/RelatedTreatments.astro';
+import Icon from '../components/treatment/Icon.astro';
+import '../styles/treatment.css';
+
+const faqs = [
+  { question: 'Qual tipo de prótese é melhor para meu caso?', answer: 'Cada caso é único e requer análise individualizada. A escolha depende de fatores como quantidade de dentes perdidos, condição óssea, saúde gengival, expectativas estéticas e estilo de vida. Durante a consulta de planejamento, analisamos todos esses aspectos para indicar a solução ideal para você.' },
+  { question: 'Quanto tempo dura uma prótese bem feita?', answer: 'Com materiais de qualidade e cuidados adequados, uma coroa ou ponte pode durar de 15 a 20 anos. Próteses sobre implante tendem a durar ainda mais, podendo ultrapassar 20 anos. A longevidade depende da higiene oral, visitas regulares ao dentista e cuidados diários.' },
+  { question: 'Prótese sobre implante vale o investimento?', answer: 'Para muitos pacientes, sim. A prótese sobre implante oferece vantagens únicas: preservação óssea total, não desgasta dentes vizinhos, maior durabilidade e sensação natural. Considerando a longevidade e qualidade de vida proporcionada, representa excelente custo-benefício a longo prazo.' },
+  { question: 'Como é a manutenção das próteses?', answer: 'Próteses fixas (coroas, pontes, sobre implante) são higienizadas como dentes naturais, com escovação e fio dental. Próteses removíveis devem ser retiradas para limpeza com produtos específicos. Visitas semestrais ao dentista são essenciais para manutenção profissional e ajustes quando necessário.' },
+  { question: 'Vou ficar sem dentes durante o tratamento?', answer: 'Nunca! Sempre providenciamos uma prótese provisória para que você mantenha estética e função durante todo o tratamento. Nosso compromisso é com seu conforto e vida social. Você não passará nenhum momento sem dentes.' },
+  { question: 'Prótese pode parecer natural?', answer: 'Absolutamente! Utilizamos técnicas como estratificação de cerâmica, caracterização individualizada e ajuste de cor personalizado. O resultado são dentes que imitam perfeitamente a natureza, com translucidez, textura e aparência indistinguíveis dos dentes naturais.' },
+  { question: 'Qual a diferença entre porcelana e resina?', answer: 'A porcelana (cerâmica) oferece superior estética, durabilidade e resistência a manchas. É nossa escolha para casos de longa duração. A resina pode ser usada em provisórios ou situações específicas. Utilizamos materiais de primeira linha para garantir durabilidade e resultado natural.' },
+  { question: 'É possível fazer prótese com pouco osso?', answer: 'Sim! Para próteses convencionais (não sobre implante), a quantidade óssea não é limitante. Para próteses sobre implante, técnicas como enxerto ósseo ou implantes zigomáticos podem viabilizar o tratamento mesmo com pouco osso. Uma análise tomográfica determina as possibilidades.' },
+  { question: 'Quando trocar uma prótese antiga?', answer: 'Sinais de que é hora de trocar: desgaste visível, mudança de cor, infiltrações, desadaptação, desconforto ao mastigar ou problemas gengivais ao redor da prótese. Uma análise profissional pode determinar o momento ideal para substituição.' },
+  { question: 'O procedimento é doloroso?', answer: 'Os procedimentos são realizados com anestesia local eficaz e técnicas que priorizam o conforto. A maioria dos pacientes relata menos desconforto do que esperavam. Providenciamos medicação adequada e acompanhamento próximo quando necessário.' },
+  { question: 'Qual a vantagem de um especialista?', answer: 'O especialista tem formação específica de 2-3 anos em prótese, domina técnicas avançadas, trabalha com os melhores laboratórios e tem experiência em casos complexos. Isso se traduz em próteses com melhor adaptação, estética superior e maior durabilidade.' },
+  { question: 'Prótese fixa ou removível: como escolher?', answer: 'A prótese fixa oferece maior conforto, segurança e sensação natural, mas requer condições específicas (dentes pilares saudáveis ou possibilidade de implantes). A removível é uma opção quando não há suporte para fixa. Avaliamos todos os fatores para indicar a melhor solução.' },
+];
+
+// Cards visuais "Modalidades de Prótese Dentária Disponíveis" (copy verbatim)
+const modalidades = [
+  {
+    img: '/lovable-uploads/Coroa e-max.webp',
+    width: 800,
+    height: 800,
+    alt: 'Coroa dentária em cerâmica E-max sobre dente',
+    title: 'Coroas Dentárias',
+    text: 'Capas protetoras em cerâmica pura ou zircônia que recobrem e protegem dentes danificados, devolvendo forma, função e estética impecável.',
+    tags: ['Cerâmica', 'Resultado Natural'],
+    goldBorder: false,
+  },
+  {
+    img: '/lovable-uploads/Ponte fixa.webp',
+    width: 800,
+    height: 800,
+    alt: 'Ponte fixa em porcelana substituindo dentes',
+    title: 'Pontes Fixas',
+    text: 'Prótese fixa que substitui um ou mais dentes perdidos, ancorada em dentes vizinhos ou implantes, restaurando função e estética.',
+    tags: ['Solução Fixa', 'Múltiplos Dentes'],
+    goldBorder: false,
+  },
+  {
+    img: '/Implante.webp',
+    width: 512,
+    height: 512,
+    alt: 'Prótese sobre implante dentário',
+    title: 'Prótese sobre Implante',
+    text: 'A combinação ideal de estabilidade e naturalidade. Prótese fixada em implantes dentários para máximo conforto e durabilidade.',
+    tags: ['Aspecto natural', 'Máxima Estabilidade'],
+    goldBorder: false,
+  },
+  {
+    img: '/lovable-uploads/Prótese parcial removível moderna.webp',
+    width: 800,
+    height: 800,
+    alt: 'Prótese parcial removível moderna',
+    title: 'Próteses Removíveis',
+    text: 'Parciais (PPR) ou totais (dentaduras) modernas, com melhor adaptação e estética superior.',
+    tags: ['Solução Acessível', 'Fácil Higiene'],
+    goldBorder: false,
+  },
+  {
+    img: '/lovable-uploads/all in 4.webp',
+    width: 800,
+    height: 800,
+    alt: 'Protocolo All-on-4 arcada completa sobre implantes',
+    title: 'Protocolo All-on-4/6',
+    text: 'Reabilitação total da arcada sobre 4 ou 6 implantes, com prótese fixa para reabilitação completa da arcada.',
+    tags: ['Reabilitação Completa', 'Prótese Fixa'],
+    goldBorder: true,
+  },
+  {
+    img: '/lovable-uploads/Overdenture com clips de retenção.webp',
+    width: 800,
+    height: 800,
+    alt: 'Overdenture estabilizada por implantes com clips',
+    title: 'Prótese Overdenture',
+    text: 'Prótese removível estabilizada por implantes, unindo praticidade de remoção com firmeza e conforto ao mastigar.',
+    tags: ['Estabilidade', 'Removível'],
+    goldBorder: false,
+  },
+];
+
+const midCtaMessage = 'Olá! Vi a página sobre prótese dentária e gostaria de saber qual tipo de prótese é indicado para o meu caso.';
+const midCtaHref = `https://wa.me/5521993304045?text=${encodeURIComponent(midCtaMessage)}`;
+
+const PROVIDER = {
+  '@type': 'Dentist',
+  name: 'Dra. Carla Christoph',
+  telephone: '+5521993304045',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+    addressLocality: 'Ipanema',
+    addressRegion: 'RJ',
+    postalCode: '22410-901',
+    addressCountry: 'BR',
+  },
+};
+
+const schemas = [
+  // MedicalProcedure — copiado de generate-static-meta.cjs ('/protese-dentaria')
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'MedicalProcedure',
+    name: 'Prótese Dentária',
+    description: 'Reabilitação oral com coroas, pontes e próteses sobre implante em porcelana de alta translucidez para substituição de dentes perdidos',
+    procedureType: 'Dental',
+    url: 'https://dracarlachristoph.com/protese-dentaria',
+    provider: PROVIDER,
+  }),
+  // Dentist — generateDentistSchema() de generate-static-meta.cjs
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Dentist',
+    name: 'Dra. Carla Christoph',
+    description: 'Dentista especialista em Prótese Dental e Reabilitação Oral em Ipanema, Rio de Janeiro. Mais de 20 anos de experiência.',
+    telephone: '+5521993304045',
+    url: 'https://dracarlachristoph.com',
+    image: 'https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
+    priceRange: '$$$',
+    address: PROVIDER.address,
+    openingHoursSpecification: [
+      { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '19:00' },
+    ],
+    hasCredential: { '@type': 'EducationalOccupationalCredential', credentialCategory: 'CRO-RJ', recognizedBy: { '@type': 'Organization', name: 'CRO-RJ' }, identifier: '27.509' },
+    aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '17', bestRating: '5' },
+    availableLanguage: ['pt-BR', 'en'],
+  }),
+  // FAQPage — mesmas perguntas/respostas exibidas na página (Helmet do React)
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  }),
+];
+---
+
+<SiteLayout
+  title="Prótese Dentária em Ipanema | Dra. Carla Christoph"
+  description="Prótese dentária fixa e removível em Ipanema. Especialista em reabilitação oral com mais de 20 anos de experiência. Dra. Carla Christoph. CRO-RJ 27.509."
+  canonical="https://dracarlachristoph.com/protese-dentaria"
+  preloadImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+  schemas={schemas}
+>
+  <main id="main-content">
+    <TreatmentHero
+      title="Prótese Dentária e Reabilitação Oral"
+      subtitle="Especialidade da Dra. Carla Christoph"
+      description="Reconstrução completa do sorriso com planejamento individualizado e cerâmicas E-max e zircônia. Especialista com mais de 20 anos de experiência em casos de alta complexidade."
+      badges={['20+ anos de experiência', 'CRO-RJ 27.509', 'Casos Complexos']}
+      doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+      breadcrumbs={[
+        { label: 'Início', href: '/' },
+        { label: 'Tratamentos', href: '/servicos' },
+        { label: 'Prótese Dentária' },
+      ]}
+      waLabel="protese-dentaria_hero_whatsapp"
+    />
+
+    <section class="qa-section">
+      <div class="container-custom">
+        <QuickAnswerBox answer="Prótese dentária é uma estrutura artificial que substitui dentes perdidos, restaurando função mastigatória e estética. Na clínica da Dra. Carla Christoph em Ipanema, oferecemos coroas, pontes e próteses sobre implante em porcelana de alta translucidez. Com mais de 20 anos de experiência (CRO-RJ 27.509) em reabilitação oral, trabalhamos com cerâmicas E-max e zircônia que duram de 15 a 20 anos. O tratamento varia conforme a complexidade, incluindo planejamento, moldagens digitais e próteses provisórias para você nunca ficar sem dentes." />
+      </div>
+    </section>
+
+    <EmpatheticPainPoints
+      painPoints={[
+        { icon: 'shield', iconColor: 'purple', strong: 'Prótese que solta ao falar ou comer', description: 'causando insegurança em momentos sociais e profissionais?', borderColor: 'purple' },
+        { icon: 'alert-circle', iconColor: 'gold', strong: 'Dificuldade para mastigar alimentos que você gosta', description: 'por causa de dentes ausentes ou uma prótese desconfortável?', borderColor: 'gold' },
+        { icon: 'heart', iconColor: 'purple-soft', strong: 'Constrangimento ao sorrir por falta de dentes', description: 'ou por uma prótese que não parece natural?', borderColor: 'purple-soft' },
+      ]}
+      callout={{ icon: 'clock', title: 'Importante', text: 'Dentes ausentes causam movimentação dos dentes vizinhos e perda óssea progressiva. Quanto antes iniciar a reabilitação, mais simples e previsível será o tratamento.' }}
+    >
+      <Fragment slot="conclusion">Uma prótese bem planejada devolve função, estética e qualidade de vida.<br class="md-only" /> Vamos encontrar a melhor solução para o seu caso.</Fragment>
+    </EmpatheticPainPoints>
+
+    <section class="mid-cta">
+      <div class="mid-cta-inner">
+        <p class="mid-cta-text tx-gray">Quer saber qual prótese se encaixa no seu caso?</p>
+        <a
+          class="mid-cta-btn js-wa-cta"
+          data-label="protese-dentaria_mid_whatsapp"
+          href={midCtaHref}
+          target="_blank"
+          rel="noopener"
+        >
+          Agendar Consulta
+          <Icon name="arrow-right" size={20} />
+        </a>
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="award" />
+
+    <section class="sec-white">
+      <div class="container-custom">
+        <h2 class="heading-lg rehab-title tx-purple">Reabilitação Oral Completa</h2>
+        <p class="rehab-sub tx-gray">Mais de 20 anos devolvendo função, estética e qualidade de vida</p>
+        <div class="rehab-grid">
+          {[
+            { icon: 'utensils', color: 'purple', title: 'Função Mastigatória', text: 'Recupere o prazer de saborear seus alimentos favoritos com conforto e segurança' },
+            { icon: 'smile', color: 'gold', title: 'Estética Natural', text: 'Próteses que imitam perfeitamente a cor, forma e translucidez dos dentes naturais' },
+            { icon: 'heart', color: 'purple', title: 'Qualidade de Vida', text: 'Resgate sua confiança e autoestima para sorrir sem constrangimento' },
+          ].map((card) => (
+            <div class="rehab-card">
+              <div class:list={['rehab-icon', `rehab-icon-${card.color}`]}>
+                <Icon name={card.icon} size={32} class={card.color === 'gold' ? 'tx-gold' : 'tx-purple'} />
+              </div>
+              <h3 class="rehab-card-title">{card.title}</h3>
+              <p class="tx-gray">{card.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="sparkles" />
+
+    <section class="sec-white">
+      <div class="mod-container">
+        <div class="mod-head">
+          <h2 class="mod-title">Modalidades de Prótese Dentária Disponíveis</h2>
+          <p class="mod-sub">Tecnologias e materiais de última geração para cada necessidade</p>
+        </div>
+        <div class="mod-grid">
+          {modalidades.map((mod) => (
+            <div class:list={['mod-card', 'shadow-soft', { 'mod-card-gold': mod.goldBorder }]}>
+              <div class="mod-img-wrap">
+                <img
+                  src={mod.img}
+                  alt={mod.alt}
+                  width={mod.width}
+                  height={mod.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="mod-overlay" aria-hidden="true"></div>
+              </div>
+              <div class="mod-content">
+                <h3 class="mod-card-title">{mod.title}</h3>
+                <p class="mod-card-text">{mod.text}</p>
+                <div class="mod-tags">
+                  {mod.tags.map((tag) => (
+                    <span class="mod-tag">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="journey-section">
+      <div class="container-custom">
+        <h2 class="heading-lg journey-title tx-purple">Sua Jornada para um Novo Sorriso</h2>
+        <p class="journey-sub tx-gray">Cada etapa é cuidadosamente planejada para garantir conforto, precisão e resultados naturais e previsíveis</p>
+        <ProcessTimeline
+          steps={[
+            { number: 1, title: 'Consulta de Diagnóstico Completo', description: 'Análise facial, exame clínico, radiografias digitais e escaneamento com iTero Element 5D para diagnóstico preciso e planejamento personalizado.', icon: 'search', duration: '1a Consulta' },
+            { number: 2, title: 'Preparo Minimamente Invasivo', description: 'Quando necessário, preparamos os dentes com máxima preservação de estrutura saudável, sempre priorizando técnicas conservadoras.', icon: 'shield', duration: '1a Consulta' },
+            { number: 3, title: 'Moldagem Digital de Precisão', description: 'iTero Element 5D elimina desconforto de moldeiras, garantindo precisão milimétrica. O arquivo 3D é enviado diretamente ao laboratório parceiro.', icon: 'scan', duration: '1a Consulta' },
+            { number: 4, title: 'Confecção e aplicação de dente provisório', description: 'Confecção e colocação do dente provisório para garantir a estética e função até a colocação da prótese definitiva.', icon: 'package', duration: '1a Consulta' },
+            { number: 5, title: 'Confecção Artesanal', description: 'Nosso laboratório parceiro cria sua prótese com cerâmicas E-max e zircônia, estratificando cores e texturas para um resultado indistinguível de dentes naturais.', icon: 'sparkles', duration: '1-2 semanas' },
+            { number: 6, title: 'Instalação e Ajuste Final', description: 'Cimentação ou fixação da prótese com ajustes minuciosos de oclusão. Você sai com seu novo sorriso e todas as orientações de cuidados.', icon: 'star', duration: '1a Consulta' },
+            { number: 7, title: 'Acompanhamento Continuado', description: 'Consultas de manutenção para preservar seu investimento e garantir a saúde do seu sorriso por muitos anos.', icon: 'heart', duration: 'Periódico' },
+          ]}
+        />
+      </div>
+    </section>
+
+    <section class="cases-section">
+      <div class="container-custom">
+        <h2 class="heading-lg cases-title tx-purple">Soluções para Casos Complexos</h2>
+        <div class="cases-grid">
+          <div class="case-card">
+            <h3 class="case-card-title">Reabilitação Oral Completa</h3>
+            <p class="case-card-text tx-gray">Para casos de múltiplas perdas, desgaste severo ou problemas de mordida, desenvolvemos um protocolo completo que restabelece função, estética e dimensão vertical, com rejuvenescimento facial natural.</p>
+            <ul class="case-list tx-gray">
+              <li><Icon name="arrow-right" size={16} class="tx-gold case-li-icon" /><span>Análise oclusal completa</span></li>
+              <li><Icon name="arrow-right" size={16} class="tx-gold case-li-icon" /><span>Restabelecimento da mordida</span></li>
+              <li><Icon name="arrow-right" size={16} class="tx-gold case-li-icon" /><span>Rejuvenescimento facial</span></li>
+            </ul>
+          </div>
+          <div class="case-card">
+            <h3 class="case-card-title">Próteses Estéticas de Alta Performance</h3>
+            <p class="case-card-text tx-gray">Utilizamos cerâmicas de última geração (E-max, Zircônia) com estratificação artesanal, reproduzindo translucidez, textura e caracterização individual dos dentes naturais.</p>
+            <ul class="case-list tx-gray">
+              <li><Icon name="arrow-right" size={16} class="tx-gold case-li-icon" /><span>Cerâmicas E-max e zircônia</span></li>
+              <li><Icon name="arrow-right" size={16} class="tx-gold case-li-icon" /><span>Estratificação artesanal</span></li>
+              <li><Icon name="arrow-right" size={16} class="tx-gold case-li-icon" /><span>Resultado indistinguível</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <DoctorBioSection
+      sectionTitle="Expertise e Experiência em Reabilitação Oral"
+      badgeText="20+ Anos de Experiência"
+      credentials={[
+        { title: 'Formação', description: 'Especialista em Prótese Dentária e Implantodontia' },
+        { title: 'Experiência', description: '8 anos como dentista militar na Marinha' },
+        { title: 'Atualização', description: 'Cursos contínuos em DSD e iTero Element 5D' },
+        { title: 'Tecnologia', description: 'iTero Element 5D e planejamento digital' },
+      ]}
+    >
+      <p>Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.</p>
+      <p>Como especialista em Prótese Dentária, reabilitação oral é onde sua formação se aprofunda. Casos complexos são sua rotina — da coroa unitária à reabilitação completa, cada solução é planejada com base em diagnóstico detalhado e planejamento digital.</p>
+    </DoctorBioSection>
+
+    <SectionDivider variant="with-icon" icon="help-circle" />
+
+    <ServiceFAQ title="Perguntas Frequentes sobre Prótese Dentária" faqs={faqs} />
+
+    <FinalServiceCTA
+      title="Recuperar Função e Estética com Prótese Dentária"
+      description="Na consulta de planejamento, analisamos seu caso e definimos o tipo de prótese mais adequado — fixa, removível ou sobre implantes. A prótese dentária devolve função mastigatória completa e pode melhorar significativamente sua qualidade de vida."
+      ctaText="Agendar Consulta pelo WhatsApp"
+      waMessage="Olá! Vi a página sobre prótese dentária e gostaria de agendar uma consulta com a Dra. Carla Christoph"
+      waLabel="protese-dentaria_final_whatsapp"
+    />
+
+    <StatsBar />
+
+    <RelatedTreatments currentPage="protese-dentaria" />
+  </main>
+
+</SiteLayout>
+
+<style>
+  .qa-section {
+    padding-block: 2rem;
+    background: #fff;
+  }
+
+  /* ── CTA intermediário (Sprint 8) ── */
+  .mid-cta {
+    padding-block: 2rem;
+    background: #fff;
+  }
+  .mid-cta-inner {
+    max-width: 48rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+    text-align: center;
+  }
+  .mid-cta-text {
+    font-size: 1.25rem;
+    margin: 0 0 1.5rem;
+  }
+  .mid-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: var(--dc-gold);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  }
+  .mid-cta-btn:hover {
+    background: rgba(179, 149, 95, 0.9);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+  }
+
+  /* ── Reabilitação Oral Completa (3 cards) ── */
+  .rehab-title {
+    text-align: center;
+    margin: 0 0 1rem;
+  }
+  .rehab-sub {
+    text-align: center;
+    margin: 0 auto 3rem;
+    max-width: 42rem;
+  }
+  .rehab-grid {
+    display: grid;
+    gap: 2rem;
+    max-width: 64rem;
+    margin-inline: auto;
+  }
+  @media (min-width: 768px) {
+    .rehab-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .rehab-card {
+    text-align: center;
+  }
+  .rehab-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+  }
+  .rehab-icon-purple {
+    background: rgba(56, 31, 71, 0.1);
+  }
+  .rehab-icon-gold {
+    background: rgba(179, 149, 95, 0.1);
+  }
+  .rehab-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--dc-purple);
+    margin: 0 0 0.75rem;
+  }
+  .rehab-card p {
+    margin: 0;
+    line-height: 1.625;
+  }
+
+  /* ── Modalidades de Prótese (cards com imagem + overlay) ── */
+  .mod-container {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  .mod-head {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .mod-title {
+    /* text-dental-navy não existe no tailwind.config — herdava a cor foreground (roxo) */
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    color: var(--dc-purple);
+    margin: 0 0 1rem;
+  }
+  @media (min-width: 768px) {
+    .mod-title {
+      font-size: 2.25rem;
+      line-height: 2.5rem;
+    }
+  }
+  .mod-sub {
+    /* text-dental-text-secondary não existe no tailwind.config — herdava foreground */
+    font-size: 1.125rem;
+    color: var(--dc-purple);
+    margin: 0;
+  }
+  .mod-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .mod-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 1024px) {
+    .mod-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .mod-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    transition: all 0.3s;
+  }
+  .mod-card:hover {
+    box-shadow: 0 10px 40px -10px rgba(56, 31, 71, 0.2);
+  }
+  .mod-card-gold {
+    border: 2px solid rgba(179, 149, 95, 0.3);
+  }
+  .mod-img-wrap {
+    aspect-ratio: 4 / 3;
+    position: relative;
+  }
+  .mod-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+    display: block;
+  }
+  .mod-card:hover .mod-img-wrap img {
+    transform: scale(1.05);
+  }
+  .mod-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(56, 31, 71, 0.9), rgba(56, 31, 71, 0.5), transparent);
+  }
+  .mod-content {
+    position: absolute;
+    inset: 0;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .mod-card-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 0 0 0.5rem;
+  }
+  .mod-card-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.875rem;
+    margin: 0 0 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .mod-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .mod-tag {
+    font-size: 0.75rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+  }
+
+  /* ── Sua Jornada (ProcessTimeline em beige/20, py-12) ── */
+  .journey-section {
+    padding-block: 3rem;
+    background: rgba(207, 203, 180, 0.2);
+  }
+  .journey-title {
+    text-align: center;
+    margin: 0 0 1rem;
+  }
+  .journey-sub {
+    text-align: center;
+    margin: 0 auto 3rem;
+    max-width: 42rem;
+  }
+
+  /* ── Casos Complexos (Cards shadcn) ── */
+  .cases-section {
+    padding-block: 3rem;
+    background: #fff;
+  }
+  .cases-title {
+    text-align: center;
+    margin: 0 0 2rem;
+  }
+  .cases-grid {
+    display: grid;
+    gap: 2rem;
+    max-width: 56rem;
+    margin-inline: auto;
+  }
+  @media (min-width: 768px) {
+    .cases-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .case-card {
+    /* shadcn Card: rounded-lg border bg-card shadow-sm (card = beige do tema) */
+    background: hsl(51 22% 76%);
+    border: 1px solid hsl(0 0% 70%);
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+  }
+  .case-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--dc-purple);
+    margin: 0 0 0.75rem;
+  }
+  .case-card-text {
+    margin: 0 0 1rem;
+  }
+  .case-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.875rem;
+  }
+  .case-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .case-list li + li {
+    margin-top: 0.5rem;
+  }
+  .case-li-icon {
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+</style>

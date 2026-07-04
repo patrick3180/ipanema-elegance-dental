@@ -1,0 +1,1892 @@
+---
+/**
+ * HOME "/" — porte fiel de src/pages/Index.tsx (React SPA).
+ *
+ * Ordem das seções (idêntica ao Index.tsx):
+ *  1. Hero full-bleed (Hero.tsx — foto real hero-fb-*)
+ *  2. Stats Bar (HomepageStatsBar.tsx — count-up)
+ *  3. Sobre (AboutSection.tsx)
+ *  4. Diferenciais (DifferentialsSection.tsx)
+ *  5. Tratamentos grid 3x3 (ServicesSection.tsx)
+ *     + separador visual
+ *  6. Tecnologia iTero (TechnologyShowcase.tsx)
+ *  7. Depoimentos carousel (TestimonialsCarousel.tsx)
+ *  8. Blog preview (BlogPreview.tsx — posts reais do Contentful em build-time)
+ *  9. CTA Final (FinalCTA.tsx)
+ * 10. Contato (ContactSection.tsx — form → /api/contact)
+ *
+ * Preload da hero: 2 <link rel="preload"> AVIF com media query (mobile/desktop),
+ * copiados de scripts/generate-static-meta.cjs (bloco Sprint 5 da home), injetados
+ * via slot "head" do SiteLayout → Base (a prop preloadImage não suporta media query).
+ *
+ * Schemas: Dentist rico (Index.tsx structuredData) + Dentist compacto com
+ * aggregateRating real 5.0/17 (generateDentistSchema de generate-static-meta.cjs)
+ * — paridade com produção, onde os dois coexistem (estático + helmet).
+ *
+ * Tracking: CTAs WhatsApp usam APENAS class js-wa-cta + data-label (handler
+ * global do Base.astro). Form de contato replica o fluxo do React
+ * (dataLayer + POST /api/contact + gtag conversion + beacon /api/send-gclid).
+ */
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { getBlogData, postMeta } from '../lib/contentful';
+
+const BASE_URL = 'https://dracarlachristoph.com';
+const PHONE = '5521993304045';
+const wa = (msg: string) => `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
+
+// Mensagens pré-preenchidas — copiadas verbatim dos componentes React de origem
+const WA_HERO = wa('Olá! Vi o site e gostaria de agendar uma consulta.');
+const WA_SOBRE = wa('Olá! Gostaria de agendar uma consulta.');
+const WA_TECH = wa('Olá! Gostaria de saber mais sobre a tecnologia iTero Element 5D utilizada na clínica.');
+const WA_FINAL = wa('Olá! Vi o site e gostaria de agendar uma consulta com a Dra. Carla.');
+
+// ── Blog preview: 3 posts mais recentes do Contentful (build-time) ──
+const { posts, assetMap, entryMap } = await getBlogData();
+const blogItems = posts
+  .map((p) => postMeta(p, assetMap, entryMap))
+  .filter((m) => m.slug.length >= 3 && m.title)
+  .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+  .slice(0, 3);
+const fmtDate = (d: string) => (d ? new Date(d).toLocaleDateString('pt-BR') : '');
+const thumb = (m: any) =>
+  m.imageUrl && m.imageUrl.includes('ctfassets.net') ? `${m.imageUrl}?w=400&h=250&fit=fill&fm=webp&q=75` : m.imageUrl;
+
+// ── Dados das seções (copiados verbatim dos componentes React) ──
+
+const differentials = [
+  {
+    icon: 'clock',
+    title: 'Mínimo de 1h por Consulta',
+    description:
+      'Nada de atendimentos apressados. Cada consulta é agendada com tempo suficiente para ouvir, examinar e cuidar com calma.',
+  },
+  {
+    icon: 'heart',
+    title: 'Atendimento Individualizado',
+    description:
+      'Cada caso é único. O plano de tratamento é desenhado exclusivamente para as necessidades e expectativas de cada paciente.',
+  },
+  {
+    icon: 'fingerprint',
+    title: 'Tecnologia Digital Avançada',
+    description:
+      'iTero Element 5D, planejamento digital do sorriso e protocolos clínicos atualizados para maior previsibilidade e conforto.',
+  },
+  {
+    icon: 'shield',
+    title: '20+ Anos de Experiência',
+    description:
+      'Dupla especialização em Prótese e Implantodontia, com 8 anos na Odontoclínica Central da Marinha. Disciplina e precisão.',
+  },
+];
+
+// Links usam as rotas CANÔNICAS (PATTERNS.md §6) — o título/copy é verbatim do React
+const services = [
+  {
+    title: 'Lentes de Contato Dental e Facetas de Porcelana',
+    description:
+      'Lâminas ultrafinas de porcelana que corrigem cor, forma e pequenas imperfeições. Resultado natural e duradouro, planejado digitalmente com iTero Element 5D.',
+    image: '/Lentes.webp',
+    width: 512,
+    height: 512,
+    href: '/lentes-de-contato-dental-e-facetas-de-resina',
+  },
+  {
+    title: 'Clareamento Dental Profissional',
+    description:
+      'Dentes mais brancos com segurança. Protocolo em consultório ou supervisionado em casa, com controle de sensibilidade e resultado natural.',
+    image: '/Clareamento.webp',
+    width: 512,
+    height: 512,
+    href: '/clareamento-dental',
+  },
+  {
+    title: 'Próteses Dentárias',
+    description:
+      'Recupere a função mastigatória e a estética do seu sorriso com próteses dentárias personalizadas, desenvolvidas pela especialista Dra. Carla Christoph.',
+    image: '/Protese.webp',
+    width: 512,
+    height: 512,
+    href: '/protese-dentaria',
+  },
+  {
+    title: 'Implantes Dentários',
+    description:
+      'Reabilitação de dentes perdidos com implantes que devolvem função mastigatória e estética. Planejamento digital para casos unitários ou reabilitações completas.',
+    image: '/Implante.webp',
+    width: 512,
+    height: 512,
+    href: '/implantes-dentarios',
+  },
+  {
+    title: 'Ortodontia',
+    description:
+      'Alinhamento dental e correção de mordida com aparelhos fixos, estéticos ou alinhadores Invisalign®. Parceria com o Dr. Bruno, Doutor em Ortodontia pela UERJ.',
+    image: '/Ortodontia.webp',
+    width: 512,
+    height: 512,
+    href: '/ortodontia',
+  },
+  {
+    title: 'Clínica Geral e Prevenção',
+    description:
+      'Cuide da sua saúde bucal com nossos check-ups digitais, profilaxia (limpeza) profissional e planos de prevenção personalizados.',
+    image: '/Profilaxia.webp',
+    width: 512,
+    height: 512,
+    href: '/clinica-geral-e-prevencao',
+  },
+  {
+    title: 'Restaurações Estéticas',
+    description:
+      'Tratamento de cáries e reconstrução de dentes fraturados com resinas e cerâmicas que reproduzem a cor e translucidez natural do dente.',
+    image: '/Restarações.webp',
+    width: 512,
+    height: 512,
+    href: '/restauracoes-esteticas',
+  },
+  {
+    title: 'Tratamento de Canal (Endodontia)',
+    description:
+      'Tratamento de canal para eliminar dor e preservar o dente natural. Procedimento realizado por endodontista especializado, com acompanhamento da Dra. Carla do início ao fim.',
+    image: '/Endodontia.webp',
+    width: 512,
+    height: 512,
+    href: '/tratamento-de-canal',
+  },
+  {
+    title: 'Saúde da Gengiva (Periodontia)',
+    description:
+      'Tratamento especializado para gengivite e periodontite, cuidando da base do seu sorriso e prevenindo problemas futuros.',
+    image: '/Periodontia.webp',
+    width: 512,
+    height: 341,
+    href: '/saude-da-gengiva',
+  },
+];
+
+const techFeatures = [
+  {
+    icon: 'scanline',
+    title: 'Escaneamento 3D em Segundos',
+    description: 'Moldagem digital sem a massa incômoda — mais conforto e precisão.',
+  },
+  {
+    icon: 'eye',
+    title: 'Visualização em Tempo Real',
+    description: 'Veja o resultado projetado antes de iniciar o tratamento.',
+  },
+  {
+    icon: 'zap',
+    title: 'Diagnóstico Avançado',
+    description: 'Tecnologia NIRI para detecção precoce de cáries e trincas nos dentes, sem raio-X.',
+  },
+];
+
+const testimonials = [
+  {
+    name: 'Beatriz M. — Ipanema',
+    text: 'Fiz as lentes de contato dental com a Dra. Carla. O que mais me impressionou foi o planejamento antes de começar — pude ver como ficaria antes de tomar a decisão. Hoje sorrio sem pensar duas vezes.',
+  },
+  {
+    name: 'Roberto S. — Leblon',
+    text: 'Passei anos com dificuldade para mastigar por causa de próteses antigas que não serviam mais. A reabilitação que a Dra. Carla fez devolveu meu conforto. Parece que tenho dentes novos.',
+  },
+  {
+    name: 'Juliana P. — Copacabana',
+    text: 'Faço acompanhamento no consultório há mais de 5 anos. O que me fez ficar foi o tempo que dedicam a cada consulta. Nunca saí com a sensação de que foi apressado.',
+  },
+  {
+    name: 'Fernando A. — Gávea',
+    text: 'Precisava de implantes e tinha muito medo. A Dra. Carla explicou tudo com paciência e o resultado ficou melhor do que eu imaginava. Voltaria pra qualquer tratamento sem pensar duas vezes.',
+  },
+  {
+    name: 'Mariana L. — Botafogo',
+    text: 'O clareamento ficou natural e bonito. Adorei que a Dra. Carla me explicou cada etapa e respeitou o meu tempo. Consultório lindo e equipe muito atenciosa.',
+  },
+];
+
+// ── Schemas JSON-LD ──
+
+// 1) Dentist rico — copiado VERBATIM do structuredData de src/pages/Index.tsx
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Dentist',
+  name: 'Dra. Carla Christoph',
+  url: 'https://dracarlachristoph.com',
+  logo: 'https://dracarlachristoph.com/og-image.jpg',
+  image: 'https://dracarlachristoph.com/og-image.jpg',
+  description:
+    'Dentista especialista em Ipanema com mais de 20 anos de experiência. Odontologia estética, implantes dentários, lentes de contato dental, clareamento dental e reabilitação oral.',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+    addressLocality: 'Ipanema',
+    addressRegion: 'RJ',
+    postalCode: '22410-901',
+    addressCountry: 'BR',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: '-22.9868', longitude: '-43.2005' },
+  telephone: '+5521993304045',
+  email: 'contato@dracarlachristoph.com',
+  priceRange: '$$$',
+  paymentAccepted: 'Cash, Credit Card, Bank Transfer',
+  currenciesAccepted: 'BRL',
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '19:00',
+    },
+  ],
+  areaServed: { '@type': 'City', name: 'Rio de Janeiro', sameAs: 'https://en.wikipedia.org/wiki/Rio_de_Janeiro' },
+  serviceArea: {
+    '@type': 'GeoCircle',
+    geoMidpoint: { '@type': 'GeoCoordinates', latitude: '-22.9868', longitude: '-43.2005' },
+    geoRadius: '50000',
+  },
+  sameAs: ['https://instagram.com/dracarlachristoph', 'https://wa.me/5521993304045'],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Serviços Odontológicos Especializados',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'MedicalProcedure',
+          name: 'Implantes Dentários',
+          description: 'Implantodontia especializada com mais de 20 anos de experiência',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'MedicalProcedure',
+          name: 'Lentes de Contato Dental e Facetas',
+          description: 'Planejamento digital do sorriso com lentes ultrafinas e facetas de porcelana',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'MedicalProcedure',
+          name: 'Clareamento Dental Profissional',
+          description: 'Clareamento dental seguro e eficaz em consultório ou supervisionado',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'MedicalProcedure',
+          name: 'Prótese Dentária',
+          description: 'Próteses fixas e removíveis para reabilitação oral completa',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'MedicalProcedure',
+          name: 'Restaurações Estéticas',
+          description: 'Restaurações em resina e porcelana para um sorriso natural',
+        },
+      },
+    ],
+  },
+  founder: {
+    '@type': 'Person',
+    name: 'Carla Christoph',
+    jobTitle: 'Cirurgiã-Dentista',
+    worksFor: { '@type': 'Organization', name: 'Clínica Dra. Carla Christoph' },
+    hasCredential: [
+      { '@type': 'EducationalOccupationalCredential', name: 'Especialista em Prótese Dental' },
+      { '@type': 'EducationalOccupationalCredential', name: 'Especialista em Implantodontia' },
+    ],
+  },
+};
+
+// 2) Dentist compacto — copiado VERBATIM de generateDentistSchema() de
+//    scripts/generate-static-meta.cjs (aggregateRating 5.0/17 = dados REAIS do Google)
+const dentistSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Dentist',
+  name: 'Dra. Carla Christoph',
+  description:
+    'Dentista especialista em Prótese Dental e Reabilitação Oral em Ipanema, Rio de Janeiro. Mais de 20 anos de experiência.',
+  telephone: '+5521993304045',
+  url: BASE_URL,
+  image: BASE_URL + '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
+  priceRange: '$$$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+    addressLocality: 'Ipanema',
+    addressRegion: 'RJ',
+    postalCode: '22410-901',
+    addressCountry: 'BR',
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '19:00',
+    },
+  ],
+  hasCredential: {
+    '@type': 'EducationalOccupationalCredential',
+    credentialCategory: 'CRO-RJ',
+    recognizedBy: { '@type': 'Organization', name: 'CRO-RJ' },
+    identifier: '27.509',
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '17', bestRating: '5' },
+  availableLanguage: ['pt-BR', 'en'],
+};
+
+const schemas = [JSON.stringify(structuredData), JSON.stringify(dentistSchema)];
+---
+
+<SiteLayout
+  title="Dentista em Ipanema | Clínica Odontológica Dra. Carla Christoph"
+  description="Procurando dentista em Ipanema? A Dra. Carla Christoph oferece odontologia estética e reabilitação oral com mínimo de 1 hora por consulta. Agende sua consulta!"
+  canonical="https://dracarlachristoph.com/"
+  schemas={schemas}
+>
+  <Fragment slot="head">
+    <!-- Hero image preload responsivo (LCP element) — mesmo bloco do generate-static-meta.cjs (Sprint 5) -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/avif"
+      media="(max-width: 767px)"
+      imagesrcset="/lovable-uploads/hero-fb-m-480.avif 480w, /lovable-uploads/hero-fb-m-768.avif 768w"
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      type="image/avif"
+      media="(min-width: 768px)"
+      imagesrcset="/lovable-uploads/hero-fb-1280.avif 1280w, /lovable-uploads/hero-fb-1920.avif 1920w"
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
+    <!-- hreflang (paridade com SEOHead da home) -->
+    <link rel="alternate" hreflang="pt-BR" href="https://dracarlachristoph.com/" />
+    <link rel="alternate" hreflang="en" href="https://dracarlachristoph.com/en" />
+    <link rel="alternate" hreflang="x-default" href="https://dracarlachristoph.com/" />
+    <meta
+      name="keywords"
+      content="dentista Ipanema, clínica odontológica Ipanema, odontologia estética Ipanema, implantes dentários Ipanema, lentes de contato dental, facetas de porcelana, clareamento dental, prótese dentária, Dra. Carla Christoph, dentista especialista Rio de Janeiro"
+    />
+  </Fragment>
+
+  <main id="main-content">
+    <!-- Marca html.js cedo: os estados "escondido" de scroll-reveal só valem com JS ativo -->
+    <script is:inline>document.documentElement.classList.add('js');</script>
+
+    <!-- ═══ 1. HERO full-bleed (Hero.tsx) ═══ -->
+    <section id="início" class="hero-fb">
+      <picture class="hero-fb-photo">
+        <source media="(max-width: 767px)" type="image/avif" srcset="/lovable-uploads/hero-fb-m-480.avif 480w, /lovable-uploads/hero-fb-m-768.avif 768w" sizes="100vw" />
+        <source media="(max-width: 767px)" type="image/webp" srcset="/lovable-uploads/hero-fb-m-480.webp 480w, /lovable-uploads/hero-fb-m-768.webp 768w" sizes="100vw" />
+        <source media="(min-width: 768px)" type="image/avif" srcset="/lovable-uploads/hero-fb-1280.avif 1280w, /lovable-uploads/hero-fb-1920.avif 1920w" sizes="100vw" />
+        <source media="(min-width: 768px)" type="image/webp" srcset="/lovable-uploads/hero-fb-1280.webp 1280w, /lovable-uploads/hero-fb-1920.webp 1920w" sizes="100vw" />
+        <img
+          src="/lovable-uploads/hero-fb-1280.webp"
+          alt="Dra. Carla Christoph, dentista em Ipanema, no consultório"
+          width="1280"
+          height="650"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </picture>
+
+      <div class="hero-fb-scrim" aria-hidden="true"></div>
+
+      <div class="hero-fb-text">
+        <div class="hero-fb-textwrap">
+          <div class="hero-fb-copy">
+            <p class="hero-fb-eyebrow hero-animate-1">Especialista em Prótese e Implantodontia</p>
+
+            <h1 class="hero-fb-h1 hero-animate-2">
+              Dentista em Ipanema especializada em reabilitação oral e <span>estética natural</span>
+            </h1>
+
+            <p class="hero-fb-sub hero-animate-3">
+              No mínimo uma hora por consulta. Tempo para ouvir, examinar e planejar cada caso.
+            </p>
+
+            <div class="hero-fb-badges hero-animate-4">
+              <span>20+ anos em Ipanema</span>
+              <span>CRO-RJ 27.509</span>
+              <span>Do plano à finalização</span>
+            </div>
+
+            <div class="hero-fb-actions hero-animate-5">
+              <a
+                class="hero-fb-cta js-wa-cta"
+                data-label="home_hero_whatsapp"
+                href={WA_HERO}
+                target="_blank"
+                rel="noopener"
+              >
+                <b>Agendar minha consulta</b>
+                <small>WhatsApp 24h</small>
+              </a>
+              <a href="#tratamentos" class="hero-fb-explore" id="hero-explore">Conheça os tratamentos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 2. STATS BAR (HomepageStatsBar.tsx) ═══ -->
+    <section class="stats-bar" aria-label="Estatísticas da clínica">
+      <div class="container-c stats-inner">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4" /><path d="M16 2v4" /><rect width="18" height="18" x="3" y="4" rx="2" /><path d="M3 10h18" /></svg>
+            </div>
+            <div>
+              <p class="stat-value"><span data-count="20">20</span>+</p>
+              <p class="stat-label">Anos de Experiência</p>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+            </div>
+            <div>
+              <p class="stat-value"><span data-count="4000">4.000</span>+</p>
+              <p class="stat-label">Pacientes Atendidos</p>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6" /><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" /></svg>
+            </div>
+            <div>
+              <p class="stat-value">27.509</p>
+              <p class="stat-label">CRO-RJ</p>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+            </div>
+            <div>
+              <p class="stat-value"><span data-count="5">5</span> ★</p>
+              <p class="stat-label">Avaliação Google</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 3. SOBRE (AboutSection.tsx) ═══ -->
+    <section id="sobre" class="sec-spacing bg-white">
+      <div class="container-c">
+        <div class="sec-header mb-16">
+          <h2 class="heading-lg">Conheça a Dra. Carla Christoph, sua Dentista em Ipanema</h2>
+          <div class="gold-sep" aria-hidden="true"></div>
+          <p class="sec-sub">Mais de 20 anos dedicados à reabilitação oral e odontologia estética em Ipanema</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-photo">
+            <picture>
+              <source type="image/avif" srcset="/lovable-uploads/fef24f70-4659-453e-8fee-79dee34b6220.avif" />
+              <img
+                src="/lovable-uploads/fef24f70-4659-453e-8fee-79dee34b6220.webp"
+                alt="Dra. Carla Christoph, dentista em Ipanema, sorrindo em seu consultório de odontologia estética."
+                width="1920"
+                height="1280"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </div>
+
+          <div class="about-text">
+            <div class="about-paras">
+              <p>
+                Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de
+                forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na
+                Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática
+                clínica.
+              </p>
+              <p>
+                Especialista em Prótese Dentária e Implantodontia, a Dra. Carla utiliza o iTero Element 5D e
+                ferramentas de planejamento do sorriso para oferecer previsibilidade e segurança em cada tratamento.
+                Cada caso é tratado como único, com o tempo necessário para ouvir, planejar e executar.
+              </p>
+            </div>
+
+            <div class="about-cta-wrap">
+              <a class="btn-purple js-wa-cta" data-label="home_sobre_whatsapp" href={WA_SOBRE} target="_blank" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg>
+                <span class="btn-2l">
+                  <span class="btn-2l-main">Agendar minha consulta</span>
+                  <span class="btn-2l-sub">WhatsApp 24h</span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 4. DIFERENCIAIS (DifferentialsSection.tsx) ═══ -->
+    <section class="sec-spacing bg-beige">
+      <div class="container-c">
+        <div class="sec-header mb-14">
+          <p class="eyebrow">Diferenciais</p>
+          <h2 class="heading-lg">Por que a Dra. Carla Christoph?</h2>
+          <div class="gold-sep" aria-hidden="true"></div>
+        </div>
+
+        <div class="diff-grid">
+          {differentials.map((item, index) => (
+            <div class="sr" style={`--sr-delay:${index * 100}ms`}>
+              <div class="diff-card">
+                <div class="diff-accent" aria-hidden="true"></div>
+                <div class="diff-icon" aria-hidden="true">
+                  {item.icon === 'clock' && (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                  )}
+                  {item.icon === 'heart' && (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /></svg>
+                  )}
+                  {item.icon === 'fingerprint' && (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4" /><path d="M14 13.12c0 2.38 0 6.38-1 8.88" /><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02" /><path d="M2 12a10 10 0 0 1 18-6" /><path d="M2 16h.01" /><path d="M21.8 16c.2-2 .131-5.354 0-6" /><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2" /><path d="M8.65 22c.21-.66.45-1.32.57-2" /><path d="M9 6.8a6 6 0 0 1 9 5.2v2" /></svg>
+                  )}
+                  {item.icon === 'shield' && (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /></svg>
+                  )}
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 5. TRATAMENTOS grid 3x3 (ServicesSection.tsx) ═══ -->
+    <section id="tratamentos" class="bg-beige">
+      <div class="container-c">
+        <div class="sec-header mb-8">
+          <h2 class="heading-lg">O que tratamos no consultório</h2>
+          <div class="gold-sep" aria-hidden="true"></div>
+          <p class="sec-sub">
+            Implantes, próteses, lentes e clareamento conduzidos diretamente pela Dra. Carla. Endodontia, ortodontia e
+            periodontia em parceria — com acompanhamento integral do início ao fim.
+          </p>
+        </div>
+
+        <div class="svc-grid">
+          {services.map((service, index) => (
+            <div class="sr" style={`--sr-delay:${(index % 3) * 120}ms`}>
+              <div class="svc-card" aria-label={service.title}>
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  width={service.width}
+                  height={service.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="svc-overlay" aria-hidden="true"></div>
+                <div class="svc-content">
+                  <h3>{service.title}</h3>
+                  <p>{service.description}</p>
+                  <a href={service.href} class="svc-link">
+                    Saiba mais
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Separador visual entre Tratamentos e Tecnologia -->
+    <div class="split-wrap">
+      <div class="split-inner">
+        <div class="split-line" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <!-- ═══ 6. TECNOLOGIA iTero (TechnologyShowcase.tsx) ═══ -->
+    <section class="sec-spacing tech-sec">
+      <div class="tech-pattern" aria-hidden="true"></div>
+      <div class="container-c tech-inner">
+        <div class="tech-grid">
+          <div>
+            <p class="eyebrow">Tecnologia</p>
+            <h2 class="tech-h2">
+              iTero Element 5D: <span>Precisão Digital</span>
+            </h2>
+            <div class="gold-sep gold-sep-left" aria-hidden="true"></div>
+            <p class="tech-lead">
+              A Dra. Carla utiliza o scanner intraoral mais avançado do mundo para planejar cada tratamento com
+              precisão milimétrica. Sem moldagens tradicionais desconfortáveis — apenas tecnologia a favor do seu
+              sorriso.
+            </p>
+
+            <div class="tech-features">
+              {techFeatures.map((feature) => (
+                <div class="tech-feature">
+                  <div class="tech-fi" aria-hidden="true">
+                    {feature.icon === 'scanline' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2" /><path d="M17 3h2a2 2 0 0 1 2 2v2" /><path d="M21 17v2a2 2 0 0 1-2 2h-2" /><path d="M7 21H5a2 2 0 0 1-2-2v-2" /><path d="M7 12h10" /></svg>
+                    )}
+                    {feature.icon === 'eye' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" /></svg>
+                    )}
+                    {feature.icon === 'zap' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>
+                    )}
+                  </div>
+                  <div>
+                    <h3>{feature.title}</h3>
+                    <p>{feature.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <a class="btn-gold js-wa-cta" data-label="home_tecnologia_whatsapp" href={WA_TECH} target="_blank" rel="noopener">
+              Agendar com tecnologia digital
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </a>
+          </div>
+
+          <div class="tech-img-col">
+            <div class="tech-img-wrap">
+              <div class="tech-glow" aria-hidden="true"></div>
+              <div class="tech-img-frame">
+                <img
+                  src="/lovable-uploads/itero_screen.webp"
+                  alt="Scanner iTero Element 5D utilizado pela Dra. Carla Christoph para escaneamento digital em Ipanema"
+                  width="500"
+                  height="512"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="tech-badge">
+                <p class="tech-badge-top">Scanner #1 do Mundo</p>
+                <p class="tech-badge-name">iTero Element 5D</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 7. DEPOIMENTOS (TestimonialsCarousel.tsx) ═══ -->
+    <section id="depoimentos" class="sec-spacing bg-white">
+      <div class="container-c">
+        <div class="sec-header mb-14">
+          <p class="eyebrow">Depoimentos</p>
+          <h2 class="heading-lg">O Que Nossos Pacientes Dizem</h2>
+          <div class="gold-sep" aria-hidden="true"></div>
+          <p class="sec-sub-tight">
+            Histórias de pacientes que confiaram à Dra. Carla casos de reabilitação, estética e prevenção.
+          </p>
+        </div>
+
+        <div class="tst-wrap" id="tst-wrap">
+          <div class="tst-grid" id="tst-grid">
+            {testimonials.map((t, i) => (
+              <div class:list={['tst-card', { 'md-only': i === 1 || i === 2, 'is-off': i > 2 }]} data-tst-index={i}>
+                <svg class="tst-quote" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" /><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" /></svg>
+                <p class="tst-text">&ldquo;{t.text}&rdquo;</p>
+                <div class="tst-footer">
+                  <div class="tst-avatar" aria-hidden="true"><span>{t.name.charAt(0)}</span></div>
+                  <p class="tst-name">{t.name}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div class="tst-nav">
+            <button type="button" class="tst-arrow" id="tst-prev" aria-label="Depoimento anterior">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+            </button>
+            <div class="tst-dots" id="tst-dots">
+              {testimonials.map((_, index) => (
+                <button type="button" class:list={['tst-dot', { active: index === 0 }]} data-dot={index} aria-label={`Ir para depoimento ${index + 1}`}></button>
+              ))}
+            </div>
+            <button type="button" class="tst-arrow" id="tst-next" aria-label="Próximo depoimento">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+            </button>
+          </div>
+
+          <div class="tst-google">
+            <a
+              href="https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+              Ver todas as avaliações no Google
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 8. BLOG preview (BlogPreview.tsx — Contentful build-time) ═══ -->
+    <section class="sec-spacing bg-beige">
+      <div class="container-c">
+        <div class="sec-header mb-14">
+          <p class="eyebrow">Blog</p>
+          <h2 class="heading-lg">Dicas e Informações sobre Saúde Bucal</h2>
+          <div class="gold-sep" aria-hidden="true"></div>
+          <p class="sec-sub-tight">
+            Conteúdo preparado pela Dra. Carla Christoph para ajudar você a entender melhor sua saúde bucal e tomar
+            decisões informadas.
+          </p>
+        </div>
+
+        <div class="blog-grid">
+          {blogItems.map((post, index) => (
+            <div class="sr" style={`--sr-delay:${index * 150}ms`}>
+              <a href={`/blog/${post.slug}`} class="blog-card-link">
+                <article class="blog-card">
+                  <div class="blog-img">
+                    {thumb(post) ? (
+                      <img src={thumb(post)} alt={post.title} width="400" height="250" loading="lazy" decoding="async" />
+                    ) : (
+                      <div class="blog-img-ph" aria-hidden="true">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4" /><path d="M16 2v4" /><rect width="18" height="18" x="3" y="4" rx="2" /><path d="M3 10h18" /></svg>
+                      </div>
+                    )}
+                  </div>
+                  <div class="blog-body">
+                    <div class="blog-meta">
+                      <span class="blog-cat">{post.category}</span>
+                      <span class="blog-date">{fmtDate(post.date)}</span>
+                    </div>
+                    <h3>{post.title}</h3>
+                    <p class="blog-excerpt">{post.excerpt}</p>
+                    <span class="blog-read">
+                      Ler artigo
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                    </span>
+                  </div>
+                </article>
+              </a>
+            </div>
+          ))}
+        </div>
+
+        <div class="blog-all">
+          <a href="/blog">
+            Ver todos os artigos
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 9. CTA FINAL (FinalCTA.tsx) ═══ -->
+    <section class="final-cta">
+      <div class="fc-blob fc-blob-tl" aria-hidden="true"></div>
+      <div class="fc-blob fc-blob-br" aria-hidden="true"></div>
+
+      <div class="container-c fc-inner">
+        <p class="eyebrow">Agende sua consulta</p>
+
+        <h2 class="fc-h2">
+          Cuide do seu sorriso com quem dedica <span>tempo e atenção</span> a cada paciente
+        </h2>
+
+        <p class="fc-sub">
+          Mais de 20 anos em Ipanema cuidando de sorrisos com calma, planejamento e tecnologia. Agende pelo WhatsApp —
+          respondemos em minutos.
+        </p>
+
+        <div class="fc-actions">
+          <a class="btn-gold btn-gold-lg js-wa-cta" data-label="home_cta-final_whatsapp" href={WA_FINAL} target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg>
+            <span class="btn-2l">
+              <span class="btn-2l-main">Agendar minha consulta</span>
+              <span class="btn-2l-sub">WhatsApp 24h</span>
+            </span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+          </a>
+        </div>
+
+        <p class="fc-addr">Rua Visconde de Pirajá, 550 — Sala 1107, Ipanema</p>
+      </div>
+    </section>
+
+    <!-- ═══ 10. CONTATO (ContactSection.tsx) ═══ -->
+    <section id="contato" class="sec-spacing bg-beige">
+      <div class="container-c">
+        <div class="sec-header mb-8">
+          <h2 class="heading-lg">Entre em Contato</h2>
+          <div class="gold-sep" aria-hidden="true"></div>
+          <p class="sec-sub-mb4">Agende sua Consulta em Ipanema</p>
+          <p class="contact-particular">Atendimento particular.</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Form -->
+          <div>
+            <div class="contact-card">
+              <form id="contact-form" class="contact-form" novalidate>
+                <div class="cf-row2">
+                  <div>
+                    <label for="contact-name">Nome</label>
+                    <input id="contact-name" name="name" type="text" placeholder="Seu nome completo" required />
+                  </div>
+                  <div>
+                    <label for="contact-phone">Telefone</label>
+                    <input id="contact-phone" name="phone" type="tel" placeholder="(21) 99999-9999" required />
+                  </div>
+                </div>
+                <div>
+                  <label for="contact-email">E-mail</label>
+                  <input id="contact-email" name="email" type="email" placeholder="seu@email.com" required />
+                </div>
+                <div>
+                  <label for="contact-message">Mensagem</label>
+                  <textarea id="contact-message" name="message" placeholder="Como podemos ajudar?" required></textarea>
+                </div>
+                <div>
+                  <button type="submit" class="cf-submit" id="cf-submit">Enviar Mensagem</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Info + mapa -->
+          <div class="contact-info">
+            <div>
+              <h3>Informações de Contato</h3>
+
+              <div class="ci-rows">
+                <div class="ci-row">
+                  <svg class="ci-ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" /><line x1="8" y1="2" x2="8" y2="18" /><line x1="16" y1="6" x2="16" y2="22" /></svg>
+                  <div>
+                    <h4>Endereço</h4>
+                    <p>
+                      Rua Visconde de Pirajá, 550 - Sala 1107<br />
+                      Ipanema, Rio de Janeiro - RJ<br />
+                      CEP: 22410-901
+                    </p>
+                  </div>
+                </div>
+
+                <div class="ci-row">
+                  <svg class="ci-ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                  <div>
+                    <h4>Horário de Atendimento</h4>
+                    <p>Segunda a Sexta: 9h às 19h</p>
+                  </div>
+                </div>
+
+                <div class="ci-row">
+                  <svg class="ci-ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+                  <div>
+                    <h4>Telefone</h4>
+                    <p>
+                      (21) 3738-7909<br />
+                      (21) 99330-4045
+                    </p>
+                  </div>
+                </div>
+
+                <div class="ci-row">
+                  <svg class="ci-ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
+                  <div>
+                    <h4>E-mail</h4>
+                    <p>contato@dracarlachristoph.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ci-map">
+              <iframe
+                title="Localização da clínica Dra. Carla Christoph no Google Maps - Ipanema, Rio de Janeiro"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3673.8038117882485!2d-43.20445902529023!3d-22.9554811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bd5982d11a59b%3A0xf72b52f26c87f5c0!2sR.%20Visc.%20de%20Piraj%C3%A1%2C%20550%20-%20Ipanema%2C%20Rio%20de%20Janeiro%20-%20RJ%2C%2022410-901!5e0!3m2!1spt-BR!2sbr!4v1714480152894!5m2!1spt-BR!2sbr"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Toasts do form de contato -->
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+  </main>
+</SiteLayout>
+
+<style>
+  /* ═══════════════ Tokens e utilitários (portados de index.css / tailwind.config.ts) ═══════════════ */
+  main {
+    --purple: #381f47;
+    --gold: #b3955f;
+    --gold-dark: #9d7f4f;
+    --beige: hsl(51 22% 76%); /* #CFCBB4 — dental-beige */
+    --gray: #525252; /* dental-gray do tailwind.config.ts */
+    font-family: Montserrat, system-ui, -apple-system, sans-serif;
+    color: var(--purple);
+  }
+
+  /* container-custom: tailwind container (center, stepped max-width) + px-6 lg:px-8 */
+  .container-c {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  @media (min-width: 640px) { .container-c { max-width: 640px; } }
+  @media (min-width: 768px) { .container-c { max-width: 768px; } }
+  @media (min-width: 1024px) { .container-c { max-width: 1024px; padding-left: 2rem; padding-right: 2rem; } }
+  @media (min-width: 1280px) { .container-c { max-width: 1280px; } }
+  @media (min-width: 1536px) { .container-c { max-width: 1400px; } }
+
+  /* section-spacing: py-16 md:py-20 lg:py-24 */
+  .sec-spacing { padding-top: 4rem; padding-bottom: 4rem; }
+  @media (min-width: 768px) { .sec-spacing { padding-top: 5rem; padding-bottom: 5rem; } }
+  @media (min-width: 1024px) { .sec-spacing { padding-top: 6rem; padding-bottom: 6rem; } }
+
+  .bg-white { background: #fff; }
+  .bg-beige { background: var(--beige); }
+
+  .sec-header { max-width: 48rem; margin-left: auto; margin-right: auto; text-align: center; }
+  .mb-8 { margin-bottom: 2rem; }
+  .mb-14 { margin-bottom: 3.5rem; }
+  .mb-16 { margin-bottom: 4rem; }
+
+  .heading-lg {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    color: var(--purple);
+    margin-bottom: 1rem;
+  }
+  @media (min-width: 768px) { .heading-lg { font-size: 2.25rem; line-height: 2.5rem; } }
+
+  .gold-sep { width: 6rem; height: 0.25rem; background: var(--gold); margin: 0 auto 1.5rem; }
+  .gold-sep-left { margin-left: 0; }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .sec-sub { color: var(--gray); margin-bottom: 1.5rem; }
+  .sec-sub-tight { color: var(--gray); }
+  .sec-sub-mb4 { color: var(--gray); margin-bottom: 1rem; }
+
+  /* Âncoras compensam o header fixo (paridade com scroll-padding do SPA) */
+  section[id] { scroll-margin-top: 100px; }
+
+  /* ── Botões (porte do Button shadcn + classes do React) ── */
+  .btn-purple {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--purple);
+    color: #fff;
+    border: none;
+    border-radius: 0.375rem;
+    padding: 1.25rem 1.5rem;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 1rem;
+  }
+  .btn-purple:hover { background: rgba(56, 31, 71, 0.9); }
+
+  .btn-2l { display: flex; flex-direction: column; text-align: left; line-height: 1.25; }
+  .btn-2l-main { font-weight: 500; }
+  .btn-2l-sub { font-size: 0.75rem; color: rgba(255, 255, 255, 0.8); }
+
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gold);
+    color: #fff;
+    border: none;
+    border-radius: 0.375rem;
+    padding: 1.5rem 2rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(179, 149, 95, 0.3); /* shadow-gold */
+    transition: all 0.3s;
+  }
+  .btn-gold:hover { background: var(--gold-dark); transform: translateY(-2px); }
+
+  .btn-gold-lg { padding: 1.75rem 2.5rem; font-size: 1.125rem; gap: 0.75rem; }
+  .btn-gold-lg:hover { box-shadow: 0 12px 32px rgba(56, 31, 71, 0.16), 0 6px 16px rgba(56, 31, 71, 0.1); }
+
+  /* ═══════════════ 1. HERO full-bleed — CSS VERBATIM de index.css (.hero-fb) ═══════════════ */
+  .hero-fb {
+    position: relative;
+    background: #e4dbca;
+    padding-top: var(--header-height, 112px);
+    overflow: hidden;
+  }
+  .hero-fb-photo { display: block; }
+  .hero-fb-photo img {
+    display: block;
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    object-position: 50% 8%;
+  }
+  .hero-fb-scrim { display: none; }
+  .hero-fb-text { background: #e4dbca; padding: 1.75rem 1.5rem 2.5rem; }
+  .hero-fb-textwrap { width: 100%; }
+  .hero-fb-copy { max-width: 600px; margin: 0 auto; }
+  .hero-fb-eyebrow { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.18em; color: #b3955f; font-weight: 600; margin-bottom: 1rem; }
+  .hero-fb-h1 {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: clamp(1.75rem, 5.2vw, 2.625rem);
+    font-weight: 600;
+    line-height: 1.14;
+    color: #381f47;
+    margin-bottom: 1.25rem;
+  }
+  .hero-fb-h1 span { color: #b3955f; }
+  .hero-fb-sub { font-size: 1rem; color: #5c5647; line-height: 1.6; margin-bottom: 1.5rem; max-width: 33rem; }
+  .hero-fb-badges { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin-bottom: 1.75rem; }
+  .hero-fb-badges span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: #8a7444; font-weight: 600; }
+  .hero-fb-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 1.25rem; }
+  .hero-fb-cta {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 0.9rem 1.75rem;
+    background: #b3955f;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-family: inherit;
+    box-shadow: 0 8px 20px -8px rgba(179, 149, 95, 0.6);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .hero-fb-cta:hover { transform: translateY(-2px); }
+  .hero-fb-cta b { font-size: 1rem; }
+  .hero-fb-cta small { font-size: 0.7rem; opacity: 0.85; font-weight: 400; }
+  .hero-fb-explore {
+    color: #381f47;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0.5rem 0;
+  }
+  @media (min-width: 768px) {
+    .hero-fb { min-height: 86vh; padding-top: 0; }
+    .hero-fb-photo { position: absolute; top: var(--header-height, 112px); left: 0; right: 0; bottom: 0; }
+    .hero-fb-photo img { height: 100%; object-position: 50% 14%; }
+    .hero-fb-scrim {
+      display: block;
+      position: absolute;
+      top: var(--header-height, 112px);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      background: linear-gradient(to right, rgba(228, 219, 202, 0.99) 0%, rgba(228, 219, 202, 0.96) 33%, rgba(228, 219, 202, 0.55) 49%, rgba(228, 219, 202, 0) 70%);
+    }
+    .hero-fb-text { position: relative; background: transparent; padding: 0; min-height: 86vh; display: flex; align-items: center; }
+    .hero-fb-textwrap { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .hero-fb-copy { max-width: 560px; margin: 0; }
+    .hero-fb-h1 { font-size: 2.625rem; }
+  }
+
+  /* Animações de entrada do hero (verbatim de index.css) */
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-animate-1 { animation: heroFadeUp 0.7s ease-out 0.1s both; }
+  .hero-animate-2 { animation: heroFadeUp 0.7s ease-out 0.25s both; }
+  .hero-animate-3 { animation: heroFadeUp 0.7s ease-out 0.4s both; }
+  .hero-animate-4 { animation: heroFadeUp 0.7s ease-out 0.55s both; }
+  .hero-animate-5 { animation: heroFadeUp 0.7s ease-out 0.7s both; }
+
+  /* ═══════════════ 2. STATS BAR ═══════════════ */
+  .stats-bar {
+    background: rgba(255, 255, 255, 0.8);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    border-top: 1px solid rgba(56, 31, 71, 0.1);
+    border-bottom: 1px solid rgba(56, 31, 71, 0.1);
+  }
+  .stats-inner { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+  @media (min-width: 768px) { .stats-inner { padding-top: 2rem; padding-bottom: 2rem; } }
+  .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4, 1fr); gap: 2rem; } }
+  .stat-item { display: flex; align-items: center; gap: 0.75rem; justify-content: center; }
+  .stat-icon {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    background: rgba(179, 149, 95, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+  }
+  .stat-value {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--purple);
+    line-height: 1.25;
+  }
+  @media (min-width: 768px) { .stat-value { font-size: 1.25rem; } }
+  .stat-label { font-size: 0.75rem; color: var(--gray); line-height: 1.25; }
+
+  /* ═══════════════ 3. SOBRE ═══════════════ */
+  .about-grid { display: grid; gap: 4rem; align-items: center; }
+  @media (min-width: 768px) { .about-grid { grid-template-columns: repeat(2, 1fr); } }
+  .about-photo { aspect-ratio: 1 / 1; border-radius: 1rem; overflow: hidden; }
+  .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .about-text { display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+  .about-paras p {
+    font-size: 1rem;
+    color: rgba(56, 31, 71, 0.8);
+    line-height: 1.5;
+  }
+  @media (min-width: 768px) { .about-paras p { font-size: 1.125rem; } }
+  .about-paras p + p { margin-top: 1.5rem; }
+  .about-cta-wrap { padding-top: 1.5rem; margin-top: auto; }
+
+  /* ═══════════════ 4. DIFERENCIAIS ═══════════════ */
+  .diff-grid { display: grid; gap: 2rem; }
+  @media (min-width: 768px) { .diff-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .diff-grid { grid-template-columns: repeat(4, 1fr); } }
+  .diff-card {
+    position: relative;
+    background: #fff;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08); /* shadow-soft */
+    transition: all 0.5s;
+    height: 100%;
+  }
+  .diff-card:hover {
+    box-shadow: 0 12px 32px rgba(56, 31, 71, 0.16), 0 6px 16px rgba(56, 31, 71, 0.1); /* shadow-hover */
+    transform: translateY(-0.25rem);
+  }
+  .diff-accent {
+    position: absolute;
+    top: 0;
+    left: 2rem;
+    right: 2rem;
+    height: 0.125rem;
+    background: rgba(179, 149, 95, 0);
+    transition: all 0.5s;
+    border-radius: 9999px;
+  }
+  .diff-card:hover .diff-accent { background: rgba(179, 149, 95, 0.6); }
+  .diff-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 0.75rem;
+    background: rgba(179, 149, 95, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    transition: background 0.3s;
+  }
+  .diff-card:hover .diff-icon { background: rgba(179, 149, 95, 0.2); }
+  .diff-card h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--purple);
+    margin-bottom: 0.75rem;
+  }
+  .diff-card p { font-size: 0.875rem; color: var(--gray); line-height: 1.625; }
+
+  /* ═══════════════ 5. TRATAMENTOS ═══════════════ */
+  .svc-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+  @media (min-width: 768px) { .svc-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .svc-grid { grid-template-columns: repeat(3, 1fr); gap: 3rem; } }
+  .svc-card {
+    position: relative;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* shadow-lg */
+    height: 20rem;
+    transition: all 0.5s ease-in-out;
+  }
+  .svc-card:hover { transform: scale(1.05); }
+  .svc-card > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .svc-card:hover > img { transform: scale(1.1); }
+  .svc-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4), transparent);
+    transition: all 0.3s;
+  }
+  .svc-card:hover .svc-overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6), transparent);
+  }
+  .svc-content {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    color: #fff;
+  }
+  .svc-content h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.025em;
+    color: #fff;
+  }
+  .svc-content p {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+  .svc-card:hover .svc-content p { opacity: 1; max-height: 10rem; }
+  .svc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--gold);
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .svc-link:hover { color: #fff; }
+
+  /* Separador entre Tratamentos e Tecnologia */
+  .split-wrap { width: 100%; padding-left: 1rem; padding-right: 1rem; background: var(--beige); }
+  .split-inner { max-width: 56rem; margin: 0 auto; }
+  .split-line { height: 1px; background: linear-gradient(to right, transparent, rgba(56, 31, 71, 0.3), transparent); }
+
+  /* ═══════════════ 6. TECNOLOGIA ═══════════════ */
+  .tech-sec { background: var(--purple); position: relative; overflow: hidden; }
+  .tech-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image: radial-gradient(circle at 1px 1px, rgba(179, 149, 95, 0.3) 1px, transparent 0);
+    background-size: 32px 32px;
+  }
+  .tech-inner { position: relative; z-index: 10; }
+  .tech-grid { display: grid; gap: 3rem; align-items: center; }
+  @media (min-width: 1024px) { .tech-grid { grid-template-columns: repeat(2, 1fr); gap: 4rem; } }
+  .tech-h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  @media (min-width: 768px) { .tech-h2 { font-size: 2.25rem; line-height: 2.5rem; } }
+  .tech-h2 span { color: var(--gold); }
+  .tech-lead { color: rgba(255, 255, 255, 0.8); font-size: 1.125rem; margin-bottom: 2.5rem; line-height: 1.625; }
+  .tech-features { margin-bottom: 2.5rem; }
+  .tech-feature { display: flex; align-items: flex-start; gap: 1rem; }
+  .tech-feature + .tech-feature { margin-top: 1.5rem; }
+  .tech-fi {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    background: rgba(179, 149, 95, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    transition: background 0.3s;
+  }
+  .tech-feature:hover .tech-fi { background: rgba(179, 149, 95, 0.3); }
+  .tech-feature h3 { font-family: inherit; color: #fff; font-weight: 600; margin-bottom: 0.25rem; font-size: 1rem; }
+  .tech-feature p { color: rgba(255, 255, 255, 0.6); font-size: 0.875rem; line-height: 1.625; }
+  .tech-img-col { display: flex; justify-content: center; }
+  @media (min-width: 1024px) { .tech-img-col { justify-content: flex-end; } }
+  .tech-img-wrap { position: relative; }
+  .tech-glow { position: absolute; inset: -1rem; background: rgba(179, 149, 95, 0.1); border-radius: 1.5rem; filter: blur(40px); }
+  .tech-img-frame {
+    position: relative;
+    width: 100%;
+    max-width: 28rem;
+    aspect-ratio: 4 / 3;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); /* shadow-2xl */
+  }
+  .tech-img-frame img { width: 100%; height: 100%; object-fit: cover; }
+  .tech-badge {
+    position: absolute;
+    bottom: -1rem;
+    left: -1rem;
+    background: #fff;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    box-shadow: 0 10px 40px -10px rgba(56, 31, 71, 0.2); /* shadow-elegant */
+  }
+  @media (min-width: 768px) { .tech-badge { left: -2rem; } }
+  .tech-badge-top { font-size: 0.75rem; color: var(--gray); }
+  .tech-badge-name { font-family: 'Playfair Display', Georgia, serif; font-size: 0.875rem; font-weight: 600; color: var(--purple); }
+
+  /* ═══════════════ 7. DEPOIMENTOS ═══════════════ */
+  .tst-grid { display: grid; gap: 1.5rem; }
+  @media (min-width: 768px) { .tst-grid { grid-template-columns: repeat(3, 1fr); } }
+  .tst-card {
+    position: relative;
+    background: rgba(207, 203, 180, 0.4); /* dental-beige/40 */
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid rgba(56, 31, 71, 0.05);
+    transition: all 0.5s;
+  }
+  .tst-card.is-off { display: none !important; }
+  .tst-card.md-only { display: none; }
+  @media (min-width: 768px) { .tst-card.md-only { display: block; } }
+  .tst-quote { color: rgba(179, 149, 95, 0.2); margin-bottom: 1rem; }
+  .tst-text { color: rgba(56, 31, 71, 0.9); line-height: 1.625; margin-bottom: 1.5rem; font-size: 0.875rem; }
+  .tst-footer { display: flex; align-items: center; gap: 0.75rem; padding-top: 1rem; border-top: 1px solid rgba(56, 31, 71, 0.1); }
+  .tst-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    background: rgba(56, 31, 71, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tst-avatar span { font-size: 0.875rem; font-weight: 600; color: var(--purple); }
+  .tst-name { font-weight: 600; color: var(--purple); font-size: 0.875rem; }
+  .tst-nav { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 2rem; }
+  .tst-arrow {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(56, 31, 71, 0.2);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--purple);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .tst-arrow:hover { background: var(--purple); color: #fff; }
+  .tst-dots { display: flex; gap: 0.5rem; }
+  .tst-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    padding: 0;
+    border: none;
+    border-radius: 9999px;
+    background: rgba(56, 31, 71, 0.2);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .tst-dot:hover { background: rgba(56, 31, 71, 0.4); }
+  .tst-dot.active { background: var(--gold); width: 1.5rem; }
+  .tst-google { text-align: center; margin-top: 1.5rem; }
+  .tst-google a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--gold);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .tst-google a:hover { color: var(--gold-dark); }
+
+  /* ═══════════════ 8. BLOG ═══════════════ */
+  .blog-grid { display: grid; gap: 2rem; }
+  @media (min-width: 768px) { .blog-grid { grid-template-columns: repeat(3, 1fr); } }
+  .blog-card-link { display: block; height: 100%; text-decoration: none; }
+  .blog-card {
+    background: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08);
+    transition: all 0.5s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .blog-card-link:hover .blog-card {
+    box-shadow: 0 12px 32px rgba(56, 31, 71, 0.16), 0 6px 16px rgba(56, 31, 71, 0.1);
+    transform: translateY(-0.25rem);
+  }
+  .blog-img { aspect-ratio: 16 / 10; overflow: hidden; background: rgba(56, 31, 71, 0.05); }
+  .blog-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+  .blog-card-link:hover .blog-img img { transform: scale(1.05); }
+  .blog-img-ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(56, 31, 71, 0.2); }
+  .blog-body { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+  .blog-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+  .blog-cat {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+    background: rgba(179, 149, 95, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+  }
+  .blog-date { font-size: 0.75rem; color: var(--gray); }
+  .blog-body h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--purple);
+    margin-bottom: 0.5rem;
+    transition: color 0.3s;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .blog-card-link:hover .blog-body h3 { color: var(--gold); }
+  .blog-excerpt {
+    font-size: 0.875rem;
+    color: var(--gray);
+    line-height: 1.625;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .blog-read {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--gold);
+    transition: color 0.3s;
+  }
+  .blog-card-link:hover .blog-read { color: var(--gold-dark); }
+  .blog-all { text-align: center; margin-top: 2.5rem; }
+  .blog-all a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--purple);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .blog-all a:hover { color: var(--gold); }
+
+  /* ═══════════════ 9. CTA FINAL ═══════════════ */
+  .final-cta { position: relative; overflow: hidden; background: var(--purple); padding: 5rem 0; }
+  @media (min-width: 768px) { .final-cta { padding: 7rem 0; } }
+  .fc-blob { position: absolute; border-radius: 9999px; background: rgba(179, 149, 95, 0.05); filter: blur(64px); }
+  .fc-blob-tl { top: 0; left: 0; width: 16rem; height: 16rem; transform: translate(-50%, -50%); }
+  .fc-blob-br { bottom: 0; right: 0; width: 24rem; height: 24rem; transform: translate(33%, 33%); }
+  .fc-inner { position: relative; z-index: 10; text-align: center; }
+  .fc-h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.875rem;
+    line-height: 1.25;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media (min-width: 768px) { .fc-h2 { font-size: 2.25rem; } }
+  @media (min-width: 1024px) { .fc-h2 { font-size: 3rem; } }
+  .fc-h2 span { color: var(--gold); }
+  .fc-sub { color: rgba(255, 255, 255, 0.7); font-size: 1.125rem; margin-bottom: 2.5rem; max-width: 42rem; margin-left: auto; margin-right: auto; }
+  .fc-actions { display: flex; flex-direction: column; gap: 1rem; justify-content: center; align-items: center; }
+  @media (min-width: 640px) { .fc-actions { flex-direction: row; } }
+  .fc-addr { color: rgba(255, 255, 255, 0.4); font-size: 0.875rem; margin-top: 1.5rem; }
+
+  /* ═══════════════ 10. CONTATO ═══════════════ */
+  .contact-particular { color: var(--gray); font-size: 0.875rem; margin-bottom: 1.5rem; }
+  .contact-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+  @media (min-width: 768px) { .contact-grid { grid-template-columns: repeat(2, 1fr); } }
+  .contact-card {
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* shadow-sm */
+    padding: 1.5rem;
+  }
+  .contact-form > div + div { margin-top: 1rem; }
+  .cf-row2 { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 768px) { .cf-row2 { grid-template-columns: repeat(2, 1fr); } }
+  .contact-form label {
+    display: block;
+    margin-bottom: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--purple);
+    line-height: 1;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    display: block;
+    width: 100%;
+    border-radius: 0.375rem;
+    border: 1px solid rgba(82, 82, 82, 0.3);
+    background: var(--beige);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-family: inherit;
+    color: var(--purple);
+  }
+  .contact-form input { height: 2.5rem; }
+  .contact-form textarea { min-height: 120px; resize: vertical; }
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder { color: hsl(0 0% 40%); }
+  .contact-form input:focus-visible,
+  .contact-form textarea:focus-visible { outline: 2px solid hsl(43 33% 54%); outline-offset: 2px; }
+  .cf-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 2.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--purple);
+    color: #fff;
+    border: none;
+    border-radius: 0.375rem;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .cf-submit:hover { background: rgba(56, 31, 71, 0.9); }
+  .cf-submit:disabled { opacity: 0.5; pointer-events: none; }
+  .contact-info > div + div { margin-top: 2rem; }
+  .contact-info h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: var(--purple);
+  }
+  .ci-rows > .ci-row + .ci-row { margin-top: 1rem; }
+  .ci-row { display: flex; align-items: flex-start; }
+  .ci-ic { color: var(--gold); margin-top: 0.25rem; margin-right: 0.75rem; flex-shrink: 0; }
+  .ci-row h4 { font-family: inherit; font-weight: 500; color: var(--purple); font-size: 1rem; }
+  .ci-row p { color: var(--gray); }
+  .ci-map { aspect-ratio: 16 / 9; }
+  .ci-map iframe { width: 100%; height: 100%; border: 0; border-radius: 0.5rem; display: block; }
+
+  /* ═══════════════ Scroll reveal (porte do ScrollReveal.tsx fade-up) ═══════════════ */
+  :global(html.js) .sr {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94) var(--sr-delay, 0ms),
+      transform 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94) var(--sr-delay, 0ms);
+    will-change: opacity, transform;
+  }
+  :global(html.js) .sr.sr-in { opacity: 1; transform: translateY(0); }
+
+  /* ═══════════════ Toasts do form ═══════════════ */
+  .toast-region {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 22rem;
+  }
+  .toast-region :global(.toast) {
+    background: #fff;
+    border: 1px solid rgba(56, 31, 71, 0.15);
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    padding: 0.9rem 1.1rem;
+    font-size: 0.875rem;
+    color: var(--purple);
+  }
+  .toast-region :global(.toast.destructive) { background: #dc2626; border-color: #dc2626; color: #fff; }
+  .toast-region :global(.toast b) { display: block; margin-bottom: 0.15rem; }
+
+  /* Respeitar preferência do usuário por redução de movimento (paridade com index.css) */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-animate-1,
+    .hero-animate-2,
+    .hero-animate-3,
+    .hero-animate-4,
+    .hero-animate-5 {
+      animation: none !important;
+    }
+    :global(html.js) .sr { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+
+<!-- Suavizar rolagem de âncoras (paridade com scroll-behavior:smooth do SPA) -->
+<style is:global>
+  html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+</style>
+
+<script>
+  // ═══ Interatividade da home — porte vanilla dos comportamentos React ═══
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 1) Explore CTA do hero: dataLayer (paridade com handleExploreClick do Hero.tsx)
+  document.getElementById('hero-explore')?.addEventListener('click', () => {
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({
+      event: 'hero_explore_click',
+      event_category: 'Navigation',
+      event_action: 'Click',
+      event_label: 'Hero Secondary CTA',
+    });
+  });
+
+  // 2) Stats count-up (porte do useCountUp — easeOutCubic, 1800ms, dispara a 50% visível)
+  if (!reducedMotion) {
+    document.querySelectorAll<HTMLElement>('.stat-value [data-count]').forEach((el) => {
+      const end = Number(el.dataset.count || '0');
+      const io = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) return;
+          io.disconnect();
+          let startTime: number | null = null;
+          const duration = 1800;
+          const step = (ts: number) => {
+            if (startTime === null) startTime = ts;
+            const progress = Math.min((ts - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const val = Math.floor(eased * end);
+            el.textContent = val >= 1000 ? val.toLocaleString('pt-BR') : String(val);
+            if (progress < 1) requestAnimationFrame(step);
+          };
+          el.textContent = '0';
+          requestAnimationFrame(step);
+        },
+        { threshold: 0.5 }
+      );
+      io.observe(el);
+    });
+  }
+
+  // 3) Scroll reveal (porte do ScrollReveal.tsx — threshold por seção via IO único 0.1)
+  const srItems = document.querySelectorAll('.sr');
+  if (srItems.length) {
+    const srIo = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('sr-in');
+            srIo.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    srItems.forEach((el) => srIo.observe(el));
+  }
+
+  // 4) Carousel de depoimentos (porte do TestimonialsCarousel.tsx:
+  //    3 visíveis no desktop / 1 no mobile, autoplay 5s, pausa no hover, setas + dots)
+  (() => {
+    const wrap = document.getElementById('tst-wrap');
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.tst-card'));
+    const dots = Array.from(document.querySelectorAll<HTMLElement>('.tst-dot'));
+    if (!wrap || cards.length === 0) return;
+
+    const N = cards.length;
+    let current = 0;
+    let autoPlaying = true;
+    let timer: ReturnType<typeof setInterval> | null = null;
+
+    function render() {
+      cards.forEach((c) => {
+        c.classList.add('is-off');
+        c.classList.remove('md-only');
+        c.style.order = '';
+      });
+      for (let k = 0; k < 3; k++) {
+        const idx = (current + k) % N;
+        const c = cards[idx];
+        c.classList.remove('is-off');
+        c.style.order = String(k);
+        if (k > 0) c.classList.add('md-only');
+      }
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    const next = () => { current = (current + 1) % N; render(); };
+    const prev = () => { current = (current - 1 + N) % N; render(); };
+
+    function startAuto() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(() => { if (autoPlaying) next(); }, 5000);
+    }
+
+    document.getElementById('tst-next')?.addEventListener('click', next);
+    document.getElementById('tst-prev')?.addEventListener('click', prev);
+    dots.forEach((d) => d.addEventListener('click', () => { current = Number(d.dataset.dot || '0'); render(); }));
+    wrap.addEventListener('mouseenter', () => { autoPlaying = false; });
+    wrap.addEventListener('mouseleave', () => { autoPlaying = true; });
+
+    render();
+    startAuto();
+  })();
+
+  // 5) Form de contato (porte do ContactSection.tsx: validação, dataLayer,
+  //    beacon GCLID, POST /api/contact, gtag conversion no sucesso, toasts)
+  (() => {
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    const submitBtn = document.getElementById('cf-submit') as HTMLButtonElement | null;
+    const region = document.getElementById('toast-region');
+    if (!form || !submitBtn || !region) return;
+
+    function showToast(title: string, description: string, destructive = false) {
+      const t = document.createElement('div');
+      t.className = 'toast' + (destructive ? ' destructive' : '');
+      t.setAttribute('role', 'status');
+      const b = document.createElement('b');
+      b.textContent = title;
+      const p = document.createElement('span');
+      p.textContent = description;
+      t.appendChild(b);
+      t.appendChild(p);
+      region!.appendChild(t);
+      setTimeout(() => t.remove(), 5000);
+    }
+
+    // Mesmo payload do sendGCLIDToWebhook (proxy /api/send-gclid) usado pelo handler global
+    function sendGclidWebhook(label: string) {
+      try {
+        const gclid = localStorage.getItem('gclid');
+        if (!gclid) return;
+        const payload = JSON.stringify({
+          gclid,
+          timestamp: localStorage.getItem('gclid_timestamp') || String(Date.now()),
+          page: window.location.pathname,
+          label,
+        });
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon('/api/send-gclid', new Blob([payload], { type: 'application/json' }));
+        } else {
+          fetch('/api/send-gclid', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: payload,
+            keepalive: true,
+          });
+        }
+      } catch (e) { /* noop */ }
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = (document.getElementById('contact-name') as HTMLInputElement).value.trim();
+      const phone = (document.getElementById('contact-phone') as HTMLInputElement).value.trim();
+      const email = (document.getElementById('contact-email') as HTMLInputElement).value.trim();
+      const message = (document.getElementById('contact-message') as HTMLTextAreaElement).value.trim();
+
+      if (!name || !phone || !email || !message) {
+        showToast('Campos obrigatórios', 'Por favor, preencha todos os campos antes de enviar.', true);
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: 'contact_form_submit',
+        event_category: 'Contact',
+        event_action: 'Submit',
+        event_label: 'Contact Section Form',
+      });
+
+      sendGclidWebhook('contact_form_submit');
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, phone, email, message }),
+        });
+
+        if (response.ok) {
+          if ((window as any).gtag) {
+            (window as any).gtag('event', 'conversion', {
+              send_to: 'AW-16894364517/OQZvCMXV0foZEOqP7vY9',
+            });
+          }
+          showToast('Mensagem enviada!', 'Entraremos em contato em breve.');
+          form.reset();
+        } else {
+          const data = await response.json().catch(() => ({} as any));
+          showToast('Erro ao enviar', (data as any).error || 'Tente novamente mais tarde.', true);
+        }
+      } catch {
+        showToast('Erro ao enviar', 'Verifique sua conexão e tente novamente.', true);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar Mensagem';
+      }
+    });
+  })();
+</script>

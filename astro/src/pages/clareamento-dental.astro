@@ -1,0 +1,713 @@
+---
+/**
+ * /clareamento-dental — porte VERBATIM de src/pages/ClareamentoDental.tsx.
+ * Meta/canonical: scripts/generate-static-meta.cjs ('/clareamento-dental').
+ * Schemas: MedicalProcedure + Dentist (generate-static-meta.cjs) +
+ * FAQPage (faqs da página, como o Helmet do React) + BreadcrumbList (hero).
+ * Nota: a tabela comparativa replica o output REAL do ComparisonTable.tsx
+ * (primeira linha vira header A/B; a coluna C não é renderizada pelo componente).
+ */
+import SiteLayout from '../layouts/SiteLayout.astro';
+import TreatmentHero from '../components/treatment/TreatmentHero.astro';
+import StatsBar from '../components/treatment/StatsBar.astro';
+import SectionDivider from '../components/treatment/SectionDivider.astro';
+import ProcessTimeline from '../components/treatment/ProcessTimeline.astro';
+import QuickAnswerBox from '../components/treatment/QuickAnswerBox.astro';
+import DoctorBioSection from '../components/treatment/DoctorBioSection.astro';
+import EmpatheticPainPoints from '../components/treatment/EmpatheticPainPoints.astro';
+import ServiceFAQ from '../components/treatment/ServiceFAQ.astro';
+import FinalServiceCTA from '../components/treatment/FinalServiceCTA.astro';
+import RelatedTreatments from '../components/treatment/RelatedTreatments.astro';
+import Icon from '../components/treatment/Icon.astro';
+import '../styles/treatment.css';
+
+const faqs = [
+  { question: 'Qual a diferença entre as modalidades?', answer: 'O clareamento de consultório utiliza gel de maior concentração (35-37%), com resultados em 1-3 sessões. O caseiro usa concentração menor (10-20%), aplicada gradualmente em 14-21 dias com moldeiras personalizadas. O combinado inicia em consultório e mantém resultado com aplicações caseiras. A indicação depende da análise individual.' },
+  { question: 'O clareamento causa sensibilidade?', answer: 'Sensibilidade temporária pode ocorrer, mas protocolos modernos minimizam esse desconforto. Utilizamos dessensibilizantes, ajustamos concentrações conforme necessário e aplicamos laser terapêutico quando indicado. A maioria dos pacientes relata pouco ou nenhum desconforto.' },
+  { question: 'Quanto tempo dura o resultado?', answer: 'Com cuidados adequados, os resultados mantêm-se por 2-3 anos. A durabilidade varia conforme hábitos alimentares e higiene. Protocolo de manutenção com sessões anuais prolonga significativamente os resultados.' },
+  { question: 'Posso fazer clareamento com restaurações?', answer: 'Sim, mas apenas dentes naturais respondem ao clareamento. Restaurações e próteses mantêm sua cor original. Analisamos seu caso para determinar a melhor estratégia, considerando se há necessidade de substituição posterior das restaurações visíveis.' },
+  { question: 'O clareamento é seguro para o esmalte?', answer: 'Quando realizado com protocolos adequados, não causa danos ao esmalte. Os géis modernos têm pH balanceado e não provocam desmineralização. Utilizamos produtos com agentes remineralizantes que preservam a integridade dental.' },
+  { question: 'Quais cuidados após o clareamento?', answer: 'Nas primeiras 48 horas, evitar alimentos e bebidas pigmentados. Manter higiene oral adequada com escovação após refeições. Uso de canudos para bebidas escuras. Consultas semestrais para manutenção profissional.' },
+  { question: 'Clareamento funciona em todos os tipos de manchas?', answer: 'A eficácia varia conforme o tipo de mancha. Manchas por alimentos e idade respondem muito bem. Manchas por medicamentos têm resposta variável. Na consulta, analisamos seu caso específico e estabelecemos expectativas realistas.' },
+  { question: 'Clareamento e limpeza são diferentes?', answer: 'Sim. A limpeza remove tártaro e manchas superficiais, devolvendo a cor natural. O clareamento altera quimicamente a cor interna do dente, clareando além da cor natural. Frequentemente realizamos limpeza antes do clareamento para otimizar resultados.' },
+  { question: 'Produtos de farmácia têm o mesmo efeito?', answer: 'Produtos sem prescrição contêm concentrações muito baixas devido a regulamentação, oferecendo resultados limitados. O clareamento profissional usa concentrações terapêuticas sob supervisão, garantindo eficácia superior e segurança.' },
+  { question: 'Como é feita a escolha da modalidade?', answer: 'Na consulta inicial, analiso suas características individuais, tipo de mancha, sensibilidade prévia, rotina e expectativas. A indicação considera todos esses fatores para definir o protocolo mais adequado ao seu caso.' },
+];
+
+const PROVIDER = {
+  '@type': 'Dentist',
+  name: 'Dra. Carla Christoph',
+  telephone: '+5521993304045',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+    addressLocality: 'Ipanema',
+    addressRegion: 'RJ',
+    postalCode: '22410-901',
+    addressCountry: 'BR',
+  },
+};
+
+const schemas = [
+  // MedicalProcedure — copiado de generate-static-meta.cjs ('/clareamento-dental')
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'MedicalProcedure',
+    name: 'Clareamento Dental Profissional',
+    description: 'Procedimento estético para clareamento dos dentes com gel de peróxido em consultório ou com moldeiras caseiras supervisionadas',
+    procedureType: 'Dental',
+    url: 'https://dracarlachristoph.com/clareamento-dental',
+    provider: PROVIDER,
+  }),
+  // Dentist — generateDentistSchema() de generate-static-meta.cjs
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Dentist',
+    name: 'Dra. Carla Christoph',
+    description: 'Dentista especialista em Prótese Dental e Reabilitação Oral em Ipanema, Rio de Janeiro. Mais de 20 anos de experiência.',
+    telephone: '+5521993304045',
+    url: 'https://dracarlachristoph.com',
+    image: 'https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
+    priceRange: '$$$',
+    address: PROVIDER.address,
+    openingHoursSpecification: [
+      { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '19:00' },
+    ],
+    hasCredential: { '@type': 'EducationalOccupationalCredential', credentialCategory: 'CRO-RJ', recognizedBy: { '@type': 'Organization', name: 'CRO-RJ' }, identifier: '27.509' },
+    aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '17', bestRating: '5' },
+    availableLanguage: ['pt-BR', 'en'],
+  }),
+  // FAQPage — mesmas perguntas/respostas exibidas na página (Helmet do React)
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  }),
+];
+
+// Cards de modalidades (copy verbatim de ClareamentoDental.tsx)
+const modalityCards = [
+  {
+    image: '/lovable-uploads/Clareamento_de_consultorio.webp',
+    alt: 'Modelo 3D mostrando clareamento dental de consultório',
+    title: 'Clareamento de Consultório',
+    summary: 'Gel clareador de alta concentração aplicado em sessões de 60-90 minutos. Resultados visíveis a partir da primeira aplicação.',
+    caracteristicas: [
+      { strong: 'Concentração:', text: '35-37% peróxido de hidrogênio' },
+      { strong: 'Sessões:', text: '1 a 3 consultas' },
+      { strong: 'Clareamento:', text: '4-9 tons' },
+      { strong: 'Duração:', text: '2-3 anos com cuidados adequados' },
+    ],
+    vantagens: [
+      'Resultado em poucas sessões',
+      'Supervisão profissional constante',
+      'Controle preciso do processo',
+      'Isolamento da gengiva para evitar irritação',
+    ],
+    consideracoes: ['Sensibilidade temporária possível', 'Requer disponibilidade para consultas'],
+    ideal: 'Casos que necessitam resultado em curto espaço de tempo, manchas mais resistentes ou quem prefere supervisão presencial constante.',
+  },
+  {
+    image: '/lovable-uploads/Clareamento_caseiro.webp',
+    alt: 'Modelo 3D mostrando moldeiras de clareamento caseiro',
+    title: 'Clareamento Caseiro Supervisionado',
+    summary: 'Moldeiras personalizadas confeccionadas no consultório. Gel de menor concentração para aplicação diária em casa com acompanhamento profissional.',
+    caracteristicas: [
+      { strong: 'Concentração:', text: '10-20% peróxido de carbamida' },
+      { strong: 'Moldeiras:', text: 'Personalizadas e anatômicas' },
+      { strong: 'Aplicação:', text: '14 a 21 dias' },
+      { strong: 'Clareamento:', text: '2-6 tons' },
+      { strong: 'Duração:', text: '2-3 anos com cuidados adequados' },
+    ],
+    vantagens: [
+      'Aplicação no conforto de casa',
+      'Flexibilidade de horários',
+      'Menor sensibilidade',
+      'Gradual e controlado',
+    ],
+    consideracoes: ['Requer disciplina na aplicação'],
+    ideal: 'Quem prefere tratamento gradual, possui rotina flexível e busca conforto durante o processo.',
+  },
+  {
+    image: '/lovable-uploads/Clareamento_combinado.webp',
+    alt: 'Modelo 3D mostrando antes e depois do clareamento dental',
+    title: 'Tratamento Combinado',
+    summary: 'Início em consultório seguido de manutenção caseira. Combina resultado inicial mais evidente com estabilização gradual.',
+    caracteristicas: [
+      { strong: 'Protocolo:', text: 'Consultório + caseiro sequencial' },
+      { strong: 'Tempo total:', text: 'Variável conforme caso' },
+      { strong: 'Clareamento:', text: '6-9 tons' },
+      { strong: 'Duração:', text: '3+ anos com protocolo de manutenção' },
+    ],
+    vantagens: [
+      'Resultado inicial mais evidente',
+      'Estabilização gradual',
+      'Maior durabilidade',
+      'Protocolo completo',
+    ],
+    consideracoes: ['Investimento maior'],
+    ideal: 'Casos de escurecimento mais acentuado, manchas persistentes ou quando se busca resultado mais duradouro.',
+  },
+];
+
+// Tabela comparativa — output real do ComparisonTable.tsx: a primeira linha
+// dos dados vira o header (rótulos A/B) e a coluna C não é renderizada.
+const tableHeader = { a: '35-37%', b: '10-20%' };
+const tableRows = [
+  { criterio: 'Tempo de Tratamento', a: '1-3 sessões', b: '14-21 dias' },
+  { criterio: 'Clareamento Esperado', a: '4-9 tons', b: '2-6 tons' },
+  { criterio: 'Sensibilidade', a: 'Moderada', b: 'Baixa' },
+  { criterio: 'Supervisão', a: 'Presencial', b: 'À distância' },
+  { criterio: 'Durabilidade', a: '2-3 anos', b: '2-3 anos' },
+];
+
+const modalidadesWaHref = `https://wa.me/5521993304045?text=${encodeURIComponent('Olá! Gostaria de saber qual modalidade de clareamento dental é a mais adequada para o meu caso.')}`;
+---
+
+<SiteLayout
+  title="Clareamento Dental em Ipanema | Dra. Carla Christoph"
+  description="Clareamento dental profissional em Ipanema com a Dra. Carla Christoph. Técnicas seguras para um sorriso mais branco. CRO-RJ 27.509. Agende sua consulta!"
+  canonical="https://dracarlachristoph.com/clareamento-dental"
+  preloadImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+  schemas={schemas}
+>
+  <main id="main-content">
+    <TreatmentHero
+      title="Clareamento Dental Profissional"
+      subtitle="Estética Dental com a Dra. Carla Christoph"
+      description="Técnicas de consultório e caseiro supervisionado com protocolos personalizados que priorizam sua segurança e conforto. Acompanhamento individualizado em cada etapa do tratamento. Mais de 20 anos de experiência em estética dental."
+      badges={['20+ anos de experiência', 'Protocolos personalizados', 'CRO-RJ 27.509']}
+      doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+      breadcrumbs={[
+        { label: 'Início', href: '/' },
+        { label: 'Tratamentos', href: '/servicos' },
+        { label: 'Clareamento Dental' },
+      ]}
+      waLabel="clareamento-dental_hero_whatsapp"
+    />
+
+    <section class="qa-section">
+      <div class="container-custom">
+        <QuickAnswerBox answer="Clareamento dental é um procedimento estético que clareia os dentes usando gel à base de peróxido. No consultório da Dra. Carla Christoph em Ipanema, oferecemos técnicas de consultório (1-3 sessões de 60-90 minutos) e caseiro supervisionado. Com mais de 20 anos de experiência (CRO-RJ 27.509), trabalhamos com protocolos personalizados que clareiam de 4 a 9 tons com segurança, preservando a saúde dos dentes e gengivas. O tratamento dura de 7 a 21 dias conforme a modalidade escolhida." />
+      </div>
+    </section>
+
+    <EmpatheticPainPoints
+      title="Seu sorriso pede um clareamento?"
+      painPoints={[
+        { icon: 'sparkles', iconColor: 'purple', strong: 'Você evita sorrir em fotos', description: 'porque sente que seus dentes estão amarelados ou mais escuros do que gostaria?', borderColor: 'purple' },
+        { icon: 'droplet', iconColor: 'gold', strong: 'Já tentou pastas "clareadoras" de farmácia', description: 'e não viu resultado ou sentiu sensibilidade sem melhora real?', borderColor: 'gold' },
+        { icon: 'alert-circle', iconColor: 'purple-soft', strong: 'Quer resultado real e seguro', description: 'com acompanhamento profissional e sem arriscar a saúde do seu esmalte?', borderColor: 'purple-soft' },
+      ]}
+    >
+      <Fragment slot="conclusion">O clareamento profissional usa concentrações terapêuticas sob supervisão.<br class="md-only" /> Vamos encontrar a técnica ideal para você — com acompanhamento em cada etapa.</Fragment>
+    </EmpatheticPainPoints>
+
+    <SectionDivider variant="with-icon" icon="sparkles" />
+
+    <section class="sec-modalidades">
+      <div class="mod-container">
+        <div class="mod-head">
+          <h2 class="mod-title">Modalidades de Clareamento Disponíveis</h2>
+          <p class="mod-sub tx-gray">Cada técnica é indicada conforme características individuais. Conheça as opções.</p>
+        </div>
+
+        <div class="mod-grid">
+          {modalityCards.map((card) => (
+            <div class="mod-card shadow-soft">
+              <div class="mod-img-wrap">
+                <img
+                  src={card.image}
+                  alt={card.alt}
+                  width="800"
+                  height="800"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="mod-overlay"></div>
+                <div class="mod-caption">
+                  <h3 class="mod-card-title">{card.title}</h3>
+                  <p class="mod-card-summary">{card.summary}</p>
+                </div>
+              </div>
+
+              <div class="mod-acc">
+                <details class="acc-item">
+                  <summary class="acc-trigger">
+                    <span>Características Principais</span>
+                    <svg class="acc-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                  </summary>
+                  <div class="acc-content">
+                    <ul class="mod-list">
+                      {card.caracteristicas.map((item) => (
+                        <li><span class="mod-marker tx-gold">▸</span><span><strong>{item.strong}</strong> {item.text}</span></li>
+                      ))}
+                    </ul>
+                  </div>
+                </details>
+
+                <details class="acc-item">
+                  <summary class="acc-trigger">
+                    <span>Vantagens e Considerações</span>
+                    <svg class="acc-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                  </summary>
+                  <div class="acc-content">
+                    <div class="mod-boxes">
+                      <div class="mod-box-green">
+                        <p class="mod-box-title-green">Vantagens:</p>
+                        <ul class="mod-list mod-list-tight">
+                          {card.vantagens.map((v) => (
+                            <li><span class="mod-check">✓</span><span>{v}</span></li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div class="mod-box-blue">
+                        <p class="mod-box-title-blue">Considerações:</p>
+                        <ul class="mod-list mod-list-tight">
+                          {card.consideracoes.map((c) => (
+                            <li><span class="mod-bullet tx-gray">•</span><span>{c}</span></li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </details>
+
+                <details class="acc-item acc-item-last">
+                  <summary class="acc-trigger">
+                    <span>Ideal Para</span>
+                    <svg class="acc-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                  </summary>
+                  <div class="acc-content">
+                    <div class="mod-box-blue mod-box-pad">
+                      <p class="mod-ideal-text tx-gray">{card.ideal}</p>
+                    </div>
+                  </div>
+                </details>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-mid">
+      <div class="cta-mid-inner">
+        <p class="cta-mid-text tx-gray">Não sabe qual modalidade escolher?</p>
+        <a
+          class="cta-mid-btn js-wa-cta"
+          data-label="clareamento-dental_modalidades_whatsapp"
+          href={modalidadesWaHref}
+          target="_blank"
+          rel="noopener"
+        >
+          Vamos Conversar Sobre Seu Caso
+          <Icon name="arrow-right" size={20} />
+        </a>
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="sparkles" />
+
+    <section class="sec-compare">
+      <div class="mod-container">
+        <div class="mod-head">
+          <h2 class="mod-title">Comparação Entre as Modalidades</h2>
+        </div>
+
+        <div class="cmp">
+          <h3 class="cmp-title">Comparação</h3>
+          <div class="cmp-scroll">
+            <table class="cmp-table shadow-soft-sm">
+              <thead>
+                <tr>
+                  <th class="cmp-th cmp-th-left">Critério</th>
+                  <th class="cmp-th">{tableHeader.a}</th>
+                  <th class="cmp-th">{tableHeader.b}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {tableRows.map((row, index) => (
+                  <tr class={index % 2 === 0 ? 'cmp-row-alt' : ''}>
+                    <td class="cmp-td-criterio">{row.criterio}</td>
+                    <td class="cmp-td">{row.a}</td>
+                    <td class="cmp-td">{row.b}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p class="cmp-note tx-gray">A indicação depende da análise individual de cada caso. Na consulta, consideramos suas necessidades, rotina e características dentais específicas.</p>
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="sparkles" />
+
+    <section class="sec-etapas">
+      <div class="container-custom">
+        <h2 class="heading-lg etapas-title tx-purple">Etapas do Tratamento</h2>
+        <p class="etapas-sub tx-gray">Do planejamento aos cuidados pós-tratamento, cada etapa é pensada para seu conforto</p>
+
+        <ProcessTimeline
+          steps={[
+            { number: 1, title: 'Consulta Inicial', description: 'Exame clínico, análise da saúde bucal e registro fotográfico da cor inicial. Identificação do tipo de mancha e viabilidade do tratamento.', icon: 'search', duration: '1ª Consulta' },
+            { number: 2, title: 'Planejamento', description: 'Definição da técnica conforme suas características individuais. Explicação detalhada do processo e estabelecimento de expectativas.', icon: 'file-text', duration: '1ª Consulta' },
+            { number: 3, title: 'Preparo', description: 'Profilaxia para remoção de manchas superficiais. Tratamento de cáries ou problemas gengivais quando identificados.', icon: 'sparkles', duration: 'Se necessário' },
+            { number: 4, title: 'Moldagem e Confecção (Caseiro)', description: 'Moldagem e confecção de moldeiras personalizadas para clareamento caseiro. Todo o processo é realizado na primeira consulta, com ajuste preciso para distribuição uniforme do gel e proteção das gengivas.', icon: 'scan', duration: '1ª Consulta' },
+            { number: 5, title: 'Aplicação', description: 'Consultório: Proteção das gengivas e aplicação supervisionada. Caseiro: Orientação detalhada sobre uso correto das moldeiras.', icon: 'zap', duration: 'Conforme protocolo' },
+            { number: 6, title: 'Acompanhamento', description: 'Acompanhamento do progresso e ajustes quando necessário. Manejo de sensibilidade com protocolos específicos.', icon: 'heart', duration: 'Durante tratamento' },
+            { number: 7, title: 'Finalização', description: 'Registro fotográfico final e orientações de manutenção personalizadas para preservação dos resultados.', icon: 'check-circle', duration: 'Última consulta' },
+          ]}
+        />
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="award" />
+
+    <DoctorBioSection
+      sectionTitle="Expertise e Experiência em Estética Dental"
+      doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+      doctorAlt="Dra. Carla Christoph - Especialista em Estética Dental"
+      doctorName="Dra. Carla Christoph"
+      doctorSubtitle="CRO-RJ 27.509 | Especialista em Prótese Dentária e Implantodontia"
+      credentials={[
+        { title: 'Formação', description: 'Especialista em Prótese Dentária e Implantodontia' },
+        { title: 'Experiência', description: 'Centenas de clareamentos realizados' },
+        { title: 'Atualização', description: 'Formação contínua em técnicas de clareamento' },
+        { title: 'Protocolos', description: 'Personalizados para mínima sensibilidade' },
+      ]}
+    >
+      <p>Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.</p>
+      <p>Nos protocolos de clareamento, prioriza segurança e resultado natural — cada caso tem sua indicação específica. A escolha entre clareamento de consultório, caseiro supervisionado ou combinado é definida na consulta, considerando a condição dos dentes e a expectativa do paciente.</p>
+    </DoctorBioSection>
+
+    <SectionDivider variant="with-icon" icon="help-circle" />
+
+    <ServiceFAQ title="Perguntas Frequentes Sobre Clareamento" faqs={faqs} />
+
+    <FinalServiceCTA
+      icon="calendar"
+      title="Ver Qual Protocolo é Indicado para Mim"
+      description="Cada caso tem sua indicação específica. Na consulta, analisamos o tipo de mancha e definimos se consultório, caseiro ou combinado é mais adequado."
+      ctaText="Ver Qual Protocolo é Indicado para Mim"
+      waMessage="Olá! Gostaria de agendar uma consulta para clareamento dental com a Dra. Carla Christoph."
+      waLabel="clareamento-dental_final_whatsapp"
+      variant="urgency"
+    />
+
+    <StatsBar />
+
+    <RelatedTreatments currentPage="clareamento-dental" />
+  </main>
+
+</SiteLayout>
+
+<style>
+  .qa-section {
+    padding-block: 2rem;
+    background: #fff;
+  }
+
+  /* ── Modalidades (py-12 bg-white, max-w-6xl) ── */
+  .sec-modalidades {
+    padding-block: 3rem;
+    background: #fff;
+  }
+  .mod-container {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  .mod-head {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .mod-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--dc-purple);
+    margin: 0 0 1rem;
+  }
+  @media (min-width: 768px) {
+    .mod-title {
+      font-size: 2.25rem;
+    }
+  }
+  .mod-sub {
+    font-size: 1.125rem;
+    margin: 0;
+  }
+  .mod-grid {
+    display: grid;
+    gap: 2rem;
+  }
+  @media (min-width: 768px) {
+    .mod-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .mod-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    transition: all 0.3s;
+  }
+  .mod-card:hover {
+    box-shadow: 0 10px 40px -10px rgba(56, 31, 71, 0.2);
+  }
+  .mod-img-wrap {
+    aspect-ratio: 4 / 3;
+    position: relative;
+  }
+  .mod-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s;
+  }
+  .mod-card:hover .mod-img-wrap img {
+    transform: scale(1.05);
+  }
+  .mod-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(56, 31, 71, 0.9), rgba(56, 31, 71, 0.5), transparent);
+  }
+  .mod-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+  }
+  .mod-card-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 0.5rem;
+  }
+  .mod-card-summary {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.875rem;
+    margin: 0 0 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .mod-acc {
+    background: #fff;
+    padding: 1.5rem;
+  }
+
+  /* Accordion (shadcn → details/summary) */
+  .acc-item {
+    border-bottom: 1px solid rgba(56, 31, 71, 0.1);
+  }
+  .acc-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    cursor: pointer;
+    list-style: none;
+    padding-block: 1rem;
+    text-align: left;
+    color: inherit;
+    transition: color 0.2s;
+  }
+  .acc-trigger::-webkit-details-marker {
+    display: none;
+  }
+  .acc-trigger:hover {
+    color: var(--dc-purple);
+  }
+  .acc-trigger span {
+    font-weight: 600;
+  }
+  .acc-chev {
+    flex-shrink: 0;
+    color: var(--dc-gray);
+    transition: transform 0.2s;
+  }
+  .acc-item[open] .acc-chev {
+    transform: rotate(180deg);
+  }
+  .acc-content {
+    padding-bottom: 1rem;
+  }
+
+  .mod-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: var(--dc-gray);
+    font-size: 0.875rem;
+  }
+  .mod-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .mod-list li + li {
+    margin-top: 0.5rem;
+  }
+  .mod-list-tight li + li {
+    margin-top: 0.25rem;
+  }
+  .mod-marker {
+    margin-top: 0.25rem;
+  }
+  .mod-boxes > * + * {
+    margin-top: 0.75rem;
+  }
+  .mod-box-green {
+    background: #f0fdf4;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+  }
+  .mod-box-blue {
+    background: #eff6ff;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+  }
+  .mod-box-pad {
+    padding: 1rem;
+  }
+  .mod-box-title-green {
+    font-weight: 600;
+    color: #14532d;
+    margin: 0 0 0.5rem;
+    font-size: 0.875rem;
+  }
+  .mod-box-title-blue {
+    font-weight: 600;
+    color: #1e3a8a;
+    margin: 0 0 0.5rem;
+    font-size: 0.875rem;
+  }
+  .mod-check {
+    color: #16a34a;
+  }
+  .mod-ideal-text {
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  /* ── CTA intermediário (py-8 bg-white) ── */
+  .cta-mid {
+    padding-block: 2rem;
+    background: #fff;
+  }
+  .cta-mid-inner {
+    max-width: 48rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+    text-align: center;
+  }
+  .cta-mid-text {
+    font-size: 1.25rem;
+    margin: 0 0 1.5rem;
+  }
+  .cta-mid-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: var(--dc-gold);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
+  }
+  .cta-mid-btn:hover {
+    background: rgba(179, 149, 95, 0.9);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+  }
+
+  /* ── Tabela comparativa (py-12 pb-8 bg-dental-beige/20) ── */
+  .sec-compare {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    background: rgba(207, 203, 180, 0.2);
+  }
+  .cmp {
+    margin-bottom: 2rem;
+  }
+  .cmp-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--dc-purple);
+    margin: 0 0 1rem;
+  }
+  .cmp-scroll {
+    overflow-x: auto;
+  }
+  .cmp-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  .shadow-soft-sm {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+  .cmp-th {
+    background: var(--dc-purple);
+    color: #fff;
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    text-align: center;
+  }
+  .cmp-th-left {
+    text-align: left;
+  }
+  .cmp-row-alt {
+    background: #f9fafb;
+  }
+  .cmp-td-criterio {
+    padding: 0.75rem 1rem;
+    color: var(--dc-purple);
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+  .cmp-td {
+    padding: 0.75rem 1rem;
+    text-align: center;
+    color: var(--dc-gray);
+    font-size: 0.875rem;
+  }
+  .cmp-note {
+    text-align: center;
+    margin: 1.5rem 0 0;
+  }
+
+  /* ── Etapas (py-12 bg-white) ── */
+  .sec-etapas {
+    padding-block: 3rem;
+    background: #fff;
+  }
+  .etapas-title {
+    text-align: center;
+    margin: 0 0 1rem;
+  }
+  .etapas-sub {
+    text-align: center;
+    margin: 0 auto 3rem;
+    max-width: 42rem;
+  }
+</style>

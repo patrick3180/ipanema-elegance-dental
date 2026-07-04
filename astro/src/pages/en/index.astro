@@ -1,0 +1,456 @@
+---
+/**
+ * /en — English Home. Porte fiel de src/pages/en/EnHomePage.tsx.
+ *
+ * - title/description: copiados de scripts/generate-static-meta.cjs (englishPages['/en']).
+ * - Schema Dentist: copiado VERBATIM do structuredData do EnHomePage.tsx.
+ * - hreflang: copiado do SEOHead do React (pt-BR /, en /en, x-default /).
+ * - CTAs WhatsApp: handler global do Base via js-wa-cta; labels do React
+ *   (en_home_hero_cta, e os das seções nos componentes).
+ * - ScrollReveal e count-up removidos — conteúdo estático.
+ */
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import EnStatsBar from '../../components/site/en/EnStatsBar.astro';
+import EnAboutSection from '../../components/site/en/EnAboutSection.astro';
+import EnDifferentialsSection from '../../components/site/en/EnDifferentialsSection.astro';
+import EnServicesSection from '../../components/site/en/EnServicesSection.astro';
+import EnTechnologyShowcase from '../../components/site/en/EnTechnologyShowcase.astro';
+import EnTestimonialsSection from '../../components/site/en/EnTestimonialsSection.astro';
+import EnInternationalPatients from '../../components/site/en/EnInternationalPatients.astro';
+import EnFinalCTA from '../../components/site/en/EnFinalCTA.astro';
+
+const WA_HREF = "https://wa.me/5521993304045?text=Hello!%20I'd%20like%20to%20book%20an%20appointment.";
+
+// Schema copiado VERBATIM de EnHomePage.tsx (structuredData)
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  "name": "Dr. Carla Christoph",
+  "url": "https://dracarlachristoph.com/en",
+  "logo": "https://dracarlachristoph.com/og-image.jpg",
+  "image": "https://dracarlachristoph.com/og-image.jpg",
+  "description": "Cosmetic and restorative dentistry in Ipanema, Rio de Janeiro. Dental implants, porcelain veneers, teeth whitening. 20+ years of experience. 1-hour personalized appointments.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107",
+    "addressLocality": "Ipanema",
+    "addressRegion": "RJ",
+    "postalCode": "22410-901",
+    "addressCountry": "BR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "-22.9868",
+    "longitude": "-43.2005"
+  },
+  "telephone": "+5521993304045",
+  "email": "contato@dracarlachristoph.com",
+  "priceRange": "$$$",
+  "paymentAccepted": "Cash, Credit Card, Bank Transfer, PIX",
+  "currenciesAccepted": "BRL",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "19:00"
+    }
+  ],
+  "areaServed": {
+    "@type": "City",
+    "name": "Rio de Janeiro",
+    "sameAs": "https://en.wikipedia.org/wiki/Rio_de_Janeiro"
+  },
+  "sameAs": [
+    "https://instagram.com/dracarlachristoph",
+    "https://wa.me/5521993304045"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Dental Treatments",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "MedicalProcedure",
+          "name": "Dental Implants",
+          "description": "Specialized implant dentistry with 20+ years of experience and digital planning"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "MedicalProcedure",
+          "name": "Porcelain Veneers",
+          "description": "Digital smile design with ultra-thin porcelain laminates"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "MedicalProcedure",
+          "name": "Professional Teeth Whitening",
+          "description": "Safe and effective in-office or supervised at-home teeth whitening"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "MedicalProcedure",
+          "name": "Dental Prosthetics",
+          "description": "Fixed and removable dental prosthetics for full oral rehabilitation"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "MedicalProcedure",
+          "name": "Cosmetic Dentistry",
+          "description": "Aesthetic restorations in composite resin and porcelain for natural-looking results"
+        }
+      }
+    ]
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "Carla Christoph",
+    "jobTitle": "Dental Surgeon",
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "Specialist in Prosthodontics"
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "Specialist in Implant Dentistry"
+      }
+    ]
+  },
+  "inLanguage": "en"
+};
+
+const schemas = [JSON.stringify(structuredData)];
+---
+<SiteLayout
+  title="Dentist in Ipanema, Rio de Janeiro | Dra. Carla Christoph"
+  description="Cosmetic and restorative dentistry in Ipanema, Rio de Janeiro. Dental implants, porcelain veneers, teeth whitening. Personalized 1-hour appointments. CRO-RJ 27.509."
+  canonical="https://dracarlachristoph.com/en"
+  preloadImage="/lovable-uploads/hero-840w.avif"
+  schemas={schemas}
+  lang="en"
+>
+  <Fragment slot="head">
+    <link rel="alternate" hreflang="pt-BR" href="https://dracarlachristoph.com/" />
+    <link rel="alternate" hreflang="en" href="https://dracarlachristoph.com/en" />
+    <link rel="alternate" hreflang="x-default" href="https://dracarlachristoph.com/" />
+  </Fragment>
+
+  <main id="main-content">
+    <!-- 1. Hero Section -->
+    <section class="hero-section">
+      <div class="hero-container">
+        <div class="hero-copy">
+          <p class="hero-eyebrow">Specialist in Prosthodontics &amp; Implant Dentistry</p>
+
+          <h1 class="hero-h1">
+            Cosmetic Dentistry in <span class="gold">Ipanema</span>, Rio de Janeiro
+          </h1>
+
+          <p class="hero-lead">
+            Personalized dental care with a minimum 1-hour appointment — so your dentist can listen, explain, and plan without rushing. Over 20 years of experience.
+          </p>
+
+          <div class="trust-badges">
+            <span class="badge"><span class="dot" role="none"></span>20+ Years in Ipanema</span>
+            <span class="badge"><span class="dot" role="none"></span>CRO-RJ 27.509</span>
+            <span class="badge"><span class="dot" role="none"></span>1h+ Per Appointment</span>
+          </div>
+
+          <div class="hero-ctas">
+            <a
+              class="btn-gold js-wa-cta"
+              data-label="en_home_hero_cta"
+              href={WA_HREF}
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="btn-2line">
+                <span class="btn-l1">Book Your Appointment</span>
+                <span class="btn-l2">We reply in your language</span>
+              </span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a class="btn-outline" href="#treatments">Explore Our Treatments</a>
+          </div>
+        </div>
+
+        <div class="hero-img-col">
+          <div class="hero-img-mask">
+            <picture>
+              <source
+                srcset="/lovable-uploads/hero-560w.avif 560w, /lovable-uploads/hero-800w.avif 800w, /lovable-uploads/hero-840w.avif 840w"
+                sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px"
+                type="image/avif"
+              />
+              <source
+                srcset="/lovable-uploads/hero-560w.webp 560w, /lovable-uploads/hero-800w.webp 800w, /lovable-uploads/hero-840w.webp 840w"
+                sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 460px"
+                type="image/webp"
+              />
+              <img
+                src="/lovable-uploads/729cc6a8-3563-45af-9e82-3581b91c7d7e.png"
+                alt="Dr. Carla Christoph, dental specialist in Ipanema, Rio de Janeiro"
+                width="1280"
+                height="1920"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </picture>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Stats Bar -->
+    <EnStatsBar />
+
+    <!-- 3. About Dr. Carla -->
+    <EnAboutSection />
+
+    <!-- 4. Differentials — Why Patients Choose Us -->
+    <EnDifferentialsSection />
+
+    <!-- 5. Treatments Grid — 9 Services -->
+    <EnServicesSection />
+
+    <!-- Separator -->
+    <div class="sep-wrap">
+      <div class="sep-inner">
+        <div class="sep-line" role="none"></div>
+      </div>
+    </div>
+
+    <!-- 6. Technology — iTero Element 5D -->
+    <EnTechnologyShowcase />
+
+    <!-- 7. Testimonials -->
+    <EnTestimonialsSection />
+
+    <!-- 8. International Patients -->
+    <EnInternationalPatients />
+
+    <!-- 9. Final CTA -->
+    <EnFinalCTA />
+  </main>
+</SiteLayout>
+
+<style>
+  /* ── Hero (porte do EnHomePage.tsx: .hero-section do index.css + Tailwind) ── */
+  .hero-section {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    /* section-spacing + paddingTop inline var(--header-height, 112px) do React */
+    padding-top: 112px;
+    padding-bottom: 64px;
+    background: linear-gradient(165deg,
+      hsl(39 25% 85%) 0%,
+      hsl(39 20% 82%) 35%,
+      hsl(42 22% 84%) 100%);
+  }
+  @media (min-width: 768px) {
+    .hero-section { padding-bottom: 80px; }
+  }
+  @media (min-width: 1024px) {
+    .hero-section { padding-bottom: 96px; }
+  }
+  /* Textura noise do .hero-section::before (index.css do SPA) */
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-section > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  @media (min-width: 1024px) {
+    .hero-container {
+      padding: 0 32px;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+    }
+  }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--dental-gold);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .hero-h1 {
+    /* heading-xl: text-3xl sm:text-4xl xl:text-5xl, Playfair 600, leading-tight */
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    font-size: 1.875rem;
+    line-height: 1.25;
+    color: var(--dental-purple);
+    margin-bottom: 24px;
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) {
+    .hero-h1 { font-size: 2.25rem; }
+  }
+  @media (min-width: 1280px) {
+    .hero-h1 { font-size: 3rem; }
+  }
+  .hero-h1 .gold { color: var(--dental-gold); }
+
+  .hero-lead {
+    /* body-lg + font-medium */
+    font-size: 1.125rem;
+    color: rgb(56 31 71 / 0.8);
+    font-weight: 500;
+    max-width: 32rem;
+    margin-bottom: 32px;
+  }
+  @media (min-width: 768px) {
+    .hero-lead { font-size: 1.25rem; }
+  }
+
+  .trust-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 24px;
+    row-gap: 12px;
+    margin-bottom: 40px;
+  }
+  .badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--dental-gold);
+    font-weight: 500;
+  }
+  .badge .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--dental-gold);
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--dental-gold);
+    color: #fff;
+    border-radius: 6px;
+    padding: 20px 32px;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgb(179 149 95 / 0.3); /* shadow-gold */
+    transition: all 0.3s;
+  }
+  .btn-gold:hover {
+    background: #9d7f4f; /* dental-gold-dark */
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(56, 31, 71, 0.16), 0 6px 16px rgba(56, 31, 71, 0.1); /* shadow-hover */
+  }
+  .btn-2line {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    line-height: 1.25;
+  }
+  .btn-l1 { font-weight: 500; }
+  .btn-l2 { font-size: 0.75rem; color: rgb(255 255 255 / 0.8); }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid rgb(56 31 71 / 0.3);
+    color: var(--dental-purple);
+    border-radius: 6px;
+    padding: 20px 32px;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    background: transparent;
+  }
+  .btn-outline:hover { background: rgb(56 31 71 / 0.05); }
+
+  .hero-img-col {
+    display: flex;
+    justify-content: center;
+  }
+  @media (min-width: 1024px) {
+    .hero-img-col { justify-content: flex-end; }
+  }
+  .hero-img-mask {
+    width: 280px;
+    height: 420px;
+    -webkit-mask-image:
+      linear-gradient(to left, black 60%, transparent 100%),
+      linear-gradient(to bottom, black 65%, transparent 100%);
+    mask-image:
+      linear-gradient(to left, black 60%, transparent 100%),
+      linear-gradient(to bottom, black 65%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+  @media (min-width: 640px) {
+    .hero-img-mask { width: 320px; height: 480px; }
+  }
+  @media (min-width: 768px) {
+    .hero-img-mask { width: 400px; height: 560px; }
+  }
+  @media (min-width: 1024px) {
+    .hero-img-mask { width: 460px; height: 640px; }
+  }
+  .hero-img-mask img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  /* Separator entre Services e Technology */
+  .sep-wrap {
+    width: 100%;
+    padding: 0 16px;
+  }
+  .sep-inner {
+    max-width: 56rem;
+    margin: 0 auto;
+  }
+  .sep-line {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgb(56 31 71 / 0.3), transparent);
+  }
+</style>

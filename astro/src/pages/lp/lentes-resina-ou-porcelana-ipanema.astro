@@ -1,0 +1,138 @@
+---
+/**
+ * /lp/lentes-resina-ou-porcelana-ipanema — porte de
+ * src/pages/LentesResinaOuPorcelanaLandingPage.tsx
+ * Config: lentesComparacaoConfig. Seções: Hero → StatsBar → Problem →
+ * ComparacaoResinaPorcelana → Guide → MidCTA (heading próprio) → DoctorBio →
+ * SocialProof → FAQ → FinalCTA (ordem igual à do React).
+ */
+import LPLayout from '../../layouts/LPLayout.astro';
+import LPHero from '../../components/lp/LPHero.astro';
+import LPStatsBar from '../../components/lp/LPStatsBar.astro';
+import LPProblem from '../../components/lp/LPProblem.astro';
+import LPComparacaoResinaPorcelana from '../../components/lp/LPComparacaoResinaPorcelana.astro';
+import LPDoctorBio from '../../components/lp/LPDoctorBio.astro';
+import LPGuide from '../../components/lp/LPGuide.astro';
+import LPMidCTA from '../../components/lp/LPMidCTA.astro';
+import LPSocialProof from '../../components/lp/LPSocialProof.astro';
+import LPFAQ from '../../components/lp/LPFAQ.astro';
+import LPFinalCTA from '../../components/lp/LPFinalCTA.astro';
+import LPFloatingWhatsApp from '../../components/lp/LPFloatingWhatsApp.astro';
+import { lentesComparacaoConfig as config } from '@/config/lentesComparacaoConfig';
+
+const waHref = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(config.whatsapp.message)}`;
+const prefix = 'lp-lentes-comparacao';
+
+// Schema — copiado verbatim do Helmet de LentesResinaOuPorcelanaLandingPage.tsx
+const schemas = [
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Dentist',
+        '@id': 'https://dracarlachristoph.com/#dentist',
+        name: 'Dra. Carla Christoph',
+        description: config.seo.description,
+        url: 'https://dracarlachristoph.com/lp/lentes-resina-ou-porcelana-ipanema',
+        telephone: '+5521993304045',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+          addressLocality: 'Ipanema',
+          addressRegion: 'RJ',
+          postalCode: '22410-901',
+          addressCountry: 'BR',
+        },
+        geo: { '@type': 'GeoCoordinates', latitude: '-22.9866', longitude: '-43.2024' },
+        speciality: ['Prótese Dental', 'Implantodontia', 'Estética Dental'],
+        image: 'https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
+      },
+      {
+        '@type': 'Service',
+        name: 'Lentes de Contato Dental — Resina ou Porcelana',
+        description:
+          'Comparação entre lentes de contato dental em porcelana e facetas de resina. A indicação do material é definida individualmente na consulta, com Test Drive do Sorriso e planejamento digital iTero Element 5D quando indicado.',
+        provider: { '@id': 'https://dracarlachristoph.com/#dentist' },
+        areaServed: { '@type': 'City', name: 'Rio de Janeiro' },
+        serviceType: 'Cosmetic Dentistry',
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: config.faq.questions.map((q) => ({
+          '@type': 'Question',
+          name: q.question,
+          acceptedAnswer: { '@type': 'Answer', text: q.answer },
+        })),
+      },
+    ],
+  }),
+];
+---
+
+<LPLayout
+  title={config.seo.title}
+  description={config.seo.description}
+  canonical="https://dracarlachristoph.com/lp/lentes-resina-ou-porcelana-ipanema"
+  ogImage="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+  schemas={schemas}
+  whatsappHref={waHref}
+  waLabelPrefix={prefix}
+>
+  <main id="main-content" class="lp-main">
+    <LPHero
+      headline={config.hero.headline}
+      subheadline={config.hero.subheadline}
+      ctaText={config.hero.ctaText}
+      benefits={config.benefits}
+      backgroundImage={config.hero.backgroundImage || ''}
+      whatsappHref={waHref}
+      waLabel={`${prefix}_hero_whatsapp`}
+      imgWidth={800}
+      imgHeight={1200}
+    />
+
+    <LPStatsBar />
+
+    <LPProblem
+      title={config.problem.title}
+      description={config.problem.description}
+      problems={config.problem.problems}
+    />
+
+    <LPComparacaoResinaPorcelana />
+
+    <LPGuide title={config.guide.title} subtitle={config.guide.subtitle} steps={config.guide.steps} />
+
+    <LPMidCTA
+      whatsappHref={waHref}
+      waLabel={`${prefix}_midcta_whatsapp`}
+      heading="Ainda na dúvida entre resina e porcelana?"
+      ctaLabel="Tirar Minhas Dúvidas no WhatsApp"
+    />
+
+    <LPDoctorBio />
+
+    <LPSocialProof
+      title={config.socialProof.title}
+      testimonials={config.socialProof.testimonials}
+      stats={config.socialProof.stats}
+    />
+
+    <LPFAQ title={config.faq.title} questions={config.faq.questions} />
+
+    <LPFinalCTA
+      title={config.cta.title}
+      subtitle={config.cta.subtitle}
+      buttonText={config.cta.buttonText}
+      urgency={config.cta.urgency}
+      whatsappHref={waHref}
+      waLabel={`${prefix}_final_whatsapp`}
+    />
+
+    <LPFloatingWhatsApp whatsappHref={waHref} waLabel={`${prefix}_floating_whatsapp`} />
+  </main>
+</LPLayout>
+
+<style>
+  .lp-main { background: #fff; min-height: 100vh; }
+</style>

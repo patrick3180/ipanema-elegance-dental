@@ -1,0 +1,78 @@
+---
+/**
+ * LPMidCTA — porte de src/components/landing/consulta/ConsultaInicialMidCTA.tsx
+ * CTA intermediário entre Guide e SocialProof. CTA usa js-wa-cta (handler global).
+ */
+interface Props {
+  whatsappHref: string;
+  waLabel: string; // data-label único (ex.: lp-implantes_midcta_whatsapp)
+  heading?: string;
+  ctaLabel?: string;
+}
+const {
+  whatsappHref,
+  waLabel,
+  heading = 'Quer conversar sobre o seu caso?',
+  ctaLabel = 'Agendar pelo WhatsApp',
+} = Astro.props;
+---
+
+<section class="lp-midcta" aria-label="Agendar consulta">
+  <div class="lp-midcta-inner">
+    <p class="lp-midcta-heading">{heading}</p>
+    <a
+      class="lp-midcta-btn js-wa-cta"
+      data-label={waLabel}
+      href={whatsappHref}
+      target="_blank"
+      rel="noopener"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+      {ctaLabel}
+    </a>
+  </div>
+</section>
+
+<style>
+  .lp-midcta {
+    padding: 3rem 1rem;
+    background: rgba(56, 31, 71, 0.03);
+  }
+  .lp-midcta-inner {
+    max-width: 576px;
+    margin: 0 auto;
+    text-align: center;
+    display: grid;
+    gap: 1.25rem;
+    justify-items: center;
+  }
+  .lp-midcta-heading {
+    font-size: 1.125rem;
+    color: rgba(56, 31, 71, 0.8);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+  }
+  .lp-midcta-btn {
+    width: 100%;
+    color: #fff;
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+    background: linear-gradient(135deg, #25d366 0%, #20bd5a 100%);
+  }
+  .lp-midcta-btn:hover {
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    transform: scale(1.05);
+  }
+  @media (min-width: 768px) {
+    .lp-midcta-btn { width: auto; }
+  }
+</style>

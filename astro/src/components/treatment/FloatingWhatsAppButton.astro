@@ -1,0 +1,93 @@
+---
+/**
+ * FloatingWhatsAppButton — porte de src/components/WhatsAppButton.tsx (pt).
+ * Botão flutuante verde (contraste #128C4A) presente em todas as páginas do
+ * site (fora de LP). Tracking pelo handler global (js-wa-cta).
+ * waLabel: "<slug>_float_whatsapp".
+ */
+import Icon from './Icon.astro';
+import '../../styles/treatment.css';
+
+interface Props {
+  waLabel: string;
+}
+const { waLabel } = Astro.props;
+
+const waHref = `https://wa.me/5521993304045?text=${encodeURIComponent('Olá! Gostaria de agendar uma consulta.')}`;
+---
+
+<a
+  class="fwa js-wa-cta shadow-soft"
+  data-label={waLabel}
+  href={waHref}
+  target="_blank"
+  rel="noopener"
+  aria-label="Converse pelo WhatsApp"
+>
+  <Icon name="message-circle" size={20} class="fwa-pulse" />
+  <span class="fwa-labels">
+    <span class="fwa-main fwa-desktop">Conversar sobre meu caso</span>
+    <span class="fwa-main fwa-mobile">Agendar</span>
+    <span class="fwa-sub fwa-desktop">WhatsApp 24h</span>
+  </span>
+</a>
+
+<style>
+  .fwa {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 50;
+    background: #128c4a;
+    color: #fff;
+    border-radius: 9999px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+  }
+  .fwa:hover {
+    background: #0f7540;
+    transform: scale(1.05);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  }
+  .fwa-labels {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    line-height: 1.25;
+  }
+  .fwa-main {
+    font-weight: 500;
+  }
+  .fwa-sub {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .fwa-desktop {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .fwa-desktop {
+      display: inline;
+    }
+    .fwa-mobile {
+      display: none;
+    }
+  }
+  .fwa-pulse {
+    animation: fwa-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  @keyframes fwa-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fwa-pulse {
+      animation: none;
+    }
+  }
+</style>

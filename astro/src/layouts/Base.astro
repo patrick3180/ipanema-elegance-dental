@@ -1,0 +1,363 @@
+---
+/**
+ * Layout base — Fase 1 (blog piloto).
+ * PARIDADE DE TRACKING com o index.html do SPA atual:
+ *  - dataLayer/gtag boot inline (antes de tudo)
+ *  - GTM-WZRDNBKQ com delay de 2s OU primeira interação (mesmo snippet)
+ *  - Captura de GCLID no boot → localStorage (equivalente a captureGCLID() do main.tsx)
+ * Design tokens do site: dental-purple #381F47, dental-gold #B3955F,
+ * Playfair Display (headings) + Montserrat (body), self-hosted em /fonts.
+ */
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogType?: string;
+  ogImage?: string;
+  preloadImage?: string;
+  schemas?: string[]; // JSON-LD já serializado
+  noindex?: boolean; // LPs de Google Ads: noindex, nofollow (regra inviolável)
+  lang?: string;
+}
+const {
+  title,
+  description,
+  canonical,
+  ogType = 'website',
+  ogImage = 'https://dracarlachristoph.com/lovable-uploads/doutora-em-pe-jaleco.webp',
+  preloadImage,
+  schemas = [],
+  noindex = false,
+  lang = 'pt-BR',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="google-site-verification" content="mufiI1fRvsBjdZpIg6V7PCLlw12pjd4d-zd5dzoIkN8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Rastreamento Seguro: buffer global (idêntico ao SPA) -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+    </script>
+
+    <!-- GCLID: captura no boot → localStorage (paridade com captureGCLID()/main.tsx) -->
+    <script is:inline>
+      (function () {
+        try {
+          var p = new URLSearchParams(window.location.search);
+          var g = p.get('gclid');
+          if (g) {
+            localStorage.setItem('gclid', g);
+            localStorage.setItem('gclid_timestamp', String(Date.now()));
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={canonical} />
+
+    <!-- Preconnect Contentful CDN (imagens do blog) -->
+    <link rel="preconnect" href="https://images.ctfassets.net" crossorigin />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://wa.me" />
+
+    <!-- Fontes self-hosted (mesmos arquivos do site) -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/playfair-display-400.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/montserrat-400.woff2" />
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Dra. Carla Christoph" />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'pt_BR'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    {schemas.map((s) => <script type="application/ld+json" set:html={s} />)}
+
+    <!-- Slot para tags extras de <head> por página (ex.: hreflang alternates) -->
+    <slot name="head" />
+
+    <style is:global>
+      @font-face {
+        font-family: 'Playfair Display';
+        src: url('/fonts/playfair-display-400.woff2') format('woff2');
+        font-weight: 400;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Playfair Display';
+        src: url('/fonts/playfair-display-600.woff2') format('woff2');
+        font-weight: 600;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Montserrat';
+        src: url('/fonts/montserrat-400.woff2') format('woff2');
+        font-weight: 400;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Montserrat';
+        src: url('/fonts/montserrat-500.woff2') format('woff2');
+        font-weight: 500;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Montserrat';
+        src: url('/fonts/montserrat-600.woff2') format('woff2');
+        font-weight: 600;
+        font-display: swap;
+      }
+      :root {
+        --dental-purple: #381f47;
+        --dental-purple-soft: #553c6b;
+        --dental-gold: #b3955f;
+        --dental-gold-soft: #c4a46a;
+        --dental-beige: #faf7f2;
+        --dental-gray: #6b6b6b;
+        --wa-green: #25d366;
+      }
+      *,
+      ::before,
+      ::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+        line-height: 1.5;
+      }
+      body {
+        font-family: Montserrat, system-ui, -apple-system, sans-serif;
+        color: #333;
+        background: #e8dfd2; /* dental-beige — mesmo fundo do site atual (index.css) */
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Playfair Display', Georgia, serif;
+        color: var(--dental-purple);
+        line-height: 1.25;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+      a {
+        color: var(--dental-purple-soft);
+      }
+      /* ── Header ── */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      }
+      .site-header .inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .brand {
+        text-decoration: none;
+      }
+      .brand b {
+        display: block;
+        color: var(--dental-purple);
+        font-size: 1.05rem;
+      }
+      .brand small {
+        color: var(--dental-gray);
+        font-size: 0.72rem;
+      }
+      .site-nav a {
+        margin-left: 16px;
+        text-decoration: none;
+        color: var(--dental-purple);
+        font-size: 0.9rem;
+      }
+      .review-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: #f6f3ec;
+        border: 1px solid rgba(179, 149, 95, 0.35);
+        border-radius: 999px;
+        padding: 5px 12px;
+        text-decoration: none;
+        font-size: 0.8rem;
+        color: var(--dental-purple);
+      }
+      .review-badge b {
+        font-size: 0.9rem;
+      }
+      .review-badge span {
+        color: var(--dental-gray);
+      }
+      .review-badge .star {
+        color: var(--dental-gold); /* mesma cor do Header.tsx original (fill-dental-gold) */
+        font-size: 0.95rem;
+      }
+      .wa-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--wa-green);
+        color: #fff !important;
+        padding: 8px 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.875rem;
+      }
+      /* ── Footer ── */
+      .site-footer {
+        margin-top: 48px;
+        padding: 28px 16px;
+        background: var(--dental-purple);
+        color: #eee;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+      .site-footer a {
+        color: var(--dental-gold-soft);
+      }
+      .site-footer p {
+        margin: 4px 0;
+      }
+      main.container {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 24px 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <slot name="header">
+    <header class="site-header">
+      <div class="inner">
+        <a class="brand" href="/">
+          <b>Dra. Carla Christoph</b>
+          <small>CRO-RJ 27.509 · Especialista em Prótese e Implantodontia</small>
+        </a>
+        <a
+          class="review-badge"
+          href="https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="5,0 estrelas no Google, 17 avaliações"
+        ><span class="star">★</span> <b>5.0</b> <span>(17 avaliações)</span></a>
+        <nav class="site-nav">
+          <a href="/servicos">Tratamentos</a>
+          <a href="/sobre">Sobre</a>
+          <a href="/blog">Blog</a>
+          <a href="/contato">Contato</a>
+        </nav>
+        <a
+          class="wa-btn js-wa-cta"
+          href="https://wa.me/5521993304045?text=Ol%C3%A1!%20Vim%20do%20blog%20e%20gostaria%20de%20agendar%20uma%20consulta."
+          data-label="blog_header_whatsapp"
+          target="_blank"
+          rel="noopener"
+        >WhatsApp 24h</a>
+      </div>
+    </header>
+    </slot>
+
+    <slot />
+
+    <slot name="footer">
+    <footer class="site-footer">
+      <p><strong>Dra. Carla Christoph</strong> — CRO-RJ 27.509 · Especialista em Prótese Dentária e Implantodontia</p>
+      <p>Rua Visconde de Pirajá, 550 — Sala 1107, Ipanema, Rio de Janeiro</p>
+      <p>Tel: (21) 3738-7909 · <a class="js-wa-cta" data-label="blog_footer_whatsapp" href="https://wa.me/5521993304045?text=Ol%C3%A1!%20Vim%20do%20blog%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">Agendar consulta pelo WhatsApp</a></p>
+      <p>Seg–Sex 9h–19h</p>
+    </footer>
+    </slot>
+
+    <!-- GTM: mesmo snippet do SPA — carrega após 2s OU primeira interação -->
+    <script is:inline>
+      (function () {
+        var loaded = false;
+        function loadGTM() {
+          if (loaded) return;
+          loaded = true;
+          (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            var f = d.getElementsByTagName(s)[0],
+              j = d.createElement(s),
+              dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+          })(window, document, 'script', 'dataLayer', 'GTM-WZRDNBKQ');
+        }
+        var timer = setTimeout(loadGTM, 2000);
+        ['mousedown', 'touchstart', 'scroll', 'keydown'].forEach(function (evt) {
+          document.addEventListener(evt, function handler() {
+            clearTimeout(timer);
+            loadGTM();
+            ['mousedown', 'touchstart', 'scroll', 'keydown'].forEach(function (e) {
+              document.removeEventListener(e, handler);
+            });
+          }, { passive: true, once: true });
+        });
+      })();
+    </script>
+
+    <!-- Tracking dos CTAs WhatsApp (paridade com o SPA: dataLayer + gtag conversion + GCLID webhook) -->
+    <script is:inline>
+      (function () {
+        function sendGclidWebhook(label) {
+          try {
+            var gclid = localStorage.getItem('gclid');
+            if (!gclid) return;
+            var payload = JSON.stringify({
+              gclid: gclid,
+              timestamp: localStorage.getItem('gclid_timestamp') || String(Date.now()),
+              page: window.location.pathname,
+              label: label,
+            });
+            if (navigator.sendBeacon) {
+              navigator.sendBeacon('/api/send-gclid', new Blob([payload], { type: 'application/json' }));
+            } else {
+              fetch('/api/send-gclid', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload, keepalive: true });
+            }
+          } catch (e) {}
+        }
+        document.addEventListener('click', function (ev) {
+          var el = ev.target && ev.target.closest ? ev.target.closest('.js-wa-cta') : null;
+          if (!el) return;
+          var label = el.getAttribute('data-label') || 'blog_whatsapp';
+          try {
+            window.dataLayer.push({ event: 'whatsapp_click', click_label: label, page_path: window.location.pathname });
+            window.gtag('event', 'conversion', { send_to: 'AW-16894364517/OQZvCMXV0foZEOqP7vY9' });
+          } catch (e) {}
+          sendGclidWebhook(label);
+        }, { capture: true });
+      })();
+    </script>
+  </body>
+</html>

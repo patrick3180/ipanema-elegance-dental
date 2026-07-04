@@ -1,0 +1,137 @@
+---
+/**
+ * LPDoctorBio — porte de src/components/landing/consulta/ConsultaInicialDoctorBio.tsx
+ * Bio de autoridade da Dra. Carla (copy verbatim, sem menção a faculdade de graduação).
+ * Foto: /lovable-uploads/dra-carla-mesa-consultorio.webp (800x1000 reais).
+ */
+---
+<section class="lp-bio" aria-label="Sobre a Dra. Carla Christoph">
+  <div class="lp-bio-container">
+    <div class="lp-bio-grid">
+      <!-- Foto -->
+      <div class="lp-bio-photo-col">
+        <div class="lp-bio-photo-wrap">
+          <div class="lp-bio-photo-bg" aria-hidden="true"></div>
+          <img
+            src="/lovable-uploads/dra-carla-mesa-consultorio.webp"
+            alt="Dra. Carla Christoph em seu consultório em Ipanema — Especialista em Prótese e Implantodontia"
+            width="800"
+            height="1000"
+            loading="lazy"
+            decoding="async"
+            class="lp-bio-photo"
+          />
+        </div>
+      </div>
+
+      <!-- Bio -->
+      <div class="lp-bio-text">
+        <p class="lp-bio-eyebrow">Sua Dentista</p>
+        <h2 class="lp-bio-name">Dra. Carla Christoph</h2>
+        <p class="lp-bio-cro">CRO-RJ 27.509 • Especialista em Prótese Dentária e em Implantodontia</p>
+
+        <div class="lp-bio-paragraphs">
+          <p>
+            Com mais de <strong>20 anos de experiência clínica em Ipanema</strong>, a Dra. Carla é especialista em <strong>Prótese Dentária e em Implantodontia</strong> — as duas áreas no centro da reabilitação do sorriso.
+          </p>
+          <p>
+            Sua formação inclui <strong>8 anos como dentista militar na Odontoclínica Central da Marinha</strong>, em paralelo à prática particular — experiência que trouxe disciplina, precisão e compromisso com a segurança do paciente.
+          </p>
+          <p>
+            No diagnóstico, conta com o <strong>scanner iTero Element 5D</strong> e registro digital quando indicado, para um exame preciso. E você resolve tudo em um só lugar: cada etapa do seu tratamento acontece no mesmo consultório, com o <strong>acompanhamento e a supervisão da Dra. Carla do início ao fim</strong> — sem precisar pular de endereço em endereço a cada especialidade.
+          </p>
+        </div>
+
+        <div class="lp-bio-chips">
+          <span class="lp-bio-chip">Especialista em Prótese Dentária</span>
+          <span class="lp-bio-chip">Especialista em Implantodontia</span>
+          <span class="lp-bio-chip">20+ Anos</span>
+          <span class="lp-bio-chip">8 anos na Marinha</span>
+          <span class="lp-bio-chip">iTero Element 5D</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .lp-bio {
+    padding: 4rem 0;
+    background: rgba(207, 203, 180, 0.4); /* dental-beige/40 */
+  }
+  @media (min-width: 768px) {
+    .lp-bio { padding: 5rem 0; }
+  }
+  .lp-bio-container { max-width: 1024px; margin: 0 auto; padding: 0 1rem; }
+  .lp-bio-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 768px) {
+    .lp-bio-grid { grid-template-columns: 280px 1fr; gap: 3rem; }
+  }
+  .lp-bio-photo-col { display: flex; justify-content: center; }
+  @media (min-width: 768px) {
+    .lp-bio-photo-col { justify-content: flex-start; }
+  }
+  .lp-bio-photo-wrap { position: relative; }
+  .lp-bio-photo-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom right, rgba(179, 149, 95, 0.2), rgba(56, 31, 71, 0.1));
+    border-radius: 1rem;
+    transform: rotate(2deg) scale(1.03);
+  }
+  .lp-bio-photo {
+    position: relative;
+    border-radius: 1rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    width: 15rem;
+    height: auto;
+    object-fit: cover;
+  }
+  @media (min-width: 768px) {
+    .lp-bio-photo { width: 100%; }
+  }
+  .lp-bio-text { display: grid; gap: 1rem; }
+  .lp-bio-eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #b3955f;
+    font-weight: 500;
+  }
+  .lp-bio-name {
+    font-size: 1.5rem;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    color: #381f47;
+  }
+  @media (min-width: 640px) {
+    .lp-bio-name { font-size: 1.875rem; }
+  }
+  .lp-bio-cro {
+    font-size: 0.75rem;
+    color: #6b6b6b;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+  .lp-bio-paragraphs { display: grid; gap: 0.75rem; }
+  .lp-bio-paragraphs p {
+    font-size: 0.875rem;
+    color: #6b6b6b;
+    line-height: 1.625;
+  }
+  .lp-bio-chips { display: flex; flex-wrap: wrap; gap: 0.75rem; padding-top: 0.5rem; }
+  .lp-bio-chip {
+    font-size: 11px;
+    font-weight: 500;
+    color: #381f47;
+    background: #fff;
+    border: 1px solid rgba(56, 31, 71, 0.1);
+    border-radius: 9999px;
+    padding: 0.25rem 0.75rem;
+  }
+</style>

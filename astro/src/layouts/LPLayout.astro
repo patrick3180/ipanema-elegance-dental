@@ -1,0 +1,197 @@
+---
+/**
+ * LPLayout — layout de LANDING PAGE (Google Ads).
+ *
+ * Regras invioláveis do projeto:
+ *  - LP é ISOLADA: sem navegação do site (sem menu, sem links internos).
+ *  - noindex, nofollow por DEFAULT (prop `noindex` já nasce true).
+ *
+ * Header portado de src/components/landing/consulta/ConsultaInicialHeader.tsx:
+ * fixo, branco, sombra sutil; logo + CRO à esquerda; botão WhatsApp verde
+ * (#25D366, hover #1ea952) à direita. O CTA usa a class `js-wa-cta` +
+ * `data-label` — o handler global do Base.astro cuida de dataLayer + gtag
+ * conversion + beacon GCLID (NUNCA criar handler próprio).
+ *
+ * Props além das do Base:
+ *  - whatsappHref (obrigatória): URL wa.me completa com a mensagem própria da LP
+ *    (ex.: `https://wa.me/5521993304045?text=${encodeURIComponent(msg)}`).
+ *  - waLabelPrefix: prefixo dos data-labels ('<campanha>' → '<campanha>_header_whatsapp'
+ *    e '<campanha>_footer_whatsapp'). Default: 'lp'.
+ *  - lang: 'pt-BR' (default) | 'en' — traduz os textos do header/footer para as 4 LPs EN.
+ *
+ * IMPORTANTE: o header é fixo (~64px). O hero da LP deve ter padding-top ≈ 90px
+ * (mesmo padrão dos Sprints de performance do SPA).
+ */
+import Base from './Base.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogType?: string;
+  ogImage?: string;
+  preloadImage?: string;
+  schemas?: string[]; // JSON-LD já serializado
+  noindex?: boolean; // DEFAULT TRUE em LP
+  lang?: 'pt-BR' | 'en';
+  whatsappHref: string;
+  waLabelPrefix?: string;
+}
+
+const {
+  noindex = true, // regra: toda LP é noindex a menos que se diga o contrário
+  lang = 'pt-BR',
+  whatsappHref,
+  waLabelPrefix = 'lp',
+  ...rest
+} = Astro.props;
+
+const isEn = lang === 'en';
+const t = isEn
+  ? {
+      brand: 'Dr. Carla Christoph',
+      waButton: 'WhatsApp 24h',
+      waAria: 'Chat on WhatsApp',
+      specialty: 'Specialist in Prosthodontics and Implant Dentistry',
+      address: 'Rua Visconde de Pirajá, 550 — Suite 1107, Ipanema, Rio de Janeiro',
+      phone: 'Phone: (21) 3738-7909',
+      waFooter: 'Book your consultation on WhatsApp',
+      hours: 'Monday–Friday, 9 AM – 7 PM',
+    }
+  : {
+      brand: 'Dra. Carla Christoph',
+      waButton: 'WhatsApp 24h',
+      waAria: 'Conversar pelo WhatsApp',
+      specialty: 'Especialista em Prótese Dentária e Implantodontia',
+      address: 'Rua Visconde de Pirajá, 550 — Sala 1107, Ipanema, Rio de Janeiro',
+      phone: 'Tel: (21) 3738-7909',
+      waFooter: 'Agendar consulta pelo WhatsApp',
+      hours: 'Seg–Sex, 9h–19h',
+    };
+---
+
+<Base {...rest} noindex={noindex} lang={lang}>
+  <!-- Header de LP: fixo, branco, sem navegação (LP é isolada) -->
+  <Fragment slot="header">
+    <header class="lp-hdr">
+      <div class="lp-hdr-inner">
+        <div class="lp-brand">
+          <span class="lp-brand-name">{t.brand}</span>
+          <span class="lp-brand-cro">CRO-RJ 27509</span>
+        </div>
+
+        <a
+          href={whatsappHref}
+          class="lp-wa-btn js-wa-cta"
+          data-label={`${waLabelPrefix}_header_whatsapp`}
+          target="_blank"
+          rel="noopener"
+          aria-label={t.waAria}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+          <span class="lp-wa-text">{t.waButton}</span>
+          <svg class="lp-wa-phone" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </a>
+      </div>
+    </header>
+  </Fragment>
+
+  <slot />
+
+  <!-- Footer minimalista de LP (nome, CRO, endereço, tel, WhatsApp, horário) -->
+  <Fragment slot="footer">
+    <footer class="lp-ftr">
+      <p><strong>{t.brand}</strong> — CRO-RJ 27.509 · {t.specialty}</p>
+      <p>{t.address}</p>
+      <p>
+        {t.phone} ·
+        <a
+          class="js-wa-cta"
+          data-label={`${waLabelPrefix}_footer_whatsapp`}
+          href={whatsappHref}
+          target="_blank"
+          rel="noopener"
+        >{t.waFooter}</a>
+      </p>
+      <p>{t.hours}</p>
+    </footer>
+  </Fragment>
+</Base>
+
+<style>
+  /* Header — paridade com ConsultaInicialHeader.tsx (bg-white shadow-sm fixed z-50) */
+  .lp-hdr {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: #fff;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  }
+  .lp-hdr-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 12px 16px; /* px-4 py-3 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .lp-brand {
+    display: flex;
+    flex-direction: column;
+  }
+  .lp-brand-name {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 700;
+    color: #381f47;
+    line-height: 1.4;
+  }
+  .lp-brand-cro {
+    font-size: 0.75rem; /* text-xs */
+    color: #525252; /* text-gray-600 */
+  }
+  .lp-wa-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #25d366;
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  @media (min-width: 768px) {
+    .lp-wa-btn {
+      padding: 12px 24px;
+      font-size: 1rem;
+    }
+  }
+  .lp-wa-btn:hover {
+    background: #1ea952;
+    transform: scale(1.05);
+  }
+  /* Texto no ≥640px; só ícone de telefone abaixo (paridade com o original) */
+  .lp-wa-text { display: none; }
+  .lp-wa-phone { display: block; }
+  @media (min-width: 640px) {
+    .lp-wa-text { display: inline; }
+    .lp-wa-phone { display: none; }
+  }
+
+  /* Footer minimalista — sem margin-top: as LPs terminam na seção CTA roxa
+     (#381F47) e no React o footer roxo é colado nela (sem gap bege no meio). */
+  .lp-ftr {
+    background: var(--dental-purple);
+    color: #eee;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 28px 16px;
+  }
+  .lp-ftr p { margin: 4px 0; }
+  .lp-ftr a { color: var(--dental-gold-soft); }
+</style>

@@ -1,0 +1,120 @@
+---
+/**
+ * EnLPFAQ — porte fiel de src/components/en/lp/EnLPFAQ.tsx.
+ * Accordion nativo com <details>/<summary> (primeira pergunta aberta,
+ * como no React: openIdx = 0). Sem JS custom — zero handlers próprios.
+ */
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+interface Props {
+  title: string;
+  questions: FAQItem[];
+}
+const { title, questions } = Astro.props;
+---
+
+<section class="enlp-faq">
+  <div class="enlp-faq-container">
+    <div class="enlp-faq-head">
+      <p class="enlp-faq-kicker">FAQ</p>
+      <h2>{title}</h2>
+    </div>
+
+    <div class="enlp-faq-list">
+      {questions.map((item, idx) => (
+        <details class="enlp-faq-item" open={idx === 0}>
+          <summary>
+            <span class="enlp-faq-q">{item.question}</span>
+            <svg class="enlp-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B3955F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="enlp-faq-a">
+            <p>{item.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .enlp-faq {
+    padding: 64px 0;
+    background: hsla(51, 22%, 76%, 0.4); /* bg-dental-beige/40 */
+  }
+  @media (min-width: 768px) { .enlp-faq { padding: 80px 0; } }
+  .enlp-faq-container {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  @media (min-width: 640px) { .enlp-faq-container { padding: 0 24px; } }
+  @media (min-width: 1024px) { .enlp-faq-container { padding: 0 32px; } }
+  .enlp-faq-head {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .enlp-faq-kicker {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #b3955f;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .enlp-faq-head h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    color: #381f47;
+    font-size: 1.5rem;
+  }
+  @media (min-width: 640px) { .enlp-faq-head h2 { font-size: 1.875rem; } }
+  .enlp-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* space-y-3 */
+  }
+  .enlp-faq-item {
+    background: #fff;
+    border: 1px solid rgba(56, 31, 71, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.15s;
+  }
+  .enlp-faq-item:hover {
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  }
+  .enlp-faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px;
+    text-align: left;
+    cursor: pointer;
+    list-style: none;
+  }
+  .enlp-faq-item summary::-webkit-details-marker { display: none; }
+  .enlp-faq-q {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 500;
+    color: #381f47;
+    font-size: 0.875rem;
+    padding-right: 8px;
+  }
+  @media (min-width: 640px) { .enlp-faq-q { font-size: 1rem; } }
+  .enlp-faq-chevron {
+    flex-shrink: 0;
+    transition: transform 0.3s;
+  }
+  .enlp-faq-item[open] .enlp-faq-chevron { transform: rotate(180deg); }
+  .enlp-faq-a {
+    padding: 0 20px 20px;
+  }
+  .enlp-faq-a p {
+    font-size: 0.875rem;
+    color: #525252;
+    line-height: 1.625;
+  }
+</style>

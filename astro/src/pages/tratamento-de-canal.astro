@@ -1,0 +1,351 @@
+---
+/**
+ * /tratamento-de-canal — porte VERBATIM de src/pages/TratamentoDeCanal.tsx.
+ * Meta/canonical: scripts/generate-static-meta.cjs ('/tratamento-de-canal').
+ * Schemas: MedicalProcedure + Dentist (generate-static-meta.cjs) +
+ * FAQPage (faqs da página, como o Helmet do React) + BreadcrumbList (hero).
+ * ⚠️ Atribuição: canal é executado por endodontista PARCEIRO; a Dra. Carla
+ * acompanha e finaliza (restauração/coroa) — copy verbatim, não alterar.
+ */
+import SiteLayout from '../layouts/SiteLayout.astro';
+import TreatmentHero from '../components/treatment/TreatmentHero.astro';
+import StatsBar from '../components/treatment/StatsBar.astro';
+import SectionDivider from '../components/treatment/SectionDivider.astro';
+import ProcessTimeline from '../components/treatment/ProcessTimeline.astro';
+import QuickAnswerBox from '../components/treatment/QuickAnswerBox.astro';
+import DoctorBioSection from '../components/treatment/DoctorBioSection.astro';
+import EmpatheticPainPoints from '../components/treatment/EmpatheticPainPoints.astro';
+import ServiceFAQ from '../components/treatment/ServiceFAQ.astro';
+import FinalServiceCTA from '../components/treatment/FinalServiceCTA.astro';
+import RelatedTreatments from '../components/treatment/RelatedTreatments.astro';
+import Icon from '../components/treatment/Icon.astro';
+import '../styles/treatment.css';
+
+const faqs = [
+  { question: 'Tratamento de canal dói?', answer: 'Com a anestesia atual, o procedimento é confortável e bem tolerado. O que costuma causar dor é a infecção que levou à necessidade do canal. O tratamento justamente alivia essa dor. No pós-operatório, pode haver sensibilidade leve por alguns dias, controlada com medicação simples.' },
+  { question: 'Quantas sessões são necessárias?', answer: 'Na maioria dos casos, 1 a 2 sessões. Depende da complexidade do caso — dentes com mais canais ou infecções mais extensas podem precisar de sessões adicionais. O endodontista avalia e informa antes de iniciar.' },
+  { question: 'O dente fica frágil depois do canal?', answer: 'O dente perde a nutrição interna, o que pode torná-lo mais suscetível a fraturas ao longo do tempo. Por isso a restauração adequada é fundamental. Dependendo do caso, a Dra. Carla pode indicar uma coroa para proteger o dente de forma duradoura.' },
+  { question: 'O dente escurece depois do canal?', answer: 'Pode acontecer com o tempo, mas não é regra. Quando ocorre, existem opções para resolver — desde clareamento interno até faceta ou coroa. A Dra. Carla avalia a melhor solução durante o acompanhamento.' },
+  { question: 'Qual a alternativa ao tratamento de canal?', answer: 'A alternativa seria a extração do dente. Mas sempre que possível, preservar o dente natural é a melhor escolha — evita a necessidade de implante ou prótese e mantém a estrutura original da boca.' },
+  { question: 'Vocês atendem convênios?', answer: 'Nosso atendimento é particular, o que nos permite dedicar o tempo necessário a cada caso e trabalhar com profissionais parceiros selecionados. Na consulta, apresentamos o planejamento completo.' },
+];
+
+const PROVIDER = {
+  '@type': 'Dentist',
+  name: 'Dra. Carla Christoph',
+  telephone: '+5521993304045',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+    addressLocality: 'Ipanema',
+    addressRegion: 'RJ',
+    postalCode: '22410-901',
+    addressCountry: 'BR',
+  },
+};
+
+const schemas = [
+  // MedicalProcedure — copiado de generate-static-meta.cjs ('/tratamento-de-canal')
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'MedicalProcedure',
+    name: 'Tratamento de Canal (Endodontia)',
+    description: 'Tratamento endodôntico com acompanhamento completo e finalização restauradora',
+    procedureType: 'Dental',
+    url: 'https://dracarlachristoph.com/tratamento-de-canal',
+    provider: PROVIDER,
+  }),
+  // Dentist — generateDentistSchema() de generate-static-meta.cjs
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Dentist',
+    name: 'Dra. Carla Christoph',
+    description: 'Dentista especialista em Prótese Dental e Reabilitação Oral em Ipanema, Rio de Janeiro. Mais de 20 anos de experiência.',
+    telephone: '+5521993304045',
+    url: 'https://dracarlachristoph.com',
+    image: 'https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
+    priceRange: '$$$',
+    address: PROVIDER.address,
+    openingHoursSpecification: [
+      { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '19:00' },
+    ],
+    hasCredential: { '@type': 'EducationalOccupationalCredential', credentialCategory: 'CRO-RJ', recognizedBy: { '@type': 'Organization', name: 'CRO-RJ' }, identifier: '27.509' },
+    aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '17', bestRating: '5' },
+    availableLanguage: ['pt-BR', 'en'],
+  }),
+  // FAQPage — mesmas perguntas/respostas exibidas na página (Helmet do React)
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  }),
+];
+
+// Seção "Quando o Tratamento de Canal é Necessário" — copy verbatim do .tsx
+const situacoes = [
+  { icon: 'zap', iconClass: 'tx-purple', bg: 'tc-bg-purple', title: 'Dor Persistente', text: 'Dor de dente espontânea, latejante ou que piora com calor. Sensibilidade prolongada que não passa. São sinais de que a polpa do dente pode estar comprometida.' },
+  { icon: 'alert-circle', iconClass: 'tx-gold', bg: 'tc-bg-gold', title: 'Inchaço ou Abscesso', text: 'Gengiva inchada perto de um dente, presença de pus ou fístula. Indica infecção que precisa de tratamento para não se espalhar.' },
+  { icon: 'sparkles', iconClass: 'tx-purple', bg: 'tc-bg-purple', title: 'Dente Escurecido', text: 'Um dente que escureceu após trauma ou cárie profunda pode ter a polpa comprometida. O canal trata a causa e permite restaurar a aparência do dente.' },
+];
+
+const urgencyMessage = 'Olá! Estou com sintomas que podem indicar necessidade de tratamento de canal. Gostaria de agendar uma consulta de urgência.';
+const urgencyHref = `https://wa.me/5521993304045?text=${encodeURIComponent(urgencyMessage)}`;
+---
+
+<SiteLayout
+  title="Tratamento de Canal em Ipanema | Dra. Carla Christoph"
+  description="Tratamento de canal (endodontia) em Ipanema sem dor. Técnicas modernas e atendimento humanizado. Dra. Carla Christoph. CRO-RJ 27.509."
+  canonical="https://dracarlachristoph.com/tratamento-de-canal"
+  preloadImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+  schemas={schemas}
+>
+  <main id="main-content">
+    <TreatmentHero
+      title="Tratamento de Canal em Ipanema"
+      subtitle="Acompanhamento Completo com a Dra. Carla Christoph"
+      description="Um procedimento com fama injusta. Com profissionais experientes e acompanhamento individualizado, tratamento de canal é mais tranquilo do que se imagina."
+      badges={['Acompanhamento Completo', 'Endodontista Especializado', 'CRO-RJ 27.509']}
+      doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+      breadcrumbs={[
+        { label: 'Início', href: '/' },
+        { label: 'Tratamentos', href: '/servicos' },
+        { label: 'Tratamento de Canal' },
+      ]}
+      waLabel="tratamento-de-canal_hero_whatsapp"
+    />
+
+    <section class="qa-section">
+      <div class="container-custom">
+        <QuickAnswerBox answer="Tratamento de canal (endodontia) remove a polpa infectada do dente, aliviando a dor e salvando o dente da extração. No consultório da Dra. Carla Christoph em Ipanema (CRO-RJ 27.509), o tratamento é realizado com endodontista especializado e finalizado pela Dra. Carla. O procedimento é confortável com anestesia moderna, geralmente completado em 1-2 sessões. Após o canal, recomenda-se restauração adequada ou coroa para proteger o dente, que pode durar muitos anos com os cuidados corretos." />
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="shield" />
+
+    <EmpatheticPainPoints
+      title="Tratamento de canal não precisa ser assustador"
+      painPoints={[
+        { icon: 'shield', iconColor: 'purple', strong: 'Medo de sentir dor durante o procedimento', description: 'Com anestesia moderna e técnicas atualizadas, o procedimento é tranquilo. O que dói é a infecção — o canal justamente alivia essa dor.', borderColor: 'purple' },
+        { icon: 'alert-circle', iconColor: 'gold', strong: 'Adiando há meses por insegurança', description: 'Adiar pode transformar um tratamento simples em algo mais complexo. Quanto antes diagnosticado, maior a chance de preservar o dente.', borderColor: 'gold' },
+        { icon: 'heart', iconColor: 'purple-soft', strong: 'Precisa de acompanhamento completo', description: 'Do diagnóstico à restauração final, a Dra. Carla coordena toda a jornada com endodontista especializado.', borderColor: 'purple-soft' },
+      ]}
+    >
+      <Fragment slot="conclusion">O tratamento de canal moderno é muito mais confortável do que se imagina.<br class="md-only" /> Dê o primeiro passo: agende sua consulta.</Fragment>
+    </EmpatheticPainPoints>
+
+    <SectionDivider variant="with-icon" icon="alert-circle" />
+
+    <!-- Quando o Tratamento de Canal é Necessário -->
+    <section class="sec-white">
+      <div class="container-custom">
+        <h2 class="heading-lg tc-title tx-purple">Quando o Tratamento de Canal é Necessário</h2>
+        <p class="tc-sub tx-gray">Sinais que merecem atenção</p>
+        <div class="tc-grid">
+          {situacoes.map((card) => (
+            <div class="tc-card">
+              <div class:list={['tc-icon', card.bg]}>
+                <Icon name={card.icon} size={32} class={card.iconClass} />
+              </div>
+              <h3 class="tc-card-title">{card.title}</h3>
+              <p class="tx-gray">{card.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Intermediário (urgência) -->
+    <section class="tc-cta-mid">
+      <div class="tc-cta-mid-inner">
+        <p class="tc-cta-mid-text">Está com um desses sintomas?</p>
+        <a
+          class="tc-cta-mid-btn js-wa-cta"
+          data-label="tratamento-de-canal_urgencia_whatsapp"
+          href={urgencyHref}
+          target="_blank"
+          rel="noopener"
+        >
+          Agendar Consulta de Urgência
+          <Icon name="arrow-right" size={20} />
+        </a>
+      </div>
+    </section>
+
+    <DoctorBioSection
+      sectionTitle="Por Que Tratar com a Dra. Carla Christoph"
+      badgeText="Jornada Completa"
+      credentials={[
+        { title: 'Coordenação', description: 'Acompanhamento pessoal de toda a jornada do tratamento' },
+        { title: 'Finalização', description: 'Restauração, coroa ou prótese feitas pela Dra. Carla' },
+        { title: 'Experiência', description: '20+ anos, incluindo 8 na Marinha' },
+        { title: 'Abordagem', description: 'Consultas individualizadas, mínimo de 1 hora' },
+      ]}
+    >
+      <p>Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.</p>
+      <p>No tratamento de canal, a Dra. Carla acompanha pessoalmente cada etapa e é responsável pela finalização: restauração direta, coroa ou prótese. Você tem uma profissional cuidando de toda a sua jornada — do diagnóstico ao resultado final.</p>
+    </DoctorBioSection>
+
+    <SectionDivider variant="with-icon" icon="search" />
+
+    <section class="sec-white">
+      <div class="container-custom">
+        <h2 class="heading-lg tc-title tx-purple">Como Funciona o Tratamento de Canal no Consultório</h2>
+        <div class="tc-process-wrap">
+          <ProcessTimeline
+            steps={[
+              { number: 1, title: 'Diagnóstico com a Dra. Carla', description: 'Exame clínico, radiografia e análise do caso. A Dra. Carla identifica o problema e explica o que precisa ser feito.', icon: 'search', duration: '1ª Consulta' },
+              { number: 2, title: 'Tratamento com Endodontista', description: 'O procedimento é realizado por endodontista especializado, com anestesia local. A Dra. Carla acompanha pessoalmente.', icon: 'shield', duration: '1-2 sessões' },
+              { number: 3, title: 'Restauração pela Dra. Carla', description: 'Após o canal, a Dra. Carla finaliza o dente — com restauração direta em resina, coroa ou a solução mais indicada para o seu caso.', icon: 'sparkles', duration: 'Finalização' },
+              { number: 4, title: 'Acompanhamento', description: 'Consultas de controle para garantir que o dente tratado está saudável e a restauração está íntegra.', icon: 'heart', duration: 'Periódico' },
+            ]}
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- O Que Acontece Durante o Procedimento -->
+    <section class="sec-white">
+      <div class="container-custom">
+        <h2 class="heading-lg tc-info-title tx-purple">O Que Acontece Durante o Procedimento</h2>
+        <div class="tc-info-body tx-gray">
+          <p>O tratamento de canal consiste em remover a polpa do dente — o tecido interno que contém nervos e vasos — quando ela está inflamada ou infectada. Com o dente anestesiado, o endodontista acessa o interior, limpa e desinfeta os canais, e os preenche com material biocompatível. O procedimento geralmente leva de 1 a 2 sessões, e o dente é então restaurado pela Dra. Carla para recuperar forma, função e aparência.</p>
+          <p>Na prática clínica, o que mais vemos é pacientes que chegam tensos e saem aliviados — tanto pela dor que passa quanto por descobrirem que o procedimento foi muito mais tranquilo do que imaginavam.</p>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="help-circle" />
+
+    <ServiceFAQ title="Dúvidas Sobre Tratamento de Canal" faqs={faqs} />
+
+    <FinalServiceCTA
+      icon="shield"
+      title="Dor de Dente Precisa de Atenção"
+      description="Agende sua consulta. Quanto antes o diagnóstico, mais simples tende a ser o tratamento."
+      ctaText="Agendar Consulta"
+      waMessage="Olá! Vi a página sobre tratamento de canal e gostaria de agendar uma consulta com a Dra. Carla Christoph."
+      waLabel="tratamento-de-canal_final_whatsapp"
+    />
+
+    <RelatedTreatments currentPage="tratamento-de-canal" />
+
+    <StatsBar />
+  </main>
+
+</SiteLayout>
+
+<style>
+  .qa-section {
+    padding-block: 2rem;
+    background: #fff;
+  }
+
+  .tc-title {
+    text-align: center;
+    margin: 0 0 1rem;
+  }
+  .tc-sub {
+    text-align: center;
+    margin: 0 auto 3rem;
+    max-width: 42rem;
+  }
+  .tc-grid {
+    display: grid;
+    gap: 2rem;
+    max-width: 64rem;
+    margin-inline: auto;
+  }
+  @media (min-width: 768px) {
+    .tc-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .tc-card {
+    text-align: center;
+  }
+  .tc-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+  }
+  .tc-bg-purple {
+    background: rgba(56, 31, 71, 0.1);
+  }
+  .tc-bg-gold {
+    background: rgba(179, 149, 95, 0.1);
+  }
+  .tc-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--dc-purple);
+    margin: 0 0 0.75rem;
+  }
+  .tc-card p {
+    margin: 0;
+  }
+
+  /* CTA intermediário de urgência */
+  .tc-cta-mid {
+    padding-block: 2rem;
+    background: rgba(207, 203, 180, 0.3);
+  }
+  .tc-cta-mid-inner {
+    max-width: 48rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+    text-align: center;
+  }
+  .tc-cta-mid-text {
+    font-size: 1.25rem;
+    color: var(--dc-gray);
+    margin: 0 0 1.5rem;
+  }
+  .tc-cta-mid-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: #dc2626;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+  .tc-cta-mid-btn:hover {
+    background: #b91c1c;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+  }
+
+  .tc-process-wrap {
+    max-width: 56rem;
+    margin-inline: auto;
+  }
+
+  .tc-info-title {
+    text-align: center;
+    margin: 0 0 2rem;
+  }
+  .tc-info-body {
+    max-width: 48rem;
+    margin-inline: auto;
+    line-height: 1.625;
+  }
+  .tc-info-body p {
+    margin: 0;
+  }
+  .tc-info-body p + p {
+    margin-top: 1.5rem;
+  }
+</style>

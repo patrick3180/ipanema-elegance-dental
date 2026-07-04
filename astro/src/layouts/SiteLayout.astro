@@ -1,0 +1,160 @@
+---
+/**
+ * SiteLayout — layout das páginas institucionais e service pages.
+ *
+ * Wrapper fino sobre o Base.astro: repassa TODAS as props e injeta o
+ * header/footer REAL do site nos slots nomeados do Base.
+ * A prop `lang` decide o par de componentes:
+ *  - 'pt-BR' (default) → SiteHeader + SiteFooter
+ *  - 'en'              → EnSiteHeader + EnSiteFooter
+ *
+ * IMPORTANTE: o header do site é FIXO (position:fixed). Toda página que
+ * usar este layout deve começar com uma seção que compense a altura do
+ * header (ex.: hero com padding-top ≥ 90-100px) — igual ao SPA React.
+ *
+ * O conteúdo entra pelo slot default. Use <main id="main-content"> na
+ * página (o skip-link do header aponta para #main-content).
+ */
+import Base from './Base.astro';
+import SiteHeader from '../components/site/SiteHeader.astro';
+import SiteFooter from '../components/site/SiteFooter.astro';
+import EnSiteHeader from '../components/site/EnSiteHeader.astro';
+import EnSiteFooter from '../components/site/EnSiteFooter.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogType?: string;
+  ogImage?: string;
+  preloadImage?: string;
+  schemas?: string[]; // JSON-LD já serializado
+  noindex?: boolean;
+  lang?: 'pt-BR' | 'en';
+}
+
+const { lang = 'pt-BR', ...rest } = Astro.props;
+const isEn = lang === 'en';
+
+// ── hreflang automático (pares PT↔EN reais; só páginas que EXISTEM dos dois lados) ──
+// Emitido apenas quando a página NÃO fornece slot "head" próprio (evita duplicar
+// nas páginas que já gerenciam seus alternates, como a home e as EN).
+const HREFLANG_PAIRS: Record<string, string> = {
+  '/': '/en',
+  '/sobre': '/en/about',
+  '/contato': '/en/contact',
+  '/clareamento-dental': '/en/teeth-whitening',
+  '/implantes-dentarios': '/en/dental-implants',
+  '/protese-dentaria': '/en/dental-prosthetics',
+  '/ortodontia': '/en/orthodontics',
+  '/tratamento-de-canal': '/en/root-canal',
+  '/saude-da-gengiva': '/en/gum-health',
+  '/restauracoes-esteticas': '/en/aesthetic-restorations',
+  '/clinica-geral-e-prevencao': '/en/general-dentistry',
+  '/lentes-de-contato-dental-e-facetas-de-resina': '/en/veneers-and-lenses',
+};
+const EN_TO_PT: Record<string, string> = Object.fromEntries(
+  Object.entries(HREFLANG_PAIRS).map(([pt, en]) => [en, pt])
+);
+const BASE_URL = 'https://dracarlachristoph.com';
+const curPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const hasOwnHead = Astro.slots.has('head');
+let alt: { pt: string; en: string } | null = null;
+if (!hasOwnHead) {
+  if (HREFLANG_PAIRS[curPath]) alt = { pt: curPath, en: HREFLANG_PAIRS[curPath] };
+  else if (EN_TO_PT[curPath]) alt = { pt: EN_TO_PT[curPath], en: curPath };
+}
+
+// ── Botão flutuante de WhatsApp GLOBAL (paridade com PageLayout/EnPageLayout do React) ──
+// Mesmo label de produção: 'floating_whatsapp_button' (não mudar — série do Ads/GA).
+const waMsg = isEn ? "Hello! I'd like to book an appointment." : 'Olá! Gostaria de agendar uma consulta.';
+const waFloatHref = `https://wa.me/5521993304045?text=${encodeURIComponent(waMsg)}`;
+---
+
+<Base {...rest} lang={lang}>
+  <Fragment slot="head">
+    <slot name="head" />
+    {alt && (
+      <>
+        <link rel="alternate" hreflang="pt-BR" href={BASE_URL + (alt.pt === '/' ? '/' : alt.pt)} />
+        <link rel="alternate" hreflang="en" href={BASE_URL + alt.en} />
+        <link rel="alternate" hreflang="x-default" href={BASE_URL + (alt.pt === '/' ? '/' : alt.pt)} />
+      </>
+    )}
+  </Fragment>
+
+  <Fragment slot="header">
+    {isEn ? <EnSiteHeader /> : <SiteHeader />}
+  </Fragment>
+
+  <slot />
+
+  <a
+    class="js-wa-cta site-float-wa"
+    data-label="floating_whatsapp_button"
+    href={waFloatHref}
+    target="_blank"
+    rel="noopener"
+    aria-label={isEn ? 'Chat on WhatsApp' : 'Converse pelo WhatsApp'}
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    <span class="fw-text">
+      <b class="fw-desktop">{isEn ? 'Discuss my case' : 'Conversar sobre meu caso'}</b>
+      <b class="fw-mobile">{isEn ? 'Book' : 'Agendar'}</b>
+      <small class="fw-desktop">WhatsApp 24h</small>
+    </span>
+  </a>
+
+  <Fragment slot="footer">
+    {isEn ? <EnSiteFooter /> : <SiteFooter />}
+  </Fragment>
+</Base>
+
+<style>
+  /* Porte visual do WhatsAppButton.tsx global (fixed bottom-8 right-8, verde, pílula) */
+  .site-float-wa {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 50;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--wa-green);
+    color: #fff;
+    padding: 1rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .site-float-wa:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
+  }
+  .fw-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    line-height: 1.15;
+  }
+  .fw-text b {
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  .fw-text small {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .fw-mobile {
+    display: none;
+  }
+  @media (max-width: 767px) {
+    .fw-desktop {
+      display: none;
+    }
+    .fw-mobile {
+      display: inline;
+    }
+  }
+</style>

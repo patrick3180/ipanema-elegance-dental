@@ -1,0 +1,159 @@
+---
+/**
+ * EnFinalCTA — porte fiel de src/components/en/EnFinalCTA.tsx.
+ * CTA WhatsApp: label do React = sendGCLIDToWebhook("en_home_final_cta").
+ */
+const WA_HREF = "https://wa.me/5521993304045?text=Hello!%20I'd%20like%20to%20book%20an%20appointment.";
+---
+<section class="final-cta">
+  <div class="deco deco-tl" role="none"></div>
+  <div class="deco deco-br" role="none"></div>
+
+  <div class="container">
+    <p class="eyebrow">Book Your Appointment</p>
+
+    <h2 class="cta-h2">
+      Your smile deserves <span class="gold">time and attention</span>
+    </h2>
+
+    <p class="cta-lead">
+      Over 20 years in Ipanema caring for smiles with patience, planning,
+      and digital precision. Reach out on WhatsApp — we reply in your
+      language.
+    </p>
+
+    <div class="cta-row">
+      <a
+        class="btn-gold js-wa-cta"
+        data-label="en_home_final_cta"
+        href={WA_HREF}
+        target="_blank"
+        rel="noopener"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+        <span class="btn-2line">
+          <span class="btn-l1">Book Your Appointment</span>
+          <span class="btn-l2">WhatsApp — We reply in your language</span>
+        </span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <p class="cta-addr">Rua Visconde de Pirajá, 550 — Suite 1107, Ipanema</p>
+  </div>
+</section>
+
+<style>
+  .final-cta {
+    position: relative;
+    overflow: hidden;
+    background: var(--dental-purple);
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  @media (min-width: 768px) {
+    .final-cta { padding-top: 112px; padding-bottom: 112px; }
+  }
+  .deco {
+    position: absolute;
+    border-radius: 999px;
+    background: rgb(179 149 95 / 0.05);
+    filter: blur(64px);
+  }
+  .deco-tl {
+    top: 0;
+    left: 0;
+    width: 256px;
+    height: 256px;
+    transform: translate(-50%, -50%);
+  }
+  .deco-br {
+    bottom: 0;
+    right: 0;
+    width: 384px;
+    height: 384px;
+    transform: translate(33%, 33%);
+  }
+  .container {
+    position: relative;
+    z-index: 10;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+  @media (min-width: 1024px) {
+    .container { padding: 0 32px; }
+  }
+  .eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--dental-gold);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .cta-h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    font-size: 1.875rem;
+    color: #fff;
+    margin: 0 auto 24px;
+    max-width: 48rem;
+    line-height: 1.25;
+  }
+  @media (min-width: 768px) {
+    .cta-h2 { font-size: 2.25rem; }
+  }
+  @media (min-width: 1024px) {
+    .cta-h2 { font-size: 3rem; }
+  }
+  .cta-h2 .gold { color: var(--dental-gold); }
+  .cta-lead {
+    color: rgb(255 255 255 / 0.7);
+    font-size: 1.125rem;
+    margin: 0 auto 40px;
+    max-width: 42rem;
+  }
+  .cta-row {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+  }
+  @media (min-width: 640px) {
+    .cta-row { flex-direction: row; }
+  }
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--dental-gold);
+    color: #fff;
+    border-radius: 6px;
+    padding: 24px 40px;
+    font-size: 1.125rem;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgb(179 149 95 / 0.3); /* shadow-gold */
+    transition: all 0.3s;
+  }
+  .btn-gold:hover {
+    background: #9d7f4f; /* dental-gold-dark */
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(56, 31, 71, 0.16), 0 6px 16px rgba(56, 31, 71, 0.1); /* shadow-hover */
+  }
+  .btn-2line {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    line-height: 1.25;
+  }
+  .btn-l1 { font-weight: 500; }
+  .btn-l2 { font-size: 0.75rem; color: rgb(255 255 255 / 0.8); }
+  .cta-addr {
+    color: rgb(255 255 255 / 0.4);
+    font-size: 0.875rem;
+    margin-top: 24px;
+  }
+</style>

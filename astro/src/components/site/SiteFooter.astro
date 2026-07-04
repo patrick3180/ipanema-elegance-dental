@@ -1,0 +1,188 @@
+---
+/**
+ * SiteFooter — porte fiel de src/components/Footer.tsx (React SPA).
+ *
+ * 3 colunas: (1) marca + CRO + descrição + redes sociais,
+ * (2) navegação, (3) contato/endereço. Barra inferior com
+ * copyright, Política de Privacidade, Termos de Uso e link EN.
+ * Fundo dental-purple, textos em branco com opacidades do original.
+ */
+const currentYear = new Date().getFullYear();
+
+const navItems = [
+  { label: 'Início', path: '/' },
+  { label: 'Sobre', path: '/sobre' },
+  { label: 'Tratamentos', path: '/servicos' },
+  { label: 'Blog', path: '/blog' },
+  { label: 'Depoimentos', path: '/#depoimentos' },
+  { label: 'Contato', path: '/contato' },
+];
+---
+
+<footer class="site-ftr">
+  <div class="ftr-container">
+    <div class="ftr-grid">
+      <div>
+        <h3 class="ftr-title">Dra. Carla Christoph</h3>
+        <p class="ftr-cro">CRO-RJ 27.509</p>
+        <p class="ftr-desc">
+          Odontologia estética em Ipanema com tempo para ouvir, explicar e planejar — mínimo de 1 hora por consulta.
+        </p>
+        <div class="ftr-social">
+          <a
+            href="https://www.instagram.com/dracarlachristoph/"
+            aria-label="Instagram"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          </a>
+          <a
+            href="https://www.facebook.com/dracarlachristoph"
+            aria-label="Facebook"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="ftr-title">Navegação</h3>
+        <ul class="ftr-nav">
+          {navItems.map((item) => (
+            <li><a href={item.path}>{item.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="ftr-title">Contato</h3>
+        <address class="ftr-address">
+          <p>Rua Visconde de Pirajá, 550 - Sala 1107</p>
+          <p>Ipanema, Rio de Janeiro - RJ</p>
+          <p>CEP: 22410-901</p>
+          <p class="ftr-tel"><a href="tel:+552137387909">(21) 3738-7909</a></p>
+          <p><a href="tel:+5521993304045">(21) 99330-4045</a></p>
+          <p><a href="mailto:contato@dracarlachristoph.com">contato@dracarlachristoph.com</a></p>
+        </address>
+      </div>
+    </div>
+
+    <hr class="ftr-sep" />
+
+    <div class="ftr-bottom">
+      <p>&copy; {currentYear} Dra. Carla Christoph - Todos os direitos reservados.</p>
+      <p class="ftr-links">
+        {/* Termos de Uso removido: a rota nunca existiu (404 em produção) — sem conteúdo-fonte p/ portar */}
+        <a href="/politica-de-privacidade">Política de Privacidade</a>
+        {' • '}
+        <a href="/en">🇺🇸 English</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-ftr {
+    background: var(--dental-purple);
+    color: #fff;
+    padding-top: 64px; /* pt-16 */
+    padding-bottom: 32px; /* pb-8 */
+  }
+  .ftr-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px; /* px-6 (container-custom) */
+  }
+  @media (min-width: 1024px) {
+    .ftr-container { padding: 0 32px; } /* lg:px-8 */
+  }
+  .ftr-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px; /* gap-8 */
+    margin-bottom: 48px; /* mb-12 */
+  }
+  @media (min-width: 768px) {
+    .ftr-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .ftr-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 400;
+    font-size: 1.25rem; /* text-xl */
+    color: #fff; /* sobrescreve o h3 roxo do Base */
+    margin-bottom: 16px;
+  }
+  .ftr-cro {
+    color: rgb(255 255 255 / 0.6);
+    font-size: 0.875rem;
+    margin-bottom: 4px;
+  }
+  .ftr-desc {
+    color: rgb(255 255 255 / 0.7);
+    margin-bottom: 16px;
+  }
+  .ftr-social { display: flex; gap: 16px; }
+  .social-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.1);
+    color: #fff;
+    transition: background-color 0.2s;
+  }
+  .social-btn:hover { background: rgb(179 149 95 / 0.7); }
+
+  .ftr-nav {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* space-y-2 */
+  }
+  .ftr-nav a {
+    color: rgb(255 255 255 / 0.7);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .ftr-nav a:hover { color: var(--dental-gold); }
+
+  .ftr-address {
+    font-style: normal;
+    color: rgb(255 255 255 / 0.7);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .ftr-tel { margin-top: 12px; }
+  .ftr-address a {
+    color: rgb(255 255 255 / 0.7);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .ftr-address a:hover { color: var(--dental-gold); }
+
+  .ftr-sep {
+    border: none;
+    border-top: 1px solid rgb(255 255 255 / 0.2);
+    margin-bottom: 32px;
+  }
+  .ftr-bottom {
+    text-align: center;
+    color: rgb(255 255 255 / 0.7);
+    font-size: 0.875rem;
+  }
+  .ftr-links { margin-top: 8px; }
+  .ftr-bottom a {
+    color: rgb(255 255 255 / 0.7);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .ftr-bottom a:hover { color: var(--dental-gold); }
+</style>

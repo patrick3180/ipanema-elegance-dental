@@ -1,0 +1,182 @@
+---
+/**
+ * EnDifferentialsSection — porte fiel de src/components/en/EnDifferentialsSection.tsx.
+ * ScrollReveal removido — cards renderizados estaticamente. Sem CTA nesta seção.
+ */
+const differentials = [
+  {
+    icon: 'clock',
+    title: 'Minimum 1-Hour Appointments',
+    description:
+      'No rushed visits. Every appointment is scheduled with enough time to listen, examine, and care without pressure.',
+  },
+  {
+    icon: 'heart',
+    title: 'Same Dentist, Start to Finish',
+    description:
+      'Dr. Carla personally oversees your entire treatment — from the first consultation to the final result. No hand-offs.',
+  },
+  {
+    icon: 'fingerprint',
+    title: '3D Digital Planning',
+    description:
+      'iTero Element 5D scanner for precise 3D imaging — no messy impressions, just digital comfort and predictability.',
+  },
+  {
+    icon: 'shield',
+    title: '20+ Years of Experience',
+    description:
+      'Specialist in Prosthodontics and Implant Dentistry, with 8 years as a dental officer in the Brazilian Navy. Precision and discipline.',
+  },
+];
+---
+<section class="diff-sec">
+  <div class="container">
+    <div class="sec-head">
+      <p class="eyebrow">Why Choose Us</p>
+      <h2 class="heading-lg">Why Patients Choose Dr. Carla Christoph</h2>
+      <div class="gold-sep" role="none"></div>
+      <p class="sec-sub">
+        In a city with many options, the right dentist makes all the
+        difference. Here's what sets our Ipanema practice apart.
+      </p>
+    </div>
+
+    <div class="diff-grid">
+      {differentials.map((item) => (
+        <div class="diff-card">
+          <div class="accent-line" role="none"></div>
+          <div class="diff-ic">
+            {item.icon === 'clock' && (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            )}
+            {item.icon === 'heart' && (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            )}
+            {item.icon === 'fingerprint' && (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M9 6.8a6 6 0 0 1 9 5.2v2"/></svg>
+            )}
+            {item.icon === 'shield' && (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+            )}
+          </div>
+          <h3 class="diff-title">{item.title}</h3>
+          <p class="diff-desc">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .diff-sec {
+    background: hsl(51 22% 76%); /* bg-dental-beige (token real do tailwind.config) */
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+  @media (min-width: 768px) {
+    .diff-sec { padding-top: 80px; padding-bottom: 80px; }
+  }
+  @media (min-width: 1024px) {
+    .diff-sec { padding-top: 96px; padding-bottom: 96px; }
+  }
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  @media (min-width: 1024px) {
+    .container { padding: 0 32px; }
+  }
+  .sec-head {
+    max-width: 48rem;
+    margin: 0 auto 56px;
+    text-align: center;
+  }
+  .eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--dental-gold);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .heading-lg {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    font-size: 1.875rem;
+    color: var(--dental-purple);
+    margin-bottom: 16px;
+  }
+  @media (min-width: 768px) {
+    .heading-lg { font-size: 2.25rem; }
+  }
+  .gold-sep {
+    width: 96px;
+    height: 4px;
+    background: var(--dental-gold);
+    margin: 0 auto 24px;
+  }
+  .sec-sub { color: #525252; }
+
+  .diff-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  @media (min-width: 768px) {
+    .diff-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .diff-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  .diff-card {
+    position: relative;
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08); /* shadow-soft */
+    transition: all 0.5s;
+    height: 100%;
+  }
+  .diff-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(56, 31, 71, 0.16), 0 6px 16px rgba(56, 31, 71, 0.1); /* shadow-hover */
+  }
+  .accent-line {
+    position: absolute;
+    top: 0;
+    left: 32px;
+    right: 32px;
+    height: 2px;
+    background: rgb(179 149 95 / 0);
+    transition: all 0.5s;
+    border-radius: 999px;
+  }
+  .diff-card:hover .accent-line { background: rgb(179 149 95 / 0.6); }
+  .diff-ic {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: rgb(179 149 95 / 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dental-gold);
+    margin-bottom: 24px;
+    transition: background-color 0.3s;
+  }
+  .diff-card:hover .diff-ic { background: rgb(179 149 95 / 0.2); }
+  .diff-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--dental-purple);
+    margin-bottom: 12px;
+  }
+  .diff-desc {
+    font-size: 0.875rem;
+    color: #525252;
+    line-height: 1.6;
+  }
+</style>

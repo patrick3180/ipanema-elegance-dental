@@ -1,0 +1,55 @@
+---
+/**
+ * QuickAnswerBox — porte fiel de src/components/blog/QuickAnswerBox.tsx (pt).
+ */
+import Icon from './Icon.astro';
+import '../../styles/treatment.css';
+
+interface Props {
+  answer: string;
+}
+const { answer } = Astro.props;
+---
+
+<div class="qab">
+  <div class="qab-row">
+    <div class="qab-icon">
+      <Icon name="check-circle-2" size={24} class="tx-gold" />
+    </div>
+    <div>
+      <h2 class="qab-title">Resposta Rápida</h2>
+      <p class="qab-text">{answer}</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .qab {
+    background: linear-gradient(to right, rgba(56, 31, 71, 0.1), rgba(179, 149, 95, 0.1));
+    border: 1px solid rgba(179, 149, 95, 0.3);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .qab-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .qab-icon {
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+  .qab-title {
+    /* h2 herda Playfair do estilo global (igual ao @layer base do SPA) */
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--dc-purple);
+    margin: 0 0 0.5rem;
+  }
+  .qab-text {
+    color: var(--dc-gray);
+    line-height: 1.625;
+    margin: 0;
+  }
+</style>

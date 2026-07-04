@@ -1,0 +1,132 @@
+---
+/**
+ * /lp/clareamento-dental — porte de src/pages/ClareamentoLandingPage.tsx
+ * Config: clareamentoConfig. Seções: Hero → StatsBar → Problem → DoctorBio →
+ * Guide → MidCTA (labels próprios) → SocialProof → FAQ → FinalCTA.
+ */
+import LPLayout from '../../layouts/LPLayout.astro';
+import LPHero from '../../components/lp/LPHero.astro';
+import LPStatsBar from '../../components/lp/LPStatsBar.astro';
+import LPProblem from '../../components/lp/LPProblem.astro';
+import LPDoctorBio from '../../components/lp/LPDoctorBio.astro';
+import LPGuide from '../../components/lp/LPGuide.astro';
+import LPMidCTA from '../../components/lp/LPMidCTA.astro';
+import LPSocialProof from '../../components/lp/LPSocialProof.astro';
+import LPFAQ from '../../components/lp/LPFAQ.astro';
+import LPFinalCTA from '../../components/lp/LPFinalCTA.astro';
+import LPFloatingWhatsApp from '../../components/lp/LPFloatingWhatsApp.astro';
+import { clareamentoConfig as config } from '@/config/clareamentoConfig';
+
+const waHref = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(config.whatsapp.message)}`;
+const prefix = 'lp-clareamento';
+
+// Schema — copiado verbatim do Helmet de ClareamentoLandingPage.tsx
+const schemas = [
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Dentist',
+        '@id': 'https://dracarlachristoph.com/#dentist',
+        name: 'Dra. Carla Christoph',
+        description: config.seo.description,
+        url: 'https://dracarlachristoph.com/lp/clareamento-dental',
+        telephone: '+5521993304045',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+          addressLocality: 'Ipanema',
+          addressRegion: 'RJ',
+          postalCode: '22410-901',
+          addressCountry: 'BR',
+        },
+        geo: { '@type': 'GeoCoordinates', latitude: '-22.9866', longitude: '-43.2024' },
+        speciality: ['Prótese Dental', 'Implantodontia', 'Estética Dental'],
+        image: 'https://dracarlachristoph.com/lovable-uploads/doutora-em-pe-jaleco.webp',
+      },
+      {
+        '@type': 'Service',
+        name: 'Clareamento Dental',
+        description:
+          'Clareamento dental seguro e eficaz com protocolos individualizados — consultório e caseiro supervisionado. Resultado natural, com aparência preservada.',
+        provider: { '@id': 'https://dracarlachristoph.com/#dentist' },
+        areaServed: { '@type': 'City', name: 'Rio de Janeiro' },
+        serviceType: 'Cosmetic Dentistry',
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: config.faq.questions.map((q) => ({
+          '@type': 'Question',
+          name: q.question,
+          acceptedAnswer: { '@type': 'Answer', text: q.answer },
+        })),
+      },
+    ],
+  }),
+];
+---
+
+<LPLayout
+  title={config.seo.title}
+  description={config.seo.description}
+  canonical="https://dracarlachristoph.com/lp/clareamento-dental"
+  ogImage="https://dracarlachristoph.com/lovable-uploads/doutora-em-pe-jaleco.webp"
+  schemas={schemas}
+  whatsappHref={waHref}
+  waLabelPrefix={prefix}
+>
+  <main id="main-content" class="lp-main">
+    <LPHero
+      headline={config.hero.headline}
+      subheadline={config.hero.subheadline}
+      ctaText={config.hero.ctaText}
+      benefits={config.benefits}
+      backgroundImage={config.hero.backgroundImage || ''}
+      whatsappHref={waHref}
+      waLabel={`${prefix}_hero_whatsapp`}
+      imgWidth={500}
+      imgHeight={737}
+    />
+
+    <LPStatsBar />
+
+    <LPProblem
+      title={config.problem.title}
+      description={config.problem.description}
+      problems={config.problem.problems}
+    />
+
+    <LPDoctorBio />
+
+    <LPGuide title={config.guide.title} subtitle={config.guide.subtitle} steps={config.guide.steps} />
+
+    <LPMidCTA
+      whatsappHref={waHref}
+      waLabel={`${prefix}_midcta_whatsapp`}
+      ctaLabel="Agendar Minha Consulta de Clareamento"
+    />
+
+    <LPSocialProof
+      title={config.socialProof.title}
+      testimonials={config.socialProof.testimonials}
+      stats={config.socialProof.stats}
+    />
+
+    <LPFAQ title={config.faq.title} questions={config.faq.questions} />
+
+    <LPFinalCTA
+      title={config.cta.title}
+      subtitle={config.cta.subtitle}
+      buttonText={config.cta.buttonText}
+      urgency={config.cta.urgency}
+      whatsappHref={waHref}
+      waLabel={`${prefix}_final_whatsapp`}
+    />
+
+    <LPFloatingWhatsApp whatsappHref={waHref} waLabel={`${prefix}_floating_whatsapp`} />
+  </main>
+</LPLayout>
+
+<style>
+  .lp-main { background: #fff; min-height: 100vh; }
+</style>
