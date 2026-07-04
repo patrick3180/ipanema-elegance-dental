@@ -1,0 +1,142 @@
+---
+/**
+ * Hero full-bleed reutilizável (padrão da LP Prótese V2 `.ph-hero`).
+ * Foto da doutora ocupando todo o topo; no desktop com scrim/gradiente à
+ * esquerda e o texto sobreposto; no mobile a foto vem em cima e o texto embaixo.
+ * CSS scoped (prefixo lpfb-) para poder ser usado em qualquer LP sem colisão.
+ *
+ * Imagens: usa o conjunto responsivo `hero-fb-*` (avif/webp, 480/768 mobile +
+ * 1280/1920 desktop) por padrão — o mesmo hero otimizado da home/Prótese.
+ * Para outra foto, passar mobileBase/desktopBase (arquivos já otimizados em
+ * /lovable-uploads/).
+ */
+interface Props {
+  eyebrow?: string;
+  headline: string;
+  subheadline: string;
+  ctaText: string;
+  whatsappHref: string;
+  waLabel: string;
+  benefits?: string[];
+  trustBadges?: string[];
+  reviews?: { rating: string; count: string; href: string };
+  photo?: { mobileBase: string; desktopBase: string; alt: string; width: number; height: number };
+}
+const {
+  eyebrow,
+  headline,
+  subheadline,
+  ctaText,
+  whatsappHref,
+  waLabel,
+  benefits = [],
+  trustBadges = [],
+  reviews = {
+    rating: '5,0',
+    count: '17 avaliações',
+    href: 'https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/',
+  },
+  photo = {
+    mobileBase: 'hero-fb-m',
+    desktopBase: 'hero-fb',
+    alt: 'Dra. Carla Christoph, dentista especialista em Ipanema, no consultório',
+    width: 1280,
+    height: 650,
+  },
+} = Astro.props;
+const P = '/lovable-uploads';
+---
+
+<section class="lpfb-hero">
+  <picture class="lpfb-photo">
+    <source media="(max-width: 767px)" type="image/avif" srcset={`${P}/${photo.mobileBase}-480.avif 480w, ${P}/${photo.mobileBase}-768.avif 768w`} sizes="100vw" />
+    <source media="(max-width: 767px)" type="image/webp" srcset={`${P}/${photo.mobileBase}-480.webp 480w, ${P}/${photo.mobileBase}-768.webp 768w`} sizes="100vw" />
+    <source media="(min-width: 768px)" type="image/avif" srcset={`${P}/${photo.desktopBase}-1280.avif 1280w, ${P}/${photo.desktopBase}-1920.avif 1920w`} sizes="100vw" />
+    <source media="(min-width: 768px)" type="image/webp" srcset={`${P}/${photo.desktopBase}-1280.webp 1280w, ${P}/${photo.desktopBase}-1920.webp 1920w`} sizes="100vw" />
+    <img src={`${P}/${photo.desktopBase}-1280.webp`} alt={photo.alt} width={photo.width} height={photo.height} loading="eager" fetchpriority="high" decoding="async" />
+  </picture>
+
+  <div class="lpfb-scrim" aria-hidden="true"></div>
+
+  <div class="lpfb-text">
+    <div class="lpfb-inner">
+      <div class="lpfb-copy">
+        {eyebrow && <p class="lpfb-eyebrow">{eyebrow}</p>}
+        <h1 class="lpfb-h1">{headline}</h1>
+        <p class="lpfb-sub">{subheadline}</p>
+
+        <div class="lpfb-cta-row">
+          <a class="lpfb-cta js-wa-cta" data-label={waLabel} href={whatsappHref} target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+            <span class="lpfb-cta-labels">
+              <b>{ctaText}</b>
+              <small>WhatsApp 24h</small>
+            </span>
+          </a>
+
+          <a href={reviews.href} target="_blank" rel="noopener noreferrer" aria-label={`Avaliações no Google: ${reviews.rating} estrelas com ${reviews.count}`} class="lpfb-proof">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#B3955F" stroke="#B3955F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <b>{reviews.rating}</b>
+            <span>no Google · {reviews.count}</span>
+          </a>
+        </div>
+
+        {benefits.length > 0 && (
+          <div class="lpfb-badges">
+            {benefits.slice(0, 4).map((b) => (
+              <span class="lpfb-badge"><span class="lpfb-dot" aria-hidden="true">●</span>{b}</span>
+            ))}
+          </div>
+        )}
+
+        {trustBadges.length > 0 && (
+          <div class="lpfb-trust">
+            {trustBadges.map((t) => <span>{t}</span>)}
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ═══ Hero full-bleed (padrão .ph-hero da Prótese V2), scoped como lpfb-* ═══ */
+  .lpfb-hero { position: relative; padding-top: 68px; background: #E4DBCA; }
+  .lpfb-photo { display: block; }
+  .lpfb-photo img { display: block; width: 100%; height: 44vh; min-height: 280px; max-height: 420px; object-fit: cover; object-position: 50% 16%; }
+  .lpfb-scrim { display: none; }
+  .lpfb-text { background: #E4DBCA; padding: 1.5rem 1.25rem 2rem; }
+  .lpfb-inner { width: 100%; }
+  .lpfb-copy { max-width: 600px; margin: 0 auto; }
+  .lpfb-eyebrow { font-size: .72rem; text-transform: uppercase; letter-spacing: .14em; color: #8A7444; font-weight: 600; margin: 0 0 .75rem; }
+  .lpfb-h1 { font-size: clamp(1.6rem, 5.4vw, 2.4rem); font-weight: 700; line-height: 1.14; color: #381F47; margin: 0 0 .9rem; font-family: 'Playfair Display', Georgia, serif; }
+  .lpfb-sub { font-size: .98rem; color: #5C5647; line-height: 1.55; margin: 0 0 1.1rem; }
+  .lpfb-cta-row { display: flex; flex-direction: column; gap: .75rem; align-items: flex-start; }
+  .lpfb-cta { display: inline-flex; align-items: center; gap: .6rem; width: 100%; justify-content: center; background: linear-gradient(135deg, #25D366 0%, #20BD5A 100%); color: #fff; border: none; cursor: pointer; border-radius: 10px; padding: .85rem 1.5rem; font-family: inherit; box-shadow: 0 4px 14px rgba(37,211,102,.3); transition: transform .2s ease; text-decoration: none; }
+  .lpfb-cta:hover { transform: scale(1.03); }
+  .lpfb-cta-labels { display: flex; flex-direction: column; line-height: 1.1; text-align: left; }
+  .lpfb-cta-labels b { font-size: .95rem; font-weight: 700; }
+  .lpfb-cta-labels small { font-size: .7rem; opacity: .9; font-weight: 400; }
+  .lpfb-proof { display: inline-flex; align-items: center; gap: .4rem; background: #fff; border: 1px solid rgba(179,149,95,.3); border-radius: 999px; padding: .4rem .8rem; text-decoration: none; }
+  .lpfb-proof b { color: #381F47; font-size: .9rem; }
+  .lpfb-proof span { color: rgba(56,31,71,.7); font-size: .75rem; }
+  .lpfb-badges { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.25rem 0 0; }
+  .lpfb-badge { display: inline-flex; align-items: center; gap: .4rem; background: #fff; border: 1px solid rgba(179,149,95,.4); border-radius: 999px; padding: .35rem .7rem; font-size: .8rem; color: #381F47; font-weight: 500; }
+  .lpfb-dot { color: #B3955F; font-size: 8px; }
+  .lpfb-trust { display: flex; flex-wrap: wrap; gap: .4rem 1rem; margin-top: 1rem; }
+  .lpfb-trust span { font-size: .68rem; text-transform: uppercase; letter-spacing: .1em; color: #8A7444; font-weight: 600; }
+
+  @media (min-width: 768px) {
+    .lpfb-hero { min-height: 86vh; padding-top: 0; }
+    .lpfb-photo { position: absolute; top: 72px; left: 0; right: 0; bottom: 0; }
+    .lpfb-photo img { height: 100%; min-height: 0; max-height: none; object-position: 78% 18%; }
+    .lpfb-scrim { display: block; position: absolute; top: 72px; left: 0; right: 0; bottom: 0; pointer-events: none; background: linear-gradient(90deg, rgba(250,247,242,.97) 0%, rgba(250,247,242,.88) 34%, rgba(250,247,242,.5) 54%, rgba(250,247,242,0) 72%); }
+    .lpfb-text { position: relative; background: transparent; padding: 0; min-height: 86vh; display: flex; align-items: center; }
+    .lpfb-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .lpfb-copy { max-width: 540px; margin: 0; }
+    .lpfb-h1 { font-size: 2.7rem; }
+    .lpfb-sub { font-size: 1.05rem; }
+    .lpfb-cta-row { flex-direction: row; align-items: center; gap: 1.25rem; }
+    .lpfb-cta { width: auto; }
+  }
+</style>

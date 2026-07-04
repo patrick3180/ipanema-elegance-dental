@@ -6,7 +6,7 @@
  * noindex (default do LPLayout). Todos os CTAs: js-wa-cta + data-label único.
  */
 import LPLayout from '../../layouts/LPLayout.astro';
-import LPHero from '../../components/lp/LPHero.astro';
+import LPHeroFullBleed from '../../components/lp/LPHeroFullBleed.astro';
 import LPProblem from '../../components/lp/LPProblem.astro';
 import LPDoctorBio from '../../components/lp/LPDoctorBio.astro';
 import LPGuide from '../../components/lp/LPGuide.astro';
@@ -74,16 +74,22 @@ const schemas = [
   waLabelPrefix={prefix}
 >
   <main id="main-content" class="lp-main">
-    <LPHero
+    <LPHeroFullBleed
+      eyebrow="Dentista Especialista em Ipanema · CRO-RJ 27.509"
       headline={config.hero.headline}
       subheadline={config.hero.subheadline}
       ctaText={config.hero.ctaText}
       benefits={config.benefits}
-      backgroundImage={config.hero.backgroundImage || ''}
+      trustBadges={["20+ anos em Ipanema", "CRO-RJ 27.509", "4.000+ pacientes"]}
       whatsappHref={waHref}
       waLabel={`${prefix}_hero_whatsapp`}
-      imgWidth={500}
-      imgHeight={750}
+      photo={{
+        mobileBase: 'hero-fb-m',
+        desktopBase: 'hero-fb',
+        alt: 'Dra. Carla Christoph, dentista especialista em Ipanema, no consultório',
+        width: 1280,
+        height: 650,
+      }}
     />
 
     <LPProblem
