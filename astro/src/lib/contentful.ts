@@ -51,6 +51,21 @@ export async function getBlogData(): Promise<BlogData> {
 
 // ── Helpers de campos (dual-naming PT/EN + typo histórico) ──
 
+/**
+ * Compliance CRO §1.3: "avaliação" NUNCA como CTA/convite de agendamento
+ * (paciente confunde com serviço grátis). Normaliza APENAS a frase de
+ * agendamento (agende/agendar/marque/marcar + [artigo] + avaliação → consulta),
+ * preservando o uso clínico legítimo ("avaliar a saúde bucal", "avaliação
+ * periodontal") e "avaliações" do Google. Aplicado em title/description/excerpt
+ * vindos do Contentful — a fonte (Contentful) fica intacta.
+ */
+export function complianceCTA(text: string): string {
+  return String(text || '').replace(
+    /\b(agende|agendar|marque|marcar)(\s+(?:sua|uma|a|o)\s+)avalia[çc][ãa]o/gi,
+    (_m, verb, mid) => `${verb}${mid}consulta`
+  );
+}
+
 export function resolveSlug(post: BlogPostEntry): string {
   let slug = post.fields?.slug;
   if (!slug && post.fields?.titulo) {
@@ -90,9 +105,9 @@ export function postMeta(
 
   return {
     slug: resolveSlug(post),
-    title: f.titulo || f.title || 'Artigo',
-    excerpt: f.resumo || f.excerpt || '',
-    metaDescription: String(f.metaDescription || f.resumo || f.excerpt || '').substring(0, 160),
+    title: complianceCTA(f.titulo || f.title || 'Artigo'),
+    excerpt: complianceCTA(f.resumo || f.excerpt || ''),
+    metaDescription: complianceCTA(String(f.metaDescription || f.resumo || f.excerpt || '')).substring(0, 160),
     author: f.autor || f.author || 'Dra. Carla Christoph',
     category: categoryName || 'Odontologia',
     date: f.publishDate || f.dataDePublicacao || post.sys?.createdAt || '',

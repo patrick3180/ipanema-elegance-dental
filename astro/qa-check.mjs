@@ -124,8 +124,13 @@ for (const file of pages) {
     if (!tag.includes('js-wa-cta')) fail(`CTA wa.me sem class js-wa-cta (sem tracking): ${href.slice(0, 60)}`);
     if (!tag.includes('target="_blank"')) fail(`CTA wa.me sem target=_blank: ${href.slice(0, 60)}`);
   }
-  // proibições de compliance em CTA
-  if (/aval[ia]a[çc][ãa]o gratuita|avalia[çc][ãa]o sem compromisso/i.test(html)) fail('compliance: "avaliação gratuita/sem compromisso" no texto');
+  // proibições de compliance (CRO §1.3): "avaliação" como CTA/convite de agendamento.
+  // Uso clínico/diagnóstico ("avaliar a saúde bucal", "avaliar o caso") é permitido;
+  // "17 avaliações" (Google) também. Bloqueia só os padrões de agendamento.
+  if (/avalia[çc][ãa]o gratuita|avalia[çc][ãa]o sem compromisso/i.test(html)) fail('compliance: "avaliação gratuita/sem compromisso"');
+  if (/Vamos Avaliar Juntos/i.test(html)) fail('compliance: CTA "Vamos Avaliar Juntos" (usar "consulta")');
+  if (/Agende\s+(sua|a)\s+avalia[çc][ãa]o/i.test(html)) fail('compliance: "Agende sua avaliação" (usar "consulta")');
+  if (/Marcar\s+avalia[çc][ãa]o|agendar\s+avalia[çc][ãa]o/i.test(html)) fail('compliance: agendar/marcar "avaliação" (usar "consulta")');
 }
 
 console.log(`\n══════════ QA duplo-check — ${checked} páginas ══════════`);
