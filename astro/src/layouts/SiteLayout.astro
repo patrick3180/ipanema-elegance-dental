@@ -1,0 +1,54 @@
+---
+/**
+ * SiteLayout — layout das páginas institucionais e service pages.
+ *
+ * Wrapper fino sobre o Base.astro: repassa TODAS as props e injeta o
+ * header/footer REAL do site nos slots nomeados do Base.
+ * A prop `lang` decide o par de componentes:
+ *  - 'pt-BR' (default) → SiteHeader + SiteFooter
+ *  - 'en'              → EnSiteHeader + EnSiteFooter
+ *
+ * IMPORTANTE: o header do site é FIXO (position:fixed). Toda página que
+ * usar este layout deve começar com uma seção que compense a altura do
+ * header (ex.: hero com padding-top ≥ 90-100px) — igual ao SPA React.
+ *
+ * O conteúdo entra pelo slot default. Use <main id="main-content"> na
+ * página (o skip-link do header aponta para #main-content).
+ */
+import Base from './Base.astro';
+import SiteHeader from '../components/site/SiteHeader.astro';
+import SiteFooter from '../components/site/SiteFooter.astro';
+import EnSiteHeader from '../components/site/EnSiteHeader.astro';
+import EnSiteFooter from '../components/site/EnSiteFooter.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogType?: string;
+  ogImage?: string;
+  preloadImage?: string;
+  schemas?: string[]; // JSON-LD já serializado
+  noindex?: boolean;
+  lang?: 'pt-BR' | 'en';
+}
+
+const { lang = 'pt-BR', ...rest } = Astro.props;
+const isEn = lang === 'en';
+---
+
+<Base {...rest} lang={lang}>
+  <Fragment slot="head">
+    <slot name="head" />
+  </Fragment>
+
+  <Fragment slot="header">
+    {isEn ? <EnSiteHeader /> : <SiteHeader />}
+  </Fragment>
+
+  <slot />
+
+  <Fragment slot="footer">
+    {isEn ? <EnSiteFooter /> : <SiteFooter />}
+  </Fragment>
+</Base>

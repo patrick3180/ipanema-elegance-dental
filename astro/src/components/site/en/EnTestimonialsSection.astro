@@ -1,0 +1,212 @@
+---
+/**
+ * EnTestimonialsSection — porte estático de src/components/en/EnTestimonialsCarousel.tsx.
+ * O carrossel JS (autoplay + setas + dots) virou grid estático: os 3 depoimentos
+ * estão TODOS no HTML. Paridade visual com o React: no mobile só o 1º card é
+ * exibido (os demais ficam display:none < 768px, igual ao `hidden md:block`);
+ * controles de navegação removidos (eram JS-only). Link do Google Reviews mantido.
+ */
+const testimonials = [
+  {
+    name: 'Beatriz M.',
+    location: 'Ipanema',
+    rating: 5,
+    text: 'I had porcelain veneers done with Dr. Carla. What impressed me most was the planning before starting — I could see how everything would look before making my decision. Today I smile without thinking twice.',
+    note: 'Translated from Portuguese',
+  },
+  {
+    name: 'Fernando A.',
+    location: 'Gávea',
+    rating: 5,
+    text: 'I needed implants and was very nervous. Dr. Carla explained everything patiently, and the result turned out better than I imagined. I recommend her without hesitation.',
+    note: 'Translated from Portuguese',
+  },
+  {
+    name: 'Juliana P.',
+    location: 'Copacabana',
+    rating: 5,
+    text: "I've been a patient here for over 5 years. What made me stay was the time they dedicate to each appointment. I've never left feeling like it was rushed.",
+    note: 'Translated from Portuguese',
+  },
+];
+---
+<section id="testimonials" class="test-sec">
+  <div class="container">
+    <div class="sec-head">
+      <p class="eyebrow">Testimonials</p>
+      <h2 class="heading-lg">What Our Patients Say</h2>
+      <div class="gold-sep" role="none"></div>
+      <p class="sec-sub">
+        Every patient's experience is what drives us. See what those who
+        trust our care in Ipanema have to say.
+      </p>
+    </div>
+
+    <div class="test-grid">
+      {testimonials.map((t, index) => (
+        <div class:list={['test-card', { 'md-only': index > 0 }]}>
+          <svg class="quote-ic" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+
+          <div class="stars" aria-label={`${t.rating} out of 5 stars`}>
+            {Array.from({ length: t.rating }).map(() => (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            ))}
+          </div>
+
+          <p class="test-text">&ldquo;{t.text}&rdquo;</p>
+          <p class="test-note">({t.note})</p>
+
+          <div class="test-author">
+            <div class="avatar"><span>{t.name.charAt(0)}</span></div>
+            <div>
+              <p class="author-name">{t.name}</p>
+              <p class="author-loc">{t.location}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="g-link-wrap">
+      <a
+        href="https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="g-link"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        See all reviews on Google
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .test-sec {
+    background: #fff;
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+  @media (min-width: 768px) {
+    .test-sec { padding-top: 80px; padding-bottom: 80px; }
+  }
+  @media (min-width: 1024px) {
+    .test-sec { padding-top: 96px; padding-bottom: 96px; }
+  }
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  @media (min-width: 1024px) {
+    .container { padding: 0 32px; }
+  }
+  .sec-head {
+    max-width: 48rem;
+    margin: 0 auto 56px;
+    text-align: center;
+  }
+  .eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--dental-gold);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .heading-lg {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    font-size: 1.875rem;
+    color: var(--dental-purple);
+    margin-bottom: 16px;
+  }
+  @media (min-width: 768px) {
+    .heading-lg { font-size: 2.25rem; }
+  }
+  .gold-sep {
+    width: 96px;
+    height: 4px;
+    background: var(--dental-gold);
+    margin: 0 auto 24px;
+  }
+  .sec-sub { color: #525252; }
+
+  .test-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media (min-width: 768px) {
+    .test-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .test-card {
+    position: relative;
+    background: hsl(51 22% 76% / 0.4); /* bg-dental-beige/40 */
+    border-radius: 16px;
+    padding: 32px;
+    border: 1px solid rgb(56 31 71 / 0.05);
+  }
+  .md-only { display: none; }
+  @media (min-width: 768px) {
+    .md-only { display: block; }
+  }
+  .quote-ic { color: rgb(179 149 95 / 0.2); margin-bottom: 16px; }
+  .stars {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 16px;
+    color: var(--dental-gold);
+  }
+  .test-text {
+    color: rgb(56 31 71 / 0.9);
+    line-height: 1.6;
+    margin-bottom: 8px;
+    font-size: 0.875rem;
+  }
+  .test-note {
+    font-size: 0.75rem;
+    color: rgb(82 82 82 / 0.6);
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+  .test-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid rgb(56 31 71 / 0.1);
+  }
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background: rgb(56 31 71 / 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .avatar span {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--dental-purple);
+  }
+  .author-name {
+    font-weight: 600;
+    color: var(--dental-purple);
+    font-size: 0.875rem;
+  }
+  .author-loc { font-size: 0.75rem; color: #525252; }
+
+  .g-link-wrap { text-align: center; margin-top: 24px; }
+  .g-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    color: var(--dental-gold);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .g-link:hover { color: #9d7f4f; }
+</style>

@@ -1,0 +1,995 @@
+---
+/**
+ * /en/dental-prosthetics — porte fiel de src/pages/en/EnDentalProstheticsPage.tsx (React SPA).
+ * Copy VERBATIM. Layout: SiteLayout lang="en" (EnSiteHeader/EnSiteFooter).
+ * Tracking: CTAs WhatsApp via classe global js-wa-cta (handler no Base.astro).
+ * Nota: a seção de vídeo do React tem hasVideo=false — não renderiza (portado igual).
+ */
+import SiteLayout from '../../layouts/SiteLayout.astro';
+
+// FAQs — verbatim do React (usadas no HTML e no schema FAQPage)
+const faqs = [
+  {
+    question: "Which type of prosthesis is best for my case?",
+    answer: "Every case is unique and requires an individualized evaluation. The choice depends on factors such as the number of missing teeth, bone condition, gum health, aesthetic expectations, and lifestyle. During the planning consultation, we analyze all these aspects to recommend the ideal solution for you."
+  },
+  {
+    question: "How long does a well-made prosthesis last?",
+    answer: "With quality materials and proper care, a crown or bridge can last 15 to 20 years. Implant-supported prostheses tend to last even longer, potentially exceeding 20 years. Longevity depends on oral hygiene, regular dental visits, and daily care."
+  },
+  {
+    question: "Is an implant-supported prosthesis worth the investment?",
+    answer: "For many patients, yes. Implant-supported prostheses offer unique advantages: total bone preservation, no wear on adjacent teeth, greater durability, and a natural feel. Considering the longevity and quality of life they provide, they represent excellent long-term value."
+  },
+  {
+    question: "How do I maintain my prosthesis?",
+    answer: "Fixed prostheses (crowns, bridges, implant-supported) are cleaned like natural teeth, with brushing and flossing. Removable prostheses should be taken out for cleaning with specific products. Semi-annual dental visits are essential for professional maintenance and adjustments when needed."
+  },
+  {
+    question: "Will I be without teeth during treatment?",
+    answer: "Never! We always provide a temporary prosthesis so you maintain aesthetics and function throughout the entire treatment. Our commitment is to your comfort and social life. You will not spend a single moment without teeth."
+  },
+  {
+    question: "Can a prosthesis look natural?",
+    answer: "Absolutely! We use techniques such as ceramic layering, individualized characterization, and personalized shade matching. The result is teeth that perfectly mimic nature, with translucency, texture, and appearance indistinguishable from natural teeth."
+  },
+  {
+    question: "What's the difference between porcelain and composite?",
+    answer: "Porcelain (ceramic) offers superior aesthetics, durability, and stain resistance. It's our choice for long-lasting cases. Composite can be used for temporaries or specific situations. We use top-tier materials to ensure durability and a natural result."
+  },
+  {
+    question: "Is it possible to get a prosthesis with little bone?",
+    answer: "Yes! For conventional prostheses (not implant-supported), bone quantity is not a limiting factor. For implant-supported prostheses, techniques like bone grafting or zygomatic implants can make treatment possible even with limited bone. A CT scan evaluation determines the possibilities."
+  },
+  {
+    question: "When should I replace an old prosthesis?",
+    answer: "Signs it's time to replace: visible wear, color change, infiltrations, poor fit, discomfort while chewing, or gum problems around the prosthesis. A professional evaluation can determine the ideal time for replacement."
+  },
+  {
+    question: "Is the procedure painful?",
+    answer: "Procedures are performed with effective local anesthesia and techniques that prioritize comfort. Most patients report less discomfort than expected. We provide appropriate medication and close follow-up when needed."
+  },
+  {
+    question: "What's the advantage of seeing a specialist?",
+    answer: "A specialist has 2–3 years of specific training in prosthetics, masters advanced techniques, works with the best laboratories, and has experience with complex cases. This translates to prostheses with better fit, superior aesthetics, and greater durability."
+  },
+  {
+    question: "Fixed or removable prosthesis: how to choose?",
+    answer: "Fixed prostheses offer greater comfort, security, and a natural feel, but require specific conditions (healthy supporting teeth or the possibility of implants). Removable prostheses are an option when there's no support for a fixed one. We evaluate all factors to recommend the best solution."
+  }
+];
+
+// Schemas — copiados VERBATIM do SEOHead da página React
+const schemas = [
+  JSON.stringify({ "@context": "https://schema.org", "@type": "MedicalProcedure", "name": "Dental Prosthetics", "description": "Oral rehabilitation with fixed and removable dental prostheses", "procedureType": "Dental", "inLanguage": "en", "provider": { "@type": "Dentist", "name": "Dr. Carla Christoph", "telephone": "+5521993304045", "address": { "@type": "PostalAddress", "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107", "addressLocality": "Ipanema", "addressRegion": "RJ", "postalCode": "22410-901", "addressCountry": "BR" } } }),
+  JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en", "mainEntity": faqs.map(faq => ({ "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": faq.answer } })) }),
+  JSON.stringify({ "@context": "https://schema.org", "@type": "WebPage", "name": "Dental Prosthetics & Oral Rehabilitation in Ipanema", "url": "https://dracarlachristoph.com/en/dental-prosthetics", "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"] }, "inLanguage": "en" }),
+  // BreadcrumbList — o TreatmentHero do React injeta este schema via Helmet
+  JSON.stringify({
+    "@context": "https://schema.org", "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dracarlachristoph.com/en" },
+      { "@type": "ListItem", "position": 2, "name": "Treatments", "item": "https://dracarlachristoph.com/en" },
+      { "@type": "ListItem", "position": 3, "name": "Dental Prosthetics" }
+    ]
+  }),
+];
+
+// WhatsApp CTAs — mensagens exatas do React
+const WA = 'https://wa.me/5521993304045?text=';
+const waHero = WA + encodeURIComponent('Hello! I would like to schedule a consultation about Dental Prosthetics & Oral Rehabilitation.');
+const waMid = WA + encodeURIComponent('Hello! I saw the dental prosthetics page and would like to know which type of prosthesis is recommended for my case.');
+const waFinal = WA + encodeURIComponent('Hello! I saw the dental prosthetics page and would like to book an evaluation with Dr. Carla Christoph.');
+
+// Ícones lucide (inline SVG, stroke currentColor) — paridade visual com o React
+const P: Record<string, string> = {
+  calendar: '<rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/>',
+  shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+  alert: '<circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>',
+  clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+  heart: '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>',
+  sparkles: '<path d="M12 3l1.912 5.813a2 2 0 0 0 1.275 1.275L21 12l-5.813 1.912a2 2 0 0 0-1.275 1.275L12 21l-1.912-5.813a2 2 0 0 0-1.275-1.275L3 12l5.813-1.912a2 2 0 0 0 1.275-1.275L12 3z"/>',
+  scan: '<path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/>',
+  award: '<circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>',
+  help: '<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/>',
+  check: '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>',
+  check2: '<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>',
+  smile: '<circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/>',
+  arrow: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+  users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  star: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+  search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+  utensils: '<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>',
+  package: '<path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/>',
+  chevdown: '<path d="m6 9 6 6 6-6"/>',
+  chevright: '<path d="m9 18 6-6-6-6"/>',
+};
+const icon = (name: string, size = 24, fill = false) =>
+  `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="${fill ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[name]}</svg>`;
+
+// 6 cards de modalidades de prótese — copy verbatim
+const prosthesisCards = [
+  {
+    img: '/lovable-uploads/Coroa e-max.webp', w: 800, h: 800,
+    alt: 'E-max ceramic dental crown on tooth',
+    title: 'Dental Crowns',
+    text: 'Protective caps in pure ceramic or zirconia that cover and protect damaged teeth, restoring impeccable form, function, and aesthetics.',
+    tags: ['Ceramic', 'Natural Result'],
+    goldBadge: false, goldBorder: false,
+  },
+  {
+    img: '/lovable-uploads/Ponte fixa.webp', w: 800, h: 800,
+    alt: 'Fixed porcelain bridge replacing teeth',
+    title: 'Fixed Bridges',
+    text: 'Fixed prosthesis that replaces one or more missing teeth, anchored to neighboring teeth or implants, restoring function and aesthetics.',
+    tags: ['Fixed Solution', 'Multiple Teeth'],
+    goldBadge: false, goldBorder: false,
+  },
+  {
+    img: '/Implante.webp', w: 512, h: 512,
+    alt: 'Implant-supported dental prosthesis',
+    title: 'Implant-Supported Prosthesis',
+    text: 'The ideal combination of stability and naturalness. Prosthesis fixed to dental implants for maximum comfort and durability.',
+    tags: ['Natural Look', 'Maximum Stability'],
+    goldBadge: true, goldBorder: false,
+  },
+  {
+    img: '/lovable-uploads/Prótese parcial removível moderna.webp', w: 800, h: 800,
+    alt: 'Modern removable partial prosthesis',
+    title: 'Removable Prostheses',
+    text: 'Modern partial (RPD) or complete (dentures) prostheses, with improved fit and superior aesthetics.',
+    tags: ['Affordable Solution', 'Easy Hygiene'],
+    goldBadge: false, goldBorder: false,
+  },
+  {
+    img: '/lovable-uploads/all in 4.webp', w: 800, h: 800,
+    alt: 'All-on-4 protocol full arch on implants',
+    title: 'All-on-4/6 Protocol',
+    text: 'Full arch rehabilitation on 4 or 6 implants, with a fixed prosthesis for complete arch restoration.',
+    tags: ['Complete Rehabilitation', 'Fixed Prosthesis'],
+    goldBadge: false, goldBorder: true,
+  },
+  {
+    img: '/lovable-uploads/Overdenture com clips de retenção.webp', w: 800, h: 800,
+    alt: 'Overdenture stabilized by implants with clips',
+    title: 'Overdenture Prosthesis',
+    text: 'Removable prosthesis stabilized by implants, combining the convenience of removal with firmness and comfort while chewing.',
+    tags: ['Stability', 'Removable'],
+    goldBadge: false, goldBorder: false,
+  },
+];
+
+// Process Timeline — verbatim (nota: "Duração:" é hardcoded no componente React mesmo em EN)
+const timelineSteps = [
+  { number: 1, title: 'Complete Diagnostic Consultation', description: 'Facial analysis, clinical exam, digital X-rays, and iTero Element 5D scanning for precise diagnosis and personalized planning.', iconName: 'search', duration: '1st Visit' },
+  { number: 2, title: 'Minimally Invasive Preparation', description: 'When necessary, we prepare teeth with maximum preservation of healthy structure, always prioritizing conservative techniques.', iconName: 'shield', duration: '1st Visit' },
+  { number: 3, title: 'Precision Digital Impression', description: 'iTero Element 5D eliminates the discomfort of traditional molds, ensuring millimetric precision. The 3D file is sent directly to our partner laboratory.', iconName: 'scan', duration: '1st Visit' },
+  { number: 4, title: 'Temporary Prosthesis Fabrication & Placement', description: 'Fabrication and placement of a temporary tooth to ensure aesthetics and function until the definitive prosthesis is placed.', iconName: 'package', duration: '1st Visit' },
+  { number: 5, title: 'Artisan Fabrication', description: 'Our partner laboratory creates your prosthesis with E-max and zirconia ceramics, layering colors and textures for a result indistinguishable from natural teeth.', iconName: 'sparkles', duration: '1–2 weeks' },
+  { number: 6, title: 'Installation & Final Adjustment', description: 'Cementation or fixation of the prosthesis with meticulous occlusion adjustments. You leave with your new smile and all care instructions.', iconName: 'star', duration: '1 Visit' },
+  { number: 7, title: 'Ongoing Follow-Up', description: 'Maintenance appointments to protect your investment and ensure the health of your smile for many years.', iconName: 'heart', duration: 'Periodic' },
+];
+
+// Related Treatments (InternalLinkingOptimizer → 'en-dental-prosthetics')
+const relatedLinks = [
+  { title: 'Dental Implants', url: '/en/dental-implants', description: 'Implants as support for fixed prostheses' },
+  { title: 'Root Canal', url: '/en/root-canal', description: 'Tooth preservation before prosthesis' },
+  { title: 'General Dentistry', url: '/en/general-dentistry', description: 'Preventive care after rehabilitation' },
+];
+---
+
+<SiteLayout
+  title="Dental Prosthetics in Ipanema | Dr. Carla Christoph, Rio de Janeiro"
+  description="Fixed and removable dental prosthetics in Ipanema. Crowns, bridges, All-on-4 implant-supported dentures. 20+ years of expertise. Dr. Carla Christoph, CRO-RJ 27.509."
+  canonical="https://dracarlachristoph.com/en/dental-prosthetics"
+  preloadImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+  schemas={schemas}
+  lang="en"
+>
+  <Fragment slot="head">
+    <link rel="alternate" hreflang="pt-BR" href="https://dracarlachristoph.com/protese-dentaria" />
+    <link rel="alternate" hreflang="en" href="https://dracarlachristoph.com/en/dental-prosthetics" />
+    <link rel="alternate" hreflang="x-default" href="https://dracarlachristoph.com/protese-dentaria" />
+  </Fragment>
+
+  <main id="main-content" class="pg-prosthetics">
+    <!-- Hero -->
+    <section class="t-hero" aria-label="Treatment hero">
+      <div class="t-hero-inner">
+        <div class="t-hero-grid">
+          <div class="t-hero-content">
+            <nav class="t-bc" aria-label="Breadcrumb">
+              <a href="/en">Home</a>
+              <span class="t-bc-sep" set:html={icon('chevright', 14)} />
+              <a href="/en">Treatments</a>
+              <span class="t-bc-sep" set:html={icon('chevright', 14)} />
+              <span class="t-bc-cur">Dental Prosthetics</span>
+            </nav>
+            <h1 class="treatment-hero-title">Dental Prosthetics &amp; Oral Rehabilitation</h1>
+            <p class="t-hero-sub">Specialty of Dr. Carla Christoph</p>
+            <p class="treatment-hero-description">Complete smile reconstruction with individualized planning and E-max and zirconia ceramics. Specialist with over 20 years of experience in complex cases.</p>
+            <div class="t-badges">
+              <span class="t-badge">20+ years of experience</span>
+              <span class="t-badge">CRO-RJ 27.509</span>
+              <span class="t-badge">Complex Cases</span>
+            </div>
+            <div class="t-hero-cta">
+              <a
+                class="btn-hero js-wa-cta"
+                data-label="en_dental_prosthetics_hero_whatsapp"
+                href={waHero}
+                target="_blank"
+                rel="noopener"
+                aria-label="Schedule consultation via WhatsApp"
+              >
+                <span class="i" set:html={icon('calendar', 20)} />
+                Book Your Consultation
+              </a>
+            </div>
+          </div>
+          <div class="t-hero-imgcol">
+            <div class="t-hero-imgframe">
+              <img
+                src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+                alt="Dr. Carla Christoph - Dental Prosthetics & Oral Rehabilitation Specialist"
+                width="800"
+                height="1200"
+                loading="eager"
+                fetchpriority="high"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Answer Box -->
+    <section class="qa-section">
+      <div class="cc">
+        <div class="quick-answer-box">
+          <span class="qa-icon" set:html={icon('check2', 24)} />
+          <div>
+            <h2>Quick Answer</h2>
+            <p>A dental prosthesis is an artificial structure that replaces missing teeth, restoring chewing function and aesthetics. At Dr. Carla Christoph's practice in Ipanema, we offer crowns, bridges, and implant-supported prostheses in high-translucency porcelain. With over 20 years of experience (CRO-RJ 27.509) in oral rehabilitation, we work with E-max and zirconia ceramics that last 15 to 20 years. Treatment varies by complexity, including planning, digital impressions, and temporary prostheses so you never go without teeth.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Empathetic Pain Points -->
+    <section class="pp-section">
+      <div class="mw-4xl">
+        <h2 class="pp-title">Do you relate to any of these situations?</h2>
+        <div class="pp-list">
+          <div class="pp-item b-purple">
+            <span class="pp-icon c-purple" set:html={icon('shield', 24)} />
+            <div>
+              <strong>A prosthesis that comes loose when speaking or eating</strong>
+              <span>causing insecurity in social and professional moments?</span>
+            </div>
+          </div>
+          <div class="pp-item b-gold">
+            <span class="pp-icon c-gold" set:html={icon('alert', 24)} />
+            <div>
+              <strong>Difficulty chewing foods you enjoy</strong>
+              <span>because of missing teeth or an uncomfortable prosthesis?</span>
+            </div>
+          </div>
+          <div class="pp-item b-purple-soft">
+            <span class="pp-icon c-purple-soft" set:html={icon('heart', 24)} />
+            <div>
+              <strong>Embarrassment about smiling due to missing teeth</strong>
+              <span>or a prosthesis that doesn't look natural?</span>
+            </div>
+          </div>
+        </div>
+        <p class="pp-conclusion">A well-planned prosthesis restores function, aesthetics, and quality of life.<br class="md-only" /> Let's evaluate the best solution for your case.</p>
+        <div class="pp-callout-wrap">
+          <div class="pp-callout">
+            <span class="pp-callout-icon c-gold" set:html={icon('clock', 20)} />
+            <div>
+              <p class="pp-callout-title">Important</p>
+              <p class="pp-callout-text">Missing teeth cause neighboring teeth to shift and progressive bone loss. The sooner you begin rehabilitation, the simpler and more predictable the treatment will be.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mid CTA -->
+    <section class="mid-cta">
+      <div class="mw-3xl">
+        <p>Want to know which prosthesis fits your case?</p>
+        <a
+          class="btn-gold js-wa-cta"
+          data-label="en_dental_prosthetics_mid_whatsapp"
+          href={waMid}
+          target="_blank"
+          rel="noopener"
+        >
+          Book Your Evaluation
+          <span class="i" set:html={icon('arrow', 20)} />
+        </a>
+      </div>
+    </section>
+
+    <div class="divider"><span class="d-line"></span><span class="d-circle" set:html={icon('award', 20)} /><span class="d-line"></span></div>
+
+    <!-- 3 Visual Cards -->
+    <section class="ben-section">
+      <div class="cc">
+        <h2 class="sec-title">Complete Oral Rehabilitation</h2>
+        <p class="sec-sub">Over 20 years restoring function, aesthetics, and quality of life</p>
+        <div class="ben-grid mw-5xl">
+          <div class="ben-card">
+            <span class="ben-icon bg-purple c-purple" set:html={icon('utensils', 32)} />
+            <h3>Chewing Function</h3>
+            <p>Rediscover the pleasure of enjoying your favorite foods with comfort and confidence</p>
+          </div>
+          <div class="ben-card">
+            <span class="ben-icon bg-gold c-gold" set:html={icon('smile', 32)} />
+            <h3>Natural Aesthetics</h3>
+            <p>Prostheses that perfectly mimic the color, shape, and translucency of natural teeth</p>
+          </div>
+          <div class="ben-card">
+            <span class="ben-icon bg-purple c-purple" set:html={icon('heart', 32)} />
+            <h3>Quality of Life</h3>
+            <p>Regain your confidence and self-esteem to smile without hesitation</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"><span class="d-line"></span><span class="d-circle" set:html={icon('sparkles', 20)} /><span class="d-line"></span></div>
+
+    <!-- Prosthesis Modalities - 6 cards -->
+    <section class="mod-section">
+      <div class="mw-6xl">
+        <div class="sec-head">
+          <h2>Available Dental Prosthesis Options</h2>
+          <p>State-of-the-art technologies and materials for every need</p>
+        </div>
+        <div class="mod-grid">
+          {prosthesisCards.map((card) => (
+            <div class:list={['mod-card', { 'mod-card-gold': card.goldBorder }]}>
+              {card.goldBadge && <div class="mod-gold-badge"></div>}
+              <div class="mod-img">
+                <img src={card.img} alt={card.alt} width={card.w} height={card.h} loading="lazy" decoding="async" />
+                <div class="mod-overlay"></div>
+              </div>
+              <div class="mod-text">
+                <h3>{card.title}</h3>
+                <p>{card.text}</p>
+                <div class="mod-tags">
+                  {card.tags.map((tag) => <span class="mod-tag">{tag}</span>)}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Timeline -->
+    <section class="tl-section">
+      <div class="cc">
+        <h2 class="sec-title">Your Journey to a New Smile</h2>
+        <p class="sec-sub">Each step is carefully planned to ensure comfort, precision, and natural, predictable results</p>
+        <div class="timeline" role="list">
+          <div class="tl-vline" aria-hidden="true"></div>
+          <div class="tl-steps">
+            {timelineSteps.map((step) => (
+              <div class="tl-step" role="listitem">
+                <div class="tl-num-col">
+                  <div class="tl-num">{step.number}</div>
+                  <div class="tl-dot" aria-hidden="true"></div>
+                </div>
+                <div class="tl-content">
+                  <span class="tl-icon" set:html={icon(step.iconName, 24)} />
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                  <p class="tl-duration">Duração: {step.duration}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Complex Cases -->
+    <section class="cx-section">
+      <div class="cc">
+        <h2 class="sec-title cx-title">Solutions for Complex Cases</h2>
+        <div class="cx-grid mw-4xl">
+          <div class="cx-card">
+            <h3>Complete Oral Rehabilitation</h3>
+            <p>For cases of multiple tooth loss, severe wear, or bite problems, we develop a comprehensive protocol that restores function, aesthetics, and vertical dimension, with natural facial rejuvenation.</p>
+            <ul>
+              <li><span class="i c-gold" set:html={icon('arrow', 16)} /><span>Complete occlusal analysis</span></li>
+              <li><span class="i c-gold" set:html={icon('arrow', 16)} /><span>Bite restoration</span></li>
+              <li><span class="i c-gold" set:html={icon('arrow', 16)} /><span>Facial rejuvenation</span></li>
+            </ul>
+          </div>
+          <div class="cx-card">
+            <h3>High-Performance Aesthetic Prostheses</h3>
+            <p>We use state-of-the-art ceramics (E-max, Zirconia) with artisan layering, reproducing the translucency, texture, and individual characterization of natural teeth.</p>
+            <ul>
+              <li><span class="i c-gold" set:html={icon('arrow', 16)} /><span>E-max and zirconia ceramics</span></li>
+              <li><span class="i c-gold" set:html={icon('arrow', 16)} /><span>Artisan layering</span></li>
+              <li><span class="i c-gold" set:html={icon('arrow', 16)} /><span>Indistinguishable result</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Doctor Bio -->
+    <section class="bio-section">
+      <div class="cc">
+        <h2 class="bio-title">Expertise &amp; Experience in Oral Rehabilitation</h2>
+        <div class="mw-5xl">
+          <div class="bio-grid">
+            <div class="bio-photo">
+              <div class="bio-photo-frame">
+                <img
+                  src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+                  alt="Dr. Carla Christoph - Dental Specialist"
+                  width="800"
+                  height="1200"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="bio-badge">20+ Years of Experience</div>
+              </div>
+            </div>
+            <div class="bio-card">
+              <div class="bio-card-head">
+                <h3>Dr. Carla Christoph</h3>
+                <p>CRO-RJ 27.509 | Specialist in Prosthodontics and Implant Dentistry</p>
+              </div>
+              <div class="bio-paragraphs">
+                <p>With over two decades in Ipanema, Dr. Carla has built her reputation by treating each patient individually, with time and attention. Her background includes 8 years as a military dentist at the Navy's Central Dental Clinic, experience that brought discipline and precision to her clinical practice.</p>
+                <p>As a Prosthodontic specialist, oral rehabilitation is where her training runs deepest. Complex cases are her routine — from a single crown to complete rehabilitation, every solution is planned based on detailed diagnosis and digital planning.</p>
+              </div>
+              <div class="bio-creds">
+                <div class="bio-cred">
+                  <span class="bio-cred-icon" set:html={icon('check', 20)} />
+                  <div>
+                    <p class="bio-cred-title">Education</p>
+                    <p class="bio-cred-desc">Specialist in Prosthodontics and Implantology</p>
+                  </div>
+                </div>
+                <div class="bio-cred">
+                  <span class="bio-cred-icon" set:html={icon('check', 20)} />
+                  <div>
+                    <p class="bio-cred-title">Experience</p>
+                    <p class="bio-cred-desc">8 years as a military dentist in the Navy</p>
+                  </div>
+                </div>
+                <div class="bio-cred">
+                  <span class="bio-cred-icon" set:html={icon('check', 20)} />
+                  <div>
+                    <p class="bio-cred-title">Continuing Education</p>
+                    <p class="bio-cred-desc">Ongoing courses in DSD and iTero Element 5D</p>
+                  </div>
+                </div>
+                <div class="bio-cred">
+                  <span class="bio-cred-icon" set:html={icon('check', 20)} />
+                  <div>
+                    <p class="bio-cred-title">Technology</p>
+                    <p class="bio-cred-desc">iTero Element 5D and digital planning</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"><span class="d-line"></span><span class="d-circle" set:html={icon('help', 20)} /><span class="d-line"></span></div>
+
+    <!-- FAQs -->
+    <section class="faq-section">
+      <div class="cc">
+        <h2 class="faq-title">Frequently Asked Questions About Dental Prosthetics</h2>
+        <div class="mw-4xl">
+          <div class="faq-list">
+            {faqs.map((faq) => (
+              <details class="faq-item">
+                <summary>{faq.question} <span class="chev" set:html={icon('chevdown', 16)} /></summary>
+                <div class="faq-a">{faq.answer}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+      <div class="cc">
+        <div class="final-cta-head">
+          <span class="final-cta-icon"></span>
+          <h2>Restore Function &amp; Aesthetics with Dental Prosthetics</h2>
+        </div>
+        <p class="final-cta-desc">During your planning consultation, we analyze your case and determine the most suitable prosthesis type — fixed, removable, or implant-supported. Dental prosthetics restore complete chewing function and can significantly improve your quality of life.</p>
+        <div class="final-cta-btn-wrap">
+          <a
+            class="btn-final js-wa-cta"
+            data-label="en_dental_prosthetics_final_whatsapp"
+            href={waFinal}
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="i" set:html={icon('arrow', 20)} />
+            Book Your Evaluation via WhatsApp
+          </a>
+        </div>
+        <p class="final-cta-footnote">WhatsApp: (21) 99330-4045 | 24h Service</p>
+      </div>
+    </section>
+
+    <!-- Related Treatments (InternalLinkingOptimizer) -->
+    <section class="rel-section">
+      <div class="mw-4xl">
+        <h2>Related Treatments</h2>
+        <div class="rel-grid">
+          {relatedLinks.map((link) => (
+            <a href={link.url} class="rel-card">
+              <span class="rel-title">{link.title}</span>
+              <span class="rel-desc">{link.description}</span>
+              <span class="rel-more">Learn more <span class="i" set:html={icon('arrow', 12)} /></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar" aria-label="Clinic statistics">
+      <div class="cc">
+        <div class="stats-grid">
+          <div class="stat">
+            <span class="stat-icon" set:html={icon('calendar', 20)} />
+            <div><p class="stat-value">20+</p><p class="stat-label">Years of Experience</p></div>
+          </div>
+          <div class="stat">
+            <span class="stat-icon" set:html={icon('users', 20)} />
+            <div><p class="stat-value">4.000+</p><p class="stat-label">Patients Served</p></div>
+          </div>
+          <div class="stat">
+            <span class="stat-icon" set:html={icon('award', 20)} />
+            <div><p class="stat-value">CRO-RJ</p><p class="stat-label">27.509</p></div>
+          </div>
+          <div class="stat">
+            <span class="stat-icon" set:html={icon('star', 20, true)} />
+            <div><p class="stat-value">5.0 ★</p><p class="stat-label">Google Rating</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>
+
+<style is:global>
+  /* ══════════ /en/dental-prosthetics — estilos (réplica dos visuais Tailwind do SPA) ══════════ */
+  .pg-prosthetics {
+    --purple: #381f47;
+    --purple-soft: #5a3f69;
+    --purple-dark: #2a1735;
+    --gold: #b3955f;
+    --gold-dark: #9d7f4f;
+    --gray: #525252;
+    font-family: Montserrat, system-ui, -apple-system, sans-serif;
+  }
+  .pg-prosthetics .i { display: inline-flex; }
+  .pg-prosthetics .i svg { display: block; }
+
+  /* containers */
+  .pg-prosthetics .cc { max-width: 1280px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+  .pg-prosthetics .mw-3xl { max-width: 768px; margin: 0 auto; padding: 0 16px; }
+  .pg-prosthetics .mw-4xl { max-width: 896px; margin: 0 auto; padding: 0 16px; }
+  .pg-prosthetics .mw-5xl { max-width: 1024px; margin: 0 auto; }
+  .pg-prosthetics .mw-6xl { max-width: 1152px; margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 1024px) {
+    .pg-prosthetics .cc { padding-left: 32px; padding-right: 32px; }
+  }
+  .pg-prosthetics .md-only { display: none; }
+  @media (min-width: 768px) { .pg-prosthetics .md-only { display: block; } }
+
+  /* títulos de seção */
+  .pg-prosthetics .sec-head { text-align: center; margin-bottom: 48px; }
+  .pg-prosthetics .sec-head h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700; font-size: 1.875rem; line-height: 1.25;
+    color: var(--purple); margin-bottom: 16px;
+  }
+  .pg-prosthetics .sec-head p { font-size: 1.125rem; color: var(--gray); }
+  @media (min-width: 768px) { .pg-prosthetics .sec-head h2 { font-size: 2.25rem; } }
+  .pg-prosthetics .sec-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600; font-size: 1.875rem;
+    color: var(--purple); text-align: center; margin-bottom: 16px;
+  }
+  @media (min-width: 768px) { .pg-prosthetics .sec-title { font-size: 2.25rem; } }
+  .pg-prosthetics .sec-sub { text-align: center; color: var(--gray); margin-bottom: 48px; max-width: 672px; margin-left: auto; margin-right: auto; }
+
+  /* ── Hero ── */
+  .pg-prosthetics .t-hero { background: linear-gradient(135deg, hsl(250 100% 98%) 0%, hsl(30 100% 97%) 100%); }
+  .pg-prosthetics .t-hero-inner { max-width: 1280px; margin: 0 auto; padding: 112px 24px 64px; }
+  @media (min-width: 768px) { .pg-prosthetics .t-hero-inner { padding-bottom: 80px; } }
+  @media (min-width: 1024px) { .pg-prosthetics .t-hero-inner { padding: 120px 32px 96px; } }
+  .pg-prosthetics .t-hero-grid { display: grid; gap: 32px; align-items: center; }
+  .pg-prosthetics .t-hero-content { display: flex; flex-direction: column; gap: 24px; }
+  .pg-prosthetics .t-hero-imgcol { order: -1; }
+  @media (min-width: 1024px) {
+    .pg-prosthetics .t-hero-grid { grid-template-columns: repeat(5, 1fr); gap: 48px; }
+    .pg-prosthetics .t-hero-content { grid-column: span 3; }
+    .pg-prosthetics .t-hero-imgcol { grid-column: span 2; order: 2; }
+  }
+  .pg-prosthetics .t-bc { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 0.875rem; opacity: 0.7; }
+  .pg-prosthetics .t-bc a { color: var(--purple-soft); text-decoration: none; transition: color 0.2s; }
+  .pg-prosthetics .t-bc a:hover { color: var(--purple); }
+  .pg-prosthetics .t-bc-sep { color: var(--gray); display: inline-flex; }
+  .pg-prosthetics .t-bc-cur { color: var(--purple); font-weight: 500; }
+  .pg-prosthetics .treatment-hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 400; font-size: 2.25rem; line-height: 1.25;
+    color: var(--purple);
+  }
+  @media (min-width: 768px) { .pg-prosthetics .treatment-hero-title { font-size: 3rem; } }
+  @media (min-width: 1024px) { .pg-prosthetics .treatment-hero-title { font-size: 3.75rem; } }
+  .pg-prosthetics .t-hero-sub { font-size: 1.25rem; color: var(--purple-soft); font-weight: 500; }
+  @media (min-width: 768px) { .pg-prosthetics .t-hero-sub { font-size: 1.5rem; } }
+  .pg-prosthetics .treatment-hero-description { font-size: 1.125rem; color: var(--gray); line-height: 1.625; max-width: 672px; }
+  .pg-prosthetics .t-badges { display: flex; flex-wrap: wrap; gap: 12px; }
+  .pg-prosthetics .t-badge {
+    display: inline-flex; align-items: center;
+    background: rgb(179 149 95 / 0.1);
+    color: var(--gold-dark);
+    border: 1px solid rgb(179 149 95 / 0.2);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: 0.875rem; font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  .pg-prosthetics .t-badge:hover { background: rgb(179 149 95 / 0.15); }
+  .pg-prosthetics .t-hero-cta { padding-top: 16px; }
+  .pg-prosthetics .btn-hero {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--purple); color: #fff;
+    padding: 20px 24px; border-radius: 6px;
+    font-size: 1rem; font-weight: 500; text-decoration: none;
+    box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08);
+    transition: all 0.3s;
+  }
+  .pg-prosthetics .btn-hero:hover {
+    background: var(--purple-dark);
+    box-shadow: 0 12px 32px rgba(56, 31, 71, 0.16), 0 6px 16px rgba(56, 31, 71, 0.1);
+  }
+  .pg-prosthetics .t-hero-imgframe { border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2); }
+  .pg-prosthetics .t-hero-imgframe img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; display: block; transition: transform 0.5s; }
+  .pg-prosthetics .t-hero-imgframe:hover img { transform: scale(1.02); }
+
+  /* ── Quick Answer ── */
+  .pg-prosthetics .qa-section { padding: 32px 0; background: #fff; }
+  .pg-prosthetics .quick-answer-box {
+    background: linear-gradient(to right, rgb(56 31 71 / 0.1), rgb(179 149 95 / 0.1));
+    border: 1px solid rgb(179 149 95 / 0.3);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 32px;
+    display: flex; align-items: flex-start; gap: 16px;
+  }
+  .pg-prosthetics .qa-icon { flex-shrink: 0; color: var(--gold); margin-top: 4px; }
+  .pg-prosthetics .quick-answer-box h2 { font-family: inherit; font-size: 1.125rem; font-weight: 600; color: var(--purple); margin-bottom: 8px; }
+  .pg-prosthetics .quick-answer-box p { color: var(--gray); line-height: 1.625; }
+
+  /* ── Pain Points ── */
+  .pg-prosthetics .pp-section {
+    padding: 64px 0;
+    background: linear-gradient(to bottom right, hsl(51 22% 76% / 0.2), #fff, hsl(51 22% 76% / 0.1));
+  }
+  .pg-prosthetics .pp-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700; font-size: 1.5rem; line-height: 1.25;
+    color: var(--purple); margin-bottom: 40px; text-align: center;
+  }
+  @media (min-width: 768px) { .pg-prosthetics .pp-title { font-size: 1.875rem; } }
+  .pg-prosthetics .pp-list { display: flex; flex-direction: column; gap: 20px; }
+  .pg-prosthetics .pp-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    background: rgb(255 255 255 / 0.8);
+    -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+    padding: 24px; border-radius: 12px;
+    border-left: 4px solid var(--purple);
+    box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08);
+    transition: box-shadow 0.3s;
+  }
+  .pg-prosthetics .pp-item:hover { box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2); }
+  .pg-prosthetics .pp-item.b-gold { border-left-color: var(--gold); }
+  .pg-prosthetics .pp-item.b-purple-soft { border-left-color: var(--purple-soft); }
+  .pg-prosthetics .pp-icon {
+    flex-shrink: 0; width: 48px; height: 48px; border-radius: 999px;
+    background: rgb(56 31 71 / 0.1);
+    display: flex; align-items: center; justify-content: center;
+    transition: background-color 0.2s;
+  }
+  .pg-prosthetics .pp-item:hover .pp-icon { background: rgb(56 31 71 / 0.2); }
+  .pg-prosthetics .c-purple { color: var(--purple); }
+  .pg-prosthetics .c-gold { color: var(--gold); }
+  .pg-prosthetics .c-purple-soft { color: var(--purple-soft); }
+  .pg-prosthetics .pp-item strong { display: block; color: var(--purple); font-weight: 600; margin-bottom: 4px; }
+  .pg-prosthetics .pp-item span:not(.pp-icon) { color: var(--gray); line-height: 1.625; }
+  .pg-prosthetics .pp-conclusion { text-align: center; color: var(--gray); margin-top: 40px; font-size: 1.125rem; line-height: 1.625; }
+  .pg-prosthetics .pp-callout-wrap { max-width: 672px; margin: 32px auto 0; }
+  .pg-prosthetics .pp-callout {
+    background: #fff; padding: 24px; border-radius: 12px;
+    border: 2px solid var(--gold);
+    box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2);
+    display: flex; align-items: flex-start; gap: 16px;
+  }
+  .pg-prosthetics .pp-callout-icon {
+    flex-shrink: 0; width: 40px; height: 40px; border-radius: 999px;
+    background: rgb(179 149 95 / 0.15);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pg-prosthetics .pp-callout-title { color: var(--purple); font-weight: 600; margin-bottom: 8px; }
+  .pg-prosthetics .pp-callout-text { color: var(--gray); line-height: 1.625; font-size: 0.875rem; }
+
+  /* ── Divider ── */
+  .pg-prosthetics .divider { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 32px 0; }
+  @media (min-width: 768px) { .pg-prosthetics .divider { margin: 48px 0; } }
+  .pg-prosthetics .d-line { flex: 1; height: 1px; background: rgb(179 149 95 / 0.3); max-width: 128px; }
+  .pg-prosthetics .d-circle {
+    width: 48px; height: 48px; border-radius: 999px;
+    background: rgb(179 149 95 / 0.1); color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s;
+  }
+  .pg-prosthetics .d-circle:hover { transform: scale(1.1); }
+
+  /* ── Mid CTA ── */
+  .pg-prosthetics .mid-cta { padding: 32px 0; background: #fff; text-align: center; }
+  .pg-prosthetics .mid-cta p { font-size: 1.25rem; color: var(--gray); margin-bottom: 24px; }
+  .pg-prosthetics .btn-gold {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 16px 32px;
+    background: var(--gold); color: #fff;
+    font-weight: 600; border-radius: 8px; text-decoration: none;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    transition: all 0.2s;
+  }
+  .pg-prosthetics .btn-gold:hover {
+    background: rgb(179 149 95 / 0.9);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    transform: scale(1.05);
+  }
+
+  /* ── 3 Visual Cards ── */
+  .pg-prosthetics .ben-section { padding: 64px 0; background: #fff; }
+  .pg-prosthetics .ben-grid { display: grid; gap: 32px; }
+  @media (min-width: 768px) { .pg-prosthetics .ben-grid { grid-template-columns: repeat(3, 1fr); } }
+  .pg-prosthetics .ben-card { text-align: center; }
+  .pg-prosthetics .ben-icon {
+    width: 64px; height: 64px; border-radius: 999px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+  }
+  .pg-prosthetics .ben-icon.bg-purple { background: rgb(56 31 71 / 0.1); }
+  .pg-prosthetics .ben-icon.bg-gold { background: rgb(179 149 95 / 0.1); }
+  .pg-prosthetics .ben-card h3 { font-family: inherit; font-size: 1.25rem; font-weight: 600; color: var(--purple); margin-bottom: 12px; }
+  .pg-prosthetics .ben-card p { color: var(--gray); }
+
+  /* ── 6 Modality Cards ── */
+  .pg-prosthetics .mod-section { padding: 64px 0; background: #fff; }
+  .pg-prosthetics .mod-grid { display: grid; gap: 24px; }
+  @media (min-width: 768px) { .pg-prosthetics .mod-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .pg-prosthetics .mod-grid { grid-template-columns: repeat(3, 1fr); } }
+  .pg-prosthetics .mod-card {
+    position: relative; overflow: hidden; border-radius: 16px;
+    box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08);
+    transition: box-shadow 0.3s; cursor: pointer;
+  }
+  .pg-prosthetics .mod-card:hover { box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2); }
+  .pg-prosthetics .mod-card-gold { border: 2px solid rgb(179 149 95 / 0.3); }
+  .pg-prosthetics .mod-gold-badge {
+    position: absolute; top: 16px; right: 16px; z-index: 10;
+    background: var(--gold); color: #fff;
+    font-size: 0.75rem; font-weight: 600;
+    padding: 4px 12px; border-radius: 999px;
+  }
+  .pg-prosthetics .mod-img { position: relative; aspect-ratio: 4 / 3; }
+  .pg-prosthetics .mod-img img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; transition: transform 0.5s; }
+  .pg-prosthetics .mod-card:hover .mod-img img { transform: scale(1.05); }
+  .pg-prosthetics .mod-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgb(56 31 71 / 0.9), rgb(56 31 71 / 0.5), transparent); }
+  .pg-prosthetics .mod-text {
+    position: absolute; inset: 0; padding: 24px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+  }
+  .pg-prosthetics .mod-text h3 { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.5rem; color: #fff; margin-bottom: 8px; }
+  .pg-prosthetics .mod-text p {
+    color: rgb(255 255 255 / 0.9); font-size: 0.875rem; margin-bottom: 16px;
+    display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; -webkit-line-clamp: 3;
+  }
+  .pg-prosthetics .mod-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pg-prosthetics .mod-tag {
+    font-size: 0.75rem; color: #fff;
+    background: rgb(255 255 255 / 0.2);
+    -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+    padding: 4px 12px; border-radius: 999px;
+  }
+
+  /* ── Timeline ── */
+  .pg-prosthetics .tl-section { padding: 48px 0; background: hsl(51 22% 76% / 0.2); }
+  .pg-prosthetics .timeline { position: relative; padding: 32px 0; }
+  .pg-prosthetics .tl-vline { position: absolute; left: 24px; top: 0; width: 2px; height: 100%; background: rgb(179 149 95 / 0.3); }
+  @media (min-width: 768px) { .pg-prosthetics .tl-vline { left: 32px; } }
+  .pg-prosthetics .tl-steps { display: flex; flex-direction: column; gap: 48px; }
+  @media (min-width: 768px) { .pg-prosthetics .tl-steps { gap: 64px; } }
+  .pg-prosthetics .tl-step { position: relative; display: flex; gap: 16px; }
+  @media (min-width: 768px) { .pg-prosthetics .tl-step { gap: 32px; } }
+  .pg-prosthetics .tl-num-col { position: relative; flex-shrink: 0; }
+  .pg-prosthetics .tl-num {
+    font-family: 'Playfair Display', Georgia, serif; font-weight: 700;
+    font-size: 1.875rem; line-height: 1; color: rgb(179 149 95 / 0.3);
+  }
+  @media (min-width: 768px) { .pg-prosthetics .tl-num { font-size: 2.25rem; } }
+  @media (min-width: 1024px) { .pg-prosthetics .tl-num { font-size: 3rem; } }
+  .pg-prosthetics .tl-dot {
+    position: absolute; top: 16px; left: 22px;
+    width: 16px; height: 16px; border-radius: 999px;
+    background: var(--gold); border: 4px solid #fff;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    transform: translateX(-50%);
+  }
+  @media (min-width: 768px) { .pg-prosthetics .tl-dot { top: 24px; left: 30px; } }
+  .pg-prosthetics .tl-content { flex: 1; padding-top: 4px; }
+  @media (min-width: 768px) { .pg-prosthetics .tl-content { padding-top: 8px; } }
+  .pg-prosthetics .tl-icon { display: inline-flex; margin-bottom: 12px; color: var(--gold); }
+  .pg-prosthetics .tl-content h3 { font-family: inherit; font-size: 1.25rem; font-weight: 600; color: var(--purple); margin-bottom: 8px; line-height: 1.25; }
+  @media (min-width: 768px) { .pg-prosthetics .tl-content h3 { font-size: 1.5rem; } }
+  .pg-prosthetics .tl-content p { color: var(--gray); line-height: 1.625; margin-bottom: 8px; }
+  .pg-prosthetics .tl-duration { font-size: 0.875rem; color: var(--gold-dark); font-style: italic; margin-top: 8px; }
+
+  /* ── Complex Cases ── */
+  .pg-prosthetics .cx-section { padding: 48px 0; background: #fff; }
+  .pg-prosthetics .cx-title { margin-bottom: 32px; }
+  .pg-prosthetics .cx-grid { display: grid; gap: 32px; }
+  @media (min-width: 768px) { .pg-prosthetics .cx-grid { grid-template-columns: repeat(2, 1fr); } }
+  .pg-prosthetics .cx-card {
+    background: #fff; border: 1px solid hsl(51 22% 88%); border-radius: 8px;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    padding: 24px;
+  }
+  .pg-prosthetics .cx-card h3 { font-family: inherit; font-size: 1.25rem; font-weight: 600; color: var(--purple); margin-bottom: 12px; }
+  .pg-prosthetics .cx-card > p { color: var(--gray); margin-bottom: 16px; }
+  .pg-prosthetics .cx-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.875rem; color: var(--gray); }
+  .pg-prosthetics .cx-card li { display: flex; align-items: flex-start; gap: 8px; }
+  .pg-prosthetics .cx-card li .i { margin-top: 2px; flex-shrink: 0; }
+
+  /* ── Doctor Bio ── */
+  .pg-prosthetics .bio-section { padding: 64px 0; background: linear-gradient(135deg, hsl(250 100% 98%) 0%, hsl(30 100% 97%) 100%); }
+  .pg-prosthetics .bio-title {
+    font-family: 'Playfair Display', Georgia, serif; font-weight: 600;
+    font-size: 1.875rem; color: var(--purple); text-align: center; margin-bottom: 48px;
+  }
+  @media (min-width: 768px) { .pg-prosthetics .bio-title { font-size: 2.25rem; } }
+  .pg-prosthetics .bio-grid { display: grid; gap: 32px; align-items: start; }
+  @media (min-width: 768px) { .pg-prosthetics .bio-grid { grid-template-columns: 300px 1fr; } }
+  .pg-prosthetics .bio-photo { margin: 0 auto; }
+  @media (min-width: 768px) { .pg-prosthetics .bio-photo { margin: 0; } }
+  .pg-prosthetics .bio-photo-frame { position: relative; }
+  .pg-prosthetics .bio-photo-frame img { width: 100%; height: auto; border-radius: 16px; box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2); }
+  .pg-prosthetics .bio-badge {
+    position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: #fff;
+    padding: 8px 24px; border-radius: 999px;
+    box-shadow: 0 4px 12px rgb(179 149 95 / 0.3);
+    font-weight: 600; font-size: 0.875rem; white-space: nowrap;
+  }
+  .pg-prosthetics .bio-card { background: #fff; padding: 32px; border-radius: 16px; box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08); }
+  .pg-prosthetics .bio-card-head { margin-bottom: 24px; }
+  .pg-prosthetics .bio-card-head h3 {
+    font-family: 'Playfair Display', Georgia, serif; font-weight: 600;
+    font-size: 1.875rem; color: var(--purple); margin-bottom: 8px;
+  }
+  .pg-prosthetics .bio-card-head p { color: var(--gold-dark); font-weight: 500; font-size: 1.125rem; }
+  .pg-prosthetics .bio-paragraphs { display: flex; flex-direction: column; gap: 16px; color: var(--gray); line-height: 1.625; }
+  .pg-prosthetics .bio-creds { margin-top: 24px; padding-top: 24px; border-top: 1px solid rgb(82 82 82 / 0.2); display: grid; gap: 16px; }
+  @media (min-width: 768px) { .pg-prosthetics .bio-creds { grid-template-columns: repeat(2, 1fr); } }
+  .pg-prosthetics .bio-cred { display: flex; align-items: flex-start; gap: 12px; }
+  .pg-prosthetics .bio-cred-icon { color: var(--gold); margin-top: 4px; flex-shrink: 0; }
+  .pg-prosthetics .bio-cred-title { font-weight: 600; color: var(--purple); }
+  .pg-prosthetics .bio-cred-desc { font-size: 0.875rem; color: var(--gray); }
+
+  /* ── FAQ ── */
+  .pg-prosthetics .faq-section { padding: 64px 0; background: hsl(51 22% 76% / 0.2); }
+  .pg-prosthetics .faq-title {
+    font-family: 'Playfair Display', Georgia, serif; font-weight: 600;
+    font-size: 1.875rem; color: var(--purple); text-align: center; margin-bottom: 32px;
+  }
+  @media (min-width: 768px) { .pg-prosthetics .faq-title { font-size: 2.25rem; } }
+  .pg-prosthetics .faq-list { display: flex; flex-direction: column; gap: 16px; }
+  .pg-prosthetics .faq-item { background: #fff; border: 1px solid rgb(56 31 71 / 0.2); border-radius: 8px; padding: 0 24px; }
+  .pg-prosthetics .faq-item summary {
+    list-style: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    text-align: left; font-size: 1rem; font-weight: 600; color: var(--purple);
+    padding: 24px 0; transition: color 0.2s;
+  }
+  .pg-prosthetics .faq-item summary::-webkit-details-marker { display: none; }
+  .pg-prosthetics .faq-item summary:hover { color: var(--gold); }
+  .pg-prosthetics .chev { display: inline-flex; transition: transform 0.2s; color: currentColor; flex-shrink: 0; }
+  .pg-prosthetics details[open] > summary .chev { transform: rotate(180deg); }
+  .pg-prosthetics .faq-a { color: var(--gray); line-height: 1.625; padding-bottom: 24px; }
+
+  /* ── Final CTA ── */
+  .pg-prosthetics .final-cta {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #381f47 0%, #b3955f 100%);
+    color: #fff; text-align: center;
+  }
+  .pg-prosthetics .final-cta-head { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 16px; }
+  .pg-prosthetics .final-cta-icon { width: 32px; height: 32px; color: var(--gold); display: inline-flex; align-items: center; justify-content: center; }
+  .pg-prosthetics .final-cta h2 {
+    font-family: 'Playfair Display', Georgia, serif; font-weight: 600;
+    font-size: 1.875rem; color: #fff;
+  }
+  @media (min-width: 768px) { .pg-prosthetics .final-cta h2 { font-size: 2.25rem; } }
+  .pg-prosthetics .final-cta-desc { font-size: 1.25rem; margin-bottom: 32px; opacity: 0.9; max-width: 672px; margin-left: auto; margin-right: auto; }
+  .pg-prosthetics .final-cta-btn-wrap { display: flex; flex-direction: column; gap: 16px; justify-content: center; align-items: center; }
+  @media (min-width: 640px) { .pg-prosthetics .final-cta-btn-wrap { flex-direction: row; } }
+  .pg-prosthetics .btn-final {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--gold); color: var(--purple);
+    padding: 16px 32px; border-radius: 8px;
+    font-weight: 600; font-size: 1.125rem; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .pg-prosthetics .btn-final:hover { opacity: 0.9; }
+  .pg-prosthetics .final-cta-footnote { margin-top: 24px; font-size: 0.875rem; opacity: 0.75; }
+
+  /* ── Related Treatments ── */
+  .pg-prosthetics .rel-section { padding: 48px 0; background: hsl(51 22% 76% / 0.2); }
+  .pg-prosthetics .rel-section h2 {
+    font-family: 'Playfair Display', Georgia, serif; font-weight: 600;
+    font-size: 1.25rem; color: var(--purple); margin-bottom: 24px;
+  }
+  .pg-prosthetics .rel-grid { display: grid; gap: 16px; }
+  @media (min-width: 640px) { .pg-prosthetics .rel-grid { grid-template-columns: repeat(3, 1fr); } }
+  .pg-prosthetics .rel-card {
+    display: flex; flex-direction: column; gap: 8px;
+    background: #fff; padding: 20px; border-radius: 12px;
+    border: 1px solid #e5e1d4;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .pg-prosthetics .rel-card:hover {
+    border-color: rgb(56 31 71 / 0.3);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+  .pg-prosthetics .rel-title { font-weight: 600; color: var(--purple); font-size: 0.875rem; line-height: 1.375; transition: color 0.2s; }
+  .pg-prosthetics .rel-card:hover .rel-title { color: #4a2759; }
+  .pg-prosthetics .rel-desc { color: var(--gray); font-size: 0.75rem; line-height: 1.625; flex: 1; }
+  .pg-prosthetics .rel-more { display: flex; align-items: center; gap: 4px; color: var(--gold); font-size: 0.75rem; font-weight: 500; margin-top: 4px; }
+
+  /* ── Stats Bar ── */
+  .pg-prosthetics .stats-bar {
+    background: rgb(56 31 71 / 0.05);
+    border-top: 1px solid rgb(56 31 71 / 0.1);
+    border-bottom: 1px solid rgb(56 31 71 / 0.1);
+  }
+  .pg-prosthetics .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; padding: 24px 0; }
+  @media (min-width: 768px) { .pg-prosthetics .stats-grid { grid-template-columns: repeat(4, 1fr); gap: 32px; } }
+  .pg-prosthetics .stat { display: flex; align-items: center; gap: 12px; justify-content: center; }
+  .pg-prosthetics .stat-icon {
+    flex-shrink: 0; width: 40px; height: 40px; border-radius: 999px;
+    background: rgb(179 149 95 / 0.1); color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pg-prosthetics .stat-value { font-size: 1.125rem; font-weight: 600; color: var(--purple); line-height: 1.25; }
+  .pg-prosthetics .stat-label { font-size: 0.75rem; color: var(--gray); line-height: 1.25; }
+</style>

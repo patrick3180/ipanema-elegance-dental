@@ -1,0 +1,360 @@
+---
+/**
+ * /servicos — porte fiel de src/pages/ServicesPage.tsx (React SPA):
+ * ServiceBreadcrumb ("Tratamentos Odontológicos") + texto introdutório +
+ * ServicesSection.tsx (grade dos 9 tratamentos com hover-reveal e scroll-reveal).
+ * Copy VERBATIM dos componentes React.
+ * Meta title/description: copiados de infoPages['/servicos'] do
+ * generate-static-meta.cjs (fonte da verdade — o Helmet do React é mais curto).
+ * Schema BreadcrumbList: copiado verbatim de ServiceBreadcrumb.tsx.
+ * Nota de rota: o card "Lentes" aponta para a rota CANÔNICA
+ * /lentes-de-contato-dental-e-facetas-de-resina (o componente React usava a
+ * URL antiga "-porcelana", que hoje só redireciona — PATTERNS.md §6).
+ */
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+const breadcrumbSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Início', item: 'https://dracarlachristoph.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Tratamentos', item: 'https://dracarlachristoph.com/servicos' },
+    { '@type': 'ListItem', position: 3, name: 'Tratamentos Odontológicos' },
+  ],
+});
+
+// Grade de serviços — dados verbatim de src/components/ServicesSection.tsx.
+// width/height reais dos arquivos em astro/public (512×512; Periodontia 512×341).
+const services = [
+  {
+    title: 'Lentes de Contato Dental e Facetas de Porcelana',
+    description:
+      'Lâminas ultrafinas de porcelana que corrigem cor, forma e pequenas imperfeições. Resultado natural e duradouro, planejado digitalmente com iTero Element 5D.',
+    image: '/Lentes.webp',
+    width: 512,
+    height: 512,
+    url: '/lentes-de-contato-dental-e-facetas-de-resina',
+  },
+  {
+    title: 'Clareamento Dental Profissional',
+    description:
+      'Dentes mais brancos com segurança. Protocolo em consultório ou supervisionado em casa, com controle de sensibilidade e resultado natural.',
+    image: '/Clareamento.webp',
+    width: 512,
+    height: 512,
+    url: '/clareamento-dental',
+  },
+  {
+    title: 'Próteses Dentárias',
+    description:
+      'Recupere a função mastigatória e a estética do seu sorriso com próteses dentárias personalizadas, desenvolvidas pela especialista Dra. Carla Christoph.',
+    image: '/Protese.webp',
+    width: 512,
+    height: 512,
+    url: '/protese-dentaria',
+  },
+  {
+    title: 'Implantes Dentários',
+    description:
+      'Reabilitação de dentes perdidos com implantes que devolvem função mastigatória e estética. Planejamento digital para casos unitários ou reabilitações completas.',
+    image: '/Implante.webp',
+    width: 512,
+    height: 512,
+    url: '/implantes-dentarios',
+  },
+  {
+    title: 'Ortodontia',
+    description:
+      'Alinhamento dental e correção de mordida com aparelhos fixos, estéticos ou alinhadores Invisalign®. Parceria com o Dr. Bruno, Doutor em Ortodontia pela UERJ.',
+    image: '/Ortodontia.webp',
+    width: 512,
+    height: 512,
+    url: '/ortodontia',
+  },
+  {
+    title: 'Clínica Geral e Prevenção',
+    description:
+      'Cuide da sua saúde bucal com nossos check-ups digitais, profilaxia (limpeza) profissional e planos de prevenção personalizados.',
+    image: '/Profilaxia.webp',
+    width: 512,
+    height: 512,
+    url: '/clinica-geral-e-prevencao',
+  },
+  {
+    title: 'Restaurações Estéticas',
+    description:
+      'Tratamento de cáries e reconstrução de dentes fraturados com resinas e cerâmicas que reproduzem a cor e translucidez natural do dente.',
+    image: '/Restarações.webp',
+    width: 512,
+    height: 512,
+    url: '/restauracoes-esteticas',
+  },
+  {
+    title: 'Tratamento de Canal (Endodontia)',
+    description:
+      'Tratamento de canal para eliminar dor e preservar o dente natural. Procedimento realizado por endodontista especializado, com acompanhamento da Dra. Carla do início ao fim.',
+    image: '/Endodontia.webp',
+    width: 512,
+    height: 512,
+    url: '/tratamento-de-canal',
+  },
+  {
+    title: 'Saúde da Gengiva (Periodontia)',
+    description:
+      'Tratamento especializado para gengivite e periodontite, cuidando da base do seu sorriso e prevenindo problemas futuros.',
+    image: '/Periodontia.webp',
+    width: 512,
+    height: 341,
+    url: '/saude-da-gengiva',
+  },
+];
+---
+
+<SiteLayout
+  title="Tratamentos Odontológicos em Ipanema | Dra. Carla Christoph"
+  description="Conheça todos os tratamentos odontológicos oferecidos pela Dra. Carla Christoph em Ipanema: implantes, clareamento, lentes de contato dental, próteses e mais."
+  canonical="https://dracarlachristoph.com/servicos"
+  schemas={[breadcrumbSchema]}
+>
+  <main id="main-content">
+    <section class="section-spacing pt-8">
+      <div class="container-custom">
+        <!-- Breadcrumb navigation (porte de ServiceBreadcrumb.tsx) -->
+        <nav class="crumb" aria-label="breadcrumb">
+          <ol>
+            <li><a href="/">Início</a></li>
+            <li role="presentation" aria-hidden="true" class="crumb-sep">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </li>
+            <li><a href="/servicos">Tratamentos</a></li>
+            <li role="presentation" aria-hidden="true" class="crumb-sep">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </li>
+            <li><span class="crumb-page" role="link" aria-disabled="true" aria-current="page">Tratamentos Odontológicos</span></li>
+          </ol>
+        </nav>
+
+        <!-- Texto introdutório -->
+        <p class="intro">
+          Cada tratamento é planejado individualmente, com tempo e atenção ao que o seu caso específico precisa. Conheça os serviços oferecidos pela Dra. Carla Christoph em Ipanema.
+        </p>
+
+        <!-- Grade de serviços (porte de ServicesSection.tsx) -->
+        <section id="tratamentos" class="svc-section">
+          <div class="container-custom">
+            <div class="svc-head">
+              <h2 class="heading-lg">O que tratamos no consultório</h2>
+              <div class="sep" role="none"></div>
+              <p>
+                Implantes, próteses, lentes e clareamento conduzidos diretamente pela Dra. Carla. Endodontia, ortodontia e periodontia em parceria — com acompanhamento integral do início ao fim.
+              </p>
+            </div>
+
+            <div class="svc-grid">
+              {services.map((service, index) => (
+                <div class="svc-reveal" style={`transition-delay: ${(index % 3) * 120}ms`}>
+                  <div class="svc-card" aria-label={service.title}>
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      width={service.width}
+                      height={service.height}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div class="svc-overlay"></div>
+                    <div class="svc-body">
+                      <h3>{service.title}</h3>
+                      <p class="svc-desc">{service.description}</p>
+                      <a href={service.url} class="svc-link">
+                        Saiba mais
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+</SiteLayout>
+
+<!-- Scroll-reveal (paridade com ScrollReveal.tsx fade-up): progressivo e no-JS-safe —
+     o estado escondido só é aplicado via JS; sem JS os cards ficam visíveis. -->
+<script is:inline>
+  (function () {
+    var items = document.querySelectorAll('.svc-grid .svc-reveal');
+    if (!items.length) return;
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    items.forEach(function (el) { el.classList.add('sr-hidden'); });
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('sr-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08 }
+    );
+    items.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+<style>
+  /* ── Utilitários portados do index.css/Tailwind do SPA ── */
+  .container-custom {
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  @media (min-width: 640px) { .container-custom { max-width: 640px; } }
+  @media (min-width: 768px) { .container-custom { max-width: 768px; } }
+  @media (min-width: 1024px) {
+    .container-custom { max-width: 1024px; padding-left: 2rem; padding-right: 2rem; }
+  }
+  @media (min-width: 1280px) { .container-custom { max-width: 1280px; } }
+  @media (min-width: 1536px) { .container-custom { max-width: 1536px; } }
+
+  .section-spacing { padding-top: 4rem; padding-bottom: 4rem; }
+  @media (min-width: 768px) { .section-spacing { padding-top: 5rem; padding-bottom: 5rem; } }
+  @media (min-width: 1024px) { .section-spacing { padding-top: 6rem; padding-bottom: 6rem; } }
+  .section-spacing.pt-8 { padding-top: 2rem; } /* pt-8 sobrepõe o top do section-spacing */
+
+  .heading-lg { font-size: 1.875rem; line-height: 2.25rem; font-weight: 600; }
+  @media (min-width: 768px) { .heading-lg { font-size: 2.25rem; line-height: 2.5rem; } }
+
+  .sep { width: 6rem; height: 0.25rem; background: var(--dental-gold); margin: 0 auto 1.5rem; } /* mb-6 */
+
+  /* ── Breadcrumb (shadcn/ui breadcrumb) ── */
+  .crumb { margin-bottom: 1.5rem; } /* mb-6 */
+  .crumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.375rem; /* gap-1.5 */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.875rem;
+    color: hsl(0 0% 40%); /* text-muted-foreground */
+    word-break: break-word;
+  }
+  @media (min-width: 640px) { .crumb ol { gap: 0.625rem; } } /* sm:gap-2.5 */
+  .crumb li { display: inline-flex; align-items: center; gap: 0.375rem; }
+  .crumb a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .crumb a:hover { color: hsl(252 42% 20%); } /* hover:text-foreground */
+  .crumb-sep svg { display: block; }
+  .crumb-page { font-weight: 400; color: hsl(252 42% 20%); } /* text-foreground */
+
+  /* ── Intro ── */
+  .intro {
+    font-size: 1.125rem; /* text-lg */
+    color: #525252; /* text-dental-gray */
+    margin-bottom: 2rem; /* mb-8 */
+    max-width: 48rem; /* max-w-3xl */
+  }
+
+  /* ── Seção de tratamentos ── */
+  .svc-section {
+    background: hsl(51 22% 76%); /* bg-dental-beige */
+    scroll-margin-top: 100px; /* paridade com [id]{scroll-margin-top} do index.css */
+  }
+  .svc-head { max-width: 48rem; margin: 0 auto 2rem; text-align: center; } /* max-w-3xl mb-8 */
+  .svc-head .heading-lg { margin-bottom: 1rem; } /* mb-4 */
+  .svc-head p { color: #525252; margin-bottom: 1.5rem; } /* text-dental-gray mb-6 */
+
+  .svc-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem; /* gap-8 */
+  }
+  @media (min-width: 768px) { .svc-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .svc-grid { grid-template-columns: repeat(3, 1fr); gap: 3rem; } } /* lg:gap-12 */
+
+  /* Scroll-reveal (fade-up, duração 600ms — mesma curva do ScrollReveal.tsx) */
+  .svc-reveal {
+    transition:
+      opacity 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+      transform 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: opacity, transform;
+  }
+  .svc-reveal.sr-hidden { opacity: 0; transform: translateY(30px); }
+  .svc-reveal.sr-visible { opacity: 1; transform: translateY(0); }
+
+  /* Card do serviço (hover: zoom + descrição revelada) */
+  .svc-card {
+    position: relative;
+    border-radius: 0.75rem; /* rounded-xl */
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* shadow-lg */
+    height: 20rem; /* h-80 */
+    transition: transform 0.5s ease-in-out;
+  }
+  .svc-card:hover { transform: scale(1.05); }
+  .svc-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .svc-card:hover img { transform: scale(1.1); }
+  .svc-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgb(0 0 0 / 0.8), rgb(0 0 0 / 0.4), transparent);
+    transition: all 0.3s;
+  }
+  .svc-card:hover .svc-overlay {
+    background: linear-gradient(to top, rgb(0 0 0 / 0.9), rgb(0 0 0 / 0.6), transparent);
+  }
+  .svc-body {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem; /* p-6 */
+    color: #fff;
+  }
+  .svc-body h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5rem; /* text-2xl */
+    line-height: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.025em; /* tracking-wide */
+    color: #fff; /* sobrepõe o roxo global de headings */
+    margin-bottom: 0.5rem; /* mb-2 */
+  }
+  .svc-desc {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    font-size: 0.875rem; /* text-sm */
+    margin-bottom: 1rem; /* mb-4 */
+  }
+  .svc-card:hover .svc-desc { opacity: 1; max-height: 10rem; } /* max-h-40 */
+  .svc-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--dental-gold);
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .svc-link:hover { color: #fff; }
+  .svc-link svg { margin-left: 0.25rem; }
+</style>

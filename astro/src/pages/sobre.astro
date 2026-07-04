@@ -1,0 +1,365 @@
+---
+/**
+ * /sobre — porte fiel de src/pages/AboutPage.tsx (React SPA).
+ * Copy VERBATIM. Hero "revista": título centrado + foto full-width da recepção
+ * (.about-photo-band, CSS portado de src/index.css).
+ * Bio NÃO menciona faculdade de graduação (regra inviolável — CLAUDE.md §1.4).
+ * Meta title/description: iguais no SEOHead do React e no infoPages['/sobre']
+ * de scripts/generate-static-meta.cjs (fonte da verdade).
+ * Schema Person: copiado verbatim do structuredData do AboutPage.tsx.
+ * Nota: sem preloadImage — o hero usa <picture> AVIF/WebP e um preload simples
+ * do .webp causaria double-download (mesma lição do Sprint 5).
+ */
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+const personSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Carla Christoph',
+  jobTitle: 'Cirurgiã-Dentista Especialista',
+  description:
+    'Dentista especialista em Ipanema com mais de 20 anos de experiência em prótese dental, implantes e reabilitação oral estética.',
+  url: 'https://dracarlachristoph.com/sobre',
+  image: '/lovable-uploads/b1c1cbdb-bde0-4d9e-912e-74cf74cf716d.png',
+  sameAs: ['https://instagram.com/dracarlachristoph', 'https://wa.me/5521993304045'],
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Clínica Dra. Carla Christoph',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+      addressLocality: 'Ipanema',
+      addressRegion: 'RJ',
+      postalCode: '22410-901',
+      addressCountry: 'BR',
+    },
+  },
+  hasCredential: [
+    {
+      '@type': 'EducationalOccupationalCredential',
+      name: 'Especialista em Prótese Dental',
+      credentialCategory: 'Especialização Odontológica',
+    },
+    {
+      '@type': 'EducationalOccupationalCredential',
+      name: 'Especialista em Implantodontia',
+      credentialCategory: 'Especialização Odontológica',
+    },
+  ],
+  knowsAbout: [
+    'Prótese Dental',
+    'Implantodontia',
+    'Odontologia Estética',
+    'Lentes de Contato Dental',
+    'Facetas de Porcelana',
+    'Reabilitação Oral',
+    'Clareamento Dental',
+  ],
+  memberOf: {
+    '@type': 'Organization',
+    name: 'Conselho Regional de Odontologia',
+  },
+});
+
+// Ícones lucide (mesmos do React: Stethoscope, Award, Anchor, ScanLine)
+const icons: Record<string, string> = {
+  stethoscope:
+    '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>',
+  award:
+    '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>',
+  anchor:
+    '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/></svg>',
+  scanline:
+    '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><line x1="7" x2="17" y1="12" y2="12"/></svg>',
+};
+
+const credentials = [
+  {
+    icon: 'stethoscope',
+    title: 'Prótese Dentária',
+    description:
+      'Especialização em Prótese — a base para reabilitações orais complexas, de coroas unitárias a próteses totais.',
+  },
+  {
+    icon: 'award',
+    title: 'Implantodontia',
+    description:
+      'Especialização em Implantes — planejamento e execução de casos unitários a reabilitações completas.',
+  },
+  {
+    icon: 'anchor',
+    title: '8 Anos na Marinha',
+    description:
+      'Odontoclínica Central da Marinha do Brasil — experiência em casos de alta complexidade com disciplina militar.',
+  },
+  {
+    icon: 'scanline',
+    title: 'Tecnologia Digital',
+    description:
+      'iTero Element 5D, planejamento digital do sorriso e Test Drive do Sorriso para visualização prévia do resultado.',
+  },
+];
+
+const WA_HREF = `https://wa.me/5521993304045?text=${encodeURIComponent('Olá! Gostaria de agendar uma consulta.')}`;
+---
+
+<SiteLayout
+  title="Sobre Dra. Carla Christoph | Dentista Especialista em Ipanema"
+  description="Conheça a Dra. Carla Christoph, dentista especialista em Ipanema com mais de 20 anos de experiência em prótese dental, implantes e reabilitação oral estética."
+  canonical="https://dracarlachristoph.com/sobre"
+  schemas={[personSchema]}
+>
+  <main id="main-content">
+    <!-- Hero revista — título + foto full-width da recepção -->
+    <section class="about-hero" style="padding-top: var(--header-height, 112px);">
+      <div class="container-custom hero-pad">
+        <div class="hero-copy">
+          <p class="eyebrow">Especialista em Prótese e Implantodontia · CRO-RJ 27.509</p>
+          <h1 class="heading-lg">
+            Dra. Carla Christoph: <span class="gold">sua dentista especialista em Ipanema</span>
+          </h1>
+          <div class="sep sep-hero" role="none"></div>
+          <p class="hero-sub">
+            Mais de 20 anos dedicados à reabilitação oral e odontologia estética em Ipanema
+          </p>
+          <div class="hero-cta-row">
+            <a
+              class="btn-gold js-wa-cta"
+              data-label="sobre_hero_whatsapp"
+              href={WA_HREF}
+              target="_blank"
+              rel="noopener"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+              <span class="btn-lines">
+                <span class="btn-main">Agendar consulta</span>
+                <span class="btn-sub">WhatsApp 24h</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-photo-band">
+        <picture>
+          <source
+            type="image/avif"
+            srcset="/lovable-uploads/about-hero-768.avif 768w, /lovable-uploads/about-hero-1280.avif 1280w, /lovable-uploads/about-hero-1920.avif 1920w"
+            sizes="100vw"
+          />
+          <source
+            type="image/webp"
+            srcset="/lovable-uploads/about-hero-768.webp 768w, /lovable-uploads/about-hero-1280.webp 1280w, /lovable-uploads/about-hero-1920.webp 1920w"
+            sizes="100vw"
+          />
+          <img
+            src="/lovable-uploads/about-hero-1280.webp"
+            alt="Dra. Carla Christoph na recepção do consultório em Ipanema, com o logo da clínica ao fundo"
+            width="1280"
+            height="853"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
+      </div>
+    </section>
+
+    <section class="section-spacing">
+      <div class="container-custom">
+        <!-- Bio -->
+        <div class="prose-block">
+          <p>
+            Com mais de duas décadas em Ipanema, a Dra. Carla Christoph construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Possui <strong>título de especialista em Prótese Dentária e em Implantodontia</strong> (CRO-RJ 27.509) — duas formações que se completam na reabilitação oral, unindo função e estética. Sua trajetória inclui ainda 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.
+          </p>
+          <p>
+            A Dra. Carla utiliza o iTero Element 5D e ferramentas de planejamento do sorriso para oferecer previsibilidade e segurança em cada tratamento. Cada caso é tratado como único, com o tempo necessário para ouvir, planejar e executar.
+          </p>
+        </div>
+
+        <!-- Como Funciona o Atendimento -->
+        <div class="block-3xl">
+          <h2 class="heading-md center">Como Funciona o Atendimento</h2>
+          <div class="prose-inner">
+            <p>
+              Cada consulta tem no mínimo 1 hora de duração. Nesse tempo, a Dra. Carla realiza um exame clínico completo, explica cada opção de tratamento com calma e monta um plano personalizado. Somente materiais de primeira linha são utilizados — cerâmicas, resinas e componentes de implante com comprovação científica e rastreabilidade.
+            </p>
+          </div>
+        </div>
+
+        <!-- Formação e Experiência - Grid 2x2 -->
+        <div class="block-4xl">
+          <h2 class="heading-md center cred-title">Formação e Experiência</h2>
+          <div class="cred-grid">
+            {credentials.map((cred) => (
+              <div class="cred-card">
+                <div class="cred-head">
+                  <span class="cred-icon" set:html={icons[cred.icon]} />
+                  <h3>{cred.title}</h3>
+                </div>
+                <p>{cred.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- O Que Esperar da Primeira Consulta -->
+        <div class="block-3xl">
+          <h2 class="heading-md center">O Que Esperar da Primeira Consulta</h2>
+          <div class="beige-card">
+            <p>
+              Na primeira consulta, a Dra. Carla realiza um mapeamento clínico completo com exame detalhado, fotografias e, quando indicado, escaneamento com iTero Element 5D. Você sai entendendo exatamente o que precisa ser feito, em que ordem, e quanto tempo leva. Sem surpresas.
+            </p>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-final">
+          <h2 class="heading-md">Agende Sua Primeira Consulta</h2>
+          <p>Agende sua primeira consulta com a Dra. Carla em Ipanema.</p>
+          <a
+            class="btn-gold js-wa-cta"
+            data-label="sobre_final_whatsapp"
+            href={WA_HREF}
+            target="_blank"
+            rel="noopener"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+            <span class="btn-lines">
+              <span class="btn-main">Agendar Consulta</span>
+              <span class="btn-sub">WhatsApp 24h</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>
+
+<style>
+  /* ── Utilitários portados do index.css/Tailwind do SPA ── */
+  .container-custom {
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 1.5rem; /* px-6 */
+    padding-right: 1.5rem;
+  }
+  @media (min-width: 640px) { .container-custom { max-width: 640px; } }
+  @media (min-width: 768px) { .container-custom { max-width: 768px; } }
+  @media (min-width: 1024px) {
+    .container-custom { max-width: 1024px; padding-left: 2rem; padding-right: 2rem; } /* lg:px-8 */
+  }
+  @media (min-width: 1280px) { .container-custom { max-width: 1280px; } }
+  @media (min-width: 1536px) { .container-custom { max-width: 1536px; } }
+
+  .section-spacing { padding-top: 4rem; padding-bottom: 4rem; } /* py-16 */
+  @media (min-width: 768px) { .section-spacing { padding-top: 5rem; padding-bottom: 5rem; } }
+  @media (min-width: 1024px) { .section-spacing { padding-top: 6rem; padding-bottom: 6rem; } }
+
+  .heading-lg { font-size: 1.875rem; line-height: 2.25rem; font-weight: 600; text-wrap: balance; }
+  @media (min-width: 768px) { .heading-lg { font-size: 2.25rem; line-height: 2.5rem; } }
+  .heading-md { font-size: 1.5rem; line-height: 2rem; font-weight: 600; }
+  @media (min-width: 768px) { .heading-md { font-size: 1.875rem; line-height: 2.25rem; } }
+  .center { text-align: center; }
+
+  .sep { width: 6rem; height: 0.25rem; background: var(--dental-gold); margin-left: auto; margin-right: auto; }
+  .sep-hero { margin-top: 1rem; margin-bottom: 1rem; } /* my-4 */
+
+  /* ── Hero ── */
+  .hero-pad { padding-top: 0.75rem; } /* pt-3 */
+  @media (min-width: 768px) { .hero-pad { padding-top: 1.25rem; } } /* md:pt-5 */
+  .hero-copy { max-width: 760px; margin: 0 auto; text-align: center; }
+  .eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--dental-gold);
+    font-weight: 500;
+    margin-bottom: 0.75rem; /* mb-3 */
+  }
+  .heading-lg .gold { color: var(--dental-gold); }
+  .hero-sub { color: #525252; font-size: 1.125rem; max-width: 36rem; margin: 0 auto; } /* text-dental-gray text-lg max-w-xl */
+  .hero-cta-row { margin-top: 1.5rem; display: flex; justify-content: center; } /* mt-6 */
+
+  /* CTA dourado (Button shadcn: bg-dental-gold rounded-md px-8 py-6) */
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    background: var(--dental-gold);
+    color: #fff;
+    border-radius: 0.375rem;
+    padding: 1.5rem 2rem; /* py-6 px-8 */
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+  .btn-gold:hover { background: rgb(179 149 95 / 0.9); }
+  .btn-gold svg { margin-right: 0.5rem; flex-shrink: 0; }
+  .btn-lines { display: flex; flex-direction: column; text-align: left; line-height: 1.25; }
+  .btn-main { font-weight: 500; }
+  .btn-sub { font-size: 0.75rem; color: rgb(255 255 255 / 0.8); }
+
+  /* ── Foto full-width (portado de src/index.css — "Sobre — hero revista") ── */
+  .about-photo-band { margin-top: 1.5rem; } /* mt-6 */
+  @media (min-width: 768px) { .about-photo-band { margin-top: 2rem; } } /* md:mt-8 */
+  .about-photo-band img {
+    display: block;
+    width: 100%;
+    height: clamp(380px, 56vh, 620px);
+    object-fit: cover;
+    object-position: 50% 20%;
+  }
+  @media (max-width: 767px) {
+    .about-photo-band img { height: 46vh; object-position: 60% 18%; }
+  }
+
+  /* ── Bio (prose do Tailwind typography, tokens do tailwind.config.ts) ── */
+  .prose-block { max-width: 760px; margin: 0 auto 4rem; } /* mb-16 */
+  .prose-block p,
+  .prose-inner p {
+    color: #381f47;
+    line-height: 1.75;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  .prose-block strong { font-weight: 700; }
+
+  /* ── Blocos centrais ── */
+  .block-3xl { max-width: 48rem; margin: 0 auto 4rem; } /* max-w-3xl mb-16 */
+  .block-4xl { max-width: 56rem; margin: 0 auto 4rem; } /* max-w-4xl mb-16 */
+  .block-3xl .heading-md { margin-bottom: 1.5rem; } /* mb-6 */
+  .prose-inner { margin: 0 auto; }
+
+  /* ── Formação e Experiência (grid 2x2) ── */
+  .cred-title { margin-bottom: 2rem; } /* mb-8 */
+  .cred-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+  @media (min-width: 768px) { .cred-grid { grid-template-columns: repeat(2, 1fr); } }
+  .cred-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* shadow-sm */
+  }
+  .cred-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+  .cred-icon { color: var(--dental-gold); display: inline-flex; flex-shrink: 0; }
+  .cred-card h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 500;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+  .cred-card p { color: #525252; font-size: 0.875rem; line-height: 1.5; }
+
+  /* ── Primeira consulta ── */
+  .beige-card {
+    background: hsl(51 22% 76% / 0.5); /* bg-dental-beige/50 */
+    padding: 2rem;
+    border-radius: 0.5rem;
+  }
+  .beige-card p { color: #525252; }
+
+  /* ── CTA final ── */
+  .cta-final { max-width: 42rem; margin: 0 auto; text-align: center; } /* max-w-2xl */
+  .cta-final .heading-md { margin-bottom: 1rem; } /* mb-4 */
+  .cta-final p { font-size: 1.125rem; color: #525252; margin-bottom: 2rem; } /* text-lg mb-8 */
+</style>

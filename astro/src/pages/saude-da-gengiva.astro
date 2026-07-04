@@ -1,0 +1,293 @@
+---
+/**
+ * /saude-da-gengiva — porte VERBATIM de src/pages/SaudeDaGengiva.tsx.
+ * Meta/canonical: scripts/generate-static-meta.cjs ('/saude-da-gengiva').
+ * Schemas: MedicalProcedure + Dentist (generate-static-meta.cjs) +
+ * FAQPage (faqs da página, como o Helmet do React) + BreadcrumbList (hero).
+ */
+import SiteLayout from '../layouts/SiteLayout.astro';
+import TreatmentHero from '../components/treatment/TreatmentHero.astro';
+import StatsBar from '../components/treatment/StatsBar.astro';
+import SectionDivider from '../components/treatment/SectionDivider.astro';
+import ProcessTimeline from '../components/treatment/ProcessTimeline.astro';
+import QuickAnswerBox from '../components/treatment/QuickAnswerBox.astro';
+import DoctorBioSection from '../components/treatment/DoctorBioSection.astro';
+import EmpatheticPainPoints from '../components/treatment/EmpatheticPainPoints.astro';
+import ServiceFAQ from '../components/treatment/ServiceFAQ.astro';
+import FinalServiceCTA from '../components/treatment/FinalServiceCTA.astro';
+import RelatedTreatments from '../components/treatment/RelatedTreatments.astro';
+import FloatingWhatsAppButton from '../components/treatment/FloatingWhatsAppButton.astro';
+import Icon from '../components/treatment/Icon.astro';
+import '../styles/treatment.css';
+
+const faqs = [
+  { question: 'Gengiva que sangra ao escovar é normal?', answer: 'Não. Sangramento gengival é sinal de inflamação, mesmo que não doa. Pode ser gengivite (reversível) ou periodontite (mais avançada). Vale procurar um profissional para identificar a causa e tratar antes que progrida.' },
+  { question: 'Periodontite tem cura?', answer: "Periodontite é controlável, mas não é 'curável' no sentido de desaparecer sozinha. Com tratamento adequado e manutenção periódica, é possível estabilizar a doença e evitar que progrida. A disciplina nas consultas de manutenção é fundamental." },
+  { question: 'Posso fazer lentes ou implantes se tenho problema gengival?', answer: 'Primeiro é necessário tratar a gengiva. Lentes, facetas e implantes exigem uma base gengival saudável para funcionar bem e durar. A Dra. Carla integra o tratamento periodontal ao planejamento do caso — um passo de cada vez.' },
+  { question: 'Retração gengival tem tratamento?', answer: 'Depende da causa e da extensão. Em alguns casos, procedimentos de enxerto gengival podem cobrir a raiz exposta. Em outros, o objetivo é estabilizar a situação e evitar que progrida. A avaliação clínica define a melhor abordagem.' },
+  { question: 'Com que frequência devo fazer limpeza no dentista?', answer: 'Para a maioria das pessoas, a cada 6 meses. Pacientes com histórico de doença periodontal podem precisar de intervalos menores — a cada 3 ou 4 meses. A frequência ideal é definida individualmente.' },
+  { question: 'Mau hálito pode ser problema gengival?', answer: 'Sim. Mau hálito persistente (halitose) é frequentemente associado a doença periodontal — bactérias acumuladas em bolsas gengivais produzem compostos com odor. Se o mau hálito não melhora com higiene oral cuidadosa, vale investigar.' },
+];
+
+const PROVIDER = {
+  '@type': 'Dentist',
+  name: 'Dra. Carla Christoph',
+  telephone: '+5521993304045',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+    addressLocality: 'Ipanema',
+    addressRegion: 'RJ',
+    postalCode: '22410-901',
+    addressCountry: 'BR',
+  },
+};
+
+const schemas = [
+  // MedicalProcedure — copiado de generate-static-meta.cjs ('/saude-da-gengiva')
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'MedicalProcedure',
+    name: 'Tratamento Periodontal (Saúde da Gengiva)',
+    description: 'Diagnóstico e tratamento de doenças gengivais com acompanhamento integrado ao plano de tratamento completo',
+    procedureType: 'Dental',
+    url: 'https://dracarlachristoph.com/saude-da-gengiva',
+    provider: PROVIDER,
+  }),
+  // Dentist — generateDentistSchema() de generate-static-meta.cjs
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Dentist',
+    name: 'Dra. Carla Christoph',
+    description: 'Dentista especialista em Prótese Dental e Reabilitação Oral em Ipanema, Rio de Janeiro. Mais de 20 anos de experiência.',
+    telephone: '+5521993304045',
+    url: 'https://dracarlachristoph.com',
+    image: 'https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
+    priceRange: '$$$',
+    address: PROVIDER.address,
+    openingHoursSpecification: [
+      { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '19:00' },
+    ],
+    hasCredential: { '@type': 'EducationalOccupationalCredential', credentialCategory: 'CRO-RJ', recognizedBy: { '@type': 'Organization', name: 'CRO-RJ' }, identifier: '27.509' },
+    aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '17', bestRating: '5' },
+    availableLanguage: ['pt-BR', 'en'],
+  }),
+  // FAQPage — mesmas perguntas/respostas exibidas na página (Helmet do React)
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  }),
+];
+---
+
+<SiteLayout
+  title="Tratamento de Gengiva em Ipanema | Dra. Carla Christoph"
+  description="Tratamento periodontal e saúde da gengiva em Ipanema. Prevenção e tratamento de gengivite e periodontite. Dra. Carla Christoph. CRO-RJ 27.509."
+  canonical="https://dracarlachristoph.com/saude-da-gengiva"
+  preloadImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+  schemas={schemas}
+>
+  <main id="main-content">
+    <TreatmentHero
+      title="Saúde da Gengiva em Ipanema"
+      subtitle="Periodontia com Acompanhamento da Dra. Carla Christoph"
+      description="Gengiva saudável é a base de qualquer tratamento odontológico. Sangramentos, retração e mau hálito persistente merecem atenção antes que se tornem problemas maiores."
+      badges={['Saúde Periodontal', 'Acompanhamento Integrado', 'CRO-RJ 27.509']}
+      doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+      breadcrumbs={[
+        { label: 'Início', href: '/' },
+        { label: 'Tratamentos', href: '/servicos' },
+        { label: 'Saúde da Gengiva' },
+      ]}
+      waLabel="saude-da-gengiva_hero_whatsapp"
+    />
+
+    <section class="qa-section">
+      <div class="container-custom">
+        <QuickAnswerBox answer="Saúde da gengiva (periodontia) trata doenças gengivais como gengivite e periodontite, que causam sangramento, retração e mau hálito. No consultório da Dra. Carla Christoph em Ipanema (CRO-RJ 27.509), realizamos avaliação periodontal, limpeza profissional e tratamento das bolsas gengivais. Gengivite é reversível; periodontite é controlável com tratamento e manutenções periódicas. Para pacientes de baixo risco, recomenda-se limpeza a cada 6 meses; em casos de doença periodontal, a cada 3-4 meses para manter estabilidade." />
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="alert-circle" />
+
+    <EmpatheticPainPoints
+      painPoints={[
+        { icon: 'activity', iconColor: 'purple', strong: 'Gengiva que sangra ao escovar ou passar o fio dental', description: 'e você convive com isso há anos achando que é "assim mesmo"?', borderColor: 'purple' },
+        { icon: 'alert-circle', iconColor: 'gold', strong: 'Mau hálito persistente mesmo com boa escovação', description: 'que causa desconforto nas relações sociais e profissionais?', borderColor: 'gold' },
+        { icon: 'heart', iconColor: 'purple-soft', strong: 'Gengiva retraída ou dentes que parecem "mais longos"', description: 'com sensibilidade ao gelado que vem piorando com o tempo?', borderColor: 'purple-soft' },
+      ]}
+      callout={{ icon: 'alert-circle', title: 'Importante', text: 'A periodontite leva de 2 a 5 anos para evoluir de gengivite, mas uma vez instalada, a perda óssea é irreversível. O tratamento interrompe a progressão — por isso a detecção precoce é fundamental.' }}
+    >
+      <Fragment slot="conclusion">A doença periodontal é silenciosa — não costuma doer nos estágios iniciais.<br class="md-only" /> Quando identificada cedo, é tratável e controlável.</Fragment>
+    </EmpatheticPainPoints>
+
+    <SectionDivider variant="with-icon" icon="shield" />
+
+    <section class="sec-white">
+      <div class="container-custom">
+        <h2 class="heading-lg problems-title tx-purple">Problemas Gengivais Mais Comuns</h2>
+        <p class="problems-sub tx-gray">Entenda o que cada sinal pode significar</p>
+        <div class="problems-grid">
+          {[
+            { icon: 'activity', color: 'purple', title: 'Gengivite', text: 'Inflamação inicial da gengiva. Sangramento ao escovar, vermelhidão e inchaço. Reversível com tratamento adequado e boa higiene. Não causa perda óssea.' },
+            { icon: 'alert-circle', color: 'gold', title: 'Periodontite', text: 'Evolução da gengivite quando não tratada. Afeta o osso de suporte dos dentes. Pode causar mobilidade dentária e, em casos avançados, perda de dentes. Controlável, mas exige acompanhamento.' },
+            { icon: 'arrow-right', color: 'purple', title: 'Retração Gengival', text: 'A gengiva se retrai, expondo parte da raiz do dente. Causa sensibilidade e altera a estética do sorriso. Pode estar associada a escovação agressiva, bruxismo ou doença periodontal.' },
+          ].map((card) => (
+            <div class="problem-card">
+              <div class:list={['problem-icon', `problem-icon-${card.color}`]}>
+                <Icon name={card.icon} size={32} class={card.color === 'gold' ? 'tx-gold' : 'tx-purple'} />
+              </div>
+              <h3 class="problem-title">{card.title}</h3>
+              <p class="tx-gray">{card.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <DoctorBioSection
+      sectionTitle="Gengiva Saudável é Pré-Requisito"
+      badgeText="Cuidado Integrado"
+      credentials={[
+        { title: 'Visão integrada', description: 'Saúde gengival como base para qualquer tratamento estético' },
+        { title: 'Parceria especializada', description: 'Tratamento com periodontista e acompanhamento da Dra. Carla' },
+        { title: 'Experiência', description: '20+ anos, incluindo 8 na Marinha' },
+        { title: 'Abordagem', description: 'Consultas individualizadas, mínimo de 1 hora' },
+      ]}
+    >
+      <p>Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Sua formação inclui 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.</p>
+      <p>A Dra. Carla trata a saúde periodontal como base para qualquer procedimento. Não faz sentido investir em <a href="/lentes-de-contato-dental-e-facetas-de-resina">lentes</a>, <a href="/implantes-dentarios">implantes</a> ou <a href="/protese-dentaria">prótese</a> sobre uma gengiva comprometida. O tratamento periodontal é feito em parceria com periodontista especializado, e a Dra. Carla acompanha toda a evolução para integrar o cuidado gengival ao plano de tratamento completo do paciente.</p>
+    </DoctorBioSection>
+
+    <SectionDivider variant="with-icon" icon="search" />
+
+    <section class="sec-white">
+      <div class="container-custom">
+        <h2 class="heading-lg process-title tx-purple">Como Cuidamos da Saúde da Sua Gengiva</h2>
+        <div class="process-wrap">
+          <ProcessTimeline
+            steps={[
+              { number: 1, title: 'Consulta com a Dra. Carla', description: 'Exame clínico detalhado da gengiva, sondagem periodontal e radiografias quando necessário. Identificação do estágio do problema.', icon: 'search', duration: '1ª Consulta' },
+              { number: 2, title: 'Tratamento Periodontal', description: 'Limpeza profunda (raspagem), tratamento com periodontista especializado quando indicado. Controle da infecção e inflamação.', icon: 'shield', duration: '1-4 sessões' },
+              { number: 3, title: 'Reavaliação', description: 'Após o tratamento, a Dra. Carla reavalia a resposta da gengiva e define os próximos passos — manutenção, tratamentos complementares ou encaminhamento para procedimentos estéticos.', icon: 'check-circle', duration: '30-45 dias' },
+              { number: 4, title: 'Manutenção Periódica', description: 'A doença periodontal é controlável, mas exige acompanhamento. Consultas regulares de manutenção previnem recidivas e mantêm a saúde gengival.', icon: 'heart', duration: 'A cada 3-6 meses' },
+            ]}
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="sec-white">
+      <div class="container-custom">
+        <h2 class="heading-lg systemic-title tx-purple">A Relação entre Gengiva e Saúde Geral</h2>
+        <div class="systemic-body tx-gray">
+          <p>A saúde da gengiva está conectada à saúde do corpo como um todo. Estudos mostram associação entre doença periodontal e condições como diabetes, doenças cardiovasculares e complicações na gestação. Tratar a gengiva não é apenas uma questão estética — é um cuidado com a saúde sistêmica.</p>
+          <p>Na prática, o que mais vemos no consultório são pacientes que conviviam com sangramento gengival há anos sem perceber a gravidade. Após o tratamento, relatam não apenas a melhora na boca, mas a sensação geral de cuidado com a saúde que estavam adiando.</p>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="help-circle" />
+
+    <ServiceFAQ title="Dúvidas sobre Saúde da Gengiva" faqs={faqs} />
+
+    <FinalServiceCTA
+      icon="heart"
+      title="Cuide da Base do Seu Sorriso"
+      description="Agende sua consulta periodontal. Tratamento precoce faz toda a diferença."
+      ctaText="Agendar Consulta"
+      waMessage="Olá! Vi a página sobre saúde da gengiva e gostaria de agendar uma consulta periodontal com a Dra. Carla Christoph."
+      waLabel="saude-da-gengiva_final_whatsapp"
+    />
+
+    <RelatedTreatments currentPage="saude-da-gengiva" />
+
+    <StatsBar />
+  </main>
+
+  <FloatingWhatsAppButton waLabel="saude-da-gengiva_float_whatsapp" />
+</SiteLayout>
+
+<style>
+  .qa-section {
+    padding-block: 2rem;
+    background: #fff;
+  }
+  .problems-title {
+    text-align: center;
+    margin: 0 0 1rem;
+  }
+  .problems-sub {
+    text-align: center;
+    margin: 0 auto 3rem;
+    max-width: 42rem;
+  }
+  .problems-grid {
+    display: grid;
+    gap: 2rem;
+    max-width: 64rem;
+    margin-inline: auto;
+  }
+  @media (min-width: 768px) {
+    .problems-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .problem-card {
+    text-align: center;
+  }
+  .problem-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+  }
+  .problem-icon-purple {
+    background: rgba(56, 31, 71, 0.1);
+  }
+  .problem-icon-gold {
+    background: rgba(179, 149, 95, 0.1);
+  }
+  .problem-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--dc-purple);
+    margin: 0 0 0.75rem;
+  }
+  .problem-card p {
+    margin: 0;
+    line-height: 1.625;
+  }
+  .process-title {
+    text-align: center;
+    margin: 0 0 1rem;
+  }
+  .process-wrap {
+    max-width: 56rem;
+    margin-inline: auto;
+  }
+  .systemic-title {
+    text-align: center;
+    margin: 0 0 2rem;
+  }
+  .systemic-body {
+    max-width: 48rem;
+    margin-inline: auto;
+    line-height: 1.625;
+  }
+  .systemic-body p {
+    margin: 0;
+  }
+  .systemic-body p + p {
+    margin-top: 1.5rem;
+  }
+</style>

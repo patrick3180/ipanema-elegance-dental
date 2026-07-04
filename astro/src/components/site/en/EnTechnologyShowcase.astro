@@ -1,0 +1,279 @@
+---
+/**
+ * EnTechnologyShowcase — porte fiel de src/components/en/EnTechnologyShowcase.tsx.
+ * CTA WhatsApp: label do React = sendGCLIDToWebhook("en_home_technology_section").
+ * Dimensões reais de itero_screen.webp: 500x512 (React declarava 480x360 — corrigido
+ * conforme regra de width/height reais; container aspect-ratio 4/3 + object-cover mantém o visual).
+ */
+const WA_HREF = "https://wa.me/5521993304045?text=Hello!%20I'd%20like%20to%20book%20an%20appointment.";
+
+const features = [
+  {
+    icon: 'scanline',
+    title: '3D Scanning in Seconds',
+    description:
+      'Digital impressions without the messy mold — more comfort and precision for every treatment.',
+  },
+  {
+    icon: 'eye',
+    title: 'Real-Time Visualization',
+    description:
+      'See a projection of your results before starting treatment with our Smile Test Drive.',
+  },
+  {
+    icon: 'zap',
+    title: 'Advanced Diagnostics',
+    description:
+      'NIRI technology for early detection of cavities and tooth cracks — without X-rays.',
+  },
+];
+---
+<section class="tech-sec">
+  <div class="tech-pattern" role="none"></div>
+
+  <div class="container">
+    <div class="tech-grid">
+      <div>
+        <p class="eyebrow">Technology</p>
+        <h2 class="tech-h2">
+          iTero Element 5D: <span class="gold">Digital Precision</span>
+        </h2>
+        <div class="gold-sep" role="none"></div>
+        <p class="tech-lead">
+          Dr. Carla uses the most advanced intraoral scanner available to
+          plan each treatment with millimetric precision. No uncomfortable
+          traditional molds — just technology working for your smile.
+        </p>
+
+        <div class="feat-list">
+          {features.map((feature) => (
+            <div class="feat">
+              <div class="feat-ic">
+                {feature.icon === 'scanline' && (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></svg>
+                )}
+                {feature.icon === 'eye' && (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                )}
+                {feature.icon === 'zap' && (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                )}
+              </div>
+              <div>
+                <h3 class="feat-title">{feature.title}</h3>
+                <p class="feat-desc">{feature.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <a
+          class="btn-gold js-wa-cta"
+          data-label="en_home_technology_section"
+          href={WA_HREF}
+          target="_blank"
+          rel="noopener"
+        >
+          Book with digital technology
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="tech-img-col">
+        <div class="tech-img-wrap">
+          <div class="glow" role="none"></div>
+          <div class="tech-img">
+            <img
+              src="/lovable-uploads/itero_screen.webp"
+              alt="iTero Element 5D intraoral scanner used by Dr. Carla Christoph for digital dental planning in Ipanema"
+              width="500"
+              height="512"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="tech-badge">
+            <p class="badge-sub">World's #1 Scanner</p>
+            <p class="badge-title">iTero Element 5D</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tech-sec {
+    position: relative;
+    overflow: hidden;
+    background: var(--dental-purple);
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+  @media (min-width: 768px) {
+    .tech-sec { padding-top: 80px; padding-bottom: 80px; }
+  }
+  @media (min-width: 1024px) {
+    .tech-sec { padding-top: 96px; padding-bottom: 96px; }
+  }
+  .tech-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image: radial-gradient(circle at 1px 1px, rgba(179, 149, 95, 0.3) 1px, transparent 0);
+    background-size: 32px 32px;
+  }
+  .container {
+    position: relative;
+    z-index: 10;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  @media (min-width: 1024px) {
+    .container { padding: 0 32px; }
+  }
+  .tech-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  @media (min-width: 1024px) {
+    .tech-grid { grid-template-columns: repeat(2, 1fr); gap: 64px; }
+  }
+  .eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--dental-gold);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .tech-h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    font-size: 1.875rem;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  @media (min-width: 768px) {
+    .tech-h2 { font-size: 2.25rem; }
+  }
+  .tech-h2 .gold { color: var(--dental-gold); }
+  .gold-sep {
+    width: 96px;
+    height: 4px;
+    background: var(--dental-gold);
+    margin-bottom: 24px;
+  }
+  .tech-lead {
+    color: rgb(255 255 255 / 0.8);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+  .feat-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  .feat {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .feat-ic {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgb(179 149 95 / 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dental-gold);
+    transition: background-color 0.3s;
+  }
+  .feat:hover .feat-ic { background: rgb(179 149 95 / 0.3); }
+  .feat-title {
+    font-family: Montserrat, system-ui, sans-serif;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+  .feat-desc {
+    color: rgb(255 255 255 / 0.6);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--dental-gold);
+    color: #fff;
+    border-radius: 6px;
+    padding: 20px 32px;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgb(179 149 95 / 0.3); /* shadow-gold */
+    transition: all 0.3s;
+  }
+  .btn-gold:hover {
+    background: #9d7f4f; /* dental-gold-dark */
+    transform: translateY(-2px);
+  }
+
+  .tech-img-col {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  @media (min-width: 1024px) {
+    .tech-img-col { justify-content: flex-end; }
+  }
+  .tech-img-wrap { position: relative; }
+  .glow {
+    position: absolute;
+    inset: -16px;
+    background: rgb(179 149 95 / 0.1);
+    border-radius: 24px;
+    filter: blur(40px);
+  }
+  .tech-img {
+    position: relative;
+    width: 100%;
+    max-width: 28rem;
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); /* shadow-2xl */
+  }
+  .tech-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .tech-badge {
+    position: absolute;
+    bottom: -16px;
+    left: -16px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px 20px;
+    box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2); /* shadow-elegant */
+  }
+  @media (min-width: 768px) {
+    .tech-badge { left: -32px; }
+  }
+  .badge-sub { font-size: 0.75rem; color: #525252; }
+  .badge-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--dental-purple);
+  }
+</style>

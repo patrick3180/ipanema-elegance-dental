@@ -1,0 +1,1061 @@
+---
+/**
+ * /en/aesthetic-restorations — porte fiel de src/pages/en/EnAestheticRestorationsPage.tsx (SPA React).
+ * Copy verbatim; schemas copiados da página React; tracking via js-wa-cta (handler global do Base).
+ */
+import SiteLayout from '../../layouts/SiteLayout.astro';
+
+const WA = 'https://wa.me/5521993304045';
+const heroWaHref = `${WA}?text=${encodeURIComponent('Hello! I would like to schedule a consultation about Aesthetic Dental Restorations in Ipanema.')}`;
+const finalWaHref = `${WA}?text=${encodeURIComponent('Hello! I saw the page about aesthetic restorations and would like to schedule an evaluation with Dr. Carla Christoph.')}`;
+const floatWaHref = `${WA}?text=${encodeURIComponent("Hello! I'd like to book an appointment.")}`;
+
+const schemas = [
+  JSON.stringify({ "@context": "https://schema.org", "@type": "MedicalProcedure", "name": "Aesthetic Dental Restoration", "description": "Aesthetic dental restoration with nano-filled composite resin for treatment of cavities, fractures, and cracks with natural results", "procedureType": "Dental", "inLanguage": "en", "provider": { "@type": "Dentist", "name": "Dr. Carla Christoph", "telephone": "+5521993304045", "address": { "@type": "PostalAddress", "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107", "addressLocality": "Ipanema", "addressRegion": "RJ", "postalCode": "22410-901", "addressCountry": "BR" } } }),
+  JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en", "mainEntity": [
+    { "@type": "Question", "name": "What is an aesthetic dental restoration?", "acceptedAnswer": { "@type": "Answer", "text": "It is a procedure that rebuilds teeth compromised by cavities, fractures, or cracks using state-of-the-art materials (composite resin or porcelain) that perfectly mimic the color, shine, and texture of natural teeth. Unlike the old dark amalgam \"fillings,\" aesthetic restorations are virtually invisible." } },
+    { "@type": "Question", "name": "When is a restoration necessary?", "acceptedAnswer": { "@type": "Answer", "text": "When is a restoration necessary?" } },
+    { "@type": "Question", "name": "What materials are used in aesthetic restorations?", "acceptedAnswer": { "@type": "Answer", "text": "We use state-of-the-art nano-filled composite resins that offer high strength, natural aesthetics, and durability. For cases requiring maximum longevity (large posterior restorations), we recommend porcelain or lab-processed resin restorations (inlays/onlays), which are fabricated in specialized labs for even greater strength." } },
+    { "@type": "Question", "name": "Does the restoration procedure hurt?", "acceptedAnswer": { "@type": "Answer", "text": "No. We use local anesthesia with a comfortable technique. Most patients report no discomfort during the procedure. After the anesthesia wears off, there may be mild sensitivity for 24-48 hours, easily managed with over-the-counter pain medication if needed." } },
+    { "@type": "Question", "name": "How long do aesthetic restorations last?", "acceptedAnswer": { "@type": "Answer", "text": "How long do aesthetic restorations last?" } },
+    { "@type": "Question", "name": "Can I replace my old dark fillings?", "acceptedAnswer": { "@type": "Answer", "text": "Yes! Replacing old amalgam (metal) fillings with aesthetic composite restorations is one of the most sought-after procedures. Beyond the aesthetic benefit, we eliminate the risk of micro-leakage common in old restorations and remove the metal from your mouth. The replacement is done conservatively, preserving as much healthy tooth structure as possible." } },
+    { "@type": "Question", "name": "Do composite restorations stain over time?", "acceptedAnswer": { "@type": "Answer", "text": "Modern composite resins have excellent color stability. With proper care (good hygiene, periodic professional polishing, and moderation with highly pigmented foods like coffee, red wine, and açaí), restorations maintain their original color for many years. When needed, professional polishing can restore the luster." } }
+  ] }),
+  JSON.stringify({ "@context": "https://schema.org", "@type": "WebPage", "name": "Aesthetic Dental Restorations in Ipanema", "url": "https://dracarlachristoph.com/en/aesthetic-restorations", "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"] }, "inLanguage": "en" }),
+  JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dracarlachristoph.com/en" },
+    { "@type": "ListItem", "position": 2, "name": "Treatments", "item": "https://dracarlachristoph.com/en" },
+    { "@type": "ListItem", "position": 3, "name": "Aesthetic Restorations" }
+  ] }),
+];
+---
+
+<SiteLayout
+  title="Aesthetic Dental Restorations in Ipanema | Dr. Carla Christoph, Rio de Janeiro"
+  description="Aesthetic dental restorations in Ipanema. Tooth-colored fillings, composite bonding, inlays and onlays. Natural results. Dr. Carla Christoph, CRO-RJ 27.509."
+  canonical="https://dracarlachristoph.com/en/aesthetic-restorations"
+  ogImage="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+  preloadImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+  schemas={schemas}
+  lang="en"
+>
+  <Fragment slot="head">
+    <link rel="alternate" hreflang="pt-BR" href="https://dracarlachristoph.com/restauracoes-esteticas" />
+    <link rel="alternate" hreflang="en" href="https://dracarlachristoph.com/en/aesthetic-restorations" />
+    <link rel="alternate" hreflang="x-default" href="https://dracarlachristoph.com/restauracoes-esteticas" />
+  </Fragment>
+
+  <main id="main-content" class="en-page">
+    <!-- ═══ Treatment Hero ═══ -->
+    <section class="hero" aria-label="Treatment hero">
+      <div class="content-container section-spacing">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <nav class="breadcrumb" aria-label="breadcrumb">
+              <ol>
+                <li><a href="/en">Home</a></li>
+                <li class="sep" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></li>
+                <li><a href="/en">Treatments</a></li>
+                <li class="sep" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></li>
+                <li><span class="current" aria-current="page">Aesthetic Restorations</span></li>
+              </ol>
+            </nav>
+
+            <h1 class="treatment-hero-title">Aesthetic Dental Restorations in Ipanema</h1>
+            <p class="hero-subtitle">Beauty and Function for Your Smile</p>
+            <p class="hero-desc treatment-hero-description">Restore teeth compromised by cavities, fractures, or cracks with state-of-the-art composite resins that perfectly mimic the natural color and texture of your teeth.</p>
+
+            <div class="hero-badges">
+              <span class="badge">High-Performance Resins</span>
+              <span class="badge">Natural Results</span>
+              <span class="badge">Conservative Technique</span>
+            </div>
+
+            <div class="hero-cta-wrap">
+              <a
+                class="hero-cta js-wa-cta"
+                data-label="en-aesthetic-restorations_hero_whatsapp"
+                href={heroWaHref}
+                target="_blank"
+                rel="noopener"
+                aria-label="Schedule consultation via WhatsApp"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+                Book Your Consultation
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-image-col">
+            <div class="hero-image-frame">
+              <img
+                src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+                alt="Dr. Carla Christoph - Aesthetic Dental Restorations in Ipanema Specialist"
+                width="800"
+                height="1200"
+                loading="eager"
+                fetchpriority="high"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ Quick Answer Box ═══ -->
+    <section class="qa-section">
+      <div class="container-custom">
+        <div class="quick-answer-box">
+          <div class="qa-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <div>
+            <h2 class="qa-title">Quick Answer</h2>
+            <p class="qa-text">Aesthetic restorations are treatments that rebuild teeth compromised by cavities, fractures, or cracks using nano-filled composite resins or state-of-the-art ceramics. At Dr. Carla Christoph's practice in Ipanema (CRO-RJ 27.509), we use high-quality materials with color layering techniques that perfectly reproduce the natural translucency of teeth. The treatment is conservative, preserving as much tooth structure as possible, and the result is indistinguishable from natural teeth. With 20+ years of experience, we perform everything from small restorations to complex reconstructions in one or just a few sessions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ Empathetic Pain Points ═══ -->
+    <section class="pain-section">
+      <div class="pain-container">
+        <h2 class="pain-title">Have you ever hidden your smile because of a compromised tooth?</h2>
+        <div class="pain-list">
+          <div class="pain-card" style="border-left-color: var(--dental-purple);">
+            <div class="pain-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--dental-purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg>
+            </div>
+            <div>
+              <strong>Restorations that go completely unnoticed</strong>
+              <span>We use layered resins and ceramics that reproduce the natural translucency and texture of your tooth — these aren't fillings, they're reconstructions.</span>
+            </div>
+          </div>
+          <div class="pain-card" style="border-left-color: var(--dental-gold);">
+            <div class="pain-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <strong>Conservative technique — we preserve as much as possible</strong>
+              <span>Every restoration is planned to remove only what's necessary. The more natural structure preserved, the better the long-term outcome.</span>
+            </div>
+          </div>
+          <div class="pain-card" style="border-left-color: var(--dp-soft);">
+            <div class="pain-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--dp-soft)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            </div>
+            <div>
+              <strong>Every case is individually planned</strong>
+              <span>Dr. Carla takes the time to understand your history before any procedure — no rush, no one-size-fits-all approach.</span>
+            </div>
+          </div>
+        </div>
+        <p class="pain-conclusion">Cavities, fractures, and cracks are more common than you think — and the impact goes beyond aesthetics.<br class="md-only" /> Let's evaluate the best solution for your case.</p>
+      </div>
+    </section>
+
+    <!-- Divider (award) -->
+    <div class="divider" aria-hidden="true">
+      <div class="divider-line"></div>
+      <div class="divider-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ═══ Doctor Bio ═══ -->
+    <section class="bio-section">
+      <div class="container-custom">
+        <h2 class="heading-lg bio-heading">Restorations with Technical Precision and Artistry</h2>
+        <div class="bio-wrap">
+          <div class="bio-grid">
+            <div class="bio-photo-col">
+              <div class="bio-photo">
+                <img
+                  src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+                  alt="Dr. Carla Christoph - Dental Specialist"
+                  width="800"
+                  height="1200"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="bio-badge">20+ Years of Experience</div>
+              </div>
+            </div>
+            <div class="bio-card">
+              <div class="bio-head">
+                <h3>Dr. Carla Christoph</h3>
+                <p class="bio-sub">CRO-RJ 27.509 | Specialist in Prosthodontics and Implant Dentistry</p>
+              </div>
+              <div class="bio-paras">
+                <p>With over two decades in Ipanema, Dr. Carla has built her reputation by treating each patient individually, with time and attention. Her background includes 8 years as a military dentist at the Brazilian Navy Dental Center, an experience that brought discipline and precision to her clinical practice.</p>
+                <p>For restorations, she uses resins and ceramics that reproduce the natural translucency of each tooth. The goal is for the restoration to go completely unnoticed — making the treated tooth indistinguishable from the rest.</p>
+              </div>
+              <div class="bio-creds">
+                <div class="bio-creds-grid">
+                  <div class="bio-cred">
+                    <svg class="cred-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    <div><p class="cred-t">Training</p><p class="cred-d">Specialist in Dental Prosthetics and Implantology</p></div>
+                  </div>
+                  <div class="bio-cred">
+                    <svg class="cred-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    <div><p class="cred-t">Experience</p><p class="cred-d">20+ years treating cases of all complexities</p></div>
+                  </div>
+                  <div class="bio-cred">
+                    <svg class="cred-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    <div><p class="cred-t">Continuing Education</p><p class="cred-d">Ongoing training in advanced techniques</p></div>
+                  </div>
+                  <div class="bio-cred">
+                    <svg class="cred-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    <div><p class="cred-t">Technology</p><p class="cred-d">iTero Element 5D intraoral scanner</p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider (shield) -->
+    <div class="divider" aria-hidden="true">
+      <div class="divider-line"></div>
+      <div class="divider-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ═══ Modality Cards — Direct vs Indirect ═══ -->
+    <section class="modal-section">
+      <div class="max6">
+        <div class="section-head">
+          <h2>Direct or Indirect Restoration: Which Is Right for You?</h2>
+          <p>Each technique has specific indications. The choice depends on the extent of damage, tooth location, and treatment goals.</p>
+        </div>
+
+        <div class="modal-grid">
+          <!-- CARD 1 - DIRECT -->
+          <div class="modal-card">
+            <div class="modal-img">
+              <img src="/lovable-uploads/Restauracao direta.webp" alt="Direct Composite Resin Restoration" width="600" height="400" loading="lazy" decoding="async" />
+              <div class="modal-overlay"></div>
+              <div class="modal-caption">
+                <h3>Direct Composite Restoration</h3>
+                <p>Completed in a single office visit</p>
+              </div>
+            </div>
+            <div class="modal-body">
+              <p class="modal-desc">Completed in a single session, where nano-filled composite resin is applied and sculpted directly on the compromised tooth.</p>
+              <div class="ind-block">
+                <h4>Indications:</h4>
+                <ul class="ind-list">
+                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Small to medium cavities</span></li>
+                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Minor fractures</span></li>
+                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Surface cracks</span></li>
+                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Closing small gaps (diastemas)</span></li>
+                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Shape correction</span></li>
+                </ul>
+              </div>
+              <details class="acc-item modal-acc">
+                <summary>See Detailed Characteristics<svg class="acc-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                <div class="acc-body char-rows">
+                  <div class="char-row"><span class="char-k">Fabrication:</span><span class="char-v">In-office (1 session)</span></div>
+                  <div class="char-row"><span class="char-k">Duration:</span><span class="char-v">40-90 minutes per tooth</span></div>
+                  <div class="char-row"><span class="char-k">Longevity:</span><span class="char-v">5-8 years</span></div>
+                  <div class="char-row"><span class="char-k">Investment:</span><span class="char-v">More accessible</span></div>
+                  <div class="char-row"><span class="char-k">Preparation:</span><span class="char-v">Minimally conservative</span></div>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <!-- CARD 2 - INDIRECT -->
+          <div class="modal-card">
+            <div class="modal-img">
+              <img src="/lovable-uploads/inlay de porcelana.webp" alt="Indirect Restoration - Porcelain Inlay and Onlay" width="600" height="400" loading="lazy" decoding="async" />
+              <div class="modal-overlay"></div>
+              <div class="modal-caption">
+                <h3>Indirect Restoration (Inlay/Onlay)</h3>
+                <p>Fabricated in a specialized dental lab</p>
+              </div>
+            </div>
+            <div class="modal-body">
+              <p class="modal-desc">Fabricated in a specialized lab and cemented in a second session, offering greater strength and longevity.</p>
+              <div class="ind-block">
+                <h4>Indications:</h4>
+                <ul class="ind-list">
+                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Extensive cavities</span></li>
+                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Significant structural loss</span></li>
+                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Large fractures in back teeth</span></li>
+                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Replacement of large old restorations</span></li>
+                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Maximum durability required</span></li>
+                </ul>
+              </div>
+              <details class="acc-item modal-acc">
+                <summary>See Detailed Characteristics<svg class="acc-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                <div class="acc-body char-rows">
+                  <div class="char-row"><span class="char-k">Fabrication:</span><span class="char-v">Lab-crafted (2 sessions)</span></div>
+                  <div class="char-row"><span class="char-k">Material:</span><span class="char-v">Porcelain or lab-processed resin</span></div>
+                  <div class="char-row"><span class="char-k">Longevity:</span><span class="char-v">12-15 years</span></div>
+                  <div class="char-row"><span class="char-k">Investment:</span><span class="char-v">Higher value</span></div>
+                  <div class="char-row"><span class="char-k">Precision:</span><span class="char-v">Millimetric fit</span></div>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+
+        <!-- How to Choose -->
+        <div class="choose-box">
+          <div class="choose-flex">
+            <div class="choose-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+            </div>
+            <div>
+              <h4 class="choose-title">How to Choose?</h4>
+              <p class="choose-p">The choice isn't "better or worse" — it's about <span class="em-purple">clinical indication</span>. We analyze:</p>
+              <div class="choose-grid">
+                <div class="choose-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Extent of damage</span></div>
+                <div class="choose-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Location (front/back teeth)</span></div>
+                <div class="choose-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Chewing forces</span></div>
+                <div class="choose-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Remaining tooth structure</span></div>
+                <div class="choose-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Aesthetic goals</span></div>
+                <div class="choose-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Available investment</span></div>
+              </div>
+              <p class="choose-final">Our priority: preserve as much healthy tooth structure as possible and provide the most durable solution for your case.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider (heart) -->
+    <div class="divider" aria-hidden="true">
+      <div class="divider-line"></div>
+      <div class="divider-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ═══ Benefits ═══ -->
+    <section class="benefits-section">
+      <div class="max6">
+        <div class="section-head">
+          <h2>Advantages of Aesthetic Restorations</h2>
+          <p>State-of-the-art technology and materials for natural, long-lasting results</p>
+        </div>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon" style="background:#faf5ff;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--dental-purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg></div>
+            <h3>Superior Aesthetics</h3>
+            <p>Color and shine identical to natural teeth. Virtually invisible result.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon" style="background:#f0fdf4;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <h3>Tooth Preservation</h3>
+            <p>Conservative technique that maintains the maximum amount of healthy tooth structure.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon" style="background:#eff6ff;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+            <h3>Chemical Adhesion</h3>
+            <p>Chemical bond to the tooth providing effective sealing against infiltration.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon" style="background:#fef2f2;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg></div>
+            <h3>Metal-Free</h3>
+            <p>Zero mercury or metals. Biocompatible material that's safe for your health.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon" style="background:#fefce8;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+            <h3>Versatility</h3>
+            <p>Applicable to both front and back teeth, adapting to each situation.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon" style="background:#fff7ed;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+            <h3>Easy Repair</h3>
+            <p>Adjustments and repairs are possible without replacing the entire restoration.</p>
+          </div>
+          <div class="benefit-card benefit-center">
+            <div class="benefit-icon" style="background:#eef2ff;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <h3>Proven Durability</h3>
+            <p>High-resistance materials that provide long-lasting treatment results.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider (search) -->
+    <div class="divider" aria-hidden="true">
+      <div class="divider-line"></div>
+      <div class="divider-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ═══ Process Timeline ═══ -->
+    <section class="process-section">
+      <div class="max6">
+        <div class="section-head">
+          <h2>Your Treatment: Step by Step</h2>
+          <p>A structured process to ensure the best result with maximum comfort</p>
+        </div>
+
+        <div class="timeline" role="list">
+          <div class="timeline-line" aria-hidden="true"></div>
+          <div class="timeline-steps">
+            <div class="tl-step" role="listitem">
+              <div class="tl-num-col"><div class="tl-num">1</div><div class="tl-dot" aria-hidden="true"></div></div>
+              <div class="tl-content">
+                <div class="tl-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg></div>
+                <h3>Precise Diagnosis</h3>
+                <p>Complete clinical exam • Digital X-rays • Detailed occlusal analysis • iTero Element 5D for complex cases • Bruxism and parafunctional habit assessment</p>
+                <p class="tl-duration">Duração: 1st Appointment</p>
+              </div>
+            </div>
+            <div class="tl-step" role="listitem">
+              <div class="tl-num-col"><div class="tl-num">2</div><div class="tl-dot" aria-hidden="true"></div></div>
+              <div class="tl-content">
+                <div class="tl-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/></svg></div>
+                <h3>Anesthesia &amp; Comfort</h3>
+                <p>Comfortable anesthesia technique • Absolute isolation of the operative field • Calm, welcoming environment • Continuous monitoring throughout the procedure</p>
+                <p class="tl-duration">Duração: Start of procedure</p>
+              </div>
+            </div>
+            <div class="tl-step" role="listitem">
+              <div class="tl-num-col"><div class="tl-num">3</div><div class="tl-dot" aria-hidden="true"></div></div>
+              <div class="tl-content">
+                <div class="tl-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/></svg></div>
+                <h3>Conservative Preparation</h3>
+                <p>Removal of only compromised tissue • Maximum preservation of healthy structure • Preparation with precision instruments • Acid etching and state-of-the-art adhesive system</p>
+                <p class="tl-duration">Duração: 20-30 minutes</p>
+              </div>
+            </div>
+            <div class="tl-step" role="listitem">
+              <div class="tl-num-col"><div class="tl-num">4</div><div class="tl-dot" aria-hidden="true"></div></div>
+              <div class="tl-content">
+                <div class="tl-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg></div>
+                <h3>Application &amp; Sculpting</h3>
+                <p>Meticulous shade selection • Incremental layering technique • Controlled light-curing • Anatomical sculpting respecting natural form and function</p>
+                <p class="tl-duration">Duração: 30-60 minutes</p>
+              </div>
+            </div>
+            <div class="tl-step" role="listitem">
+              <div class="tl-num-col"><div class="tl-num">5</div><div class="tl-dot" aria-hidden="true"></div></div>
+              <div class="tl-content">
+                <div class="tl-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+                <h3>Adjustment &amp; Polishing</h3>
+                <p>Thorough bite check • Occlusal adjustment with articulating paper • Sequential polishing with diamond discs and pastes • Glass-like finish</p>
+                <p class="tl-duration">Duração: 15-20 minutes</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider (award) -->
+    <div class="divider" aria-hidden="true">
+      <div class="divider-line"></div>
+      <div class="divider-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ═══ Differentiators ═══ -->
+    <section class="diff-section">
+      <div class="max6">
+        <div class="section-head">
+          <h2>What Sets Our Treatment Apart</h2>
+          <p>Advanced protocols that make the difference in the final result</p>
+        </div>
+        <div class="diff-grid">
+          <div class="diff-card">
+            <div class="diff-flex">
+              <div class="diff-icon" style="background:#fef2f2;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg></div>
+              <div><h3>Health-First Protocol</h3><p>Treatment of gum inflammation and active cavity control before any aesthetic restoration.</p></div>
+            </div>
+          </div>
+          <div class="diff-card">
+            <div class="diff-flex">
+              <div class="diff-icon" style="background:#fefce8;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+              <div><h3>Certified Materials</h3><p>Internationally certified composite resins with nanotechnology and a broad color palette for perfect matching.</p></div>
+            </div>
+          </div>
+          <div class="diff-card">
+            <div class="diff-flex">
+              <div class="diff-icon" style="background:#faf5ff;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--dental-purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg></div>
+              <div><h3>Layering Technique</h3><p>Application in multiple layers with varying degrees of opacity and translucency, mimicking natural tooth structure.</p></div>
+            </div>
+          </div>
+          <div class="diff-card">
+            <div class="diff-flex">
+              <div class="diff-icon" style="background:#eff6ff;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg></div>
+              <div><h3>Detailed Occlusal Analysis</h3><p>Verification of proper chewing force distribution to prevent overload and ensure longevity.</p></div>
+            </div>
+          </div>
+          <div class="diff-card">
+            <div class="diff-flex">
+              <div class="diff-icon" style="background:#fdf2f8;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#db2777" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg></div>
+              <div><h3>High-Gloss Finishing</h3><p>Professional-grade polishing that delivers a glass-like shine and texture that perfectly mimics natural tooth enamel.</p></div>
+            </div>
+          </div>
+          <div class="diff-card">
+            <div class="diff-flex">
+              <div class="diff-icon" style="background:#f0fdf4;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div><h3>Bruxism Protocol</h3><p>Custom night guard fabrication when needed to protect restorations and prevent premature wear.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider (scan) -->
+    <div class="divider" aria-hidden="true">
+      <div class="divider-line"></div>
+      <div class="divider-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ═══ iTero Technology ═══ -->
+    <section class="itero-section">
+      <div class="max6">
+        <div class="itero-grid">
+          <div class="itero-img-col">
+            <div class="itero-img">
+              <img src="/lovable-uploads/scanner 3d.webp" alt="iTero Element 5D - Digital diagnostic technology" width="600" height="400" loading="lazy" decoding="async" />
+            </div>
+            <div class="itero-blur" aria-hidden="true"></div>
+          </div>
+          <div>
+            <div class="itero-head">
+              <div class="itero-head-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--dental-purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg></div>
+              <h2>High-Precision Digital Diagnostics</h2>
+            </div>
+            <p class="itero-lead">The <span class="em-purple">iTero Element 5D</span> is the most advanced intraoral scanner on the market, offering real-time diagnostics and millimetric precision.</p>
+            <div class="itero-feats">
+              <div class="itero-feat">
+                <div class="itero-feat-icon" style="background:#faf5ff;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
+                <div><h3>Early Cavity Detection</h3><p>Identifying lesions invisible to the naked eye, enabling preventive treatment.</p></div>
+              </div>
+              <div class="itero-feat">
+                <div class="itero-feat-icon" style="background:#eff6ff;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                <div><h3>Wear Analysis</h3><p>Mapping areas of excessive friction from bruxism or misaligned bite.</p></div>
+              </div>
+              <div class="itero-feat">
+                <div class="itero-feat-icon" style="background:#f0fdf4;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg></div>
+                <div><h3>Digital Impressions</h3><p>3D capture without discomfort, nausea, or traditional impression materials.</p></div>
+              </div>
+              <div class="itero-feat">
+                <div class="itero-feat-icon" style="background:#fefce8;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+                <div><h3>Visual Communication</h3><p>Real-time on-screen visualization for easier understanding of diagnosis and treatment plan.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider (help) -->
+    <div class="divider" aria-hidden="true">
+      <div class="divider-line"></div>
+      <div class="divider-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ═══ FAQ ═══ -->
+    <section class="faq-section">
+      <div class="container-custom">
+        <h2 class="heading-lg faq-heading">Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is an aesthetic dental restoration?<svg class="acc-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+            <div class="faq-body"><p>It is a procedure that rebuilds teeth compromised by cavities, fractures, or cracks using state-of-the-art materials (composite resin or porcelain) that perfectly mimic the color, shine, and texture of natural teeth. Unlike the old dark amalgam "fillings," aesthetic restorations are virtually invisible.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>When is a restoration necessary?<svg class="acc-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+            <div class="faq-body">
+              <p class="mb3">Restorations are recommended in several situations:</p>
+              <ul class="faq-ul">
+                <li>Cavities (small, medium, or extensive)</li>
+                <li>Dental fractures from trauma or wear</li>
+                <li>Cracks causing sensitivity</li>
+                <li>Replacement of old, darkened restorations</li>
+                <li>Shape correction or closing small gaps</li>
+                <li>Reconstruction after <a href="/en/root-canal" class="faq-link">root canal treatment</a></li>
+              </ul>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>What materials are used in aesthetic restorations?<svg class="acc-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+            <div class="faq-body"><p>We use state-of-the-art nano-filled composite resins that offer high strength, natural aesthetics, and durability. For cases requiring maximum longevity (large posterior restorations), we recommend porcelain or lab-processed resin restorations (inlays/onlays), which are fabricated in specialized labs for even greater strength.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Does the restoration procedure hurt?<svg class="acc-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+            <div class="faq-body"><p>No. We use local anesthesia with a comfortable technique. Most patients report no discomfort during the procedure. After the anesthesia wears off, there may be mild sensitivity for 24-48 hours, easily managed with over-the-counter pain medication if needed.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>How long do aesthetic restorations last?<svg class="acc-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+            <div class="faq-body">
+              <p>Durability varies depending on the type of restoration and patient care:</p>
+              <ul class="faq-ul mt3">
+                <li><strong>Direct restorations (composite resin):</strong> 5 to 8 years on average</li>
+                <li><strong>Indirect restorations (porcelain inlay/onlay):</strong> 12 to 15 years or more</li>
+              </ul>
+              <p class="mt3">Factors that extend lifespan: good oral hygiene, regular checkups, avoiding nail-biting, not opening packages with your teeth, and wearing a night guard for bruxism when recommended.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Can I replace my old dark fillings?<svg class="acc-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+            <div class="faq-body"><p>Yes! Replacing old amalgam (metal) fillings with aesthetic composite restorations is one of the most sought-after procedures. Beyond the aesthetic benefit, we eliminate the risk of micro-leakage common in old restorations and remove the metal from your mouth. The replacement is done conservatively, preserving as much healthy tooth structure as possible.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Do composite restorations stain over time?<svg class="acc-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+            <div class="faq-body"><p>Modern composite resins have excellent color stability. With proper care (good hygiene, periodic professional polishing, and moderation with highly pigmented foods like coffee, red wine, and açaí), restorations maintain their original color for many years. When needed, professional polishing can restore the luster.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider (arrow) -->
+    <div class="divider" aria-hidden="true">
+      <div class="divider-line"></div>
+      <div class="divider-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ═══ Final CTA ═══ -->
+    <section class="final-cta">
+      <div class="container-custom final-cta-inner">
+        <div class="final-cta-head">
+          <span class="final-cta-icon" aria-hidden="true"></span>
+          <h2 class="heading-lg">Restore the Health and Beauty of Your Smile</h2>
+        </div>
+        <p class="final-cta-desc">Aesthetic restorations that combine technical precision, nano-filled composite resins, and natural-looking results.</p>
+        <div class="final-cta-btns">
+          <a class="final-cta-btn js-wa-cta" data-label="en_aesthetic_restorations_cta" href={finalWaHref} target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            Book Your Evaluation on WhatsApp
+          </a>
+        </div>
+        <p class="final-cta-footnote">WhatsApp: (21) 99330-4045 | 24h Service</p>
+      </div>
+    </section>
+
+    <!-- ═══ Stats Bar ═══ -->
+    <section class="stats-bar" aria-label="Clinic statistics">
+      <div class="container-custom stats-inner">
+        <div class="stats-grid">
+          <div class="stat">
+            <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></div>
+            <div><p class="stat-v">20+</p><p class="stat-l">Years of Experience</p></div>
+          </div>
+          <div class="stat">
+            <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div><p class="stat-v">4.000+</p><p class="stat-l">Patients Served</p></div>
+          </div>
+          <div class="stat">
+            <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+            <div><p class="stat-v">CRO-RJ</p><p class="stat-l">27.509</p></div>
+          </div>
+          <div class="stat">
+            <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="var(--dental-gold)" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <div><p class="stat-v">5.0 ★</p><p class="stat-l">Google Rating</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ Related Treatments ═══ -->
+    <section class="related-section">
+      <div class="related-container">
+        <h2 class="related-title">Related Treatments</h2>
+        <div class="related-grid">
+          <a href="/en/root-canal" class="related-card">
+            <span class="rel-t">Root Canal</span>
+            <span class="rel-d">Reconstruction after endodontic treatment</span>
+            <span class="rel-more">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+          <a href="/en/teeth-whitening" class="related-card">
+            <span class="rel-t">Teeth Whitening</span>
+            <span class="rel-d">Harmonize restoration colors</span>
+            <span class="rel-more">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+          <a href="/en/veneers-and-lenses" class="related-card">
+            <span class="rel-t">Veneers &amp; Lenses</span>
+            <span class="rel-d">Advanced aesthetics with porcelain</span>
+            <span class="rel-more">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Floating WhatsApp (paridade com WhatsAppButton do SPA) -->
+    <a
+      class="float-wa js-wa-cta"
+      data-label="floating_whatsapp_button"
+      href={floatWaHref}
+      target="_blank"
+      rel="noopener"
+      aria-label="Chat on WhatsApp"
+    >
+      <svg class="pulse" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+      <span class="float-wa-txt">
+        <span class="fw-desk">Discuss my case</span>
+        <span class="fw-mob">Book</span>
+        <span class="fw-sub">WhatsApp 24h</span>
+      </span>
+    </a>
+  </main>
+</SiteLayout>
+
+<style>
+  /* ── Tokens locais (paridade tailwind.config.ts) ── */
+  .en-page {
+    --dp-soft: #5a3f69;
+    --dp-light: #4a2759;
+    --dp-dark: #2a1735;
+    --dg-dark: #9d7f4f;
+    --beige: hsl(51 22% 76%);
+  }
+
+  /* ── Utilitários compartilhados (paridade index.css) ── */
+  .container-custom { width: 100%; max-width: 1400px; margin-inline: auto; padding-inline: 1.5rem; }
+  .content-container { max-width: 80rem; margin-inline: auto; padding-inline: 1.5rem; }
+  .max6 { max-width: 72rem; margin-inline: auto; padding-inline: 1rem; }
+  @media (min-width: 1024px) {
+    .container-custom, .content-container { padding-inline: 2rem; }
+  }
+  .section-spacing { padding-block: 4rem; }
+  @media (min-width: 768px) { .section-spacing { padding-block: 5rem; } }
+  @media (min-width: 1024px) { .section-spacing { padding-block: 6rem; } }
+  .heading-lg { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.875rem; line-height: 2.25rem; }
+  @media (min-width: 768px) { .heading-lg { font-size: 2.25rem; line-height: 2.5rem; } }
+  .em-purple { font-weight: 600; color: var(--dental-purple); }
+  .md-only { display: none; }
+  @media (min-width: 768px) { .md-only { display: inline; } }
+  .mb3 { margin-bottom: 0.75rem; }
+  .mt3 { margin-top: 0.75rem; }
+
+  /* ── Hero ── */
+  .hero { background: linear-gradient(135deg, hsl(250 100% 98%) 0%, hsl(30 100% 97%) 100%); }
+  .hero-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
+  @media (min-width: 1024px) {
+    .hero-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 3rem; }
+    .hero-content { grid-column: span 3 / span 3; }
+    .hero-image-col { grid-column: span 2 / span 2; order: 2; }
+  }
+  .hero-image-col { order: -1; }
+  @media (min-width: 1024px) { .hero-image-col { order: 2; } }
+  .hero-content > * + * { margin-top: 1.5rem; }
+  .breadcrumb { font-size: 0.875rem; opacity: 0.7; }
+  .breadcrumb ol { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.375rem; }
+  .breadcrumb a { color: var(--dp-soft); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--dental-purple); }
+  .breadcrumb .sep { color: var(--dental-gray); display: flex; }
+  .breadcrumb .current { color: var(--dental-purple); font-weight: 500; }
+  .treatment-hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 400;
+    color: var(--dental-purple);
+    line-height: 1.25;
+    font-size: 2.25rem;
+  }
+  @media (min-width: 768px) { .treatment-hero-title { font-size: 3rem; } }
+  @media (min-width: 1024px) { .treatment-hero-title { font-size: 3.75rem; } }
+  .hero-subtitle { font-size: 1.25rem; line-height: 1.75rem; color: var(--dp-soft); font-weight: 500; }
+  @media (min-width: 768px) { .hero-subtitle { font-size: 1.5rem; line-height: 2rem; } }
+  .hero-desc { font-size: 1.125rem; line-height: 1.625; color: var(--dental-gray); max-width: 42rem; }
+  .hero-badges { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .badge {
+    display: inline-flex; align-items: center; border-radius: 9999px;
+    border: 1px solid rgb(179 149 95 / 0.2); background: rgb(179 149 95 / 0.1);
+    color: var(--dg-dark); padding: 0.375rem 1rem; font-size: 0.875rem; font-weight: 500;
+  }
+  .hero-cta-wrap { padding-top: 1rem; }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--dental-purple); color: #fff; text-decoration: none;
+    border-radius: 0.375rem; padding: 1.25rem 1.5rem; font-size: 1rem; font-weight: 500;
+    box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08); transition: all 0.3s;
+  }
+  .hero-cta:hover { background: var(--dp-dark); box-shadow: 0 12px 32px rgba(56, 31, 71, 0.16), 0 6px 16px rgba(56, 31, 71, 0.10); }
+  .hero-image-frame { border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2); }
+  .hero-image-frame img { width: 100%; height: auto; aspect-ratio: 600 / 800; object-fit: cover; transition: transform 0.5s; }
+  .hero-image-frame:hover img { transform: scale(1.02); }
+
+  /* ── Quick Answer ── */
+  .qa-section { padding-block: 2rem; background: #fff; }
+  .quick-answer-box {
+    background: linear-gradient(to right, rgb(56 31 71 / 0.1), rgb(179 149 95 / 0.1));
+    border: 1px solid rgb(179 149 95 / 0.3); border-radius: 0.75rem;
+    padding: 1.5rem; margin-bottom: 2rem; display: flex; align-items: flex-start; gap: 1rem;
+  }
+  .qa-icon { flex-shrink: 0; color: var(--dental-gold); margin-top: 0.25rem; }
+  .qa-title { font-family: Montserrat, sans-serif; font-size: 1.125rem; font-weight: 600; color: var(--dental-purple); margin-bottom: 0.5rem; }
+  .qa-text { color: var(--dental-gray); line-height: 1.625; }
+
+  /* ── Pain points ── */
+  .pain-section { padding-block: 4rem; background: linear-gradient(to bottom right, hsl(51 22% 76% / 0.2), #fff, hsl(51 22% 76% / 0.1)); }
+  .pain-container { max-width: 56rem; margin-inline: auto; padding-inline: 1rem; }
+  .pain-title { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; color: var(--dental-purple); font-size: 1.5rem; line-height: 2rem; margin-bottom: 2.5rem; text-align: center; }
+  @media (min-width: 768px) { .pain-title { font-size: 1.875rem; line-height: 2.25rem; } }
+  .pain-list > * + * { margin-top: 1.25rem; }
+  .pain-card {
+    display: flex; align-items: flex-start; gap: 1rem;
+    background: rgb(255 255 255 / 0.8); padding: 1.5rem; border-radius: 0.75rem;
+    border-left: 4px solid var(--dental-purple);
+    box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08); transition: box-shadow 0.3s;
+  }
+  .pain-card:hover { box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2); }
+  .pain-icon {
+    flex-shrink: 0; width: 3rem; height: 3rem; border-radius: 9999px;
+    background: rgb(56 31 71 / 0.1); display: flex; align-items: center; justify-content: center;
+    transition: background 0.3s;
+  }
+  .pain-card:hover .pain-icon { background: rgb(56 31 71 / 0.2); }
+  .pain-card strong { display: block; color: var(--dental-purple); font-weight: 600; margin-bottom: 0.25rem; }
+  .pain-card span { color: var(--dental-gray); line-height: 1.625; }
+  .pain-conclusion { text-align: center; color: var(--dental-gray); margin-top: 2.5rem; font-size: 1.125rem; line-height: 1.625; }
+
+  /* ── Divider ── */
+  .divider { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-block: 2rem; }
+  @media (min-width: 768px) { .divider { margin-block: 3rem; } }
+  .divider-line { flex: 1; height: 1px; background: rgb(179 149 95 / 0.3); max-width: 8rem; }
+  .divider-icon {
+    width: 3rem; height: 3rem; border-radius: 9999px; background: rgb(179 149 95 / 0.1);
+    display: flex; align-items: center; justify-content: center; color: var(--dental-gold);
+    transition: transform 0.3s;
+  }
+  .divider-icon:hover { transform: scale(1.1); }
+
+  /* ── Doctor Bio ── */
+  .bio-section { padding-block: 4rem; background: linear-gradient(135deg, hsl(250 100% 98%) 0%, hsl(30 100% 97%) 100%); }
+  .bio-heading { margin-bottom: 3rem; text-align: center; color: var(--dental-purple); }
+  .bio-wrap { max-width: 64rem; margin-inline: auto; }
+  .bio-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: start; }
+  @media (min-width: 768px) { .bio-grid { grid-template-columns: 300px 1fr; } }
+  .bio-photo-col { margin-inline: auto; }
+  @media (min-width: 768px) { .bio-photo-col { margin-inline: 0; } }
+  .bio-photo { position: relative; }
+  .bio-photo img { width: 100%; border-radius: 1rem; box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2); }
+  .bio-badge {
+    position: absolute; bottom: -1rem; left: 50%; transform: translateX(-50%);
+    background: var(--dental-gold); color: #fff; padding: 0.5rem 1.5rem; border-radius: 9999px;
+    box-shadow: 0 4px 12px rgb(179 149 95 / 0.3); font-weight: 600; font-size: 0.875rem; white-space: nowrap;
+  }
+  .bio-card { background: #fff; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08); }
+  .bio-head { margin-bottom: 1.5rem; }
+  .bio-head h3 { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.875rem; color: var(--dental-purple); margin-bottom: 0.5rem; }
+  .bio-sub { color: var(--dg-dark); font-weight: 500; font-size: 1.125rem; }
+  .bio-paras { color: var(--dental-gray); line-height: 1.625; }
+  .bio-paras > * + * { margin-top: 1rem; }
+  .bio-creds { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgb(107 107 107 / 0.2); }
+  .bio-creds-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 768px) { .bio-creds-grid { grid-template-columns: repeat(2, 1fr); } }
+  .bio-cred { display: flex; align-items: flex-start; gap: 0.75rem; }
+  .cred-check { flex-shrink: 0; margin-top: 0.25rem; }
+  .cred-t { font-weight: 600; color: var(--dental-purple); }
+  .cred-d { font-size: 0.875rem; color: var(--dental-gray); }
+
+  /* ── Section heads ── */
+  .section-head { text-align: center; margin-bottom: 3rem; }
+  .section-head h2 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; color: var(--dental-purple); font-size: 1.875rem; line-height: 2.25rem; margin-bottom: 1rem; }
+  @media (min-width: 768px) { .section-head h2 { font-size: 2.25rem; line-height: 2.5rem; } }
+  .section-head p { font-size: 1.125rem; color: var(--dental-gray); max-width: 48rem; margin-inline: auto; }
+
+  /* ── Modality cards ── */
+  .modal-section { padding-block: 4rem; background: #fff; }
+  .modal-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3rem; }
+  @media (min-width: 768px) { .modal-grid { grid-template-columns: repeat(2, 1fr); } }
+  .modal-card { background: #fff; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08); transition: box-shadow 0.3s; }
+  .modal-card:hover { box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2); }
+  .modal-img { aspect-ratio: 4 / 3; position: relative; overflow: hidden; }
+  .modal-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+  .modal-card:hover .modal-img img { transform: scale(1.05); }
+  .modal-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgb(56 31 71 / 0.9), rgb(56 31 71 / 0.5), transparent); }
+  .modal-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; color: #fff; }
+  .modal-caption h3 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 1.5rem; color: #fff; margin-bottom: 0.5rem; }
+  .modal-caption p { color: rgb(255 255 255 / 0.9); }
+  .modal-body { padding: 1.5rem; }
+  .modal-desc { color: var(--dental-gray); line-height: 1.625; margin-bottom: 1.5rem; }
+  .ind-block { margin-bottom: 1.5rem; }
+  .ind-block h4 { font-family: Montserrat, sans-serif; font-size: 1.125rem; font-weight: 600; color: var(--dental-purple); margin-bottom: 0.75rem; }
+  .ind-list { list-style: none; }
+  .ind-list > * + * { margin-top: 0.5rem; }
+  .ind-list li { display: flex; align-items: flex-start; gap: 0.5rem; }
+  .ind-list svg { flex-shrink: 0; margin-top: 0.125rem; }
+  .ind-list span { color: var(--dental-gray); }
+
+  /* ── Accordions (details/summary) ── */
+  .acc-item summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+  .acc-item summary::-webkit-details-marker { display: none; }
+  .acc-chev { flex-shrink: 0; transition: transform 0.2s; }
+  .acc-item[open] > summary .acc-chev { transform: rotate(180deg); }
+  .modal-acc { border-bottom: 1px solid rgb(56 31 71 / 0.2); }
+  .modal-acc summary { padding-block: 1rem; color: var(--dental-purple); font-weight: 600; transition: color 0.2s; }
+  .modal-acc summary:hover { color: var(--dental-gold); }
+  .modal-acc .acc-body { padding-bottom: 1rem; font-size: 0.875rem; }
+  .char-rows { padding-top: 0.5rem; }
+  .char-rows > * + * { margin-top: 0.75rem; }
+  .char-row { display: flex; justify-content: space-between; align-items: center; }
+  .char-k { color: var(--dental-gray); font-weight: 600; }
+  .char-v { color: var(--dental-purple); }
+
+  /* ── How to Choose ── */
+  .choose-box { margin-top: 3rem; background: hsl(51 22% 76% / 0.2); border: 2px solid rgb(179 149 95 / 0.3); border-radius: 0.75rem; padding: 2rem; }
+  .choose-flex { display: flex; align-items: flex-start; gap: 1rem; }
+  .choose-icon { width: 3rem; height: 3rem; border-radius: 9999px; background: rgb(179 149 95 / 0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .choose-title { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 1.25rem; color: var(--dental-purple); margin-bottom: 0.75rem; }
+  .choose-p { color: var(--dental-gray); line-height: 1.625; margin-bottom: 1rem; }
+  .choose-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 768px) { .choose-grid { grid-template-columns: repeat(2, 1fr); } }
+  .choose-item { display: flex; align-items: center; gap: 0.5rem; }
+  .choose-item svg { flex-shrink: 0; }
+  .choose-item span { color: var(--dental-gray); }
+  .choose-final { color: var(--dental-purple); font-weight: 600; margin-top: 1rem; }
+
+  /* ── Benefits ── */
+  .benefits-section { padding-block: 4rem; background: hsl(51 22% 76% / 0.2); }
+  .benefits-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+  @media (min-width: 768px) {
+    .benefits-grid { grid-template-columns: repeat(3, 1fr); }
+    .benefit-center { grid-column-start: 2; }
+  }
+  .benefit-card { background: #fff; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08); transition: box-shadow 0.3s; }
+  .benefit-card:hover { box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2); }
+  .benefit-icon { width: 3.5rem; height: 3.5rem; border-radius: 9999px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+  .benefit-card h3 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 1.25rem; color: var(--dental-purple); margin-bottom: 0.75rem; }
+  .benefit-card p { color: var(--dental-gray); line-height: 1.625; }
+
+  /* ── Timeline ── */
+  .process-section { padding-block: 4rem; background: #fff; }
+  .timeline { position: relative; padding-block: 2rem; }
+  .timeline-line { position: absolute; left: 24px; top: 0; width: 2px; height: 100%; background: rgb(179 149 95 / 0.3); }
+  @media (min-width: 768px) { .timeline-line { left: 32px; } }
+  .timeline-steps > * + * { margin-top: 3rem; }
+  @media (min-width: 768px) { .timeline-steps > * + * { margin-top: 4rem; } }
+  .tl-step { position: relative; display: flex; gap: 1rem; }
+  @media (min-width: 768px) { .tl-step { gap: 2rem; } }
+  .tl-num-col { position: relative; flex-shrink: 0; }
+  .tl-num { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 1.875rem; line-height: 1; color: rgb(179 149 95 / 0.3); }
+  @media (min-width: 768px) { .tl-num { font-size: 2.25rem; } }
+  @media (min-width: 1024px) { .tl-num { font-size: 3rem; } }
+  .tl-dot {
+    position: absolute; top: 1rem; left: 22px; width: 1rem; height: 1rem; border-radius: 9999px;
+    background: var(--dental-gold); border: 4px solid #fff; box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+    transform: translateX(-50%);
+  }
+  @media (min-width: 768px) { .tl-dot { top: 1.5rem; left: 30px; } }
+  .tl-content { flex: 1; padding-top: 0.25rem; }
+  @media (min-width: 768px) { .tl-content { padding-top: 0.5rem; } }
+  .tl-icon { margin-bottom: 0.75rem; color: var(--dental-gold); }
+  .tl-content h3 { font-family: Montserrat, sans-serif; font-size: 1.25rem; font-weight: 600; color: var(--dental-purple); margin-bottom: 0.5rem; line-height: 1.25; }
+  @media (min-width: 768px) { .tl-content h3 { font-size: 1.5rem; } }
+  .tl-content p { color: var(--dental-gray); line-height: 1.625; margin-bottom: 0.5rem; }
+  .tl-duration { font-size: 0.875rem; color: var(--dg-dark); font-style: italic; margin-top: 0.5rem; }
+
+  /* ── Differentiators ── */
+  .diff-section { padding-block: 4rem; background: hsl(51 22% 76% / 0.3); }
+  .diff-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+  @media (min-width: 768px) { .diff-grid { grid-template-columns: repeat(2, 1fr); } }
+  .diff-card { background: #fff; padding: 2rem; border-radius: 0.75rem; box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08); transition: box-shadow 0.3s; }
+  .diff-card:hover { box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2); }
+  .diff-flex { display: flex; align-items: flex-start; gap: 1rem; }
+  .diff-icon { width: 3rem; height: 3rem; border-radius: 9999px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .diff-card h3 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 1.25rem; color: var(--dental-purple); margin-bottom: 0.5rem; }
+  .diff-card p { color: var(--dental-gray); line-height: 1.625; }
+
+  /* ── iTero ── */
+  .itero-section { padding-block: 4rem; background: #fff; }
+  .itero-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
+  @media (min-width: 768px) { .itero-grid { grid-template-columns: repeat(2, 1fr); } }
+  .itero-img-col { position: relative; }
+  .itero-img { position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2); }
+  .itero-img img { width: 100%; height: auto; object-fit: cover; }
+  .itero-blur { position: absolute; bottom: -1.5rem; right: -1.5rem; width: 8rem; height: 8rem; background: rgb(56 31 71 / 0.2); border-radius: 9999px; filter: blur(64px); }
+  .itero-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+  .itero-head-icon { width: 3.5rem; height: 3.5rem; border-radius: 9999px; background: rgb(56 31 71 / 0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .itero-head h2 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; color: var(--dental-purple); font-size: 1.875rem; line-height: 2.25rem; }
+  @media (min-width: 768px) { .itero-head h2 { font-size: 2.25rem; line-height: 2.5rem; } }
+  .itero-lead { font-size: 1.125rem; color: var(--dental-gray); line-height: 1.625; margin-bottom: 2rem; }
+  .itero-feats > * + * { margin-top: 1.5rem; }
+  .itero-feat { display: flex; align-items: flex-start; gap: 1rem; }
+  .itero-feat-icon { width: 2.5rem; height: 2.5rem; border-radius: 9999px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .itero-feat h3 { font-family: Montserrat, sans-serif; font-size: 1.125rem; font-weight: 600; color: var(--dental-purple); margin-bottom: 0.25rem; }
+  .itero-feat p { color: var(--dental-gray); }
+
+  /* ── FAQ ── */
+  .faq-section { padding-block: 4rem; background: hsl(51 22% 76% / 0.2); }
+  .faq-heading { margin-bottom: 2rem; text-align: center; color: var(--dental-purple); }
+  .faq-list { max-width: 56rem; margin-inline: auto; }
+  .faq-list > * + * { margin-top: 1rem; }
+  .faq-item { background: #fff; border-radius: 0.5rem; border: 1px solid rgb(56 31 71 / 0.2); padding-inline: 1.5rem; }
+  .faq-item summary {
+    list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+    text-align: left; padding-block: 1.5rem; font-size: 1rem; font-weight: 600; color: var(--dental-purple); transition: color 0.2s;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary:hover { color: var(--dental-gold); }
+  .faq-item[open] > summary .acc-chev { transform: rotate(180deg); }
+  .faq-body { color: var(--dental-gray); line-height: 1.625; padding-bottom: 1.5rem; font-size: 0.875rem; }
+  .faq-ul { list-style: disc; padding-left: 1.25rem; }
+  .faq-ul > * + * { margin-top: 0.5rem; }
+  .faq-link { color: var(--dental-gold); font-weight: 500; text-decoration: none; transition: color 0.2s; }
+  .faq-link:hover { color: var(--dental-purple); }
+
+  /* ── Final CTA ── */
+  .final-cta { padding-block: 5rem; background: linear-gradient(135deg, #381F47 0%, #B3955F 100%); color: #fff; }
+  .final-cta-inner { text-align: center; }
+  .final-cta-head { display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 1rem; }
+  .final-cta-icon { width: 2rem; height: 2rem; color: var(--dental-gold); display: flex; align-items: center; justify-content: center; }
+  .final-cta-head h2 { color: #fff; }
+  .final-cta-desc { font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9; max-width: 42rem; margin-inline: auto; }
+  .final-cta-btns { display: flex; flex-direction: column; gap: 1rem; justify-content: center; align-items: center; }
+  @media (min-width: 640px) { .final-cta-btns { flex-direction: row; } }
+  .final-cta-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--dental-gold); color: var(--dental-purple); text-decoration: none;
+    padding: 1rem 2rem; border-radius: 0.5rem; font-weight: 600; font-size: 1.125rem; transition: all 0.2s;
+  }
+  .final-cta-btn:hover { opacity: 0.9; }
+  .final-cta-footnote { margin-top: 1.5rem; font-size: 0.875rem; opacity: 0.75; }
+
+  /* ── Stats bar ── */
+  .stats-bar { background: rgb(56 31 71 / 0.05); border-top: 1px solid rgb(56 31 71 / 0.1); border-bottom: 1px solid rgb(56 31 71 / 0.1); }
+  .stats-inner { padding-block: 1.5rem; }
+  .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4, 1fr); gap: 2rem; } }
+  .stat { display: flex; align-items: center; gap: 0.75rem; justify-content: center; }
+  .stat-icon { flex-shrink: 0; width: 2.5rem; height: 2.5rem; border-radius: 9999px; background: rgb(179 149 95 / 0.1); display: flex; align-items: center; justify-content: center; }
+  .stat-v { font-size: 1.125rem; font-weight: 600; color: var(--dental-purple); line-height: 1.25; }
+  .stat-l { font-size: 0.75rem; color: var(--dental-gray); line-height: 1.25; }
+
+  /* ── Related ── */
+  .related-section { padding-block: 3rem; background: hsl(51 22% 76% / 0.2); }
+  .related-container { max-width: 56rem; margin-inline: auto; padding-inline: 1rem; }
+  .related-title { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.25rem; color: var(--dental-purple); margin-bottom: 1.5rem; }
+  .related-grid { display: grid; gap: 1rem; }
+  @media (min-width: 640px) { .related-grid { grid-template-columns: repeat(3, 1fr); } }
+  .related-card {
+    display: flex; flex-direction: column; gap: 0.5rem; background: #fff; padding: 1.25rem;
+    border-radius: 0.75rem; border: 1px solid #e5e1d4; text-decoration: none; transition: all 0.2s;
+  }
+  .related-card:hover { border-color: rgb(56 31 71 / 0.3); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+  .rel-t { font-weight: 600; color: var(--dental-purple); font-size: 0.875rem; line-height: 1.375; transition: color 0.2s; }
+  .related-card:hover .rel-t { color: var(--dp-light); }
+  .rel-d { color: var(--dental-gray); font-size: 0.75rem; line-height: 1.625; flex: 1; }
+  .rel-more { display: flex; align-items: center; gap: 0.25rem; color: var(--dental-gold); font-size: 0.75rem; font-weight: 500; margin-top: 0.25rem; }
+
+  /* ── Floating WhatsApp ── */
+  .float-wa {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 50;
+    background: #128C4A; color: #fff; border-radius: 9999px; padding: 1rem;
+    display: flex; align-items: center; gap: 0.5rem; text-decoration: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); transition: all 0.3s;
+  }
+  .float-wa:hover { background: #0F7540; transform: scale(1.05); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+  .float-wa-txt { display: flex; flex-direction: column; text-align: left; line-height: 1.25; }
+  .fw-desk, .fw-sub { display: none; }
+  .fw-mob { font-weight: 500; }
+  @media (min-width: 768px) {
+    .fw-desk { display: inline; font-weight: 500; }
+    .fw-sub { display: inline; font-size: 0.75rem; color: rgb(255 255 255 / 0.8); }
+    .fw-mob { display: none; }
+  }
+  @keyframes wa-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .pulse { animation: wa-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+</style>

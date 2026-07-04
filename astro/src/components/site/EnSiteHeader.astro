@@ -1,0 +1,431 @@
+---
+/**
+ * EnSiteHeader — porte fiel de src/components/en/EnHeader.tsx (micro-site EN).
+ *
+ * Mesma mecânica do SiteHeader (fixo, scroll → beige/95 + blur; mobile sempre
+ * beige; dropdown CSS :hover/:focus-within; menu mobile via checkbox + <details>).
+ * Diferenças fiéis ao original EN:
+ *  - Nav: Home, About, Treatments (dropdown), Emergency, Contact, 🇧🇷 Português.
+ *  - Dropdown com card menor (min-width 200px, shadow-elegant).
+ *  - CTA WhatsApp no menu mobile com mensagem em inglês.
+ */
+import { getEquivalentPath } from '@/utils/languageMap';
+
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const ptPath = getEquivalentPath(path, 'pt');
+
+const treatmentItems = [
+  { title: 'Dental Implants', path: '/en/dental-implants' },
+  { title: 'Veneers & Lenses', path: '/en/veneers-and-lenses' },
+  { title: 'Teeth Whitening', path: '/en/teeth-whitening' },
+  { title: 'Dental Prosthetics', path: '/en/dental-prosthetics' },
+  { title: 'Aesthetic Restorations', path: '/en/aesthetic-restorations' },
+  { title: 'Orthodontics', path: '/en/orthodontics' },
+  { title: 'Root Canal', path: '/en/root-canal' },
+  { title: 'Gum Health', path: '/en/gum-health' },
+  { title: 'General Dentistry', path: '/en/general-dentistry' },
+];
+
+const isActive = (p: string) => (p === '/en' ? path === '/en' : path.startsWith(p));
+const treatmentsActive = treatmentItems.some((t) => path.startsWith(t.path));
+
+const WA_HREF = "https://wa.me/5521993304045?text=Hello!%20I'd%20like%20to%20book%20an%20appointment.";
+---
+
+<header class="site-hdr" id="site-header">
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <input type="checkbox" id="site-nav-toggle" class="nav-toggle" aria-label="Toggle menu" />
+
+  <div class="hdr-inner">
+    <a href="/en" class="brand">Dr. Carla Christoph</a>
+
+    <!-- Google Rating Badge -->
+    <a
+      href="https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="g-badge"
+      aria-label="See our Google reviews - 5.0 stars with 17 reviews"
+    >
+      <svg class="star" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <b>5.0</b>
+      <span class="g-count">(17 reviews)</span>
+    </a>
+
+    <!-- Desktop navigation -->
+    <nav class="desk-nav" aria-label="Main navigation">
+      <a href="/en" class:list={['nav-link', { active: path === '/en' }]}>Home</a>
+      <a href="/en/about" class:list={['nav-link', { active: isActive('/en/about') }]}>About</a>
+
+      <div class="dd">
+        <a href="/en" class:list={['nav-link', 'dd-trigger', { 'active-plain': treatmentsActive }]} tabindex="0">
+          Treatments
+          <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </a>
+        <div class="dd-panel">
+          <div class="dd-card">
+            {treatmentItems.map((item) => (
+              <a href={item.path} class:list={['dd-item', { active: path.startsWith(item.path) }]}>{item.title}</a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <a href="/en/dental-emergency" class:list={['nav-link', { active: isActive('/en/dental-emergency') }]}>Emergency</a>
+      <a href="/en/contact" class:list={['nav-link', { active: isActive('/en/contact') }]}>Contact</a>
+      <a href={ptPath} class="nav-link lang-link">🇧🇷 Português</a>
+    </nav>
+
+    <label for="site-nav-toggle" class="hamburger" aria-hidden="true">
+      <svg class="ic-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+      <svg class="ic-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </label>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="mob-menu">
+    <nav class="mob-nav" aria-label="Mobile menu">
+      <a href="/en" class:list={['mob-link', { active: path === '/en' }]}>Home</a>
+      <a href="/en/about" class:list={['mob-link', { active: isActive('/en/about') }]}>About</a>
+
+      <details class="mob-dd">
+        <summary class:list={['mob-link', 'mob-dd-summary', { active: treatmentsActive }]}>
+          Treatments
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="mob-dd-list">
+          {treatmentItems.map((item) => (
+            <a href={item.path} class:list={['mob-dd-item', { active: path.startsWith(item.path) }]}>{item.title}</a>
+          ))}
+        </div>
+      </details>
+
+      <a href="/en/dental-emergency" class:list={['mob-link', { active: isActive('/en/dental-emergency') }]}>Emergency</a>
+      <a href="/en/contact" class:list={['mob-link', { active: isActive('/en/contact') }]}>Contact</a>
+
+      <!-- WhatsApp CTA — tracking via handler global (js-wa-cta) do Base.astro -->
+      <a
+        href={WA_HREF}
+        class="mob-wa js-wa-cta"
+        data-label="en-site_header-mobile_whatsapp"
+        target="_blank"
+        rel="noopener"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+        Book on WhatsApp
+      </a>
+
+      <a href={ptPath} class="mob-lang">🇧🇷 Versão em Português</a>
+    </nav>
+  </div>
+</header>
+
+<!-- JS mínimo: alterna .is-scrolled (>10px) -->
+<script is:inline>
+  (function () {
+    var h = document.getElementById('site-header');
+    if (!h) return;
+    function onScroll() {
+      h.classList.toggle('is-scrolled', window.scrollY > 10);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
+
+<style>
+  .site-hdr {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 60;
+    padding: 24px 24px;
+    background: transparent;
+    transition: all 0.3s;
+  }
+  @media (min-width: 1024px) {
+    .site-hdr { padding-left: 48px; padding-right: 48px; }
+  }
+  .site-hdr.is-scrolled {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background: hsl(51 22% 76% / 0.95);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  }
+  @media (max-width: 767px) {
+    .site-hdr {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      background: hsl(51 22% 76% / 0.95);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    }
+  }
+
+  .skip-link {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .skip-link:focus {
+    width: auto;
+    height: auto;
+    clip: auto;
+    top: 8px;
+    left: 8px;
+    z-index: 100;
+    background: var(--dental-purple);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    outline: none;
+  }
+
+  .hdr-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .brand {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5rem;
+    color: var(--dental-purple);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .g-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    background: rgb(255 255 255 / 0.5);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgb(179 149 95 / 0.2);
+    border-radius: 999px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .g-badge:hover {
+    border-color: rgb(179 149 95 / 0.4);
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  }
+  @media (min-width: 1024px) {
+    .g-badge { padding: 6px 12px; }
+  }
+  .g-badge .star { color: var(--dental-gold); flex-shrink: 0; }
+  .g-badge b {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--dental-purple);
+  }
+  @media (min-width: 1024px) {
+    .g-badge b { font-size: 0.875rem; }
+  }
+  .g-count {
+    display: none;
+    font-size: 0.75rem;
+    color: rgb(56 31 71 / 0.7);
+    transition: color 0.2s;
+  }
+  @media (min-width: 768px) {
+    .g-count { display: inline; }
+  }
+  .g-badge:hover .g-count { color: var(--dental-purple); }
+
+  .desk-nav {
+    display: none;
+    align-items: center;
+    gap: 24px; /* gap-6 — o EnHeader usa gap menor que o PT */
+  }
+  @media (min-width: 768px) {
+    .desk-nav { display: flex; }
+  }
+  .nav-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgb(56 31 71 / 0.8);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-link:hover { color: var(--dental-gold); }
+  .nav-link.active {
+    color: var(--dental-gold);
+    border-bottom: 2px solid var(--dental-gold);
+    padding-bottom: 2px;
+  }
+  /* Treatments ativo no EN não tem underline (paridade com o original) */
+  .nav-link.active-plain { color: var(--dental-gold); }
+  .lang-link {
+    font-size: 0.75rem;
+    color: rgb(56 31 71 / 0.6);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .lang-link:hover { color: var(--dental-purple); }
+
+  /* Dropdown Treatments */
+  .dd { position: relative; }
+  .dd-trigger { display: inline-flex; align-items: center; gap: 4px; }
+  .dd .chev { transition: transform 0.2s; }
+  .dd:hover .chev,
+  .dd:focus-within .chev { transform: rotate(180deg); }
+  .dd-panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding-top: 8px; /* pt-2 */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.2s;
+  }
+  .dd:hover .dd-panel,
+  .dd:focus-within .dd-panel {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .dd-card {
+    background: #fff;
+    border-radius: 8px;
+    /* shadow-elegant do index.css */
+    box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2);
+    border: 1px solid hsl(51 22% 76% / 0.5);
+    padding: 8px 0;
+    min-width: 200px;
+  }
+  .dd-item {
+    display: block;
+    padding: 8px 16px;
+    font-size: 0.875rem;
+    color: rgb(56 31 71 / 0.8);
+    text-decoration: none;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .dd-item:hover {
+    color: var(--dental-gold);
+    background: hsl(51 22% 76% / 0.2);
+  }
+  .dd-item.active {
+    color: var(--dental-gold);
+    background: hsl(51 22% 76% / 0.3);
+  }
+
+  /* Hamburger */
+  .nav-toggle { position: absolute; opacity: 0; pointer-events: none; }
+  .hamburger {
+    display: none;
+    color: var(--dental-purple);
+    padding: 8px;
+    cursor: pointer;
+    z-index: 70;
+    position: relative;
+  }
+  @media (max-width: 767px) {
+    .hamburger { display: block; }
+  }
+  .hamburger .ic-close { display: none; }
+  .nav-toggle:checked ~ .hdr-inner .hamburger .ic-menu { display: none; }
+  .nav-toggle:checked ~ .hdr-inner .hamburger .ic-close { display: block; }
+
+  /* Mobile menu */
+  .mob-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: hsl(51 22% 76%);
+    z-index: 50;
+    padding: 96px 24px 0;
+    overflow-y: auto;
+  }
+  .nav-toggle:checked ~ .mob-menu { display: block; }
+  @media (min-width: 768px) {
+    .nav-toggle:checked ~ .mob-menu { display: none; }
+  }
+  .mob-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px; /* gap-6 */
+    padding-bottom: 48px;
+  }
+  .mob-link {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--dental-purple);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .mob-link:hover { color: var(--dental-gold); }
+  .mob-link.active { color: var(--dental-gold); }
+
+  .mob-dd { text-align: center; }
+  .mob-dd-summary {
+    list-style: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .mob-dd-summary::-webkit-details-marker { display: none; }
+  .mob-dd .chev { transition: transform 0.2s; }
+  .mob-dd[open] .chev { transform: rotate(180deg); }
+  .mob-dd-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .mob-dd-item {
+    font-size: 1rem;
+    color: rgb(56 31 71 / 0.7);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .mob-dd-item:hover { color: var(--dental-gold); }
+  .mob-dd-item.active { color: var(--dental-gold); }
+
+  .mob-wa {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #128c4a;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 999px;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .mob-wa:hover { background: #0f7540; }
+
+  .mob-lang {
+    margin-top: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgb(56 31 71 / 0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .mob-lang:hover { color: var(--dental-gold); }
+</style>

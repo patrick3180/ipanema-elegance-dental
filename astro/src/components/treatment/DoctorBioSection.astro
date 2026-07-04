@@ -1,0 +1,266 @@
+---
+/**
+ * DoctorBioSection — porte fiel de src/components/treatment/DoctorBioSection.tsx (pt).
+ * Parágrafos da bio entram pelo slot default (copy verbatim, pode conter <a>).
+ * credentials: ícone default CheckCircle dourado (igual ao React).
+ * quote opcional (caixa com aspas decorativas).
+ */
+import Icon from './Icon.astro';
+import '../../styles/treatment.css';
+
+export interface DoctorCredential {
+  icon?: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  sectionTitle: string;
+  credentials: DoctorCredential[];
+  badgeText?: string;
+  quote?: string;
+  doctorImage?: string;
+  doctorImageWidth?: number;
+  doctorImageHeight?: number;
+  doctorAlt?: string;
+  doctorName?: string;
+  doctorSubtitle?: string;
+}
+
+const {
+  sectionTitle,
+  credentials,
+  badgeText = '20+ Anos de Experiência',
+  quote,
+  doctorImage = '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
+  doctorImageWidth = 800,
+  doctorImageHeight = 1200,
+  doctorAlt = 'Dra. Carla Christoph - Especialista em Odontologia',
+  doctorName = 'Dra. Carla Christoph',
+  doctorSubtitle = 'CRO-RJ 27.509 | Especialista em Prótese Dentária e Implantodontia',
+} = Astro.props;
+---
+
+<section class="dbs bg-gradient-purple-soft">
+  <div class="container-custom">
+    <h2 class="heading-lg dbs-title tx-purple">{sectionTitle}</h2>
+
+    <div class="dbs-wrap">
+      <div class="dbs-grid">
+        <div class="dbs-photo-col">
+          <div class="dbs-photo-frame">
+            <img
+              src={doctorImage}
+              alt={doctorAlt}
+              width={doctorImageWidth}
+              height={doctorImageHeight}
+              loading="lazy"
+              decoding="async"
+              class="dbs-photo shadow-elegant"
+            />
+            {badgeText && <div class="dbs-badge shadow-gold">{badgeText}</div>}
+          </div>
+        </div>
+
+        <div class="dbs-card shadow-soft">
+          <div class="dbs-head">
+            <h3 class="dbs-name">{doctorName}</h3>
+            <p class="dbs-sub">{doctorSubtitle}</p>
+          </div>
+
+          <div class="dbs-paragraphs">
+            <slot />
+          </div>
+
+          <div class="dbs-credentials">
+            <div class="dbs-cred-grid">
+              {credentials.map((cred) => (
+                <div class="dbs-cred">
+                  <Icon name={cred.icon || 'check-circle'} size={20} class="dbs-cred-icon tx-gold" />
+                  <div>
+                    <p class="dbs-cred-title">{cred.title}</p>
+                    <p class="dbs-cred-desc">{cred.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {quote && (
+            <div class="dbs-quote">
+              <div class="dbs-quote-mark dbs-quote-open">"</div>
+              <div class="dbs-quote-mark dbs-quote-close">"</div>
+              <p class="dbs-quote-text">{quote}</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .dbs {
+    padding-block: 4rem;
+  }
+  .dbs-title {
+    text-align: center;
+    margin: 0 0 3rem;
+  }
+  .dbs-wrap {
+    max-width: 64rem;
+    margin-inline: auto;
+  }
+  .dbs-grid {
+    display: grid;
+    gap: 2rem;
+    align-items: start;
+  }
+  @media (min-width: 768px) {
+    .dbs-grid {
+      grid-template-columns: 300px 1fr;
+    }
+  }
+  .dbs-photo-col {
+    margin-inline: auto;
+  }
+  @media (min-width: 768px) {
+    .dbs-photo-col {
+      margin-inline: 0;
+    }
+  }
+  .dbs-photo-frame {
+    position: relative;
+  }
+  .dbs-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    display: block;
+  }
+  .dbs-badge {
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--dc-gold);
+    color: #fff;
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+  .dbs-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+  }
+  .dbs-head {
+    margin-bottom: 1.5rem;
+  }
+  .dbs-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: var(--dc-purple);
+    margin: 0 0 0.5rem;
+  }
+  .dbs-sub {
+    color: var(--dc-gold-dark);
+    font-weight: 500;
+    font-size: 1.125rem;
+    margin: 0;
+  }
+  .dbs-paragraphs {
+    color: var(--dc-gray);
+    line-height: 1.625;
+  }
+  .dbs-paragraphs :global(p + p) {
+    margin-top: 1rem;
+  }
+  .dbs-paragraphs :global(p) {
+    margin: 0;
+  }
+  .dbs-paragraphs :global(p + p) {
+    margin-top: 1rem;
+  }
+  .dbs-paragraphs :global(a) {
+    color: var(--dc-gold);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .dbs-paragraphs :global(a:hover) {
+    color: var(--dc-purple);
+  }
+  .dbs-credentials {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(82, 82, 82, 0.2);
+  }
+  .dbs-cred-grid {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 768px) {
+    .dbs-cred-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .dbs-cred {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .dbs-cred-icon {
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+  .dbs-cred-title {
+    font-weight: 600;
+    color: var(--dc-purple);
+    margin: 0;
+  }
+  .dbs-cred-desc {
+    font-size: 0.875rem;
+    color: var(--dc-gray);
+    margin: 0;
+  }
+  .dbs-quote {
+    position: relative;
+    background: linear-gradient(to bottom right, rgba(56, 31, 71, 0.05), rgba(179, 149, 95, 0.05));
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+    overflow: hidden;
+    border: 1px solid rgba(179, 149, 95, 0.1);
+  }
+  .dbs-quote-mark {
+    position: absolute;
+    font-size: 3rem;
+    color: rgba(179, 149, 95, 0.2);
+    font-family: Georgia, serif;
+    line-height: 1;
+  }
+  .dbs-quote-open {
+    top: 1rem;
+    left: 1rem;
+  }
+  .dbs-quote-close {
+    bottom: 1rem;
+    right: 1rem;
+  }
+  .dbs-quote-text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    color: var(--dc-purple);
+    font-style: italic;
+    line-height: 1.625;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    padding-inline: 1rem;
+    margin: 0;
+  }
+</style>

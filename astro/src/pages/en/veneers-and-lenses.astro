@@ -1,0 +1,1182 @@
+---
+/**
+ * /en/veneers-and-lenses — porte fiel de src/pages/en/EnVeneersAndLensesPage.tsx (686 linhas).
+ * Copy VERBATIM. Layout: SiteLayout lang="en" (EnSiteHeader/EnSiteFooter).
+ * CTAs WhatsApp = âncoras .js-wa-cta (handler global do Base.astro).
+ */
+import SiteLayout from '../../layouts/SiteLayout.astro';
+
+// ── Lucide icon paths (inline SVG, fiel aos ícones do React) ──
+const P: Record<string, string> = {
+  sparkles: '<path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/>',
+  checkCircle: '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>',
+  checkCircle2: '<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>',
+  star: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+  arrowRight: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+  shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+  heart: '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>',
+  award: '<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>',
+  search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+  helpCircle: '<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>',
+  droplet: '<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>',
+  maximize2: '<polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/>',
+  ruler: '<path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/>',
+  palette: '<circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>',
+  alertCircle: '<circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>',
+  calendar: '<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/>',
+  users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  chevronDown: '<path d="m6 9 6 6 6-6"/>',
+  chevronRight: '<path d="m9 18 6-6-6-6"/>',
+  x: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+};
+const ic = (name: string, cls = '', size = 24) =>
+  `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${cls}" aria-hidden="true">${P[name]}</svg>`;
+
+// ── FAQs (12 — verbatim do React) ──
+const faqs = [
+  { question: "What's the difference between dental contact lenses and composite veneers?", answer: "Dental contact lenses are ultra-thin porcelain shells (0.2–0.5mm) that require minimal tooth preparation, ideal for lasting aesthetic changes with maximum naturalness. Composite veneers are thicker restorations (0.7–1.5mm) sculpted directly in the office at a more accessible cost. Lenses last 15–20 years and don't stain, while composite veneers last 5–8 years and may need periodic polishing." },
+  { question: "Do my teeth need to be filed down significantly?", answer: "No. Our philosophy prioritizes maximum preservation of tooth structure. For lenses, the preparation is minimal (0.1–0.3mm when necessary), limited to the superficial enamel. For composite veneers, the preparation is also conservative. The goal is to ensure a perfect fit and long-lasting aesthetic result while preserving as much of your natural teeth as possible." },
+  { question: "How long does the complete treatment take?", answer: "Dental contact lenses: 2–3 appointments over 15–20 days. The first appointment is for planning and digital impression, the second for Smile Test Drive approval, and the third for bonding. Composite veneers: 1–2 appointments, as they are sculpted directly in the office. We schedule ample time for each session to ensure quality." },
+  { question: "Does the smile enhancement treatment hurt?", answer: "No. All aesthetic procedures are performed with maximum comfort, using local anesthesia whenever necessary. The lens bonding process is a delicate procedure that causes no pain. There may be mild sensitivity for the first few days, easily managed with simple pain relievers if needed. Your comfort is our priority." },
+  { question: "What is the Smile Test Drive (mock-up)?", answer: "It's a technique where we create your new smile using non-adhesive provisional resin directly on your teeth, without any filing. You can look in the mirror, take photos, record videos, talk, and smile. It's a unique experience! We adjust together until it's exactly right. Only after your 100% approval do we proceed with the definitive treatment. This is one of our greatest advantages." },
+  { question: "Can the lenses look artificial?", answer: "This is one of the most common concerns, and our greatest priority is to avoid that. When expertly crafted by a specialist, absolutely not. We use state-of-the-art ceramics that perfectly mimic the beauty of natural teeth. The secret lies in complete facial analysis, personalized shade layering, and individualized proportions. The result is a smile praised for its naturalness." },
+  { question: "Can I get lenses even if my teeth are crooked?", answer: "Yes, as long as the misalignment is mild. Lenses can correct minor misalignments, rotations, and gaps. However, for severe crowding or significant bite issues, prior orthodontic treatment may be necessary for a lasting, healthy result. During your consultation, we'll evaluate your specific case and recommend the best approach." },
+  { question: "Do I need veneers on all my teeth?", answer: "Not necessarily. Many cases involve only the upper front teeth (4 to 10 teeth). During the evaluation, we analyze your smile to determine how many teeth need to be included for a harmonious result. The treatment plan is individualized for each person." },
+  { question: "What is the investment for dental lenses and veneers in Ipanema?", answer: "The investment varies depending on the number of teeth treated, case complexity, and material chosen. Dental contact lenses require a higher investment due to imported ceramic materials and superior durability (15–20 years). Composite veneers offer excellent value for those seeking immediate results at a more accessible price point. We offer flexible payment plans. The value reflects the complete experience, advanced technology, and personalized follow-up care. Detailed pricing is provided during your evaluation." },
+  { question: "Can lenses stain from coffee, wine, or smoking?", answer: "The ceramic used in lenses does not stain. Unlike composite veneers, the ceramic material is impermeable and permanently maintains its original shine and color. You can continue enjoying coffee, red wine, tea, and other foods without worry. Only the adjacent natural teeth require attention with prior whitening to avoid contrast." },
+  { question: "How do I maintain lenses and veneers?", answer: "Ceramic lenses: Normal oral hygiene (brushing, flossing, mouthwash), avoid biting hard objects (pens, nails, ice), use a night guard if you grind your teeth. Semi-annual checkups for evaluation and professional polishing. Composite veneers: Same care, but require professional polishing every 6 months to maintain shine. Both can last many years with proper care." },
+  { question: "How does the planning consultation work?", answer: "It's an in-depth conversation to understand your desires and expectations. We perform digital scanning with the iTero Element 5D and a complete analysis of your smile and face. Together, we define the best treatment plan, explaining the pros and cons of each option (lenses vs. veneers). You'll leave the consultation with all the information needed to make an informed decision." },
+];
+
+// ── Comparison table (espelho do ComparisonTable React: 1ª linha = header) ──
+const cmpRows = [
+  ['Thickness', '0.2–0.5mm', '0.7–1.5mm'],
+  ['Tooth preparation', 'Minimal', 'Minimal to moderate'],
+  ['Durability', '15–20 years', '5–8 years'],
+  ['Staining', 'Stain-resistant', 'May stain over time'],
+  ['Appointments required', '2–3 (15–20 days)', '1–2 (immediate)'],
+  ['Repairability', 'No', 'Yes'],
+  ['Aesthetics', 'Superior translucency', 'Very good'],
+  ['Investment', 'Higher investment', 'More affordable'],
+  ['Strength', 'High', 'Moderate'],
+];
+// ── Schemas (verbatim do SEOHead React) ──
+const schemas = [
+  JSON.stringify({
+    "@context": "https://schema.org", "@type": "MedicalWebPage",
+    "name": "Dental Contact Lenses and Composite Veneers in Ipanema",
+    "description": "Ultra-thin dental contact lenses and composite veneers with Dr. Carla Christoph, Prosthodontic specialist. 20+ years of experience in Ipanema.",
+    "url": "https://dracarlachristoph.com/en/veneers-and-lenses",
+    "inLanguage": "en",
+    "medicalSpecialty": "Cosmetic Dentistry",
+    "author": { "@type": "Dentist", "name": "Dr. Carla Christoph", "qualification": "Prosthodontic Specialist", "experienceYears": 20, "areaServed": { "@type": "City", "name": "Ipanema, Rio de Janeiro" } },
+    "offers": { "@type": "Offer", "priceCurrency": "BRL", "availability": "https://schema.org/InStock", "description": "Contact us for personalized pricing" }
+  }),
+  JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en",
+    "mainEntity": faqs.map((faq) => ({ "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": faq.answer } }))
+  }),
+  JSON.stringify({
+    "@context": "https://schema.org", "@type": "WebPage",
+    "name": "Dental Veneers & Contact Lenses in Ipanema",
+    "url": "https://dracarlachristoph.com/en/veneers-and-lenses",
+    "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".treatment-hero-title", ".treatment-hero-description", ".quick-answer-box"] },
+    "inLanguage": "en"
+  }),
+  // BreadcrumbList — gerado pelo TreatmentHero no React
+  JSON.stringify({
+    "@context": "https://schema.org", "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dracarlachristoph.com/en" },
+      { "@type": "ListItem", "position": 2, "name": "Treatments", "item": "https://dracarlachristoph.com/en" },
+      { "@type": "ListItem", "position": 3, "name": "Lenses & Veneers" }
+    ]
+  }),
+];
+
+// ── WhatsApp CTAs (mensagens verbatim do React) ──
+const WA = 'https://wa.me/5521993304045?text=';
+const waHero = WA + encodeURIComponent("Hello! I would like to schedule a consultation about Dental Aesthetics That Don't Look Artificial — Smile Test Drive.");
+const waMid = WA + encodeURIComponent("Hello! I'd like to schedule a Smile Test Drive consultation.");
+const waFinal = WA + encodeURIComponent('Hello! I saw the page about Lenses and Veneers and would like to book an evaluation.');
+---
+
+<SiteLayout
+  title="Veneers & Contact Lenses in Ipanema | Dr. Carla Christoph, Rio de Janeiro"
+  description="Porcelain veneers, contact lenses, and composite bonding in Ipanema. Smile Test Drive preview with iTero scanner. Dr. Carla Christoph, CRO-RJ 27.509."
+  canonical="https://dracarlachristoph.com/en/veneers-and-lenses"
+  ogImage="https://dracarlachristoph.com/og-image.jpg"
+  preloadImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+  schemas={schemas}
+  lang="en"
+>
+  <Fragment slot="head">
+    <link rel="alternate" hreflang="pt-BR" href="https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina" />
+    <link rel="alternate" hreflang="en" href="https://dracarlachristoph.com/en/veneers-and-lenses" />
+    <link rel="alternate" hreflang="x-default" href="https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina" />
+  </Fragment>
+
+  <main id="main-content">
+    <!-- ═══ Hero ═══ -->
+    <section class="t-hero" aria-label="Treatment hero">
+      <div class="content-c">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <nav class="crumbs" aria-label="Breadcrumb">
+              <a href="/en">Home</a>
+              <Fragment set:html={ic('chevronRight', 'crumb-sep', 14)} />
+              <a href="/en">Treatments</a>
+              <Fragment set:html={ic('chevronRight', 'crumb-sep', 14)} />
+              <span class="crumb-cur">Lenses &amp; Veneers</span>
+            </nav>
+            <h1 class="hero-title treatment-hero-title">Dental Aesthetics That Don't Look Artificial — Smile Test Drive</h1>
+            <p class="hero-sub">Dental Aesthetics with Dr. Carla Christoph</p>
+            <p class="hero-desc treatment-hero-description">A provisional simulation right on your teeth before you commit. You see it, feel it, and approve it. Porcelain lenses or composite veneers — each case has its indication. Digital scanning with iTero Element 5D and high-translucency ceramics.</p>
+            <div class="hero-badges">
+              <span class="badge">20+ years of experience</span>
+              <span class="badge">Smile Test Drive</span>
+              <span class="badge">CRO-RJ 27.509</span>
+            </div>
+            <div class="hero-cta-wrap">
+              <a class="btn-hero js-wa-cta" data-label="en-veneers-and-lenses_hero_whatsapp" href={waHero} target="_blank" rel="noopener" aria-label="Schedule consultation via WhatsApp">
+                <Fragment set:html={ic('calendar', 'mr8', 20)} />
+                Book Your Consultation
+              </a>
+            </div>
+          </div>
+          <div class="hero-img">
+            <div class="hero-img-frame">
+              <img src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" alt="Dr. Carla Christoph - Dental Aesthetics That Don't Look Artificial — Smile Test Drive Specialist" width="800" height="1200" loading="eager" fetchpriority="high" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ Quick Answer ═══ -->
+    <section class="qa-section">
+      <div class="container-c">
+        <div class="qa-box quick-answer-box">
+          <div class="qa-ic"><Fragment set:html={ic('checkCircle2', 'gold', 24)} /></div>
+          <div>
+            <h2 class="qa-title">Quick Answer</h2>
+            <p class="qa-text">Dental contact lenses are ultra-thin porcelain shells (0.2–0.5mm) bonded to teeth with minimal preparation, ideal for lasting aesthetic changes. Composite veneers are thicker restorations (0.7–1.5mm) sculpted directly in the office. At Dr. Carla Christoph's practice in Ipanema, we offer the Smile Test Drive (mock-up) so you can preview the result before starting. Lenses last 15–20 years and don't stain; composite veneers last 5–8 years. Treatment takes 2–3 appointments (15–20 days) for lenses and 1–2 appointments for composite veneers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ Empathetic Pain Points ═══ -->
+    <section class="pain-section">
+      <div class="narrow-c">
+        <h2 class="pain-title">Do you relate to any of these situations?</h2>
+        <div class="pain-list">
+          <div class="pain-card b-purple">
+            <div class="pain-ic"><Fragment set:html={ic('sparkles', 'purple', 24)} /></div>
+            <div>
+              <strong>Unhappy with the color or shape of your teeth</strong>
+              <span>making you avoid smiling naturally in photos and conversations?</span>
+            </div>
+          </div>
+          <div class="pain-card b-gold">
+            <div class="pain-ic"><Fragment set:html={ic('alertCircle', 'gold', 24)} /></div>
+            <div>
+              <strong>Misaligned, gapped, or chipped teeth</strong>
+              <span>affecting your professional and social confidence?</span>
+            </div>
+          </div>
+          <div class="pain-card b-purple-soft">
+            <div class="pain-ic"><Fragment set:html={ic('heart', 'purple-soft', 24)} /></div>
+            <div>
+              <strong>Fear of an artificial-looking result</strong>
+              <span>or excessive filing of your natural teeth?</span>
+            </div>
+          </div>
+        </div>
+        <p class="pain-conclusion">Well-planned lenses and veneers deliver naturalness and harmony — without exaggeration.<br class="md-br" /> We offer the Smile Test Drive so you can approve everything before starting.</p>
+      </div>
+    </section>
+
+    <div class="divider"><span class="d-line"></span><span class="d-circle"><Fragment set:html={ic('sparkles', '', 20)} /></span><span class="d-line"></span></div>
+
+    <!-- ═══ Why Choose - 3 cards ═══ -->
+    <section class="sec-white">
+      <div class="wide-c">
+        <div class="sec-head">
+          <h2>Why Choose Lenses or Veneers?</h2>
+          <p>Results that go beyond aesthetics</p>
+        </div>
+        <div class="grid-3">
+          <div class="benefit-card">
+            <div class="benefit-head">
+              <div class="benefit-ic bg-red-50"><Fragment set:html={ic('heart', 'red', 24)} /></div>
+              <h3>Self-Esteem &amp; Confidence</h3>
+            </div>
+            <ul class="check-list">
+              {['Change how you see yourself and how others see you', 'Smile without hesitation in photos and social events', 'Regain the confidence to fully express yourself', 'Positive impact on personal and professional relationships', 'A lasting sense of well-being and satisfaction with your image'].map((t) => (
+                <li><Fragment set:html={ic('checkCircle', 'gold li-ic', 16)} /><span>{t}</span></li>
+              ))}
+            </ul>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-head">
+              <div class="benefit-ic bg-purple-50"><Fragment set:html={ic('sparkles', 'purple', 24)} /></div>
+              <h3>Naturalness &amp; Facial Harmony</h3>
+            </div>
+            <ul class="check-list">
+              {['Complete facial analysis for harmony with your unique features', 'Individualized proportions respecting your age and personality', "Natural results praised for beauty, not for looking 'done'", 'Texture and color that perfectly mimic natural teeth', 'Enhancement that highlights your natural beauty'].map((t) => (
+                <li><Fragment set:html={ic('checkCircle', 'gold li-ic', 16)} /><span>{t}</span></li>
+              ))}
+            </ul>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-head">
+              <div class="benefit-ic bg-blue-50"><Fragment set:html={ic('shield', 'blue', 24)} /></div>
+              <h3>Technology &amp; Integrated Care</h3>
+            </div>
+            <ul class="check-list">
+              {['iTero Element 5D: comfortable digital impression — no messy molds', 'Smile Test Drive: approve BEFORE definitive treatment', 'Health always before aesthetics (complete periodontal evaluation)', 'Conservative techniques that preserve your natural teeth', 'Long-term follow-up for treatment longevity'].map((t) => (
+                <li><Fragment set:html={ic('checkCircle', 'gold li-ic', 16)} /><span>{t}</span></li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ Modalities - Lenses vs Composite Veneers ═══ -->
+    <section class="sec-white">
+      <div class="wide-c">
+        <div class="sec-head">
+          <h2>Lenses or Veneers: Understand the Differences</h2>
+          <p>Every smile is unique. Learn about the options for an informed choice.</p>
+        </div>
+        <div class="grid-2">
+          <!-- Card 1 - Dental Contact Lenses -->
+          <div class="modal-card">
+            <div class="modal-img">
+              <img src="/Lentes.webp" alt="Ultra-thin ceramic dental contact lenses" width="512" height="512" loading="lazy" decoding="async" />
+              <div class="modal-overlay"></div>
+              <div class="modal-caption">
+                <h3>Ceramic Dental Contact Lenses</h3>
+                <p>Ultra-thin ceramic shells (0.2–0.5mm) bonded to the front surface of your teeth. Ideal for those seeking significant aesthetic improvement with maximum preservation of natural tooth structure.</p>
+              </div>
+            </div>
+            <div class="modal-body">
+              <details class="acc" name="lens-acc">
+                <summary><span>Key Characteristics</span><Fragment set:html={ic('chevronDown', 'acc-chev', 16)} /></summary>
+                <div class="acc-content">
+                  <ul class="tri-list">
+                    {[['Thickness:', '0.2–0.5mm (ultra-thin)'], ['Material:', 'Lithium disilicate or feldspathic ceramic'], ['Preparation:', 'Minimal (0.1–0.3mm) when necessary'], ['Durability:', '15–20 years'], ['Aesthetics:', 'Superior translucency, natural appearance'], ['Resistance:', 'Stain-proof against food and beverages']].map(([label, val]) => (
+                      <li><span class="tri">▸</span><span><strong>{label}</strong> {val}</span></li>
+                    ))}
+                  </ul>
+                </div>
+              </details>
+              <details class="acc" name="lens-acc">
+                <summary><span>Advantages &amp; Considerations</span><Fragment set:html={ic('chevronDown', 'acc-chev', 16)} /></summary>
+                <div class="acc-content">
+                  <h4 class="adv-title"><Fragment set:html={ic('checkCircle', '', 16)} /> Advantages</h4>
+                  <ul class="tick-list">
+                    {['Maximum dental preservation (up to 95%)', 'Extremely natural result', 'Does not alter sensitivity in most cases', 'Permanently stain-resistant', 'Biocompatible and allergy-free', 'Proven long-term durability'].map((t) => (
+                      <li><span class="tick">✓</span><span>{t}</span></li>
+                    ))}
+                  </ul>
+                  <h4 class="cons-title">Considerations</h4>
+                  <ul class="dot-list">
+                    {['Higher investment', 'Requires 2–3 appointments (15–20 day process)', 'Specialized laboratory (fabrication time)', 'Does not allow partial repairs'].map((t) => (
+                      <li><span class="dot">•</span><span>{t}</span></li>
+                    ))}
+                  </ul>
+                </div>
+              </details>
+              <details class="acc" name="lens-acc">
+                <summary><span>Ideal For</span><Fragment set:html={ic('chevronDown', 'acc-chev', 16)} /></summary>
+                <div class="acc-content">
+                  <div class="ideal-box"><p>Those seeking the highest aesthetics and durability, who wish to preserve their natural teeth as much as possible and are willing to invest in a long-lasting ceramic treatment.</p></div>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <!-- Card 2 - Composite Veneers -->
+          <div class="modal-card">
+            <div class="modal-img">
+              <img src="/lovable-uploads/Faceta de Resina.webp" alt="Composite veneers being applied directly" width="800" height="800" loading="lazy" decoding="async" />
+              <div class="modal-overlay"></div>
+              <div class="modal-caption">
+                <h3>Composite Veneers</h3>
+                <p>Direct restorations handcrafted in the office. An excellent option for those seeking immediate aesthetic improvement at a more accessible investment.</p>
+              </div>
+            </div>
+            <div class="modal-body">
+              <details class="acc" name="resin-acc">
+                <summary><span>Key Characteristics</span><Fragment set:html={ic('chevronDown', 'acc-chev', 16)} /></summary>
+                <div class="acc-content">
+                  <ul class="tri-list">
+                    {[['Thickness:', '0.7–1.5mm'], ['Material:', 'Nanoparticle composite resin'], ['Preparation:', 'Minimal to moderate'], ['Durability:', '5–8 years'], ['Aesthetics:', 'Very good, immediate result'], ['Application:', 'Directly in-office in 1–2 appointments']].map(([label, val]) => (
+                      <li><span class="tri">▸</span><span><strong>{label}</strong> {val}</span></li>
+                    ))}
+                  </ul>
+                </div>
+              </details>
+              <details class="acc" name="resin-acc">
+                <summary><span>Advantages &amp; Considerations</span><Fragment set:html={ic('chevronDown', 'acc-chev', 16)} /></summary>
+                <div class="acc-content">
+                  <h4 class="adv-title"><Fragment set:html={ic('checkCircle', '', 16)} /> Advantages</h4>
+                  <ul class="tick-list">
+                    {['More accessible investment', 'Results in 1–2 appointments (fast process)', 'Direct fabrication without a laboratory', 'Repairs possible if needed', 'Excellent cost-benefit ratio', 'Faster results'].map((t) => (
+                      <li><span class="tick">✓</span><span>{t}</span></li>
+                    ))}
+                  </ul>
+                  <h4 class="cons-title">Considerations</h4>
+                  <ul class="dot-list">
+                    {['Less durable than ceramic', 'May stain over time (requires periodic polishing)', 'Less resistant to fractures', 'Needs more frequent replacement'].map((t) => (
+                      <li><span class="dot">•</span><span>{t}</span></li>
+                    ))}
+                  </ul>
+                </div>
+              </details>
+              <details class="acc" name="resin-acc">
+                <summary><span>Ideal For</span><Fragment set:html={ic('chevronDown', 'acc-chev', 16)} /></summary>
+                <div class="acc-content">
+                  <div class="ideal-box"><p>Those who want to improve their smile with a smaller investment, less complex cases, immediate results, or as a temporary option while planning a definitive treatment.</p></div>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"><span class="d-line"></span><span class="d-circle"><Fragment set:html={ic('sparkles', '', 20)} /></span><span class="d-line"></span></div>
+
+    <!-- ═══ Comparison Table ═══ -->
+    <section class="sec-beige20 pb-tight">
+      <div class="wide-c">
+        <div class="sec-head">
+          <h2>Detailed Comparison: Lenses vs. Veneers</h2>
+          <p>Side-by-side comparison of each treatment's characteristics</p>
+        </div>
+        <div class="cmp-wrap">
+          <h3 class="cmp-title">Comparação</h3>
+          <div class="cmp-scroll">
+            <table class="cmp-table">
+              <thead>
+                <tr><th class="th-left">Critério</th><th>Ceramic Lenses</th><th>Composite Veneers</th></tr>
+              </thead>
+              <tbody>
+                {cmpRows.map((row, i) => (
+                  <tr class={i % 2 === 0 ? 'even' : ''}>
+                    <td class="td-crit">{row[0]}</td>
+                    <td class="td-c">{row[1] === 'No' ? <Fragment set:html={ic('x', 'cell-x', 20)} /> : <span class="cell-txt">{row[1]}</span>}</td>
+                    <td class="td-c">{row[2] === 'Yes' ? <Fragment set:html={ic('checkCircle2', 'cell-ok', 20)} /> : <span class="cell-txt">{row[2]}</span>}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="cmp-note"><p>The ideal choice depends on your specific case. During your consultation, we'll evaluate in detail and recommend the best option for you.</p></div>
+      </div>
+    </section>
+
+    <div class="divider"><span class="d-line"></span><span class="d-circle"><Fragment set:html={ic('star', '', 20)} /></span><span class="d-line"></span></div>
+
+    <!-- ═══ Doctor Bio ═══ -->
+    <section class="bio-section">
+      <div class="container-c">
+        <h2 class="bio-sec-title">Your Dentist for Dental Aesthetics</h2>
+        <div class="bio-wrap">
+          <div class="bio-photo-col">
+            <div class="bio-photo">
+              <img src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp" alt="Dr. Carla Christoph - Dental Specialist" width="800" height="1200" loading="lazy" decoding="async" />
+              <div class="bio-badge">20+ Years of Experience</div>
+            </div>
+          </div>
+          <div class="bio-card">
+            <div class="bio-name-wrap">
+              <h3>Dr. Carla Christoph</h3>
+              <p class="bio-sub">CRO-RJ 27.509 | Prosthodontic Specialist</p>
+            </div>
+            <div class="bio-paras">
+              <p>With over two decades in Ipanema, Dr. Carla has built her reputation by treating each patient individually, with time and attention. Her background includes 8 years as a military dentist at the Navy's Central Dental Clinic, experience that brought discipline and precision to her clinical practice.</p>
+              <p>In dental aesthetics, she uses iTero scanning and the Smile Test Drive so patients can visualize the result before beginning. Each lens and each veneer is designed to harmonize with the patient's facial features and personal style.</p>
+            </div>
+            <div class="bio-creds">
+              <div class="cred"><Fragment set:html={ic('award', 'gold cred-ic', 20)} /><div><p class="cred-t">Education</p><p class="cred-d">Specialist in Prosthodontics and Implantology</p></div></div>
+              <div class="cred"><Fragment set:html={ic('star', 'gold cred-ic', 20)} /><div><p class="cred-t">Experience</p><p class="cred-d">Hundreds of lens and veneer cases completed</p></div></div>
+              <div class="cred"><Fragment set:html={ic('sparkles', 'gold cred-ic', 20)} /><div><p class="cred-t">Continuing Education</p><p class="cred-d">Ongoing training in Smile Design and advanced techniques</p></div></div>
+              <div class="cred"><Fragment set:html={ic('shield', 'gold cred-ic', 20)} /><div><p class="cred-t">Technology</p><p class="cred-d">iTero Element 5D and advanced digital planning</p></div></div>
+            </div>
+            <div class="bio-quote">
+              <span class="q-mark q-tl">"</span><span class="q-mark q-br">"</span>
+              <p>My goal isn't to create perfect smiles, but authentic smiles. Each person has a unique beauty that deserves to be enhanced, never standardized.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ Smile Test Drive ═══ -->
+    <section class="td-section">
+      <div class="td-c">
+        <div class="sec-head">
+          <div class="td-pill"><Fragment set:html={ic('star', 'gold', 20)} /><span>KEY DIFFERENTIATOR</span></div>
+          <h2>Smile Test Drive (Mock-up)</h2>
+          <p class="td-lead">See and approve your new smile BEFORE any definitive procedure</p>
+        </div>
+        <div class="td-card">
+          <div class="td-grid">
+            <div class="td-left">
+              <div class="td-head">
+                <div class="td-head-ic"><Fragment set:html={ic('sparkles', '', 28)} /></div>
+                <div>
+                  <h3>The Test Drive Experience</h3>
+                  <p>You try on your new smile before any definitive procedure!</p>
+                </div>
+              </div>
+              <div class="td-steps">
+                {[
+                  { n: '1', t: 'Non-Adhesive Provisional Resin', d: 'Applied directly over your teeth, with zero filing' },
+                  { n: '2', t: 'See Yourself in the Mirror', d: 'Observe from every angle, in natural and artificial light' },
+                  { n: '3', t: 'Take Photos & Videos', d: 'Record, talk, smile — see how it looks in motion' },
+                  { n: '4', t: 'Real-Time Adjustments', d: "We refine together until it's perfect for you" },
+                ].map((item) => (
+                  <div class="td-step">
+                    <div class="td-num"><span>{item.n}</span></div>
+                    <div><h4>{item.t}</h4><p>{item.d}</p></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div class="td-right">
+              <h3>Why the Test Drive Is Revolutionary</h3>
+              <div class="td-points">
+                {[
+                  { t: 'Zero Anxiety', d: 'You know exactly how it will look before starting' },
+                  { t: 'Active Participation', d: "You decide together with me — we adjust until you're 100% satisfied" },
+                  { t: 'Real Result', d: "It's not a digital simulation — it's real, on your teeth, you feel and experience it" },
+                  { t: 'Total Confidence', d: "We only proceed to the definitive when you're 100% happy" },
+                ].map((item) => (
+                  <div class="td-point">
+                    <Fragment set:html={ic('checkCircle', 'gold li-ic', 20)} />
+                    <div><strong>{item.t}</strong><p>{item.d}</p></div>
+                  </div>
+                ))}
+              </div>
+              <div class="td-quote">
+                <p>"It's incredible! Seeing exactly what your new smile will look like before doing anything. It's not a computer simulation — it's REAL, on your teeth!"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ Mid CTA ═══ -->
+    <section class="mid-cta sec-beige30">
+      <div class="narrow-c center">
+        <p class="mid-lead">Want to try your Smile Test Drive?</p>
+        <a class="btn-gold js-wa-cta" data-label="en_veneers_and_lenses" href={waMid} target="_blank" rel="noopener">
+          Book Your First Appointment <Fragment set:html={ic('arrowRight', 'ml8', 20)} />
+        </a>
+      </div>
+    </section>
+
+    <!-- ═══ iTero Digital Technology ═══ -->
+    <section class="itero-section">
+      <div class="med-c">
+        <div class="sec-head">
+          <h2>Digital Technology: iTero Element 5D Scanner</h2>
+          <p>Millimetric precision without discomfort</p>
+        </div>
+        <div class="itero-card">
+          <p class="itero-lead">We use the iTero Element 5D for precise technical planning: digital scanning without messy impressions, accurate 3D model for the laboratory, digital communication with technicians, and a digital archive of your treatment.</p>
+          <div class="itero-grid">
+            {[
+              { t: 'Digital Scanning', d: 'No messy impressions, no discomfort' },
+              { t: 'Precise 3D Model', d: 'For the laboratory to work with exactitude' },
+              { t: 'Digital Communication', d: 'With ceramic-specialized technicians' },
+              { t: 'Digital Archive', d: 'Of your treatment for future follow-up' },
+            ].map((item) => (
+              <div class="itero-item">
+                <div class="itero-ic"><Fragment set:html={ic('checkCircle', 'purple', 24)} /></div>
+                <div><h4>{item.t}</h4><p>{item.d}</p></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ What Few Explain ═══ -->
+    <section class="few-section">
+      <div class="few-bg" aria-hidden="true"></div>
+      <div class="wide-c rel">
+        <div class="few-head">
+          <div class="few-orn"><span class="orn-line"></span><Fragment set:html={ic('sparkles', 'gold', 24)} /><span class="orn-line orn-line-r"></span></div>
+          <h2>What Few Explain About Lenses and Veneers</h2>
+          <p>Dental aesthetics involves more than appearance. Understand the technical aspects that determine the success of your treatment.</p>
+        </div>
+
+        <div class="few-block">
+          <div class="few-sub">
+            <h3>Real Technical Challenges</h3>
+            <p>Aspects that require expertise and attention</p>
+          </div>
+          <div class="grid-2">
+            {[
+              { num: '01', title: 'Marginal Adaptation', desc: "When the interface between the restoration and the tooth isn't perfect, a microscopic gap forms that can harbor bacteria. Over time, this can lead to gum inflammation and sensitivity.", color: 'purple' },
+              { num: '02', title: 'Emergence Profile', desc: 'The contour at the gum line must respect natural anatomy. An inadequate profile makes hygiene difficult and can cause chronic gum swelling and bleeding.', color: 'blue' },
+              { num: '03', title: 'Occlusal Balance', desc: 'How upper and lower teeth meet is crucial. Poorly planned veneers can generate overload at specific points, causing discomfort and even fractures.', color: 'green' },
+              { num: '04', title: 'Biocompatibility', desc: 'The choice of materials and adhesive techniques directly impacts tissue response. Some protocols can cause prolonged sensitivity or gum irritation.', color: 'amber' },
+            ].map((item) => (
+              <div class="chal-card">
+                <div class="chal-num">{item.num}</div>
+                <div class="rel">
+                  <div class="chal-top">
+                    <div class={`chal-ic grad-${item.color}`}><Fragment set:html={ic('shield', `ic-${item.color}`, 28)} /></div>
+                    <div>
+                      <h4>{item.title}</h4>
+                      <div class="gold-bar"></div>
+                    </div>
+                  </div>
+                  <p>{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="few-divider">
+          <span class="fd-line"></span>
+          <span class="fd-heart"><Fragment set:html={ic('heart', 'gold', 32)} /></span>
+          <span class="fd-line fd-line-r"></span>
+        </div>
+
+        <div class="few-block">
+          <div class="few-sub">
+            <h3>Our Differentiated Approach</h3>
+            <p>Four pillars of technical precision</p>
+          </div>
+          <div class="appr-list">
+            {[
+              { icon: 'shield', title: 'Prior Periodontal Evaluation', desc: 'Gum health is a prerequisite. We treat any inflammation before starting aesthetic work.' },
+              { icon: 'award', title: 'Careful Occlusal Planning', desc: 'We analyze your bite in detail to ensure balanced distribution of chewing forces.' },
+              { icon: 'sparkles', title: 'Conservative Protocol', desc: 'Minimal preparations that preserve healthy tooth structure and maintain pulp vitality.' },
+              { icon: 'heart', title: 'Longitudinal Follow-Up', desc: 'Periodic appointments to monitor gum health, restoration integrity, and occlusal comfort.' },
+            ].map((item) => (
+              <div class="appr-card">
+                <div class="appr-ic"><Fragment set:html={ic(item.icon, 'purple', 32)} /></div>
+                <div>
+                  <h4>{item.title}</h4>
+                  <p>{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="pq-wrap">
+          <div class="pq-card">
+            <span class="q-mark q-tl2">"</span><span class="q-mark q-br2">"</span>
+            <p>The true beauty of a smile lies in the harmony between aesthetics and function. When we respect biology, the result is lasting and healthy.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"><span class="d-line"></span><span class="d-circle"><Fragment set:html={ic('checkCircle', '', 20)} /></span><span class="d-line"></span></div>
+
+    <!-- ═══ Indications ═══ -->
+    <section id="indications" class="ind-section">
+      <div class="wide-c">
+        <div class="ind-head">
+          <h2>When Are Lenses and Veneers Indicated?</h2>
+          <div class="ind-bar"></div>
+          <p>Find out if lenses or veneers are the ideal solution to renew your smile</p>
+        </div>
+        <div class="grid-3-lg">
+          {[
+            { icon: 'droplet', color: 'purple', iconColor: 'ic-purple600', title: 'Stained Teeth', desc: 'Stains resistant to whitening, from tetracycline or fluorosis' },
+            { icon: 'maximize2', color: 'blue', iconColor: 'ic-blue', title: 'Gaps Between Teeth', desc: 'Diastemas that compromise smile harmony' },
+            { icon: 'ruler', color: 'green', iconColor: 'ic-green', title: 'Irregular Shape', desc: 'Small, worn, or irregularly shaped teeth' },
+            { icon: 'palette', color: 'yellow', iconColor: 'ic-yellow', title: 'Uneven Color', desc: 'Darkened teeth or uneven shade' },
+            { icon: 'alertCircle', color: 'red', iconColor: 'ic-red', title: 'Chips & Fractures', desc: 'Small defects that affect aesthetics' },
+            { icon: 'sparkles', color: 'pink', iconColor: 'ic-pink', title: 'Smile Renewal', desc: 'Desire for a more harmonious and youthful smile' },
+          ].map((item) => (
+            <div class="ind-card">
+              <div class={`ind-ic grad-${item.color}`}><Fragment set:html={ic(item.icon, item.iconColor, 32)} /></div>
+              <h3>{item.title}</h3>
+              <div class="gold-bar-sm"></div>
+              <p>{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"><span class="d-line"></span><span class="d-circle"><Fragment set:html={ic('star', '', 20)} /></span><span class="d-line"></span></div>
+
+    <!-- ═══ Process Timeline ═══ -->
+    <section class="tl-section">
+      <div class="med-c">
+        <div class="sec-head">
+          <h2>Your Journey to Your Dream Smile</h2>
+          <p>A transparent, carefully planned process at every step</p>
+        </div>
+        <div class="timeline">
+          <div class="tl-line" aria-hidden="true"></div>
+          <div class="tl-steps" role="list">
+            {[
+              { number: '1', icon: 'search', title: 'Complete Evaluation & Digital Planning', description: 'Initial consultation with complete facial and photographic analysis. iTero Element 5D: digital impression without messy molds, without discomfort. Oral and periodontal health assessment. Study of ideal proportions for facial harmonization. Personalized treatment plan presentation.' },
+              { number: '2', icon: 'star', title: 'Smile Test Drive (Mock-up)', description: 'THE KEY DIFFERENTIATOR! Creation of your new smile with non-adhesive provisional resin. You see, feel, and approve the result BEFORE definitive treatment. Take photos, videos, smile, and speak naturally. We adjust together until we reach the ideal result. An emotional moment of visualizing your new smile live.' },
+              { number: '3', icon: 'shield', title: 'Conservative Preparation', description: 'With the mock-up 100% approved, we begin preparation. Lenses: minimal preparation preserving maximum tooth structure. Composite veneers: direct sculpting in the office (1–2 appointments). New iTero Element 5D scan for the laboratory (lenses only). Aesthetic provisionals while waiting (if needed).' },
+              { number: '4', icon: 'sparkles', title: 'Artisan Fabrication', description: 'Lenses: specialized laboratory in high-translucency ceramics (7–10 days). Composite veneers: crafted directly by Dr. Carla. Total customization of color, shape, and texture. Rigorous quality control before delivery.' },
+              { number: '5', icon: 'checkCircle', title: 'Bonding & Finalization', description: 'Final try-in and necessary adjustments. High-precision adhesive bonding (lenses) or finalization (composite veneers). Impeccable polishing and finishing. Care and hygiene instructions. Follow-up appointment scheduling.' },
+            ].map((step) => (
+              <div class="tl-step" role="listitem">
+                <div class="tl-num-col">
+                  <div class="tl-num">{step.number}</div>
+                  <div class="tl-dot" aria-hidden="true"></div>
+                </div>
+                <div class="tl-content">
+                  <div class="tl-ic"><Fragment set:html={ic(step.icon, '', 24)} /></div>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"><span class="d-line"></span><span class="d-circle"><Fragment set:html={ic('helpCircle', '', 20)} /></span><span class="d-line"></span></div>
+
+    <!-- ═══ FAQ ═══ -->
+    <section class="faq-section">
+      <div class="container-c">
+        <h2 class="faq-title">Frequently Asked Questions About Lenses and Veneers</h2>
+        <div class="faq-list">
+          {faqs.map((faq) => (
+            <details class="faq-item">
+              <summary>{faq.question}<Fragment set:html={ic('chevronDown', 'acc-chev', 16)} /></summary>
+              <div class="faq-answer"><p>{faq.answer}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"><span class="d-line"></span><span class="d-circle"><Fragment set:html={ic('star', '', 20)} /></span><span class="d-line"></span></div>
+
+    <!-- ═══ Final CTA ═══ -->
+    <section class="final-cta">
+      <div class="container-c center">
+        <div class="fc-head">
+          <h2>Find Out If Lenses Are Right for Your Case</h2>
+        </div>
+        <p class="fc-desc">During your evaluation, we analyze your case with the iTero Element 5D, perform a complete oral health checkup, and present the possibilities — lenses, veneers, or other treatments best suited to your needs.</p>
+        <div class="fc-btn-wrap">
+          <a class="fc-btn fc-gold js-wa-cta" data-label="en-veneers-and-lenses_final_whatsapp" href={waFinal} target="_blank" rel="noopener">
+            <Fragment set:html={ic('arrowRight', 'mr8', 20)} />
+            Book Your Consultation
+          </a>
+        </div>
+        <p class="fc-footnote">WhatsApp: (21) 99330-4045 | 24h Service</p>
+      </div>
+    </section>
+
+    <!-- ═══ Related Treatments (InternalLinkingOptimizer) ═══ -->
+    <section class="rel-section">
+      <div class="med-c">
+        <h2 class="rel-title">Related Treatments</h2>
+        <div class="rel-grid">
+          {[
+            { title: 'Teeth Whitening', url: '/en/teeth-whitening', description: 'Combine whitening with your lenses' },
+            { title: 'Orthodontics', url: '/en/orthodontics', description: 'Prior alignment when needed' },
+            { title: 'Aesthetic Restorations', url: '/en/aesthetic-restorations', description: 'Integrated aesthetic treatments' },
+          ].map((link) => (
+            <a href={link.url} class="rel-card">
+              <span class="rel-t">{link.title}</span>
+              <span class="rel-d">{link.description}</span>
+              <span class="rel-more">Learn more <Fragment set:html={ic('arrowRight', '', 12)} /></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ Stats Bar ═══ -->
+    <section class="stats-bar" aria-label="Clinic statistics">
+      <div class="container-c">
+        <div class="stats-grid">
+          <div class="stat"><div class="stat-ic"><Fragment set:html={ic('calendar', 'gold', 20)} /></div><div><p class="stat-v">20+</p><p class="stat-l">Years of Experience</p></div></div>
+          <div class="stat"><div class="stat-ic"><Fragment set:html={ic('users', 'gold', 20)} /></div><div><p class="stat-v">4.000+</p><p class="stat-l">Patients Served</p></div></div>
+          <div class="stat"><div class="stat-ic"><Fragment set:html={ic('award', 'gold', 20)} /></div><div><p class="stat-v">CRO-RJ</p><p class="stat-l">27.509</p></div></div>
+          <div class="stat"><div class="stat-ic"><Fragment set:html={ic('star', 'gold star-fill', 20)} /></div><div><p class="stat-v">5.0 ★</p><p class="stat-l">Google Rating</p></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>
+
+<style>
+  /* ══ Tokens/utilitários (porte do tailwind/index.css do SPA) ══ */
+  main { --gold-dark: #9d7f4f; --beige-hsl: 51 22% 76%; }
+  .container-c { max-width: 1280px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+  .content-c { max-width: 1280px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+  .wide-c { max-width: 1152px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
+  .med-c { max-width: 896px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
+  .narrow-c { max-width: 896px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
+  .center { text-align: center; }
+  .rel { position: relative; z-index: 10; }
+  .md-br { display: none; }
+  @media (min-width: 768px) { .md-br { display: inline; } }
+
+  :global(.gold) { color: var(--dental-gold); }
+  :global(.purple) { color: var(--dental-purple); }
+  :global(.purple-soft) { color: var(--dental-purple-soft); }
+  :global(.red) { color: #ef4444; }
+  :global(.blue) { color: #2563eb; }
+  :global(.mr8) { margin-right: 8px; flex-shrink: 0; }
+  :global(.ml8) { margin-left: 8px; flex-shrink: 0; }
+  :global(.li-ic) { margin-top: 4px; flex-shrink: 0; }
+  :global(.star-fill) { fill: var(--dental-gold); }
+
+  /* ══ Hero ══ */
+  .t-hero {
+    background: linear-gradient(135deg, hsl(250 100% 98%) 0%, hsl(30 100% 97%) 100%);
+    padding-top: 112px;
+    padding-bottom: 64px;
+  }
+  @media (min-width: 768px) { .t-hero { padding-bottom: 80px; } }
+  @media (min-width: 1024px) { .t-hero { padding-bottom: 96px; } }
+  .hero-grid { display: grid; gap: 32px; align-items: center; }
+  .hero-img { order: -1; }
+  @media (min-width: 1024px) {
+    .hero-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 48px; }
+    .hero-content { grid-column: span 3; }
+    .hero-img { grid-column: span 2; order: 1; }
+  }
+  .hero-content > * + * { margin-top: 24px; }
+  .crumbs { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; font-size: 0.875rem; opacity: 0.7; }
+  .crumbs a { color: var(--dental-purple-soft); text-decoration: none; transition: color 0.2s; }
+  .crumbs a:hover { color: var(--dental-purple); }
+  .crumb-cur { color: var(--dental-purple); font-weight: 500; }
+  :global(.crumb-sep) { color: var(--dental-gray); }
+  .hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 400;
+    font-size: 2.25rem;
+    line-height: 1.15;
+    color: var(--dental-purple);
+  }
+  @media (min-width: 768px) { .hero-title { font-size: 3rem; } }
+  @media (min-width: 1024px) { .hero-title { font-size: 3.75rem; } }
+  .hero-sub { font-size: 1.25rem; color: var(--dental-purple-soft); font-weight: 500; }
+  @media (min-width: 768px) { .hero-sub { font-size: 1.5rem; } }
+  .hero-desc { font-size: 1.125rem; color: var(--dental-gray); line-height: 1.7; max-width: 42rem; }
+  .hero-badges { display: flex; flex-wrap: wrap; gap: 12px; }
+  .badge {
+    display: inline-flex; align-items: center; border-radius: 999px;
+    background: rgb(179 149 95 / 0.1); color: var(--gold-dark);
+    border: 1px solid rgb(179 149 95 / 0.2);
+    padding: 6px 16px; font-size: 0.875rem; font-weight: 500;
+  }
+  .hero-cta-wrap { padding-top: 16px; }
+  .btn-hero {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--dental-purple); color: #fff; text-decoration: none;
+    padding: 12px 24px; border-radius: 6px; font-size: 1rem; font-weight: 500;
+    box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08); transition: all 0.3s;
+  }
+  .btn-hero:hover { background: #2a1735; box-shadow: 0 12px 32px rgba(56, 31, 71, 0.16), 0 6px 16px rgba(56, 31, 71, 0.1); }
+  .hero-img-frame { border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2); }
+  .hero-img-frame img { width: 100%; height: auto; transition: transform 0.5s; }
+  .hero-img-frame:hover img { transform: scale(1.02); }
+
+  /* ══ Quick Answer ══ */
+  .qa-section { padding: 32px 0; background: #fff; }
+  .qa-box {
+    display: flex; align-items: flex-start; gap: 16px;
+    background: linear-gradient(to right, rgb(56 31 71 / 0.1), rgb(179 149 95 / 0.1));
+    border: 1px solid rgb(179 149 95 / 0.3); border-radius: 12px; padding: 24px; margin-bottom: 32px;
+  }
+  .qa-ic { flex-shrink: 0; margin-top: 4px; }
+  .qa-title { font-family: Montserrat, sans-serif; font-size: 1.125rem; font-weight: 600; color: var(--dental-purple); margin-bottom: 8px; }
+  .qa-text { color: var(--dental-gray); line-height: 1.7; }
+
+  /* ══ Pain Points ══ */
+  .pain-section { padding: 64px 0; background: linear-gradient(to bottom right, hsl(var(--beige-hsl) / 0.2), #fff, hsl(var(--beige-hsl) / 0.1)); }
+  .pain-title { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.5rem; color: var(--dental-purple); margin-bottom: 40px; text-align: center; }
+  @media (min-width: 768px) { .pain-title { font-size: 1.875rem; } }
+  .pain-list > * + * { margin-top: 20px; }
+  .pain-card {
+    display: flex; align-items: flex-start; gap: 16px;
+    background: rgb(255 255 255 / 0.8); backdrop-filter: blur(4px);
+    padding: 24px; border-radius: 12px; border-left: 4px solid var(--dental-purple);
+    box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08); transition: box-shadow 0.3s;
+  }
+  .pain-card:hover { box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2); }
+  .pain-card.b-gold { border-left-color: var(--dental-gold); }
+  .pain-card.b-purple-soft { border-left-color: var(--dental-purple-soft); }
+  .pain-ic { flex-shrink: 0; width: 48px; height: 48px; border-radius: 999px; background: rgb(56 31 71 / 0.1); display: flex; align-items: center; justify-content: center; }
+  .pain-card strong { display: block; color: var(--dental-purple); font-weight: 600; margin-bottom: 4px; }
+  .pain-card span { color: var(--dental-gray); line-height: 1.7; }
+  .pain-conclusion { text-align: center; color: var(--dental-gray); margin-top: 40px; font-size: 1.125rem; line-height: 1.7; }
+
+  /* ══ Divider ══ */
+  .divider { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 32px 0; }
+  @media (min-width: 768px) { .divider { margin: 48px 0; } }
+  .d-line { flex: 1; height: 1px; background: rgb(179 149 95 / 0.3); max-width: 128px; }
+  .d-circle { width: 48px; height: 48px; border-radius: 999px; background: rgb(179 149 95 / 0.1); display: flex; align-items: center; justify-content: center; color: var(--dental-gold); transition: transform 0.3s; }
+  .d-circle:hover { transform: scale(1.1); }
+
+  /* ══ Seções genéricas ══ */
+  .sec-white { padding: 48px 0; background: #fff; }
+  .sec-beige20 { padding: 48px 0; background: hsl(var(--beige-hsl) / 0.2); }
+  .sec-beige30 { background: hsl(var(--beige-hsl) / 0.3); }
+  .pb-tight { padding-bottom: 32px; }
+  .sec-head { text-align: center; margin-bottom: 48px; }
+  .sec-head h2 { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.875rem; color: var(--dental-purple); margin-bottom: 16px; }
+  @media (min-width: 768px) { .sec-head h2 { font-size: 2.25rem; } }
+  .sec-head p { font-size: 1.125rem; color: var(--dental-gray); }
+  .grid-3 { display: grid; gap: 32px; }
+  @media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .grid-2 { display: grid; gap: 32px; }
+  @media (min-width: 768px) { .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .grid-3-lg { display: grid; gap: 32px; }
+  @media (min-width: 768px) { .grid-3-lg { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1024px) { .grid-3-lg { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+  /* ══ Benefit cards ══ */
+  .benefit-card { background: #fff; padding: 24px; border-radius: 12px; box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08); transition: box-shadow 0.3s; }
+  .benefit-card:hover { box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2); }
+  .benefit-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .benefit-ic { width: 48px; height: 48px; border-radius: 999px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .bg-red-50 { background: #fef2f2; }
+  .bg-purple-50 { background: #faf5ff; }
+  .bg-blue-50 { background: #eff6ff; }
+  .benefit-head h3 { font-family: Montserrat, sans-serif; font-weight: 600; font-size: 1.125rem; color: var(--dental-purple); }
+  .check-list { list-style: none; color: var(--dental-gray); font-size: 0.875rem; }
+  .check-list li { display: flex; align-items: flex-start; gap: 8px; }
+  .check-list li + li { margin-top: 8px; }
+
+  /* ══ Modality cards ══ */
+  .modal-card { border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08); transition: box-shadow 0.3s; }
+  .modal-card:hover { box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2); }
+  .modal-img { position: relative; aspect-ratio: 4 / 3; }
+  .modal-img img { width: 100%; height: 100%; object-fit: cover; }
+  .modal-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgb(56 31 71 / 0.9), rgb(56 31 71 / 0.5) 50%, transparent); }
+  .modal-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px; color: #fff; }
+  .modal-caption h3 { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.5rem; color: #fff; margin-bottom: 8px; }
+  .modal-caption p { font-size: 0.875rem; color: rgb(255 255 255 / 0.9); margin-bottom: 16px; }
+  .modal-body { background: #fff; padding: 24px; }
+
+  /* ══ Accordion (shadcn → <details>) ══ */
+  .acc { border-bottom: 1px solid #e5e7eb; }
+  .acc summary {
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    padding: 16px 0; cursor: pointer; list-style: none;
+    font-weight: 600; font-size: 1rem; color: #333; text-align: left; transition: color 0.2s;
+  }
+  .acc summary:hover { color: var(--dental-purple); text-decoration: underline; }
+  .acc summary::-webkit-details-marker { display: none; }
+  :global(.acc-chev) { flex-shrink: 0; color: var(--dental-gray); transition: transform 0.2s; }
+  .acc[open] summary :global(.acc-chev), .faq-item[open] summary :global(.acc-chev) { transform: rotate(180deg); }
+  .acc-content { padding-bottom: 16px; }
+  .tri-list, .tick-list, .dot-list { list-style: none; color: var(--dental-gray); font-size: 0.875rem; }
+  .tri-list li, .tick-list li, .dot-list li { display: flex; align-items: flex-start; gap: 8px; }
+  .tri-list li + li, .tick-list li + li, .dot-list li + li { margin-top: 8px; }
+  .tri { color: var(--dental-gold); margin-top: 4px; }
+  .tick { color: #16a34a; margin-top: 4px; }
+  .dot { color: var(--dental-gray); margin-top: 4px; }
+  .adv-title { display: flex; align-items: center; gap: 8px; font-weight: 600; color: #15803d; margin-bottom: 8px; font-size: 1rem; font-family: Montserrat, sans-serif; }
+  .cons-title { font-weight: 600; color: var(--dental-gray); margin: 16px 0 8px; font-size: 1rem; font-family: Montserrat, sans-serif; }
+  .ideal-box { background: #eff6ff; padding: 16px; border-radius: 8px; }
+  .ideal-box p { color: var(--dental-gray); font-size: 0.875rem; }
+
+  /* ══ Comparison table ══ */
+  .cmp-wrap { margin-bottom: 32px; }
+  .cmp-title { font-family: Montserrat, sans-serif; font-size: 1.25rem; font-weight: 600; color: var(--dental-purple); margin-bottom: 16px; }
+  .cmp-scroll { overflow-x: auto; }
+  .cmp-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 2px rgb(0 0 0 / 0.05); }
+  .cmp-table thead tr { background: var(--dental-purple); color: #fff; }
+  .cmp-table th { padding: 12px 16px; text-align: center; font-weight: 500; font-family: Montserrat, sans-serif; }
+  .cmp-table th.th-left { text-align: left; }
+  .cmp-table td { padding: 12px 16px; }
+  .cmp-table tr.even { background: #f9fafb; }
+  .td-crit { color: var(--dental-purple); font-weight: 500; font-size: 0.875rem; }
+  .td-c { text-align: center; }
+  .cell-txt { color: var(--dental-gray); font-size: 0.875rem; }
+  :global(.cell-x) { color: #dc2626; display: inline-block; vertical-align: middle; }
+  :global(.cell-ok) { color: #16a34a; display: inline-block; vertical-align: middle; }
+  .cmp-note { margin-top: 32px; text-align: center; }
+  .cmp-note p { color: var(--dental-gray); font-style: italic; }
+
+  /* ══ Doctor Bio ══ */
+  .bio-section { padding: 64px 0; background: linear-gradient(135deg, hsl(250 100% 98%) 0%, hsl(30 100% 97%) 100%); }
+  .bio-sec-title { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.875rem; color: var(--dental-purple); margin-bottom: 48px; text-align: center; }
+  @media (min-width: 768px) { .bio-sec-title { font-size: 2.25rem; } }
+  .bio-wrap { max-width: 1024px; margin: 0 auto; display: grid; gap: 32px; align-items: start; }
+  @media (min-width: 768px) { .bio-wrap { grid-template-columns: 300px 1fr; } }
+  .bio-photo-col { margin: 0 auto; }
+  @media (min-width: 768px) { .bio-photo-col { margin: 0; } }
+  .bio-photo { position: relative; }
+  .bio-photo img { width: 100%; border-radius: 16px; box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2); }
+  .bio-badge {
+    position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%);
+    background: var(--dental-gold); color: #fff; padding: 8px 24px; border-radius: 999px;
+    box-shadow: 0 4px 12px rgb(179 149 95 / 0.3); font-weight: 600; font-size: 0.875rem; white-space: nowrap;
+  }
+  .bio-card { background: #fff; padding: 32px; border-radius: 16px; box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08); }
+  .bio-name-wrap { margin-bottom: 24px; }
+  .bio-name-wrap h3 { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.875rem; color: var(--dental-purple); margin-bottom: 8px; }
+  .bio-sub { color: var(--gold-dark); font-weight: 500; font-size: 1.125rem; }
+  .bio-paras { color: var(--dental-gray); line-height: 1.7; }
+  .bio-paras > * + * { margin-top: 16px; }
+  .bio-creds { margin-top: 24px; padding-top: 24px; border-top: 1px solid rgb(107 107 107 / 0.2); display: grid; gap: 16px; }
+  @media (min-width: 768px) { .bio-creds { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .cred { display: flex; align-items: flex-start; gap: 12px; }
+  :global(.cred-ic) { margin-top: 4px; flex-shrink: 0; }
+  .cred-t { font-weight: 600; color: var(--dental-purple); }
+  .cred-d { font-size: 0.875rem; color: var(--dental-gray); }
+  .bio-quote {
+    position: relative; margin-top: 32px; padding: 32px; border-radius: 16px; overflow: hidden;
+    background: linear-gradient(to bottom right, rgb(56 31 71 / 0.05), rgb(179 149 95 / 0.05));
+    border: 1px solid rgb(179 149 95 / 0.1);
+  }
+  .bio-quote p { font-family: 'Playfair Display', Georgia, serif; font-size: 1.25rem; color: var(--dental-purple); font-style: italic; line-height: 1.7; text-align: center; position: relative; z-index: 10; padding: 0 16px; }
+  .q-mark { position: absolute; font-size: 3rem; color: rgb(179 149 95 / 0.2); font-family: Georgia, serif; line-height: 1; }
+  .q-tl { top: 16px; left: 16px; }
+  .q-br { bottom: 16px; right: 16px; }
+
+  /* ══ Smile Test Drive ══ */
+  .td-section { padding: 64px 0; background: linear-gradient(to bottom right, rgb(56 31 71 / 0.05), rgb(179 149 95 / 0.05)); }
+  .td-c { max-width: 1024px; margin: 0 auto; padding: 0 16px; }
+  .td-pill { display: inline-flex; align-items: center; gap: 8px; background: rgb(179 149 95 / 0.1); padding: 8px 16px; border-radius: 999px; margin-bottom: 16px; }
+  .td-pill span { color: var(--dental-gold); font-weight: 600; font-size: 0.875rem; }
+  .td-lead { font-size: 1.25rem !important; }
+  .td-card { background: #fff; border-radius: 24px; box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); overflow: hidden; }
+  .td-grid { display: grid; }
+  @media (min-width: 768px) { .td-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .td-left { background: linear-gradient(to bottom right, var(--dental-purple), rgb(56 31 71 / 0.9)); color: #fff; padding: 40px; }
+  .td-head { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+  .td-head-ic { width: 56px; height: 56px; background: rgb(255 255 255 / 0.2); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; }
+  .td-head h3 { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.5rem; color: #fff; margin-bottom: 8px; }
+  .td-head p { color: rgb(255 255 255 / 0.9); }
+  .td-steps > * + * { margin-top: 24px; }
+  .td-step { display: flex; align-items: flex-start; gap: 16px; }
+  .td-num { width: 40px; height: 40px; border-radius: 999px; background: var(--dental-gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .td-num span { font-weight: 700; color: #fff; }
+  .td-step h4 { font-family: Montserrat, sans-serif; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .td-step p { font-size: 0.875rem; color: rgb(255 255 255 / 0.8); }
+  .td-right { padding: 40px; background: hsl(var(--beige-hsl) / 0.2); }
+  .td-right h3 { font-family: Montserrat, sans-serif; font-weight: 600; font-size: 1.25rem; color: var(--dental-purple); margin-bottom: 24px; }
+  .td-points > * + * { margin-top: 20px; }
+  .td-point { display: flex; align-items: flex-start; gap: 12px; }
+  .td-point strong { display: block; color: var(--dental-purple); }
+  .td-point p { color: var(--dental-gray); font-size: 0.875rem; }
+  .td-quote { margin-top: 32px; background: linear-gradient(to bottom right, rgb(179 149 95 / 0.1), rgb(56 31 71 / 0.05)); padding: 24px; border-radius: 12px; border: 1px solid rgb(179 149 95 / 0.2); }
+  .td-quote p { color: var(--dental-gray); font-size: 0.875rem; font-style: italic; line-height: 1.7; }
+
+  /* ══ Mid CTA ══ */
+  .mid-cta { padding: 32px 0; }
+  .mid-lead { font-size: 1.25rem; color: var(--dental-gray); margin-bottom: 24px; }
+  .btn-gold {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 16px 32px; background: var(--dental-gold); color: #fff; text-decoration: none;
+    font-weight: 600; border-radius: 8px; transition: all 0.2s;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+  .btn-gold:hover { background: rgb(179 149 95 / 0.9); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); transform: scale(1.05); }
+
+  /* ══ iTero ══ */
+  .itero-section { padding: 64px 0; background: #fff; }
+  .itero-card { background: linear-gradient(to bottom right, hsl(var(--beige-hsl) / 0.3), #fff); padding: 40px; border-radius: 24px; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+  .itero-lead { color: var(--dental-gray); line-height: 1.7; text-align: center; font-size: 1.125rem; }
+  .itero-grid { display: grid; gap: 24px; margin-top: 32px; }
+  @media (min-width: 768px) { .itero-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .itero-item { display: flex; align-items: flex-start; gap: 16px; }
+  .itero-ic { width: 48px; height: 48px; background: rgb(56 31 71 / 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .itero-item h4 { font-family: Montserrat, sans-serif; font-weight: 600; color: var(--dental-purple); margin-bottom: 4px; }
+  .itero-item p { color: var(--dental-gray); font-size: 0.875rem; }
+
+  /* ══ What Few Explain ══ */
+  .few-section { padding: 80px 0; background: linear-gradient(to bottom, #fff, hsl(var(--beige-hsl) / 0.1), #fff); position: relative; overflow: hidden; }
+  .few-bg { position: absolute; inset: 0; opacity: 0.03; background-image: radial-gradient(circle at 25px 25px, #381F47 2%, transparent 0%), radial-gradient(circle at 75px 75px, #381F47 2%, transparent 0%); background-size: 100px 100px; }
+  .few-head { text-align: center; margin-bottom: 80px; }
+  .few-orn { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .orn-line { width: 48px; height: 1px; background: linear-gradient(to right, transparent, var(--dental-gold), transparent); }
+  .few-head h2 { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 2.25rem; color: var(--dental-purple); margin-bottom: 24px; }
+  @media (min-width: 768px) { .few-head h2 { font-size: 3rem; } }
+  .few-head p { font-size: 1.125rem; color: var(--dental-gray); max-width: 48rem; margin: 0 auto; line-height: 1.7; }
+  @media (min-width: 768px) { .few-head p { font-size: 1.25rem; } }
+  .few-block { margin-bottom: 80px; }
+  .few-sub { text-align: center; margin-bottom: 48px; }
+  .few-sub h3 { font-family: Montserrat, sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--dental-purple); margin-bottom: 12px; }
+  .few-sub p { color: var(--dental-gray); }
+  .chal-card {
+    position: relative; background: #fff; padding: 32px; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    border: 1px solid hsl(var(--beige-hsl) / 0.3); transition: all 0.3s;
+  }
+  .chal-card:hover { box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); border-color: rgb(179 149 95 / 0.3); }
+  .chal-num { position: absolute; top: 16px; right: 24px; font-size: 6rem; font-family: 'Playfair Display', Georgia, serif; font-weight: 700; color: rgb(56 31 71 / 0.05); user-select: none; line-height: 1; }
+  .chal-top { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px; }
+  .chal-ic { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.3s; }
+  .chal-card:hover .chal-ic { transform: scale(1.1); }
+  .grad-purple { background: linear-gradient(to bottom right, #faf5ff, #f3e8ff); }
+  .grad-blue { background: linear-gradient(to bottom right, #eff6ff, #dbeafe); }
+  .grad-green { background: linear-gradient(to bottom right, #f0fdf4, #dcfce7); }
+  .grad-amber { background: linear-gradient(to bottom right, #fffbeb, #fef3c7); }
+  .grad-yellow { background: linear-gradient(to bottom right, #fefce8, #fef9c3); }
+  .grad-red { background: linear-gradient(to bottom right, #fef2f2, #fee2e2); }
+  .grad-pink { background: linear-gradient(to bottom right, #fdf2f8, #fce7f3); }
+  :global(.ic-purple) { color: #9333ea; }
+  :global(.ic-purple600) { color: #9333ea; }
+  :global(.ic-blue) { color: #2563eb; }
+  :global(.ic-green) { color: #16a34a; }
+  :global(.ic-amber) { color: #d97706; }
+  :global(.ic-yellow) { color: #ca8a04; }
+  :global(.ic-red) { color: #ef4444; }
+  :global(.ic-pink) { color: #ec4899; }
+  .chal-card h4 { font-family: Montserrat, sans-serif; font-weight: 600; font-size: 1.25rem; color: var(--dental-purple); margin-bottom: 8px; transition: color 0.3s; }
+  .chal-card:hover h4 { color: var(--dental-gold); }
+  .gold-bar { width: 48px; height: 4px; background: linear-gradient(to right, var(--dental-gold), transparent); border-radius: 999px; }
+  .chal-card > .rel > p { color: var(--dental-gray); font-size: 0.875rem; line-height: 1.7; }
+  .few-divider { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 64px 0; }
+  .fd-line { width: 128px; height: 1px; background: linear-gradient(to right, transparent, var(--dental-gold), var(--dental-gold)); }
+  .fd-line-r { background: linear-gradient(to left, transparent, var(--dental-gold), var(--dental-gold)); }
+  .fd-heart { position: relative; display: inline-flex; }
+  .appr-list { max-width: 896px; margin: 0 auto; }
+  .appr-list > * + * { margin-top: 20px; }
+  .appr-card {
+    display: flex; align-items: flex-start; gap: 24px; background: #fff; padding: 28px; border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    border: 1px solid hsl(var(--beige-hsl) / 0.3); transition: all 0.3s;
+  }
+  .appr-card:hover { box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); border-color: rgb(56 31 71 / 0.3); transform: translateY(-4px); }
+  .appr-ic { width: 64px; height: 64px; border-radius: 16px; background: linear-gradient(to bottom right, rgb(56 31 71 / 0.1), rgb(56 31 71 / 0.05)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.3s; }
+  .appr-card:hover .appr-ic { transform: scale(1.1) rotate(3deg); }
+  .appr-card h4 { font-family: Montserrat, sans-serif; font-weight: 600; font-size: 1.125rem; color: var(--dental-purple); margin-bottom: 8px; transition: color 0.3s; }
+  .appr-card:hover h4 { color: var(--dental-gold); }
+  .appr-card p { color: var(--dental-gray); font-size: 0.875rem; line-height: 1.7; }
+  .pq-wrap { max-width: 896px; margin: 0 auto; }
+  .pq-card {
+    position: relative; padding: 48px; border-radius: 24px; overflow: hidden;
+    background: linear-gradient(to bottom right, hsl(var(--beige-hsl) / 0.4), hsl(var(--beige-hsl) / 0.2), #fff);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+  .pq-card p { font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; color: var(--dental-purple); font-style: italic; font-weight: 500; line-height: 1.7; text-align: center; position: relative; z-index: 10; padding: 0 32px; }
+  @media (min-width: 768px) { .pq-card p { font-size: 1.875rem; } }
+  .q-mark.q-tl2 { top: 32px; left: 32px; font-size: 4.5rem; }
+  .q-mark.q-br2 { bottom: 32px; right: 32px; font-size: 4.5rem; }
+
+  /* ══ Indications ══ */
+  .ind-section { padding: 64px 0; background: hsl(var(--beige-hsl) / 0.1); }
+  @media (min-width: 768px) { .ind-section { padding: 80px 0; } }
+  .ind-head { text-align: center; margin-bottom: 64px; }
+  .ind-head h2 { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.875rem; color: var(--dental-purple); margin-bottom: 16px; }
+  @media (min-width: 768px) { .ind-head h2 { font-size: 2.25rem; } }
+  @media (min-width: 1024px) { .ind-head h2 { font-size: 3rem; } }
+  .ind-bar { width: 96px; height: 4px; background: linear-gradient(to right, transparent, var(--dental-gold), transparent); margin: 0 auto 24px; }
+  .ind-head p { font-size: 1.125rem; color: var(--dental-gray); max-width: 48rem; margin: 0 auto; line-height: 1.7; }
+  @media (min-width: 768px) { .ind-head p { font-size: 1.25rem; } }
+  .ind-card {
+    height: 100%; background: #fff; padding: 32px; border-radius: 16px; overflow: hidden; cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    border: 1px solid hsl(var(--beige-hsl) / 0.3); transition: all 0.3s;
+  }
+  .ind-card:hover { box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); border-color: rgb(179 149 95 / 0.3); }
+  .ind-ic { width: 64px; height: 64px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; transition: transform 0.3s; }
+  .ind-card:hover .ind-ic { transform: scale(1.1); }
+  .ind-card h3 { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.25rem; color: var(--dental-purple); margin-bottom: 16px; transition: color 0.3s; }
+  @media (min-width: 768px) { .ind-card h3 { font-size: 1.5rem; } }
+  .ind-card:hover h3 { color: var(--dental-gold); }
+  .gold-bar-sm { width: 48px; height: 2px; background: linear-gradient(to right, var(--dental-gold), transparent); margin-bottom: 16px; }
+  .ind-card p { color: var(--dental-gray); font-size: 1rem; line-height: 1.7; }
+
+  /* ══ Timeline ══ */
+  .tl-section { padding: 64px 0; background: #fff; }
+  .timeline { position: relative; padding: 32px 0; }
+  .tl-line { position: absolute; left: 24px; top: 0; width: 2px; height: 100%; background: rgb(179 149 95 / 0.3); }
+  @media (min-width: 768px) { .tl-line { left: 32px; } }
+  .tl-steps > * + * { margin-top: 48px; }
+  @media (min-width: 768px) { .tl-steps > * + * { margin-top: 64px; } }
+  .tl-step { position: relative; display: flex; gap: 16px; }
+  @media (min-width: 768px) { .tl-step { gap: 32px; } }
+  .tl-num-col { position: relative; flex-shrink: 0; }
+  .tl-num { font-size: 1.875rem; font-family: 'Playfair Display', Georgia, serif; font-weight: 700; color: rgb(179 149 95 / 0.3); line-height: 1; }
+  @media (min-width: 768px) { .tl-num { font-size: 2.25rem; } }
+  @media (min-width: 1024px) { .tl-num { font-size: 3rem; } }
+  .tl-dot { position: absolute; top: 16px; left: 22px; width: 16px; height: 16px; border-radius: 999px; background: var(--dental-gold); border: 4px solid #fff; box-shadow: 0 1px 2px rgb(0 0 0 / 0.05); transform: translateX(-50%); }
+  @media (min-width: 768px) { .tl-dot { top: 24px; left: 30px; } }
+  .tl-content { flex: 1; padding-top: 4px; }
+  @media (min-width: 768px) { .tl-content { padding-top: 8px; } }
+  .tl-ic { margin-bottom: 12px; color: var(--dental-gold); }
+  .tl-content h3 { font-family: Montserrat, sans-serif; font-size: 1.25rem; font-weight: 600; color: var(--dental-purple); margin-bottom: 8px; line-height: 1.3; }
+  @media (min-width: 768px) { .tl-content h3 { font-size: 1.5rem; } }
+  .tl-content p { color: var(--dental-gray); line-height: 1.7; margin-bottom: 8px; }
+
+  /* ══ FAQ ══ */
+  .faq-section { padding: 64px 0; background: hsl(var(--beige-hsl) / 0.2); }
+  .faq-title { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.875rem; color: var(--dental-purple); margin-bottom: 32px; text-align: center; }
+  @media (min-width: 768px) { .faq-title { font-size: 2.25rem; } }
+  .faq-list { max-width: 896px; margin: 0 auto; }
+  .faq-list > * + * { margin-top: 16px; }
+  .faq-item { background: #fff; border-radius: 8px; border: 1px solid rgb(56 31 71 / 0.2); padding: 0 24px; }
+  .faq-item summary {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 24px 0; cursor: pointer; list-style: none; text-align: left;
+    font-size: 1rem; font-weight: 600; color: var(--dental-purple); transition: color 0.2s;
+  }
+  .faq-item summary:hover { color: var(--dental-gold); }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-answer { padding-bottom: 24px; }
+  .faq-answer p { color: var(--dental-gray); line-height: 1.7; }
+
+  /* ══ Final CTA ══ */
+  .final-cta { padding: 80px 0; background: linear-gradient(135deg, #381F47 0%, #B3955F 100%); color: #fff; }
+  .fc-head { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 16px; }
+  .fc-head h2 { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.875rem; color: #fff; }
+  @media (min-width: 768px) { .fc-head h2 { font-size: 2.25rem; } }
+  .fc-desc { font-size: 1.25rem; margin-bottom: 32px; opacity: 0.9; max-width: 42rem; margin-left: auto; margin-right: auto; }
+  .fc-btn-wrap { display: flex; flex-direction: column; gap: 16px; justify-content: center; align-items: center; }
+  @media (min-width: 640px) { .fc-btn-wrap { flex-direction: row; } }
+  .fc-btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; border-radius: 8px;
+    font-weight: 600; font-size: 1.125rem; text-decoration: none; transition: all 0.2s;
+  }
+  .fc-gold { background: var(--dental-gold); color: var(--dental-purple); }
+  .fc-gold:hover { opacity: 0.9; }
+  .fc-footnote { margin-top: 24px; font-size: 0.875rem; opacity: 0.75; }
+
+  /* ══ Related ══ */
+  .rel-section { padding: 48px 0; background: hsl(var(--beige-hsl) / 0.2); }
+  .rel-title { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.25rem; color: var(--dental-purple); margin-bottom: 24px; }
+  .rel-grid { display: grid; gap: 16px; }
+  @media (min-width: 640px) { .rel-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .rel-card {
+    display: flex; flex-direction: column; gap: 8px; background: #fff; padding: 20px; border-radius: 12px;
+    border: 1px solid #e5e1d4; text-decoration: none; transition: all 0.2s;
+  }
+  .rel-card:hover { border-color: rgb(56 31 71 / 0.3); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+  .rel-t { font-weight: 600; color: var(--dental-purple); font-size: 0.875rem; line-height: 1.375; transition: color 0.2s; }
+  .rel-card:hover .rel-t { color: #4a2759; }
+  .rel-d { color: var(--dental-gray); font-size: 0.75rem; line-height: 1.7; flex: 1; }
+  .rel-more { display: flex; align-items: center; gap: 4px; color: var(--dental-gold); font-size: 0.75rem; font-weight: 500; margin-top: 4px; }
+
+  /* ══ Stats Bar ══ */
+  .stats-bar { background: rgb(56 31 71 / 0.05); border-top: 1px solid rgb(56 31 71 / 0.1); border-bottom: 1px solid rgb(56 31 71 / 0.1); }
+  .stats-bar .container-c { padding-top: 24px; padding-bottom: 24px; }
+  .stats-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; } }
+  .stat { display: flex; align-items: center; gap: 12px; justify-content: center; }
+  .stat-ic { flex-shrink: 0; width: 40px; height: 40px; border-radius: 999px; background: rgb(179 149 95 / 0.1); display: flex; align-items: center; justify-content: center; }
+  .stat-v { font-size: 1.125rem; font-weight: 600; color: var(--dental-purple); line-height: 1.25; }
+  .stat-l { font-size: 0.75rem; color: var(--dental-gray); line-height: 1.25; }
+</style>

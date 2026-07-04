@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Hero — comparativo de opções (Dra. Carla)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --purple:#381F47; --gold:#B3955F; --gray:#5C5647; }
+  *{ box-sizing:border-box; margin:0; }
+  body{ font-family:'Montserrat',system-ui,sans-serif; color:var(--purple); background:#FAF8F3; }
+  .page-head{ text-align:center; padding:32px 20px 8px; }
+  .page-head h1{ font-family:'Playfair Display',serif; font-size:26px; color:var(--purple); }
+  .page-head p{ color:#7A7363; font-size:14px; margin-top:8px; max-width:760px; margin-inline:auto; }
+  .opt-label{ max-width:1180px; margin:34px auto 0; padding:0 24px; display:flex; align-items:center; gap:12px; }
+  .opt-label .tag{ background:var(--purple); color:#fff; font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; padding:6px 12px; border-radius:6px; }
+  .opt-label .desc{ color:#7A7363; font-size:13.5px; }
+  .opt-label.live .tag{ background:var(--gold); }
+
+  .hero{ background:linear-gradient(165deg, hsl(39 25% 85%) 0%, hsl(39 20% 82%) 35%, hsl(42 22% 84%) 100%);
+         border-radius:18px; max-width:1180px; margin:12px auto 0; overflow:hidden; }
+  .hero .inner{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;
+                max-width:1100px; margin:0 auto; padding:54px 40px; min-height:560px; }
+  .eyebrow{ font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:16px; }
+  .hero h2{ font-family:'Playfair Display',serif; font-weight:600; font-size:40px; line-height:1.12; color:var(--purple); margin-bottom:20px; }
+  .hero h2 .gold{ color:var(--gold); }
+  .sub{ font-size:16px; color:var(--gray); max-width:460px; margin-bottom:26px; }
+  .badges{ display:flex; flex-wrap:wrap; gap:18px; margin-bottom:30px; }
+  .badges span{ font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); font-weight:600; display:flex; align-items:center; gap:7px; }
+  .badges span::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--gold); }
+  .cta{ display:inline-flex; flex-direction:column; background:var(--gold); color:#fff; text-decoration:none;
+        padding:14px 26px; border-radius:8px; box-shadow:0 8px 20px -8px rgba(179,149,95,.6); }
+  .cta b{ font-weight:600; font-size:15px; } .cta small{ font-size:11px; opacity:.85; }
+
+  .photo-col{ display:flex; justify-content:flex-end; }
+  .photo{ width:430px; height:610px; }
+  .photo img{ width:100%; height:100%; object-fit:cover; object-position:top;
+    -webkit-mask-image:linear-gradient(to left,#000 90%,transparent 100%),linear-gradient(to bottom,#000 92%,transparent 100%);
+    -webkit-mask-composite:source-in; mask-image:linear-gradient(to left,#000 90%,transparent 100%),linear-gradient(to bottom,#000 92%,transparent 100%); mask-composite:intersect; }
+  .foot{ text-align:center; color:#9a917f; font-size:12px; padding:40px 20px 60px; }
+  /* ---- Full-bleed (foto como background) ---- */
+  .fullbleed{ position:relative; max-width:1180px; margin:12px auto 0; border-radius:18px; overflow:hidden; min-height:600px;
+    background:#E2D9C7 url(/lovable-uploads/hero-real-natural-full.webp) right center/cover no-repeat; }
+  .fullbleed::before{ content:''; position:absolute; inset:0;
+    background:linear-gradient(to right, rgba(226,217,199,0.97) 0%, rgba(226,217,199,0.88) 26%, rgba(226,217,199,0.20) 50%, rgba(226,217,199,0) 64%); }
+  .fullbleed .inner{ position:relative; min-height:600px; display:flex; align-items:center; padding:60px 48px; }
+  .fullbleed .text{ max-width:540px; }
+  .fullbleed h2{ font-family:'Playfair Display',serif; font-weight:600; font-size:46px; line-height:1.12; color:var(--purple); margin-bottom:20px; }
+  .fullbleed h2 .gold{ color:var(--gold); }
+  .fullbleed.brand{ background-image:url(/lovable-uploads/hero-real-reception-full.webp); background-position:center 20%; }
+
+  /* ---- Full-bleed responsivo (img + scrim) — Opção 3 escolhida ---- */
+  .fb{ position:relative; max-width:1180px; margin:12px auto 0; border-radius:18px; overflow:hidden; background:#E4DBCA; }
+  .fb picture{ display:block; }
+  .fb-img{ display:block; width:100%; height:600px; object-fit:cover; object-position:50% 10%; }
+  .fb-scrim{ position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(to right, rgba(228,219,202,0.99) 0%, rgba(228,219,202,0.96) 33%, rgba(228,219,202,0.55) 49%, rgba(228,219,202,0) 70%); }
+  .fb-text{ position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; padding:0 52px; }
+  .fb-text .text{ max-width:540px; }
+  .fb h2{ font-family:'Playfair Display',serif; font-weight:600; font-size:42px; line-height:1.14; color:var(--purple); margin-bottom:18px; }
+  .fb h2 .gold{ color:var(--gold); }
+  @media (max-width:760px){
+    .fb-img{ height:330px; object-position:50% 6%; }
+    .fb-scrim{ display:none; }
+    .fb-text{ position:static; background:#E4DBCA; padding:28px 26px 38px; }
+    .fb-text .text{ max-width:none; }
+    .fb h2{ font-size:30px; }
+  }
+
+  @media (max-width:760px){ .hero .inner{ grid-template-columns:1fr; } .photo-col{ justify-content:center; } .photo{ width:300px; height:420px; } .hero h2{ font-size:30px; }
+    .fullbleed{ background-position:78% center; } .fullbleed h2{ font-size:30px; }
+    .fullbleed::before{ background:linear-gradient(to bottom, rgba(226,217,199,0.45) 0%, rgba(226,217,199,0.93) 62%); }
+    .fullbleed .inner{ align-items:flex-end; } }
+</style>
+</head>
+<body>
+  <div class="page-head">
+    <h1>Hero — 3 opções para comparar</h1>
+    <p>Mesmo layout, texto e cores reais do site. Só muda a foto. A Opção em destaque (V1) é a que está no ar agora; as outras duas usam fotos reais do ensaio (com retoque leve).</p>
+  </div>
+
+  <!-- Full-bleed (foto de fundo) -->
+  <div class="opt-label"><span class="tag" style="background:#1c6b3a">Opção 3 · Full-bleed A — ESCOLHIDA (reenquadrada + névoa forte)</span><span class="desc">Cabeça + mãos visíveis · névoa mais forte à esquerda. Redimensione a janela p/ ver o mobile: foto em cima, texto embaixo.</span></div>
+  <section class="fb">
+    <picture>
+      <source media="(max-width:760px)" srcset="/lovable-uploads/hero-real-natural.webp" />
+      <img class="fb-img" src="/lovable-uploads/hero-fullbleed-a.webp" alt="Dra. Carla Christoph, dentista em Ipanema" />
+    </picture>
+    <div class="fb-scrim"></div>
+    <div class="fb-text"><div class="text">
+      <p class="eyebrow">Especialista em Prótese e Implantodontia</p>
+      <h2>Dentista em Ipanema especializada em reabilitação oral e <span class="gold">estética natural</span></h2>
+      <p class="sub">No mínimo uma hora por consulta. Tempo para ouvir, examinar e planejar cada caso.</p>
+      <div class="badges"><span>20+ anos em Ipanema</span><span>CRO-RJ 27.509</span><span>Do plano à finalização</span></div>
+      <a class="cta" href="#"><b>Agendar minha consulta</b><small>WhatsApp 24h</small></a>
+    </div></div>
+  </section>
+
+  <!-- Full-bleed B (marca) -->
+  <div class="opt-label"><span class="tag" style="background:#1c6b3a">Opção 4 · Full-bleed B — recepção / marca</span><span class="desc">RIT08572: a Dra. + o logo dourado "Carla Christoph" ao fundo. Mais autoridade e identidade visual no quadro.</span></div>
+  <section class="fullbleed brand">
+    <div class="inner">
+      <div class="text">
+        <p class="eyebrow">Especialista em Prótese e Implantodontia</p>
+        <h2>Dentista em Ipanema <span class="gold">Estética Natural</span></h2>
+        <p class="sub">Tratamento sem pressa, com mínimo desconforto e um resultado que parece natural.</p>
+        <div class="badges"><span>20+ anos em Ipanema</span><span>CRO-RJ 27.509</span><span>1h+ por consulta</span></div>
+        <a class="cta" href="#"><b>Agendar minha consulta</b><small>WhatsApp 24h</small></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- V1 (no ar) -->
+  <div class="opt-label live"><span class="tag">No ar agora · V1 (IA)</span><span class="desc">Retrato de estúdio com fundo bege da marca gerado por IA — integra, mas é imagem editada.</span></div>
+  <section class="hero">
+    <div class="inner">
+      <div>
+        <p class="eyebrow">Especialista em Prótese e Implantodontia</p>
+        <h2>Dentista em Ipanema Especializada em Reabilitação Oral e <span class="gold">Estética Natural</span></h2>
+        <p class="sub">Para quem busca tratamento odontológico sem pressa, com mínimo desconforto e com resultado que parece natural</p>
+        <div class="badges"><span>20+ anos em Ipanema</span><span>CRO-RJ 27.509</span><span>1h+ por consulta</span></div>
+        <a class="cta" href="#"><b>Agendar minha consulta</b><small>WhatsApp 24h</small></a>
+      </div>
+      <div class="photo-col"><div class="photo"><img src="/lovable-uploads/hero-v1.png" alt="V1 IA" /></div></div>
+    </div>
+  </section>
+
+  <!-- Opção 1: real luz natural -->
+  <div class="opt-label"><span class="tag">Opção 1 · Foto real — luz natural</span><span class="desc">RIT08461 — a Dra. no consultório real, luz natural dos janelões. Estilo editorial/ambiental (APA / Harley Street).</span></div>
+  <section class="hero">
+    <div class="inner">
+      <div>
+        <p class="eyebrow">Especialista em Prótese e Implantodontia</p>
+        <h2>Dentista em Ipanema Especializada em Reabilitação Oral e <span class="gold">Estética Natural</span></h2>
+        <p class="sub">Para quem busca tratamento odontológico sem pressa, com mínimo desconforto e com resultado que parece natural</p>
+        <div class="badges"><span>20+ anos em Ipanema</span><span>CRO-RJ 27.509</span><span>1h+ por consulta</span></div>
+        <a class="cta" href="#"><b>Agendar minha consulta</b><small>WhatsApp 24h</small></a>
+      </div>
+      <div class="photo-col"><div class="photo"><img src="/lovable-uploads/hero-real-natural.webp" alt="Foto real luz natural" /></div></div>
+    </div>
+  </section>
+
+  <!-- Opção 2: real recepção -->
+  <div class="opt-label"><span class="tag">Opção 2 · Foto real — recepção da marca</span><span class="desc">RIT08572 — a Dra. na recepção com a marca ao fundo. Mais autoridade + identidade visual no quadro.</span></div>
+  <section class="hero">
+    <div class="inner">
+      <div>
+        <p class="eyebrow">Especialista em Prótese e Implantodontia</p>
+        <h2>Dentista em Ipanema Especializada em Reabilitação Oral e <span class="gold">Estética Natural</span></h2>
+        <p class="sub">Para quem busca tratamento odontológico sem pressa, com mínimo desconforto e com resultado que parece natural</p>
+        <div class="badges"><span>20+ anos em Ipanema</span><span>CRO-RJ 27.509</span><span>1h+ por consulta</span></div>
+        <a class="cta" href="#"><b>Agendar minha consulta</b><small>WhatsApp 24h</small></a>
+      </div>
+      <div class="photo-col"><div class="photo"><img src="/lovable-uploads/hero-real-reception.webp" alt="Foto real recepção" /></div></div>
+    </div>
+  </section>
+
+  <p class="foot">Página de comparação local · não indexada · não faz parte da produção · gerada para a Dra. Carla escolher o hero.</p>
+</body>
+</html>

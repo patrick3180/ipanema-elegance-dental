@@ -1,0 +1,455 @@
+---
+/**
+ * /clinica-geral-e-prevencao — porte VERBATIM de src/pages/ClinicaGeralPrevencao.tsx.
+ * Meta/canonical: scripts/generate-static-meta.cjs ('/clinica-geral-e-prevencao').
+ * Schemas: MedicalProcedure + Dentist (generate-static-meta.cjs) +
+ * FAQPage (faqs da página, como o Helmet do React) + BreadcrumbList (hero).
+ */
+import SiteLayout from '../layouts/SiteLayout.astro';
+import TreatmentHero from '../components/treatment/TreatmentHero.astro';
+import StatsBar from '../components/treatment/StatsBar.astro';
+import SectionDivider from '../components/treatment/SectionDivider.astro';
+import ProcessTimeline from '../components/treatment/ProcessTimeline.astro';
+import QuickAnswerBox from '../components/treatment/QuickAnswerBox.astro';
+import DoctorBioSection from '../components/treatment/DoctorBioSection.astro';
+import EmpatheticPainPoints from '../components/treatment/EmpatheticPainPoints.astro';
+import ServiceFAQ from '../components/treatment/ServiceFAQ.astro';
+import FinalServiceCTA from '../components/treatment/FinalServiceCTA.astro';
+import RelatedTreatments from '../components/treatment/RelatedTreatments.astro';
+import FloatingWhatsAppButton from '../components/treatment/FloatingWhatsAppButton.astro';
+import Icon from '../components/treatment/Icon.astro';
+import '../styles/treatment.css';
+
+const faqs = [
+  { question: 'O que está incluído no check-up preventivo?', answer: 'O check-up completo inclui exame clínico detalhado, limpeza profissional (profilaxia), análise de risco de cáries e doenças gengivais, orientação personalizada de higiene e, quando necessário, solicitação de radiografias. É uma análise completa para identificar qualquer problema antes que cause sintomas.' },
+  { question: 'Com que frequência devo fazer consultas preventivas?', answer: 'A frequência varia conforme seu perfil de risco. Pacientes de baixo risco podem vir a cada 6-8 meses, enquanto quem tem maior predisposição a cáries ou problemas gengivais deve retornar a cada 3-4 meses. Na primeira consulta, criamos um cronograma personalizado para você.' },
+  { question: 'A limpeza profissional dói?', answer: 'A limpeza com ultrassom é muito confortável. A maioria dos pacientes relata apenas uma leve sensação de vibração. Em casos de muita sensibilidade, podemos usar anestesia tópica para garantir seu conforto total durante o procedimento.' },
+  { question: 'Por que prevenir é mais econômico que tratar?', answer: 'Uma consulta preventiva custa uma fração do valor de tratamentos como canal, implantes ou enxertos gengivais. Além disso, você evita dor, desconforto e tempo longe do trabalho. Investir em prevenção é proteger sua saúde e seu bolso.' },
+  { question: 'O iTero Element 5D substitui as moldagens tradicionais?', answer: 'Sim! O iTero Element 5D captura imagens digitais precisas da sua boca em poucos minutos, sem aquele desconforto das moldeiras com massa. É mais rápido, mais preciso e muito mais confortável, especialmente para quem tem reflexo de vômito.' },
+  { question: 'Como vocês identificam cáries no estágio inicial?', answer: 'Além do exame clínico, usamos câmeras de alta definição com magnificação e, quando necessário, radiografias digitais. Conseguimos identificar lesões de cárie ainda reversíveis, que podem ser tratadas apenas com aplicação de flúor, sem necessidade de restauração.' },
+  { question: 'O que fazer para prevenir mau hálito?', answer: 'Primeiro identificamos a causa - que em 90% dos casos está na boca (língua, gengiva ou dentes). Depois criamos um protocolo específico que pode incluir limpeza profissional, tratamento gengival, orientação sobre limpeza da língua e indicação de produtos adequados.' },
+  { question: 'Aplicação de flúor é só para crianças?', answer: 'Não! Adultos com alto risco de cáries, sensibilidade dental, boca seca ou exposição de raízes também se beneficiam muito da aplicação profissional de flúor. É um procedimento preventivo simples que fortalece o esmalte e reduz a sensibilidade.' },
+  { question: 'Qual a diferença entre limpeza em casa e profissional?', answer: 'A escovação e fio dental diários removem a placa bacteriana fresca. Mas o tártaro (placa mineralizada) só pode ser removido com instrumentos profissionais. Além disso, conseguimos limpar áreas que você não alcança em casa, como abaixo da linha da gengiva.' },
+  { question: 'Quando devo procurar prevenção e não tratamento?', answer: 'Sempre que não houver dor ou problema ativo! A prevenção deve ser sua primeira escolha. Se faz mais de 6 meses desde sua última consulta, se percebe sangramento gengival, mau hálito ou sensibilidade, é hora de uma consulta preventiva - antes que vire tratamento complexo.' },
+];
+
+const PROVIDER = {
+  '@type': 'Dentist',
+  name: 'Dra. Carla Christoph',
+  telephone: '+5521993304045',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+    addressLocality: 'Ipanema',
+    addressRegion: 'RJ',
+    postalCode: '22410-901',
+    addressCountry: 'BR',
+  },
+};
+
+const schemas = [
+  // MedicalProcedure — copiado de generate-static-meta.cjs ('/clinica-geral-e-prevencao')
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'MedicalProcedure',
+    name: 'Consulta de Prevenção e Check-up Dental',
+    description: 'Check-up odontológico completo com limpeza profissional, scanner digital 3D e protocolo preventivo individualizado',
+    procedureType: 'Dental',
+    url: 'https://dracarlachristoph.com/clinica-geral-e-prevencao',
+    provider: PROVIDER,
+  }),
+  // Dentist — generateDentistSchema() de generate-static-meta.cjs
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Dentist',
+    name: 'Dra. Carla Christoph',
+    description: 'Dentista especialista em Prótese Dental e Reabilitação Oral em Ipanema, Rio de Janeiro. Mais de 20 anos de experiência.',
+    telephone: '+5521993304045',
+    url: 'https://dracarlachristoph.com',
+    image: 'https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
+    priceRange: '$$$',
+    address: PROVIDER.address,
+    openingHoursSpecification: [
+      { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '19:00' },
+    ],
+    hasCredential: { '@type': 'EducationalOccupationalCredential', credentialCategory: 'CRO-RJ', recognizedBy: { '@type': 'Organization', name: 'CRO-RJ' }, identifier: '27.509' },
+    aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '17', bestRating: '5' },
+    availableLanguage: ['pt-BR', 'en'],
+  }),
+  // FAQPage — mesmas perguntas/respostas exibidas na página (Helmet do React)
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  }),
+];
+
+// Cards "Prevenção que Faz a Diferença" — copy verbatim do .tsx
+const prevCards = [
+  { icon: 'shield', iconClass: 'tx-purple', bg: 'cg-bg-purple', title: 'Prevenção que Funciona', text: 'Protocolos personalizados que evitam a maioria dos problemas bucais, mantendo seu sorriso saudável por muito mais tempo' },
+  { icon: 'scan', iconClass: 'tx-gold', bg: 'cg-bg-gold', title: 'Tecnologia a Seu Favor', text: 'Check-up com iTero Element 5D e câmera HD que identifica problemas invisíveis a olho nu, antes que causem dor ou desconforto' },
+  { icon: 'heart', iconClass: 'tx-purple', bg: 'cg-bg-purple', title: 'Acompanhamento Individual', text: 'Cada paciente é único. Criamos um plano preventivo sob medida para suas necessidades, estilo de vida e histórico' },
+];
+
+// Cards "Seu Check-up Preventivo Completo" — copy verbatim; dimensões reais dos arquivos
+const checkupCards = [
+  { img: '/lovable-uploads/scanner + intraoral.webp', w: 600, h: 400, alt: 'Check-up Digital Completo com iTero Element 5D', title: 'Check-up Digital Completo', desc: 'Avaliação detalhada com iTero Element 5D e câmera de alta definição. Conseguimos ver o que os olhos não veem, identificando pequenos problemas antes que virem grandes preocupações.' },
+  { img: '/lovable-uploads/ulrassom.webp', w: 600, h: 600, alt: 'Limpeza Profissional com Ultrassom', title: 'Limpeza Profissional', desc: 'Profilaxia com tecnologia ultrassônica que remove tártaro e manchas de forma confortável. Seus dentes mais limpos, sua gengiva mais saudável, seu hálito mais fresco.' },
+  { img: '/lovable-uploads/Fluor.webp', w: 600, h: 600, alt: 'Prevenção de Cáries com Flúor', title: 'Prevenção de Cáries', desc: 'Aplicação de flúor, selantes e acompanhamento próximo das áreas de risco para manter seus dentes protegidos e saudáveis.' },
+  { img: '/lovable-uploads/Periodontal.webp', w: 600, h: 400, alt: 'Saúde Gengival e Prevenção Periodontal', title: 'Cuidado com a Gengiva', desc: 'Prevenção e controle de inflamações gengivais. Gengiva saudável é a base para dentes que duram a vida toda - e para evitar problemas que vão além da boca.' },
+  { img: '/lovable-uploads/mau halito.webp', w: 600, h: 600, alt: 'Controle de Mau Hálito', title: 'Controle de Mau Hálito', desc: 'Investigamos a causa real do mau hálito e criamos um protocolo específico para você. Porque confiança ao conversar e sorrir não tem preço.' },
+  { img: '/lovable-uploads/planejamento.webp', w: 600, h: 600, alt: 'Plano Preventivo Personalizado', title: 'Seu Plano Preventivo', desc: 'Com base no seu risco individual, criamos um cronograma de cuidados sob medida. Orientação sobre produtos adequados, técnicas corretas e frequência ideal de consultas.' },
+];
+
+const checkupMessage = 'Olá! Gostaria de agendar um check-up preventivo com a Dra. Carla Christoph.';
+const checkupHref = `https://wa.me/5521993304045?text=${encodeURIComponent(checkupMessage)}`;
+---
+
+<SiteLayout
+  title="Clínica Geral e Prevenção em Ipanema | Dra. Carla Christoph"
+  description="Clínica geral odontológica e prevenção em Ipanema. Check-up dental, limpeza profissional e cuidados preventivos. Dra. Carla Christoph."
+  canonical="https://dracarlachristoph.com/clinica-geral-e-prevencao"
+  preloadImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+  schemas={schemas}
+>
+  <main id="main-content">
+    <TreatmentHero
+      title="Cuide da Saúde do Seu Sorriso com Prevenção e Tecnologia"
+      subtitle="Dra. Carla Christoph - Especialista em Saúde Bucal Integral"
+      description="Check-up digital completo e protocolos preventivos para identificar problemas antes que se tornem complexos. Porque prevenir é sempre melhor - e mais econômico - do que remediar."
+      badges={['20+ anos de experiência', 'CRO-RJ 27.509', 'iTero Element 5D']}
+      doctorImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+      breadcrumbs={[
+        { label: 'Início', href: '/' },
+        { label: 'Tratamentos', href: '/servicos' },
+        { label: 'Clínica Geral e Prevenção' },
+      ]}
+      waLabel="clinica-geral_hero_whatsapp"
+    />
+
+    <section class="qa-section">
+      <div class="container-custom">
+        <QuickAnswerBox answer="Clínica geral e prevenção odontológica oferece check-up completo para manter a saúde bucal e evitar problemas futuros. Na clínica da Dra. Carla Christoph em Ipanema (CRO-RJ 27.509), o check-up inclui exame clínico detalhado, limpeza profissional com ultrassom, iTero Element 5D e avaliação de risco personalizada. Com 20+ anos de experiência, criamos protocolos preventivos individualizados. Recomenda-se consultas a cada 6-8 meses para baixo risco e 3-4 meses para alto risco. Prevenir é sempre mais econômico e confortável do que tratar problemas avançados." />
+      </div>
+    </section>
+
+    <EmpatheticPainPoints
+      painPoints={[
+        { icon: 'calendar', iconColor: 'purple', strong: 'Faz mais de 1 ano sem ir ao dentista', description: 'e sente que pode ter algum problema acumulando sem saber?', borderColor: 'purple' },
+        { icon: 'alert-circle', iconColor: 'gold', strong: 'Sente sensibilidade ao comer ou beber gelado', description: 'que vem piorando e você não sabe o que pode ser?', borderColor: 'gold' },
+        { icon: 'heart', iconColor: 'purple-soft', strong: 'Quer cuidar da saúde bucal mas não sabe por onde começar', description: 'e prefere um acompanhamento preventivo personalizado?', borderColor: 'purple-soft' },
+      ]}
+      callout={{ icon: 'clock', title: 'Importante', text: 'Pequenos problemas como cáries iniciais e gengivite são reversíveis quando detectados cedo. Sem acompanhamento, podem evoluir para canal, perda óssea ou extração.' }}
+    >
+      <Fragment slot="conclusion">Prevenir é sempre mais simples, mais confortável e mais econômico do que tratar.<br class="md-only" /> Um check-up cuidadoso pode evitar tratamentos complexos no futuro.</Fragment>
+    </EmpatheticPainPoints>
+
+    <!-- CTA Intermediário (check-up) -->
+    <section class="cg-cta-mid">
+      <div class="cg-cta-mid-inner">
+        <p class="cg-cta-mid-text">Quer cuidar antes que precise tratar?</p>
+        <a
+          class="cg-cta-mid-btn js-wa-cta"
+          data-label="clinica-geral_checkup_whatsapp"
+          href={checkupHref}
+          target="_blank"
+          rel="noopener"
+        >
+          Agendar Check-up
+          <Icon name="arrow-right" size={20} />
+        </a>
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="shield" />
+
+    <!-- Prevenção que Faz a Diferença -->
+    <section class="sec-white">
+      <div class="container-custom">
+        <h2 class="heading-lg cg-title tx-purple">Prevenção que Faz a Diferença</h2>
+        <p class="cg-sub tx-gray">Tecnologia avançada e cuidado personalizado para manter seu sorriso saudável</p>
+        <div class="cg-grid3">
+          {prevCards.map((card) => (
+            <div class="cg-card">
+              <div class:list={['cg-icon', card.bg]}>
+                <Icon name={card.icon} size={32} class={card.iconClass} />
+              </div>
+              <h3 class="cg-card-title">{card.title}</h3>
+              <p class="tx-gray">{card.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="sparkles" />
+
+    <!-- Seu Check-up Preventivo Completo -->
+    <section class="sec-white">
+      <div class="cg-wrap">
+        <div class="cg-head">
+          <h2 class="cg-h2">Seu Check-up Preventivo Completo</h2>
+          <p class="cg-lead tx-gray">Cada consulta é planejada para identificar e prevenir problemas antes que apareçam</p>
+        </div>
+        <div class="cg-checkup-grid">
+          {checkupCards.map((item) => (
+            <div class="cg-checkup-card shadow-soft">
+              <div class="cg-checkup-img">
+                <img src={item.img} alt={item.alt} width={item.w} height={item.h} loading="lazy" decoding="async" />
+                <div class="cg-checkup-overlay"></div>
+              </div>
+              <div class="cg-checkup-caption">
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <DoctorBioSection
+      sectionTitle="Sua Parceira na Saúde Bucal"
+      badgeText="20+ Anos de Experiência"
+      credentials={[
+        { title: 'Tecnologia', description: 'iTero Element 5D e câmera HD' },
+        { title: 'Prevenção', description: 'Protocolos individualizados' },
+        { title: 'Experiência', description: '20+ anos em Ipanema' },
+        { title: 'Especialização', description: 'Prótese Dental e Implantodontia' },
+      ]}
+      quote="Porque prevenir não é só limpar os dentes - é criar uma relação de confiança onde você se sente cuidado."
+    >
+      <p>Com mais de 20 anos de experiência, aprendi que cada sorriso conta uma história única. Não existe protocolo padrão - existe o cuidado que você precisa, no momento que você precisa.</p>
+      <p>Minha abordagem combina iTero Element 5D e planejamento individualizado com tempo dedicado para entender suas necessidades reais. Porque prevenir não é só limpar os dentes - é criar uma relação de confiança onde você se sente cuidado.</p>
+    </DoctorBioSection>
+
+    <SectionDivider variant="with-icon" icon="calendar" />
+
+    <!-- Passo a passo -->
+    <section class="sec-white">
+      <div class="container-custom">
+        <h2 class="heading-lg cg-title tx-purple">Sua Consulta Preventiva, Passo a Passo</h2>
+        <p class="cg-sub tx-gray">Um protocolo completo pensado para sua saúde bucal integral</p>
+        <ProcessTimeline
+          steps={[
+            { number: 1, title: 'Análise Inicial', description: 'Conversamos sobre seu histórico, hábitos e preocupações + exame visual detalhado', icon: 'search', duration: '1ª Consulta' },
+            { number: 2, title: 'Diagnóstico Digital', description: 'iTero Element 5D + Solicitação de exames complementares quando necessário', icon: 'scan', duration: '1ª Consulta' },
+            { number: 3, title: 'Profilaxia Avançada', description: 'Limpeza profissional com ultrassom 30.000 Hz - confortável e eficaz', icon: 'sparkles', duration: '1ª Consulta' },
+            { number: 4, title: 'Protocolo Personalizado', description: 'Seu plano preventivo individual com orientações específicas e cronograma', icon: 'clipboard-check', duration: '1ª Consulta' },
+            { number: 5, title: 'Acompanhamento', description: 'Retornos programados para manter sua saúde bucal sempre em dia', icon: 'calendar', duration: 'Periódico' },
+          ]}
+        />
+      </div>
+    </section>
+
+    <SectionDivider variant="with-icon" icon="help-circle" />
+
+    <ServiceFAQ title="Perguntas Frequentes sobre Prevenção" faqs={faqs} />
+
+    <FinalServiceCTA
+      icon="shield"
+      title="Pronto para Investir na Saúde do Seu Sorriso?"
+      description="Agende seu check-up preventivo e descubra como pequenos cuidados fazem toda a diferença. iTero Element 5D, protocolos personalizados e tempo para cuidar da sua saúde bucal aguardam você em Ipanema."
+      ctaText="Agendar Minha Consulta Preventiva"
+      waMessage="Olá! Gostaria de agendar uma consulta preventiva e check-up digital com a Dra. Carla Christoph."
+      waLabel="clinica-geral_final_whatsapp"
+      footnote="Atendimento de segunda a sexta, das 9h às 19h"
+    />
+
+    <StatsBar />
+
+    <RelatedTreatments currentPage="clinica-geral-e-prevencao" />
+  </main>
+
+  <FloatingWhatsAppButton waLabel="clinica-geral_float_whatsapp" />
+</SiteLayout>
+
+<style>
+  .qa-section {
+    padding-block: 2rem;
+    background: #fff;
+  }
+
+  /* CTA intermediário (check-up) */
+  .cg-cta-mid {
+    padding-block: 2rem;
+    background: #fff;
+  }
+  .cg-cta-mid-inner {
+    max-width: 48rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+    text-align: center;
+  }
+  .cg-cta-mid-text {
+    font-size: 1.25rem;
+    color: var(--dc-gray);
+    margin: 0 0 1.5rem;
+  }
+  .cg-cta-mid-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: var(--dc-gold);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+  .cg-cta-mid-btn:hover {
+    background: rgba(179, 149, 95, 0.9);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+  }
+
+  .cg-title {
+    text-align: center;
+    margin: 0 0 1rem;
+  }
+  .cg-sub {
+    text-align: center;
+    margin: 0 auto 3rem;
+    max-width: 42rem;
+  }
+  .cg-grid3 {
+    display: grid;
+    gap: 2rem;
+    max-width: 64rem;
+    margin-inline: auto;
+  }
+  @media (min-width: 768px) {
+    .cg-grid3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .cg-card {
+    text-align: center;
+  }
+  .cg-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+  }
+  .cg-bg-purple {
+    background: rgba(56, 31, 71, 0.1);
+  }
+  .cg-bg-gold {
+    background: rgba(179, 149, 95, 0.1);
+  }
+  .cg-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--dc-purple);
+    margin: 0 0 0.75rem;
+  }
+  .cg-card p {
+    margin: 0;
+  }
+
+  /* Check-up Preventivo Completo (cards com imagem) */
+  .cg-wrap {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  .cg-head {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .cg-h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.875rem;
+    line-height: 1.2;
+    color: var(--dc-purple);
+    margin: 0 0 1rem;
+  }
+  @media (min-width: 768px) {
+    .cg-h2 {
+      font-size: 2.25rem;
+    }
+  }
+  .cg-lead {
+    font-size: 1.125rem;
+    margin: 0;
+  }
+  .cg-checkup-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .cg-checkup-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 1024px) {
+    .cg-checkup-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .cg-checkup-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    transition: box-shadow 0.3s;
+  }
+  .cg-checkup-card:hover {
+    box-shadow: 0 10px 40px -10px rgba(56, 31, 71, 0.2);
+  }
+  .cg-checkup-img {
+    aspect-ratio: 4 / 3;
+    position: relative;
+  }
+  .cg-checkup-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .cg-checkup-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(56, 31, 71, 0.9), rgba(56, 31, 71, 0.5), transparent);
+    opacity: 0.9;
+    transition: opacity 0.3s;
+  }
+  .cg-checkup-card:hover .cg-checkup-overlay {
+    opacity: 0.95;
+  }
+  .cg-checkup-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    color: #fff;
+  }
+  .cg-checkup-caption h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem;
+    transition: color 0.3s;
+  }
+  .cg-checkup-card:hover .cg-checkup-caption h3 {
+    color: var(--dc-gold);
+  }
+  .cg-checkup-caption p {
+    font-size: 0.875rem;
+    line-height: 1.625;
+    opacity: 0.95;
+    margin: 0;
+  }
+</style>

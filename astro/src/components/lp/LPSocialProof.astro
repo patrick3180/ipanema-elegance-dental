@@ -1,0 +1,178 @@
+---
+/**
+ * LPSocialProof — porte de src/components/landing/consulta/ConsultaInicialSocialProof.tsx
+ * Stats (ícone por label) + depoimentos (avatar = inicial do nome).
+ */
+interface Testimonial {
+  name: string;
+  text: string;
+  avatar?: string;
+}
+interface Stat {
+  number: string;
+  label: string;
+}
+interface Props {
+  title: string;
+  testimonials: Testimonial[];
+  stats?: Stat[];
+}
+const { title, testimonials, stats } = Astro.props;
+
+// Ícone por label — mesma lógica do React (Award/Users/Clock/MessageCircle)
+const awardPath = '<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>';
+const usersPath = '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>';
+const clockPath = '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>';
+const messagePath = '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>';
+const getStatIconPath = (label: string) => {
+  if (label.includes('Experiência')) return awardPath;
+  if (label.includes('Pacientes')) return usersPath;
+  if (label.includes('hora') || label.includes('Agendamento')) return clockPath;
+  if (label.includes('WhatsApp')) return messagePath;
+  return awardPath;
+};
+---
+
+<section class="lp-social">
+  <div class="lp-social-container">
+    <div class="lp-social-inner">
+      <div class="lp-social-header">
+        <h2>{title}</h2>
+      </div>
+
+      {stats && (
+        <div class="lp-social-stats">
+          {stats.map((stat) => (
+            <div class="lp-social-stat">
+              <div class="lp-social-stat-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B3955F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={getStatIconPath(stat.label)} />
+              </div>
+              <div class="lp-social-stat-number">{stat.number}</div>
+              <div class="lp-social-stat-label">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div class="lp-social-testimonials">
+        {testimonials.map((testimonial) => (
+          <div class="lp-social-card">
+            <blockquote>"{testimonial.text}"</blockquote>
+            <div class="lp-social-author">
+              {testimonial.avatar ? (
+                <img src={testimonial.avatar} alt={testimonial.name} width="40" height="40" loading="lazy" decoding="async" class="lp-social-avatar-img" />
+              ) : (
+                <div class="lp-social-avatar">
+                  <span>{testimonial.name.charAt(0)}</span>
+                </div>
+              )}
+              <div class="lp-social-name">{testimonial.name}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .lp-social { background: #fff; padding: 4rem 0; }
+  @media (min-width: 1024px) {
+    .lp-social { padding: 6rem 0; }
+  }
+  .lp-social-container { max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
+  .lp-social-inner { max-width: 1152px; margin: 0 auto; }
+  .lp-social-header { text-align: center; margin-bottom: 4rem; }
+  .lp-social-header h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #381f47;
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+  @media (min-width: 768px) {
+    .lp-social-header h2 { font-size: 2.25rem; }
+  }
+  .lp-social-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+  @media (min-width: 768px) {
+    .lp-social-stats { grid-template-columns: repeat(4, 1fr); }
+  }
+  .lp-social-stat {
+    text-align: center;
+    background: #f9fafb;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    transition: box-shadow 0.3s;
+  }
+  .lp-social-stat:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  }
+  .lp-social-stat-icon { display: flex; justify-content: center; margin-bottom: 0.75rem; }
+  .lp-social-stat-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #381f47;
+    margin-bottom: 0.5rem;
+  }
+  @media (min-width: 768px) {
+    .lp-social-stat-number { font-size: 1.875rem; }
+  }
+  .lp-social-stat-label { font-size: 0.875rem; color: #333; }
+  @media (min-width: 768px) {
+    .lp-social-stat-label { font-size: 1rem; }
+  }
+  .lp-social-testimonials {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  @media (min-width: 768px) {
+    .lp-social-testimonials { grid-template-columns: repeat(3, 1fr); }
+  }
+  .lp-social-card {
+    background: #f9fafb;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+    transition: box-shadow 0.3s;
+  }
+  .lp-social-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  }
+  .lp-social-card blockquote {
+    color: #333;
+    line-height: 1.625;
+    font-style: italic;
+  }
+  .lp-social-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+  }
+  .lp-social-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: #b3955f;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .lp-social-avatar span { color: #fff; font-weight: 600; font-size: 0.875rem; }
+  .lp-social-avatar-img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    object-fit: cover;
+  }
+  .lp-social-name { font-weight: 600; color: #381f47; }
+</style>

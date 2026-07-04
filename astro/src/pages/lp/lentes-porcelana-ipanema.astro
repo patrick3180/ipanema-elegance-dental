@@ -1,0 +1,357 @@
+---
+/**
+ * /lp/lentes-porcelana-ipanema — porte de src/pages/LPLentesPorcelana.tsx
+ * Config: lentesPorcelanaAcolhedorConfig (só para seções config-driven).
+ * ATENÇÃO: hero e seção "Indicações" são CUSTOM (copy hardcoded na página React —
+ * portada verbatim). Title/description também são hardcoded no Helmet do React
+ * (diferentes do config.seo) — mantidos idênticos ao que está em produção.
+ * Hero usa <picture> com AVIF 480/1024 (Sprint 5/9 — evita double-download).
+ * Seções: Hero custom → Indicações (3 cards) → Problem → Guide → SocialProof → FAQ → FinalCTA.
+ */
+import LPLayout from '../../layouts/LPLayout.astro';
+import LPProblem from '../../components/lp/LPProblem.astro';
+import LPGuide from '../../components/lp/LPGuide.astro';
+import LPSocialProof from '../../components/lp/LPSocialProof.astro';
+import LPFAQ from '../../components/lp/LPFAQ.astro';
+import LPFinalCTA from '../../components/lp/LPFinalCTA.astro';
+import LPFloatingWhatsApp from '../../components/lp/LPFloatingWhatsApp.astro';
+import { lentesPorcelanaAcolhedorConfig as config } from '@/config/lentesPorcelanaAcolhedorConfig';
+
+const waHref = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(config.whatsapp.message)}`;
+const prefix = 'lp-lentes-porcelana';
+
+// Schemas — copiados verbatim do Helmet de LPLentesPorcelana.tsx (2 blocos)
+const schemas = [
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Dentist',
+    name: 'Dra. Carla Christoph',
+    description: 'Especialista em lentes de contato dental em porcelana em Ipanema',
+    telephone: '+5521993304045',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+      addressLocality: 'Ipanema',
+      addressRegion: 'RJ',
+      postalCode: '22410-901',
+      addressCountry: 'BR',
+    },
+  }),
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'MedicalProcedure',
+    name: 'Lentes de Contato Dental em Porcelana',
+    description: 'Estética dental com lentes ultrafinas de porcelana',
+    procedureType: 'Dental Cosmetic Procedure',
+  }),
+];
+
+// Cards da seção "Indicações" (copy verbatim da página React)
+const indicacoes = [
+  {
+    img: '/lovable-uploads/Dentes manchados.webp',
+    alt: 'Dentes manchados que não respondem ao clareamento',
+    title: 'Dentes Manchados que Não Clareiam',
+    text: 'Manchas por tetraciclina, fluorose ou escurecimento interno que não respondem ao clareamento dental. As lentes cobrem completamente a coloração natural, criando um branco natural e permanente.',
+  },
+  {
+    img: '/lovable-uploads/Diastema.webp',
+    alt: 'Harmonização de forma e alinhamento dental',
+    title: 'Harmonização de Forma e Alinhamento',
+    text: 'Dentes com formato irregular, pequenos desalinhamentos ou espaços entre eles (diastemas). As lentes criam uniformidade e proporções ideais respeitando sua anatomia facial única.',
+  },
+  {
+    img: '/lovable-uploads/Dentes irregulares.webp',
+    alt: 'Correção de desgastes e fraturas dentais',
+    title: 'Correção de Desgastes e Pequenas Fraturas',
+    text: 'Dentes desgastados por bruxismo, fraturas nas bordas ou dentes curtos demais. As lentes restauram o formato original e protegem contra novos desgastes, mantendo seu sorriso jovem.',
+  },
+];
+---
+
+<LPLayout
+  title="Lentes de Contato Dental em Porcelana Ipanema | Dra. Carla Christoph"
+  description="Lentes de porcelana ultrafinas em Ipanema. Dentes naturalmente brancos que não mancham. Test Drive do Sorriso e iTero Element 5D. 20+ anos de experiência. CRO-RJ 27.509"
+  canonical="https://dracarlachristoph.com/lp/lentes-porcelana-ipanema"
+  ogImage="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+  schemas={schemas}
+  whatsappHref={waHref}
+  waLabelPrefix={prefix}
+>
+  <main id="main-content" class="lp-main">
+    <!-- SEÇÃO 1: HERO CUSTOM (Test Drive do Sorriso) -->
+    <section class="lentes-hero">
+      <div class="lentes-hero-container">
+        <div class="lentes-hero-grid">
+          <!-- Coluna Esquerda — Texto -->
+          <div>
+            <h1 class="lentes-hero-h1">Test Drive do Sorriso — Veja o Resultado Antes de Começar</h1>
+
+            <p class="lentes-hero-sub">
+              iTero Element 5D e simulação em resina provisória na sua boca. Você aprova cada detalhe antes de
+              qualquer desgaste. Lentes de porcelana com especialista em Ipanema — CRO-RJ 27.509.
+            </p>
+
+            <div class="lentes-hero-badges">
+              <div class="lentes-hero-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.27"/></svg>
+                <span>20+ anos de experiência</span>
+              </div>
+              <div class="lentes-hero-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.27"/></svg>
+                <span>Test Drive do Sorriso</span>
+              </div>
+              <div class="lentes-hero-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.27"/></svg>
+                <span>iTero Element 5D</span>
+              </div>
+              <div class="lentes-hero-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.27"/></svg>
+                <span>CRO-RJ 27.509</span>
+              </div>
+            </div>
+
+            <a
+              class="lentes-hero-cta js-wa-cta"
+              data-label={`${prefix}_hero_whatsapp`}
+              href={waHref}
+              target="_blank"
+              rel="noopener"
+            >Conhecer o Test Drive do Sorriso</a>
+          </div>
+
+          <!-- Coluna Direita — Imagem (picture AVIF, paridade Sprint 9/V5) -->
+          <div class="lentes-hero-image">
+            <picture>
+              <source
+                srcset="/lovable-uploads/dra-carla-jaleco-bracos-cruzados-480.avif 480w, /lovable-uploads/dra-carla-jaleco-bracos-cruzados-1024.avif 1024w"
+                sizes="(max-width:767px) 100vw, (min-width:768px) 50vw, 40vw"
+                type="image/avif"
+              />
+              <img
+                src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+                alt="Dra. Carla Christoph - Especialista em Lentes de Porcelana"
+                width="800"
+                height="1200"
+                loading="eager"
+                fetchpriority="high"
+              />
+            </picture>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 2: INDICAÇÕES (3 cards com overlay roxo) -->
+    <section class="lentes-indicacoes">
+      <div class="lentes-indicacoes-container">
+        <h2 class="lentes-indicacoes-h2">Lentes de Porcelana São Indicadas Para os Seguintes Casos</h2>
+
+        <div class="lentes-indicacoes-grid">
+          {indicacoes.map((card) => (
+            <div class="lentes-card">
+              <div class="lentes-card-media">
+                <img src={card.img} alt={card.alt} width="800" height="800" loading="lazy" decoding="async" />
+                <div class="lentes-card-overlay" aria-hidden="true"></div>
+                <div class="lentes-card-content">
+                  <h3>{card.title}</h3>
+                  <p>{card.text}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Seções padrão a partir do config -->
+    <LPProblem
+      title={config.problem.title}
+      description={config.problem.description}
+      problems={config.problem.problems}
+    />
+
+    <LPGuide title={config.guide.title} subtitle={config.guide.subtitle} steps={config.guide.steps} />
+
+    <LPSocialProof
+      title={config.socialProof.title}
+      testimonials={config.socialProof.testimonials}
+      stats={config.socialProof.stats}
+    />
+
+    <LPFAQ title={config.faq.title} questions={config.faq.questions} />
+
+    <LPFinalCTA
+      title={config.cta.title}
+      subtitle={config.cta.subtitle}
+      buttonText={config.cta.buttonText}
+      urgency={config.cta.urgency}
+      whatsappHref={waHref}
+      waLabel={`${prefix}_final_whatsapp`}
+    />
+
+    <LPFloatingWhatsApp whatsappHref={waHref} waLabel={`${prefix}_floating_whatsapp`} />
+  </main>
+</LPLayout>
+
+<style>
+  .lp-main { background: #fff; min-height: 100vh; }
+
+  /* HERO — paridade com criticalStyles .lp-lentes-hero do React (Sprint 6) */
+  .lentes-hero {
+    padding-top: calc(72px + 4rem);
+    padding-bottom: 5rem;
+    background: linear-gradient(to bottom, rgba(207, 203, 180, 0.3), #fff);
+  }
+  .lentes-hero-container { max-width: 80rem; margin: 0 auto; padding: 0 1rem; }
+  .lentes-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 768px) {
+    .lentes-hero-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+  }
+  .lentes-hero-h1 {
+    font-size: 2.25rem;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    color: #381f47;
+    margin-bottom: 1rem;
+  }
+  @media (min-width: 768px) {
+    .lentes-hero-h1 { font-size: 3rem; }
+  }
+  .lentes-hero-sub {
+    font-size: 1.125rem;
+    color: #6b6b6b;
+    margin-bottom: 1.5rem;
+    line-height: 1.625;
+  }
+  @media (min-width: 768px) {
+    .lentes-hero-sub { font-size: 1.25rem; }
+  }
+  .lentes-hero-badges {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .lentes-hero-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(56, 31, 71, 0.1);
+    color: #381f47;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+  .lentes-hero-badge svg { flex-shrink: 0; }
+  .lentes-hero-cta {
+    background: linear-gradient(to right, #381f47, #b3955f);
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    justify-content: center;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  }
+  .lentes-hero-cta:hover {
+    opacity: 0.9;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  }
+  @media (min-width: 768px) {
+    .lentes-hero-cta { width: auto; }
+  }
+  .lentes-hero-image {
+    aspect-ratio: 760 / 996;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+  }
+  .lentes-hero-image picture,
+  .lentes-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* INDICAÇÕES — 3 cards com imagem + overlay gradiente roxo */
+  .lentes-indicacoes { background: #fff; padding: 4rem 0; }
+  @media (min-width: 768px) {
+    .lentes-indicacoes { padding: 5rem 0; }
+  }
+  .lentes-indicacoes-container { max-width: 80rem; margin: 0 auto; padding: 0 1rem; }
+  .lentes-indicacoes-h2 {
+    font-size: 1.875rem;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    color: #381f47;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  @media (min-width: 768px) {
+    .lentes-indicacoes-h2 { font-size: 2.25rem; }
+  }
+  .lentes-indicacoes-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  @media (min-width: 768px) {
+    .lentes-indicacoes-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .lentes-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    box-shadow: 0 4px 16px rgba(56, 31, 71, 0.08);
+    transition: all 0.3s;
+  }
+  .lentes-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+  }
+  .lentes-card-media { position: relative; aspect-ratio: 4 / 3; }
+  .lentes-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .lentes-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(56, 31, 71, 0.9), rgba(56, 31, 71, 0.5), transparent);
+  }
+  .lentes-card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    color: #fff;
+  }
+  .lentes-card-content h3 {
+    font-size: 1.5rem;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .lentes-card-content p {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+  }
+</style>

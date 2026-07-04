@@ -1,0 +1,82 @@
+---
+/** EnLPProblem — porte fiel de src/components/en/lp/EnLPProblem.tsx */
+interface Props {
+  title: string;
+  description: string;
+  problems: string[];
+}
+const { title, description, problems } = Astro.props;
+---
+
+<section class="enlp-problem">
+  <div class="enlp-problem-container">
+    <div class="enlp-problem-head">
+      <h2>{title}</h2>
+      <p>{description}</p>
+    </div>
+
+    <div class="enlp-problem-grid">
+      {problems.map((problem) => (
+        <div class="enlp-problem-card">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B3955F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+          <p>{problem}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .enlp-problem {
+    padding: 64px 0;
+    background: #fff;
+  }
+  @media (min-width: 768px) { .enlp-problem { padding: 80px 0; } }
+  .enlp-problem-container {
+    max-width: 896px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  @media (min-width: 640px) { .enlp-problem-container { padding: 0 24px; } }
+  @media (min-width: 1024px) { .enlp-problem-container { padding: 0 32px; } }
+  .enlp-problem-head {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .enlp-problem-head h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    color: #381f47;
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+  @media (min-width: 640px) { .enlp-problem-head h2 { font-size: 1.875rem; } }
+  .enlp-problem-head p {
+    color: #525252;
+    line-height: 1.625;
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+  .enlp-problem-grid {
+    display: grid;
+    gap: 16px;
+  }
+  @media (min-width: 640px) { .enlp-problem-grid { grid-template-columns: 1fr 1fr; } }
+  .enlp-problem-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: hsla(51, 22%, 76%, 0.6); /* bg-dental-beige/60 */
+    border: 1px solid rgba(56, 31, 71, 0.05);
+    border-radius: 12px;
+    padding: 20px;
+    transition: border-color 0.15s;
+  }
+  .enlp-problem-card:hover { border-color: rgba(179, 149, 95, 0.3); }
+  .enlp-problem-card svg { margin-top: 2px; flex-shrink: 0; }
+  .enlp-problem-card p {
+    font-size: 0.875rem;
+    color: #525252;
+    line-height: 1.625;
+  }
+</style>

@@ -1,0 +1,135 @@
+---
+/**
+ * /en/lp/cosmetic-dentistry — LP EN de Google Ads (noindex via LPLayout).
+ * Porte fiel de src/pages/en/EnCosmeticDentistryLP.tsx (copy verbatim do
+ * enCosmeticDentistryLPConfig). Única LP EN com a seção EnLPServices.
+ */
+import LPLayout from '../../../layouts/LPLayout.astro';
+import EnLPHero from '../../../components/en/lp/EnLPHero.astro';
+import EnLPProblem from '../../../components/en/lp/EnLPProblem.astro';
+import EnLPDoctorBio from '../../../components/en/lp/EnLPDoctorBio.astro';
+import EnLPServices from '../../../components/en/lp/EnLPServices.astro';
+import EnLPGuide from '../../../components/en/lp/EnLPGuide.astro';
+import EnLPMidCTA from '../../../components/en/lp/EnLPMidCTA.astro';
+import EnLPSocialProof from '../../../components/en/lp/EnLPSocialProof.astro';
+import EnLPFAQ from '../../../components/en/lp/EnLPFAQ.astro';
+import EnLPFinalCTA from '../../../components/en/lp/EnLPFinalCTA.astro';
+import EnLPFloatingWhatsApp from '../../../components/en/lp/EnLPFloatingWhatsApp.astro';
+import { enCosmeticDentistryLPConfig as config } from '@/config/enCosmeticDentistryLPConfig';
+
+const labelPrefix = 'en-lp-cosmetic';
+const waHref = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(config.whatsapp.message)}`;
+
+// Schema @graph copiado VERBATIM do Helmet de EnCosmeticDentistryLP.tsx
+const schemas = [
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Dentist',
+        '@id': 'https://dracarlachristoph.com/#dentist',
+        name: 'Dr. Carla Christoph',
+        description: config.seo.description,
+        url: 'https://dracarlachristoph.com/en/lp/cosmetic-dentistry',
+        telephone: '+5521993304045',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+          addressLocality: 'Ipanema',
+          addressRegion: 'RJ',
+          postalCode: '22410-901',
+          addressCountry: 'BR',
+        },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: '-22.9866',
+          longitude: '-43.2024',
+        },
+        speciality: ['Prosthodontics', 'Implant Dentistry', 'Cosmetic Dentistry'],
+        availableLanguage: ['Portuguese', 'English', 'Spanish'],
+        image: 'https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
+      },
+      {
+        '@type': 'WebPage',
+        url: 'https://dracarlachristoph.com/en/lp/cosmetic-dentistry',
+        datePublished: '2026-04-08',
+        dateModified: '2026-04-10',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'Service',
+        name: 'Cosmetic Dentistry',
+        description:
+          'Comprehensive cosmetic dentistry including porcelain veneers, teeth whitening, composite bonding, and digital smile planning in Ipanema, Rio de Janeiro.',
+        provider: { '@id': 'https://dracarlachristoph.com/#dentist' },
+        areaServed: { '@type': 'City', name: 'Rio de Janeiro' },
+        serviceType: 'Cosmetic Dentistry',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: config.faq.questions.map((q) => ({
+          '@type': 'Question',
+          name: q.question,
+          acceptedAnswer: { '@type': 'Answer', text: q.answer },
+        })),
+      },
+    ],
+  }),
+];
+---
+
+<LPLayout
+  title={config.seo.title}
+  description={config.seo.description}
+  canonical="https://dracarlachristoph.com/en/lp/cosmetic-dentistry"
+  ogImage="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+  schemas={schemas}
+  lang="en"
+  whatsappHref={waHref}
+  waLabelPrefix={labelPrefix}
+>
+  <main id="main-content">
+    <EnLPHero
+      headline={config.hero.headline}
+      subheadline={config.hero.subheadline}
+      ctaText={config.hero.ctaText}
+      benefits={config.benefits}
+      whatsappHref={waHref}
+      labelPrefix={labelPrefix}
+    />
+
+    <EnLPProblem
+      title={config.problem.title}
+      description={config.problem.description}
+      problems={config.problem.problems}
+    />
+
+    <EnLPDoctorBio />
+
+    <EnLPServices />
+
+    <EnLPGuide title={config.guide.title} subtitle={config.guide.subtitle} steps={config.guide.steps} />
+
+    <EnLPMidCTA whatsappHref={waHref} labelPrefix={labelPrefix} />
+
+    <EnLPSocialProof
+      title={config.socialProof.title}
+      testimonials={config.socialProof.testimonials}
+      stats={config.socialProof.stats}
+    />
+
+    <EnLPFAQ title={config.faq.title} questions={config.faq.questions} />
+
+    <EnLPFinalCTA
+      title={config.cta.title}
+      subtitle={config.cta.subtitle}
+      buttonText={config.cta.buttonText}
+      urgency={config.cta.urgency}
+      whatsappHref={waHref}
+      labelPrefix={labelPrefix}
+    />
+
+    <EnLPFloatingWhatsApp whatsappHref={waHref} labelPrefix={labelPrefix} />
+  </main>
+</LPLayout>

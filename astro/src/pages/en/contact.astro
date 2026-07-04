@@ -1,0 +1,318 @@
+---
+/**
+ * /en/contact — Porte fiel de src/pages/en/EnContactPage.tsx.
+ *
+ * - title/description: copiados de scripts/generate-static-meta.cjs (englishPages['/en/contact']).
+ * - Schema Dentist: copiado VERBATIM do structuredData do EnContactPage.tsx
+ *   (inclui aggregateRating 5.0/17 — dados REAIS do Google Reviews, exceção
+ *   autorizada Maio/2026; e o hasMap com placeholder "YOUR_GOOGLE_MAPS_CID",
+ *   que já existe assim em produção — reportado ao orquestrador, não corrigido).
+ * - hreflang: copiado do SEOHead do React (pt-BR /contato, en /en/contact, x-default /contato).
+ * - CTA WhatsApp: label do React = sendGCLIDToWebhook('en_contact_page_button').
+ * - Header fixo → primeira seção compensa com padding-top 112px.
+ */
+import SiteLayout from '../../layouts/SiteLayout.astro';
+
+const WA_HREF = "https://wa.me/5521993304045?text=Hello!%20I'd%20like%20to%20book%20an%20appointment.";
+
+// Schema copiado VERBATIM de EnContactPage.tsx (structuredData)
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  "name": "Dr. Carla Christoph — Dental Clinic",
+  "alternateName": "Dra. Carla Christoph",
+  "url": "https://dracarlachristoph.com/en",
+  "telephone": "+5521993304045",
+  "email": "contato@dracarlachristoph.com",
+  "image": "https://dracarlachristoph.com/og-image.jpg",
+  "priceRange": "$$$",
+  "currenciesAccepted": "BRL",
+  "paymentAccepted": "Cash, Credit Card, Debit Card, PIX",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107",
+    "addressLocality": "Ipanema, Rio de Janeiro",
+    "addressRegion": "RJ",
+    "postalCode": "22410-901",
+    "addressCountry": "BR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -22.9838,
+    "longitude": -43.2006
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "19:00"
+    }
+  ],
+  "areaServed": [
+    { "@type": "City", "name": "Rio de Janeiro" },
+    { "@type": "Neighborhood", "name": "Ipanema" },
+    { "@type": "Neighborhood", "name": "Leblon" },
+    { "@type": "Neighborhood", "name": "Copacabana" }
+  ],
+  "hasMap": "https://maps.google.com/?cid=YOUR_GOOGLE_MAPS_CID",
+  "sameAs": [
+    "https://instagram.com/dracarlachristoph",
+    "https://wa.me/5521993304045"
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "17",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "medicalSpecialty": ["Prosthodontics", "Dental Implants", "Cosmetic Dentistry"]
+};
+
+const schemas = [JSON.stringify(structuredData)];
+---
+<SiteLayout
+  title="Contact | Dra. Carla Christoph - Dentist in Ipanema"
+  description="Contact Dra. Carla Christoph in Ipanema. Book via WhatsApp or visit our office at Rua Visconde de Pirajá, 550 - Suite 1107."
+  canonical="https://dracarlachristoph.com/en/contact"
+  schemas={schemas}
+  lang="en"
+>
+  <Fragment slot="head">
+    <link rel="alternate" hreflang="pt-BR" href="https://dracarlachristoph.com/contato" />
+    <link rel="alternate" hreflang="en" href="https://dracarlachristoph.com/en/contact" />
+    <link rel="alternate" hreflang="x-default" href="https://dracarlachristoph.com/contato" />
+  </Fragment>
+
+  <main id="main-content">
+    <section class="contact-page">
+      <div class="container">
+        <!-- Header -->
+        <div class="page-head">
+          <h1 class="heading-lg">Contact &amp; Location</h1>
+          <div class="gold-sep" role="none"></div>
+          <p class="page-sub">Book your appointment or get in touch</p>
+          <p class="page-note">Private practice only — no insurance plans accepted.</p>
+          <p class="page-cred">Dr. Carla Christoph · CRO-RJ 27.509 · English-speaking staff available</p>
+        </div>
+
+        <!-- WhatsApp CTA -->
+        <div class="wa-box">
+          <h2 class="box-h2">Book via WhatsApp</h2>
+          <p class="box-p">The fastest way to schedule your appointment. Available 24/7.</p>
+          <a
+            class="btn-gold js-wa-cta"
+            data-label="en_contact_page_button"
+            href={WA_HREF}
+            target="_blank"
+            rel="noopener"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+            Send a WhatsApp Message
+          </a>
+        </div>
+
+        <!-- Info + Map grid -->
+        <div class="info-grid">
+          <div class="info-card">
+            <h2 class="card-h2">Contact Information</h2>
+            <div class="info-list">
+              <div class="info-row">
+                <svg class="row-ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <div>
+                  <p class="row-title">Address</p>
+                  <p class="row-text">
+                    Rua Visconde de Pirajá, 550 - Suite 1107<br />
+                    Ipanema, Rio de Janeiro - RJ<br />
+                    ZIP: 22410-901, Brazil
+                  </p>
+                </div>
+              </div>
+              <div class="info-row">
+                <svg class="row-ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <div>
+                  <p class="row-title">Phone</p>
+                  <p class="row-text">
+                    +55 (21) 3738-7909<br />
+                    +55 (21) 99330-4045
+                  </p>
+                </div>
+              </div>
+              <div class="info-row">
+                <svg class="row-ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                <div>
+                  <p class="row-title">Email</p>
+                  <p class="row-text">contato@dracarlachristoph.com</p>
+                </div>
+              </div>
+              <div class="info-row">
+                <svg class="row-ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div>
+                  <p class="row-title">Office Hours</p>
+                  <p class="row-text">
+                    Monday – Friday: 9 AM – 7 PM (GMT-3)<br />
+                    Saturday &amp; Sunday: Closed
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <h2 class="card-h2">Location</h2>
+            <p class="loc-desc">
+              We're in the heart of Ipanema, 2 blocks from Ipanema Beach. The building is between Rua Barão da Torre and Rua Prudente de Morais.
+            </p>
+            <div class="map-wrap">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4586.581678884269!2d-43.2116873!3d-22.9836633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bd5070f90d87f%3A0x446370e6f29c86c4!2sDra.%20Carla%20Christoph%20-%20Reabilita%C3%A7%C3%A3o%20oral%20e%20est%C3%A9tica!5e1!3m2!1sen!2sbr!4v1747142945090!5m2!1sen!2sbr"
+                width="100%"
+                height="100%"
+                style="border:0"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Office location map - Ipanema, Rio de Janeiro"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>
+
+<style>
+  .contact-page {
+    /* section-spacing + compensação do header fixo (~112px, ver PATTERNS.md §1.1) */
+    padding-top: 112px;
+    padding-bottom: 64px;
+  }
+  @media (min-width: 768px) {
+    .contact-page { padding-bottom: 80px; }
+  }
+  @media (min-width: 1024px) {
+    .contact-page { padding-bottom: 96px; }
+  }
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  @media (min-width: 1024px) {
+    .container { padding: 0 32px; }
+  }
+
+  .page-head {
+    max-width: 48rem;
+    margin: 0 auto 48px;
+    text-align: center;
+  }
+  .heading-lg {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    font-size: 1.875rem;
+    color: var(--dental-purple);
+    margin-bottom: 16px;
+  }
+  @media (min-width: 768px) {
+    .heading-lg { font-size: 2.25rem; }
+  }
+  .gold-sep {
+    width: 96px;
+    height: 4px;
+    background: var(--dental-gold);
+    margin: 0 auto 24px;
+  }
+  .page-sub { color: #525252; margin-bottom: 16px; }
+  .page-note { color: #525252; font-size: 0.875rem; margin-bottom: 8px; }
+  .page-cred { font-size: 0.875rem; color: rgb(82 82 82 / 0.7); }
+
+  .wa-box {
+    background: hsl(51 22% 76% / 0.5); /* bg-dental-beige/50 */
+    padding: 32px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 0 auto 48px;
+    max-width: 42rem;
+  }
+  .box-h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--dental-purple);
+    margin-bottom: 16px;
+  }
+  .box-p { color: #525252; margin-bottom: 24px; }
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--dental-gold);
+    color: #fff;
+    border-radius: 6px;
+    padding: 24px 32px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+  .btn-gold:hover { background: rgb(179 149 95 / 0.9); }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  @media (min-width: 768px) {
+    .info-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .info-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 32px;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* shadow-sm */
+  }
+  .card-h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--dental-purple);
+    margin-bottom: 24px;
+  }
+  .info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .row-ic {
+    color: var(--dental-gold);
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .row-title { font-weight: 500; color: #333; }
+  .row-text { color: #525252; }
+
+  .loc-desc {
+    color: #525252;
+    font-size: 0.875rem;
+    margin-bottom: 16px;
+  }
+  .map-wrap {
+    aspect-ratio: 16 / 9;
+    background: hsl(51 22% 76% / 0.5);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .map-wrap iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+</style>

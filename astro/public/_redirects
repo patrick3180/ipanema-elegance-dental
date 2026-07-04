@@ -1,0 +1,15 @@
+# Common 404 redirects based on analytics
+/admin                  /seo-dashboard      301
+/dashboard              /seo-dashboard      301
+/wp-admin               /seo-dashboard      301
+/sobre-nos              /sobre              301
+/servico                /servicos           301
+/contact                /contato            301
+/about                  /sobre              301
+/services               /servicos           301
+
+# Old lentes page redirect for SEO
+/lentes-de-contato-dental-e-facetas-de-porcelana  /lentes-de-contato-dental-e-facetas-de-resina  301
+
+# SPA fallback for other routes
+/*                      /index.html         200

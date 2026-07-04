@@ -16,6 +16,8 @@ interface Props {
   ogImage?: string;
   preloadImage?: string;
   schemas?: string[]; // JSON-LD já serializado
+  noindex?: boolean; // LPs de Google Ads: noindex, nofollow (regra inviolável)
+  lang?: string;
 }
 const {
   title,
@@ -25,11 +27,13 @@ const {
   ogImage = 'https://dracarlachristoph.com/lovable-uploads/doutora-em-pe-jaleco.webp',
   preloadImage,
   schemas = [],
+  noindex = false,
+  lang = 'pt-BR',
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="google-site-verification" content="mufiI1fRvsBjdZpIg6V7PCLlw12pjd4d-zd5dzoIkN8" />
@@ -57,6 +61,7 @@ const {
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
 
     <!-- Preconnect Contentful CDN (imagens do blog) -->
@@ -76,13 +81,16 @@ const {
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:site_name" content="Dra. Carla Christoph" />
-    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'pt_BR'} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
     {schemas.map((s) => <script type="application/ld+json" set:html={s} />)}
+
+    <!-- Slot para tags extras de <head> por página (ex.: hreflang alternates) -->
+    <slot name="head" />
 
     <style is:global>
       @font-face {
@@ -92,9 +100,27 @@ const {
         font-display: swap;
       }
       @font-face {
+        font-family: 'Playfair Display';
+        src: url('/fonts/playfair-display-600.woff2') format('woff2');
+        font-weight: 600;
+        font-display: swap;
+      }
+      @font-face {
         font-family: 'Montserrat';
         src: url('/fonts/montserrat-400.woff2') format('woff2');
         font-weight: 400;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Montserrat';
+        src: url('/fonts/montserrat-500.woff2') format('woff2');
+        font-weight: 500;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Montserrat';
+        src: url('/fonts/montserrat-600.woff2') format('woff2');
+        font-weight: 600;
         font-display: swap;
       }
       :root {
@@ -228,6 +254,7 @@ const {
     </style>
   </head>
   <body>
+    <slot name="header">
     <header class="site-header">
       <div class="inner">
         <a class="brand" href="/">
@@ -256,15 +283,18 @@ const {
         >WhatsApp 24h</a>
       </div>
     </header>
+    </slot>
 
     <slot />
 
+    <slot name="footer">
     <footer class="site-footer">
       <p><strong>Dra. Carla Christoph</strong> — CRO-RJ 27.509 · Especialista em Prótese Dentária e Implantodontia</p>
       <p>Rua Visconde de Pirajá, 550 — Sala 1107, Ipanema, Rio de Janeiro</p>
       <p>Tel: (21) 3738-7909 · <a class="js-wa-cta" data-label="blog_footer_whatsapp" href="https://wa.me/5521993304045?text=Ol%C3%A1!%20Vim%20do%20blog%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">Agendar consulta pelo WhatsApp</a></p>
       <p>Seg–Sex 9h–19h</p>
     </footer>
+    </slot>
 
     <!-- GTM: mesmo snippet do SPA — carrega após 2s OU primeira interação -->
     <script is:inline>

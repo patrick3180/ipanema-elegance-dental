@@ -1,0 +1,97 @@
+---
+/**
+ * /lp/ortodontia-ipanema — porte de src/pages/OrtodontiaLandingPage.tsx
+ * Config: ortodontiaConfig. Ortodontia é do Dr. Bruno (SEM sobrenome — regra
+ * inviolável); Dra. Carla acompanha a jornada. Copy 100% verbatim do config.
+ * Seções: Hero → Problem → Guide → SocialProof → FAQ → FinalCTA (+ floating).
+ */
+import LPLayout from '../../layouts/LPLayout.astro';
+import LPHero from '../../components/lp/LPHero.astro';
+import LPProblem from '../../components/lp/LPProblem.astro';
+import LPGuide from '../../components/lp/LPGuide.astro';
+import LPSocialProof from '../../components/lp/LPSocialProof.astro';
+import LPFAQ from '../../components/lp/LPFAQ.astro';
+import LPFinalCTA from '../../components/lp/LPFinalCTA.astro';
+import LPFloatingWhatsApp from '../../components/lp/LPFloatingWhatsApp.astro';
+import { ortodontiaConfig as config } from '@/config/ortodontiaConfig';
+
+const waHref = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(config.whatsapp.message)}`;
+const prefix = 'lp-ortodontia';
+
+// Schema — copiado verbatim do Helmet de OrtodontiaLandingPage.tsx
+const schemas = [
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Dentist',
+    name: 'Dr. Bruno Neves & Dra. Carla Christoph',
+    description: config.seo.description,
+    url: 'https://dracarlachristoph.com/lp/ortodontia-ipanema',
+    telephone: '+5521993304045',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+      addressLocality: 'Ipanema',
+      addressRegion: 'RJ',
+      postalCode: '22410-901',
+      addressCountry: 'BR',
+    },
+    speciality: ['Ortodontia', 'Invisalign', 'Aparelho Ortodôntico'],
+    image: '/lovable-uploads/DrBruno_site.webp',
+  }),
+];
+---
+
+<LPLayout
+  title={config.seo.title}
+  description={config.seo.description}
+  canonical="https://dracarlachristoph.com/lp/ortodontia-ipanema"
+  ogImage="https://dracarlachristoph.com/lovable-uploads/DrBruno_site.webp"
+  schemas={schemas}
+  whatsappHref={waHref}
+  waLabelPrefix={prefix}
+>
+  <main id="main-content" class="lp-main">
+    <LPHero
+      headline={config.hero.headline}
+      subheadline={config.hero.subheadline}
+      ctaText={config.hero.ctaText}
+      benefits={config.benefits}
+      backgroundImage={config.hero.backgroundImage || ''}
+      whatsappHref={waHref}
+      waLabel={`${prefix}_hero_whatsapp`}
+      imgWidth={434}
+      imgHeight={575}
+    />
+
+    <LPProblem
+      title={config.problem.title}
+      description={config.problem.description}
+      problems={config.problem.problems}
+    />
+
+    <LPGuide title={config.guide.title} subtitle={config.guide.subtitle} steps={config.guide.steps} />
+
+    <LPSocialProof
+      title={config.socialProof.title}
+      testimonials={config.socialProof.testimonials}
+      stats={config.socialProof.stats}
+    />
+
+    <LPFAQ title={config.faq.title} questions={config.faq.questions} />
+
+    <LPFinalCTA
+      title={config.cta.title}
+      subtitle={config.cta.subtitle}
+      buttonText={config.cta.buttonText}
+      urgency={config.cta.urgency}
+      whatsappHref={waHref}
+      waLabel={`${prefix}_final_whatsapp`}
+    />
+
+    <LPFloatingWhatsApp whatsappHref={waHref} waLabel={`${prefix}_floating_whatsapp`} />
+  </main>
+</LPLayout>
+
+<style>
+  .lp-main { background: #fff; min-height: 100vh; }
+</style>

@@ -1,0 +1,244 @@
+---
+/**
+ * EnServicesSection — porte fiel de src/components/en/EnServicesSection.tsx.
+ * ScrollReveal removido — grid renderizado estaticamente.
+ * Hover: overlay escurece + descrição revela (CSS-only, igual ao Tailwind group-hover).
+ * Links = rotas canônicas do micro-site EN (PATTERNS.md §6).
+ * Imagens 512x512 reais (Periodontia.webp = 512x341), abaixo da dobra → lazy.
+ */
+const services = [
+  {
+    title: 'Porcelain Veneers & Lenses',
+    description:
+      'Ultra-thin porcelain laminates that correct color, shape, and minor imperfections. Natural, long-lasting results planned digitally with iTero Element 5D.',
+    image: '/Lentes.webp',
+    link: '/en/veneers-and-lenses',
+    width: 512,
+    height: 512,
+  },
+  {
+    title: 'Professional Teeth Whitening',
+    description:
+      'Whiter teeth with safety. In-office or supervised at-home protocols with controlled sensitivity and natural results.',
+    image: '/Clareamento.webp',
+    link: '/en/teeth-whitening',
+    width: 512,
+    height: 512,
+  },
+  {
+    title: 'Dental Prosthetics',
+    description:
+      'Restore chewing function and the aesthetics of your smile with personalized dental prosthetics, developed by specialist Dr. Carla Christoph.',
+    image: '/Protese.webp',
+    link: '/en/dental-prosthetics',
+    width: 512,
+    height: 512,
+  },
+  {
+    title: 'Dental Implants',
+    description:
+      'Rehabilitation of missing teeth with implants that restore chewing function and aesthetics. Digital planning for single-tooth and full-mouth cases.',
+    image: '/Implante.webp',
+    link: '/en/dental-implants',
+    width: 512,
+    height: 512,
+  },
+  {
+    title: 'Orthodontics',
+    description:
+      'Dental alignment and bite correction with fixed braces, aesthetic braces, or Invisalign® aligners. In partnership with Dr. Bruno, PhD in Orthodontics from UERJ.',
+    image: '/Ortodontia.webp',
+    link: '/en/orthodontics',
+    width: 512,
+    height: 512,
+  },
+  {
+    title: 'General Dentistry & Prevention',
+    description:
+      'Take care of your oral health with digital checkups, professional cleaning (prophylaxis), and personalized prevention plans.',
+    image: '/Profilaxia.webp',
+    link: '/en/general-dentistry',
+    width: 512,
+    height: 512,
+  },
+  {
+    title: 'Aesthetic Restorations',
+    description:
+      'Treatment for cavities and reconstruction of fractured teeth with resins and ceramics that replicate the natural color and translucency of the tooth.',
+    image: '/Restarações.webp',
+    link: '/en/aesthetic-restorations',
+    width: 512,
+    height: 512,
+  },
+  {
+    title: 'Root Canal (Endodontics)',
+    description:
+      "Root canal treatment to eliminate pain and preserve the natural tooth. Performed by a specialized endodontist, with Dr. Carla's follow-up from start to finish.",
+    image: '/Endodontia.webp',
+    link: '/en/root-canal',
+    width: 512,
+    height: 512,
+  },
+  {
+    title: 'Gum Health (Periodontics)',
+    description:
+      'Specialized treatment for gingivitis and periodontitis, caring for the foundation of your smile and preventing future problems.',
+    image: '/Periodontia.webp',
+    link: '/en/gum-health',
+    width: 512,
+    height: 341,
+  },
+];
+---
+<section id="treatments" class="svc-sec">
+  <div class="container">
+    <div class="sec-head">
+      <h2 class="heading-lg">Our Dental Treatments for Your Smile in Ipanema</h2>
+      <div class="gold-sep" role="none"></div>
+      <p class="sec-sub">
+        At our dental office in Ipanema, Dr. Carla Christoph offers a full range of dental treatments, from prevention and essential care to the most advanced aesthetic dentistry and oral rehabilitation. Explore our solutions and discover how we can care for your smile.
+      </p>
+    </div>
+
+    <div class="svc-grid">
+      {services.map((service) => (
+        <a href={service.link} class="svc-card" aria-label={service.title}>
+          <img
+            src={service.image}
+            alt={service.title}
+            width={service.width}
+            height={service.height}
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="svc-overlay" role="none"></div>
+          <div class="svc-content">
+            <h3 class="svc-title">{service.title}</h3>
+            <p class="svc-desc">{service.description}</p>
+            <span class="svc-more">
+              Learn more
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .svc-sec {
+    background: hsl(51 22% 76%); /* bg-dental-beige */
+    scroll-margin-top: 100px; /* compensa header fixo no anchor #treatments (React usava scroll JS com offset -100) */
+  }
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  @media (min-width: 1024px) {
+    .container { padding: 0 32px; }
+  }
+  .sec-head {
+    max-width: 48rem;
+    margin: 0 auto 32px;
+    text-align: center;
+  }
+  .heading-lg {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    font-size: 1.875rem;
+    color: var(--dental-purple);
+    margin-bottom: 16px;
+  }
+  @media (min-width: 768px) {
+    .heading-lg { font-size: 2.25rem; }
+  }
+  .gold-sep {
+    width: 96px;
+    height: 4px;
+    background: var(--dental-gold);
+    margin: 0 auto 24px;
+  }
+  .sec-sub { color: #525252; margin-bottom: 24px; }
+
+  .svc-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  @media (min-width: 768px) {
+    .svc-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .svc-grid { grid-template-columns: repeat(3, 1fr); gap: 48px; }
+  }
+  .svc-card {
+    position: relative;
+    display: block;
+    height: 320px; /* h-80 */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* shadow-lg */
+    transition: all 0.5s ease-in-out;
+    text-decoration: none;
+  }
+  .svc-card:hover { transform: scale(1.05); }
+  .svc-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .svc-card:hover img { transform: scale(1.1); }
+  .svc-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgb(0 0 0 / 0.8), rgb(0 0 0 / 0.4), transparent);
+    transition: all 0.3s;
+  }
+  .svc-card:hover .svc-overlay {
+    background: linear-gradient(to top, rgb(0 0 0 / 0.9), rgb(0 0 0 / 0.6), transparent);
+  }
+  .svc-content {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+    color: #fff;
+  }
+  .svc-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    letter-spacing: 0.025em;
+  }
+  .svc-desc {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    font-size: 0.875rem;
+    margin-bottom: 16px;
+  }
+  .svc-card:hover .svc-desc {
+    opacity: 1;
+    max-height: 160px; /* max-h-40 */
+  }
+  .svc-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--dental-gold);
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: color 0.3s;
+  }
+  .svc-card:hover .svc-more { color: #fff; }
+</style>

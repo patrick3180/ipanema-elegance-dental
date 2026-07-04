@@ -1,0 +1,110 @@
+---
+/**
+ * LPProblem — porte de src/components/landing/consulta/ConsultaInicialProblem.tsx
+ * Cards empáticos com ícone por índice (Calendar, Clock, Heart, Shield, Search, AlertTriangle).
+ */
+interface Props {
+  title: string;
+  description?: string;
+  problems: string[];
+}
+const { title, description = '', problems } = Astro.props;
+
+// Mesma lógica de grid do React: 4 itens → 2 col; ≤3 → 1 col estreita; >4 → 2/3 col
+const gridClass =
+  problems.length === 4 ? 'grid-two' : problems.length <= 3 ? 'grid-one' : 'grid-three';
+
+// Ícones lucide por índice (fallback Heart) — paths idênticos aos do lucide-react
+const iconPaths = [
+  '<rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/>', // Calendar
+  '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>', // Clock
+  '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>', // Heart
+  '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>', // Shield
+  '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>', // Search
+  '<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 20h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/>', // AlertTriangle
+];
+const heartPath = iconPaths[2];
+const getIconPath = (i: number) => iconPaths[i] ?? heartPath;
+---
+
+<section class="lp-problem" aria-label="Identificação com situações comuns">
+  <div class="lp-problem-container">
+    <div class="lp-problem-inner">
+      <div class="lp-problem-header">
+        <h2>{title}</h2>
+        {description && <p class="lp-problem-desc">{description}</p>}
+      </div>
+
+      <div class:list={['lp-problem-grid', gridClass]}>
+        {problems.map((problem, index) => (
+          <div class="lp-problem-card">
+            <div class="lp-problem-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B3955F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={getIconPath(index)} />
+            </div>
+            <p class="lp-problem-text">{problem}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .lp-problem { background: #fff; padding: 4rem 0; }
+  @media (min-width: 1024px) {
+    .lp-problem { padding: 6rem 0; }
+  }
+  .lp-problem-container { max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
+  .lp-problem-inner { max-width: 896px; margin: 0 auto; display: grid; gap: 3rem; }
+  .lp-problem-header { text-align: center; display: grid; gap: 1rem; }
+  .lp-problem-header h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #381f47;
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+  @media (min-width: 768px) {
+    .lp-problem-header h2 { font-size: 2.25rem; }
+  }
+  .lp-problem-desc {
+    font-size: 1.125rem;
+    color: #333;
+    line-height: 1.625;
+    max-width: 672px;
+    margin: 0 auto;
+  }
+  .lp-problem-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 768px) {
+    .grid-two { grid-template-columns: 1fr 1fr; }
+    .grid-one { max-width: 672px; margin: 0 auto; }
+    .grid-three { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 1024px) {
+    .grid-three { grid-template-columns: 1fr 1fr 1fr; }
+  }
+  .lp-problem-card {
+    background: #faf7f2;
+    border-left: 4px solid rgba(179, 149, 95, 0.6);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: box-shadow 0.3s;
+  }
+  .lp-problem-card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  }
+  .lp-problem-icon {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    background: rgba(179, 149, 95, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.125rem;
+  }
+  .lp-problem-text { color: #333; line-height: 1.625; font-size: 15px; }
+</style>

@@ -1,0 +1,91 @@
+---
+/**
+ * LPFAQ — porte de src/components/landing/consulta/ConsultaInicialFAQ.tsx
+ * Accordion Radix → <details>/<summary> nativo (zero JS), visual equivalente
+ * (cards brancos, chevron que gira ao abrir).
+ */
+interface FAQQuestion {
+  question: string;
+  answer: string;
+}
+interface Props {
+  title: string;
+  questions: FAQQuestion[];
+}
+const { title, questions } = Astro.props;
+---
+
+<section class="lp-faq">
+  <div class="lp-faq-container">
+    <div class="lp-faq-inner">
+      <div class="lp-faq-header">
+        <h2>{title}</h2>
+      </div>
+
+      <div class="lp-faq-list">
+        {questions.map((faq) => (
+          <details class="lp-faq-item">
+            <summary>
+              <span>{faq.question}</span>
+              <svg class="lp-faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </summary>
+            <div class="lp-faq-answer">{faq.answer}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .lp-faq { background: #f9fafb; padding: 4rem 0; }
+  @media (min-width: 1024px) {
+    .lp-faq { padding: 6rem 0; }
+  }
+  .lp-faq-container { max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
+  .lp-faq-inner { max-width: 896px; margin: 0 auto; }
+  .lp-faq-header { text-align: center; margin-bottom: 4rem; }
+  .lp-faq-header h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #381f47;
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+  @media (min-width: 768px) {
+    .lp-faq-header h2 { font-size: 2.25rem; }
+  }
+  .lp-faq-list { display: grid; gap: 1rem; }
+  .lp-faq-item {
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s;
+  }
+  .lp-faq-item:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  }
+  .lp-faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    text-align: left;
+    color: #381f47;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+  }
+  .lp-faq-item summary::-webkit-details-marker { display: none; }
+  .lp-faq-chevron {
+    flex-shrink: 0;
+    color: #6b6b6b;
+    transition: transform 0.2s;
+  }
+  .lp-faq-item[open] .lp-faq-chevron { transform: rotate(180deg); }
+  .lp-faq-answer {
+    color: #333;
+    line-height: 1.625;
+    padding: 0 1.5rem 1rem;
+  }
+</style>

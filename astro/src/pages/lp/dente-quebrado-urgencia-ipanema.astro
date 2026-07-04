@@ -1,0 +1,140 @@
+---
+/**
+ * /lp/dente-quebrado-urgencia-ipanema — porte de src/pages/DenteQuebradoLandingPage.tsx
+ * Config: denteQuebradoConfig. LP de urgência (demanda ociosa).
+ * Seções: Hero → StatsBar → Problem → DoctorBio → Guide → MidCTA →
+ * SocialProof → FAQ → FinalCTA (+ floating).
+ */
+import LPLayout from '../../layouts/LPLayout.astro';
+import LPHero from '../../components/lp/LPHero.astro';
+import LPStatsBar from '../../components/lp/LPStatsBar.astro';
+import LPProblem from '../../components/lp/LPProblem.astro';
+import LPDoctorBio from '../../components/lp/LPDoctorBio.astro';
+import LPGuide from '../../components/lp/LPGuide.astro';
+import LPMidCTA from '../../components/lp/LPMidCTA.astro';
+import LPSocialProof from '../../components/lp/LPSocialProof.astro';
+import LPFAQ from '../../components/lp/LPFAQ.astro';
+import LPFinalCTA from '../../components/lp/LPFinalCTA.astro';
+import LPFloatingWhatsApp from '../../components/lp/LPFloatingWhatsApp.astro';
+import { denteQuebradoConfig as config } from '@/config/denteQuebradoConfig';
+
+const waHref = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(config.whatsapp.message)}`;
+const prefix = 'lp-dente-quebrado';
+
+// Schema — copiado verbatim do Helmet de DenteQuebradoLandingPage.tsx
+// (@graph Dentist + Service + FAQPage)
+const schemas = [
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Dentist',
+        '@id': 'https://dracarlachristoph.com/#dentist',
+        name: 'Dra. Carla Christoph',
+        description: config.seo.description,
+        url: 'https://dracarlachristoph.com',
+        telephone: '+5521993304045',
+        image: 'https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+          addressLocality: 'Ipanema',
+          addressRegion: 'RJ',
+          postalCode: '22410-901',
+          addressCountry: 'BR',
+        },
+        geo: { '@type': 'GeoCoordinates', latitude: -22.9838, longitude: -43.2045 },
+        areaServed: { '@type': 'City', name: 'Rio de Janeiro' },
+        openingHoursSpecification: [
+          {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+            opens: '09:00',
+            closes: '19:00',
+          },
+        ],
+      },
+      {
+        '@type': 'Service',
+        '@id': 'https://dracarlachristoph.com/lp/dente-quebrado-urgencia-ipanema#service',
+        name: 'Restauração de Dente Quebrado',
+        description:
+          'Atendimento prioritário para dentes fraturados com restauração estética imediata — resultado natural e funcional',
+        provider: { '@id': 'https://dracarlachristoph.com/#dentist' },
+        serviceType: 'Emergency Dental Care',
+        areaServed: { '@type': 'City', name: 'Rio de Janeiro' },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': 'https://dracarlachristoph.com/lp/dente-quebrado-urgencia-ipanema#faq',
+        mainEntity: config.faq.questions.map((q) => ({
+          '@type': 'Question',
+          name: q.question,
+          acceptedAnswer: { '@type': 'Answer', text: q.answer },
+        })),
+      },
+    ],
+  }),
+];
+---
+
+<LPLayout
+  title={config.seo.title}
+  description={config.seo.description}
+  canonical="https://dracarlachristoph.com/lp/dente-quebrado-urgencia-ipanema"
+  ogImage="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+  schemas={schemas}
+  whatsappHref={waHref}
+  waLabelPrefix={prefix}
+>
+  <main id="main-content" class="lp-main">
+    <LPHero
+      headline={config.hero.headline}
+      subheadline={config.hero.subheadline}
+      ctaText={config.hero.ctaText}
+      benefits={config.benefits}
+      backgroundImage={config.hero.backgroundImage || ''}
+      whatsappHref={waHref}
+      waLabel={`${prefix}_hero_whatsapp`}
+      imgWidth={800}
+      imgHeight={1200}
+    />
+
+    <LPStatsBar />
+
+    <LPProblem
+      title={config.problem.title}
+      description={config.problem.description}
+      problems={config.problem.problems}
+    />
+
+    <LPDoctorBio />
+
+    <LPGuide title={config.guide.title} subtitle={config.guide.subtitle} steps={config.guide.steps} />
+
+    <LPMidCTA whatsappHref={waHref} waLabel={`${prefix}_midcta_whatsapp`} />
+
+    <LPSocialProof
+      title={config.socialProof.title}
+      testimonials={config.socialProof.testimonials}
+      stats={config.socialProof.stats}
+    />
+
+    <LPFAQ title={config.faq.title} questions={config.faq.questions} />
+
+    <LPFinalCTA
+      title={config.cta.title}
+      subtitle={config.cta.subtitle}
+      buttonText={config.cta.buttonText}
+      urgency={config.cta.urgency}
+      whatsappHref={waHref}
+      waLabel={`${prefix}_final_whatsapp`}
+    />
+
+    <LPFloatingWhatsApp whatsappHref={waHref} waLabel={`${prefix}_floating_whatsapp`} />
+  </main>
+</LPLayout>
+
+<style>
+  .lp-main { background: #fff; min-height: 100vh; }
+</style>

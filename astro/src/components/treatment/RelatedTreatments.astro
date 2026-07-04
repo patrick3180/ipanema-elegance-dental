@@ -1,0 +1,162 @@
+---
+/**
+ * RelatedTreatments — porte de src/components/seo/InternalLinkingOptimizer.tsx (PT).
+ * "Tratamentos Relacionados" com 3 cards. Copy verbatim do original.
+ * NOTA: os links para lentes usavam a rota antiga "/lentes-de-contato-dental-e-facetas"
+ * (que só redireciona); aqui apontam para a rota CANÔNICA
+ * "/lentes-de-contato-dental-e-facetas-de-resina" (PATTERNS.md §6).
+ */
+import Icon from './Icon.astro';
+import '../../styles/treatment.css';
+
+interface RelatedLink {
+  title: string;
+  url: string;
+  description: string;
+}
+
+interface Props {
+  currentPage: string;
+}
+const { currentPage } = Astro.props;
+
+const LENTES = '/lentes-de-contato-dental-e-facetas-de-resina';
+
+const allLinks: Record<string, RelatedLink[]> = {
+  'implantes-dentarios': [
+    { title: 'Prótese Dentária', url: '/protese-dentaria', description: 'Coroas e próteses fixas sobre implante' },
+    { title: 'Saúde da Gengiva', url: '/saude-da-gengiva', description: 'Base essencial para o sucesso do implante' },
+    { title: 'Clínica Geral e Prevenção', url: '/clinica-geral-e-prevencao', description: 'Consulta e cuidados preventivos' },
+  ],
+  'clareamento-dental': [
+    { title: 'Lentes de Contato Dental e Facetas', url: LENTES, description: 'Estética completa com lentes de porcelana' },
+    { title: 'Restaurações Estéticas', url: '/restauracoes-esteticas', description: 'Restaurações que acompanham o novo tom' },
+    { title: 'Saúde da Gengiva', url: '/saude-da-gengiva', description: 'Gengiva saudável antes do clareamento' },
+  ],
+  'lentes-de-contato-dental-e-facetas': [
+    { title: 'Clareamento Dental', url: '/clareamento-dental', description: 'Combine clareamento com as lentes' },
+    { title: 'Ortodontia', url: '/ortodontia', description: 'Alinhamento prévio quando necessário' },
+    { title: 'Restaurações Estéticas', url: '/restauracoes-esteticas', description: 'Outros tratamentos estéticos integrados' },
+  ],
+  'ortodontia': [
+    { title: 'Lentes de Contato Dental e Facetas', url: LENTES, description: 'Acabamento estético pós-alinhamento' },
+    { title: 'Clareamento Dental', url: '/clareamento-dental', description: 'Clareamento integrado ao tratamento' },
+    { title: 'Clínica Geral e Prevenção', url: '/clinica-geral-e-prevencao', description: 'Higiene e prevenção durante o uso do aparelho' },
+  ],
+  'tratamento-de-canal': [
+    { title: 'Restaurações Estéticas', url: '/restauracoes-esteticas', description: 'Reconstrução do dente após o canal' },
+    { title: 'Prótese Dentária', url: '/protese-dentaria', description: 'Coroa para proteção pós-tratamento' },
+    { title: 'Implantes Dentários', url: '/implantes-dentarios', description: 'Alternativa se a extração for necessária' },
+  ],
+  'saude-da-gengiva': [
+    { title: 'Implantes Dentários', url: '/implantes-dentarios', description: 'Implantes exigem gengiva saudável' },
+    { title: 'Clínica Geral e Prevenção', url: '/clinica-geral-e-prevencao', description: 'Prevenção e manutenção periodontal' },
+    { title: 'Lentes de Contato Dental e Facetas', url: LENTES, description: 'Estética com base periodontal saudável' },
+  ],
+  'protese-dentaria': [
+    { title: 'Implantes Dentários', url: '/implantes-dentarios', description: 'Implantes como suporte para próteses fixas' },
+    { title: 'Tratamento de Canal', url: '/tratamento-de-canal', description: 'Preservação do dente antes da prótese' },
+    { title: 'Clínica Geral e Prevenção', url: '/clinica-geral-e-prevencao', description: 'Cuidados preventivos após reabilitação' },
+  ],
+  'restauracoes-esteticas': [
+    { title: 'Tratamento de Canal', url: '/tratamento-de-canal', description: 'Reconstrução após tratamento endodôntico' },
+    { title: 'Clareamento Dental', url: '/clareamento-dental', description: 'Harmonize a cor das restaurações' },
+    { title: 'Lentes de Contato Dental e Facetas', url: LENTES, description: 'Estética avançada com porcelana' },
+  ],
+  'clinica-geral-e-prevencao': [
+    { title: 'Saúde da Gengiva', url: '/saude-da-gengiva', description: 'Prevenção e tratamento periodontal' },
+    { title: 'Clareamento Dental', url: '/clareamento-dental', description: 'Estética após os cuidados preventivos' },
+    { title: 'Ortodontia', url: '/ortodontia', description: 'Alinhamento dental integrado à prevenção' },
+  ],
+};
+
+const relatedLinks = allLinks[currentPage] || [];
+---
+
+{relatedLinks.length > 0 && (
+  <section class="rt">
+    <div class="rt-container">
+      <h2 class="rt-title">Tratamentos Relacionados</h2>
+      <div class="rt-grid">
+        {relatedLinks.map((link) => (
+          <a href={link.url} class="rt-card">
+            <span class="rt-card-title">{link.title}</span>
+            <span class="rt-card-desc">{link.description}</span>
+            <span class="rt-card-more">
+              Saiba mais
+              <Icon name="arrow-right" size={12} />
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .rt {
+    padding-block: 3rem;
+    background: rgba(207, 203, 180, 0.2);
+  }
+  .rt-container {
+    max-width: 56rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  .rt-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--dc-purple);
+    margin: 0 0 1.5rem;
+  }
+  .rt-grid {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 640px) {
+    .rt-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .rt-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: #fff;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--dc-beige-light);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .rt-card:hover {
+    border-color: rgba(56, 31, 71, 0.3);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  }
+  .rt-card-title {
+    font-weight: 600;
+    color: var(--dc-purple);
+    font-size: 0.875rem;
+    line-height: 1.375;
+    transition: color 0.2s;
+  }
+  .rt-card:hover .rt-card-title {
+    color: var(--dc-purple-light);
+  }
+  .rt-card-desc {
+    color: var(--dc-gray);
+    font-size: 0.75rem;
+    line-height: 1.625;
+    flex: 1 1 0%;
+  }
+  .rt-card-more {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--dc-gold);
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-top: 0.25rem;
+  }
+</style>

@@ -1,0 +1,756 @@
+---
+/**
+ * /en/general-dentistry — porte fiel de src/pages/en/EnGeneralDentistryPage.tsx (SPA React).
+ * Copy verbatim (espelha o que o React efetivamente RENDERIZA — props inexistentes
+ * nos componentes, como títulos dos pain points e heading do timeline, não renderizam
+ * no SPA e por isso não aparecem aqui; ver relatório do porte).
+ * Schemas copiados da página React; tracking via js-wa-cta (handler global do Base).
+ */
+import SiteLayout from '../../layouts/SiteLayout.astro';
+
+const WA = 'https://wa.me/5521993304045';
+const heroWaHref = `${WA}?text=${encodeURIComponent('Hello! I would like to schedule a consultation about General Dentistry & Preventive Care.')}`;
+const finalWaHref = `${WA}?text=${encodeURIComponent("Hello! I'd like to book a dental checkup with Dr. Carla Christoph.")}`;
+const floatWaHref = `${WA}?text=${encodeURIComponent("Hello! I'd like to book an appointment.")}`;
+
+const faqs = [
+  { q: "What does a dental checkup include?", a: "A comprehensive exam including clinical inspection, digital 3D scan with the iTero Element 5D, risk assessment for cavities and gum disease, professional cleaning (scaling and polishing), and personalized oral hygiene guidance." },
+  { q: "How often should I schedule a checkup?", a: "For most adults, every 6 months is recommended. Patients with a history of gum disease or higher cavity risk may benefit from visits every 3-4 months. We'll recommend the right schedule for your needs." },
+  { q: "Is professional teeth whitening safe?", a: "When performed by a dental professional, teeth whitening is safe. We use pH-balanced gels with remineralizing agents that protect enamel integrity. In-office treatment can lighten teeth by 4-9 shades." },
+  { q: "Does dental cleaning hurt?", a: "Ultrasonic cleaning is very comfortable — most patients describe only a mild vibration. For very sensitive areas, we can apply topical numbing gel." },
+  { q: "Do you accept dental insurance?", a: "We are a private practice. This allows us to dedicate proper time to each patient and use only high-quality materials. We provide clear, detailed cost estimates before any treatment begins." },
+  { q: "What should I bring to my first appointment?", a: "Bring any recent dental X-rays or records you may have, a list of medications you're currently taking, and your dental insurance card if applicable. If you don't have any of these, no worries — we'll gather everything we need during your visit." },
+  { q: "How long does a checkup appointment take?", a: "We dedicate a minimum of 1 hour for every checkup appointment. This ensures enough time for a thorough examination, unhurried cleaning, and proper discussion of findings and any treatment options." },
+];
+
+const schemas = [
+  JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "MedicalProcedure",
+    "name": "General Dentistry and Preventive Care",
+    "description": "Comprehensive dental checkup, professional cleaning, teeth whitening, and preventive care in Ipanema, Rio de Janeiro.",
+    "procedureType": "Dental",
+    "url": "https://dracarlachristoph.com/en/general-dentistry",
+    "inLanguage": "en",
+    "provider": {
+      "@type": "Dentist",
+      "name": "Dr. Carla Christoph",
+      "telephone": "+5521993304045",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107",
+        "addressLocality": "Ipanema",
+        "addressRegion": "RJ",
+        "addressCountry": "BR"
+      }
+    }
+  }),
+  JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "General Dentistry & Prevention in Ipanema",
+    "url": "https://dracarlachristoph.com/en/general-dentistry",
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".heading-lg", ".heading-md", ".quick-answer-box"]
+    },
+    "inLanguage": "en"
+  }),
+];
+---
+
+<SiteLayout
+  title="General Dentistry in Ipanema | Dra. Carla Christoph, Rio de Janeiro"
+  description="Comprehensive dental checkups, cleanings, and preventive care in Ipanema. 3D digital scanner, personalized treatment plans. Dra. Carla Christoph."
+  canonical="https://dracarlachristoph.com/en/general-dentistry"
+  schemas={schemas}
+  lang="en"
+>
+  <Fragment slot="head">
+    <link rel="alternate" hreflang="pt-BR" href="https://dracarlachristoph.com/clinica-geral-e-prevencao" />
+    <link rel="alternate" hreflang="en" href="https://dracarlachristoph.com/en/general-dentistry" />
+    <link rel="alternate" hreflang="x-default" href="https://dracarlachristoph.com/clinica-geral-e-prevencao" />
+  </Fragment>
+
+  <main id="main-content" class="en-page">
+    <!-- ═══ Treatment Hero (sem imagem, sem badges — igual ao SPA) ═══ -->
+    <section class="hero" aria-label="Treatment hero">
+      <div class="content-container section-spacing">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <h1 class="treatment-hero-title">General Dentistry &amp; Preventive Care</h1>
+            <p class="hero-subtitle">A routine checkup costs a fraction of what advanced treatments require. Our preventive approach identifies issues while they're still reversible — dedicating a minimum of 1 full hour to every appointment.</p>
+            <div class="hero-cta-wrap">
+              <a
+                class="hero-cta js-wa-cta"
+                data-label="en-general-dentistry_hero_whatsapp"
+                href={heroWaHref}
+                target="_blank"
+                rel="noopener"
+                aria-label="Schedule consultation via WhatsApp"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+                Book Your Consultation
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ Quick Answer Box ═══ -->
+    <section class="qa-outer">
+      <div class="container-custom qa-narrow">
+        <div class="quick-answer-box">
+          <div class="qa-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <div>
+            <h2 class="qa-title">Quick Answer</h2>
+            <p class="qa-text">A comprehensive exam with the iTero Element 5D digital scanner, clinical inspection, professional cleaning (scaling and polishing), risk assessment, and a personalized prevention plan. Every appointment starts with at least 1 full hour of dedicated attention.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider (simple) -->
+    <div class="divider" aria-hidden="true"><div class="divider-bar"></div></div>
+
+    <!-- ═══ Empathetic Pain Points ═══ -->
+    <section class="pain-section">
+      <div class="pain-container">
+        <h2 class="pain-title">Why Patients Delay Checkups</h2>
+        <div class="pain-list">
+          <div class="pain-card" style="border-left-color: var(--dental-purple);">
+            <div class="pain-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <span>We respect your schedule. Appointments are punctual, efficient, and typically completed within 1 hour — including cleaning and exam.</span>
+            </div>
+          </div>
+          <div class="pain-card" style="border-left-color: var(--dental-gold);">
+            <div class="pain-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+            </div>
+            <div>
+              <span>Most dental problems are painless in the early stages. Cavities, gum disease, and even cracks can develop silently. A checkup catches them before they become costly problems.</span>
+            </div>
+          </div>
+          <div class="pain-card" style="border-left-color: var(--dp-soft);">
+            <div class="pain-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            </div>
+            <div>
+              <span>We hear this often. That's why we prioritize a calm, unhurried environment. Dr. Carla explains every step before proceeding, and there's never any pressure.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider (simple) -->
+    <div class="divider" aria-hidden="true"><div class="divider-bar"></div></div>
+
+    <!-- ═══ Services Offered ═══ -->
+    <section class="services-section">
+      <div class="container-custom services-narrow">
+        <h2 class="heading-md svc-heading">What We Offer</h2>
+        <p class="svc-sub">From routine exams to restorative care — all under one roof, with the same attention to detail.</p>
+        <div class="svc-grid">
+          <div class="svc-card">
+            <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg></div>
+            <div>
+              <h3>Comprehensive Dental Exam</h3>
+              <p>Thorough clinical examination, 3D digital scan with iTero Element 5D, and personalized risk assessment.</p>
+            </div>
+          </div>
+          <div class="svc-card">
+            <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg></div>
+            <div>
+              <h3>Professional Dental Cleaning</h3>
+              <p>Ultrasonic scaling to remove tartar and plaque buildup, followed by polishing for a clean, fresh feel.</p>
+            </div>
+          </div>
+          <div class="svc-card">
+            <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+            <div>
+              <h3>Dental Fillings &amp; Restorations</h3>
+              <p>Tooth-colored composite restorations for cavities, chips, or cracks — virtually invisible and durable.</p>
+            </div>
+          </div>
+          <div class="svc-card">
+            <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div>
+              <h3>Preventive Treatment Plans</h3>
+              <p>Individual risk assessment and customized prevention schedules — typically every 6 months for low-risk patients.</p>
+            </div>
+          </div>
+          <div class="svc-card">
+            <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></div>
+            <div>
+              <h3>Pediatric Dental Care</h3>
+              <p>Gentle, age-appropriate dental care for children — building healthy habits and positive associations from an early age.</p>
+            </div>
+          </div>
+          <div class="svc-card">
+            <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div>
+            <div>
+              <h3>Oral Health Assessment</h3>
+              <p>Comprehensive screening for gum disease, oral lesions, TMJ issues, and bruxism. Early detection is the foundation of effective treatment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider (simple) -->
+    <div class="divider" aria-hidden="true"><div class="divider-bar"></div></div>
+
+    <!-- ═══ Why Prevention Matters ═══ -->
+    <section class="prevention-section">
+      <div class="container-custom prevention-narrow">
+        <div class="prev-box">
+          <div class="prev-flex">
+            <svg class="prev-shield" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            <div>
+              <h2 class="prev-title">Prevention Is Always Better</h2>
+              <p class="prev-p">A routine checkup costs a fraction of what advanced treatments like implants or root canals require. More importantly, early detection means less discomfort, fewer procedures, and better long-term outcomes.</p>
+              <div class="prev-stats">
+                <div class="prev-stat"><span class="ps-v">90%</span><span class="ps-l">of oral diseases are preventable with regular care</span></div>
+                <div class="prev-stat"><span class="ps-v">1h</span><span class="ps-l">minimum dedicated to every checkup</span></div>
+                <div class="prev-stat"><span class="ps-v">6 mo</span><span class="ps-l">recommended interval for routine visits</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider (simple) -->
+    <div class="divider" aria-hidden="true"><div class="divider-bar"></div></div>
+
+    <!-- ═══ Process Timeline (sem heading no SPA — porte fiel do render) ═══ -->
+    <div class="timeline" role="list">
+      <div class="timeline-line" aria-hidden="true"></div>
+      <div class="timeline-steps">
+        <div class="tl-step" role="listitem">
+          <div class="tl-num-col"><div class="tl-num"></div><div class="tl-dot" aria-hidden="true"></div></div>
+          <div class="tl-content">
+            <div class="tl-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg></div>
+            <h3>3D Digital Scan</h3>
+            <p>We begin with a complete intraoral scan using the iTero Element 5D — capturing detailed 3D images of your teeth, gums, and bite alignment without radiation or discomfort.</p>
+          </div>
+        </div>
+        <div class="tl-step" role="listitem">
+          <div class="tl-num-col"><div class="tl-num"></div><div class="tl-dot" aria-hidden="true"></div></div>
+          <div class="tl-content">
+            <div class="tl-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
+            <h3>Clinical Examination</h3>
+            <p>Dr. Carla performs a thorough clinical inspection of each tooth, checking for cavities, cracks, gum recession, and early signs of oral conditions.</p>
+          </div>
+        </div>
+        <div class="tl-step" role="listitem">
+          <div class="tl-num-col"><div class="tl-num"></div><div class="tl-dot" aria-hidden="true"></div></div>
+          <div class="tl-content">
+            <div class="tl-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg></div>
+            <h3>Professional Cleaning</h3>
+            <p>Ultrasonic scaling removes tartar and plaque buildup — especially in areas brushing and flossing can't reach — followed by polishing for a smooth, clean finish.</p>
+          </div>
+        </div>
+        <div class="tl-step" role="listitem">
+          <div class="tl-num-col"><div class="tl-num"></div><div class="tl-dot" aria-hidden="true"></div></div>
+          <div class="tl-content">
+            <div class="tl-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <h3>Risk Assessment &amp; Plan</h3>
+            <p>Based on the findings, we create a personalized prevention plan with the recommended schedule for your next visit and any specific care instructions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider (simple) -->
+    <div class="divider" aria-hidden="true"><div class="divider-bar"></div></div>
+
+    <!-- ═══ Technology Callout ═══ -->
+    <section class="tech-section">
+      <div class="container-custom tech-narrow">
+        <div class="tech-flex">
+          <div class="tech-text">
+            <h2 class="heading-md tech-heading">Digital Precision with iTero Element 5D</h2>
+            <p class="tech-p">Our 3D intraoral scanner replaces traditional impressions with a fast, comfortable digital scan. It captures thousands of data points to create a precise model of your teeth and gums — enabling better diagnoses and more accurate treatment planning.</p>
+            <ul class="tech-list">
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>No radiation — safe optical technology</li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>Instant visualization of bite alignment</li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>Early detection of interproximal cavities</li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>Time-lapse comparison between visits</li>
+            </ul>
+          </div>
+          <div class="tech-visual">
+            <div class="tech-visual-inner">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgb(56 31 71 / 0.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>
+              <span>iTero Element 5D</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider (simple) -->
+    <div class="divider" aria-hidden="true"><div class="divider-bar"></div></div>
+
+    <!-- ═══ Doctor Bio ═══ -->
+    <section class="bio-section">
+      <div class="container-custom">
+        <h2 class="heading-lg bio-heading">Your Dentist in Ipanema</h2>
+        <div class="bio-wrap">
+          <div class="bio-grid">
+            <div class="bio-photo-col">
+              <div class="bio-photo">
+                <img
+                  src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+                  alt="Dr. Carla Christoph - Dental Specialist"
+                  width="800"
+                  height="1200"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="bio-badge">20+ Years of Experience</div>
+              </div>
+            </div>
+            <div class="bio-card">
+              <div class="bio-head">
+                <h3>Dr. Carla Christoph</h3>
+                <p class="bio-sub">CRO-RJ 27.509 | Specialist in Prosthodontics and Implant Dentistry</p>
+              </div>
+              <div class="bio-paras">
+                <p>Dr. Carla Christoph has dedicated over 20 years to dentistry — with specializations in prosthodontics and implant dentistry (CRO-RJ 27.509) and 8 years of service as a dentist at the Brazilian Navy Central Dental Clinic.</p>
+                <p>Her approach to general dentistry is rooted in prevention: every appointment is an opportunity to detect early signs of decay, gum disease, or functional issues before they become costly problems.</p>
+                <p>Patients benefit from unhurried consultations (minimum 1 hour), digital diagnostics with iTero Element 5D, and a care plan that integrates every aspect of oral health.</p>
+              </div>
+              <div class="bio-creds">
+                <div class="bio-creds-grid">
+                  <div class="bio-cred">
+                    <svg class="cred-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    <div><p class="cred-t">Brazilian Navy Dentist</p><p class="cred-d">8 years at Odontoclínica Central da Marinha</p></div>
+                  </div>
+                  <div class="bio-cred">
+                    <svg class="cred-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    <div><p class="cred-t">Prosthodontics Specialist</p><p class="cred-d">Advanced oral rehabilitation</p></div>
+                  </div>
+                  <div class="bio-cred">
+                    <svg class="cred-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    <div><p class="cred-t">20+ Years</p><p class="cred-d">Clinical experience in Ipanema</p></div>
+                  </div>
+                  <div class="bio-cred">
+                    <svg class="cred-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    <div><p class="cred-t">Digital Diagnostics</p><p class="cred-d">iTero Element 5D scanning</p></div>
+                  </div>
+                </div>
+              </div>
+              <div class="bio-quote">
+                <div class="q-mark q-tl">"</div>
+                <div class="q-mark q-br">"</div>
+                <p>Prevention is the most intelligent investment in oral health. A routine visit today can save years of complex treatment.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider (simple) -->
+    <div class="divider" aria-hidden="true"><div class="divider-bar"></div></div>
+
+    <!-- ═══ FAQ ═══ -->
+    <section class="faq-section">
+      <div class="container-custom">
+        <h2 class="heading-lg faq-heading">Frequently Asked Questions</h2>
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.q}<svg class="acc-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+              <div class="faq-body"><p>{f.a}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider (simple) -->
+    <div class="divider" aria-hidden="true"><div class="divider-bar"></div></div>
+
+    <!-- ═══ Final CTA ═══ -->
+    <section class="final-cta">
+      <div class="container-custom final-cta-inner">
+        <div class="final-cta-head">
+          <span class="final-cta-icon" aria-hidden="true"></span>
+          <h2 class="heading-lg">Due for a Checkup?</h2>
+        </div>
+        <p class="final-cta-desc">Book your dental exam and cleaning. We'll take the time to explain everything we find and plan the best care for your needs.</p>
+        <div class="final-cta-btns">
+          <a class="final-cta-btn js-wa-cta" data-label="en_general_dentistry" href={finalWaHref} target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            Book on WhatsApp
+          </a>
+        </div>
+        <p class="final-cta-footnote">WhatsApp: (21) 99330-4045 | 24h Service</p>
+      </div>
+    </section>
+
+    <!-- ═══ Related Treatments ═══ -->
+    <section class="related-section">
+      <div class="related-container">
+        <h2 class="related-title">Related Treatments</h2>
+        <div class="related-grid">
+          <a href="/en/gum-health" class="related-card">
+            <span class="rel-t">Gum Health</span>
+            <span class="rel-d">Prevention and periodontal treatment</span>
+            <span class="rel-more">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+          <a href="/en/teeth-whitening" class="related-card">
+            <span class="rel-t">Teeth Whitening</span>
+            <span class="rel-d">Aesthetics after preventive care</span>
+            <span class="rel-more">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+          <a href="/en/orthodontics" class="related-card">
+            <span class="rel-t">Orthodontics</span>
+            <span class="rel-d">Dental alignment integrated with prevention</span>
+            <span class="rel-more">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ Stats Bar ═══ -->
+    <section class="stats-bar" aria-label="Clinic statistics">
+      <div class="container-custom stats-inner">
+        <div class="stats-grid">
+          <div class="stat">
+            <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></div>
+            <div><p class="stat-v">20+</p><p class="stat-l">Years of Experience</p></div>
+          </div>
+          <div class="stat">
+            <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div><p class="stat-v">4.000+</p><p class="stat-l">Patients Served</p></div>
+          </div>
+          <div class="stat">
+            <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+            <div><p class="stat-v">CRO-RJ</p><p class="stat-l">27.509</p></div>
+          </div>
+          <div class="stat">
+            <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="var(--dental-gold)" stroke="var(--dental-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <div><p class="stat-v">5.0 ★</p><p class="stat-l">Google Rating</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Floating WhatsApp (paridade com WhatsAppButton do SPA) -->
+    <a
+      class="float-wa js-wa-cta"
+      data-label="floating_whatsapp_button"
+      href={floatWaHref}
+      target="_blank"
+      rel="noopener"
+      aria-label="Chat on WhatsApp"
+    >
+      <svg class="pulse" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+      <span class="float-wa-txt">
+        <span class="fw-desk">Discuss my case</span>
+        <span class="fw-mob">Book</span>
+        <span class="fw-sub">WhatsApp 24h</span>
+      </span>
+    </a>
+  </main>
+</SiteLayout>
+
+<style>
+  /* ── Tokens locais (paridade tailwind.config.ts) ── */
+  .en-page {
+    --dp-soft: #5a3f69;
+    --dp-light: #4a2759;
+    --dp-dark: #2a1735;
+    --dg-dark: #9d7f4f;
+  }
+
+  /* ── Utilitários compartilhados (paridade index.css) ── */
+  .container-custom { width: 100%; max-width: 1400px; margin-inline: auto; padding-inline: 1.5rem; }
+  .content-container { max-width: 80rem; margin-inline: auto; padding-inline: 1.5rem; }
+  @media (min-width: 1024px) {
+    .container-custom, .content-container { padding-inline: 2rem; }
+  }
+  .section-spacing { padding-block: 4rem; }
+  @media (min-width: 768px) { .section-spacing { padding-block: 5rem; } }
+  @media (min-width: 1024px) { .section-spacing { padding-block: 6rem; } }
+  .heading-lg { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.875rem; line-height: 2.25rem; }
+  @media (min-width: 768px) { .heading-lg { font-size: 2.25rem; line-height: 2.5rem; } }
+  .heading-md { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.5rem; line-height: 2rem; color: var(--dental-purple); }
+  @media (min-width: 768px) { .heading-md { font-size: 1.875rem; line-height: 2.25rem; } }
+  .qa-narrow, .services-narrow, .prevention-narrow, .tech-narrow { max-width: 56rem; }
+
+  /* ── Hero ── */
+  .hero { background: linear-gradient(135deg, hsl(250 100% 98%) 0%, hsl(30 100% 97%) 100%); }
+  .hero-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
+  @media (min-width: 1024px) {
+    .hero-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 3rem; }
+    .hero-content { grid-column: span 3 / span 3; }
+  }
+  .hero-content > * + * { margin-top: 1.5rem; }
+  .treatment-hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 400;
+    color: var(--dental-purple);
+    line-height: 1.25;
+    font-size: 2.25rem;
+  }
+  @media (min-width: 768px) { .treatment-hero-title { font-size: 3rem; } }
+  @media (min-width: 1024px) { .treatment-hero-title { font-size: 3.75rem; } }
+  .hero-subtitle { font-size: 1.25rem; line-height: 1.75rem; color: var(--dp-soft); font-weight: 500; }
+  @media (min-width: 768px) { .hero-subtitle { font-size: 1.5rem; line-height: 2rem; } }
+  .hero-cta-wrap { padding-top: 1rem; }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--dental-purple); color: #fff; text-decoration: none;
+    border-radius: 0.375rem; padding: 1.25rem 1.5rem; font-size: 1rem; font-weight: 500;
+    box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08); transition: all 0.3s;
+  }
+  .hero-cta:hover { background: var(--dp-dark); box-shadow: 0 12px 32px rgba(56, 31, 71, 0.16), 0 6px 16px rgba(56, 31, 71, 0.10); }
+
+  /* ── Quick Answer ── */
+  .qa-outer { padding-block: 4rem; background: #fff; }
+  @media (min-width: 768px) { .qa-outer { padding-block: 5rem; } }
+  @media (min-width: 1024px) { .qa-outer { padding-block: 6rem; } }
+  .quick-answer-box {
+    background: linear-gradient(to right, rgb(56 31 71 / 0.1), rgb(179 149 95 / 0.1));
+    border: 1px solid rgb(179 149 95 / 0.3); border-radius: 0.75rem;
+    padding: 1.5rem; margin-bottom: 2rem; display: flex; align-items: flex-start; gap: 1rem;
+  }
+  .qa-icon { flex-shrink: 0; color: var(--dental-gold); margin-top: 0.25rem; }
+  .qa-title { font-family: Montserrat, sans-serif; font-size: 1.125rem; font-weight: 600; color: var(--dental-purple); margin-bottom: 0.5rem; }
+  .qa-text { color: var(--dental-gray); line-height: 1.625; }
+
+  /* ── Divider (variant simple) ── */
+  .divider { display: flex; justify-content: center; margin-block: 2rem; }
+  @media (min-width: 768px) { .divider { margin-block: 3rem; } }
+  .divider-bar { width: 6rem; height: 4px; background: var(--dental-gold); }
+
+  /* ── Pain points ── */
+  .pain-section { padding-block: 4rem; background: linear-gradient(to bottom right, hsl(51 22% 76% / 0.2), #fff, hsl(51 22% 76% / 0.1)); }
+  .pain-container { max-width: 56rem; margin-inline: auto; padding-inline: 1rem; }
+  .pain-title { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; color: var(--dental-purple); font-size: 1.5rem; line-height: 2rem; margin-bottom: 2.5rem; text-align: center; }
+  @media (min-width: 768px) { .pain-title { font-size: 1.875rem; line-height: 2.25rem; } }
+  .pain-list > * + * { margin-top: 1.25rem; }
+  .pain-card {
+    display: flex; align-items: flex-start; gap: 1rem;
+    background: rgb(255 255 255 / 0.8); padding: 1.5rem; border-radius: 0.75rem;
+    border-left: 4px solid var(--dental-purple);
+    box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08); transition: box-shadow 0.3s;
+  }
+  .pain-card:hover { box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2); }
+  .pain-icon {
+    flex-shrink: 0; width: 3rem; height: 3rem; border-radius: 9999px;
+    background: rgb(56 31 71 / 0.1); display: flex; align-items: center; justify-content: center;
+    transition: background 0.3s;
+  }
+  .pain-card:hover .pain-icon { background: rgb(56 31 71 / 0.2); }
+  .pain-card span { color: var(--dental-gray); line-height: 1.625; }
+
+  /* ── Services ── */
+  .services-section { padding-block: 4rem; background: rgb(255 255 255 / 0.5); }
+  @media (min-width: 768px) { .services-section { padding-block: 5rem; } }
+  @media (min-width: 1024px) { .services-section { padding-block: 6rem; } }
+  .svc-heading { margin-bottom: 0.75rem; text-align: center; }
+  .svc-sub { color: var(--dental-gray); text-align: center; margin: 0 auto 2.5rem; max-width: 42rem; }
+  .svc-grid { display: grid; gap: 1rem; }
+  @media (min-width: 768px) { .svc-grid { grid-template-columns: repeat(2, 1fr); } }
+  .svc-card {
+    display: flex; gap: 1rem; align-items: flex-start; background: #fff; border-radius: 0.75rem;
+    padding: 1.5rem; box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08); border: 1px solid hsl(51 22% 76% / 0.3);
+  }
+  .svc-icon { flex-shrink: 0; margin-top: 0.25rem; }
+  .svc-card h3 { font-family: 'Playfair Display', Georgia, serif; font-weight: 400; color: var(--dental-purple); margin-bottom: 0.25rem; font-size: 1rem; }
+  .svc-card p { color: var(--dental-gray); font-size: 0.875rem; line-height: 1.625; }
+
+  /* ── Prevention ── */
+  .prevention-section { padding-block: 4rem; }
+  @media (min-width: 768px) { .prevention-section { padding-block: 5rem; } }
+  @media (min-width: 1024px) { .prevention-section { padding-block: 6rem; } }
+  .prev-box { background: rgb(56 31 71 / 0.05); border-radius: 1rem; padding: 2rem; border: 1px solid rgb(179 149 95 / 0.2); }
+  @media (min-width: 768px) { .prev-box { padding: 2.5rem; } }
+  .prev-flex { display: flex; align-items: flex-start; gap: 1rem; }
+  .prev-shield { flex-shrink: 0; margin-top: 0.25rem; }
+  .prev-title { font-family: 'Playfair Display', Georgia, serif; font-weight: 400; font-size: 1.5rem; color: var(--dental-purple); margin-bottom: 0.75rem; }
+  .prev-p { color: var(--dental-gray); line-height: 1.625; margin-bottom: 1rem; }
+  .prev-stats { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.5rem; }
+  @media (min-width: 640px) { .prev-stats { grid-template-columns: repeat(3, 1fr); } }
+  .prev-stat { text-align: center; padding: 1rem; background: #fff; border-radius: 0.75rem; }
+  .ps-v { font-size: 1.5rem; font-weight: 700; color: var(--dental-purple); display: block; }
+  .ps-l { font-size: 0.75rem; color: var(--dental-gray); }
+
+  /* ── Timeline (porte fiel: sem container, py-8) ── */
+  .timeline { position: relative; padding-block: 2rem; }
+  .timeline-line { position: absolute; left: 24px; top: 0; width: 2px; height: 100%; background: rgb(179 149 95 / 0.3); }
+  @media (min-width: 768px) { .timeline-line { left: 32px; } }
+  .timeline-steps > * + * { margin-top: 3rem; }
+  @media (min-width: 768px) { .timeline-steps > * + * { margin-top: 4rem; } }
+  .tl-step { position: relative; display: flex; gap: 1rem; }
+  @media (min-width: 768px) { .tl-step { gap: 2rem; } }
+  .tl-num-col { position: relative; flex-shrink: 0; }
+  .tl-num { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 1.875rem; line-height: 1; color: rgb(179 149 95 / 0.3); }
+  @media (min-width: 768px) { .tl-num { font-size: 2.25rem; } }
+  @media (min-width: 1024px) { .tl-num { font-size: 3rem; } }
+  .tl-dot {
+    position: absolute; top: 1rem; left: 22px; width: 1rem; height: 1rem; border-radius: 9999px;
+    background: var(--dental-gold); border: 4px solid #fff; box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+    transform: translateX(-50%);
+  }
+  @media (min-width: 768px) { .tl-dot { top: 1.5rem; left: 30px; } }
+  .tl-content { flex: 1; padding-top: 0.25rem; }
+  @media (min-width: 768px) { .tl-content { padding-top: 0.5rem; } }
+  .tl-icon { margin-bottom: 0.75rem; color: var(--dental-gold); }
+  .tl-content h3 { font-family: Montserrat, sans-serif; font-size: 1.25rem; font-weight: 600; color: var(--dental-purple); margin-bottom: 0.5rem; line-height: 1.25; }
+  @media (min-width: 768px) { .tl-content h3 { font-size: 1.5rem; } }
+  .tl-content p { color: var(--dental-gray); line-height: 1.625; margin-bottom: 0.5rem; }
+
+  /* ── Technology callout ── */
+  .tech-section { padding-block: 4rem; background: #fff; }
+  @media (min-width: 768px) { .tech-section { padding-block: 5rem; } }
+  @media (min-width: 1024px) { .tech-section { padding-block: 6rem; } }
+  .tech-flex { display: flex; flex-direction: column; gap: 2rem; align-items: center; }
+  @media (min-width: 768px) { .tech-flex { flex-direction: row; } }
+  .tech-text { flex: 1; }
+  .tech-heading { margin-bottom: 1rem; }
+  .tech-p { color: var(--dental-gray); line-height: 1.625; margin-bottom: 1rem; }
+  .tech-list { list-style: none; }
+  .tech-list > * + * { margin-top: 0.5rem; }
+  .tech-list li { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.875rem; color: var(--dental-gray); }
+  .tech-list svg { flex-shrink: 0; margin-top: 0.125rem; }
+  .tech-visual {
+    flex-shrink: 0; width: 100%; height: 12rem; background: rgb(56 31 71 / 0.05); border-radius: 1rem;
+    display: flex; align-items: center; justify-content: center; border: 1px solid rgb(179 149 95 / 0.2);
+  }
+  @media (min-width: 768px) { .tech-visual { width: 18rem; } }
+  .tech-visual-inner { text-align: center; }
+  .tech-visual-inner svg { margin: 0 auto 0.5rem; }
+  .tech-visual-inner span { font-size: 0.875rem; color: var(--dental-gray); }
+
+  /* ── Doctor Bio ── */
+  .bio-section { padding-block: 4rem; background: linear-gradient(135deg, hsl(250 100% 98%) 0%, hsl(30 100% 97%) 100%); }
+  .bio-heading { margin-bottom: 3rem; text-align: center; color: var(--dental-purple); }
+  .bio-wrap { max-width: 64rem; margin-inline: auto; }
+  .bio-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: start; }
+  @media (min-width: 768px) { .bio-grid { grid-template-columns: 300px 1fr; } }
+  .bio-photo-col { margin-inline: auto; }
+  @media (min-width: 768px) { .bio-photo-col { margin-inline: 0; } }
+  .bio-photo { position: relative; }
+  .bio-photo img { width: 100%; border-radius: 1rem; box-shadow: 0 10px 40px -10px rgb(56 31 71 / 0.2); }
+  .bio-badge {
+    position: absolute; bottom: -1rem; left: 50%; transform: translateX(-50%);
+    background: var(--dental-gold); color: #fff; padding: 0.5rem 1.5rem; border-radius: 9999px;
+    box-shadow: 0 4px 12px rgb(179 149 95 / 0.3); font-weight: 600; font-size: 0.875rem; white-space: nowrap;
+  }
+  .bio-card { background: #fff; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08); }
+  .bio-head { margin-bottom: 1.5rem; }
+  .bio-head h3 { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.875rem; color: var(--dental-purple); margin-bottom: 0.5rem; }
+  .bio-sub { color: var(--dg-dark); font-weight: 500; font-size: 1.125rem; }
+  .bio-paras { color: var(--dental-gray); line-height: 1.625; }
+  .bio-paras > * + * { margin-top: 1rem; }
+  .bio-creds { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgb(107 107 107 / 0.2); }
+  .bio-creds-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 768px) { .bio-creds-grid { grid-template-columns: repeat(2, 1fr); } }
+  .bio-cred { display: flex; align-items: flex-start; gap: 0.75rem; }
+  .cred-check { flex-shrink: 0; margin-top: 0.25rem; }
+  .cred-t { font-weight: 600; color: var(--dental-purple); }
+  .cred-d { font-size: 0.875rem; color: var(--dental-gray); }
+  .bio-quote {
+    position: relative; background: linear-gradient(to bottom right, rgb(56 31 71 / 0.05), rgb(179 149 95 / 0.05));
+    padding: 2rem; border-radius: 1rem; margin-top: 2rem; overflow: hidden; border: 1px solid rgb(179 149 95 / 0.1);
+  }
+  .q-mark { position: absolute; font-size: 3rem; color: rgb(179 149 95 / 0.2); font-family: Georgia, serif; }
+  .q-tl { top: 1rem; left: 1rem; }
+  .q-br { bottom: 1rem; right: 1rem; }
+  .bio-quote p {
+    font-size: 1.25rem; color: var(--dental-purple); font-style: italic;
+    font-family: 'Playfair Display', Georgia, serif; line-height: 1.625; text-align: center;
+    position: relative; z-index: 10; padding-inline: 1rem;
+  }
+
+  /* ── FAQ ── */
+  .faq-section { padding-block: 4rem; background: hsl(51 22% 76% / 0.2); }
+  .faq-heading { margin-bottom: 2rem; text-align: center; color: var(--dental-purple); }
+  .faq-list { max-width: 56rem; margin-inline: auto; }
+  .faq-list > * + * { margin-top: 1rem; }
+  .faq-item { background: #fff; border-radius: 0.5rem; border: 1px solid rgb(56 31 71 / 0.2); padding-inline: 1.5rem; }
+  .faq-item summary {
+    list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+    text-align: left; padding-block: 1.5rem; font-size: 1rem; font-weight: 600; color: var(--dental-purple); transition: color 0.2s;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary:hover { color: var(--dental-gold); }
+  .acc-chev { flex-shrink: 0; transition: transform 0.2s; }
+  .faq-item[open] > summary .acc-chev { transform: rotate(180deg); }
+  .faq-body { color: var(--dental-gray); line-height: 1.625; padding-bottom: 1.5rem; font-size: 0.875rem; }
+
+  /* ── Final CTA ── */
+  .final-cta { padding-block: 5rem; background: linear-gradient(135deg, #381F47 0%, #B3955F 100%); color: #fff; }
+  .final-cta-inner { text-align: center; }
+  .final-cta-head { display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 1rem; }
+  .final-cta-icon { width: 2rem; height: 2rem; color: var(--dental-gold); display: flex; align-items: center; justify-content: center; }
+  .final-cta-head h2 { color: #fff; }
+  .final-cta-desc { font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9; max-width: 42rem; margin-inline: auto; }
+  .final-cta-btns { display: flex; flex-direction: column; gap: 1rem; justify-content: center; align-items: center; }
+  @media (min-width: 640px) { .final-cta-btns { flex-direction: row; } }
+  .final-cta-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--dental-gold); color: var(--dental-purple); text-decoration: none;
+    padding: 1rem 2rem; border-radius: 0.5rem; font-weight: 600; font-size: 1.125rem; transition: all 0.2s;
+  }
+  .final-cta-btn:hover { opacity: 0.9; }
+  .final-cta-footnote { margin-top: 1.5rem; font-size: 0.875rem; opacity: 0.75; }
+
+  /* ── Related ── */
+  .related-section { padding-block: 3rem; background: hsl(51 22% 76% / 0.2); }
+  .related-container { max-width: 56rem; margin-inline: auto; padding-inline: 1rem; }
+  .related-title { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.25rem; color: var(--dental-purple); margin-bottom: 1.5rem; }
+  .related-grid { display: grid; gap: 1rem; }
+  @media (min-width: 640px) { .related-grid { grid-template-columns: repeat(3, 1fr); } }
+  .related-card {
+    display: flex; flex-direction: column; gap: 0.5rem; background: #fff; padding: 1.25rem;
+    border-radius: 0.75rem; border: 1px solid #e5e1d4; text-decoration: none; transition: all 0.2s;
+  }
+  .related-card:hover { border-color: rgb(56 31 71 / 0.3); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+  .rel-t { font-weight: 600; color: var(--dental-purple); font-size: 0.875rem; line-height: 1.375; transition: color 0.2s; }
+  .related-card:hover .rel-t { color: var(--dp-light); }
+  .rel-d { color: var(--dental-gray); font-size: 0.75rem; line-height: 1.625; flex: 1; }
+  .rel-more { display: flex; align-items: center; gap: 0.25rem; color: var(--dental-gold); font-size: 0.75rem; font-weight: 500; margin-top: 0.25rem; }
+
+  /* ── Stats bar ── */
+  .stats-bar { background: rgb(56 31 71 / 0.05); border-top: 1px solid rgb(56 31 71 / 0.1); border-bottom: 1px solid rgb(56 31 71 / 0.1); }
+  .stats-inner { padding-block: 1.5rem; }
+  .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4, 1fr); gap: 2rem; } }
+  .stat { display: flex; align-items: center; gap: 0.75rem; justify-content: center; }
+  .stat-icon { flex-shrink: 0; width: 2.5rem; height: 2.5rem; border-radius: 9999px; background: rgb(179 149 95 / 0.1); display: flex; align-items: center; justify-content: center; }
+  .stat-v { font-size: 1.125rem; font-weight: 600; color: var(--dental-purple); line-height: 1.25; }
+  .stat-l { font-size: 0.75rem; color: var(--dental-gray); line-height: 1.25; }
+
+  /* ── Floating WhatsApp ── */
+  .float-wa {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 50;
+    background: #128C4A; color: #fff; border-radius: 9999px; padding: 1rem;
+    display: flex; align-items: center; gap: 0.5rem; text-decoration: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); transition: all 0.3s;
+  }
+  .float-wa:hover { background: #0F7540; transform: scale(1.05); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+  .float-wa-txt { display: flex; flex-direction: column; text-align: left; line-height: 1.25; }
+  .fw-desk, .fw-sub { display: none; }
+  .fw-mob { font-weight: 500; }
+  @media (min-width: 768px) {
+    .fw-desk { display: inline; font-weight: 500; }
+    .fw-sub { display: inline; font-size: 0.75rem; color: rgb(255 255 255 / 0.8); }
+    .fw-mob { display: none; }
+  }
+  @keyframes wa-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .pulse { animation: wa-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+</style>

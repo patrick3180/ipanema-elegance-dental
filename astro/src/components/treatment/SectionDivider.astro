@@ -1,0 +1,98 @@
+---
+/**
+ * SectionDivider — porte fiel de src/components/treatment/SectionDivider.tsx.
+ * variant: 'simple' | 'with-icon' | 'with-text'.
+ * `icon` = nome do ícone lucide (Icon.astro); `iconSize` default 20 (igual React).
+ */
+import Icon from './Icon.astro';
+import '../../styles/treatment.css';
+
+interface Props {
+  variant?: 'simple' | 'with-icon' | 'with-text';
+  icon?: string;
+  iconSize?: number;
+  text?: string;
+}
+const { variant = 'simple', icon, iconSize = 20, text } = Astro.props;
+---
+
+{variant === 'simple' && (
+  <div class="sd-simple">
+    <div class="sd-bar" />
+  </div>
+)}
+
+{variant === 'with-icon' && (
+  <div class="sd-row">
+    <div class="sd-line" />
+    <div class="sd-icon-circle">
+      {icon && <Icon name={icon} size={iconSize} class="tx-gold" />}
+    </div>
+    <div class="sd-line" />
+  </div>
+)}
+
+{variant === 'with-text' && (
+  <div class="sd-row">
+    <div class="sd-line sd-line-wide" />
+    <span class="sd-text">{text}</span>
+    <div class="sd-line sd-line-wide" />
+  </div>
+)}
+
+<style>
+  .sd-simple {
+    display: flex;
+    justify-content: center;
+    margin-block: 2rem;
+  }
+  .sd-bar {
+    width: 6rem;
+    height: 0.25rem;
+    background: var(--dc-gold);
+  }
+  .sd-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-block: 2rem;
+  }
+  @media (min-width: 768px) {
+    .sd-simple,
+    .sd-row {
+      margin-block: 3rem;
+    }
+  }
+  .sd-line {
+    flex: 1 1 0%;
+    height: 1px;
+    background: rgba(179, 149, 95, 0.3);
+    max-width: 8rem;
+  }
+  .sd-line-wide {
+    max-width: 20rem;
+  }
+  .sd-icon-circle {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    background: rgba(179, 149, 95, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+  }
+  .sd-icon-circle:hover {
+    transform: scale(1.1);
+  }
+  .sd-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--dc-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-inline: 1rem;
+    background: #fff;
+  }
+</style>

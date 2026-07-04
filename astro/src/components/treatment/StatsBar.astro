@@ -1,0 +1,84 @@
+---
+/**
+ * StatsBar — porte fiel de src/components/treatment/StatsBar.tsx (locale pt).
+ * Barra de estatísticas: 20+ anos, 4.000+ pacientes, CRO-RJ, 5.0 Google.
+ */
+import Icon from './Icon.astro';
+import '../../styles/treatment.css';
+
+const stats = [
+  { icon: 'calendar', fill: false, value: '20+', label: 'Anos de Experiência' },
+  { icon: 'users', fill: false, value: '4.000+', label: 'Pacientes Atendidos' },
+  { icon: 'award', fill: false, value: 'CRO-RJ', label: '27.509' },
+  { icon: 'star', fill: true, value: '5.0 ★', label: 'Avaliação Google' },
+];
+---
+
+<section class="stats-bar" aria-label="Estatísticas da clínica">
+  <div class="container-custom stats-inner">
+    <div class="stats-grid">
+      {stats.map((stat) => (
+        <div class="stat-item">
+          <div class="stat-icon">
+            <Icon name={stat.icon} size={20} fill={stat.fill} class="tx-gold" />
+          </div>
+          <div>
+            <p class="stat-value">{stat.value}</p>
+            <p class="stat-label">{stat.label}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats-bar {
+    background: rgba(56, 31, 71, 0.05);
+    border-top: 1px solid rgba(56, 31, 71, 0.1);
+    border-bottom: 1px solid rgba(56, 31, 71, 0.1);
+  }
+  .stats-inner {
+    padding-block: 1.5rem;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .stats-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 2rem;
+    }
+  }
+  .stat-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  .stat-icon {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    background: rgba(179, 149, 95, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .stat-value {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--dc-purple);
+    line-height: 1.25;
+    margin: 0;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--dc-gray);
+    line-height: 1.25;
+    margin: 0;
+  }
+</style>

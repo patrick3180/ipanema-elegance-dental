@@ -1,0 +1,152 @@
+---
+/**
+ * ProcessTimeline — porte de src/components/treatment/ProcessTimeline.tsx.
+ * Timeline vertical com números grandes, linha dourada e círculos.
+ * Nota: no React há animação de entrada via IntersectionObserver; aqui o
+ * conteúdo é renderizado visível (site estático — sem JS de animação).
+ * step.icon = nome lucide (opcional). "Duração:" prefixado como no original.
+ */
+import Icon from './Icon.astro';
+import '../../styles/treatment.css';
+
+export interface TimelineStep {
+  number: string | number;
+  title: string;
+  description: string;
+  icon?: string;
+  duration?: string;
+}
+
+interface Props {
+  steps: TimelineStep[];
+}
+const { steps } = Astro.props;
+---
+
+<div class="ptl" role="list">
+  <div class="ptl-line" aria-hidden="true" />
+
+  <div class="ptl-steps">
+    {steps.map((step) => (
+      <div class="ptl-step" role="listitem">
+        <div class="ptl-num-col">
+          <div class="ptl-num">{step.number}</div>
+          <div class="ptl-dot" aria-hidden="true" />
+        </div>
+
+        <div class="ptl-content">
+          {step.icon && (
+            <div class="ptl-icon">
+              <Icon name={step.icon} size={24} />
+            </div>
+          )}
+          <h3 class="ptl-title">{step.title}</h3>
+          <p class="ptl-desc">{step.description}</p>
+          {step.duration && <p class="ptl-duration">Duração: {step.duration}</p>}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .ptl {
+    position: relative;
+    padding-block: 2rem;
+  }
+  .ptl-line {
+    position: absolute;
+    left: 24px;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: rgba(179, 149, 95, 0.3);
+  }
+  .ptl-steps > * + * {
+    margin-top: 3rem;
+  }
+  .ptl-step {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+  }
+  .ptl-num-col {
+    position: relative;
+    flex-shrink: 0;
+  }
+  .ptl-num {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.875rem;
+    line-height: 1;
+    color: rgba(179, 149, 95, 0.3);
+  }
+  .ptl-dot {
+    position: absolute;
+    top: 1rem;
+    left: 22px;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 9999px;
+    background: var(--dc-gold);
+    border: 4px solid #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transform: translateX(-50%);
+  }
+  .ptl-content {
+    flex: 1 1 0%;
+    padding-top: 0.25rem;
+  }
+  .ptl-icon {
+    margin-bottom: 0.75rem;
+    color: var(--dc-gold);
+  }
+  .ptl-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--dc-purple);
+    margin: 0 0 0.5rem;
+    line-height: 1.25;
+  }
+  .ptl-desc {
+    color: var(--dc-gray);
+    line-height: 1.625;
+    margin: 0 0 0.5rem;
+  }
+  .ptl-duration {
+    font-size: 0.875rem;
+    color: var(--dc-gold-dark);
+    font-style: italic;
+    margin: 0.5rem 0 0;
+  }
+  @media (min-width: 768px) {
+    .ptl-line {
+      left: 32px;
+    }
+    .ptl-steps > * + * {
+      margin-top: 4rem;
+    }
+    .ptl-step {
+      gap: 2rem;
+    }
+    .ptl-num {
+      font-size: 2.25rem;
+    }
+    .ptl-dot {
+      top: 1.5rem;
+      left: 30px;
+    }
+    .ptl-content {
+      padding-top: 0.5rem;
+    }
+    .ptl-title {
+      font-size: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .ptl-num {
+      font-size: 3rem;
+    }
+  }
+</style>

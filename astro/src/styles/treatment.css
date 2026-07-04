@@ -1,0 +1,120 @@
+/**
+ * treatment.css — utilitários globais das SERVICE PAGES (porte React→Astro).
+ * Traduz os tokens/utilities do Tailwind + src/index.css do SPA.
+ * Importado pelas páginas de tratamento (Astro deduplica).
+ */
+
+:root {
+  /* Tokens do tailwind.config.ts (dental.*) */
+  --dc-purple: #381f47;
+  --dc-purple-light: #4a2759;
+  --dc-purple-dark: #2a1735;
+  --dc-purple-soft: #5a3f69;
+  --dc-gold: #b3955f;
+  --dc-gold-light: #c5a66f;
+  --dc-gold-dark: #9d7f4f;
+  --dc-gold-accent: #d4b57e;
+  --dc-beige: #cfcbb4; /* hsl(51 22% 76%) */
+  --dc-beige-dark: #bfb7a4;
+  --dc-beige-light: #e5e1d4;
+  --dc-gray: #525252; /* dental-gray do tailwind (texto secundário) */
+}
+
+/* ── Containers (Tailwind: container-custom / content-container) ── */
+.container-custom {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+.content-container {
+  width: 100%;
+  max-width: 80rem; /* max-w-7xl */
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+@media (min-width: 1024px) {
+  .container-custom,
+  .content-container {
+    padding-inline: 2rem;
+  }
+}
+
+/* ── Espaçamento de seção (section-spacing) ── */
+.section-spacing {
+  padding-block: 4rem;
+}
+@media (min-width: 768px) {
+  .section-spacing {
+    padding-block: 5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .section-spacing {
+    padding-block: 6rem;
+  }
+}
+
+/* ── Tipografia (heading-lg / heading-md) ── */
+.heading-lg {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+.heading-md {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+@media (min-width: 768px) {
+  .heading-lg {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+  .heading-md {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+}
+
+/* ── Gradientes (index.css @layer utilities) ── */
+.bg-gradient-purple-soft {
+  background: linear-gradient(135deg, hsl(250 100% 98%) 0%, hsl(30 100% 97%) 100%);
+}
+.bg-gradient-purple-gold {
+  background: linear-gradient(135deg, #381f47 0%, #b3955f 100%);
+}
+.bg-gradient-gold-subtle {
+  background: linear-gradient(135deg, rgba(179, 149, 95, 0.1) 0%, rgba(179, 149, 95, 0.05) 100%);
+}
+
+/* ── Sombras ── */
+.shadow-soft {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+.shadow-elegant {
+  box-shadow: 0 10px 40px -10px rgba(56, 31, 71, 0.2);
+}
+.shadow-gold {
+  box-shadow: 0 4px 12px rgba(179, 149, 95, 0.3);
+}
+
+/* ── Helpers de cor de texto usados em quase toda seção ── */
+.tx-purple { color: var(--dc-purple); }
+.tx-purple-soft { color: var(--dc-purple-soft); }
+.tx-gold { color: var(--dc-gold); }
+.tx-gold-dark { color: var(--dc-gold-dark); }
+.tx-gray { color: var(--dc-gray); }
+
+/* ── Seções brancas padrão das service pages (py-16 bg-white) ── */
+.sec-white {
+  padding-block: 4rem;
+  background: #fff;
+}
+/* bg-dental-beige/20 sobre branco */
+.sec-beige-20 {
+  padding-block: 4rem;
+  background: rgba(207, 203, 180, 0.2);
+}

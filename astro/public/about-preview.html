@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Sobre — preview (Opção A · Revista)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --purple:#381F47; --gold:#B3955F; --gray:#5C5647; --beige:#CFCBB4; }
+  *{ box-sizing:border-box; margin:0; }
+  body{ font-family:'Montserrat',system-ui,sans-serif; color:var(--purple); background:#F3F1EA; }
+
+  /* header simulado (como o site) */
+  .topbar{ position:sticky; top:0; z-index:30; background:#FAF7F2; box-shadow:0 1px 3px rgba(0,0,0,.08); display:flex; align-items:center; justify-content:space-between; padding:18px 40px; }
+  .topbar .brand{ font-family:'Playfair Display',serif; font-size:22px; color:var(--purple); }
+  .topbar nav{ display:flex; gap:26px; font-size:14px; color:var(--purple); }
+  .topbar nav a{ color:var(--purple); text-decoration:none; opacity:.8; }
+  .topbar nav a.active{ color:var(--gold); opacity:1; font-weight:600; }
+
+  .container{ max-width:1200px; margin:0 auto; padding:0 24px; }
+
+  /* ===== Opção A — Revista ===== */
+  .about-hero{ padding-top:48px; }
+  .eyebrow{ text-align:center; font-size:12px; letter-spacing:2.5px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:18px; }
+  .about-hero h1{ text-align:center; font-family:'Playfair Display',serif; font-weight:600; font-size:clamp(28px,4vw,46px); line-height:1.18; color:var(--purple); max-width:760px; margin:0 auto; text-wrap:balance; }
+  .about-hero h1 .gold{ color:var(--gold); }
+  .sep{ width:96px; height:3px; background:var(--gold); margin:22px auto; border-radius:2px; }
+  .subtitle{ text-align:center; font-size:clamp(15px,1.6vw,18px); color:var(--gray); max-width:60ch; margin:0 auto 28px; }
+  .hero-cta{ display:flex; justify-content:center; margin-bottom:44px; }
+  .hero-cta a{ display:inline-flex; flex-direction:column; align-items:center; background:var(--gold); color:#fff; text-decoration:none; padding:14px 30px; border-radius:9px; box-shadow:0 8px 20px -8px rgba(179,149,95,.6); }
+  .hero-cta b{ font-weight:600; font-size:15px; } .hero-cta small{ font-size:11px; opacity:.85; }
+
+  /* foto full-width imersiva */
+  .photo-band{ width:100%; }
+  .photo-band img{ display:block; width:100%; height:clamp(380px,58vh,640px); object-fit:cover; object-position:50% 20%; }
+
+  /* bio abaixo */
+  .bio{ padding:64px 0 24px; }
+  .bio .wrap{ max-width:760px; margin:0 auto; }
+  .bio p{ font-size:18px; line-height:1.75; color:#4a4636; margin-bottom:1.4em; }
+  .bio p strong{ color:var(--purple); }
+  .note{ text-align:center; color:#9a917f; font-size:12px; padding:30px 20px 60px; }
+
+  @media (max-width:760px){
+    .topbar nav{ display:none; }
+    .photo-band img{ height:46vh; object-position:60% 18%; }
+    .bio p{ font-size:16px; }
+  }
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">Dra. Carla Christoph</div>
+    <nav><a href="#">Início</a><a href="#" class="active">Sobre</a><a href="#">Tratamentos</a><a href="#">Blog</a><a href="#">Contato</a></nav>
+  </div>
+
+  <!-- OPÇÃO A — Revista -->
+  <section class="about-hero">
+    <div class="container">
+      <p class="eyebrow">Especialista em Prótese e Implantodontia · CRO-RJ 27.509</p>
+      <h1>Dra. Carla Christoph: <span class="gold">sua dentista especialista em Ipanema</span></h1>
+      <div class="sep"></div>
+      <p class="subtitle">Mais de 20 anos dedicados à reabilitação oral e odontologia estética em Ipanema</p>
+      <div class="hero-cta">
+        <a href="#"><b>Agendar consulta</b><small>WhatsApp 24h</small></a>
+      </div>
+    </div>
+    <div class="photo-band">
+      <img src="/lovable-uploads/hero-real-reception-full.webp" alt="Dra. Carla Christoph na recepção do consultório em Ipanema" />
+    </div>
+  </section>
+
+  <section class="bio">
+    <div class="wrap">
+      <p>Com mais de duas décadas em Ipanema, a Dra. Carla Christoph construiu sua reputação tratando cada paciente de forma individual, com tempo e atenção. Possui <strong>título de especialista em Prótese Dentária e em Implantodontia</strong> (CRO-RJ 27.509) — duas formações que se completam na reabilitação oral, unindo função e estética. Sua trajetória inclui ainda 8 anos como dentista militar na Odontoclínica Central da Marinha, experiência que trouxe disciplina e precisão para sua prática clínica.</p>
+      <p>A Dra. Carla utiliza o iTero Element 5D e ferramentas de planejamento do sorriso para oferecer previsibilidade e segurança em cada tratamento. Cada caso é tratado como único, com o tempo necessário para ouvir, planejar e executar.</p>
+    </div>
+  </section>
+
+  <p class="note">Preview local · Opção A (Revista) · não indexado · ajuste fino de altura/enquadramento da foto é trivial</p>
+</body>
+</html>

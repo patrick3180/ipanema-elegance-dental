@@ -1,0 +1,170 @@
+---
+/** EnLPFinalCTA — porte fiel de src/components/en/lp/EnLPFinalCTA.tsx */
+interface Props {
+  title: string;
+  subtitle: string;
+  buttonText: string;
+  urgency?: string;
+  whatsappHref: string;
+  labelPrefix: string;
+}
+const { title, subtitle, buttonText, urgency, whatsappHref, labelPrefix } = Astro.props;
+---
+
+<section class="enlp-final">
+  <div class="enlp-final-deco enlp-final-deco-tl" aria-hidden="true"></div>
+  <div class="enlp-final-deco enlp-final-deco-br" aria-hidden="true"></div>
+
+  <div class="enlp-final-container">
+    <h2>{title}</h2>
+
+    <p class="enlp-final-sub">{subtitle}</p>
+
+    <a
+      class="enlp-final-btn js-wa-cta"
+      data-label={`${labelPrefix}_final_whatsapp`}
+      href={whatsappHref}
+      target="_blank"
+      rel="noopener"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+      <span class="enlp-final-btn-text">
+        <span class="enlp-final-btn-main">{buttonText}</span>
+        <span class="enlp-final-btn-sub">WhatsApp — We reply in your language</span>
+      </span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+
+    {urgency && <p class="enlp-final-urgency">{urgency}</p>}
+
+    <div class="enlp-final-info">
+      <div class="enlp-final-info-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+        Rua Visconde de Pirajá, 550 — Suite 1107, Ipanema
+      </div>
+      <div class="enlp-final-info-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Mon–Fri 9am–6pm (GMT-3)
+      </div>
+      <div class="enlp-final-info-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        We reply in your language
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .enlp-final {
+    position: relative;
+    overflow: hidden;
+    background: #381f47;
+    padding: 80px 0;
+  }
+  @media (min-width: 768px) { .enlp-final { padding: 112px 0; } }
+  .enlp-final-deco {
+    position: absolute;
+    border-radius: 9999px;
+    background: rgba(179, 149, 95, 0.05);
+    filter: blur(64px);
+  }
+  .enlp-final-deco-tl {
+    top: 0;
+    left: 0;
+    width: 256px;
+    height: 256px;
+    transform: translate(-50%, -50%);
+  }
+  .enlp-final-deco-br {
+    bottom: 0;
+    right: 0;
+    width: 384px;
+    height: 384px;
+    transform: translate(33%, 33%);
+  }
+  .enlp-final-container {
+    position: relative;
+    z-index: 10;
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 0 16px;
+    text-align: center;
+  }
+  @media (min-width: 640px) { .enlp-final-container { padding: 0 24px; } }
+  @media (min-width: 1024px) { .enlp-final-container { padding: 0 32px; } }
+  .enlp-final-container h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    color: #fff;
+    font-size: 1.875rem;
+    line-height: 1.25;
+    margin-bottom: 20px;
+  }
+  @media (min-width: 768px) { .enlp-final-container h2 { font-size: 2.25rem; } }
+  @media (min-width: 1024px) { .enlp-final-container h2 { font-size: 3rem; } }
+  .enlp-final-sub {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.125rem;
+    margin-bottom: 32px;
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .enlp-final-btn {
+    display: inline-flex;
+    align-items: center;
+    background: #b3955f;
+    color: #fff;
+    border-radius: 8px;
+    padding: 20px 40px;
+    font-size: 1.125rem;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(179, 149, 95, 0.3); /* shadow-gold */
+    transition: all 0.3s;
+  }
+  .enlp-final-btn:hover {
+    background: #9d7f4f; /* dental-gold-dark */
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(56, 31, 71, 0.16), 0 6px 16px rgba(56, 31, 71, 0.1); /* shadow-hover */
+  }
+  .enlp-final-btn svg:first-child { margin-right: 12px; flex-shrink: 0; }
+  .enlp-final-btn svg:last-child { margin-left: 12px; flex-shrink: 0; }
+  .enlp-final-btn-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    line-height: 1.25;
+  }
+  .enlp-final-btn-main { font-weight: 600; }
+  .enlp-final-btn-sub {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .enlp-final-urgency {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.875rem;
+    margin-top: 24px;
+    max-width: 32rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-style: italic;
+  }
+  .enlp-final-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 40px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.75rem;
+  }
+  @media (min-width: 640px) {
+    .enlp-final-info { flex-direction: row; gap: 24px; }
+  }
+  .enlp-final-info-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+</style>

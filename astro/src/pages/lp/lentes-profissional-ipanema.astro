@@ -1,0 +1,116 @@
+---
+/**
+ * /lp/lentes-profissional-ipanema — porte de
+ * src/pages/LentesDeContatoEmPorcelanaProfissionalLandingPage.tsx
+ * Config: lentesPorcelanaProfissionalConfig. Seções: Hero → Problem → Guide →
+ * SocialProof → FAQ → FinalCTA (sem StatsBar/DoctorBio/MidCTA — igual ao React).
+ */
+import LPLayout from '../../layouts/LPLayout.astro';
+import LPHero from '../../components/lp/LPHero.astro';
+import LPProblem from '../../components/lp/LPProblem.astro';
+import LPGuide from '../../components/lp/LPGuide.astro';
+import LPSocialProof from '../../components/lp/LPSocialProof.astro';
+import LPFAQ from '../../components/lp/LPFAQ.astro';
+import LPFinalCTA from '../../components/lp/LPFinalCTA.astro';
+import LPFloatingWhatsApp from '../../components/lp/LPFloatingWhatsApp.astro';
+import { lentesPorcelanaProfissionalConfig as config } from '@/config/lentesPorcelanaProfissionalConfig';
+
+const waHref = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(config.whatsapp.message)}`;
+const prefix = 'lp-lentes-profissional';
+
+// Schemas — copiados verbatim do Helmet da página React (2 blocos separados)
+const schemas = [
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Dentist',
+    name: 'Dra. Carla Christoph',
+    description: 'Especialista em Lentes de Contato de Porcelana em Ipanema',
+    url: 'https://dracarlachristoph.com',
+    telephone: '+5521993304045',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
+      addressLocality: 'Ipanema',
+      addressRegion: 'RJ',
+      postalCode: '22410-901',
+      addressCountry: 'BR',
+    },
+    geo: { '@type': 'GeoCoordinates', latitude: '-22.9849', longitude: '-43.2003' },
+    openingHours: ['Mo-Fr 09:00-19:00'],
+    priceRange: '$$$',
+    serviceArea: {
+      '@type': 'GeoCircle',
+      geoMidpoint: { '@type': 'GeoCoordinates', latitude: '-22.9849', longitude: '-43.2003' },
+      geoRadius: '30000',
+    },
+  }),
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'MedicalProcedure',
+    name: 'Lentes de Contato de Porcelana',
+    description: 'Estética dental com lentes de contato de porcelana ultrafinas',
+    procedureType: 'Estética Dental',
+    bodyLocation: 'Dentes',
+    preparation: 'Consulta inicial e planejamento digital do sorriso',
+    followup: 'Acompanhamento pós-procedimento para garantir adaptação',
+    howPerformed: 'Aplicação de lentes de porcelana ultrafinas cimentadas aos dentes',
+    status: 'Accepted',
+    category: 'Estética',
+  }),
+];
+---
+
+<LPLayout
+  title={config.seo.title}
+  description={config.seo.description}
+  canonical="https://dracarlachristoph.com/lp/lentes-profissional-ipanema"
+  ogImage="https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
+  schemas={schemas}
+  whatsappHref={waHref}
+  waLabelPrefix={prefix}
+>
+  <main id="main-content" class="lp-main">
+    <LPHero
+      headline={config.hero.headline}
+      subheadline={config.hero.subheadline}
+      ctaText={config.hero.ctaText}
+      benefits={config.benefits}
+      backgroundImage={config.hero.backgroundImage || ''}
+      whatsappHref={waHref}
+      waLabel={`${prefix}_hero_whatsapp`}
+      imgWidth={800}
+      imgHeight={1200}
+    />
+
+    <LPProblem
+      title={config.problem.title}
+      description={config.problem.description}
+      problems={config.problem.problems}
+    />
+
+    <LPGuide title={config.guide.title} subtitle={config.guide.subtitle} steps={config.guide.steps} />
+
+    <LPSocialProof
+      title={config.socialProof.title}
+      testimonials={config.socialProof.testimonials}
+      stats={config.socialProof.stats}
+    />
+
+    <LPFAQ title={config.faq.title} questions={config.faq.questions} />
+
+    <LPFinalCTA
+      title={config.cta.title}
+      subtitle={config.cta.subtitle}
+      buttonText={config.cta.buttonText}
+      urgency={config.cta.urgency}
+      whatsappHref={waHref}
+      waLabel={`${prefix}_final_whatsapp`}
+    />
+
+    <LPFloatingWhatsApp whatsappHref={waHref} waLabel={`${prefix}_floating_whatsapp`} />
+  </main>
+</LPLayout>
+
+<style>
+  .lp-main { background: #fff; min-height: 100vh; }
+</style>
