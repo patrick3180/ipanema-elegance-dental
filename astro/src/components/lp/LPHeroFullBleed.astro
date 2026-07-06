@@ -21,8 +21,16 @@ interface Props {
   trustBadges?: string[];
   reviews?: { rating: string; count: string; href: string };
   photo?: { mobileBase: string; desktopBase: string; alt: string; width: number; height: number };
+  /**
+   * Variante mobile (Fase 0 do plano de adequação, jul/2026):
+   *  - 'foto' (default): foto no topo (44vh) e texto embaixo — consideração/confiança.
+   *  - 'acao': texto e CTA primeiro; a foto vira uma faixa menor (28vh) DEPOIS
+   *    do bloco de texto — LPs de urgência/alta intenção. Desktop é igual nas duas.
+   */
+  layout?: 'foto' | 'acao';
 }
 const {
+  layout = 'foto',
   eyebrow,
   headline,
   subheadline,
@@ -47,7 +55,7 @@ const {
 const P = '/lovable-uploads';
 ---
 
-<section class="lpfb-hero">
+<section class:list={['lpfb-hero', layout === 'acao' && 'lpfb-acao']}>
   <picture class="lpfb-photo">
     <source media="(max-width: 767px)" type="image/avif" srcset={`${P}/${photo.mobileBase}-480.avif 480w, ${P}/${photo.mobileBase}-768.avif 768w`} sizes="100vw" />
     <source media="(max-width: 767px)" type="image/webp" srcset={`${P}/${photo.mobileBase}-480.webp 480w, ${P}/${photo.mobileBase}-768.webp 768w`} sizes="100vw" />
@@ -126,8 +134,15 @@ const P = '/lovable-uploads';
   .lpfb-trust { display: flex; flex-wrap: wrap; gap: .4rem 1rem; margin-top: 1rem; }
   .lpfb-trust span { font-size: .68rem; text-transform: uppercase; letter-spacing: .1em; color: #8A7444; font-weight: 600; }
 
+  /* Variante 'acao' (mobile): texto/CTA primeiro, foto vira faixa 28vh depois */
+  .lpfb-acao { display: flex; flex-direction: column; }
+  .lpfb-acao .lpfb-photo { order: 2; }
+  .lpfb-acao .lpfb-photo img { height: 28vh; min-height: 200px; max-height: 300px; }
+  .lpfb-acao .lpfb-text { order: 1; padding-top: 1.75rem; }
+
   @media (min-width: 768px) {
     .lpfb-hero { min-height: 86vh; padding-top: 0; }
+    .lpfb-acao { display: block; }
     .lpfb-photo { position: absolute; top: 72px; left: 0; right: 0; bottom: 0; }
     .lpfb-photo img { height: 100%; min-height: 0; max-height: none; object-position: 78% 18%; }
     .lpfb-scrim { display: block; position: absolute; top: 72px; left: 0; right: 0; bottom: 0; pointer-events: none; background: linear-gradient(90deg, rgba(250,247,242,.97) 0%, rgba(250,247,242,.88) 34%, rgba(250,247,242,.5) 54%, rgba(250,247,242,0) 72%); }

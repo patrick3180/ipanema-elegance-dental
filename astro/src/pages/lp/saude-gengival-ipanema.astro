@@ -8,7 +8,7 @@
  */
 import LPLayout from '../../layouts/LPLayout.astro';
 import LPHero from '../../components/lp/LPHero.astro';
-import LPFloatingWhatsApp from '../../components/lp/LPFloatingWhatsApp.astro';
+import LPStickyCTA from '../../components/lp/LPStickyCTA.astro';
 import { saudeGengivalConfig as cfg } from '@/config/saudeGengivalConfig';
 
 const waHref = `https://wa.me/${cfg.whatsapp.number}?text=${encodeURIComponent(cfg.whatsapp.message)}`;
@@ -227,7 +227,7 @@ const schemas = [
       </div>
     </section>
 
-    <LPFloatingWhatsApp whatsappHref={waHref} waLabel="lp-saude-gengival_floating_whatsapp" />
+    <LPStickyCTA whatsappHref={waHref} waLabel="lp-saude-gengival_sticky_whatsapp" />
   </main>
 </LPLayout>
 

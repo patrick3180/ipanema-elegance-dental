@@ -1,0 +1,147 @@
+---
+/**
+ * LPStickyCTA — barra fixa inferior de WhatsApp (mobile-only).
+ * Fase 0 do plano de adequação das LPs (jul/2026): substitui o
+ * LPFloatingWhatsApp (bolha com selo vermelho "24h") em todas as LPs ativas.
+ *
+ * Comportamento: a barra fica ESCONDIDA enquanto o CTA do hero está visível
+ * (IntersectionObserver no primeiro `.js-wa-cta` do <main> que não seja o da
+ * própria barra) e aparece quando o usuário rola além dele — evita dois botões
+ * idênticos empilhados na primeira dobra (defeito original da Prótese V2).
+ * Fallback (sem elemento/IO): aparece após ~500px de rolagem.
+ *
+ * Tracking: o link usa `js-wa-cta` + `data-label` — o handler global do
+ * Base.astro cuida de dataLayer + gtag conversion + beacon GCLID.
+ * NUNCA criar handler próprio aqui.
+ *
+ * Uso PT:  <LPStickyCTA whatsappHref={waHref} waLabel={`${prefix}_sticky_whatsapp`} />
+ * Uso EN:  <LPStickyCTA whatsappHref={waHref} waLabel={`${labelPrefix}_sticky_whatsapp`}
+ *            ctaText="Book my consultation" subText="WhatsApp · replies 24h" />
+ * Urgência (opcional): passar phoneHref="tel:+552137387909" para exibir o botão de ligação.
+ */
+interface Props {
+  whatsappHref: string;
+  waLabel: string;
+  ctaText?: string;
+  subText?: string;
+  phoneHref?: string;
+  phoneAria?: string;
+}
+const {
+  whatsappHref,
+  waLabel,
+  ctaText = 'Agendar minha consulta',
+  subText = 'WhatsApp · resposta 24h',
+  phoneHref,
+  phoneAria = 'Ligar para o consultório',
+} = Astro.props;
+---
+
+<div class="lp-sticky lp-sticky-hidden" data-lp-sticky>
+  {phoneHref && (
+    <a class="lp-sticky-phone" href={phoneHref} aria-label={phoneAria}>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </a>
+  )}
+  <a
+    class="lp-sticky-btn js-wa-cta"
+    data-label={waLabel}
+    href={whatsappHref}
+    target="_blank"
+    rel="noopener"
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+    <span class="lp-sticky-labels">
+      <b>{ctaText}</b>
+      <small>{subText}</small>
+    </span>
+  </a>
+</div>
+
+<style>
+  /* Base visual portada da .ph-sticky (Prótese V2), agora compartilhada */
+  .lp-sticky {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 60;
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.6rem 0.8rem calc(0.6rem + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.96);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    border-top: 1px solid rgba(179, 149, 95, 0.25);
+    box-shadow: 0 -4px 20px rgba(56, 31, 71, 0.12);
+    transform: translateY(0);
+    transition: transform 0.25s ease;
+  }
+  .lp-sticky-hidden {
+    transform: translateY(110%);
+    pointer-events: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lp-sticky { transition: none; }
+  }
+  .lp-sticky-phone {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    border: 1px solid rgba(56, 31, 71, 0.25);
+    border-radius: 12px;
+    color: #381f47;
+    background: #fff;
+    text-decoration: none;
+  }
+  .lp-sticky-btn {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    background: linear-gradient(135deg, #25d366 0%, #20bd5a 100%);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    font-family: inherit;
+    text-decoration: none;
+  }
+  .lp-sticky-labels { display: flex; flex-direction: column; line-height: 1.1; text-align: left; }
+  .lp-sticky-labels b { font-size: 0.95rem; font-weight: 700; }
+  .lp-sticky-labels small { font-size: 0.7rem; opacity: 0.9; }
+  @media (min-width: 768px) {
+    .lp-sticky { display: none; }
+  }
+</style>
+
+<style is:global>
+  /* Espaço para a barra não cobrir o fim do footer no mobile */
+  @media (max-width: 767px) {
+    body { padding-bottom: 76px; }
+  }
+</style>
+
+<script>
+  // Auto-ocultar: barra só aparece quando o CTA do hero sai da tela.
+  const bar = document.querySelector('[data-lp-sticky]');
+  if (bar) {
+    const show = () => bar.classList.remove('lp-sticky-hidden');
+    const hide = () => bar.classList.add('lp-sticky-hidden');
+    const heroCta = document.querySelector('main .js-wa-cta:not(.lp-sticky-btn)');
+    if (heroCta && 'IntersectionObserver' in window) {
+      new IntersectionObserver(
+        (entries) => { entries[0].isIntersecting ? hide() : show(); },
+        { threshold: 0 }
+      ).observe(heroCta);
+    } else {
+      const onScroll = () => { window.scrollY > 500 ? show() : hide(); };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+  }
+</script>

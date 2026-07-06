@@ -72,7 +72,7 @@ export const esteticaSorrisoGenericaConfig: LandingPageConfig = {
       { question: 'Qual tratamento estético é indicado para mim?', answer: 'Depende do caso. Dentes amarelados podem precisar de clareamento. Dentes com forma irregular podem precisar de lentes ou facetas. Restaurações antigas podem ser trocadas. A consulta define o melhor caminho.' },
       { question: 'Lentes de porcelana ficam artificiais?', answer: 'Com planejamento adequado, não. A porcelana moderna reproduz a translucidez natural do dente. O objetivo é que ninguém perceba — só notem que o sorriso está bonito.' },
       { question: 'Posso combinar tratamentos?', answer: 'Sim, é comum. Muitos pacientes combinam clareamento + restaurações, ou lentes nos dentes da frente + coroa em um dente posterior. A visão integrada é justamente o diferencial da consulta.' },
-      { question: 'O resultado é permanente?', answer: 'Lentes e facetas de porcelana duram 15-20 anos. Clareamento é duradouro mas pode precisar de manutenção. Restaurações em resina duram em média 7-10 anos. Depende do tratamento.' },
+      { question: 'O resultado é permanente?', answer: 'Lentes e facetas de porcelana duram em média 15 a 20 anos, dependendo dos cuidados. Clareamento é duradouro mas pode precisar de manutenção. Restaurações em resina duram em média 7-10 anos. Depende do tratamento.' },
       { question: 'Vocês atendem convênios?', answer: 'Nosso atendimento é particular, o que nos permite dedicar tempo ao planejamento e trabalhar com materiais selecionados.' }
     ]
   },

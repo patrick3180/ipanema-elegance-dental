@@ -14,7 +14,7 @@ import EnLPMidCTA from '../../../components/en/lp/EnLPMidCTA.astro';
 import EnLPSocialProof from '../../../components/en/lp/EnLPSocialProof.astro';
 import EnLPFAQ from '../../../components/en/lp/EnLPFAQ.astro';
 import EnLPFinalCTA from '../../../components/en/lp/EnLPFinalCTA.astro';
-import EnLPFloatingWhatsApp from '../../../components/en/lp/EnLPFloatingWhatsApp.astro';
+import LPStickyCTA from '../../../components/lp/LPStickyCTA.astro';
 import { enCosmeticDentistryLPConfig as config } from '@/config/enCosmeticDentistryLPConfig';
 
 const labelPrefix = 'en-lp-cosmetic';
@@ -130,6 +130,6 @@ const schemas = [
       labelPrefix={labelPrefix}
     />
 
-    <EnLPFloatingWhatsApp whatsappHref={waHref} labelPrefix={labelPrefix} />
+    <LPStickyCTA whatsappHref={waHref} waLabel={`${labelPrefix}_sticky_whatsapp`} ctaText="Book my consultation" subText="WhatsApp · replies 24h" />
   </main>
 </LPLayout>

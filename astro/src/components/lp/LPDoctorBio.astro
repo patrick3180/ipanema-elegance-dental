@@ -3,9 +3,46 @@
  * LPDoctorBio — porte de src/components/landing/consulta/ConsultaInicialDoctorBio.tsx
  * Bio de autoridade da Dra. Carla (copy verbatim, sem menção a faculdade de graduação).
  * Foto: /lovable-uploads/dra-carla-mesa-consultorio.webp (800x1000 reais).
+ *
+ * Fase 0 (jul/2026): parametrizável via props — todos os defaults reproduzem o
+ * conteúdo original da Dra. Carla, então usos existentes (<LPDoctorBio />) não
+ * mudam nada. Permite a variante Dr. Bruno na LP de Ortodontia (Onda 2):
+ * passar name/credential/paragraphs/chips/photo próprios.
+ * Os parágrafos aceitam <strong> (renderizados via set:html).
  */
+interface Props {
+  eyebrow?: string;
+  name?: string;
+  credential?: string;
+  paragraphs?: string[];
+  chips?: string[];
+  photo?: { src: string; alt: string; width: number; height: number };
+}
+const {
+  eyebrow = 'Sua Dentista',
+  name = 'Dra. Carla Christoph',
+  credential = 'CRO-RJ 27.509 • Especialista em Prótese Dentária e em Implantodontia',
+  paragraphs = [
+    'Com mais de <strong>20 anos de experiência clínica em Ipanema</strong>, a Dra. Carla é especialista em <strong>Prótese Dentária e em Implantodontia</strong> — as duas áreas no centro da reabilitação do sorriso.',
+    'Sua formação inclui <strong>8 anos como dentista militar na Odontoclínica Central da Marinha</strong>, em paralelo à prática particular — experiência que trouxe disciplina, precisão e compromisso com a segurança do paciente.',
+    'No diagnóstico, conta com o <strong>scanner iTero Element 5D</strong> e registro digital quando indicado, para um exame preciso. E você resolve tudo em um só lugar: cada etapa do seu tratamento acontece no mesmo consultório, com o <strong>acompanhamento e a supervisão da Dra. Carla do início ao fim</strong> — sem precisar pular de endereço em endereço a cada especialidade.',
+  ],
+  chips = [
+    'Especialista em Prótese Dentária',
+    'Especialista em Implantodontia',
+    '20+ Anos',
+    '8 anos na Marinha',
+    'iTero Element 5D',
+  ],
+  photo = {
+    src: '/lovable-uploads/dra-carla-mesa-consultorio.webp',
+    alt: 'Dra. Carla Christoph em seu consultório em Ipanema — Especialista em Prótese e Implantodontia',
+    width: 800,
+    height: 1000,
+  },
+} = Astro.props;
 ---
-<section class="lp-bio" aria-label="Sobre a Dra. Carla Christoph">
+<section class="lp-bio" aria-label={`Sobre ${name}`}>
   <div class="lp-bio-container">
     <div class="lp-bio-grid">
       <!-- Foto -->
@@ -13,10 +50,10 @@
         <div class="lp-bio-photo-wrap">
           <div class="lp-bio-photo-bg" aria-hidden="true"></div>
           <img
-            src="/lovable-uploads/dra-carla-mesa-consultorio.webp"
-            alt="Dra. Carla Christoph em seu consultório em Ipanema — Especialista em Prótese e Implantodontia"
-            width="800"
-            height="1000"
+            src={photo.src}
+            alt={photo.alt}
+            width={photo.width}
+            height={photo.height}
             loading="lazy"
             decoding="async"
             class="lp-bio-photo"
@@ -26,28 +63,16 @@
 
       <!-- Bio -->
       <div class="lp-bio-text">
-        <p class="lp-bio-eyebrow">Sua Dentista</p>
-        <h2 class="lp-bio-name">Dra. Carla Christoph</h2>
-        <p class="lp-bio-cro">CRO-RJ 27.509 • Especialista em Prótese Dentária e em Implantodontia</p>
+        <p class="lp-bio-eyebrow">{eyebrow}</p>
+        <h2 class="lp-bio-name">{name}</h2>
+        <p class="lp-bio-cro">{credential}</p>
 
         <div class="lp-bio-paragraphs">
-          <p>
-            Com mais de <strong>20 anos de experiência clínica em Ipanema</strong>, a Dra. Carla é especialista em <strong>Prótese Dentária e em Implantodontia</strong> — as duas áreas no centro da reabilitação do sorriso.
-          </p>
-          <p>
-            Sua formação inclui <strong>8 anos como dentista militar na Odontoclínica Central da Marinha</strong>, em paralelo à prática particular — experiência que trouxe disciplina, precisão e compromisso com a segurança do paciente.
-          </p>
-          <p>
-            No diagnóstico, conta com o <strong>scanner iTero Element 5D</strong> e registro digital quando indicado, para um exame preciso. E você resolve tudo em um só lugar: cada etapa do seu tratamento acontece no mesmo consultório, com o <strong>acompanhamento e a supervisão da Dra. Carla do início ao fim</strong> — sem precisar pular de endereço em endereço a cada especialidade.
-          </p>
+          {paragraphs.map((par) => <p set:html={par} />)}
         </div>
 
         <div class="lp-bio-chips">
-          <span class="lp-bio-chip">Especialista em Prótese Dentária</span>
-          <span class="lp-bio-chip">Especialista em Implantodontia</span>
-          <span class="lp-bio-chip">20+ Anos</span>
-          <span class="lp-bio-chip">8 anos na Marinha</span>
-          <span class="lp-bio-chip">iTero Element 5D</span>
+          {chips.map((chip) => <span class="lp-bio-chip">{chip}</span>)}
         </div>
       </div>
     </div>

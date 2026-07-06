@@ -14,7 +14,7 @@ import LPGuide from '../../components/lp/LPGuide.astro';
 import LPSocialProof from '../../components/lp/LPSocialProof.astro';
 import LPFAQ from '../../components/lp/LPFAQ.astro';
 import LPFinalCTA from '../../components/lp/LPFinalCTA.astro';
-import LPFloatingWhatsApp from '../../components/lp/LPFloatingWhatsApp.astro';
+import LPStickyCTA from '../../components/lp/LPStickyCTA.astro';
 import { lentesPorcelanaAcolhedorConfig as config } from '@/config/lentesPorcelanaAcolhedorConfig';
 
 const waHref = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(config.whatsapp.message)}`;
@@ -190,7 +190,7 @@ const indicacoes = [
       waLabel={`${prefix}_final_whatsapp`}
     />
 
-    <LPFloatingWhatsApp whatsappHref={waHref} waLabel={`${prefix}_floating_whatsapp`} />
+    <LPStickyCTA whatsappHref={waHref} waLabel={`${prefix}_sticky_whatsapp`} />
   </main>
 </LPLayout>
 

@@ -8,11 +8,12 @@
 import LPLayout from '../../layouts/LPLayout.astro';
 import LPHeroFullBleed from '../../components/lp/LPHeroFullBleed.astro';
 import LPProblem from '../../components/lp/LPProblem.astro';
+import LPDoctorBio from '../../components/lp/LPDoctorBio.astro';
 import LPGuide from '../../components/lp/LPGuide.astro';
 import LPSocialProof from '../../components/lp/LPSocialProof.astro';
 import LPFAQ from '../../components/lp/LPFAQ.astro';
 import LPFinalCTA from '../../components/lp/LPFinalCTA.astro';
-import LPFloatingWhatsApp from '../../components/lp/LPFloatingWhatsApp.astro';
+import LPStickyCTA from '../../components/lp/LPStickyCTA.astro';
 import { lentesPorcelanaProfissionalConfig as config } from '@/config/lentesPorcelanaProfissionalConfig';
 
 const waHref = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(config.whatsapp.message)}`;
@@ -94,6 +95,9 @@ const schemas = [
       problems={config.problem.problems}
     />
 
+    <!-- Bloco de autoridade (Fase 0 — era a única LP full-bleed sem ele) -->
+    <LPDoctorBio />
+
     <LPGuide title={config.guide.title} subtitle={config.guide.subtitle} steps={config.guide.steps} />
 
     <LPSocialProof
@@ -113,7 +117,7 @@ const schemas = [
       waLabel={`${prefix}_final_whatsapp`}
     />
 
-    <LPFloatingWhatsApp whatsappHref={waHref} waLabel={`${prefix}_floating_whatsapp`} />
+    <LPStickyCTA whatsappHref={waHref} waLabel={`${prefix}_sticky_whatsapp`} />
   </main>
 </LPLayout>
 

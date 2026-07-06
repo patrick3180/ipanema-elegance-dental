@@ -23,7 +23,7 @@ export const emergenciaOdontologicaConfig: LandingPageConfig = {
   benefits: [
     'WhatsApp 24h — resposta imediata',
     'Encaixe prioritário na agenda',
-    'Diagnóstico e resolução no mesmo dia',
+    'Diagnóstico e resolução no mesmo dia, sempre que possível',
     '20+ anos de experiência'
   ],
   
