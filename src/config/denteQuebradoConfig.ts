@@ -16,7 +16,8 @@ export const denteQuebradoConfig: LandingPageConfig = {
   hero: {
     headline: 'Dente Quebrado? Restauração com Resultado Natural em Ipanema',
     subheadline: 'Encaixe prioritário para resolver rápido. A Dra. Carla Christoph restaura dentes fraturados com materiais que reproduzem a aparência natural do dente original.',
-    ctaText: 'Pedir Atendimento Agora',
+    // Onda 3 (jul/2026): sem "Agora" (pressão) — padrão da família de urgência
+    ctaText: 'Pedir Encaixe pelo WhatsApp',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
 

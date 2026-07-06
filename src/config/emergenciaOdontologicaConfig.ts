@@ -16,7 +16,8 @@ export const emergenciaOdontologicaConfig: LandingPageConfig = {
   hero: {
     headline: 'Emergência Odontológica em Ipanema — Encaixe Prioritário',
     subheadline: 'Dente quebrado, dor aguda, prótese solta ou inchaço. Entre em contato pelo WhatsApp e resolveremos o mais rápido possível.',
-    ctaText: 'Pedir Atendimento Agora',
+    // Onda 3 (jul/2026): sem "Agora" (pressão) — padrão da família de urgência
+    ctaText: 'Pedir Encaixe pelo WhatsApp',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
   

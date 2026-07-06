@@ -6,7 +6,7 @@
  * SocialProof → FAQ → FinalCTA (+ floating).
  */
 import LPLayout from '../../layouts/LPLayout.astro';
-import LPHero from '../../components/lp/LPHero.astro';
+import LPHeroFullBleed from '../../components/lp/LPHeroFullBleed.astro';
 import LPStatsBar from '../../components/lp/LPStatsBar.astro';
 import LPProblem from '../../components/lp/LPProblem.astro';
 import LPDoctorBio from '../../components/lp/LPDoctorBio.astro';
@@ -88,16 +88,17 @@ const schemas = [
   waLabelPrefix={prefix}
 >
   <main id="main-content" class="lp-main">
-    <LPHero
+    <!-- Onda 3 (jul/2026): urgência = variante AÇÃO-PRIMEIRO — H1 e CTA no topo
+         absoluto; a foto vira faixa menor depois do bloco de ação. -->
+    <LPHeroFullBleed
+      layout="acao"
+      eyebrow="Dentista em Ipanema · Zona Sul"
       headline={config.hero.headline}
       subheadline={config.hero.subheadline}
       ctaText={config.hero.ctaText}
-      benefits={config.benefits}
-      backgroundImage={config.hero.backgroundImage || ''}
       whatsappHref={waHref}
       waLabel={`${prefix}_hero_whatsapp`}
-      imgWidth={800}
-      imgHeight={1200}
+      benefits={['Encaixe prioritário na agenda', 'Diagnóstico preciso da causa']}
     />
 
     <LPStatsBar />
