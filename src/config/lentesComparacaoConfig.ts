@@ -19,7 +19,8 @@ export const lentesComparacaoConfig: LandingPageConfig = {
   hero: {
     headline: 'Lente de Contato Dental em Ipanema: Resina ou Porcelana?',
     subheadline: 'Lente de contato dental pode ser feita em porcelana ou em resina — e cada material tem a sua indicação. Com o Test Drive do Sorriso e o scanner iTero Element 5D, a Dra. Carla Christoph ajuda você a descobrir qual combina com o seu sorriso, na consulta.',
-    ctaText: 'Agendar Minha Consulta pelo WhatsApp',
+    // Onda 1 (jul/2026): CTA encurtado — o anterior quebrava em 2 linhas no mobile
+    ctaText: 'Agendar minha consulta',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
 

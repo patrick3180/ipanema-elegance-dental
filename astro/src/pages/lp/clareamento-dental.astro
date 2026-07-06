@@ -5,7 +5,7 @@
  * Guide → MidCTA (labels próprios) → SocialProof → FAQ → FinalCTA.
  */
 import LPLayout from '../../layouts/LPLayout.astro';
-import LPHero from '../../components/lp/LPHero.astro';
+import LPHeroFullBleed from '../../components/lp/LPHeroFullBleed.astro';
 import LPStatsBar from '../../components/lp/LPStatsBar.astro';
 import LPProblem from '../../components/lp/LPProblem.astro';
 import LPDoctorBio from '../../components/lp/LPDoctorBio.astro';
@@ -76,16 +76,15 @@ const schemas = [
   waLabelPrefix={prefix}
 >
   <main id="main-content" class="lp-main">
-    <LPHero
+    <!-- Onda 1 (jul/2026): hero full-bleed foto-primeiro; copy mantida (aprovada) -->
+    <LPHeroFullBleed
+      eyebrow="Dentista em Ipanema · Zona Sul"
       headline={config.hero.headline}
       subheadline={config.hero.subheadline}
       ctaText={config.hero.ctaText}
-      benefits={config.benefits}
-      backgroundImage={config.hero.backgroundImage || ''}
       whatsappHref={waHref}
       waLabel={`${prefix}_hero_whatsapp`}
-      imgWidth={500}
-      imgHeight={737}
+      benefits={['Protocolo personalizado por caso', 'Resultado natural, sem "dente de chiclete"']}
     />
 
     <LPStatsBar />

@@ -14,9 +14,10 @@ export const esteticaSorrisoGenericaConfig: LandingPageConfig = {
   },
 
   hero: {
-    headline: 'Não Sabe se Precisa de Lentes, Clareamento ou Facetas? Descubra na Consulta',
-    subheadline: 'Clareamento, lentes, restaurações, facetas. A Dra. Carla Christoph avalia o caso completo e indica o caminho mais adequado para o resultado que você busca.',
-    ctaText: 'Agendar Consulta Estética',
+    // Onda 1 (jul/2026, aprovado Patrick): H1 acolhedor no lugar do "Não sabe…"
+    headline: 'Melhorar o sorriso sem saber por onde começar?',
+    subheadline: 'Lentes, clareamento ou facetas — a Dra. Carla Christoph avalia o caso completo e indica o caminho, sem pressa.',
+    ctaText: 'Agendar minha consulta',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
 

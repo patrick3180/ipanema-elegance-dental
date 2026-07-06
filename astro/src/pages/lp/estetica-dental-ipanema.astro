@@ -1,12 +1,14 @@
 ---
 /**
  * /lp/estetica-dental-ipanema — porte de src/pages/EsteticaSorrisoLandingPage.tsx
- * Config: esteticaSorrisoGenericaConfig. Seções: Hero → Problem → Guide →
- * SocialProof → FAQ → FinalCTA (sem StatsBar/DoctorBio/MidCTA — igual ao React).
+ * Config: esteticaSorrisoGenericaConfig. Seções: HeroFullBleed → Problem →
+ * DoctorBio → Guide → SocialProof → FAQ → FinalCTA (Onda 1 jul/2026: hero
+ * full-bleed foto-primeiro + bloco de autoridade adicionados).
  */
 import LPLayout from '../../layouts/LPLayout.astro';
-import LPHero from '../../components/lp/LPHero.astro';
+import LPHeroFullBleed from '../../components/lp/LPHeroFullBleed.astro';
 import LPProblem from '../../components/lp/LPProblem.astro';
+import LPDoctorBio from '../../components/lp/LPDoctorBio.astro';
 import LPGuide from '../../components/lp/LPGuide.astro';
 import LPSocialProof from '../../components/lp/LPSocialProof.astro';
 import LPFAQ from '../../components/lp/LPFAQ.astro';
@@ -62,16 +64,15 @@ const schemas = [
   waLabelPrefix={prefix}
 >
   <main id="main-content" class="lp-main">
-    <LPHero
+    <!-- Onda 1 (jul/2026): hero full-bleed foto-primeiro (padrão Consulta/Prótese V2) -->
+    <LPHeroFullBleed
+      eyebrow="Estética dental em Ipanema · Zona Sul"
       headline={config.hero.headline}
       subheadline={config.hero.subheadline}
       ctaText={config.hero.ctaText}
-      benefits={config.benefits}
-      backgroundImage={config.hero.backgroundImage || ''}
       whatsappHref={waHref}
       waLabel={`${prefix}_hero_whatsapp`}
-      imgWidth={800}
-      imgHeight={1200}
+      benefits={['Test Drive do Sorriso', '20+ anos em estética dental']}
     />
 
     <LPProblem
@@ -79,6 +80,9 @@ const schemas = [
       description={config.problem.description}
       problems={config.problem.problems}
     />
+
+    <!-- Bloco de autoridade (Onda 1 — LP não tinha) -->
+    <LPDoctorBio />
 
     <LPGuide title={config.guide.title} subtitle={config.guide.subtitle} steps={config.guide.steps} />
 

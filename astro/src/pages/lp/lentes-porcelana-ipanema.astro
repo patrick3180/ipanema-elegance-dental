@@ -2,14 +2,16 @@
 /**
  * /lp/lentes-porcelana-ipanema — porte de src/pages/LPLentesPorcelana.tsx
  * Config: lentesPorcelanaAcolhedorConfig (só para seções config-driven).
- * ATENÇÃO: hero e seção "Indicações" são CUSTOM (copy hardcoded na página React —
- * portada verbatim). Title/description também são hardcoded no Helmet do React
- * (diferentes do config.seo) — mantidos idênticos ao que está em produção.
- * Hero usa <picture> com AVIF 480/1024 (Sprint 5/9 — evita double-download).
- * Seções: Hero custom → Indicações (3 cards) → Problem → Guide → SocialProof → FAQ → FinalCTA.
+ * Onda 1 (jul/2026): hero custom substituído pelo LPHeroFullBleed (padrão único);
+ * H1 mantido (decisão Patrick). Seção "Indicações" segue custom (copy hardcoded).
+ * Title/description hardcoded (diferentes do config.seo) — mantidos.
+ * Seções: HeroFullBleed → Indicações (3 cards) → Problem → DoctorBio → Guide →
+ * SocialProof → FAQ → FinalCTA.
  */
 import LPLayout from '../../layouts/LPLayout.astro';
+import LPHeroFullBleed from '../../components/lp/LPHeroFullBleed.astro';
 import LPProblem from '../../components/lp/LPProblem.astro';
+import LPDoctorBio from '../../components/lp/LPDoctorBio.astro';
 import LPGuide from '../../components/lp/LPGuide.astro';
 import LPSocialProof from '../../components/lp/LPSocialProof.astro';
 import LPFAQ from '../../components/lp/LPFAQ.astro';
@@ -79,68 +81,18 @@ const indicacoes = [
   waLabelPrefix={prefix}
 >
   <main id="main-content" class="lp-main">
-    <!-- SEÇÃO 1: HERO CUSTOM (Test Drive do Sorriso) -->
-    <section class="lentes-hero">
-      <div class="lentes-hero-container">
-        <div class="lentes-hero-grid">
-          <!-- Coluna Esquerda — Texto -->
-          <div>
-            <h1 class="lentes-hero-h1">Test Drive do Sorriso — Veja o Resultado Antes de Começar</h1>
-
-            <p class="lentes-hero-sub">
-              iTero Element 5D e simulação em resina provisória na sua boca. Você aprova cada detalhe antes de
-              qualquer desgaste. Lentes de porcelana com especialista em Ipanema — CRO-RJ 27.509.
-            </p>
-
-            <div class="lentes-hero-badges">
-              <div class="lentes-hero-badge">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.27"/></svg>
-                <span>20+ anos de experiência</span>
-              </div>
-              <div class="lentes-hero-badge">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.27"/></svg>
-                <span>Test Drive do Sorriso</span>
-              </div>
-              <div class="lentes-hero-badge">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.27"/></svg>
-                <span>iTero Element 5D</span>
-              </div>
-              <div class="lentes-hero-badge">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.27"/></svg>
-                <span>CRO-RJ 27.509</span>
-              </div>
-            </div>
-
-            <a
-              class="lentes-hero-cta js-wa-cta"
-              data-label={`${prefix}_hero_whatsapp`}
-              href={waHref}
-              target="_blank"
-              rel="noopener"
-            >Conhecer o Test Drive do Sorriso</a>
-          </div>
-
-          <!-- Coluna Direita — Imagem (picture AVIF, paridade Sprint 9/V5) -->
-          <div class="lentes-hero-image">
-            <picture>
-              <source
-                srcset="/lovable-uploads/dra-carla-jaleco-bracos-cruzados-480.avif 480w, /lovable-uploads/dra-carla-jaleco-bracos-cruzados-1024.avif 1024w"
-                sizes="(max-width:767px) 100vw, (min-width:768px) 50vw, 40vw"
-                type="image/avif"
-              />
-              <img
-                src="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
-                alt="Dra. Carla Christoph - Especialista em Lentes de Porcelana"
-                width="800"
-                height="1200"
-                loading="eager"
-                fetchpriority="high"
-              />
-            </picture>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Onda 1 (jul/2026): hero unificado no padrão full-bleed — CTA verde padrão
+         (morre o gradiente roxo-ouro), badge Google na dobra, H1 mantido (decisão
+         Patrick 04/07: descreve o processo real do Test Drive). -->
+    <LPHeroFullBleed
+      eyebrow="Lentes de porcelana em Ipanema · CRO-RJ 27.509"
+      headline="Test Drive do Sorriso — Veja o Resultado Antes de Começar"
+      subheadline="iTero Element 5D e simulação em resina provisória na sua boca. Você aprova cada detalhe antes de qualquer desgaste — com especialista em Ipanema."
+      ctaText="Conhecer o Test Drive do Sorriso"
+      whatsappHref={waHref}
+      waLabel={`${prefix}_hero_whatsapp`}
+      benefits={['Test Drive do Sorriso', 'Porcelana de alta translucidez']}
+    />
 
     <!-- SEÇÃO 2: INDICAÇÕES (3 cards com overlay roxo) -->
     <section class="lentes-indicacoes">
@@ -171,6 +123,9 @@ const indicacoes = [
       problems={config.problem.problems}
     />
 
+    <!-- Bloco de autoridade (Onda 1 — LP não tinha) -->
+    <LPDoctorBio />
+
     <LPGuide title={config.guide.title} subtitle={config.guide.subtitle} steps={config.guide.steps} />
 
     <LPSocialProof
@@ -197,94 +152,7 @@ const indicacoes = [
 <style>
   .lp-main { background: #fff; min-height: 100vh; }
 
-  /* HERO — paridade com criticalStyles .lp-lentes-hero do React (Sprint 6) */
-  .lentes-hero {
-    padding-top: calc(72px + 4rem);
-    padding-bottom: 5rem;
-    background: linear-gradient(to bottom, rgba(207, 203, 180, 0.3), #fff);
-  }
-  .lentes-hero-container { max-width: 80rem; margin: 0 auto; padding: 0 1rem; }
-  .lentes-hero-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    align-items: center;
-  }
-  @media (min-width: 768px) {
-    .lentes-hero-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
-  }
-  .lentes-hero-h1 {
-    font-size: 2.25rem;
-    font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 700;
-    color: #381f47;
-    margin-bottom: 1rem;
-  }
-  @media (min-width: 768px) {
-    .lentes-hero-h1 { font-size: 3rem; }
-  }
-  .lentes-hero-sub {
-    font-size: 1.125rem;
-    color: #6b6b6b;
-    margin-bottom: 1.5rem;
-    line-height: 1.625;
-  }
-  @media (min-width: 768px) {
-    .lentes-hero-sub { font-size: 1.25rem; }
-  }
-  .lentes-hero-badges {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
-  }
-  .lentes-hero-badge {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(56, 31, 71, 0.1);
-    color: #381f47;
-    border-radius: 0.5rem;
-    padding: 0.75rem;
-    font-size: 0.875rem;
-  }
-  .lentes-hero-badge svg { flex-shrink: 0; }
-  .lentes-hero-cta {
-    background: linear-gradient(to right, #381f47, #b3955f);
-    color: #fff;
-    padding: 1rem 2rem;
-    border-radius: 0.5rem;
-    font-size: 1.125rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    width: 100%;
-    justify-content: center;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-  }
-  .lentes-hero-cta:hover {
-    opacity: 0.9;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-  }
-  @media (min-width: 768px) {
-    .lentes-hero-cta { width: auto; }
-  }
-  .lentes-hero-image {
-    aspect-ratio: 760 / 996;
-    border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
-  }
-  .lentes-hero-image picture,
-  .lentes-hero-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+  /* Hero: agora no componente compartilhado LPHeroFullBleed (Onda 1) */
 
   /* INDICAÇÕES — 3 cards com imagem + overlay gradiente roxo */
   .lentes-indicacoes { background: #fff; padding: 4rem 0; }

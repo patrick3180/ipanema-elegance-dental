@@ -7,7 +7,7 @@
  * SocialProof → FAQ → FinalCTA (ordem igual à do React).
  */
 import LPLayout from '../../layouts/LPLayout.astro';
-import LPHero from '../../components/lp/LPHero.astro';
+import LPHeroFullBleed from '../../components/lp/LPHeroFullBleed.astro';
 import LPStatsBar from '../../components/lp/LPStatsBar.astro';
 import LPProblem from '../../components/lp/LPProblem.astro';
 import LPComparacaoResinaPorcelana from '../../components/lp/LPComparacaoResinaPorcelana.astro';
@@ -21,6 +21,8 @@ import LPStickyCTA from '../../components/lp/LPStickyCTA.astro';
 import { lentesComparacaoConfig as config } from '@/config/lentesComparacaoConfig';
 
 const waHref = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(config.whatsapp.message)}`;
+// Onda 1: CTA contextual do mini-seletor ("não sei — quero orientação")
+const waHrefOrientacao = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent('Olá! Estou em dúvida entre lente de resina e de porcelana e gostaria de agendar uma consulta para orientação.')}`;
 const prefix = 'lp-lentes-comparacao';
 
 // Schema — copiado verbatim do Helmet de LentesResinaOuPorcelanaLandingPage.tsx
@@ -79,17 +81,48 @@ const schemas = [
   waLabelPrefix={prefix}
 >
   <main id="main-content" class="lp-main">
-    <LPHero
+    <!-- Onda 1 (jul/2026): variante DIAGNÓSTICO — a dúvida é o gancho, então o
+         texto/CTA vêm antes (layout 'acao'); a foto vira faixa menor após o CTA. -->
+    <LPHeroFullBleed
+      layout="acao"
+      eyebrow="Dentista em Ipanema · Zona Sul"
       headline={config.hero.headline}
       subheadline={config.hero.subheadline}
       ctaText={config.hero.ctaText}
-      benefits={config.benefits}
-      backgroundImage={config.hero.backgroundImage || ''}
       whatsappHref={waHref}
       waLabel={`${prefix}_hero_whatsapp`}
-      imgWidth={800}
-      imgHeight={1200}
+      benefits={['Test Drive do Sorriso antes de decidir', 'iTero Element 5D quando indicado']}
     />
+
+    <!-- Mini-seletor de caminhos (Onda 1 — padrão do seletor da Prótese V2) -->
+    <section class="cmp-sel" aria-label="Escolha o seu caminho">
+      <div class="cmp-sel-inner">
+        <p class="cmp-sel-title">O que pesa mais para você?</p>
+        <div class="cmp-sel-grid">
+          <a class="cmp-sel-card" href="#comparacao">
+            <b>Máxima durabilidade</b>
+            <span>Porcelana: em média 15 a 20 anos e não mancha — ver a comparação</span>
+            <em>→</em>
+          </a>
+          <a class="cmp-sel-card" href="#comparacao">
+            <b>Resultado rápido</b>
+            <span>Resina: 1 a 2 sessões, investimento mais acessível — ver a comparação</span>
+            <em>→</em>
+          </a>
+          <a
+            class="cmp-sel-card js-wa-cta"
+            data-label={`${prefix}_seletor_orientacao_whatsapp`}
+            href={waHrefOrientacao}
+            target="_blank"
+            rel="noopener"
+          >
+            <b>Não sei — quero orientação</b>
+            <span>A Dra. Carla avalia seu caso na consulta e indica o material</span>
+            <em>→</em>
+          </a>
+        </div>
+      </div>
+    </section>
 
     <LPStatsBar />
 
@@ -99,7 +132,9 @@ const schemas = [
       problems={config.problem.problems}
     />
 
-    <LPComparacaoResinaPorcelana />
+    <div id="comparacao">
+      <LPComparacaoResinaPorcelana />
+    </div>
 
     <LPGuide title={config.guide.title} subtitle={config.guide.subtitle} steps={config.guide.steps} />
 
@@ -135,4 +170,49 @@ const schemas = [
 
 <style>
   .lp-main { background: #fff; min-height: 100vh; }
+
+  /* Mini-seletor de caminhos (Onda 1) — visual derivado do seletor da Prótese V2 */
+  .cmp-sel { background: #fff; padding: 2.25rem 1.25rem 1rem; }
+  .cmp-sel-inner { max-width: 1024px; margin: 0 auto; }
+  .cmp-sel-title {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #8a7444;
+    font-weight: 600;
+    margin: 0 0 0.9rem;
+    text-align: center;
+  }
+  .cmp-sel-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+  @media (min-width: 768px) {
+    .cmp-sel-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  }
+  .cmp-sel-card {
+    position: relative;
+    display: block;
+    background: #faf7f2;
+    border: 1.5px solid rgba(179, 149, 95, 0.35);
+    border-radius: 12px;
+    padding: 0.9rem 2.2rem 0.9rem 1rem;
+    text-decoration: none;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .cmp-sel-card:hover { border-color: #b3955f; transform: translateY(-2px); }
+  .cmp-sel-card b {
+    display: block;
+    font-size: 0.95rem;
+    color: #381f47;
+    margin-bottom: 0.25rem;
+  }
+  .cmp-sel-card span { font-size: 0.82rem; color: #6b6455; line-height: 1.45; }
+  .cmp-sel-card em {
+    position: absolute;
+    right: 0.9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-style: normal;
+    color: #b3955f;
+    font-weight: 700;
+  }
+  #comparacao { scroll-margin-top: 84px; }
 </style>

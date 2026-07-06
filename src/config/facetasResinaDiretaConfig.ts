@@ -14,9 +14,10 @@ export const facetasResinaDiretaConfig: LandingPageConfig = {
   },
 
   hero: {
-    headline: 'Insatisfação com o Sorriso? Facetas de Resina em Ipanema — Resultado no Mesmo Dia',
+    // Onda 1 (jul/2026): H1 encurtado — o anterior tinha 4 linhas no mobile e empurrava o CTA p/ fora da dobra
+    headline: 'Facetas de resina em Ipanema — resultado em uma única sessão',
     subheadline: 'Facetas esculpidas diretamente no dente pela Dra. Carla Christoph. Você acompanha e aprova cada etapa antes de finalizar — sem pressa e sem surpresas.',
-    ctaText: 'Agendar Minha Consulta de Facetas',
+    ctaText: 'Agendar minha consulta',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
 
