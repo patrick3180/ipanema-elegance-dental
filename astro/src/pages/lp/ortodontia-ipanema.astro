@@ -6,8 +6,9 @@
  * Seções: Hero → Problem → Guide → SocialProof → FAQ → FinalCTA (+ floating).
  */
 import LPLayout from '../../layouts/LPLayout.astro';
-import LPHero from '../../components/lp/LPHero.astro';
+import LPHeroFullBleed from '../../components/lp/LPHeroFullBleed.astro';
 import LPProblem from '../../components/lp/LPProblem.astro';
+import LPDoctorBio from '../../components/lp/LPDoctorBio.astro';
 import LPGuide from '../../components/lp/LPGuide.astro';
 import LPSocialProof from '../../components/lp/LPSocialProof.astro';
 import LPFAQ from '../../components/lp/LPFAQ.astro';
@@ -51,22 +52,43 @@ const schemas = [
   waLabelPrefix={prefix}
 >
   <main id="main-content" class="lp-main">
-    <LPHero
+    <!-- Onda 2 (jul/2026, decisão Patrick): variante AÇÃO-PRIMEIRO sem foto no hero —
+         quem conduz é o Dr. Bruno; a foto dele entra no bloco de autoridade abaixo. -->
+    <LPHeroFullBleed
+      layout="acao"
+      photo={null}
+      eyebrow="Ortodontia em Ipanema · Zona Sul"
       headline={config.hero.headline}
       subheadline={config.hero.subheadline}
       ctaText={config.hero.ctaText}
-      benefits={config.benefits}
-      backgroundImage={config.hero.backgroundImage || ''}
       whatsappHref={waHref}
       waLabel={`${prefix}_hero_whatsapp`}
-      imgWidth={434}
-      imgHeight={575}
+      benefits={['iTero Element 5D', 'Invisalign, estético e convencional']}
     />
 
     <LPProblem
       title={config.problem.title}
       description={config.problem.description}
       problems={config.problem.problems}
+    />
+
+    <!-- Bloco de autoridade — versão Dr. Bruno (Onda 2; atribuição correta: ele conduz a ortodontia) -->
+    <LPDoctorBio
+      eyebrow="Seu Ortodontista"
+      name="Dr. Bruno"
+      credential="CRO-RJ 41.684 • Doutor em Ortodontia pela UERJ"
+      paragraphs={[
+        'Doutor em Ortodontia pela <strong>UERJ</strong> e professor no <strong>IOPUC-Rio</strong>, o Dr. Bruno conduz os casos de ortodontia do consultório — do diagnóstico à contenção.',
+        'O planejamento usa o <strong>scanner iTero Element 5D</strong> quando indicado, com opções de <strong>Invisalign, aparelho estético e convencional</strong> — a indicação nasce do seu caso, não de um protocolo padrão.',
+        'O acompanhamento é conjunto: o tratamento acontece no mesmo consultório, com a <strong>Dra. Carla Christoph acompanhando a jornada completa</strong> do seu sorriso.',
+      ]}
+      chips={['Doutor em Ortodontia (UERJ)', 'Professor no IOPUC-Rio', 'Invisalign', 'iTero Element 5D']}
+      photo={{
+        src: '/lovable-uploads/DrBruno_site.webp',
+        alt: 'Dr. Bruno — Doutor em Ortodontia pela UERJ, ortodontista em Ipanema',
+        width: 434,
+        height: 575,
+      }}
     />
 
     <LPGuide title={config.guide.title} subtitle={config.guide.subtitle} steps={config.guide.steps} />

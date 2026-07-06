@@ -14,8 +14,9 @@ export const limpezaDentalConfig: LandingPageConfig = {
   },
 
   hero: {
-    headline: "Tártaro e Sensibilidade? Limpeza com Ultrassom em Ipanema",
-    subheadline: "Profilaxia com ultrassom em consulta sem pressa. Remoção de tártaro, placa bacteriana e manchas. Dra. Carla Christoph, 20+ anos de experiência.",
+    // Onda 2 (jul/2026, aprovado Patrick): H1 sem abrir no problema clínico; tártaro desce p/ a subheadline
+    headline: "Limpeza dental com ultrassom em Ipanema — completa e sem pressa",
+    subheadline: "Remoção de tártaro, placa bacteriana e manchas, em consulta com hora dedicada. Dra. Carla Christoph, 20+ anos de experiência.",
     ctaText: "Agendar Minha Limpeza",
     backgroundImage: "/lovable-uploads/vertical-de-jaleco.webp"
   },

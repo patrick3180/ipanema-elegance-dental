@@ -16,7 +16,8 @@ export const ortodontiaConfig: LandingPageConfig = {
   hero: {
     headline: 'Ortodontia Conduzida por Doutor em Ortodontia pela UERJ',
     subheadline: 'Dr. Bruno, Doutor em Ortodontia pela UERJ e Professor no IOPUC-Rio, planeja cada caso com escaneamento digital iTero Element 5D. Opções de alinhadores Invisalign, aparelho estético e convencional.',
-    ctaText: 'Agendar Minha Consulta Ortodôntica',
+    // Onda 2 (jul/2026): CTA encurtado — o anterior quebrava em 2 linhas no mobile
+    ctaText: 'Agendar consulta',
     backgroundImage: '/lovable-uploads/DrBruno_site.webp'
   },
 

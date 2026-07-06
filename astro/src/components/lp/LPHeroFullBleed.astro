@@ -20,7 +20,9 @@ interface Props {
   benefits?: string[];
   trustBadges?: string[];
   reviews?: { rating: string; count: string; href: string };
-  photo?: { mobileBase: string; desktopBase: string; alt: string; width: number; height: number };
+  /** Foto do hero. Passar `null` para hero SEM foto (ex.: Ortodontia — a foto
+   *  do profissional entra no LPDoctorBio, não no hero). */
+  photo?: { mobileBase: string; desktopBase: string; alt: string; width: number; height: number } | null;
   /**
    * Variante mobile (Fase 0 do plano de adequação, jul/2026):
    *  - 'foto' (default): foto no topo (44vh) e texto embaixo — consideração/confiança.
@@ -55,16 +57,18 @@ const {
 const P = '/lovable-uploads';
 ---
 
-<section class:list={['lpfb-hero', layout === 'acao' && 'lpfb-acao']}>
-  <picture class="lpfb-photo">
-    <source media="(max-width: 767px)" type="image/avif" srcset={`${P}/${photo.mobileBase}-480.avif 480w, ${P}/${photo.mobileBase}-768.avif 768w`} sizes="100vw" />
-    <source media="(max-width: 767px)" type="image/webp" srcset={`${P}/${photo.mobileBase}-480.webp 480w, ${P}/${photo.mobileBase}-768.webp 768w`} sizes="100vw" />
-    <source media="(min-width: 768px)" type="image/avif" srcset={`${P}/${photo.desktopBase}-1280.avif 1280w, ${P}/${photo.desktopBase}-1920.avif 1920w`} sizes="100vw" />
-    <source media="(min-width: 768px)" type="image/webp" srcset={`${P}/${photo.desktopBase}-1280.webp 1280w, ${P}/${photo.desktopBase}-1920.webp 1920w`} sizes="100vw" />
-    <img src={`${P}/${photo.desktopBase}-1280.webp`} alt={photo.alt} width={photo.width} height={photo.height} loading="eager" fetchpriority="high" decoding="async" />
-  </picture>
+<section class:list={['lpfb-hero', layout === 'acao' && 'lpfb-acao', !photo && 'lpfb-nophoto']}>
+  {photo && (
+    <picture class="lpfb-photo">
+      <source media="(max-width: 767px)" type="image/avif" srcset={`${P}/${photo.mobileBase}-480.avif 480w, ${P}/${photo.mobileBase}-768.avif 768w`} sizes="100vw" />
+      <source media="(max-width: 767px)" type="image/webp" srcset={`${P}/${photo.mobileBase}-480.webp 480w, ${P}/${photo.mobileBase}-768.webp 768w`} sizes="100vw" />
+      <source media="(min-width: 768px)" type="image/avif" srcset={`${P}/${photo.desktopBase}-1280.avif 1280w, ${P}/${photo.desktopBase}-1920.avif 1920w`} sizes="100vw" />
+      <source media="(min-width: 768px)" type="image/webp" srcset={`${P}/${photo.desktopBase}-1280.webp 1280w, ${P}/${photo.desktopBase}-1920.webp 1920w`} sizes="100vw" />
+      <img src={`${P}/${photo.desktopBase}-1280.webp`} alt={photo.alt} width={photo.width} height={photo.height} loading="eager" fetchpriority="high" decoding="async" />
+    </picture>
+  )}
 
-  <div class="lpfb-scrim" aria-hidden="true"></div>
+  {photo && <div class="lpfb-scrim" aria-hidden="true"></div>}
 
   <div class="lpfb-text">
     <div class="lpfb-inner">
@@ -140,9 +144,15 @@ const P = '/lovable-uploads';
   .lpfb-acao .lpfb-photo img { height: 28vh; min-height: 200px; max-height: 300px; }
   .lpfb-acao .lpfb-text { order: 1; padding-top: 1.75rem; }
 
+  /* Sem foto: hero compacto de texto (a foto do profissional vive no DoctorBio) */
+  .lpfb-nophoto .lpfb-text { padding-top: 2rem; }
+
   @media (min-width: 768px) {
     .lpfb-hero { min-height: 86vh; padding-top: 0; }
     .lpfb-acao { display: block; }
+    .lpfb-nophoto { min-height: auto; padding-top: 72px; }
+    .lpfb-nophoto .lpfb-text { min-height: auto; padding: 5.5rem 0 4.5rem; }
+    .lpfb-nophoto .lpfb-copy { max-width: 640px; }
     .lpfb-photo { position: absolute; top: 72px; left: 0; right: 0; bottom: 0; }
     .lpfb-photo img { height: 100%; min-height: 0; max-height: none; object-position: 78% 18%; }
     .lpfb-scrim { display: block; position: absolute; top: 72px; left: 0; right: 0; bottom: 0; pointer-events: none; background: linear-gradient(90deg, rgba(250,247,242,.97) 0%, rgba(250,247,242,.88) 34%, rgba(250,247,242,.5) 54%, rgba(250,247,242,0) 72%); }

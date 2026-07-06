@@ -7,7 +7,8 @@
  * Copy 100% verbatim do saudeGengivalConfig. noindex via LPLayout (default).
  */
 import LPLayout from '../../layouts/LPLayout.astro';
-import LPHero from '../../components/lp/LPHero.astro';
+import LPHeroFullBleed from '../../components/lp/LPHeroFullBleed.astro';
+import LPDoctorBio from '../../components/lp/LPDoctorBio.astro';
 import LPStickyCTA from '../../components/lp/LPStickyCTA.astro';
 import { saudeGengivalConfig as cfg } from '@/config/saudeGengivalConfig';
 
@@ -70,16 +71,15 @@ const schemas = [
   waLabelPrefix="lp-saude-gengival"
 >
   <main id="main-content" class="sg-main">
-    <LPHero
+    <!-- Onda 2 (jul/2026): hero full-bleed foto-primeiro + H1 suave aprovado -->
+    <LPHeroFullBleed
+      eyebrow="Saúde da gengiva em Ipanema · Zona Sul"
       headline={cfg.hero.headline}
       subheadline={cfg.hero.subheadline}
       ctaText={cfg.hero.ctaText}
-      benefits={cfg.benefits}
-      backgroundImage={cfg.hero.backgroundImage}
       whatsappHref={waHref}
       waLabel="lp-saude-gengival_hero_whatsapp"
-      imgWidth={800}
-      imgHeight={1200}
+      benefits={['Tratamento integrado com periodontista', 'Acompanhamento contínuo pela Dra. Carla']}
     />
 
     <!-- Problem — porte de src/components/landing/ProblemSection.tsx (cards vermelhos) -->
@@ -102,6 +102,11 @@ const schemas = [
         </div>
       </div>
     </section>
+
+    <!-- Bloco de autoridade (Onda 2 — LP não tinha). Atribuição correta: a Dra.
+         coordena a jornada com periodontista parceiro; a bio padrão não afirma
+         que ela executa periodontia. -->
+    <LPDoctorBio />
 
     <!-- Guide — porte de src/components/landing/GuideSection.tsx (passos numerados) -->
     <section class="sg-guide">

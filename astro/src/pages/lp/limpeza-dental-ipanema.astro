@@ -8,6 +8,7 @@
  * ("Agendar Minha Limpeza") → SocialProof → FAQ → FinalCTA (+ floating).
  */
 import LPLayout from '../../layouts/LPLayout.astro';
+import LPHeroFullBleed from '../../components/lp/LPHeroFullBleed.astro';
 import LPStatsBar from '../../components/lp/LPStatsBar.astro';
 import LPProblem from '../../components/lp/LPProblem.astro';
 import LPDoctorBio from '../../components/lp/LPDoctorBio.astro';
@@ -79,75 +80,18 @@ const schemas = [
   waLabelPrefix={prefix}
 >
   <main id="main-content" class="lp-main">
-    <!-- Hero próprio da LP de Limpeza (inline no React — Sprint 9 / V5) -->
-    <section class="lz-hero">
-      <div class="lz-hero-radial" aria-hidden="true"></div>
-      <div class="lz-container">
-        <div class="lz-hero-flex">
-          <div class="lz-hero-content">
-            <div class="lz-hero-badges">
-              <span class="lz-badge lz-badge-purple">CRO-RJ 27.509</span>
-              <span class="lz-badge lz-badge-gold">Atendimento Particular · Ipanema</span>
-            </div>
-
-            <div class="lz-hero-headlines">
-              <h1 class="lz-hero-h1">{config.hero.headline}</h1>
-              <p class="lz-hero-sub">{config.hero.subheadline}</p>
-            </div>
-
-            <div class="lz-hero-benefits">
-              {config.benefits.map((benefit) => (
-                <span class="lz-hero-pill"><span class="lz-dot" aria-hidden="true">●</span>{benefit}</span>
-              ))}
-            </div>
-
-            <div class="lz-hero-cta-wrap">
-              <a
-                class="lz-hero-cta js-wa-cta"
-                data-label={`${prefix}_hero_whatsapp`}
-                href={waHref}
-                target="_blank"
-                rel="noopener"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-                {config.hero.ctaText}
-              </a>
-              <div class="lz-wa24">
-                <span class="lz-wa24-dot" aria-hidden="true">●</span>
-                <span class="lz-wa24-text">WhatsApp 24h</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="lz-hero-imagecol">
-            <div class="lz-hero-imagewrap">
-              <div class="lz-hero-imageframe">
-                <picture>
-                  <source
-                    srcset="/lovable-uploads/vertical-de-jaleco-480.avif 480w, /lovable-uploads/vertical-de-jaleco-1024.avif 1024w"
-                    sizes="(max-width:767px) 100vw, (min-width:768px) 50vw, 40vw"
-                    type="image/avif"
-                  />
-                  <img
-                    src={config.hero.backgroundImage}
-                    alt="Dra. Carla Christoph - Consulta Odontológica Personalizada em Ipanema"
-                    width="380"
-                    height="570"
-                    loading="eager"
-                    fetchpriority="high"
-                    decoding="async"
-                  />
-                </picture>
-              </div>
-              <div class="lz-hero-floatbadge">
-                <span class="lz-dot" aria-hidden="true">●</span>
-                <span>20+ Anos de Experiência</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Onda 2 (jul/2026): hero custom substituído pelo LPHeroFullBleed —
+         some o badge CRO duplicado (já está no header) e a microcopy órfã
+         "WhatsApp 24h" solta sob o botão. H1 novo aprovado (config). -->
+    <LPHeroFullBleed
+      eyebrow="Limpeza dental em Ipanema · Zona Sul"
+      headline={config.hero.headline}
+      subheadline={config.hero.subheadline}
+      ctaText={config.hero.ctaText}
+      whatsappHref={waHref}
+      waLabel={`${prefix}_hero_whatsapp`}
+      benefits={['Limpeza com ultrassom — confortável', 'Consulta sem pressa']}
+    />
 
     <LPStatsBar />
 
@@ -191,170 +135,5 @@ const schemas = [
 <style>
   .lp-main { background: #fff; min-height: 100vh; }
 
-  /* ── Hero (paridade com o hero inline do React) ── */
-  .lz-hero {
-    position: relative;
-    overflow: hidden;
-    padding: 90px 0 4rem;
-    background: linear-gradient(170deg, #faf7f2 0%, #f5f0e8 40%, #ede8dc 100%);
-  }
-  @media (min-width: 1024px) {
-    .lz-hero { padding-top: 96px; padding-bottom: 6rem; }
-  }
-  .lz-hero-radial {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 500px;
-    height: 500px;
-    pointer-events: none;
-    background: radial-gradient(circle at 80% 20%, rgba(179, 149, 95, 0.05) 0%, transparent 70%);
-  }
-  .lz-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    position: relative;
-    z-index: 10;
-  }
-  .lz-hero-flex {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3rem;
-  }
-  @media (min-width: 1024px) {
-    .lz-hero-flex { flex-direction: row; }
-  }
-  .lz-hero-content {
-    width: 100%;
-    display: grid;
-    gap: 1.75rem;
-  }
-  @media (min-width: 1024px) {
-    .lz-hero-content { width: 60%; }
-  }
-  .lz-hero-badges { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-  .lz-badge {
-    display: inline-flex;
-    align-items: center;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.375rem 0.75rem;
-    border-radius: 9999px;
-  }
-  .lz-badge-purple { background: rgba(56, 31, 71, 0.1); color: #381f47; }
-  .lz-badge-gold { background: rgba(179, 149, 95, 0.15); color: #8b7340; }
-  .lz-hero-headlines { display: grid; gap: 1rem; }
-  .lz-hero-h1 {
-    font-size: 34px;
-    font-weight: 700;
-    color: #381f47;
-    line-height: 1.25;
-    font-family: 'Playfair Display', Georgia, serif;
-  }
-  @media (min-width: 768px) {
-    .lz-hero-h1 { font-size: 2.25rem; }
-  }
-  @media (min-width: 1024px) {
-    .lz-hero-h1 { font-size: 3rem; }
-  }
-  .lz-hero-sub {
-    font-size: 1rem;
-    color: #4b5563;
-    line-height: 1.625;
-  }
-  @media (min-width: 768px) {
-    .lz-hero-sub { font-size: 1.125rem; }
-  }
-  .lz-hero-benefits {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-  @media (min-width: 640px) {
-    .lz-hero-benefits { grid-template-columns: 1fr 1fr; }
-  }
-  .lz-hero-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: #fff;
-    border: 1px solid rgba(179, 149, 95, 0.4);
-    border-radius: 9999px;
-    padding: 0.375rem 0.875rem;
-    font-size: 0.875rem;
-    color: #381f47;
-    font-weight: 500;
-  }
-  .lz-dot { color: #b3955f; font-size: 8px; }
-  .lz-hero-cta-wrap { display: grid; gap: 0.5rem; justify-items: start; }
-  .lz-hero-cta {
-    width: 100%;
-    color: #fff;
-    border-radius: 10px;
-    padding: 1rem 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    font-size: 15px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: all 0.3s;
-    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
-    background: linear-gradient(135deg, #25d366 0%, #20bd5a 100%);
-  }
-  .lz-hero-cta:hover {
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-    transform: scale(1.05);
-  }
-  @media (min-width: 768px) {
-    .lz-hero-cta { width: auto; justify-content: flex-start; }
-  }
-  .lz-wa24 { display: flex; align-items: center; gap: 0.375rem; }
-  @media (min-width: 768px) {
-    .lz-wa24 { padding-left: 0.25rem; }
-  }
-  .lz-wa24-dot { color: #22c55e; font-size: 8px; }
-  .lz-wa24-text { font-size: 11px; color: #6b7280; }
-  .lz-hero-imagecol { width: 100%; }
-  @media (min-width: 1024px) {
-    .lz-hero-imagecol { width: 40%; }
-  }
-  .lz-hero-imagewrap {
-    position: relative;
-    aspect-ratio: 760 / 996;
-  }
-  .lz-hero-imageframe {
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(74, 45, 94, 0.08);
-    height: 100%;
-  }
-  .lz-hero-imageframe picture,
-  .lz-hero-imageframe img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .lz-hero-floatbadge {
-    display: none;
-    position: absolute;
-    bottom: 1.5rem;
-    left: 1rem;
-    background: #fff;
-    border-radius: 12px;
-    padding: 0.625rem 1rem;
-    align-items: center;
-    gap: 0.5rem;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    font-size: 11px;
-    font-weight: 600;
-    color: #381f47;
-  }
-  @media (min-width: 768px) {
-    .lz-hero-floatbadge { display: flex; }
-  }
+  /* Hero: agora no componente compartilhado LPHeroFullBleed (Onda 2) */
 </style>

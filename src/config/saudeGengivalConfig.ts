@@ -14,8 +14,9 @@ export const saudeGengivalConfig: LandingPageConfig = {
   },
 
   hero: {
-    headline: 'Saúde da Gengiva em Ipanema — Sangramento e Retração Merecem Atenção',
-    subheadline: 'Gengiva que sangra não é normal. Tratamento periodontal com acompanhamento individualizado. Dra. Carla Christoph coordena a jornada completa do seu tratamento.',
+    // Onda 2 (jul/2026, aprovado Patrick): H1 mais suave; os sinais clínicos descem p/ a subheadline (message match preservado)
+    headline: 'Saúde da Gengiva em Ipanema — cuidado completo, no tempo certo',
+    subheadline: 'Gengiva sangrando ou retraindo? Tratamento periodontal com acompanhamento individualizado — a Dra. Carla Christoph coordena a jornada completa.',
     ctaText: 'Agendar Consulta Gengival',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
