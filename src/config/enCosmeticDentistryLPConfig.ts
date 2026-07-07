@@ -16,7 +16,8 @@ export const enCosmeticDentistryLPConfig: LandingPageConfig = {
   hero: {
     headline: "Regain Confidence in Your Smile — in Ipanema, Rio de Janeiro",
     subheadline: "Cosmetic dentistry by Dr. Carla Christoph — specialist in prosthodontics with 20+ years in Ipanema. Same dentist from start to finish.",
-    ctaText: "Book Your Consultation — We Reply in Your Language",
+    // Onda 4 (jul/2026): CTA encurtado ("We Reply in Your Language" virou pill do hero)
+    ctaText: "Book Your Consultation",
     backgroundImage: "/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
   },
 
@@ -53,10 +54,12 @@ export const enCosmeticDentistryLPConfig: LandingPageConfig = {
 
   socialProof: {
     title: "What Our Patients Say",
+    // Onda 4 (jul/2026): depoimentos temáticos de estética — traduções fiéis dos
+    // depoimentos reais do config PT (lentesPorcelanaAcolhedorConfig)
     testimonials: [
-      { name: "Gerald G. — United Kingdom", text: "Excellent dentist, very gentle, calm and will explain the process with you. The office space is very clean. I had my teeth cleaned, dental X-rays, 3 porcelain fillings and the outcome was brilliant. I had 2 sensitive teeth and she managed to rectify that for me." },
-      { name: "Haley H. — International Patient", text: "Amazing experience! Had pain and she completely resolved my problem and fixed a chipped tooth! My new tooth looks great. I am super happy with her services!" },
-      { name: "Marina P. — Ipanema", text: "I wanted to change my smile but didn't know if I needed veneers or whitening. Dr. Carla evaluated everything and recommended whitening plus 4 restorations. It turned out natural and beautiful. (translated from Portuguese)" }
+      { name: "Marina P. — Ipanema", text: "I wanted to change my smile but didn't know if I needed veneers or whitening. Dr. Carla evaluated everything and recommended whitening plus 4 restorations. It turned out natural and beautiful. (translated from Portuguese)" },
+      { name: "Fernanda R. — Ipanema", text: "I was terrified of ending up with that uniform, artificial smile. Dr. Carla insisted on adjusting tooth by tooth. Nobody can tell they are veneers — people just compliment the smile. (translated from Portuguese)" },
+      { name: "Cristina M. — Leblon", text: "I did the Smile Test Drive first and saw exactly how it would look. That gave me the confidence to go ahead. The result is so natural my sister decided to do it too. (translated from Portuguese)" }
     ],
     stats: [
       { number: "20+", label: "Years of Experience" },

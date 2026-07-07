@@ -5,7 +5,7 @@
  * enDentalImplantsLPConfig). Sem seção Services (mesma composição do SPA).
  */
 import LPLayout from '../../../layouts/LPLayout.astro';
-import EnLPHero from '../../../components/en/lp/EnLPHero.astro';
+import LPHeroFullBleed from '../../../components/lp/LPHeroFullBleed.astro';
 import EnLPProblem from '../../../components/en/lp/EnLPProblem.astro';
 import EnLPDoctorBio from '../../../components/en/lp/EnLPDoctorBio.astro';
 import EnLPGuide from '../../../components/en/lp/EnLPGuide.astro';
@@ -89,13 +89,17 @@ const schemas = [
   waLabelPrefix={labelPrefix}
 >
   <main id="main-content">
-    <EnLPHero
+    <!-- Onda 4 (jul/2026): hero unificado no LPHeroFullBleed — padrão único PT+EN -->
+    <LPHeroFullBleed
+      lang="en"
+      eyebrow="Dental implants in Ipanema · Rio de Janeiro"
       headline={config.hero.headline}
       subheadline={config.hero.subheadline}
       ctaText={config.hero.ctaText}
-      benefits={config.benefits}
       whatsappHref={waHref}
-      labelPrefix={labelPrefix}
+      waLabel={`${labelPrefix}_hero_whatsapp`}
+      benefits={['We reply in your language', '20+ years in Ipanema']}
+      reviews={{ rating: '5.0', count: '17 reviews', href: 'https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/' }}
     />
 
     <EnLPProblem

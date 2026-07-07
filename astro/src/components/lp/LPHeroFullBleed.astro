@@ -30,9 +30,12 @@ interface Props {
    *    do bloco de texto — LPs de urgência/alta intenção. Desktop é igual nas duas.
    */
   layout?: 'foto' | 'acao';
+  /** Onda 4: idioma dos textos fixos (badge de reviews). 'en' para as LPs EN. */
+  lang?: 'pt-BR' | 'en';
 }
 const {
   layout = 'foto',
+  lang = 'pt-BR',
   eyebrow,
   headline,
   subheadline,
@@ -55,6 +58,13 @@ const {
   },
 } = Astro.props;
 const P = '/lovable-uploads';
+const isEn = lang === 'en';
+const t = {
+  onGoogle: isEn ? 'on Google' : 'no Google',
+  reviewsAria: isEn
+    ? `Google reviews: ${reviews.rating} stars, ${reviews.count}`
+    : `Avaliações no Google: ${reviews.rating} estrelas com ${reviews.count}`,
+};
 ---
 
 <section class:list={['lpfb-hero', layout === 'acao' && 'lpfb-acao', !photo && 'lpfb-nophoto']}>
@@ -86,10 +96,10 @@ const P = '/lovable-uploads';
             </span>
           </a>
 
-          <a href={reviews.href} target="_blank" rel="noopener noreferrer" aria-label={`Avaliações no Google: ${reviews.rating} estrelas com ${reviews.count}`} class="lpfb-proof">
+          <a href={reviews.href} target="_blank" rel="noopener noreferrer" aria-label={t.reviewsAria} class="lpfb-proof">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="#B3955F" stroke="#B3955F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             <b>{reviews.rating}</b>
-            <span>no Google · {reviews.count}</span>
+            <span>{t.onGoogle} · {reviews.count}</span>
           </a>
         </div>
 

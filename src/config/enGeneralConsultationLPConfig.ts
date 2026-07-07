@@ -53,9 +53,11 @@ export const enGeneralConsultationLPConfig: LandingPageConfig = {
 
   socialProof: {
     title: "What Our Patients Say",
+    // Onda 4 (jul/2026): Gerald (real, check-up/limpeza — tema da LP) + tradução
+    // fiel de depoimento real do config PT (dorDeDenteConfig, diagnóstico honesto)
     testimonials: [
       { name: "Gerald G. — United Kingdom", text: "Excellent dentist, very gentle, calm and will explain the process with you. The office space is very clean. I had my teeth cleaned, dental X-rays, 3 porcelain fillings and the outcome was brilliant. I had 2 sensitive teeth and she managed to rectify that for me." },
-      { name: "Haley H. — International Patient", text: "Amazing experience! Had pain and she completely resolved my problem and fixed a chipped tooth! My new tooth looks great. I am super happy with her services!" }
+      { name: "Roberto C. — Copacabana", text: "I thought I was going to need a root canal. Dr. Carla evaluated everything calmly and it was actually just a leaking filling. She fixed it on the spot. (translated from Portuguese)" }
     ],
     stats: [
       { number: "20+", label: "Years of Experience" },

@@ -16,7 +16,8 @@ export const enDentalEmergencyLPConfig: LandingPageConfig = {
   hero: {
     headline: "Dental Emergency in Rio? Same-Day Care in Ipanema",
     subheadline: "Toothache, broken tooth, or lost crown while traveling? Book your emergency slot via WhatsApp anytime — Dr. Carla Christoph sees emergency patients in-person Mon–Fri, 9 AM–7 PM (BRT).",
-    ctaText: "WhatsApp Now — We Reply in Your Language",
+    // Onda 4 (jul/2026): CTA sem "Now" (pressão) e sem o sufixo (virou pill) — padrão da família de urgência
+    ctaText: "Request an Emergency Slot",
     backgroundImage: "/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
   },
 
@@ -53,9 +54,11 @@ export const enDentalEmergencyLPConfig: LandingPageConfig = {
 
   socialProof: {
     title: "What Our Patients Say",
+    // Onda 4 (jul/2026): depoimentos temáticos de urgência — Haley (real, urgência)
+    // + tradução fiel de depoimento real do config PT (dorDeDenteConfig)
     testimonials: [
       { name: "Haley H. — International Patient", text: "Amazing experience! Had pain and she completely resolved my problem and fixed a chipped tooth! My new tooth looks great. I am super happy with her services!" },
-      { name: "Gerald G. — United Kingdom", text: "Excellent dentist, very gentle, calm and will explain the process with you. The office space is very clean. I had my teeth cleaned, dental X-rays, 3 porcelain fillings and the outcome was brilliant. I had 2 sensitive teeth and she managed to rectify that for me." }
+      { name: "Felipe G. — Ipanema", text: "I was in pain that would not let me sleep. I got a priority slot the next day. Dr. Carla identified the infection, resolved the emergency and then planned the rest of the treatment. (translated from Portuguese)" }
     ],
     stats: [
       { number: "20+", label: "Years of Experience" },

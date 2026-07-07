@@ -16,7 +16,8 @@ export const enDentalImplantsLPConfig: LandingPageConfig = {
   hero: {
     headline: "Replace Missing Teeth with Confidence — in Ipanema, Rio de Janeiro",
     subheadline: "Dental implants by Dr. Carla Christoph — specialist in prosthodontics and implant dentistry with 20+ years in Ipanema. 3D digital planning for predictable, lasting results.",
-    ctaText: "Book Your Implant Consultation — We Reply in Your Language",
+    // Onda 4 (jul/2026): CTA encurtado ("We Reply in Your Language" virou pill do hero)
+    ctaText: "Book Your Implant Consultation",
     backgroundImage: "/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
   },
 
@@ -53,10 +54,13 @@ export const enDentalImplantsLPConfig: LandingPageConfig = {
 
   socialProof: {
     title: "What Our Patients Say",
+    // Onda 4 (jul/2026): depoimentos temáticos de implante — traduções fiéis dos
+    // depoimentos reais do config PT (implantesDentariosConfig); Gerald/Haley
+    // deixam de se repetir nas 4 LPs EN
     testimonials: [
-      { name: "Gerald G. — United Kingdom", text: "Excellent dentist, very gentle, calm and will explain the process with you. The office space is very clean. I had my teeth cleaned, dental X-rays, 3 porcelain fillings and the outcome was brilliant. I had 2 sensitive teeth and she managed to rectify that for me." },
-      { name: "Haley H. — International Patient", text: "Amazing experience! Had pain and she completely resolved my problem and fixed a chipped tooth! My new tooth looks great. I am super happy with her services!" },
-      { name: "Marina P. — Ipanema", text: "I needed a full rehabilitation with implants and prosthetics. Dr. Carla planned everything digitally and the result exceeded my expectations. She followed each step personally. (translated from Portuguese)" }
+      { name: "Marina P. — Ipanema", text: "I needed a full rehabilitation with implants and prosthetics. Dr. Carla planned everything digitally and the result exceeded my expectations. She followed each step personally. (translated from Portuguese)" },
+      { name: "Roberto S. — Copacabana", text: "I spent years with a removable denture and had resigned myself to it. After the implant, I can eat everything again — it feels like getting back something I thought I had lost. (translated from Portuguese)" },
+      { name: "Márcia L. — Ipanema", text: "I was very afraid of the surgery, but it was easier than having a tooth pulled. What surprised me most was the follow-up — Dr. Carla was present at every step. (translated from Portuguese)" }
     ],
     stats: [
       { number: "20+", label: "Years of Experience" },
