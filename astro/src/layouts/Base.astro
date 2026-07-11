@@ -53,7 +53,10 @@ const {
           var g = p.get('gclid');
           if (g) {
             localStorage.setItem('gclid', g);
-            localStorage.setItem('gclid_timestamp', String(Date.now()));
+            localStorage.setItem('gclid_timestamp', new Date().toISOString());
+            // URL completa de aterrissagem (com gad_campaignid etc.) — vira o
+            // page_url em gc_gclid_clicks e permite atribuir a campanha
+            localStorage.setItem('gclid_landing_url', window.location.href);
           }
         } catch (e) {}
       })();
@@ -334,10 +337,14 @@ const {
           try {
             var gclid = localStorage.getItem('gclid');
             if (!gclid) return;
+            // timestamp SEMPRE em ISO: epoch millis (String(Date.now())) quebrava
+            // o insert timestamptz na edge fn gc-gclid-track (gclid morto 06-11/07)
+            var ts = localStorage.getItem('gclid_timestamp');
+            if (ts && /^\d{10,17}$/.test(ts)) ts = new Date(Number(ts)).toISOString();
             var payload = JSON.stringify({
               gclid: gclid,
-              timestamp: localStorage.getItem('gclid_timestamp') || String(Date.now()),
-              page: window.location.pathname,
+              timestamp: ts || new Date().toISOString(),
+              page: localStorage.getItem('gclid_landing_url') || window.location.pathname,
               label: label,
             });
             if (navigator.sendBeacon) {

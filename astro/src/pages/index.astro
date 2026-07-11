@@ -1818,10 +1818,13 @@ const schemas = [JSON.stringify(structuredData), JSON.stringify(dentistSchema)];
       try {
         const gclid = localStorage.getItem('gclid');
         if (!gclid) return;
+        // timestamp SEMPRE em ISO (epoch millis quebra o timestamptz na edge fn)
+        let ts = localStorage.getItem('gclid_timestamp');
+        if (ts && /^\d{10,17}$/.test(ts)) ts = new Date(Number(ts)).toISOString();
         const payload = JSON.stringify({
           gclid,
-          timestamp: localStorage.getItem('gclid_timestamp') || String(Date.now()),
-          page: window.location.pathname,
+          timestamp: ts || new Date().toISOString(),
+          page: localStorage.getItem('gclid_landing_url') || window.location.pathname,
           label,
         });
         if (navigator.sendBeacon) {
