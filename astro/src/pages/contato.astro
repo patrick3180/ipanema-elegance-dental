@@ -7,7 +7,7 @@
  * generate-static-meta.cjs; description copiada do generate-static-meta.cjs
  * (fonte da verdade das meta tags).
  * Schema: Dentist (mesmo payload do generate-static-meta.cjs — dados reais,
- * AggregateRating 5.0/17 = exceção autorizada Maio/2026).
+ * AggregateRating 5.0/18 = exceção autorizada Maio/2026).
  */
 import SiteLayout from '../layouts/SiteLayout.astro';
 
@@ -45,7 +45,7 @@ const dentistSchema = JSON.stringify({
     recognizedBy: { '@type': 'Organization', name: 'CRO-RJ' },
     identifier: '27.509',
   },
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '17', bestRating: '5' },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '18', bestRating: '5' },
   availableLanguage: ['pt-BR', 'en'],
 });
 ---

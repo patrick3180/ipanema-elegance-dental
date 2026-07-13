@@ -20,7 +20,7 @@
  * via slot "head" do SiteLayout → Base (a prop preloadImage não suporta media query).
  *
  * Schemas: Dentist rico (Index.tsx structuredData) + Dentist compacto com
- * aggregateRating real 5.0/17 (generateDentistSchema de generate-static-meta.cjs)
+ * aggregateRating real 5.0/18 (generateDentistSchema de generate-static-meta.cjs)
  * — paridade com produção, onde os dois coexistem (estático + helmet).
  *
  * Tracking: CTAs WhatsApp usam APENAS class js-wa-cta + data-label (handler
@@ -306,7 +306,7 @@ const structuredData = {
 };
 
 // 2) Dentist compacto — copiado VERBATIM de generateDentistSchema() de
-//    scripts/generate-static-meta.cjs (aggregateRating 5.0/17 = dados REAIS do Google)
+//    scripts/generate-static-meta.cjs (aggregateRating 5.0/18 = dados REAIS do Google)
 const dentistSchema = {
   '@context': 'https://schema.org',
   '@type': 'Dentist',
@@ -339,7 +339,7 @@ const dentistSchema = {
     recognizedBy: { '@type': 'Organization', name: 'CRO-RJ' },
     identifier: '27.509',
   },
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '17', bestRating: '5' },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '18', bestRating: '5' },
   availableLanguage: ['pt-BR', 'en'],
 };
 

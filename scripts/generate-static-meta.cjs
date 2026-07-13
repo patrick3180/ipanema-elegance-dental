@@ -482,7 +482,7 @@ function generateProteseFullBleedFallback(c) {
             <p class="ph-hero-sub">${escapeHtml(c.subhead)}</p>
             <div class="ph-hero-cta-row">
               <a href="${waHref}" class="ph-hero-cta"><b>${escapeHtml(ctaButtonText)}</b><small>WhatsApp 24h</small></a>
-              <a href="${googleHref}" class="ph-hero-proof" target="_blank" rel="noopener noreferrer" aria-label="5,0 estrelas no Google, 17 avaliações"><b>5,0</b><span>no Google &middot; 17 avaliações</span></a>
+              <a href="${googleHref}" class="ph-hero-proof" target="_blank" rel="noopener noreferrer" aria-label="5,0 estrelas no Google, 18 avaliações"><b>5,0</b><span>no Google &middot; 18 avaliações</span></a>
             </div>
             <div class="ph-hero-badges">${badges}</div>
             <div class="ph-hero-trust">${trust}</div>
