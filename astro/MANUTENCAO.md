@@ -64,7 +64,9 @@ O conteúdo do blog vive no **Contentful** (a Dra. Carla revisa/aprova lá, ou a
 
 **Como o post novo vai ao ar:**
 - **Hoje (manual):** qualquer `git push` na `main` OU um "Redeploy" no painel da Vercel reconstrói e traz os posts novos.
-- **Recomendado (automático):** configurar **1× um webhook Contentful → Vercel Deploy Hook**. Aí, quando a Dra. Carla publica no Contentful, a Vercel rebuilda sozinha (~1–2 min) e o post entra. *(Ainda não configurado — posso fazer com você.)*
+- **Fluxo adotado (jul/2026):** a skill **`blog-carla-pipeline`** faz o handoff — ao terminar o post ela avisa que está pronto, o Patrick **publica no Contentful e avisa**, e então a skill **dispara o rebuild** (`git commit --allow-empty && git push` no repo). Ver a seção "Publicação e atualização do site" na SKILL.md do blog.
+- **Rebuild manual (a qualquer momento):** `cd "C:\IA\Projetos\Site Carla" && git commit --allow-empty -m "rebuild blog" && git push origin main`.
+- **Opcional futuro (automático):** webhook Contentful → Vercel Deploy Hook (publicou = rebuilda sozinho). Confirmado hoje: **zero webhooks** no Contentful.
 
 ---
 
@@ -77,6 +79,6 @@ O conteúdo do blog vive no **Contentful** (a Dra. Carla revisa/aprova lá, ou a
 ---
 
 ## Pendências conhecidas
-- [ ] Webhook Contentful → Vercel (auto-deploy do blog ao publicar).
+- [x] Fluxo de publicação do blog resolvido via handoff da skill `blog-carla-pipeline` (Patrick publica → avisa → skill dá o rebuild). Webhook automático continua opcional.
 - [ ] `CLAUDE.md` da raiz ainda descreve a stack como "React/Vite" — atualizar para Astro.
 - [ ] PSI mobile formal (número "depois") — via agente de Marketing.
