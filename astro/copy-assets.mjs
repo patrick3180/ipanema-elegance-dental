@@ -1,7 +1,10 @@
 /**
  * Copia os assets estáticos do site atual (../public) para astro/public.
  * Roda antes do build (npm run build). NÃO copia:
- *  - sitemap.xml / robots.txt (servidos pelas Vercel Functions via rewrite)
+ *  - sitemap.xml / robots.txt — agora são ROTAS do Astro (src/pages/sitemap.xml.ts
+ *    e src/pages/robots.txt.ts). As cópias em ../public são legado do app React e
+ *    estão DESATUALIZADAS; se fossem copiadas, colidiriam com as rotas. Manter no
+ *    EXCLUDE.
  * Os diretórios copiados são gitignorados (a fonte da verdade é ../public).
  */
 import fs from 'fs';
