@@ -42,7 +42,9 @@ export default async function handler(req, res) {
       { url: '/sobre', priority: '0.6', changefreq: 'monthly' },
       { url: '/contato', priority: '0.7', changefreq: 'monthly' },
       { url: '/politica-de-privacidade', priority: '0.3', changefreq: 'yearly' },
-      { url: '/termos-de-uso', priority: '0.3', changefreq: 'yearly' },
+      // NOTA: /termos-de-uso REMOVIDO — a página nunca existiu (404). O sitemap
+      // estava convidando o Google a rastrear um erro (aparecia em "Detectada,
+      // mas não indexada" no GSC). Se um dia a página for criada, reinserir aqui.
       // English micro-site
       { url: '/en', priority: '0.8', changefreq: 'monthly' },
       { url: '/en/about', priority: '0.5', changefreq: 'monthly' },
