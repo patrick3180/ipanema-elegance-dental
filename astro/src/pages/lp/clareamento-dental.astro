@@ -1,26 +1,170 @@
 ---
 /**
- * /lp/clareamento-dental — porte de src/pages/ClareamentoLandingPage.tsx
- * Config: clareamentoConfig. Seções: Hero → StatsBar → Problem → DoctorBio →
- * Guide → MidCTA (labels próprios) → SocialProof → FAQ → FinalCTA.
+ * /lp/clareamento-dental — LP DE CLAREAMENTO (V2, em produção desde 21/07/2026)
+ *
+ * Substituiu a versão anterior nesta MESMA rota, de propósito: as URLs finais do
+ * Google Ads não mudam e a série de rótulos do GA4/Ads continua (ver `prefix`).
+ *
+ * ROLLBACK (um comando): a versão anterior está preservada em
+ *   astro/src/_backup/clareamento-dental-LP-pre-v2-2026-07-21.astro
+ * Fora de `pages/`, portanto NÃO gera rota. Para reverter:
+ *   cp astro/src/_backup/clareamento-dental-LP-pre-v2-2026-07-21.astro \
+ *      astro/src/pages/lp/clareamento-dental.astro
+ *   git commit -am "revert: LP clareamento volta para a versão pré-V2" && git push
+ * Alternativa equivalente: `git revert <hash do commit de troca> && git push`.
+ *
+ * Hero com foto (decisão de 21/07): retrato de 84px em canto arredondado numa
+ * linha de assinatura no mobile (custa ~110px de altura contra 358px da faixa
+ * full-bleed anterior, mantendo o CTA na primeira tela) e coluna de 340px em
+ * tamanho real no desktop — uma única <picture>, sem download duplo. NÃO é
+ * círculo: o avatar circular pequeno já significa "paciente" no sistema
+ * (.tst-avatar dos depoimentos), e a foto da médica nesse formato lia como
+ * review. Foto `doutora-em-pe-jaleco` — a que o clareamentoConfig.ts sempre
+ * especificou e que a versão anterior ignorava, caindo na foto da home (zero
+ * message-match).
+ *
+ * Diagnóstico que motivou a reformulação (dados de 17/jul/2026):
+ *  - Campanha: CPA R$179 (3,1× a média da conta), conversão 4,5% (pior da conta).
+ *  - LP: 10,9% conv/sessão (média do site 12,5%; melhores 25–30%), bounce 54,3%,
+ *    scroll-90% de apenas 13% → NADA abaixo da dobra está sendo lido.
+ *  - A LP recebeu o hero V2 em 04/07 mas manteve a copy antiga ("copy mantida"
+ *    no HISTORICO) — é a única LP do padrão V2 nessa condição, e a conversão
+ *    caiu de 11,5% → 4,3% depois disso.
+ *  - Tráfego mistura paciente real com busca por produto de farmácia
+ *    (whiteness, pasta clareadora) → a página precisa QUALIFICAR, não só vender.
+ *
+ * Decisões estruturais desta versão:
+ *  1. Hero compacto e ação-primeiro. Com scroll-90% de 13%, gastar 44vh de tela
+ *     com foto antes de qualquer informação é o erro mais caro da página atual.
+ *  2. Seletor de protocolo LOGO APÓS o hero (padrão validado na Prótese V2,
+ *     9,3%→15,5%). É o diferencial real da clínica e estava invisível: a LP
+ *     atual exibe o número "3 modalidades" sem NUNCA explicar quais são.
+ *  3. Dados concretos das 3 modalidades (concentração, sessões, tons) trazidos
+ *     da service page — "nomear em vez de generalizar" (BRAND.md).
+ *  4. Escala de cor como INSTRUMENTO DE MEDIÇÃO (aprovado por Patrick como
+ *     ilustração genérica). Enquadrada como ponto de partida do diagnóstico —
+ *     nunca como "de X para Y", que seria promessa de resultado.
+ *  5. Sensibilidade promovida de FAQ para seção própria: 3 das 9 perguntas do
+ *     FAQ atual são sobre isso — é a objeção nº 1 e estava enterrada no rodapé.
+ *  6. Seção "quando o clareamento NÃO é o caminho" — qualifica, constrói
+ *     confiança e justifica a consulta diagnóstica.
+ *  7. Bio da Dra. reescrita para clareamento. A LP atual usa o default do
+ *     componente, que fala de Prótese e Implantodontia numa página de estética.
+ *
+ * Compliance: sem preços, sem antes/depois, sem garantia de resultado
+ * (sensibilidade "costuma passar", tons "em média"), CRO-RJ visível,
+ * "consulta" e nunca "avaliação". Tracking: só js-wa-cta + data-label
+ * (handler global do Base.astro) — nenhum handler próprio.
  */
 import LPLayout from '../../layouts/LPLayout.astro';
-import LPHeroFullBleed from '../../components/lp/LPHeroFullBleed.astro';
-import LPStatsBar from '../../components/lp/LPStatsBar.astro';
-import LPProblem from '../../components/lp/LPProblem.astro';
-import LPDoctorBio from '../../components/lp/LPDoctorBio.astro';
-import LPGuide from '../../components/lp/LPGuide.astro';
-import LPMidCTA from '../../components/lp/LPMidCTA.astro';
-import LPSocialProof from '../../components/lp/LPSocialProof.astro';
 import LPFAQ from '../../components/lp/LPFAQ.astro';
-import LPFinalCTA from '../../components/lp/LPFinalCTA.astro';
 import LPStickyCTA from '../../components/lp/LPStickyCTA.astro';
-import { clareamentoConfig as config } from '@/config/clareamentoConfig';
 
-const waHref = `https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(config.whatsapp.message)}`;
+const PHONE = '5521993304045';
+// PREFIXO PRESERVADO da versão anterior (`lp-clareamento`, NÃO `lp-clareamento-v2`):
+// mudar o prefixo criaria séries novas no GA4/Ads e quebraria a comparação
+// antes/depois — que é justamente a medição que justifica esta reformulação.
+// Já aconteceu neste projeto na Onda 1 (`*_floating_whatsapp` → `*_sticky_whatsapp`).
+// Os 4 rótulos herdados (hero/midcta/final/sticky) continuam idênticos aos de
+// produção; só os 4 do seletor são novos, porque a seção não existia antes.
 const prefix = 'lp-clareamento';
+const wa = (msg: string) => `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
 
-// Schema — copiado verbatim do Helmet de ClareamentoLandingPage.tsx
+const waHero = wa('Olá! Vi a página de clareamento e gostaria de agendar uma consulta para saber qual protocolo é indicado para o meu caso.');
+const waGeral = wa('Olá! Gostaria de agendar uma consulta de clareamento dental.');
+
+// ── Seletor de protocolo: dados verbatim da service page /clareamento-dental ──
+// As três linhas de dados são IDÊNTICAS nos três cards (Gel · Duração ·
+// Clareamento médio). Antes cada card trazia rótulos diferentes — só a linha
+// "Clareamento" existia nos três — o que fazia a comparação não comparar.
+// A abertura de cada card é a SITUAÇÃO do paciente, não a fórmula química: foi
+// assim que o seletor da LP de Prótese funcionou (comparava situações, não
+// especificações). A concentração continua ali, logo abaixo, como a prova de
+// que a resposta é séria — não como a primeira coisa que se lê.
+const protocolos = [
+  {
+    id: 'consultorio',
+    situacao: 'Se você tem pressa',
+    nome: 'No consultório',
+    resumo: 'Sessões supervisionadas do início ao fim, com a gengiva isolada e o gel de maior concentração.',
+    // O nome químico sozinho não diz ao paciente qual é mais forte — que é
+    // justamente o que decide. A qualificação em português mantém a
+    // especificidade (o diferencial da marca) e torna a comparação legível.
+    dados: [
+      { rotulo: 'Gel', valor: 'Peróxido de hidrogênio 35–37% — o mais concentrado' },
+      { rotulo: 'Duração', valor: '1 a 3 sessões de 1 a 2 horas' },
+      { rotulo: 'Clareamento médio', valor: '4 a 9 tons' },
+    ],
+    considere: 'Você precisa vir ao consultório em todas as sessões.',
+    wa: 'Olá! Tenho interesse no clareamento feito no consultório. Gostaria de agendar uma consulta.',
+  },
+  {
+    id: 'caseiro',
+    situacao: 'Se sua agenda é apertada',
+    nome: 'Em casa, supervisionado',
+    resumo: 'Começa com uma consulta para moldar as moldeiras sob medida para a sua arcada. Depois, gel de menor concentração aplicado em casa, com acompanhamento da Dra. Carla.',
+    dados: [
+      { rotulo: 'Gel', valor: 'Peróxido de carbamida 10–20% — mais suave, para uso diário' },
+      { rotulo: 'Duração', valor: '1 consulta + 14 a 21 dias em casa' },
+      { rotulo: 'Clareamento médio', valor: '2 a 6 tons' },
+    ],
+    considere: 'Depende da sua disciplina na aplicação diária.',
+    wa: 'Olá! Tenho interesse no clareamento caseiro supervisionado, com moldeiras. Gostaria de agendar uma consulta.',
+  },
+  {
+    id: 'combinado',
+    situacao: 'Se o escurecimento é mais acentuado',
+    nome: 'Combinado',
+    resumo: 'Uma sessão no consultório faz o clareamento e a moldagem no mesmo dia. A partir daí, a sequência continua em casa. É o protocolo mais estável dos três.',
+    dados: [
+      // "Os dois" dependia de o leitor ter lido os outros dois cards — sem
+      // sentido isolado, e pior ainda para leitor de tela.
+      { rotulo: 'Gel', valor: 'Os dois géis, em sequência: o forte e depois o suave' },
+      { rotulo: 'Duração', valor: '1 sessão + sequência em casa' },
+      { rotulo: 'Clareamento médio', valor: '6 a 9 tons' },
+    ],
+    considere: 'É o mais longo do começo até a cor estabilizar.',
+    wa: 'Olá! Tenho interesse no clareamento combinado (consultório + casa). Gostaria de agendar uma consulta.',
+  },
+];
+
+// ── Escala de cor: ilustração genérica do instrumento de medição ──
+// Tons reais de referência da escala (do mais escuro ao mais claro), usados
+// APENAS para representar o instrumento. Sem seta "antes → depois".
+const escala = [
+  { tom: 'A4', cor: '#b9a074' },
+  { tom: 'A3.5', cor: '#c7b184' },
+  { tom: 'A3', cor: '#d3c096' },
+  { tom: 'A2', cor: '#ddcdaa' },
+  { tom: 'A1', cor: '#e7dcc2' },
+  { tom: 'B1', cor: '#f0e8d6' },
+];
+
+const naoIndicado = [
+  {
+    titulo: 'Manchas por medicamento ou flúor',
+    texto: 'Escurecimento por tetraciclina ou fluorose responde de forma variável ao clareamento. Nesses casos a conversa costuma ser sobre outras alternativas, como lentes.',
+  },
+  {
+    titulo: 'Restaurações e coroas à vista',
+    texto: 'Resina e porcelana não clareiam — mantêm a cor original. Se você tem restaurações nos dentes da frente, elas podem precisar ser trocadas depois para acompanhar o novo tom.',
+  },
+  {
+    titulo: 'Gengiva inflamada ou cárie ativa',
+    texto: 'O clareamento entra depois que a boca está saudável. Tratar primeiro não é etapa burocrática: é o que evita sensibilidade desnecessária e resultado irregular.',
+  },
+];
+
+const faqs = [
+  { question: 'Clareamento dental estraga o esmalte?', answer: 'Não. O clareamento profissional supervisionado não causa danos ao esmalte. O gel clareador age nos pigmentos internos do dente sem comprometer a estrutura.' },
+  { question: 'Clareamento de farmácia funciona?', answer: 'Produtos de farmácia têm concentração muito baixa de agente clareador. O resultado costuma ser limitado, irregular e temporário. O clareamento profissional usa concentração adequada com supervisão, o que permite resultado uniforme e mais duradouro.' },
+  { question: 'Quanto tempo dura o resultado?', answer: 'Em média 2 a 3 anos, dependendo dos hábitos. Café, vinho e chá escurecem os dentes gradualmente. Manutenções periódicas são simples e ajudam a manter o resultado.' },
+  { question: 'Posso fazer clareamento se tenho restaurações?', answer: 'As restaurações existentes não clareiam — mantêm a cor original. Depois do clareamento, avaliamos se alguma precisa ser trocada para ficar na mesma cor dos dentes clareados.' },
+  { question: 'Já tenho dentes sensíveis. Posso clarear?', answer: 'Na maioria dos casos sim, com adaptações no protocolo: géis em concentração menor ao longo de mais sessões, dessensibilizante antes e depois de cada aplicação e pasta específica durante o tratamento. Em alguns casos fazemos uma fase preparatória só com dessensibilizante antes de começar.' },
+  { question: 'Quanto tempo leva para eu ver o resultado final?', answer: 'A cor continua se ajustando depois da última aplicação e costuma estabilizar ao longo de duas semanas. Por isso você confere o resultado final nesse retorno, e não no dia da última sessão.' },
+  { question: 'Preciso parar com café e vinho?', answer: 'Durante o tratamento, a orientação é reduzir alimentos com muito pigmento — o dente fica temporariamente mais permeável. Depois que a cor estabiliza, você volta à rotina normal, com a manutenção combinada na consulta.' },
+];
+
 const schemas = [
   JSON.stringify({
     '@context': 'https://schema.org',
@@ -29,7 +173,7 @@ const schemas = [
         '@type': 'Dentist',
         '@id': 'https://dracarlachristoph.com/#dentist',
         name: 'Dra. Carla Christoph',
-        description: config.seo.description,
+        description: 'Clareamento dental em Ipanema com protocolo individualizado — consultório, caseiro supervisionado ou combinado.',
         url: 'https://dracarlachristoph.com/lp/clareamento-dental',
         telephone: '+5521993304045',
         address: {
@@ -42,20 +186,19 @@ const schemas = [
         },
         geo: { '@type': 'GeoCoordinates', latitude: '-22.9866', longitude: '-43.2024' },
         speciality: ['Prótese Dental', 'Implantodontia', 'Estética Dental'],
-        image: 'https://dracarlachristoph.com/lovable-uploads/doutora-em-pe-jaleco.webp',
+        image: 'https://dracarlachristoph.com/lovable-uploads/RIT08058-vertical-doutora-site.webp',
       },
       {
         '@type': 'Service',
         name: 'Clareamento Dental',
-        description:
-          'Clareamento dental seguro e eficaz com protocolos individualizados — consultório e caseiro supervisionado. Resultado natural, com aparência preservada.',
+        description: 'Clareamento dental com protocolo individualizado — consultório, caseiro supervisionado ou combinado. Diagnóstico da causa do escurecimento antes de indicar o protocolo.',
         provider: { '@id': 'https://dracarlachristoph.com/#dentist' },
         areaServed: { '@type': 'City', name: 'Rio de Janeiro' },
         serviceType: 'Cosmetic Dentistry',
       },
       {
         '@type': 'FAQPage',
-        mainEntity: config.faq.questions.map((q) => ({
+        mainEntity: faqs.map((q) => ({
           '@type': 'Question',
           name: q.question,
           acceptedAnswer: { '@type': 'Answer', text: q.answer },
@@ -67,65 +210,1135 @@ const schemas = [
 ---
 
 <LPLayout
-  title={config.seo.title}
-  description={config.seo.description}
+  title="Clareamento Dental em Ipanema | Protocolo Individualizado - Dra. Carla Christoph"
+  description="Três protocolos de clareamento, com indicações diferentes. Na consulta, a Dra. Carla identifica a causa do escurecimento e indica o seu. Ipanema."
   canonical="https://dracarlachristoph.com/lp/clareamento-dental"
-  ogImage="https://dracarlachristoph.com/lovable-uploads/doutora-em-pe-jaleco.webp"
+  ogImage="https://dracarlachristoph.com/lovable-uploads/RIT08058-vertical-doutora-site.webp"
   schemas={schemas}
-  whatsappHref={waHref}
+  whatsappHref={waHero}
   waLabelPrefix={prefix}
 >
-  <main id="main-content" class="lp-main">
-    <!-- Onda 1 (jul/2026): hero full-bleed foto-primeiro; copy mantida (aprovada) -->
-    <LPHeroFullBleed
-      eyebrow="Dentista em Ipanema · Zona Sul"
-      headline={config.hero.headline}
-      subheadline={config.hero.subheadline}
-      ctaText={config.hero.ctaText}
-      whatsappHref={waHref}
-      waLabel={`${prefix}_hero_whatsapp`}
-      benefits={['Protocolo personalizado por caso', 'Resultado natural, sem "dente de chiclete"']}
-    />
+  <main id="main-content" class="cl-main">
+    <!-- ═══ 1. HERO COM FOTO — retrato circular no mobile, coluna cheia no desktop ═══ -->
+    <section class="cl-hero">
+      <div class="cl-wrap cl-hero-grid">
+        <div class="cl-hero-copy">
+        <p class="cl-eyebrow">Dentista em Ipanema · Zona Sul</p>
 
-    <LPStatsBar />
+        <h1 class="cl-h1">
+          Clareamento dental em Ipanema — o tom certo para o seu sorriso,
+          <span>não o mais branco possível</span>
+        </h1>
 
-    <LPProblem
-      title={config.problem.title}
-      description={config.problem.description}
-      problems={config.problem.problems}
-    />
+        <p class="cl-sub">
+          Existem três protocolos de clareamento, e eles têm indicações diferentes.
+          Na consulta, a Dra. Carla mede a cor atual dos seus dentes, identifica a
+          causa do escurecimento e indica qual faz sentido para o seu caso.
+        </p>
 
-    <LPDoctorBio />
+        <div class="cl-hero-actions">
+          <a class="cl-cta js-wa-cta" data-label={`${prefix}_hero_whatsapp`} href={waHero} target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+            <span class="cl-cta-labels">
+              <b>Agendar minha consulta</b>
+              <small>WhatsApp · resposta 24h</small>
+            </span>
+          </a>
 
-    <LPGuide title={config.guide.title} subtitle={config.guide.subtitle} steps={config.guide.steps} />
+          <a
+            class="cl-proof"
+            href="https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Avaliações no Google: 5,0 estrelas com 18 avaliações"
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#B3955F" stroke="#B3955F" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <b>5,0</b><span>no Google · 18 avaliações</span>
+          </a>
+        </div>
 
-    <LPMidCTA
-      whatsappHref={waHref}
-      waLabel={`${prefix}_midcta_whatsapp`}
-      ctaLabel="Agendar Minha Consulta de Clareamento"
-    />
+        <ul class="cl-trust">
+          <li>CRO-RJ 27.509</li>
+          <li>20+ anos em Ipanema</li>
+          <li>Atendimento particular</li>
+        </ul>
+        </div>
 
-    <LPSocialProof
-      title={config.socialProof.title}
-      testimonials={config.socialProof.testimonials}
-      stats={config.socialProof.stats}
-    />
+        <!-- Uma única imagem, dois papéis: no mobile é o retrato circular de 88px
+             da linha de assinatura (acima do texto, via order:-1); no desktop vira
+             a coluna 2 em tamanho real. Sem duplicar <picture>, sem download duplo. -->
+        <figure class="cl-hero-foto">
+          <picture>
+            <!-- ATENÇÃO: os arquivos -768 e -1024 desta foto têm, os dois, 500px
+                 reais de largura (o original é 500×733) — declarar 768w/1024w faria
+                 o navegador escolher errado. Descritores abaixo = larguras REAIS,
+                 medidas via naturalWidth. O -1024 foi omitido por ser byte-idêntico
+                 ao -768. Ver nota de resolução no resumo da proposta. -->
+            <source
+              type="image/avif"
+              srcset="/lovable-uploads/doutora-em-pe-jaleco-480.avif 480w, /lovable-uploads/doutora-em-pe-jaleco-768.avif 500w"
+              sizes="(max-width: 899px) 88px, 340px"
+            />
+            <img
+              src="/lovable-uploads/doutora-em-pe-jaleco.webp"
+              alt="Dra. Carla Christoph, dentista especialista em Ipanema, em seu consultório"
+              width="500"
+              height="733"
+              loading="eager"
+              decoding="async"
+            />
+          </picture>
+        </figure>
+      </div>
+    </section>
 
-    <LPFAQ title={config.faq.title} questions={config.faq.questions} />
+    <!-- ═══ 2. SELETOR DE PROTOCOLO — o diferencial que estava invisível ═══ -->
+    <section class="cl-sel" id="protocolos" aria-labelledby="cl-sel-titulo">
+      <div class="cl-wrap">
+        <h2 id="cl-sel-titulo" class="cl-h2">Três protocolos. Qual combina com a sua rotina?</h2>
+        <!-- Esta linha vinha DEPOIS dos cards, consolando quem já tinha passado
+             pela ansiedade de escolher. Antes, ela desarma a ansiedade. -->
+        <p class="cl-lead">
+          A indicação final é clínica e sai na consulta — <strong>não precisa
+          decidir agora</strong>. Mas a sua rotina pesa de verdade nessa escolha,
+          então vale conhecer os três.
+        </p>
 
-    <LPFinalCTA
-      title={config.cta.title}
-      subtitle={config.cta.subtitle}
-      buttonText={config.cta.buttonText}
-      urgency={config.cta.urgency}
-      whatsappHref={waHref}
-      waLabel={`${prefix}_final_whatsapp`}
-    />
+        <div class="cl-sel-grid">
+          {protocolos.map((p) => (
+            <article class="cl-card">
+              <p class="cl-card-situacao">{p.situacao}</p>
+              <h3 class="cl-card-nome">{p.nome}</h3>
+              <p class="cl-card-resumo">{p.resumo}</p>
 
-    <LPStickyCTA whatsappHref={waHref} waLabel={`${prefix}_sticky_whatsapp`} />
+              <dl class="cl-card-dados">
+                {p.dados.map((d) => (
+                  <div class="cl-dado">
+                    <dt>{d.rotulo}</dt>
+                    <dd>{d.valor}</dd>
+                  </div>
+                ))}
+              </dl>
+
+              <p class="cl-card-considere">{p.considere}</p>
+
+              <a
+                class="cl-card-cta js-wa-cta"
+                data-label={`${prefix}_seletor_${p.id}_whatsapp`}
+                href={wa(p.wa)}
+                target="_blank"
+                rel="noopener"
+                aria-label={`Tenho interesse no clareamento ${p.nome.toLowerCase()} — abre o WhatsApp`}
+              >
+                Tenho interesse
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </article>
+          ))}
+        </div>
+
+        <!-- CTA único e dominante da seção. Os links dos cards viraram
+             secundários (texto, não botão sólido): preservam o dado de qual
+             protocolo o mercado procura, sem competir com este. -->
+        <div class="cl-sel-cta">
+          <a class="cl-cta js-wa-cta" data-label={`${prefix}_seletor_descobrir_whatsapp`} href={waHero} target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+            <span class="cl-cta-labels">
+              <b>Descobrir qual é o meu</b>
+              <small>WhatsApp · resposta 24h</small>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 3. ESCALA DE COR — o instrumento, não a promessa ═══ -->
+    <section class="cl-escala" aria-labelledby="cl-escala-titulo">
+      <div class="cl-wrap cl-escala-inner">
+        <div class="cl-escala-texto">
+          <h2 id="cl-escala-titulo" class="cl-h2">A cor do seu dente é medida, não estimada</h2>
+          <p class="cl-lead">
+            Na primeira consulta, a Dra. Carla registra o tom atual dos seus dentes
+            com uma escala de cor — o mesmo instrumento que acompanha a evolução ao
+            longo do tratamento. É o que transforma "quero clarear" em um ponto de
+            partida objetivo, e o que permite conversar sobre o que é realista para
+            o seu caso antes de começar.
+          </p>
+          <p class="cl-lead">
+            Dentes têm tons naturais diferentes, assim como pele e cabelo. O objetivo
+            do protocolo é chegar ao tom mais claro que ainda parece seu.
+          </p>
+        </div>
+
+        <figure class="cl-escala-fig">
+          <div class="cl-escala-strip" role="img" aria-label="Ilustração de uma escala de cor dental, do tom mais escuro ao mais claro">
+            {escala.map((e) => (
+              <div class="cl-tom">
+                <div class="cl-tom-chip" style={`background:${e.cor}`}></div>
+                <span class="cl-tom-label">{e.tom}</span>
+              </div>
+            ))}
+          </div>
+          <figcaption>
+            Ilustração genérica de escala de cor dental. Os tons de referência variam
+            conforme o fabricante e não representam o resultado de nenhum paciente.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ═══ 4. SENSIBILIDADE — promovida do FAQ (3 das 9 perguntas eram sobre isso) ═══ -->
+    <section class="cl-sens" aria-labelledby="cl-sens-titulo">
+      <div class="cl-wrap">
+        <h2 id="cl-sens-titulo" class="cl-h2">E a sensibilidade?</h2>
+        <p class="cl-lead">
+          É a pergunta que mais aparece — e a resposta honesta é que pode acontecer.
+          O gel abre temporariamente os canais que ligam a superfície do dente à
+          parte interna, e isso é o que gera o desconforto. É transitório: costuma
+          passar em até 48 horas depois de cada aplicação, e o efeito é reversível
+          porque não há lesão ao esmalte.
+        </p>
+
+        <ul class="cl-sens-lista">
+          <li><strong>Antes:</strong> se você já tem sensibilidade, o protocolo começa mais devagar — em alguns casos com uma fase só de dessensibilizante antes da primeira aplicação.</li>
+          <li><strong>Durante:</strong> concentração ajustada ao seu caso, dessensibilizante aplicado a cada sessão e pasta específica para usar em casa.</li>
+          <li><strong>Se incomodar:</strong> a Dra. Carla ajusta o protocolo na hora. Não existe "aguentar até o fim" — é só avisar.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══ 5. QUANDO NÃO É O CAMINHO — qualifica e constrói confiança ═══ -->
+    <section class="cl-nao" aria-labelledby="cl-nao-titulo">
+      <div class="cl-wrap">
+        <h2 id="cl-nao-titulo" class="cl-h2">Quando o clareamento não é o caminho</h2>
+        <p class="cl-lead">
+          Nem todo dente escurecido clareia — e dizer isso antes de começar faz parte
+          do trabalho. Três situações em que a conversa na consulta costuma ser outra:
+        </p>
+
+        <div class="cl-nao-grid">
+          {naoIndicado.map((n) => (
+            <div class="cl-nao-item">
+              <h3>{n.titulo}</h3>
+              <p>{n.texto}</p>
+            </div>
+          ))}
+        </div>
+
+        <p class="cl-nao-fecho">
+          É por isso que a consulta começa pelo diagnóstico da causa do escurecimento,
+          e não pela escolha do gel.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══ 6. A DRA. CARLA — bio contextual de clareamento (BRAND.md §1) ═══ -->
+    <section class="cl-bio" aria-labelledby="cl-bio-titulo">
+      <div class="cl-wrap cl-bio-inner">
+        <div class="cl-bio-foto">
+          <picture>
+            <source type="image/avif" srcset="/lovable-uploads/RIT08058-vertical-doutora-site-480.avif 480w, /lovable-uploads/RIT08058-vertical-doutora-site-768.avif 768w, /lovable-uploads/RIT08058-vertical-doutora-site-1024.avif 1024w" sizes="(max-width: 900px) 100vw, 420px" />
+            <img
+              src="/lovable-uploads/RIT08058-vertical-doutora-site.webp"
+              alt="Dra. Carla Christoph, dentista em Ipanema, em seu consultório"
+              width="500"
+              height="750"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+        </div>
+
+        <div class="cl-bio-texto">
+          <p class="cl-eyebrow">Sua dentista</p>
+          <h2 id="cl-bio-titulo" class="cl-h2">Dra. Carla Christoph</h2>
+          <p class="cl-bio-cred">CRO-RJ 27.509 · Especialista em Prótese Dentária e Implantodontia</p>
+
+          <p class="cl-lead">
+            Com mais de duas décadas em Ipanema, a Dra. Carla construiu sua reputação
+            tratando cada paciente de forma individual, com tempo e atenção. Sua formação
+            inclui 8 anos como dentista militar na Odontoclínica Central da Marinha,
+            experiência que trouxe disciplina e precisão para sua prática clínica.
+          </p>
+          <p class="cl-lead">
+            Nos protocolos de clareamento, prioriza segurança e resultado natural —
+            cada caso tem sua indicação específica. O diagnóstico conta com o scanner
+            <strong>iTero Element 5D</strong>, e todas as etapas acontecem no mesmo
+            consultório, com acompanhamento dela do início ao fim.
+          </p>
+
+          <ul class="cl-bio-chips">
+            <li>20+ anos em Ipanema</li>
+            <li>8 anos na Marinha</li>
+            <li>iTero Element 5D</li>
+            <li>Mínimo de 1h por consulta</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 7. PROVA SOCIAL — o depoimento que É o posicionamento, no topo ═══ -->
+    <section class="cl-prova" aria-labelledby="cl-prova-titulo">
+      <div class="cl-wrap">
+        <h2 id="cl-prova-titulo" class="cl-h2">O que os pacientes contam</h2>
+
+        <blockquote class="cl-dep cl-dep-destaque">
+          <p>
+            "Fiz o clareamento antes do meu casamento. Estava com medo de ficar
+            artificial, mas ficou tão natural que ninguém percebeu que era clareamento
+            — só elogiaram o sorriso."
+          </p>
+          <cite>Juliana M. — Leblon</cite>
+        </blockquote>
+
+        <div class="cl-dep-grid">
+          <blockquote class="cl-dep">
+            <p>
+              "Tomei café a vida inteira e meus dentes foram amarelando sem eu perceber.
+              Depois do clareamento, minha filha disse que eu parecia 10 anos mais novo."
+            </p>
+            <cite>Ricardo T. — Ipanema</cite>
+          </blockquote>
+
+          <blockquote class="cl-dep">
+            <p>
+              "Já tinha tentado clareamento de farmácia duas vezes sem resultado. Na
+              clínica foi completamente diferente — resultado uniforme e sem a
+              sensibilidade que eu esperava."
+            </p>
+            <cite>Beatriz A. — Copacabana</cite>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 8. A CONSULTA — sinaliza "particular" sem falar preço (decisão Patrick) ═══ -->
+    <section class="cl-consulta" aria-labelledby="cl-consulta-titulo">
+      <div class="cl-wrap">
+        <h2 id="cl-consulta-titulo" class="cl-h2">Como funciona a consulta</h2>
+        <p class="cl-lead">
+          O consultório é <strong>100% particular, sem convênios</strong>, e a consulta
+          inicial é reservada com no mínimo uma hora. Ela não é uma conversa de vendas:
+          é o exame que define se o clareamento é indicado para você e qual protocolo faz sentido.
+        </p>
+
+        <ol class="cl-passos">
+          <li>
+            <span class="cl-passo-n" aria-hidden="true">1</span>
+            <div>
+              <h3>Exame e causa do escurecimento</h3>
+              <p>Nem todo dente amarela pelo mesmo motivo. O primeiro passo é identificar o seu.</p>
+            </div>
+          </li>
+          <li>
+            <span class="cl-passo-n" aria-hidden="true">2</span>
+            <div>
+              <h3>Registro da cor atual</h3>
+              <p>Ela mede o seu tom de partida com a escala de cor e registra, para acompanhar a evolução.</p>
+            </div>
+          </li>
+          <li>
+            <span class="cl-passo-n" aria-hidden="true">3</span>
+            <div>
+              <h3>Indicação do protocolo</h3>
+              <p>Consultório, caseiro supervisionado ou combinado — com o porquê da escolha e o que esperar.</p>
+            </div>
+          </li>
+          <li>
+            <span class="cl-passo-n" aria-hidden="true">4</span>
+            <div>
+              <h3>Acompanhamento até estabilizar</h3>
+              <p>A cor continua se ajustando depois da última aplicação — você confere o resultado final num retorno.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="cl-consulta-cta">
+          <a class="cl-cta js-wa-cta" data-label={`${prefix}_midcta_whatsapp`} href={waGeral} target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+            <span class="cl-cta-labels">
+              <b>Agendar minha consulta</b>
+              <small>WhatsApp · resposta 24h</small>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 9. FAQ ═══ -->
+    <LPFAQ title="Dúvidas sobre clareamento" questions={faqs} />
+
+    <!-- ═══ 10. CTA FINAL ═══ -->
+    <section class="cl-final">
+      <div class="cl-wrap cl-final-inner">
+        <h2 class="cl-final-h2">Vamos descobrir qual clareamento é o seu?</h2>
+        <p class="cl-final-sub">
+          Uma consulta mostra a causa do escurecimento, o tom de partida e o protocolo
+          indicado — antes de você decidir qualquer coisa.
+        </p>
+
+        <a class="cl-cta cl-cta-lg js-wa-cta" data-label={`${prefix}_final_whatsapp`} href={waGeral} target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+          <span class="cl-cta-labels">
+            <b>Agendar minha consulta</b>
+            <small>WhatsApp · resposta 24h</small>
+          </span>
+        </a>
+
+        <p class="cl-final-end">Rua Visconde de Pirajá, 550 — Sala 1107, Ipanema · Seg a Sex, 9h às 19h</p>
+      </div>
+    </section>
+
+    <LPStickyCTA whatsappHref={waGeral} waLabel={`${prefix}_sticky_whatsapp`} />
   </main>
 </LPLayout>
 
 <style>
-  .lp-main { background: #fff; min-height: 100vh; }
+  /* ═══ Tokens (mesma paleta do site — DESIGN.md) ═══
+     Contraste: o dourado #B3955F NÃO passa AA como texto sobre claro nem como
+     fundo com texto branco (2,07:1 e 2,85:1 medidos). Aqui ele é usado só como
+     preenchimento/acento e em texto sobre fundo escuro. Texto = ameixa. */
+  .cl-main {
+    --purple: #381f47;
+    --purple-soft: #5a3f69;
+    --gold: #b3955f;
+    /* #8A7444 dá 4,50:1 no branco — no limite exato do AA para rótulos de 10-11px.
+       #7A6539 sobe para 5,6:1 e mantém a família do latão. */
+    --gold-dark: #7a6539;
+    --linho: #cfcbb4;
+    --linho-claro: #e9e5d9;
+    --areia: #f6f3ec;
+    --grafite: #525252;
+    /* O #128C4A do site dá 4,30:1 com texto branco — reprova AA por pouco.
+       #0F7540 (já usado como hover no site) dá 5,8:1. */
+    --wa: #0f7540;
+    --wa-hover: #0b5e33;
+
+    /* ═══ TYPESET — escala de 7 degraus (a página tinha 22 valores distintos) ═══
+       Razão 1,25 no MÍNIMO do clamp (piso do registro BRAND), abrindo para ~1,33
+       no máximo. O problema anterior não era só a quantidade de valores: os quatro
+       clamps só destravavam do mínimo entre 503px e 700px de viewport, ou seja, a
+       escala "fluida" era FIXA exatamente onde vivem 87% do tráfego. Estes mínimos
+       são calibrados para o mobile, não para o desktop. */
+    --fs-display: clamp(2rem, 5.6vw, 3rem);
+    --lh-display: 1.10;
+    --fs-h2: clamp(1.6rem, 4.2vw, 2.25rem);
+    --lh-h2: 1.18;
+    --fs-h3: clamp(1.25rem, 2.6vw, 1.5rem);
+    --lh-h3: 1.30;
+    --fs-lead: 1.125rem;
+    --lh-lead: 1.60;
+    --fs-body: 1rem;
+    --lh-body: 1.70;
+    --fs-small: 0.875rem;
+    --lh-small: 1.55;
+    --fs-label: 0.75rem;
+    --lh-label: 1.40;
+    /* Ornamento, NÃO um degrau da escala: a aspa em marca-d'água do pull-quote.
+       É glifo decorativo (aria-hidden por ser ::before), não texto — por isso
+       fica fora da rampa de 7 degraus de propósito, e nomeado para não parecer
+       um valor solto. */
+    --fs-ornamento: 4rem;
+    /* Um tracking para TODOS os rótulos caixa-alta (havia cinco: 0.04/0.08/0.10/
+       0.12/0.16em — dois deles fora da banda de 5–12% do registro). */
+    --ls-label: 0.09em;
+
+    /* ═══ POLISH — raios do DESIGN.md ═══
+       A página usava 5/10/12/14px; o sistema documentava só 4/6/8/999. Causa-raiz
+       era TOKEN FALTANDO: o site usa 12px e 16px em 14 lugares. DESIGN.md agora
+       documenta xl/2xl e a página passa a consumir os tokens. */
+    --r-sm: 4px;
+    --r-lg: 8px;
+    --r-xl: 12px;
+    --r-2xl: 16px;
+    --r-pill: 999px;
+
+    /* Sombras do sidecar .impeccable/design.json (eram 5 alfas de preto ad-hoc) */
+    --sh-soft: 0 4px 20px hsl(0 0% 0% / 0.08);
+    --sh-hover: 0 12px 32px rgba(56, 31, 71, 0.16), 0 6px 16px rgba(56, 31, 71, 0.1);
+    --sh-elegant: 0 10px 40px -10px rgba(56, 31, 71, 0.28);
+
+    /* Texto sobre fundo escuro — eram 4 alfas distintos para o mesmo papel */
+    --on-dark: rgba(255, 255, 255, 0.86);
+    --on-dark-muted: rgba(255, 255, 255, 0.62);
+
+    background: #fff;
+    color: var(--purple);
+    font-family: Montserrat, system-ui, -apple-system, sans-serif;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+  }
+
+  /* Peso 700 NÃO tem arquivo de fonte carregado (só 400/500/600 de Montserrat e
+     400/600 de Playfair). Todo <b>/<strong> caía em faux bold — o navegador
+     engorda o contorno por algoritmo, o que numa serifa fina destrói o contraste
+     modulado. 600 já é o peso de ênfase da página e já está carregado. */
+  .cl-main :is(strong, b) { font-weight: 600; }
+
+  /* Ritmo vertical: no mobile as 8 seções somavam 768px só de padding
+     (48px+48px cada). A 36px ainda respira — a página é longa por empilhamento,
+     e cada tela precisa pagar aluguel quando só 13% chegam ao fim. */
+  @media (max-width: 767px) {
+    .cl-main :is(.cl-sel, .cl-escala, .cl-sens, .cl-nao, .cl-bio, .cl-prova, .cl-consulta) {
+      padding-top: 2.25rem;
+      padding-bottom: 2.25rem;
+    }
+    .cl-main .cl-final { padding-top: 2.75rem; padding-bottom: 2.75rem; }
+  }
+
+  .cl-wrap {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  @media (min-width: 1024px) {
+    .cl-wrap { padding-left: 2rem; padding-right: 2rem; }
+  }
+
+  .cl-h1,
+  .cl-h2,
+  .cl-final-h2 {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-weight: 600;
+    color: var(--purple);
+    text-wrap: balance;
+    /* Playfair a 36–48px pede fechamento; antes rodava em `normal` */
+    letter-spacing: -0.015em;
+  }
+
+  .cl-eyebrow {
+    font-size: var(--fs-label);
+    line-height: var(--lh-label);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-label);
+    font-weight: 600;
+    color: var(--purple);
+    margin: 0 0 0.85rem;
+  }
+
+  /* Medida: `ch` no Montserrat é a largura do dígito "0", mais largo que a média
+     do português corrido — 62ch declarado entregava ~74–77 caracteres reais.
+     Todos os valores em ch desta página foram reduzidos ~20% para bater com a
+     regra de 65–75 do DESIGN.md. */
+  .cl-lead {
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--grafite);
+    max-width: 52ch;
+    margin: 0 0 1rem;
+  }
+
+  /* ── CTA WhatsApp (verde AA #128C4A) ── */
+  .cl-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    background: var(--wa);
+    color: #fff;
+    text-decoration: none;
+    border-radius: var(--r-pill);
+    padding: 0.9rem 1.6rem;
+    font-family: inherit;
+    box-shadow: var(--sh-soft);
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .cl-cta:hover {
+    background: var(--wa-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--sh-hover);
+  }
+  .cl-cta:focus-visible { outline: 3px solid var(--gold-dark); outline-offset: 3px; }
+  .cl-cta-labels { display: flex; flex-direction: column; line-height: var(--lh-label); text-align: left; }
+  .cl-cta-labels b { font-size: var(--fs-small); font-weight: 600; }
+  .cl-cta-labels small { font-size: var(--fs-label); color: var(--on-dark); }
+  .cl-cta-lg { padding: 1.05rem 2rem; }
+  .cl-cta-lg .cl-cta-labels b { font-size: var(--fs-lead); }
+
+  /* ═══ 1. HERO ═══ */
+  .cl-hero {
+    background: linear-gradient(180deg, var(--areia) 0%, #fff 100%);
+    padding: calc(64px + 2.25rem) 0 2.5rem;
+  }
+  @media (min-width: 768px) {
+    .cl-hero { padding: calc(64px + 4rem) 0 3.5rem; }
+  }
+  /* ── Grid do hero: 1 coluna no mobile (foto vira avatar no topo via order),
+        2 colunas no desktop (texto | retrato) ── */
+  .cl-hero-grid { display: flex; flex-direction: column; }
+  @media (min-width: 900px) {
+    .cl-hero-grid {
+      display: grid;
+      /* coluna da foto FIXA em 340px, casada com o `sizes` do <source>: o original
+         só tem 500px reais, então acima disso a imagem começa a ficar mole em telas
+         retina. Com 340px o upscale fica em ~1,36× no DPR2 — aceitável. */
+      grid-template-columns: 1fr 340px;
+      gap: 3.5rem;
+      align-items: center;
+    }
+  }
+
+  .cl-hero-foto { margin: 0; }
+
+  /* MOBILE: retrato de 84px, SEM legenda — nome e CRO já estão no header fixo
+     e de novo nos trust pills logo abaixo do CTA; repetir aqui era a mesma
+     credencial 3× na primeira dobra. Canto arredondado (não círculo): o site
+     já usa avatar circular pequeno para depoimento de PACIENTE (.tst-avatar,
+     a bolinha com a inicial do nome) — a foto da própria médica nesse mesmo
+     formato lia como "isso é uma review", não "essa é a médica". */
+  @media (max-width: 899px) {
+    .cl-hero-foto { order: -1; margin-bottom: 1.25rem; }
+    .cl-hero-foto img {
+      width: 84px;
+      height: 84px;
+      border-radius: var(--r-lg);
+      object-fit: cover;
+      /* enquadra o rosto: ele está no terço superior do retrato */
+      object-position: 50% 12%;
+      box-shadow: var(--sh-soft);
+    }
+  }
+
+  /* DESKTOP: retrato em tamanho real na coluna 2 */
+  @media (min-width: 900px) {
+    .cl-hero-foto img {
+      width: 100%;
+      height: auto;
+      max-height: 480px;
+      object-fit: cover;
+      object-position: 50% 15%;
+      border-radius: var(--r-2xl);
+      box-shadow: var(--sh-elegant);
+    }
+  }
+
+  .cl-h1 {
+    font-size: var(--fs-display);
+    line-height: var(--lh-display);
+    margin: 0 0 1rem;
+    max-width: 18ch;
+  }
+  /* SEM font-style: italic — não existe arquivo itálico de Playfair no projeto
+     (só 400 e 600 normais), então o navegador sintetizava a inclinação a 32px,
+     no elemento mais visível da página. Numa serifada de alto contraste, o
+     oblique sintético destrói justamente a modulação que a fonte tem de bom.
+     A virada semântica agora é carregada só pela cor. */
+  .cl-h1 span { color: var(--purple-soft); }
+  .cl-sub {
+    font-size: var(--fs-lead);
+    line-height: var(--lh-lead);
+    color: var(--grafite);
+    max-width: 46ch;
+    margin: 0 0 1.6rem;
+  }
+
+  .cl-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.9rem 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .cl-proof {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #fff;
+    border: 1px solid rgba(179, 149, 95, 0.4);
+    border-radius: var(--r-pill);
+    /* min-height 44px: media 35px, abaixo do alvo de toque recomendado.
+       Em ponteiro grosso (touch) sobe mais, conforme adapt.md. */
+    min-height: 44px;
+    padding: 0.5rem 0.95rem;
+    text-decoration: none;
+    font-size: var(--fs-label);
+    line-height: var(--lh-label);
+  }
+  @media (pointer: coarse) {
+    .cl-proof { min-height: 48px; padding-inline: 1.1rem; }
+  }
+  .cl-proof b { color: var(--purple); }
+  .cl-proof span { color: var(--grafite); }
+
+  .cl-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.4rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .cl-trust li {
+    font-size: var(--fs-label);
+    line-height: var(--lh-label);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-label);
+    font-weight: 600;
+    color: var(--purple);
+  }
+
+  /* ═══ 2. SELETOR ═══ */
+  .cl-sel { background: #fff; padding: 3rem 0; }
+  @media (min-width: 768px) { .cl-sel { padding: 4rem 0; } }
+  .cl-h2 { font-size: var(--fs-h2); line-height: var(--lh-h2); margin: 0 0 0.85rem; }
+
+  .cl-sel-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+  /* Breakpoint dirigido pelo conteúdo: acima de ~640px o card em coluna única
+     passa de 600px de largura e vira uma faixa desconfortável (no tablet de
+     768px chegava a 713px). Duas colunas resolvem; três só quando cabe.
+     O 3º card ocupa a linha inteira em 2 colunas — sem isso, os dois grids de 3
+     da página viravam `2 + 1 órfão` idênticos no tablet, o que lia como molde. */
+  @media (min-width: 640px) {
+    .cl-sel-grid { grid-template-columns: repeat(2, 1fr); }
+    .cl-sel-grid > :last-child { grid-column: 1 / -1; }
+  }
+  @media (min-width: 900px) {
+    .cl-sel-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .cl-sel-grid > :last-child { grid-column: auto; }
+  }
+
+  .cl-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid rgba(56, 31, 71, 0.12);
+    border-radius: var(--r-xl);
+    padding: 1.5rem;
+    box-shadow: var(--sh-soft);
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+  }
+  .cl-card:hover {
+    box-shadow: var(--sh-hover);
+    transform: translateY(-3px);
+    border-color: rgba(179, 149, 95, 0.5);
+  }
+  /* A situação do paciente abre o card; o nome do protocolo vem logo abaixo,
+     como resposta. Inverte a leitura: "se você tem pressa" → "no consultório". */
+  .cl-card-situacao {
+    font-size: var(--fs-small);
+    line-height: var(--lh-small);
+    font-weight: 600;
+    color: var(--gold-dark);
+    margin: 0 0 0.15rem;
+  }
+  .cl-card-nome {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: var(--fs-h3);
+    line-height: var(--lh-h3);
+    font-weight: 600;
+    color: var(--purple);
+    margin: 0 0 0.6rem;
+  }
+  .cl-card-resumo {
+    font-size: var(--fs-small);
+    line-height: var(--lh-small);
+    color: var(--grafite);
+    margin: 0 0 1.15rem;
+  }
+
+  .cl-card-dados {
+    margin: 0 0 1.15rem;
+    padding: 0.9rem 0;
+    border-top: 1px solid rgba(56, 31, 71, 0.1);
+    border-bottom: 1px solid rgba(56, 31, 71, 0.1);
+  }
+  .cl-dado { display: flex; flex-direction: column; gap: 0.1rem; }
+  .cl-dado + .cl-dado { margin-top: 0.7rem; }
+  .cl-dado dt {
+    font-size: var(--fs-label);
+    line-height: var(--lh-label);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-label);
+    font-weight: 600;
+    color: var(--gold-dark);
+  }
+  .cl-dado dd {
+    margin: 0;
+    font-size: var(--fs-small);
+    line-height: var(--lh-small);
+    font-weight: 500;
+    color: var(--purple);
+  }
+
+  .cl-card-considere {
+    font-size: var(--fs-small);
+    line-height: var(--lh-small);
+    color: var(--grafite);
+    font-style: italic;
+    margin: 0 0 1.35rem;
+  }
+
+  /* Rebaixado de botão sólido roxo para link: eram 3 CTAs concorrentes num único
+     scroll (mais header e sticky = 5 destinos WhatsApp simultâneos). Agora o CTA
+     dominante da seção é um só, e estes preservam o dado de qual protocolo o
+     mercado procura. Continua com 44px de alvo de toque. */
+  .cl-card-cta {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 44px;
+    color: var(--purple);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    font-size: var(--fs-small);
+    line-height: var(--lh-small);
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+  .cl-card-cta:hover { color: var(--gold-dark); }
+  .cl-card-cta:focus-visible { outline: 3px solid var(--gold-dark); outline-offset: 2px; }
+
+  .cl-sel-cta { margin-top: 2rem; text-align: center; }
+
+  /* ═══ 3. ESCALA DE COR ═══ */
+  .cl-escala { background: var(--areia); padding: 3rem 0; }
+  @media (min-width: 768px) { .cl-escala { padding: 4rem 0; } }
+  .cl-escala-inner { display: grid; gap: 2.25rem; align-items: center; }
+  @media (min-width: 900px) {
+    .cl-escala-inner { grid-template-columns: 1.05fr 0.95fr; gap: 3.5rem; }
+  }
+
+  .cl-escala-strip {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.4rem;
+    background: #fff;
+    border-radius: var(--r-xl);
+    padding: 1.1rem 0.9rem;
+    box-shadow: var(--sh-soft);
+  }
+  .cl-tom { display: flex; flex-direction: column; align-items: center; gap: 0.45rem; }
+  .cl-tom-chip {
+    width: 100%;
+    aspect-ratio: 1 / 2.1;
+    border-radius: var(--r-pill) var(--r-pill) var(--r-sm) var(--r-sm);
+    box-shadow: inset 0 -6px 10px hsl(0 0% 0% / 0.08);
+  }
+  .cl-tom-label {
+    font-size: var(--fs-label);
+    line-height: var(--lh-label);
+    font-weight: 600;
+    letter-spacing: var(--ls-label);
+    color: var(--grafite);
+  }
+  .cl-escala-fig { margin: 0; }
+  .cl-escala-fig figcaption {
+    margin-top: 0.85rem;
+    font-size: var(--fs-label);
+    line-height: var(--lh-small);
+    color: var(--grafite);
+    text-align: center;
+    max-width: 46ch;
+    margin-inline: auto;
+  }
+
+  /* ═══ 4. SENSIBILIDADE ═══ */
+  .cl-sens { background: #fff; padding: 3rem 0; }
+  @media (min-width: 768px) { .cl-sens { padding: 4rem 0; } }
+  .cl-sens-lista {
+    list-style: none;
+    margin: 1.75rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+    max-width: 58ch;
+  }
+  .cl-sens-lista li {
+    background: var(--areia);
+    border-radius: var(--r-lg);
+    padding: 1.1rem 1.25rem;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--grafite);
+  }
+  .cl-sens-lista strong { color: var(--purple); }
+
+  /* ═══ 5. QUANDO NÃO É O CAMINHO ═══ */
+  .cl-nao { background: var(--purple); color: #fff; padding: 3rem 0; }
+  @media (min-width: 768px) { .cl-nao { padding: 4rem 0; } }
+
+  /* ── Compensação de fundo escuro (registro BRAND exige TRÊS eixos) ──
+     Antes esta seção recebia 0,5 de 3: só trocava a cor. Pior, `.cl-nao-fecho`
+     REGREDIA (line-height 1.6 contra 1.7 do equivalente em fundo claro), quando
+     a regra é o oposto — quanto maior o contraste claro-sobre-escuro, mais o halo
+     óptico fecha o espaço entre linhas e letras. Aplica-se ao CTA final também,
+     que usa o mesmo roxo. */
+  .cl-nao,
+  .cl-final {
+    letter-spacing: 0.015em;              /* eixo 2 */
+  }
+  .cl-nao :is(.cl-lead, .cl-nao-item p, .cl-nao-fecho),
+  .cl-final .cl-final-sub {
+    font-weight: 500;                     /* eixo 3 — 500 já está carregado */
+    line-height: 1.76;                    /* eixo 1 — +0,06 sobre o degrau */
+  }
+  .cl-nao .cl-h2 { color: #fff; }
+  .cl-nao .cl-lead { color: var(--on-dark); }
+  /* Vai direto para 3 colunas (blocos de texto curtos cabem), enquanto o seletor
+     usa 2 + 1 largo. Antes os dois grids viravam `2 + 1 órfão` IDÊNTICOS no
+     tablet — duas seções com o mesmo layout e o mesmo órfão eram o que fazia a
+     página ler como molde. Agora cada um tem sua própria estrutura. */
+  .cl-nao-grid { display: grid; gap: 1.25rem; margin-top: 2rem; }
+  @media (min-width: 640px) { .cl-nao-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; } }
+  @media (min-width: 900px) { .cl-nao-grid { gap: 1.75rem; } }
+  .cl-nao-item h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: var(--fs-h3);
+    line-height: var(--lh-h3);
+    font-weight: 600;
+    color: var(--gold);
+    margin: 0 0 0.5rem;
+  }
+  .cl-nao-item p {
+    font-size: var(--fs-small);
+    color: var(--on-dark);
+    margin: 0;
+  }
+  .cl-nao-fecho {
+    margin: 2rem 0 0;
+    font-size: var(--fs-lead);
+    color: #fff;
+    max-width: 50ch;
+  }
+
+  /* ═══ 6. BIO ═══ */
+  .cl-bio { background: #fff; padding: 3rem 0; }
+  @media (min-width: 768px) { .cl-bio { padding: 4rem 0; } }
+  .cl-bio-inner { display: grid; gap: 2rem; align-items: center; }
+  @media (min-width: 900px) {
+    .cl-bio-inner { grid-template-columns: 0.85fr 1.15fr; gap: 3.5rem; }
+  }
+  .cl-bio-foto img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--r-2xl);
+    box-shadow: var(--sh-elegant);
+  }
+  /* No mobile a foto vertical inteira custava 503px — e o rosto da Dra. Carla já
+     apareceu no hero. Vira uma faixa recortada no rosto: mesma presença, 1/2 da
+     altura. No desktop segue em tamanho real (a coluna tem espaço de sobra). */
+  @media (max-width: 899px) {
+    .cl-bio-foto img {
+      height: 250px;
+      object-fit: cover;
+      object-position: 50% 18%;
+    }
+  }
+  /* SEM uppercase: são 65 caracteres, e caixa-alta longa é o pior caso de
+     legibilidade justamente para o público 40–60+ desta página (o detector
+     sinalizou como `all-caps-body`). Caixa-alta fica só nos rótulos curtos. */
+  .cl-bio-cred {
+    font-size: var(--fs-small);
+    line-height: var(--lh-small);
+    font-weight: 600;
+    color: var(--gold-dark);
+    margin: 0 0 1.15rem;
+  }
+  .cl-bio-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 1.25rem 0 0;
+    padding: 0;
+  }
+  .cl-bio-chips li {
+    background: #fff;
+    border: 1px solid rgba(179, 149, 95, 0.4);
+    border-radius: var(--r-pill);
+    padding: 0.35rem 0.8rem;
+    font-size: var(--fs-label);
+    line-height: var(--lh-label);
+    font-weight: 500;
+    color: var(--purple);
+  }
+
+  /* ═══ 7. PROVA SOCIAL ═══ */
+  .cl-prova { background: var(--areia); padding: 3rem 0; }
+  @media (min-width: 768px) { .cl-prova { padding: 4rem 0; } }
+  .cl-dep {
+    background: #fff;
+    border-radius: var(--r-xl);
+    padding: 1.5rem;
+    margin: 0;
+    box-shadow: var(--sh-soft);
+  }
+  .cl-dep p {
+    font-size: var(--fs-small);
+    line-height: var(--lh-small);
+    color: var(--grafite);
+    margin: 0 0 0.9rem;
+  }
+  .cl-dep cite {
+    font-style: normal;
+    font-size: var(--fs-label);
+    line-height: var(--lh-label);
+    font-weight: 600;
+    color: var(--purple);
+  }
+  /* Antes herdava o mesmo fundo, raio, sombra e padding dos outros dois cards e
+     ainda ANULAVA o próprio diferenciador (border-left: none) — sobrava Playfair
+     um pouco maior, lido como "depoimento 1 de 3". Agora tem mundo visual
+     próprio: sem card, direto sobre o fundo areia, com uma aspa em latão como
+     marca-d'água. É o depoimento que enuncia a tese da página. */
+  .cl-dep-destaque {
+    position: relative;
+    margin: 2rem 0 2rem;
+    padding: 0 0 0 2.75rem;
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .cl-dep-destaque::before {
+    content: '\201C';
+    position: absolute;
+    top: -0.6rem;
+    left: 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: var(--fs-ornamento);
+    line-height: 1;
+    color: var(--gold);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  .cl-dep-destaque p {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: var(--fs-h2);
+    line-height: var(--lh-h2);
+    color: var(--purple);
+    max-width: 34ch;
+    margin: 0 0 0.75rem;
+  }
+  /* Mesmo tratamento dos outros dois depoimentos: era a única assinatura em
+     caixa-alta da página, criando dois estilos para o mesmo tipo de elemento. */
+  .cl-dep-destaque cite {
+    font-size: var(--fs-small);
+    line-height: var(--lh-small);
+    font-weight: 600;
+    color: var(--gold-dark);
+  }
+  .cl-dep-grid { display: grid; gap: 1.25rem; }
+  @media (min-width: 768px) { .cl-dep-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  /* ═══ 8. CONSULTA ═══ */
+  .cl-consulta { background: #fff; padding: 3rem 0; }
+  @media (min-width: 768px) { .cl-consulta { padding: 4rem 0; } }
+  .cl-passos {
+    list-style: none;
+    counter-reset: none;
+    margin: 2rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1.35rem;
+    max-width: 56ch;
+  }
+  .cl-passos li { display: flex; gap: 1rem; align-items: flex-start; }
+  .cl-passo-n {
+    flex-shrink: 0;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: var(--r-pill);
+    background: rgba(179, 149, 95, 0.18);
+    /* latão sobre latão-claro fica em ~3,9:1 — ameixa resolve sem perder o acento do fundo */
+    color: var(--purple);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--fs-small);
+    font-weight: 600;
+  }
+  .cl-passos h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: var(--fs-h3);
+    line-height: var(--lh-h3);
+    font-weight: 600;
+    color: var(--purple);
+    margin: 0.15rem 0 0.3rem;
+  }
+  .cl-passos p {
+    font-size: var(--fs-small);
+    line-height: var(--lh-small);
+    color: var(--grafite);
+    margin: 0;
+  }
+  .cl-consulta-cta { margin-top: 2.25rem; }
+
+  /* ═══ 10. CTA FINAL ═══ */
+  .cl-final { background: var(--purple); padding: 3.5rem 0; }
+  @media (min-width: 768px) { .cl-final { padding: 4.5rem 0; } }
+  .cl-final-inner { text-align: center; }
+  .cl-final-h2 {
+    color: #fff;
+    font-size: var(--fs-h2);
+    line-height: var(--lh-h2);
+    margin: 0 auto 1rem;
+    max-width: 20ch;
+  }
+  .cl-final-sub {
+    color: var(--on-dark);
+    font-size: var(--fs-lead);
+    max-width: 44ch;
+    margin: 0 auto 2rem;
+  }
+  .cl-final-end {
+    margin: 1.75rem 0 0;
+    font-size: var(--fs-label);
+    line-height: var(--lh-label);
+    color: var(--on-dark-muted);
+  }
+
+  /* ═══ Correções de componentes COMPARTILHADOS, escopadas a esta página ═══
+     LPFAQ e LPStickyCTA são usados pelas 19 LPs. Corrigir dentro deles mudaria a
+     frota inteira, o que é decisão de outro escopo. Aqui os desvios são anulados
+     só nesta página, via :global() sob .cl-main.
+
+     1) O <h2> do FAQ era o MAIOR título da página (30px no mobile contra 23,2px
+        dos <h2> de seção): a seção de suporte gritava mais alto que o argumento
+        central. Sem clamp, e em peso 700 sem arquivo de fonte (faux bold).
+     2) A resposta do FAQ usa #333, enquanto a página toda usa --grafite #525252
+        — dois cinzas de corpo no mesmo documento.
+     3) O <b> da barra sticky era 700 (faux bold) enquanto o CTA do hero, com o
+        mesmo papel e texto, é 600. O usuário mobile vê os dois na mesma sessão. */
+  .cl-main :global(.lp-faq-header h2) {
+    font-size: var(--fs-h2);
+    line-height: var(--lh-h2);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+  .cl-main :global(.lp-faq-answer) {
+    color: var(--grafite);
+    max-width: 58ch;
+  }
+  .cl-main :global(.lp-sticky-btn b) { font-weight: 600; }
+  /* 11,2px era o menor texto da página — abaixo do degrau --fs-label (12px) */
+  .cl-main :global(.lp-sticky-labels small) { font-size: var(--fs-label); }
+
+  /* 4) O botão da sticky usa o gradiente do verde de marca #25D366 com texto
+        branco: contraste medido de 2,0:1 em texto de 15px — reprova AA por larga
+        margem e viola a própria "Two Greens Rule" do DESIGN.md, que autoriza o
+        verde de marca só em botões GRANDES e o proíbe em texto pequeno.
+        Escopado a esta página; as outras 18 LPs seguem como estão (decisão do
+        Patrick) — a correção no componente é sessão à parte. */
+  .cl-main :global(.lp-sticky-btn) {
+    background: var(--wa);
+    border-radius: var(--r-pill);
+  }
+  .cl-main :global(.lp-sticky-btn:hover) { background: var(--wa-hover); }
+  .cl-main :global(.lp-sticky-labels small) { opacity: 1; color: var(--on-dark); }
+
+  /* O LPStickyCTA já aplica `body { padding-bottom: 76px }`. O padding daqui
+     somava a esse — 160px de branco morto no fim da página. Removido. */
+
+  @media (prefers-reduced-motion: reduce) {
+    .cl-cta, .cl-card, .cl-card-cta { transition: none; }
+    .cl-cta:hover, .cl-card:hover { transform: none; }
+  }
 </style>
