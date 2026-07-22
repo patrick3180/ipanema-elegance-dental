@@ -1,0 +1,29 @@
+---
+import type { ComparisonTable } from '../../lib/contentful';
+interface Props { table: ComparisonTable; title?: string }
+const { table, title = 'Comparação entre as opções' } = Astro.props;
+---
+<section class="comparison-table" aria-labelledby="comparison-table-title">
+  <h2 id="comparison-table-title">{title}</h2>
+  <p id="comparison-table-hint">Deslize horizontalmente para ver todas as opções.</p>
+  <div class="comparison-table-scroll" role="region" aria-labelledby="comparison-table-title" aria-describedby="comparison-table-hint" tabindex="0">
+    <table>
+      <caption>{title}</caption>
+      <thead><tr>{table.columns.map((column) => <th scope="col">{column}</th>)}</tr></thead>
+      <tbody>{table.rows.map((row) => <tr><th scope="row">{row.criterion}</th>{row.values.map((value) => <td>{value}</td>)}</tr>)}</tbody>
+    </table>
+  </div>
+</section>
+<style>
+  .comparison-table { margin: 28px 0; }
+  .comparison-table h2 { font-size: 1.15rem; margin-bottom: 10px; }
+  .comparison-table > p { color: var(--dental-gray); font-size: .85rem; margin: 0 0 8px; }
+  .comparison-table-scroll { max-width: 100%; overflow-x: auto; border: 1px solid var(--dental-gold-soft); border-radius: 6px; }
+  .comparison-table-scroll:focus-visible { outline: 2px solid var(--dental-gold); outline-offset: 3px; }
+  table { border-collapse: collapse; min-width: 42rem; width: 100%; }
+  caption { text-align: left; padding: 12px 16px; font-weight: 600; color: var(--dental-purple); }
+  th, td { border-top: 1px solid var(--dental-gold-soft); padding: 12px 16px; text-align: left; vertical-align: top; }
+  thead th { background: var(--dental-purple); color: #fff; border-top: 0; }
+  tbody th { color: var(--dental-purple); background: var(--dental-beige); }
+  @media (min-width: 48rem) { .comparison-table > p { display: none; } }
+</style>

@@ -7,8 +7,10 @@
 // Credenciais Contentful (build-time). Aceita os nomes próprios do Astro (astro/.env local)
 // E os que JÁ existem na Vercel do site atual (VITE_*), para o build de produção funcionar
 // sem precisar criar env vars novas. VITE_CONTENTFUL_ACCESS_TOKEN é um token CDA (delivery).
-const SPACE_ID = import.meta.env.CONTENTFUL_SPACE_ID || import.meta.env.VITE_CONTENTFUL_SPACE_ID;
-const CDA_TOKEN = import.meta.env.CONTENTFUL_CDA_TOKEN || import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
+// `import.meta.env` is supplied by Astro; the fallback also keeps pure helpers testable in Node.
+const contentfulEnv = import.meta.env ?? {};
+const SPACE_ID = contentfulEnv.CONTENTFUL_SPACE_ID || contentfulEnv.VITE_CONTENTFUL_SPACE_ID;
+const CDA_TOKEN = contentfulEnv.CONTENTFUL_CDA_TOKEN || contentfulEnv.VITE_CONTENTFUL_ACCESS_TOKEN;
 
 export interface ContentfulAsset {
   sys: { id: string };
@@ -25,6 +27,111 @@ export interface BlogData {
   assetMap: Map<string, ContentfulAsset>;
   entryMap: Map<string, any>; // entries linkadas (ex.: categoria) via includes.Entry
 }
+
+export const EDITORIAL_ARCHETYPES = [
+  'decisao_entre_caminhos',
+  'jornada_clinica',
+  'resposta_clinica_direta',
+  'prevencao_na_pratica',
+] as const;
+
+export type EditorialArchetype = (typeof EDITORIAL_ARCHETYPES)[number];
+
+/** Contentful values are deliberately accepted only as exact enum literals. */
+export function parseEditorialArchetype(value: unknown): EditorialArchetype | null {
+  return typeof value === 'string' && (EDITORIAL_ARCHETYPES as readonly string[]).includes(value)
+    ? value as EditorialArchetype
+    : null;
+}
+
+export interface ComparisonTableRow {
+  criterion: string;
+  values: string[];
+}
+
+export interface ComparisonTable {
+  columns: string[];
+  rows: ComparisonTableRow[];
+}
+
+/** `table: null` is the intentional, valid state for posts without a table. */
+export type ComparisonTableNormalization =
+  | { valid: true; table: ComparisonTable | null }
+  | { valid: false; reason: string };
+
+const FINANCIAL_CONTENT_RE = /(?:\br\$\s*\d|\b\d+(?:[.,]\d+)?\s*(?:reais|brl)\b|\bpre[cç]o\b|\bcusto\b|\bvalor\b|\binvestimento\b|\bfinanceir[oa]\b|\bparcel(?:a|amento)s?\b|\bor[çc]amento\b)/i;
+
+function normalizedComparisonKey(value: unknown): string {
+  return String(value ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, ' ').trim();
+}
+
+function cell(value: unknown): string {
+  return typeof value === 'string' || typeof value === 'number' ? String(value).trim() : '';
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return Boolean(value) && typeof value === 'object' && !Array.isArray(value);
+}
+
+function invalid(reason: string): ComparisonTableNormalization {
+  return { valid: false, reason };
+}
+
+/** Accepts the current Contentful array, its old aliases, and the future canonical shape. */
+export function normalizeComparisonTable(raw: unknown): ComparisonTableNormalization {
+  if (raw == null || (Array.isArray(raw) && raw.length === 0)) return { valid: true, table: null };
+
+  let columns: string[];
+  let rows: ComparisonTableRow[];
+  if (Array.isArray(raw)) {
+    const [header, ...data] = raw;
+    if (!isRecord(header)) return invalid('cabeçalho ausente ou inválido');
+    const headerEntries = Object.entries(header);
+    const criterionEntry = headerEntries.find(([key]) => ['criterio', 'criterion'].includes(normalizedComparisonKey(key)));
+    // The currently stored shape has only option labels in its first object.
+    const optionEntries = criterionEntry ? headerEntries.filter(([key]) => key !== criterionEntry[0]) : headerEntries;
+    if (optionEntries.length < 2) return invalid('menos de duas opções comparáveis');
+    columns = [criterionEntry ? cell(criterionEntry[1]) : 'Critério', ...optionEntries.map(([, value]) => cell(value))];
+    if (data.length === 0) return invalid('sem linhas de dado');
+    rows = [];
+    for (let index = 0; index < data.length; index += 1) {
+      if (!isRecord(data[index])) return invalid(`linha ${index + 1} não é objeto`);
+      const source = data[index];
+      const criterionKey = Object.keys(source).find((key) => ['criterio', 'criterion'].includes(normalizedComparisonKey(key)));
+      if (!criterionKey) return invalid(`critério ausente na linha ${index + 1}`);
+      const values = optionEntries.map(([key]) => cell(source[key]));
+      rows.push({ criterion: cell(source[criterionKey]), values });
+    }
+  } else if (isRecord(raw)) {
+    if (!Array.isArray(raw.columns) || !Array.isArray(raw.rows)) return invalid('formato de tabela desconhecido');
+    columns = raw.columns.map(cell);
+    rows = [];
+    for (let index = 0; index < raw.rows.length; index += 1) {
+      const source = raw.rows[index];
+      if (!isRecord(source)) return invalid(`linha ${index + 1} não é objeto`);
+      rows.push({ criterion: cell(source.criterion), values: Array.isArray(source.values) ? source.values.map(cell) : [] });
+    }
+  } else return invalid('formato de tabela desconhecido');
+
+  if (columns.length < 3 || columns.some((value) => !value)) return invalid('cabeçalho de coluna vazio ou incompleto');
+  const options = columns.slice(1).map(normalizedComparisonKey);
+  if (new Set(options).size !== options.length) return invalid('opções duplicadas');
+  if (rows.length < 1) return invalid('sem linhas de dado');
+  const criteria = new Set<string>();
+  for (let index = 0; index < rows.length; index += 1) {
+    const row = rows[index];
+    if (!row.criterion) return invalid(`critério vazio na linha ${index + 1}`);
+    const criterion = normalizedComparisonKey(row.criterion);
+    if (criteria.has(criterion)) return invalid('critérios duplicados');
+    criteria.add(criterion);
+    if (row.values.length !== options.length || row.values.some((value) => !value)) return invalid(`célula faltando na linha ${index + 1}`);
+  }
+  const allCells = [...columns, ...rows.flatMap((row) => [row.criterion, ...row.values])];
+  if (allCells.some((value) => FINANCIAL_CONTENT_RE.test(value))) return invalid('conteúdo financeiro não permitido');
+  return { valid: true, table: { columns, rows } };
+}
+
+const loggedComparisonTableFailures = new Set<string>();
 
 let cache: BlogData | null = null;
 
@@ -89,6 +196,16 @@ export function postMeta(
   entryMap?: Map<string, any>
 ) {
   const f = post.fields ?? {};
+  const editorialArchetype = parseEditorialArchetype(f.editorialArchetype);
+  const editorialArchetypeReason = typeof f.editorialArchetypeReason === 'string' && f.editorialArchetypeReason
+    ? f.editorialArchetypeReason
+    : null;
+  const comparisonTable = normalizeComparisonTable(f.comparisonTable);
+  const slug = resolveSlug(post);
+  if (!comparisonTable.valid && !loggedComparisonTableFailures.has(slug)) {
+    loggedComparisonTableFailures.add(slug);
+    console.warn(JSON.stringify({ event: 'comparison_table_invalid', slug, reason: comparisonTable.reason }));
+  }
   const imgRef = f.featuredImage || f.imagemPrincipal;
   const imgAsset = imgRef?.fields ? imgRef : imgRef?.sys?.id ? assetMap.get(imgRef.sys.id) : null;
   const imgFile: any = imgAsset?.fields?.file || null;
@@ -107,7 +224,7 @@ export function postMeta(
   else if (catRef?.sys?.id && entryMap) categoryName = entryMap.get(catRef.sys.id)?.fields?.name || '';
 
   return {
-    slug: resolveSlug(post),
+    slug,
     title: complianceCTA(f.titulo || f.title || 'Artigo'),
     excerpt: complianceCTA(f.resumo || f.excerpt || ''),
     metaDescription: complianceCTA(String(f.metaDescription || f.resumo || f.excerpt || '')).substring(0, 160),
@@ -128,5 +245,8 @@ export function postMeta(
       acceptedAnswer?: { text?: string };
     }>,
     peopleAlsoAsk: (f.peopleAlsoAsk?.questions || (Array.isArray(f.peopleAlsoAsk) ? f.peopleAlsoAsk : [])) as string[],
+    editorialArchetype,
+    editorialArchetypeReason,
+    comparisonTable,
   };
 }

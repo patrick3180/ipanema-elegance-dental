@@ -7,6 +7,8 @@ import Base from '../../layouts/Base.astro';
 import FloatingWhatsAppButton from '../../components/treatment/FloatingWhatsAppButton.astro';
 import { getBlogData, postMeta, resolveSlug } from '../../lib/contentful';
 import { richTextToHtml } from '../../lib/richtext';
+import ComparisonTable from '../../components/blog/ComparisonTable.astro';
+import { resolveBlogComposition } from '../../lib/blogComposition';
 
 export async function getStaticPaths() {
   const { posts, assetMap, entryMap } = await getBlogData();
@@ -34,9 +36,31 @@ const { post, related, assetEntries, entryEntries } = Astro.props;
 const assetMap = new Map(assetEntries);
 const entryMap = new Map(entryEntries || []);
 const m = postMeta(post, assetMap, entryMap);
-const contentHtml = richTextToHtml(m.contentDoc, assetMap);
+const envTrue = (value: unknown) => String(value ?? '').trim().toLowerCase() === 'true';
+const archetypesEnabled = envTrue(import.meta.env.BLOG_EDITORIAL_ARCHETYPES_ENABLED);
+const comparisonTableEnabled = envTrue(import.meta.env.BLOG_COMPARISON_TABLE_ENABLED);
+const composition = resolveBlogComposition(archetypesEnabled, m.editorialArchetype);
+const isLegacyComposition = composition === resolveBlogComposition(false, null);
+const rawContentHtml = richTextToHtml(m.contentDoc, assetMap);
+const plainText = (html: string) => html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim();
+const slugifyHeading = (value: string) => plainText(value).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+const toc: Array<{ id: string; text: string; level: 2 | 3 }> = [];
+const contentHtml = composition.tocMode === 'off' ? rawContentHtml : rawContentHtml.replace(/<h([23])>([\s\S]*?)<\/h\1>/g, (_match, level: string, text: string) => {
+  const id = slugifyHeading(text);
+  if (!id) return _match;
+  toc.push({ id, text: plainText(text), level: Number(level) as 2 | 3 });
+  return `<h${level} id="${id}">${text}</h${level}>`;
+});
+const readingMinutes = Math.max(1, Math.ceil(plainText(contentHtml).split(/\s+/).filter(Boolean).length / 200));
+const renderToc = composition.tocMode === 'useful' ? toc.length >= 2 : composition.tocMode === 'longGuide' ? readingMinutes >= 7 && toc.length >= 3 : false;
+const renderedTakeaways = composition.takeawaysMax == null ? m.keyTakeaways : m.keyTakeaways.slice(0, composition.takeawaysMax);
+const renderedFaq = composition.faqMax == null ? m.faqStructured : m.faqStructured.slice(0, composition.faqMax);
+const comparableQuestion = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+const faqQuestions = new Set(renderedFaq.map((q) => comparableQuestion(q.name || q.question || '')));
+const renderedPaa = composition.paaMode === 'off' ? [] : composition.paaMode === 'selective' ? m.peopleAlsoAsk.filter((q) => !faqQuestions.has(comparableQuestion(q))).slice(0, 3) : m.peopleAlsoAsk;
 const canonical = `https://dracarlachristoph.com/blog/${m.slug}`;
 const dateBr = m.date ? new Date(m.date).toLocaleDateString('pt-BR') : '';
+const renderedComparisonTable = comparisonTableEnabled && composition.tableMode !== 'off' && m.comparisonTable.valid ? m.comparisonTable.table : null;
 
 // Bio da autora — usa o campo authorBio do post; fallback = bio canônica (CLAUDE.md/BRAND.md)
 const authorBioText =
@@ -131,23 +155,25 @@ const schemas = faqSchema ? [blogPostingSchema, faqSchema] : [blogPostingSchema]
 
       {m.excerpt && <p class="post-excerpt">{m.excerpt}</p>}
 
-      {m.quickAnswer && (
+      {isLegacyComposition && renderedComparisonTable && <ComparisonTable table={renderedComparisonTable} />}
+
+      {isLegacyComposition && m.quickAnswer && (
         <aside class="quick-answer" aria-label="Resposta rápida">
           <h2>Resposta rápida</h2>
           <p>{m.quickAnswer}</p>
         </aside>
       )}
 
-      {m.keyTakeaways.length > 0 && (
+      {isLegacyComposition && m.keyTakeaways.length > 0 && (
         <section class="key-takeaways" aria-label="Pontos-chave">
           <h2>Pontos-chave</h2>
           <ul>{m.keyTakeaways.map((k) => <li>{k}</li>)}</ul>
         </section>
       )}
 
-      <div class="post-content" set:html={contentHtml} />
+      {isLegacyComposition && <div class="post-content" set:html={contentHtml} />}
 
-      {m.faqStructured.length > 0 && (
+      {isLegacyComposition && m.faqStructured.length > 0 && (
         <section class="faq" aria-label="Perguntas frequentes">
           <h2>Perguntas frequentes</h2>
           {m.faqStructured.map((q) => (
@@ -159,12 +185,22 @@ const schemas = faqSchema ? [blogPostingSchema, faqSchema] : [blogPostingSchema]
         </section>
       )}
 
-      {m.peopleAlsoAsk.length > 0 && (
+      {isLegacyComposition && m.peopleAlsoAsk.length > 0 && (
         <section class="paa" aria-label="As pessoas também perguntam">
           <h2>As pessoas também perguntam</h2>
           <ul>{m.peopleAlsoAsk.map((q) => <li>{q}</li>)}</ul>
         </section>
-      )}
+      )}{!isLegacyComposition && composition.order.map((module) => {
+        switch (module) {
+          case 'toc': return renderToc ? <nav class="toc" aria-label="Índice do artigo"><details open={toc.length <= 8}><summary>Neste artigo</summary><ol>{toc.map((item) => <li class:list={{ nested: item.level === 3 }}><a href={`#${item.id}`}>{item.text}</a></li>)}</ol></details></nav> : null;
+          case 'quickAnswer': return m.quickAnswer ? <aside class="quick-answer" aria-label="Resposta rápida"><h2>Resposta rápida</h2><p>{m.quickAnswer}</p></aside> : null;
+          case 'comparisonTable': return renderedComparisonTable ? <ComparisonTable table={renderedComparisonTable} /> : null;
+          case 'keyTakeaways': return renderedTakeaways.length > 0 ? <section class="key-takeaways" aria-label="Pontos-chave"><h2>Pontos-chave</h2><ul>{renderedTakeaways.map((k) => <li>{k}</li>)}</ul></section> : null;
+          case 'content': return <div class="post-content" set:html={contentHtml} />;
+          case 'faq': return renderedFaq.length > 0 ? <section class="faq" aria-label="Perguntas frequentes"><h2>Perguntas frequentes</h2>{renderedFaq.map((q) => <details><summary>{q.name || q.question || ''}</summary><p>{q.acceptedAnswer?.text || ''}</p></details>)}</section> : null;
+          case 'paa': return renderedPaa.length > 0 ? <section class="paa" aria-label="As pessoas também perguntam"><h2>As pessoas também perguntam</h2><ul>{renderedPaa.map((q) => <li>{q}</li>)}</ul></section> : null;
+        }
+      })}
     </article>
 
     <aside class="author-bio" aria-label="Sobre a autora">
