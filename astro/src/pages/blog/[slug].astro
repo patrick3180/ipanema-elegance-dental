@@ -7,6 +7,7 @@ import Base from '../../layouts/Base.astro';
 import FloatingWhatsAppButton from '../../components/treatment/FloatingWhatsAppButton.astro';
 import { getBlogData, postMeta, resolveSlug } from '../../lib/contentful';
 import { richTextToHtml } from '../../lib/richtext';
+import ComparisonTable from '../../components/blog/ComparisonTable.astro';
 
 export async function getStaticPaths() {
   const { posts, assetMap, entryMap } = await getBlogData();
@@ -37,6 +38,8 @@ const m = postMeta(post, assetMap, entryMap);
 const contentHtml = richTextToHtml(m.contentDoc, assetMap);
 const canonical = `https://dracarlachristoph.com/blog/${m.slug}`;
 const dateBr = m.date ? new Date(m.date).toLocaleDateString('pt-BR') : '';
+const comparisonTableEnabled = String(import.meta.env.BLOG_COMPARISON_TABLE_ENABLED ?? '').trim().toLowerCase() === 'true';
+const renderedComparisonTable = comparisonTableEnabled && m.comparisonTable.valid ? m.comparisonTable.table : null;
 
 // Bio da autora — usa o campo authorBio do post; fallback = bio canônica (CLAUDE.md/BRAND.md)
 const authorBioText =
@@ -130,6 +133,8 @@ const schemas = faqSchema ? [blogPostingSchema, faqSchema] : [blogPostingSchema]
       )}
 
       {m.excerpt && <p class="post-excerpt">{m.excerpt}</p>}
+
+      {renderedComparisonTable && <ComparisonTable table={renderedComparisonTable} />}
 
       {m.quickAnswer && (
         <aside class="quick-answer" aria-label="Resposta rápida">
