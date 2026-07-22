@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { normalizeComparisonTable } from '../src/lib/contentful.ts';
+import { normalizeComparisonTable, postMeta } from '../src/lib/contentful.ts';
+import { BLOG_COMPOSITIONS, resolveBlogComposition } from '../src/lib/blogComposition.ts';
 
 const current = [
   { 'Opção A': 'Resina', 'Opção B': 'Porcelana' },
@@ -9,6 +10,28 @@ const current = [
 
 test('normaliza o array atual com chaves acentuadas', () => {
   assert.deepEqual(normalizeComparisonTable(current), { valid: true, table: { columns: ['Critério', 'Resina', 'Porcelana'], rows: [{ criterion: 'Durabilidade', values: ['5 anos', '15 anos'] }] } });
+});
+
+test('aceita apenas os quatro literais exatos de editorialArchetype', () => {
+  const valid = ['decisao_entre_caminhos', 'jornada_clinica', 'resposta_clinica_direta', 'prevencao_na_pratica'];
+  for (const editorialArchetype of valid) {
+    const meta = postMeta({ sys: { id: editorialArchetype, createdAt: '', updatedAt: '' }, fields: { slug: editorialArchetype, editorialArchetype, editorialArchetypeReason: 'teste' } }, new Map());
+    assert.equal(meta.editorialArchetype, editorialArchetype);
+    assert.equal(meta.editorialArchetypeReason, 'teste');
+  }
+  for (const editorialArchetype of [undefined, null, '', ' decisao_entre_caminhos', 'decisao_entre_caminhos ', 'xyz', 1, {}]) {
+    const meta = postMeta({ sys: { id: 'invalid', createdAt: '', updatedAt: '' }, fields: { slug: 'invalid', editorialArchetype } }, new Map());
+    assert.equal(meta.editorialArchetype, null);
+  }
+});
+
+test('resolve composição legado quando a flag está desligada ou o arquétipo é inválido', () => {
+  assert.strictEqual(resolveBlogComposition(false, 'decisao_entre_caminhos'), BLOG_COMPOSITIONS.legacyCurrent);
+  assert.strictEqual(resolveBlogComposition(true, null), BLOG_COMPOSITIONS.legacyCurrent);
+  for (const composition of Object.values(BLOG_COMPOSITIONS)) {
+    assert.equal(new Set(composition.order).size, composition.order.length);
+    assert.equal(composition.order.filter((module) => module === 'content').length, 1);
+  }
 });
 
 test('normaliza formato legado sem acento e Critério/Criterio', () => {

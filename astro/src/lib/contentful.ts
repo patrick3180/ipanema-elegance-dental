@@ -28,6 +28,22 @@ export interface BlogData {
   entryMap: Map<string, any>; // entries linkadas (ex.: categoria) via includes.Entry
 }
 
+export const EDITORIAL_ARCHETYPES = [
+  'decisao_entre_caminhos',
+  'jornada_clinica',
+  'resposta_clinica_direta',
+  'prevencao_na_pratica',
+] as const;
+
+export type EditorialArchetype = (typeof EDITORIAL_ARCHETYPES)[number];
+
+/** Contentful values are deliberately accepted only as exact enum literals. */
+export function parseEditorialArchetype(value: unknown): EditorialArchetype | null {
+  return typeof value === 'string' && (EDITORIAL_ARCHETYPES as readonly string[]).includes(value)
+    ? value as EditorialArchetype
+    : null;
+}
+
 export interface ComparisonTableRow {
   criterion: string;
   values: string[];
@@ -180,6 +196,10 @@ export function postMeta(
   entryMap?: Map<string, any>
 ) {
   const f = post.fields ?? {};
+  const editorialArchetype = parseEditorialArchetype(f.editorialArchetype);
+  const editorialArchetypeReason = typeof f.editorialArchetypeReason === 'string' && f.editorialArchetypeReason
+    ? f.editorialArchetypeReason
+    : null;
   const comparisonTable = normalizeComparisonTable(f.comparisonTable);
   const slug = resolveSlug(post);
   if (!comparisonTable.valid && !loggedComparisonTableFailures.has(slug)) {
@@ -225,6 +245,8 @@ export function postMeta(
       acceptedAnswer?: { text?: string };
     }>,
     peopleAlsoAsk: (f.peopleAlsoAsk?.questions || (Array.isArray(f.peopleAlsoAsk) ? f.peopleAlsoAsk : [])) as string[],
+    editorialArchetype,
+    editorialArchetypeReason,
     comparisonTable,
   };
 }
