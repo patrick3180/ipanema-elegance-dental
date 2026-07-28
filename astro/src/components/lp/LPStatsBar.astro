@@ -57,8 +57,9 @@ const { particular = false } = Astro.props;
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b3955f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15h6"/></svg>
           </div>
           <div>
-            <p class="lp-stat-value">Particular</p>
-            <p class="lp-stat-label">Atendimento</p>
+            {/* Frase inteira num selo so, por decisao do Patrick (28/07) — nao
+                dividir em valor+rotulo como os outros tres. */}
+            <p class="lp-stat-value lp-stat-frase">Atendimento Particular</p>
           </div>
         </div>
       ) : (
@@ -121,5 +122,13 @@ const { particular = false } = Astro.props;
     font-size: 0.75rem;
     color: #6b6b6b;
     line-height: 1.25;
+  }
+  /* Selo de frase unica (sem rotulo abaixo): fonte um degrau menor para caber
+     na coluna de ~155px do grid de 2 colunas em 375px, e altura equivalente
+     a dos outros tres selos, que ocupam duas linhas (valor + rotulo). */
+  .lp-stat-frase {
+    font-size: 0.95rem;
+    line-height: 1.3;
+    max-width: 8.5em;
   }
 </style>
