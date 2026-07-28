@@ -39,6 +39,23 @@ const {
     <meta name="google-site-verification" content="mufiI1fRvsBjdZpIg6V7PCLlw12pjd4d-zd5dzoIkN8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Guarda de produção: o rastreamento só dispara no domínio real.
+         Sem isso, sessão de desenvolvimento em localhost entra no GA4 como
+         visitante de verdade. Em 21/07/2026 foram 41% de TODOS os eventos do
+         dia, e uma LP que nunca existiu (/lp/clareamento-dental-v2-foto, 404)
+         apareceu como a página de maior tráfego da conta — o erro atravessou
+         quatro agentes até virar item de reunião (ata #78, 27/07/2026).
+         Preview da Vercel também NÃO conta como produção, de propósito. -->
+    <script is:inline>
+      (function () {
+        var PROD_HOSTS = ['dracarlachristoph.com', 'www.dracarlachristoph.com'];
+        window.__TRACKING_ON__ = PROD_HOSTS.indexOf(window.location.hostname) !== -1;
+        if (!window.__TRACKING_ON__ && window.console && console.info) {
+          console.info('[tracking] desligado fora de producao (host: ' + window.location.hostname + ')');
+        }
+      })();
+    </script>
+
     <!-- Rastreamento Seguro: buffer global (idêntico ao SPA) -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
@@ -302,6 +319,10 @@ const {
     <!-- GTM: mesmo snippet do SPA — carrega após 2s OU primeira interação -->
     <script is:inline>
       (function () {
+        // Fora de produção o GTM nunca carrega — logo GA4, conversão do Ads e
+        // remarketing não disparam. Os dataLayer.push abaixo viram inertes
+        // (dataLayer é só um array sem o GTM), o que preserva o debug local.
+        if (!window.__TRACKING_ON__) return;
         var loaded = false;
         function loadGTM() {
           if (loaded) return;
@@ -335,6 +356,9 @@ const {
       (function () {
         function sendGclidWebhook(label) {
           try {
+            // Nunca gravar clique de GCLID vindo de dev/preview: a tabela
+            // gc_gclid_clicks é produção e alimenta a atribuição de campanha.
+            if (!window.__TRACKING_ON__) return;
             var gclid = localStorage.getItem('gclid');
             if (!gclid) return;
             // timestamp SEMPRE em ISO: epoch millis (String(Date.now())) quebrava
