@@ -2,7 +2,19 @@
 /**
  * LPStatsBar — porte de src/components/treatment/StatsBar.tsx (locale pt).
  * Sinal de autoridade logo abaixo do hero (20+ anos, 4.000+ pacientes, CRO, 5.0 Google).
+ *
+ * Prop `particular` (opcional, default false): troca o 4o selo — "5.0 ★ Avaliacao
+ * Google" — por "Particular / Atendimento sem convenio". Serve as LPs cujo trafego
+ * chega de busca generica por dentista, onde a duvida "atende meu convenio?" e
+ * resolvida antes de qualquer outra. Medido em 28/07/2026: 13,5% dos leads NOVOS
+ * do WhatsApp procuravam convenio (Last Mile); entre pacientes da base, zero.
+ * O selo do Google sai sem perda quando o hero ja exibe a mesma prova logo
+ * abaixo do CTA (caso do LPHeroFullBleed com `reviews`) — era repeticao.
  */
+interface Props {
+  particular?: boolean;
+}
+const { particular = false } = Astro.props;
 ---
 <section class="lp-stats" aria-label="Estatísticas da clínica">
   <div class="lp-stats-inner">
@@ -34,15 +46,27 @@
           <p class="lp-stat-label">27.509</p>
         </div>
       </div>
-      <div class="lp-stat">
-        <div class="lp-stat-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="#b3955f" stroke="#b3955f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      {particular ? (
+        <div class="lp-stat">
+          <div class="lp-stat-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b3955f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15h6"/></svg>
+          </div>
+          <div>
+            <p class="lp-stat-value">Particular</p>
+            <p class="lp-stat-label">Atendimento sem convênio</p>
+          </div>
         </div>
-        <div>
-          <p class="lp-stat-value">5.0 ★</p>
-          <p class="lp-stat-label">Avaliação Google</p>
+      ) : (
+        <div class="lp-stat">
+          <div class="lp-stat-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#b3955f" stroke="#b3955f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div>
+            <p class="lp-stat-value">5.0 ★</p>
+            <p class="lp-stat-label">Avaliação Google</p>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   </div>
 </section>

@@ -90,7 +90,6 @@ const t = isEn
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
           <span class="lp-wa-text">{t.waButton}</span>
-          <svg class="lp-wa-phone" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         </a>
       </div>
     </header>
@@ -104,7 +103,8 @@ const t = isEn
       <p><strong>{t.brand}</strong> — CRO-RJ 27.509 · {t.specialty}</p>
       <p>{t.address}</p>
       <p>
-        {t.phone} ·
+        {/* tel: — era o unico canal nao-WhatsApp da LP e nao era tocavel no celular */}
+        <a class="lp-ftr-tel" href="tel:+552137387909">{t.phone}</a> ·
         <a
           class="js-wa-cta"
           data-label={`${waLabelPrefix}_footer_whatsapp`}
@@ -152,14 +152,18 @@ const t = isEn
     font-size: 0.75rem; /* text-xs */
     color: #525252; /* text-gray-600 */
   }
+  /* min-height 44px: alvo de toque minimo. Media em 28/07/2026 dava 74x34px —
+     e este e o unico CTA permanentemente visivel da LP. */
   .lp-wa-btn {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
+    min-height: 44px;
     background: #0F7540;
     color: #fff;
     border-radius: 8px;
-    padding: 8px 16px;
+    padding: 6px 14px;
     font-size: 0.875rem;
     font-weight: 500;
     text-decoration: none;
@@ -175,12 +179,19 @@ const t = isEn
     background: #0C5E33;
     transform: scale(1.05);
   }
-  /* Texto no ≥640px; só ícone de telefone abaixo (paridade com o original) */
+  /* Rotulo visivel ja em 375px: abaixo de 640px o botao mostrava dois icones
+     (balao + telefone) e nenhum texto — e o icone de telefone prometia uma
+     ligacao que o link (wa.me) nao entrega. Fica so o balao + "WhatsApp 24h". */
+  /* Rotulo segue oculto abaixo de 640px — MEDIDO: exibi-lo a 375px alarga o
+     botao de 74px para 164px, o nome da marca quebra em 2 linhas e o header
+     fixo vai de 67px para 92px, tirando 25px de conteudo de TODA tela de
+     TODAS as LPs. O problema real do botao era o alvo de toque (34px) e o
+     icone de telefone, que prometia uma ligacao que o link wa.me nao entrega;
+     ambos resolvidos. Sozinho, o balao de WhatsApp e inequivoco e o link tem
+     aria-label. */
   .lp-wa-text { display: none; }
-  .lp-wa-phone { display: block; }
   @media (min-width: 640px) {
-    .lp-wa-text { display: inline; }
-    .lp-wa-phone { display: none; }
+    .lp-wa-text { display: inline; white-space: nowrap; }
   }
 
   /* Footer minimalista — sem margin-top: as LPs terminam na seção CTA roxa
@@ -194,4 +205,23 @@ const t = isEn
   }
   .lp-ftr p { margin: 4px 0; }
   .lp-ftr a { color: var(--dental-gold-soft); }
+  .lp-ftr-tel { text-decoration: none; }
+  .lp-ftr-tel:hover { text-decoration: underline; }
+
+  /* Foco visivel. Auditoria de 28/07/2026: ZERO regras de :focus/:focus-visible
+     em 216 regras CSS da LP — o teclado caia no outline laranja de 0,79px do
+     navegador, sobre botao verde. Nao havia supressao de outline, so ausencia. */
+  :global(.lp-hdr a:focus-visible),
+  :global(.lp-ftr a:focus-visible),
+  :global(main a:focus-visible),
+  :global(main button:focus-visible),
+  :global(main summary:focus-visible) {
+    outline: 3px solid var(--dental-gold, #b3955f);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  /* Sobre o roxo do footer/CTA final o dourado some — inverte para branco. */
+  :global(.lp-ftr a:focus-visible) {
+    outline-color: #fff;
+  }
 </style>

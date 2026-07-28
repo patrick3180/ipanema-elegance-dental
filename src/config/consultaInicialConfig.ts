@@ -14,8 +14,13 @@ export const consultaInicialConfig: LandingPageConfig = {
   },
 
   hero: {
-    headline: "Cada Caso É Único — Sua Consulta Também Deveria Ser",
-    subheadline: "Tempo de verdade para entender o seu caso: ouvimos primeiro, examinamos com calma e explicamos cada passo — antes de propor qualquer tratamento.",
+    // H1 carrega as palavras da busca ("dentista", "Ipanema"): ~90% do trafego
+    // chega de `dentista zona sul` / `consultorio dentista` / `dentista ipanema` /
+    // `dentista leblon` — buscas de COMPARACAO. O H1 anterior nao tinha nenhuma
+    // delas; a unica confirmacao de relevancia era o eyebrow de 11,5px.
+    // O aforismo nao foi descartado: desceu para a subheadline.
+    headline: "Dentista em Ipanema — sua consulta dura no mínimo 1 hora",
+    subheadline: "Cada caso é único. Ouvimos primeiro, examinamos com calma e explicamos cada passo — antes de propor qualquer tratamento.",
     ctaText: "Agendar Minha Consulta",
     backgroundImage: "/lovable-uploads/RIT08058-vertical-doutora-site.webp"
   },

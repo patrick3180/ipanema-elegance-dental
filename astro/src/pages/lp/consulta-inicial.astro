@@ -7,6 +7,7 @@
  */
 import LPLayout from '../../layouts/LPLayout.astro';
 import LPHeroFullBleed from '../../components/lp/LPHeroFullBleed.astro';
+import LPStatsBar from '../../components/lp/LPStatsBar.astro';
 import LPProblem from '../../components/lp/LPProblem.astro';
 import LPDoctorBio from '../../components/lp/LPDoctorBio.astro';
 import LPGuide from '../../components/lp/LPGuide.astro';
@@ -91,6 +92,13 @@ const schemas = [
         height: 650,
       }}
     />
+
+    {/* Barra de autoridade logo abaixo da dobra — padrao das LPs que mais convertem
+        (limpeza, emergencia, facetas, implantes). Esta era a unica LP de trafego alto
+        sem ela: os sinais de confianca ficavam so no hero, em 10,9px com contraste
+        3,28:1. `particular` troca o selo do Google (ja repetido no hero) pela
+        declaracao de atendimento sem convenio. */}
+    <LPStatsBar particular />
 
     <LPProblem
       title={config.problem.title}

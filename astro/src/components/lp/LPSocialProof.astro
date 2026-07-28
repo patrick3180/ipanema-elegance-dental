@@ -27,7 +27,11 @@ const messagePath = '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>';
 const getStatIconPath = (label: string) => {
   if (label.includes('Experiência')) return awardPath;
   if (label.includes('Pacientes')) return usersPath;
-  if (label.includes('hora') || label.includes('Agendamento')) return clockPath;
+  // 'Consulta'/'Mínimo' entram aqui porque o label real e "Mínimo por Consulta"
+  // (do stat "1h+"), que nao contem "hora": caia no fallback e recebia o icone
+  // de medalha, identico ao de "20+ Anos de Experiência".
+  if (label.includes('hora') || label.includes('Agendamento')
+      || label.includes('Consulta') || label.includes('Mínimo')) return clockPath;
   if (label.includes('WhatsApp')) return messagePath;
   return awardPath;
 };

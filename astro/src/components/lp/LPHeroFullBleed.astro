@@ -157,7 +157,12 @@ const t = {
   /* Sem foto: hero compacto de texto (a foto do profissional vive no DoctorBio) */
   .lpfb-nophoto .lpfb-text { padding-top: 2rem; }
 
-  @media (min-width: 768px) {
+  /* `min-height: 600px` alem da largura: o bloco desktop zera o padding-top e
+     centraliza o texto em 86vh — o que so funciona em tela ALTA. Em celular
+     deitado (812x375), 86vh = 322px e menor que o conteudo: a centralizacao
+     nao tem folga, o bloco encosta em y=0 e o header fixo de 72px cobria o
+     eyebrow inteiro e a 1a linha do H1. Verificado por screenshot em 28/07/2026. */
+  @media (min-width: 768px) and (min-height: 600px) {
     .lpfb-hero { min-height: 86vh; padding-top: 0; }
     .lpfb-acao { display: block; }
     .lpfb-nophoto { min-height: auto; padding-top: 72px; }

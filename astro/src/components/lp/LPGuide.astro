@@ -34,8 +34,14 @@ const isOddLast = (index: number) =>
         {steps.map((step, index) => (
           <div class:list={['lp-guide-card', isOddLast(index) && 'odd-last']}>
             <div class="lp-guide-row">
+              {/* Usa o `number` do config quando existe. Antes desenhava o mesmo
+                  check dourado nos 4 passos, descartando o dado — sem numeracao
+                  o visitante le 4 beneficios soltos, nao um processo, e a
+                  promessa "voce vai saber o que vai acontecer" se perde. */}
               <div class="lp-guide-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B3955F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.27"/></svg>
+                {step.number
+                  ? <span class="lp-guide-num">{step.number}</span>
+                  : <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B3955F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.27"/></svg>}
               </div>
               <div class="lp-guide-body">
                 <h3>{step.title}</h3>
@@ -91,7 +97,10 @@ const isOddLast = (index: number) =>
   .lp-guide-card:hover {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
   }
-  .lp-guide-row { display: flex; align-items: center; gap: 1rem; }
+  /* flex-start: com `center`, o icone flutuava no meio de cards de texto longo
+     (o passo 2 tem 7 linhas no mobile), longe do titulo que ele numera —
+     parecia defeito de renderizacao. */
+  .lp-guide-row { display: flex; align-items: flex-start; gap: 1rem; }
   .lp-guide-icon {
     width: 3rem;
     height: 3rem;
@@ -101,6 +110,13 @@ const isOddLast = (index: number) =>
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+  }
+  .lp-guide-num {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #7A6539; /* dourado escurecido: AA sobre o circulo bege */
+    line-height: 1;
   }
   .lp-guide-body { flex: 1; }
   .lp-guide-body h3 {
