@@ -4,12 +4,17 @@
  * Sinal de autoridade logo abaixo do hero (20+ anos, 4.000+ pacientes, CRO, 5.0 Google).
  *
  * Prop `particular` (opcional, default false): troca o 4o selo — "5.0 ★ Avaliacao
- * Google" — por "Particular / Atendimento sem convenio". Serve as LPs cujo trafego
- * chega de busca generica por dentista, onde a duvida "atende meu convenio?" e
- * resolvida antes de qualquer outra. Medido em 28/07/2026: 13,5% dos leads NOVOS
- * do WhatsApp procuravam convenio (Last Mile); entre pacientes da base, zero.
+ * Google" — por "Atendimento particular". Serve as LPs cujo trafego chega de
+ * busca generica por dentista, onde a duvida "atende meu convenio?" e resolvida
+ * antes de qualquer outra. Medido em 28/07/2026: 13,5% dos leads NOVOS do
+ * WhatsApp procuravam convenio (Last Mile); entre pacientes da base, zero.
  * O selo do Google sai sem perda quando o hero ja exibe a mesma prova logo
  * abaixo do CTA (caso do LPHeroFullBleed com `reviews`) — era repeticao.
+ *
+ * Texto enxuto por decisao do Patrick (28/07): so "Atendimento particular",
+ * sem mencao a convenio nem a recibo. A clinica emite recibo de todos os
+ * procedimentos, mas isso e obrigacao fiscal, nao diferencial de venda — e a
+ * equipe ja responde isso no WhatsApp quando perguntam.
  */
 interface Props {
   particular?: boolean;
@@ -53,7 +58,7 @@ const { particular = false } = Astro.props;
           </div>
           <div>
             <p class="lp-stat-value">Particular</p>
-            <p class="lp-stat-label">Atendimento sem convênio</p>
+            <p class="lp-stat-label">Atendimento</p>
           </div>
         </div>
       ) : (
