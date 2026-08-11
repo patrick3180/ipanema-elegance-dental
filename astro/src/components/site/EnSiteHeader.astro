@@ -10,6 +10,7 @@
  *  - CTA WhatsApp no menu mobile com mensagem em inglês.
  */
 import { getEquivalentPath } from '@/utils/languageMap';
+import { GOOGLE_RATING, GOOGLE_REVIEWS_URL, GOOGLE_REVIEW_COUNT_EN } from '../../lib/googleBusiness';
 
 const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
 // Rotas PT que NÃO existem como página (emergência só existe como LP noindex).
@@ -46,15 +47,15 @@ const WA_HREF = "https://wa.me/5521993304045?text=Hello!%20I'd%20like%20to%20boo
 
     <!-- Google Rating Badge -->
     <a
-      href="https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/"
+      href={GOOGLE_REVIEWS_URL}
       target="_blank"
       rel="noopener noreferrer"
       class="g-badge"
-      aria-label="See our Google reviews - 5.0 stars with 18 reviews"
+      aria-label={`See our Google reviews - ${GOOGLE_RATING} stars with ${GOOGLE_REVIEW_COUNT_EN}`}
     >
       <svg class="star" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <b>5.0</b>
-      <span class="g-count">(18 reviews)</span>
+      <b>{GOOGLE_RATING}</b>
+      <span class="g-count">({GOOGLE_REVIEW_COUNT_EN})</span>
     </a>
 
     <!-- Desktop navigation -->

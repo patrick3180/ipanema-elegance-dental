@@ -3,15 +3,16 @@
  * /en/contact — Porte fiel de src/pages/en/EnContactPage.tsx.
  *
  * - title/description: copiados de scripts/generate-static-meta.cjs (englishPages['/en/contact']).
- * - Schema Dentist: copiado VERBATIM do structuredData do EnContactPage.tsx
- *   (inclui aggregateRating 5.0/18 — dados REAIS do Google Reviews, exceção
- *   autorizada Maio/2026; e o hasMap com placeholder "YOUR_GOOGLE_MAPS_CID",
- *   que já existe assim em produção — reportado ao orquestrador, não corrigido).
+ * - Schema Dentist: copiado do structuredData do EnContactPage.tsx (exceção
+ *   autorizada Maio/2026 para o aggregateRating). Nota, contagem e hasMap vêm
+ *   de lib/googleBusiness — o hasMap tinha o placeholder "YOUR_GOOGLE_MAPS_CID"
+ *   herdado do React, resolvido em 11/08/2026 com o CID real do perfil.
  * - hreflang: copiado do SEOHead do React (pt-BR /contato, en /en/contact, x-default /contato).
  * - CTA WhatsApp: label do React = sendGCLIDToWebhook('en_contact_page_button').
  * - Header fixo → primeira seção compensa com padding-top 112px.
  */
 import SiteLayout from '../../layouts/SiteLayout.astro';
+import { GOOGLE_PROFILE_URL, GOOGLE_RATING, GOOGLE_REVIEW_COUNT } from '../../lib/googleBusiness';
 
 const WA_HREF = "https://wa.me/5521993304045?text=Hello!%20I'd%20like%20to%20book%20an%20appointment.";
 
@@ -55,15 +56,15 @@ const structuredData = {
     { "@type": "Neighborhood", "name": "Leblon" },
     { "@type": "Neighborhood", "name": "Copacabana" }
   ],
-  "hasMap": "https://maps.google.com/?cid=YOUR_GOOGLE_MAPS_CID",
+  "hasMap": GOOGLE_PROFILE_URL,
   "sameAs": [
     "https://instagram.com/dracarlachristoph",
     "https://wa.me/5521993304045"
   ],
   "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "18",
+    "ratingValue": GOOGLE_RATING,
+    "reviewCount": String(GOOGLE_REVIEW_COUNT),
     "bestRating": "5",
     "worstRating": "1"
   },

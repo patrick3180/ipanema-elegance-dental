@@ -15,6 +15,7 @@
  * (wrapper `hidden md:block` + botão `md:hidden`) — não portado.
  */
 import LPLayout from '../../layouts/LPLayout.astro';
+import { GOOGLE_RATING_PT, GOOGLE_REVIEWS_URL, GOOGLE_REVIEW_COUNT_PT } from '../../lib/googleBusiness';
 import LPMidCTA from '../../components/lp/LPMidCTA.astro';
 import LPDoctorBio from '../../components/lp/LPDoctorBio.astro';
 import LPGuide from '../../components/lp/LPGuide.astro';
@@ -155,15 +156,15 @@ const schemas = [
               </a>
 
               <a
-                href={cfg.proof.ratingHref}
+                href={GOOGLE_REVIEWS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`Avaliações no Google: ${cfg.proof.rating} estrelas com ${cfg.proof.ratingCount}`}
+                aria-label={`Avaliações no Google: ${GOOGLE_RATING_PT} estrelas com ${GOOGLE_REVIEW_COUNT_PT}`}
                 class="ph-hero-proof"
               >
                 <svg class="ph-hero-star" width="16" height="16" viewBox="0 0 24 24" fill="#B3955F" stroke="#B3955F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <b>{cfg.proof.rating}</b>
-                <span>no Google · {cfg.proof.ratingCount}</span>
+                <b>{GOOGLE_RATING_PT}</b>
+                <span>no Google · {GOOGLE_REVIEW_COUNT_PT}</span>
               </a>
             </div>
 

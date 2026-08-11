@@ -79,10 +79,13 @@ export const especialistaProteseV2Config: ProteseV2Config = {
   },
 
   proof: {
+    // A LP em produção (Astro) lê nota/contagem/link de astro/src/lib/googleBusiness
+    // — fonte única. Estes três campos só alimentam o ProteseHero.tsx legado;
+    // mantidos em sincronia para não virarem dado podre.
     rating: "5,0",
-    ratingCount: "17 avaliações",
+    ratingCount: "21 avaliações",
     ratingHref:
-      "https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/",
+      "https://www.google.com/maps/place/Dra.+Carla+Christoph+-+Reabilita%C3%A7%C3%A3o+oral+e+est%C3%A9tica/data=!4m7!3m6!1s0x9bd5070f90d87f:0x446370e6f29c86c4!8m2!3d-22.9836633!4d-43.2116873!9m1!1b1",
     badges: ["20+ anos em Ipanema", "CRO-RJ 27.509", "4.000+ pacientes"],
   },
 

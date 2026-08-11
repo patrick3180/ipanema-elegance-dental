@@ -10,6 +10,8 @@
  * Para outra foto, passar mobileBase/desktopBase (arquivos já otimizados em
  * /lovable-uploads/).
  */
+import { GOOGLE_RATING_PT, GOOGLE_REVIEWS_URL, GOOGLE_REVIEW_COUNT_PT } from '../../lib/googleBusiness';
+
 interface Props {
   eyebrow?: string;
   headline: string;
@@ -45,9 +47,9 @@ const {
   benefits = [],
   trustBadges = [],
   reviews = {
-    rating: '5,0',
-    count: '18 avaliações',
-    href: 'https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/',
+    rating: GOOGLE_RATING_PT,
+    count: GOOGLE_REVIEW_COUNT_PT,
+    href: GOOGLE_REVIEWS_URL,
   },
   photo = {
     mobileBase: 'hero-fb-m',

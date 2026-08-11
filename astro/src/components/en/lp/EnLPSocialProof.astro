@@ -1,5 +1,7 @@
 ---
 /** EnLPSocialProof — porte fiel de src/components/en/lp/EnLPSocialProof.tsx */
+import { GOOGLE_REVIEWS_URL } from '../../../lib/googleBusiness';
+
 interface Testimonial {
   name: string;
   text: string;
@@ -52,7 +54,7 @@ const { title, testimonials, stats } = Astro.props;
 
     <div class="enlp-social-glink">
       <a
-        href="https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/"
+        href={GOOGLE_REVIEWS_URL}
         target="_blank"
         rel="noopener noreferrer"
       >See all reviews on Google Maps →</a>

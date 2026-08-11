@@ -5,6 +5,7 @@
  * Schemas: MedicalProcedure + Dentist (generate-static-meta.cjs) +
  * FAQPage (mesmos textos do Helmet do React) + BreadcrumbList (hero).
  */
+import { GOOGLE_AGGREGATE_RATING } from '../lib/googleBusiness';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import TreatmentHero from '../components/treatment/TreatmentHero.astro';
 import StatsBar from '../components/treatment/StatsBar.astro';
@@ -83,7 +84,7 @@ const schemas = [
       { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '19:00' },
     ],
     hasCredential: { '@type': 'EducationalOccupationalCredential', credentialCategory: 'CRO-RJ', recognizedBy: { '@type': 'Organization', name: 'CRO-RJ' }, identifier: '27.509' },
-    aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '18', bestRating: '5' },
+    aggregateRating: GOOGLE_AGGREGATE_RATING,
     availableLanguage: ['pt-BR', 'en'],
   }),
   // FAQPage — textos do Helmet do React

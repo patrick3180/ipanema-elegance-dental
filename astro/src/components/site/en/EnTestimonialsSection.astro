@@ -6,6 +6,8 @@
  * exibido (os demais ficam display:none < 768px, igual ao `hidden md:block`);
  * controles de navegação removidos (eram JS-only). Link do Google Reviews mantido.
  */
+import { GOOGLE_REVIEWS_URL } from '../../../lib/googleBusiness';
+
 const testimonials = [
   {
     name: 'Beatriz M.',
@@ -69,7 +71,7 @@ const testimonials = [
 
     <div class="g-link-wrap">
       <a
-        href="https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/"
+        href={GOOGLE_REVIEWS_URL}
         target="_blank"
         rel="noopener noreferrer"
         class="g-link"

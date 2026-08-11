@@ -4,6 +4,7 @@
  * Porte fiel de src/pages/en/EnCosmeticDentistryLP.tsx (copy verbatim do
  * enCosmeticDentistryLPConfig). Única LP EN com a seção EnLPServices.
  */
+import { GOOGLE_RATING, GOOGLE_REVIEWS_URL, GOOGLE_REVIEW_COUNT_EN } from '../../../lib/googleBusiness';
 import LPLayout from '../../../layouts/LPLayout.astro';
 import LPHeroFullBleed from '../../../components/lp/LPHeroFullBleed.astro';
 import EnLPProblem from '../../../components/en/lp/EnLPProblem.astro';
@@ -100,7 +101,7 @@ const schemas = [
       whatsappHref={waHref}
       waLabel={`${labelPrefix}_hero_whatsapp`}
       benefits={['We reply in your language', 'Same dentist from start to finish']}
-      reviews={{ rating: '5.0', count: '18 reviews', href: 'https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/' }}
+      reviews={{ rating: GOOGLE_RATING, count: GOOGLE_REVIEW_COUNT_EN, href: GOOGLE_REVIEWS_URL }}
     />
 
     <EnLPProblem

@@ -27,6 +27,7 @@
  * global do Base.astro). Form de contato replica o fluxo do React
  * (dataLayer + POST /api/contact + gtag conversion + beacon /api/send-gclid).
  */
+import { GOOGLE_AGGREGATE_RATING, GOOGLE_REVIEWS_URL } from '../lib/googleBusiness';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { getBlogData, postMeta } from '../lib/contentful';
 
@@ -339,7 +340,7 @@ const dentistSchema = {
     recognizedBy: { '@type': 'Organization', name: 'CRO-RJ' },
     identifier: '27.509',
   },
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '18', bestRating: '5' },
+  aggregateRating: GOOGLE_AGGREGATE_RATING,
   availableLanguage: ['pt-BR', 'en'],
 };
 
@@ -734,7 +735,7 @@ const schemas = [JSON.stringify(structuredData), JSON.stringify(dentistSchema)];
 
           <div class="tst-google">
             <a
-              href="https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/"
+              href={GOOGLE_REVIEWS_URL}
               target="_blank"
               rel="noopener noreferrer"
             >

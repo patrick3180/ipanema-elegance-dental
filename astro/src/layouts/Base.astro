@@ -8,6 +8,8 @@
  * Design tokens do site: dental-purple #381F47, dental-gold #B3955F,
  * Playfair Display (headings) + Montserrat (body), self-hosted em /fonts.
  */
+import { GOOGLE_RATING, GOOGLE_REVIEWS_URL, GOOGLE_REVIEW_COUNT_PT } from '../lib/googleBusiness';
+
 interface Props {
   title: string;
   description: string;
@@ -283,11 +285,11 @@ const {
         </a>
         <a
           class="review-badge"
-          href="https://www.google.com/maps/place/Dra.+Carla+Christoph/@-22.9837862,-43.2055289,17z/"
+          href={GOOGLE_REVIEWS_URL}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="5,0 estrelas no Google, 18 avaliações"
-        ><span class="star">★</span> <b>5.0</b> <span>(18 avaliações)</span></a>
+          aria-label={`${GOOGLE_RATING} estrelas no Google, ${GOOGLE_REVIEW_COUNT_PT}`}
+        ><span class="star">★</span> <b>{GOOGLE_RATING}</b> <span>({GOOGLE_REVIEW_COUNT_PT})</span></a>
         <nav class="site-nav">
           <a href="/servicos">Tratamentos</a>
           <a href="/sobre">Sobre</a>
