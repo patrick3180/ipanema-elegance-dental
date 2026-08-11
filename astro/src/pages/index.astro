@@ -921,9 +921,15 @@ const schemas = [JSON.stringify(structuredData), JSON.stringify(dentistSchema)];
             </div>
 
             <div class="ci-map">
+              {/* Mesmo embed de /contato: o pin é o PERFIL da clínica (feature id
+                  0x9bd5070f90d87f:0x446370e6f29c86c4), não o endereço solto — assim o
+                  balão traz o nome e leva à ficha. Diferença proposital: aqui `!5e0`
+                  (mapa) em vez do `!5e1` (satélite) da /contato, que se localiza melhor.
+                  O embed anterior apontava um feature id morto e um centro no Túnel
+                  Rebouças; renderizava certo só porque a API re-geocodifica o rótulo. */}
               <iframe
                 title="Localização da clínica Dra. Carla Christoph no Google Maps - Ipanema, Rio de Janeiro"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3673.8038117882485!2d-43.20445902529023!3d-22.9554811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bd5982d11a59b%3A0xf72b52f26c87f5c0!2sR.%20Visc.%20de%20Piraj%C3%A1%2C%20550%20-%20Ipanema%2C%20Rio%20de%20Janeiro%20-%20RJ%2C%2022410-901!5e0!3m2!1spt-BR!2sbr!4v1714480152894!5m2!1spt-BR!2sbr"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4586.581678884269!2d-43.2116873!3d-22.9836633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bd5070f90d87f%3A0x446370e6f29c86c4!2sDra.%20Carla%20Christoph%20-%20Reabilita%C3%A7%C3%A3o%20oral%20e%20est%C3%A9tica!5e0!3m2!1spt-BR!2sbr!4v1747142945090!5m2!1spt-BR!2sbr"
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
               ></iframe>
