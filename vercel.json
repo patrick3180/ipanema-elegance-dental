@@ -8,6 +8,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/blog/implante-dentario-beneficios-durabilidade",
+      "destination": "/blog/implantes-quanto-tempo-dura-implante-dentario-guia-completo",
+      "permanent": true
+    },
+    {
       "source": "/lp/profilaxia-dental-ipanema",
       "destination": "/lp/limpeza-dental-ipanema",
       "statusCode": 301
