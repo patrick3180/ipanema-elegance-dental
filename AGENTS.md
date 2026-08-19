@@ -103,6 +103,7 @@ A palavra **"avaliação"** causa confusão real: pacientes chegam ao consultór
 ### 1.4 Atribuição de Tratamentos — Quem Faz o Quê
 
 **CRÍTICO:** A Dra. Carla NÃO faz canal nem periodontia. Nunca afirmar que ela faz.
+**Periodontia inclui a cirurgia gengival estética (gengivoplastia)** — é o caso que mais escapa, porque "estética" faz parecer que é dela.
 
 | Tratamento | Quem Executa | Papel da Dra. Carla |
 |-----------|-------------|---------------------|
@@ -114,10 +115,14 @@ A palavra **"avaliação"** causa confusão real: pacientes chegam ao consultór
 | Clínica Geral | **Dra. Carla** | Executa |
 | Ortodontia | **Dr. Bruno** (CRO-RJ 41.684) | Acompanha jornada |
 | Canal | Endodontista parceiro | Diagnóstico + finalização |
-| Gengiva | Periodontista parceiro | Diagnóstico + manutenção |
+| Gengiva — tratamento, raspagem, enxerto | **Periodontista parceira** | Diagnóstico + manutenção |
+| Gengivoplastia / cirurgia gengival estética | **Periodontista parceira** | Diagnóstico, planejamento digital e acompanhamento |
 
 - Dr. Bruno = **"Dr. Bruno"** (sem sobrenome "Christoph" — ele NÃO é da família)
 - Dr. Bruno = Doutor em Ortodontia pela UERJ, Professor IOPUC-Rio
+- A parceira de periodontia é **mulher** — concordar o gênero: "a periodontista parceira", "conduzida pela periodontista parceira".
+
+> ⚠️ **Por que esta regra ganhou detalhe (Ago/2026):** o post `estetica-dental-sorriso-gengival-gengivoplastia` ficou ~6 meses no ar afirmando em 1ª pessoa *"removo, recontorno ou reposiciono o tecido gengival"* e *"realizo um enxerto gengival"*. Passou por todas as revisões porque o `compliance-check.cjs` exigia a string "Dra. Carla" perto do verbo — e o blog inteiro é escrito em 1ª pessoa. A regra `primeira-pessoa-perio` foi criada para pegar isso, mas **o texto continua sendo responsabilidade de quem escreve**: o que fica em 1ª pessoa é o que ela faz de fato (diagnóstico, sondagem, exame, planejamento digital, profilaxia, restauração, acompanhamento). A execução cirúrgica é da parceira.
 
 **REGRA — Formação de graduação da Dra. Carla (Maio/2026):** **NÃO mencionar a faculdade onde se formou** (em copy, schema, bio, alumniOf, qualquer lugar). Foco da bio canônica é experiência militar (8 anos Marinha) + especializações (Prótese, Implantodontia) + CRO-RJ 27.509. **Nunca afirmar UFRJ ou qualquer outra instituição.** Esta é uma decisão consciente de posicionamento.
 
