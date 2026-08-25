@@ -77,6 +77,7 @@ export const consultaInicialConfig: LandingPageConfig = {
       { question: "Posso ir apenas para uma segunda opinião?", answer: "Sim. Muitos pacientes nos procuram para uma segunda opinião independente. A consulta segue o mesmo formato completo — com exame clínico, diagnóstico detalhado e nossa visão sobre o caso." },
       { question: "Por que o atendimento é particular?", answer: "O formato particular nos permite dedicar o tempo que cada caso exige, usar materiais selecionados e manter um número reduzido de pacientes por dia. É o que garante a qualidade do atendimento." },
       { question: "Como funciona o agendamento?", answer: "Pelo WhatsApp, que funciona 24 horas. Você envia mensagem, escolhemos juntos o melhor horário e confirmamos. Respondemos inclusive nos fins de semana." },
+      { question: "Onde fica o consultório?", answer: "Na Rua Visconde de Pirajá, 550, sala 1107 — no coração de Ipanema. Para quem vem do Leblon ou de Copacabana, são poucos minutos; recebemos pacientes de toda a Zona Sul. Atendemos de segunda a sexta, das 9h às 19h." },
       { question: "Vocês atendem emergências?", answer: "Nosso atendimento é em horário de consultório, mas nos empenhamos em acomodar urgências. Entre em contato pelo WhatsApp e buscamos uma solução." }
     ]
   },
@@ -96,9 +97,13 @@ export const consultaInicialConfig: LandingPageConfig = {
   },
 
   seo: {
-    title: "Consulta Odontológica Personalizada em Ipanema | Dra. Carla Christoph",
-    description: "Consulta odontológica sem pressa em Ipanema. Mínimo de 1 hora por consulta com a Dra. Carla Christoph, especialista com 20+ anos de experiência. Agende pelo WhatsApp 24h.",
-    keywords: ["consulta odontológica ipanema", "dentista particular ipanema", "dentista sem pressa", "consulta personalizada zona sul", "melhor dentista ipanema", "check-up dental ipanema"]
+    // #187 (aprovado por Patrick em 24/08): vocabulário de busca ("consultório",
+    // "Zona Sul", "Leblon", "Copacabana", "perto") vive nas superfícies que só o
+    // robô de QS lê (title/meta/keywords/schema). A página VISÍVEL não muda —
+    // decisão consciente de proteção do posicionamento (BRAND.md §3).
+    title: "Consultório de Dentista em Ipanema, Zona Sul | Dra. Carla Christoph",
+    description: "Consultório de dentista em Ipanema, na Rua Visconde de Pirajá — pacientes de toda a Zona Sul, do Leblon a Copacabana. Consulta com no mínimo 1 hora. WhatsApp 24h.",
+    keywords: ["consultorio dentista ipanema", "dentista zona sul", "dentista perto de mim", "consulta odontológica ipanema", "dentista particular ipanema", "dentista sem pressa", "consulta personalizada zona sul", "melhor dentista ipanema", "check-up dental ipanema"]
   },
 
   tracking: {

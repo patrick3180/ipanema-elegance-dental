@@ -87,7 +87,7 @@ const protocolos = [
     id: 'consultorio',
     situacao: 'Se você tem pressa',
     nome: 'No consultório',
-    resumo: 'Sessões supervisionadas do início ao fim, com a gengiva isolada e o gel de maior concentração.',
+    resumo: 'Sessões supervisionadas do início ao fim, com a gengiva isolada e o gel de maior concentração — é o que o mercado costuma chamar de "clareamento a laser".',
     // O nome químico sozinho não diz ao paciente qual é mais forte — que é
     // justamente o que decide. A qualificação em português mantém a
     // especificidade (o diferencial da marca) e torna a comparação legível.
@@ -157,6 +157,11 @@ const naoIndicado = [
 ];
 
 const faqs = [
+  // #187 (aprovado por Patrick em 24/08): desmistificar "a laser" e "branqueamento"
+  // — as duas buscas pagas que a página não nomeava. Nota clínica do Patrick:
+  // a luz, quando ERA usada, servia para ativar o gel; os géis recentes dispensam.
+  { question: 'Clareamento a laser é diferente do clareamento em consultório?', answer: '"Clareamento a laser" é o nome popular do clareamento feito em consultório. Quem clareia é o gel de peróxido de hidrogênio em alta concentração — a luz, quando era usada, servia para ativar o gel, e os géis mais recentes dispensam essa ativação. O protocolo é o que descrevemos nesta página: sessões supervisionadas, gengiva isolada e cor acompanhada a cada etapa.' },
+  { question: 'Branqueamento dental e clareamento são a mesma coisa?', answer: 'Sim — "branqueamento" é o termo mais usado em Portugal; no Brasil dizemos "clareamento". O tratamento é o mesmo, e a indicação do protocolo sai na consulta, depois do exame.' },
   { question: 'Clareamento dental estraga o esmalte?', answer: 'Não. O clareamento profissional supervisionado não causa danos ao esmalte. O gel clareador age nos pigmentos internos do dente sem comprometer a estrutura.' },
   { question: 'Clareamento de farmácia funciona?', answer: 'Produtos de farmácia têm concentração muito baixa de agente clareador. O resultado costuma ser limitado, irregular e temporário. O clareamento profissional usa concentração adequada com supervisão, o que permite resultado uniforme e mais duradouro.' },
   { question: 'Quanto tempo dura o resultado?', answer: 'Em média 2 a 3 anos, dependendo dos hábitos. Café, vinho e chá escurecem os dentes gradualmente. Manutenções periódicas são simples e ajudam a manter o resultado.' },
@@ -212,7 +217,7 @@ const schemas = [
 
 <LPLayout
   title="Clareamento Dental em Ipanema | Protocolo Individualizado - Dra. Carla Christoph"
-  description="Três protocolos de clareamento, com indicações diferentes. Na consulta, a Dra. Carla identifica a causa do escurecimento e indica o seu. Ipanema."
+  description="Três protocolos de clareamento (ou branqueamento) dental, do feito em consultório — o popular 'a laser' — ao caseiro supervisionado. Na consulta, a Dra. Carla identifica a causa do escurecimento e indica o seu. Ipanema."
   canonical="https://dracarlachristoph.com/lp/clareamento-dental"
   ogImage="https://dracarlachristoph.com/lovable-uploads/RIT08058-vertical-doutora-site.webp"
   schemas={schemas}

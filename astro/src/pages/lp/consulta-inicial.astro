@@ -50,7 +50,14 @@ const schemas = [
         description:
           'Consulta com mínimo de 1 hora dedicada ao caso do paciente. Inclui anamnese, exame clínico completo, radiografias quando necessário e profilaxia.',
         provider: { '@type': 'Dentist', '@id': 'https://dracarlachristoph.com/#dentist' },
-        areaServed: { '@type': 'City', name: 'Rio de Janeiro' },
+        // Área de ATENDIMENTO (consultório único, em Ipanema) — #187, aprovado 24/08.
+        areaServed: [
+          { '@type': 'City', name: 'Rio de Janeiro' },
+          { '@type': 'Place', name: 'Zona Sul do Rio de Janeiro' },
+          { '@type': 'Place', name: 'Ipanema' },
+          { '@type': 'Place', name: 'Leblon' },
+          { '@type': 'Place', name: 'Copacabana' },
+        ],
       },
       {
         '@type': 'FAQPage',
