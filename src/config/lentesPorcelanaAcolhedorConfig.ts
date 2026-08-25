@@ -72,7 +72,11 @@ export const lentesPorcelanaAcolhedorConfig: LandingPageConfig = {
       { question: 'Lente de porcelana estraga o dente?', answer: 'Não. Na maioria dos casos, o preparo é mínimo ou até inexistente. O dente natural é preservado ao máximo. A porcelana é colada sobre o esmalte de forma permanente e segura.' },
       { question: 'Como funciona o Test Drive do Sorriso?', answer: 'Antes de fazer qualquer desgaste, montamos uma simulação em resina sobre os seus dentes para você ver, tocar e aprovar o resultado. Se quiser ajustar formato, tamanho ou proporção, fazemos na hora.' },
       { question: 'Posso fazer lentes só nos dentes da frente?', answer: 'Sim, a maioria dos casos envolve de 6 a 10 dentes superiores — os que aparecem no sorriso. A quantidade exata depende da largura do seu sorriso e do resultado desejado.' },
-      { question: 'Dentes com restauração antiga podem receber lentes?', answer: 'Depende do tamanho e estado da restauração. Em muitos casos, a lente pode cobrir e substituir restaurações escurecidas. Avaliamos caso a caso na consulta.' }
+      { question: 'Dentes com restauração antiga podem receber lentes?', answer: 'Depende do tamanho e estado da restauração. Em muitos casos, a lente pode cobrir e substituir restaurações escurecidas. Avaliamos caso a caso na consulta.' },
+      // #187 item 4 (aprovado por Patrick em 24/08): FAQ de localizacao — leva
+      // Zona Sul/Leblon/Copacabana e a nocao de proximidade para a pagina como
+      // INFORMACAO DE SERVICO, sem tocar hero/H1. Entra tambem no schema FAQPage.
+      { question: 'Onde fica o consultório?', answer: 'Na Rua Visconde de Pirajá, 550, sala 1107 — no coração de Ipanema. Para quem vem do Leblon ou de Copacabana, são poucos minutos; recebemos pacientes de toda a Zona Sul. Atendemos de segunda a sexta, das 9h às 19h.' }
     ]
   },
 

@@ -114,6 +114,13 @@ export const limpezaDentalConfig: LandingPageConfig = {
       {
         question: "Vocês atendem convênios?",
         answer: "Nosso atendimento é particular, o que nos permite dedicar tempo adequado a cada consulta."
+      },
+      // #187 item 4 (aprovado por Patrick em 24/08): FAQ de localizacao — leva
+      // Zona Sul/Leblon/Copacabana e a nocao de proximidade para a pagina como
+      // INFORMACAO DE SERVICO, sem tocar hero/H1. Entra tambem no schema FAQPage.
+      {
+        question: "Onde fica o consultório?",
+        answer: "Na Rua Visconde de Pirajá, 550, sala 1107 — no coração de Ipanema. Para quem vem do Leblon ou de Copacabana, são poucos minutos; recebemos pacientes de toda a Zona Sul. Atendemos de segunda a sexta, das 9h às 19h."
       }
     ]
   },

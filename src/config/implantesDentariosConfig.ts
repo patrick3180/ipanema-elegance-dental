@@ -74,7 +74,11 @@ export const implantesDentariosConfig: LandingPageConfig = {
       { question: 'Quanto tempo leva do início ao dente definitivo?', answer: 'O tempo total varia de 3 a 8 meses, dependendo da necessidade de enxerto ósseo e da região. Durante esse período, você não fica sem dente — usamos provisórios enquanto o implante se integra ao osso.' },
       { question: 'Existe idade máxima para colocar implante?', answer: 'Não existe limite de idade. O que avaliamos é a saúde geral e a qualidade óssea do paciente. Pessoas com 70, 80 anos fazem implantes com sucesso rotineiramente.' },
       { question: 'Implante ou prótese removível — qual é melhor?', answer: 'O implante é fixo, preserva o osso, não machuca a gengiva e permite mastigar normalmente. A prótese removível é uma alternativa quando o implante não é possível, mas tem limitações funcionais e de conforto.' },
-      { question: 'Preciso fazer enxerto ósseo antes do implante?', answer: 'Depende do volume de osso disponível. A análise com tomografia e planejamento digital mostra exatamente se há necessidade. Quando necessário, o enxerto é feito antes ou junto com o implante.' }
+      { question: 'Preciso fazer enxerto ósseo antes do implante?', answer: 'Depende do volume de osso disponível. A análise com tomografia e planejamento digital mostra exatamente se há necessidade. Quando necessário, o enxerto é feito antes ou junto com o implante.' },
+      // #187 item 4 (aprovado por Patrick em 24/08): FAQ de localizacao — leva
+      // Zona Sul/Leblon/Copacabana e a nocao de proximidade para a pagina como
+      // INFORMACAO DE SERVICO, sem tocar hero/H1. Entra tambem no schema FAQPage.
+      { question: 'Onde fica o consultório?', answer: 'Na Rua Visconde de Pirajá, 550, sala 1107 — no coração de Ipanema. Para quem vem do Leblon ou de Copacabana, são poucos minutos; recebemos pacientes de toda a Zona Sul. Atendemos de segunda a sexta, das 9h às 19h.' }
     ]
   },
   
