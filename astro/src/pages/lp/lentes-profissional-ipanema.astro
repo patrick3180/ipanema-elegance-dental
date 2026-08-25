@@ -58,6 +58,18 @@ const schemas = [
     status: 'Accepted',
     category: 'Estética',
   }),
+  // #187 item 4 (25/08): estas duas LPs eram as unicas com FAQ na tela e NENHUM
+  // schema FAQPage — o Google lia as perguntas como texto solto. Mesmo padrao das
+  // demais LPs: a fonte e o proprio config, entao FAQ nova entra aqui sozinha.
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: config.faq.questions.map((q) => ({
+      '@type': 'Question',
+      name: q.question,
+      acceptedAnswer: { '@type': 'Answer', text: q.answer },
+    })),
+  }),
 ];
 ---
 
