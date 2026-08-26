@@ -33,10 +33,10 @@ export const GOOGLE_RATING = '5.0';
 export const GOOGLE_RATING_PT = GOOGLE_RATING.replace('.', ',');
 
 /** Total de avaliações no perfil. Conferido manualmente — ver cabeçalho. */
-export const GOOGLE_REVIEW_COUNT = 21;
+export const GOOGLE_REVIEW_COUNT = 22;
 
 /** Data da última conferência da contagem (YYYY-MM-DD). */
-export const GOOGLE_REVIEWS_CHECKED_AT = '2026-08-11';
+export const GOOGLE_REVIEWS_CHECKED_AT = '2026-08-26';
 
 /** Abre o perfil já na aba "Avaliações". Destino de todo selo/CTA de review. */
 export const GOOGLE_REVIEWS_URL =
