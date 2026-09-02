@@ -108,11 +108,17 @@ const blogPostingSchema = JSON.stringify({
   inLanguage: 'pt-BR',
 });
 
-const faqSchema = m.faqStructured.length
+// O schema tem de espelhar EXATAMENTE o que a página mostra: `renderedFaq`, e
+// não `faqStructured` inteiro. Enquanto usava a lista completa, todo post com
+// mais FAQ do que o `faqMax` do seu arquétipo publicava pergunta no JSON-LD que
+// não existia na página — 47 dos 80 posts publicados, 49 perguntas fantasma
+// (auditado em 01/09/2026). A diretriz de FAQPage do Google exige que o
+// conteúdo do schema esteja visível para o usuário.
+const faqSchema = renderedFaq.length
   ? JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      mainEntity: m.faqStructured.map((q) => ({
+      mainEntity: renderedFaq.map((q) => ({
         '@type': 'Question',
         name: q.name || q.question || '',
         acceptedAnswer: { '@type': 'Answer', text: q.acceptedAnswer?.text || '' },
