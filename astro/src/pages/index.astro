@@ -386,6 +386,20 @@ const schemas = [JSON.stringify(structuredData), JSON.stringify(dentistSchema)];
   <main id="main-content">
     <!-- Marca html.js cedo: os estados "escondido" de scroll-reveal só valem com JS ativo -->
     <script is:inline>document.documentElement.classList.add('js');</script>
+    <!-- Entrada do hero (L2) só dispara com as fontes prontas: as palavras nascem já em Playfair e a troca de
+         fonte acontece com o bloco invisível (não conta como layout shift). Teto de 2,5 s; sem JS, tudo estático. -->
+    <script is:inline>
+      (function () {
+        var h = document.documentElement, done = false;
+        function go() { if (!done) { done = true; h.classList.add('fonts-ready'); } }
+        try {
+          if (document.fonts && document.fonts.load) {
+            Promise.all([document.fonts.load('600 1em "Playfair Display"'), document.fonts.load('600 1em Montserrat')]).then(go, go);
+            setTimeout(go, 2500);
+          } else { go(); }
+        } catch (e) { go(); }
+      })();
+    </script>
 
     <!-- ═══ 1. HERO full-bleed (Hero.tsx) ═══ -->
     <section id="início" class="hero-fb">
@@ -1194,15 +1208,16 @@ const schemas = [JSON.stringify(structuredData), JSON.stringify(dentistSchema)];
      sem filter (barato), animadas só no desktop e só com transform; grão de filme estático (SVG). ── */
   .hero-fb-light { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
   .hl { position: absolute; border-radius: 50%; }
-  .hl-1 { width: 90vw; height: 90vw; left: -38vw; bottom: -34vw; background: radial-gradient(circle at 50% 50%, rgba(179, 149, 95, 0.3), rgba(179, 149, 95, 0) 64%); }
-  .hl-2 { width: 80vw; height: 80vw; right: -34vw; bottom: -44vw; background: radial-gradient(circle at 50% 50%, rgba(56, 31, 71, 0.1), rgba(56, 31, 71, 0) 64%); }
-  .hl-3 { width: 70vw; height: 70vw; left: 16vw; bottom: -16vw; background: radial-gradient(circle at 50% 50%, rgba(207, 203, 180, 0.7), rgba(207, 203, 180, 0) 62%); }
+  /* ancoradas pelo TOPO (não por bottom): a altura do hero muda quando a fonte chega e, pelo topo, as manchas não se movem */
+  .hl-1 { width: 90vw; height: 90vw; left: -38vw; top: 440px; background: radial-gradient(circle at 50% 50%, rgba(179, 149, 95, 0.3), rgba(179, 149, 95, 0) 64%); }
+  .hl-2 { width: 80vw; height: 80vw; right: -34vw; top: 560px; background: radial-gradient(circle at 50% 50%, rgba(56, 31, 71, 0.1), rgba(56, 31, 71, 0) 64%); }
+  .hl-3 { width: 70vw; height: 70vw; left: 16vw; top: 520px; background: radial-gradient(circle at 50% 50%, rgba(207, 203, 180, 0.7), rgba(207, 203, 180, 0) 62%); }
   .hero-fb-grain { position: absolute; inset: 0; pointer-events: none; opacity: 0.07; mix-blend-mode: multiply; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
   @media (min-width: 768px) {
     .hero-fb-light { right: 28%; -webkit-mask-image: linear-gradient(to right, #000 62%, transparent 100%); mask-image: linear-gradient(to right, #000 62%, transparent 100%); }
-    .hl-1 { width: 56vmax; height: 56vmax; left: -14vmax; top: -16vmax; bottom: auto; }
-    .hl-2 { width: 60vmax; height: 60vmax; left: 22vmax; right: auto; top: -26vmax; bottom: auto; }
-    .hl-3 { width: 48vmax; height: 48vmax; left: 10vmax; bottom: -28vmax; }
+    .hl-1 { width: 56vmax; height: 56vmax; left: -14vmax; top: -16vmax; }
+    .hl-2 { width: 60vmax; height: 60vmax; left: 22vmax; right: auto; top: -26vmax; }
+    .hl-3 { width: 48vmax; height: 48vmax; left: 10vmax; top: 44vh; }
   }
   @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
     .hl { will-change: transform; }
@@ -1221,18 +1236,29 @@ const schemas = [JSON.stringify(structuredData), JSON.stringify(dentistSchema)];
     from { opacity: 0; transform: translateY(14px); }
     to { opacity: 1; transform: none; }
   }
-  @keyframes heroLineUp { to { transform: translateY(0); } }
+  @keyframes heroLineUp { from { transform: translateY(115%); } to { transform: translateY(0); } }
   @keyframes heroSettle { to { transform: scale(1); } }
-  .hero-animate-1 { animation: heroRise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.05s both; }
-  .hero-animate-3 { animation: heroRise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.5s both; }
-  .hero-animate-4 { animation: heroRise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.6s both; }
-  .hero-animate-5 { animation: heroRise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.72s both; }
+  @keyframes heroFadeIn { from { opacity: 0; } to { opacity: 1; } }
   .hero-fb-h1 .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0.1em 0 0.22em; margin: -0.1em 0 -0.22em; }
-  .hero-fb-h1 .w > span { display: inline-block; transform: translateY(115%); animation: heroLineUp 0.95s cubic-bezier(0.2, 0.75, 0.2, 1) forwards; animation-delay: calc(0.1s + var(--i, 0) * 0.035s); }
+  .hero-fb-h1 .w > span { display: inline-block; }
+  /* Estado inicial (só com JS, antes das fontes): invisível. Enquanto invisível, a troca de fonte não desloca nada. */
+  :global(html.js:not(.fonts-ready)) .hero-animate-1,
+  :global(html.js:not(.fonts-ready)) .hero-animate-3,
+  :global(html.js:not(.fonts-ready)) .hero-animate-4,
+  :global(html.js:not(.fonts-ready)) .hero-animate-5,
+  :global(html.js:not(.fonts-ready)) .hero-fb-h1 { opacity: 0; }
+  :global(html.js:not(.fonts-ready)) .hero-fb-h1 .w > span { transform: translateY(115%); }
+  /* Com as fontes prontas, a sequência dispara */
+  :global(html.fonts-ready) .hero-animate-1 { animation: heroRise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.05s both; }
+  :global(html.fonts-ready) .hero-animate-3 { animation: heroRise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.5s both; }
+  :global(html.fonts-ready) .hero-animate-4 { animation: heroRise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.6s both; }
+  :global(html.fonts-ready) .hero-animate-5 { animation: heroRise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.72s both; }
+  :global(html.fonts-ready) .hero-fb-h1 { animation: heroFadeIn 0.35s ease-out both; }
+  :global(html.fonts-ready) .hero-fb-h1 .w > span { animation: heroLineUp 0.95s cubic-bezier(0.2, 0.75, 0.2, 1) both; animation-delay: calc(0.1s + var(--i, 0) * 0.035s); }
   @media (prefers-reduced-motion: reduce) {
-    .hero-animate-1, .hero-animate-3, .hero-animate-4, .hero-animate-5, .hero-fb-h1 .w > span, .hero-fb-photo img, .hl, .fc-blob { animation: none !important; }
+    .hero-animate-1, .hero-animate-3, .hero-animate-4, .hero-animate-5, .hero-fb-h1, .hero-fb-h1 .w > span, .hero-fb-photo img, .hl, .fc-blob { animation: none !important; }
     .hero-fb-h1 .w > span, .hero-fb-photo img { transform: none !important; }
-    .hero-animate-1, .hero-animate-3, .hero-animate-4, .hero-animate-5 { opacity: 1 !important; }
+    .hero-animate-1, .hero-animate-3, .hero-animate-4, .hero-animate-5, .hero-fb-h1 { opacity: 1 !important; }
   }
 
   /* ═══════════════ 2. STATS BAR ═══════════════ */
@@ -1631,7 +1657,7 @@ const schemas = [JSON.stringify(structuredData), JSON.stringify(dentistSchema)];
   /* L1 no CTA final: luz dourada e linho sobre a ameixa, em gradiente (o blur(64px) antigo saiu), grão em screen */
   .fc-blob { position: absolute; border-radius: 50%; pointer-events: none; }
   .fc-blob-tl { top: -40%; left: -22%; width: 62vmax; height: 62vmax; background: radial-gradient(circle at 50% 50%, rgba(179, 149, 95, 0.22), rgba(179, 149, 95, 0) 62%); }
-  .fc-blob-br { bottom: -55%; right: -24%; width: 70vmax; height: 70vmax; background: radial-gradient(circle at 50% 50%, rgba(207, 203, 180, 0.13), rgba(207, 203, 180, 0) 62%); }
+  .fc-blob-br { top: 240px; right: -24%; width: 70vmax; height: 70vmax; background: radial-gradient(circle at 50% 50%, rgba(207, 203, 180, 0.13), rgba(207, 203, 180, 0) 62%); }
   .fc-blob-c { top: -30%; left: 34%; width: 50vmax; height: 50vmax; background: radial-gradient(circle at 50% 50%, rgba(85, 60, 107, 0.6), rgba(85, 60, 107, 0) 62%); }
   .fc-grain { position: absolute; inset: 0; pointer-events: none; opacity: 0.09; mix-blend-mode: screen; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
   @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
