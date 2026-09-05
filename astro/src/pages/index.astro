@@ -481,7 +481,7 @@ const schemas = [JSON.stringify(structuredData), JSON.stringify(dentistSchema)];
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
             </div>
             <div>
-              <p class="stat-value"><span data-count="4000">4.000</span>+</p>
+              <p class="stat-value"><span data-count="10000">10.000</span>+</p>
               <p class="stat-label">Pacientes Atendidos</p>
             </div>
           </div>
@@ -571,7 +571,7 @@ const schemas = [JSON.stringify(structuredData), JSON.stringify(dentistSchema)];
 
         <div class="diff-grid">
           {differentials.map((item, index) => (
-            <div class="sr" style={`--sr-delay:${index * 100}ms`}>
+            <div class="sr" style={`--sr-delay:${index * 100}ms;--sr-i:${index}`}>
               <div class="diff-card">
                 <div class="diff-accent" aria-hidden="true"></div>
                 <div class="diff-icon" aria-hidden="true">
@@ -611,7 +611,7 @@ const schemas = [JSON.stringify(structuredData), JSON.stringify(dentistSchema)];
 
         <div class="svc-grid">
           {services.map((service, index) => (
-            <div class="sr" style={`--sr-delay:${(index % 3) * 120}ms`}>
+            <div class="sr" style={`--sr-delay:${(index % 3) * 120}ms;--sr-i:${index % 3}`}>
               <div class="svc-card" aria-label={service.title}>
                 <img
                   src={service.image}
@@ -781,7 +781,7 @@ const schemas = [JSON.stringify(structuredData), JSON.stringify(dentistSchema)];
 
         <div class="blog-grid">
           {blogItems.map((post, index) => (
-            <div class="sr" style={`--sr-delay:${index * 150}ms`}>
+            <div class="sr" style={`--sr-delay:${index * 150}ms;--sr-i:${index}`}>
               <a href={`/blog/${post.slug}`} class="blog-card-link">
                 <article class="blog-card">
                   <div class="blog-img">
@@ -1015,8 +1015,22 @@ const schemas = [JSON.stringify(structuredData), JSON.stringify(dentistSchema)];
   }
   @media (min-width: 768px) { .heading-lg { font-size: 2.25rem; line-height: 2.5rem; } }
 
-  .gold-sep { width: 6rem; height: 0.25rem; background: var(--gold); margin: 0 auto 1.5rem; }
-  .gold-sep-left { margin-left: 0; }
+  .gold-sep { width: 6rem; height: 0.25rem; background: var(--gold); margin: 0 auto 1.5rem; transform-origin: center; }
+  .gold-sep-left { margin-left: 0; transform-origin: left; }
+  /* L7 — revelação ao rolar (Fase 1 — 04/09/2026): em navegadores com animação por rolagem (Chrome 115+,
+     Firefox 132+, Safari 26+) o separador dourado se desenha e os cards assentam ligados à rolagem, fora da thread
+     principal. Nos demais, vale o fallback por IntersectionObserver que já existia (.sr / .sr-in). */
+  @supports (animation-timeline: view()) {
+    .gold-sep { animation: sepDraw linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+    :global(html.js) .sr {
+      opacity: 1; transform: none; transition: none; will-change: auto;
+      animation: srRise linear both; animation-timeline: view();
+      animation-range: entry calc(6% + var(--sr-i, 0) * 5%) entry calc(38% + var(--sr-i, 0) * 5%);
+    }
+  }
+  @keyframes sepDraw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes srRise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .gold-sep, :global(html.js) .sr { animation: none !important; } }
 
   .eyebrow {
     font-size: 0.75rem;

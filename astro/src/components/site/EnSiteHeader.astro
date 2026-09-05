@@ -153,6 +153,7 @@ const WA_HREF = "https://wa.me/5521993304045?text=Hello!%20I'd%20like%20to%20boo
   @media (min-width: 1024px) {
     .site-hdr { padding-left: 48px; padding-right: 48px; }
   }
+  .site-hdr { view-transition-name: site-header; } /* L11: o header não pisca na troca de página */
   .site-hdr.is-scrolled {
     padding-top: 12px;
     padding-bottom: 12px;
@@ -260,18 +261,20 @@ const WA_HREF = "https://wa.me/5521993304045?text=Hello!%20I'd%20like%20to%20boo
   @media (min-width: 768px) {
     .desk-nav { display: flex; }
   }
+  /* L11 — sublinhado dourado que se desenha (Fase 1 — 04/09/2026); mesma geometria do ativo antigo (2px) */
   .nav-link {
     font-size: 0.875rem;
     font-weight: 500;
     color: rgb(56 31 71 / 0.8);
     text-decoration: none;
-    transition: color 0.2s;
+    padding-bottom: 2px;
+    background: linear-gradient(var(--dental-gold), var(--dental-gold)) no-repeat 0 100% / 0 2px;
+    transition: color 0.3s, background-size 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
-  .nav-link:hover { color: var(--dental-gold); }
+  .nav-link:hover { color: var(--dental-gold); background-size: 100% 2px; }
   .nav-link.active {
     color: var(--dental-gold);
-    border-bottom: 2px solid var(--dental-gold);
-    padding-bottom: 2px;
+    background-size: 100% 2px;
   }
   /* Treatments ativo no EN não tem underline (paridade com o original) */
   .nav-link.active-plain { color: var(--dental-gold); }

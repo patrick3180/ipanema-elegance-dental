@@ -63,7 +63,7 @@ export const consultaInicialConfig: LandingPageConfig = {
     ],
     stats: [
       { number: "20+", label: "Anos de Experiência" },
-      { number: "4.000+", label: "Pacientes Atendidos" },
+      { number: "10.000+", label: "Pacientes Atendidos" },
       { number: "1h+", label: "Mínimo por Consulta" },
       { number: "24h", label: "WhatsApp Disponível" }
     ]

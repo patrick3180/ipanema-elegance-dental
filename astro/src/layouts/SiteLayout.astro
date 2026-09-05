@@ -110,6 +110,20 @@ const waFloatHref = `https://wa.me/5521993304045?text=${encodeURIComponent(waMsg
   </Fragment>
 </Base>
 
+<style is:global>
+  /* L11 — troca de página sem corte (View Transitions ENTRE DOCUMENTOS, Fase 1 — 04/09/2026).
+     A navegação continua sendo um carregamento completo: GTM, page_view e GCLID não mudam. Sem ClientRouter.
+     Chrome 126+ / Safari 18.2+ fazem o fade de 0,45 s; os demais trocam direto. LPs usam o LPLayout e ficam fora. */
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation-duration: 0.45s; animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1); }
+  ::view-transition-old(site-header),
+  ::view-transition-new(site-header) { animation: none; }
+  @media (prefers-reduced-motion: reduce) {
+    @view-transition { navigation: none; }
+  }
+</style>
+
 <style>
   /* Porte visual do WhatsAppButton.tsx global (fixed bottom-8 right-8, verde, pílula) */
   .site-float-wa {
@@ -132,6 +146,22 @@ const waFloatHref = `https://wa.me/5521993304045?text=${encodeURIComponent(waMsg
     transform: scale(1.05);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
   }
+  /* L12 — respiração de 4,2 s (Fase 1 — 04/09/2026): um anel se expande e some, devagar; presente sem insistir */
+  .site-float-wa::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    border: 1.5px solid rgba(37, 211, 102, 0.75);
+    pointer-events: none;
+    animation: waBreath 4.2s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+  }
+  @keyframes waBreath {
+    0% { transform: scale(1); opacity: 0.8; }
+    70% { transform: scale(1.28); opacity: 0; }
+    100% { transform: scale(1.28); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { .site-float-wa::before { animation: none; opacity: 0; } }
   .fw-text {
     display: flex;
     flex-direction: column;

@@ -62,7 +62,7 @@ export const lentesComparacaoConfig: LandingPageConfig = {
     ],
     stats: [
       { number: '20+', label: 'Anos em Estética Dental' },
-      { number: '4.000+', label: 'Pacientes Atendidos' },
+      { number: '10.000+', label: 'Pacientes Atendidos' },
       { number: 'iTero', label: 'Scanner Element 5D' },
       { number: '24h', label: 'WhatsApp Disponível' }
     ]

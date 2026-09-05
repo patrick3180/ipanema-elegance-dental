@@ -62,7 +62,7 @@ export const facetasResinaDiretaConfig: LandingPageConfig = {
     ],
     stats: [
       { number: '20+', label: 'Anos de Experiência' },
-      { number: '4.000+', label: 'Pacientes Atendidos' },
+      { number: '10.000+', label: 'Pacientes Atendidos' },
       { number: '1 Dia', label: 'Resultado no Mesmo Dia' },
       { number: '24h', label: 'Atendimento WhatsApp' }
     ]

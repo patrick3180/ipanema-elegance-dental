@@ -62,7 +62,7 @@ export const denteQuebradoConfig: LandingPageConfig = {
     stats: [
       { number: '24h', label: 'WhatsApp Disponível' },
       { number: '20+', label: 'Anos em Estética Dental' },
-      { number: '4.000+', label: 'Pacientes Atendidos' },
+      { number: '10.000+', label: 'Pacientes Atendidos' },
       { number: 'Mesmo dia', label: 'Encaixe Prioritário' }
     ]
   },

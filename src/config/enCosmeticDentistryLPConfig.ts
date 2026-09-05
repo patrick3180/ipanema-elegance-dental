@@ -63,7 +63,7 @@ export const enCosmeticDentistryLPConfig: LandingPageConfig = {
     ],
     stats: [
       { number: "20+", label: "Years of Experience" },
-      { number: "4,000+", label: "Patients Treated" },
+      { number: "10,000+", label: "Patients Treated" },
       { number: "iTero 5D", label: "Digital Scanner" },
       { number: "24h", label: "WhatsApp Available" }
     ]
