@@ -384,22 +384,7 @@ const schemas = [JSON.stringify(structuredData), JSON.stringify(dentistSchema)];
   </Fragment>
 
   <main id="main-content">
-    <!-- Marca html.js cedo: os estados "escondido" de scroll-reveal só valem com JS ativo -->
-    <script is:inline>document.documentElement.classList.add('js');</script>
-    <!-- Entrada do hero (L2) só dispara com as fontes prontas: as palavras nascem já em Playfair e a troca de
-         fonte acontece com o bloco invisível (não conta como layout shift). Teto de 2,5 s; sem JS, tudo estático. -->
-    <script is:inline>
-      (function () {
-        var h = document.documentElement, done = false;
-        function go() { if (!done) { done = true; h.classList.add('fonts-ready'); } }
-        try {
-          if (document.fonts && document.fonts.load) {
-            Promise.all([document.fonts.load('600 1em "Playfair Display"'), document.fonts.load('600 1em Montserrat')]).then(go, go);
-            setTimeout(go, 2500);
-          } else { go(); }
-        } catch (e) { go(); }
-      })();
-    </script>
+    <!-- html.js e html.fonts-ready são marcados no <head> pelo SiteLayout (Movimento Silencioso) -->
 
     <!-- ═══ 1. HERO full-bleed (Hero.tsx) ═══ -->
     <section id="início" class="hero-fb">

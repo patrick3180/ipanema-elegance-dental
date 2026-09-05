@@ -78,8 +78,8 @@ const relatedLinks = allLinks[currentPage] || [];
     <div class="rt-container">
       <h2 class="rt-title">Tratamentos Relacionados</h2>
       <div class="rt-grid">
-        {relatedLinks.map((link) => (
-          <a href={link.url} class="rt-card">
+        {relatedLinks.map((link, i) => (
+          <a href={link.url} class="rt-card ms-rise" style={`--i:${i}`}>
             <span class="rt-card-title">{link.title}</span>
             <span class="rt-card-desc">{link.description}</span>
             <span class="rt-card-more">

@@ -11,6 +11,7 @@
  * do .webp causaria double-download (mesma lição do Sprint 5).
  */
 import SiteLayout from '../layouts/SiteLayout.astro';
+import '../styles/treatment.css'; // utilitários do Movimento Silencioso (ms-*)
 
 const personSchema = JSON.stringify({
   '@context': 'https://schema.org',
@@ -112,11 +113,15 @@ const WA_HREF = `https://wa.me/5521993304045?text=${encodeURIComponent('Olá! Go
   <main id="main-content">
     <!-- Hero revista — título + foto full-width da recepção -->
     <section class="about-hero" style="padding-top: var(--header-height, 112px);">
+      <!-- L1 — luz com grão (Movimento Silencioso, Fase 2 — 04/09/2026) -->
+      <div class="ms-light" aria-hidden="true"><i class="ms-blob ms-blob-1 ms-blob-gold ab-b1"></i><i class="ms-blob ms-blob-2 ms-blob-plum ab-b2"></i><i class="ms-blob ms-blob-3 ms-blob-linen ab-b3"></i></div>
+      <div class="ms-grain" aria-hidden="true"></div>
       <div class="container-custom hero-pad">
         <div class="hero-copy">
           <p class="eyebrow">Especialista em Prótese e Implantodontia · CRO-RJ 27.509</p>
+          <!-- L2 — cada palavra nasce de uma máscara; texto do H1 idêntico -->
           <h1 class="heading-lg">
-            Dra. Carla Christoph: <span class="gold">sua dentista especialista em Ipanema</span>
+            <span class="w" style="--i:0"><span>Dra.</span></span> <span class="w" style="--i:1"><span>Carla</span></span> <span class="w" style="--i:2"><span>Christoph:</span></span> <span class="gold"><span class="w" style="--i:3"><span>sua</span></span> <span class="w" style="--i:4"><span>dentista</span></span> <span class="w" style="--i:5"><span>especialista</span></span> <span class="w" style="--i:6"><span>em</span></span> <span class="w" style="--i:7"><span>Ipanema</span></span></span>
           </h1>
           <div class="sep sep-hero" role="none"></div>
           <p class="hero-sub">
@@ -124,7 +129,7 @@ const WA_HREF = `https://wa.me/5521993304045?text=${encodeURIComponent('Olá! Go
           </p>
           <div class="hero-cta-row">
             <a
-              class="btn-gold js-wa-cta"
+              class="btn-gold ms-btn js-wa-cta"
               data-label="sobre_hero_whatsapp"
               href={WA_HREF}
               target="_blank"
@@ -191,8 +196,8 @@ const WA_HREF = `https://wa.me/5521993304045?text=${encodeURIComponent('Olá! Go
         <div class="block-4xl">
           <h2 class="heading-md center cred-title">Formação e Experiência</h2>
           <div class="cred-grid">
-            {credentials.map((cred) => (
-              <div class="cred-card">
+            {credentials.map((cred, i) => (
+              <div class="cred-card ms-rise" style={`--i:${i}`}>
                 <div class="cred-head">
                   <span class="cred-icon" set:html={icons[cred.icon]} />
                   <h3>{cred.title}</h3>
@@ -206,7 +211,7 @@ const WA_HREF = `https://wa.me/5521993304045?text=${encodeURIComponent('Olá! Go
         <!-- O Que Esperar da Primeira Consulta -->
         <div class="block-3xl">
           <h2 class="heading-md center">O Que Esperar da Primeira Consulta</h2>
-          <div class="beige-card">
+          <div class="beige-card ms-rise">
             <p>
               Na primeira consulta, a Dra. Carla realiza um mapeamento clínico completo com exame detalhado, fotografias e, quando indicado, escaneamento com iTero Element 5D. Você sai entendendo exatamente o que precisa ser feito, em que ordem, e quanto tempo leva. Sem surpresas.
             </p>
@@ -214,11 +219,11 @@ const WA_HREF = `https://wa.me/5521993304045?text=${encodeURIComponent('Olá! Go
         </div>
 
         <!-- CTA -->
-        <div class="cta-final">
+        <div class="cta-final ms-rise">
           <h2 class="heading-md">Agende Sua Primeira Consulta</h2>
           <p>Agende sua primeira consulta com a Dra. Carla em Ipanema.</p>
           <a
-            class="btn-gold js-wa-cta"
+            class="btn-gold ms-btn js-wa-cta"
             data-label="sobre_final_whatsapp"
             href={WA_HREF}
             target="_blank"
@@ -263,7 +268,38 @@ const WA_HREF = `https://wa.me/5521993304045?text=${encodeURIComponent('Olá! Go
   .center { text-align: center; }
 
   .sep { width: 6rem; height: 0.25rem; background: var(--dental-gold); margin-left: auto; margin-right: auto; }
-  .sep-hero { margin-top: 1rem; margin-bottom: 1rem; } /* my-4 */
+  .sep-hero { margin-top: 1rem; margin-bottom: 1rem; transform-origin: center; } /* my-4 */
+
+  /* ── Movimento Silencioso (Fase 2 — 04/09/2026) ── */
+  .about-hero { position: relative; overflow: hidden; isolation: isolate; }
+  .about-hero .hero-pad, .about-photo-band { position: relative; z-index: 1; }
+  .ab-b1 { width: 70vw; height: 70vw; left: -30vw; top: 40px; }
+  .ab-b2 { width: 60vw; height: 60vw; right: -30vw; top: 120px; }
+  .ab-b3 { width: 56vw; height: 56vw; left: 20vw; top: 200px; }
+  @media (min-width: 1024px) {
+    .ab-b1 { width: 50vmax; height: 50vmax; left: -14vmax; top: -16vmax; }
+    .ab-b2 { width: 46vmax; height: 46vmax; left: 46vmax; right: auto; top: -10vmax; }
+    .ab-b3 { width: 40vmax; height: 40vmax; left: 26vmax; top: 10vmax; }
+  }
+  .heading-lg .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0.1em 0 0.22em; margin: -0.1em 0 -0.22em; }
+  .heading-lg .w > span { display: inline-block; }
+  :global(html.js:not(.fonts-ready)) .hero-copy .eyebrow,
+  :global(html.js:not(.fonts-ready)) .hero-copy .heading-lg,
+  :global(html.js:not(.fonts-ready)) .hero-copy .hero-sub,
+  :global(html.js:not(.fonts-ready)) .hero-copy .hero-cta-row { opacity: 0; }
+  :global(html.js:not(.fonts-ready)) .hero-copy .heading-lg .w > span { transform: translateY(115%); }
+  :global(html.js:not(.fonts-ready)) .hero-copy .sep-hero { transform: scaleX(0); }
+  :global(html.fonts-ready) .hero-copy .eyebrow { animation: msRise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.05s both; }
+  :global(html.fonts-ready) .hero-copy .heading-lg { animation: msFade 0.35s ease-out both; }
+  :global(html.fonts-ready) .hero-copy .heading-lg .w > span { animation: msLineUp 0.95s cubic-bezier(0.2, 0.75, 0.2, 1) both; animation-delay: calc(0.1s + var(--i, 0) * 0.035s); }
+  :global(html.fonts-ready) .hero-copy .sep-hero { animation: msDraw 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.5s both; }
+  :global(html.fonts-ready) .hero-copy .hero-sub { animation: msRise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.62s both; }
+  :global(html.fonts-ready) .hero-copy .hero-cta-row { animation: msRise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.78s both; }
+  .about-photo-band { overflow: hidden; }
+  .about-photo-band img { animation: msSettle 2.2s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-copy .eyebrow, .hero-copy .heading-lg, .hero-copy .hero-sub, .hero-copy .hero-cta-row, .hero-copy .heading-lg .w > span, .hero-copy .sep-hero, .about-photo-band img { animation: none !important; opacity: 1 !important; transform: none !important; }
+  }
 
   /* ── Hero ── */
   .hero-pad { padding-top: 0.75rem; } /* pt-3 */
@@ -291,7 +327,6 @@ const WA_HREF = `https://wa.me/5521993304045?text=${encodeURIComponent('Olá! Go
     padding: 1.5rem 2rem; /* py-6 px-8 */
     font-size: 0.875rem;
     text-decoration: none;
-    transition: background-color 0.2s;
   }
   .btn-gold:hover { background: rgb(179 149 95 / 0.9); }
   .btn-gold svg { margin-right: 0.5rem; flex-shrink: 0; }

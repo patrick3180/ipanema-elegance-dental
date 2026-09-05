@@ -34,6 +34,9 @@ const waHref = `https://wa.me/5521993304045?text=${encodeURIComponent(waMessage)
 ---
 
 <section class="fcta bg-gradient-purple-gold">
+  <!-- L1 — luz com grão sobre a ameixa (Fase 2 — 04/09/2026) -->
+  <div class="ms-light" aria-hidden="true"><i class="ms-blob ms-blob-1 ms-blob-gold-dark fc-b1"></i><i class="ms-blob ms-blob-2 ms-blob-linen-dark fc-b2"></i><i class="ms-blob ms-blob-3 ms-blob-plum-dark fc-b3"></i></div>
+  <div class="ms-grain ms-grain-dark" aria-hidden="true"></div>
   <div class="container-custom fcta-inner">
     <div class="fcta-head">
       <span class="fcta-icon">
@@ -46,7 +49,7 @@ const waHref = `https://wa.me/5521993304045?text=${encodeURIComponent(waMessage)
 
     <div class="fcta-actions">
       <a
-        class:list={['fcta-btn', 'js-wa-cta', { 'fcta-btn-urgency': variant === 'urgency' }]}
+        class:list={['fcta-btn', 'ms-btn', 'js-wa-cta', { 'fcta-btn-urgency': variant === 'urgency' }]}
         data-label={waLabel}
         href={waHref}
         target="_blank"
@@ -65,10 +68,18 @@ const waHref = `https://wa.me/5521993304045?text=${encodeURIComponent(waMessage)
   .fcta {
     padding-block: 5rem;
     color: #fff;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
   }
   .fcta-inner {
     text-align: center;
+    position: relative;
+    z-index: 1;
   }
+  .fc-b1 { width: 60vmax; height: 60vmax; left: -22%; top: -60%; }
+  .fc-b2 { width: 66vmax; height: 66vmax; right: -24%; top: 20%; }
+  .fc-b3 { width: 50vmax; height: 50vmax; left: 30%; top: -40%; }
   .fcta-head {
     display: flex;
     align-items: center;
@@ -117,10 +128,6 @@ const waHref = `https://wa.me/5521993304045?text=${encodeURIComponent(waMessage)
     font-weight: 600;
     font-size: 1.125rem;
     text-decoration: none;
-    transition: all 0.2s;
-  }
-  .fcta-btn:hover {
-    opacity: 0.9;
   }
   .fcta-btn-urgency {
     background: #dc2626;

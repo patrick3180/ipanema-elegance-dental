@@ -34,7 +34,7 @@ const hasConclusion = Astro.slots.has('conclusion');
 
     <div class="epp-list">
       {painPoints.map((point, index) => (
-        <div class:list={['epp-card', `epp-border-${point.borderColor || cycle[index % 3]}`]}>
+        <div class:list={['epp-card', 'ms-rise', `epp-border-${point.borderColor || cycle[index % 3]}`]} style={`--i:${index}`}>
           <div class="epp-icon">
             <Icon name={point.icon} size={24} class={`epp-ic-${point.iconColor || cycle[index % 3]}`} />
           </div>

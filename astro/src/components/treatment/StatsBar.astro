@@ -17,8 +17,8 @@ const stats = [
 <section class="stats-bar" aria-label="Estatísticas da clínica">
   <div class="container-custom stats-inner">
     <div class="stats-grid">
-      {stats.map((stat) => (
-        <div class="stat-item">
+      {stats.map((stat, i) => (
+        <div class="stat-item ms-rise" style={`--i:${i}`}>
           <div class="stat-icon">
             <Icon name={stat.icon} size={20} fill={stat.fill} class="tx-gold" />
           </div>

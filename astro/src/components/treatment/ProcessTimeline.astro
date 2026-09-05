@@ -27,8 +27,8 @@ const { steps } = Astro.props;
   <div class="ptl-line" aria-hidden="true" />
 
   <div class="ptl-steps">
-    {steps.map((step) => (
-      <div class="ptl-step" role="listitem">
+    {steps.map((step, i) => (
+      <div class="ptl-step ms-rise" role="listitem" style={`--i:${i}`}>
         <div class="ptl-num-col">
           <div class="ptl-num">{step.number}</div>
           <div class="ptl-dot" aria-hidden="true" />

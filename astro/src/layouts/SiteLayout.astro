@@ -73,6 +73,26 @@ const waFloatHref = `https://wa.me/5521993304045?text=${encodeURIComponent(waMsg
 
 <Base {...rest} lang={lang}>
   <Fragment slot="head">
+    <!-- Movimento Silencioso: html.js cedo (estados escondidos só valem com JS) e html.fonts-ready quando a Playfair e a
+         Montserrat carregam (as entradas de hero disparam só então: as palavras nascem já na fonte certa e a troca de
+         fonte acontece com o bloco invisível, sem layout shift). Teto de 2,5 s; sem JS, tudo fica estático e visível. -->
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      (function () {
+        var h = document.documentElement, done = false;
+        function go() { if (!done) { done = true; h.classList.add('fonts-ready'); } }
+        try {
+          if (document.fonts && document.fonts.load) {
+            Promise.all([
+              document.fonts.load('600 1em "Playfair Display"'),
+              document.fonts.load('400 1em "Playfair Display"'),
+              document.fonts.load('600 1em Montserrat'),
+            ]).then(go, go);
+            setTimeout(go, 2500);
+          } else { go(); }
+        } catch (e) { go(); }
+      })();
+    </script>
     <slot name="head" />
     {alt && (
       <>

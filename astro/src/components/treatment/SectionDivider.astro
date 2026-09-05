@@ -18,25 +18,25 @@ const { variant = 'simple', icon, iconSize = 20, text } = Astro.props;
 
 {variant === 'simple' && (
   <div class="sd-simple">
-    <div class="sd-bar" />
+    <div class="sd-bar ms-draw" />
   </div>
 )}
 
 {variant === 'with-icon' && (
   <div class="sd-row">
-    <div class="sd-line" />
+    <div class="sd-line ms-draw" />
     <div class="sd-icon-circle">
       {icon && <Icon name={icon} size={iconSize} class="tx-gold" />}
     </div>
-    <div class="sd-line" />
+    <div class="sd-line ms-draw" />
   </div>
 )}
 
 {variant === 'with-text' && (
   <div class="sd-row">
-    <div class="sd-line sd-line-wide" />
+    <div class="sd-line sd-line-wide ms-draw" />
     <span class="sd-text">{text}</span>
-    <div class="sd-line sd-line-wide" />
+    <div class="sd-line sd-line-wide ms-draw" />
   </div>
 )}
 
@@ -50,7 +50,10 @@ const { variant = 'simple', icon, iconSize = 20, text } = Astro.props;
     width: 6rem;
     height: 0.25rem;
     background: var(--dc-gold);
+    transform-origin: center; /* L7 — se desenha do centro */
   }
+  .sd-row .sd-line:first-child { transform-origin: right; }
+  .sd-row .sd-line:last-child { transform-origin: left; }
   .sd-row {
     display: flex;
     align-items: center;
