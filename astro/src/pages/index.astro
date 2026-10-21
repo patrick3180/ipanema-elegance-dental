@@ -1002,20 +1002,14 @@ const schemas = [JSON.stringify(structuredData), JSON.stringify(dentistSchema)];
 
   .gold-sep { width: 6rem; height: 0.25rem; background: var(--gold); margin: 0 auto 1.5rem; transform-origin: center; }
   .gold-sep-left { margin-left: 0; transform-origin: left; }
-  /* L7 — revelação ao rolar (Fase 1 — 04/09/2026): em navegadores com animação por rolagem (Chrome 115+,
-     Firefox 132+, Safari 26+) o separador dourado se desenha e os cards assentam ligados à rolagem, fora da thread
-     principal. Nos demais, vale o fallback por IntersectionObserver que já existia (.sr / .sr-in). */
-  @supports (animation-timeline: view()) {
-    .gold-sep { animation: sepDraw linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
-    :global(html.js) .sr {
-      opacity: 1; transform: none; transition: none; will-change: auto;
-      animation: srRise linear both; animation-timeline: view();
-      animation-range: entry calc(6% + var(--sr-i, 0) * 5%) entry calc(38% + var(--sr-i, 0) * 5%);
-    }
-  }
+  /* L7 — revisão de 21/10/2026: a revelação era LIGADA À ROLAGEM (animation-timeline: view()) e fazia o navegador
+     perder ~20% dos quadros ao rolar em monitor de alta frequência. Agora o separador se desenha UMA vez, por tempo,
+     quando o IntersectionObserver global (SiteLayout) marca .is-in. Os cards (.sr) voltam ao observer da própria
+     home (.sr-in), que já existia. */
+  :global(html.js) .gold-sep:not(.is-in) { transform: scaleX(0); }
+  :global(html.js) .gold-sep.is-in { animation: sepDraw 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
   @keyframes sepDraw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-  @keyframes srRise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
-  @media (prefers-reduced-motion: reduce) { .gold-sep, :global(html.js) .sr { animation: none !important; } }
+  @media (prefers-reduced-motion: reduce) { :global(html.js) .gold-sep { animation: none !important; transform: none !important; } }
 
   .eyebrow {
     font-size: 0.75rem;
@@ -1766,7 +1760,6 @@ const schemas = [JSON.stringify(structuredData), JSON.stringify(dentistSchema)];
     transition:
       opacity 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94) var(--sr-delay, 0ms),
       transform 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94) var(--sr-delay, 0ms);
-    will-change: opacity, transform;
   }
   :global(html.js) .sr.sr-in { opacity: 1; transform: translateY(0); }
 

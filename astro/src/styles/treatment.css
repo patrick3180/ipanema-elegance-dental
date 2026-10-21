@@ -175,10 +175,16 @@
 @keyframes msLineUp { from { transform: translateY(115%); } to { transform: translateY(0); } }
 @keyframes msSettle { from { transform: scale(1.07); } to { transform: scale(1); } }
 @keyframes msDraw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-@supports (animation-timeline: view()) {
-  .ms-rise { animation: msRise linear both; animation-timeline: view(); animation-range: entry calc(6% + var(--i, 0) * 5%) entry calc(38% + var(--i, 0) * 5%); }
-  .ms-draw { animation: msDraw linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
-}
+/* Revelação ao entrar na tela — UMA vez, por tempo (revisão de 21/10/2026; antes era ligada à rolagem e travava).
+   O IntersectionObserver do SiteLayout marca .is-in. Fill "backwards": terminada a entrada, o elemento volta ao
+   estilo normal, então o hover dos cards continua funcionando. Sem JS (sem html.js), tudo aparece de imediato. */
+html.js .ms-rise:not(.is-in) { opacity: 0; }
+html.js .ms-rise.is-in { animation: msRise 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; animation-delay: calc(var(--i, 0) * 90ms); }
+html.js .ms-draw:not(.is-in) { transform: scaleX(0); }
+html.js .ms-draw.is-in { animation: msDraw 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+/* Luz pausada quando a seção sai da tela (o mesmo script marca .ms-off): não gasta quadro com o que não se vê. */
+.ms-off .ms-blob, .ms-off .hl, .ms-off .fc-blob { animation-play-state: paused !important; }
 @media (prefers-reduced-motion: reduce) {
   .ms-blob, .ms-rise, .ms-draw, .ms-btn.ms-btn::after { animation: none !important; }
+  html.js .ms-rise, html.js .ms-draw { opacity: 1 !important; transform: none !important; }
 }

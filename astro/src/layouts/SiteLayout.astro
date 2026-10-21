@@ -109,6 +109,28 @@ const waFloatHref = `https://wa.me/5521993304045?text=${encodeURIComponent(waMsg
 
   <slot />
 
+  <!-- Movimento Silencioso (revisão de 21/10/2026): revelações disparam UMA vez quando o elemento entra na tela
+       (.is-in), e a luz animada pausa quando sua seção sai da tela (.ms-off). Substitui a animação ligada à rolagem,
+       que perdia quadros ao rolar. Sem IntersectionObserver, tudo é revelado de imediato. -->
+  <script is:inline>
+    (function () {
+      var els = document.querySelectorAll('.ms-rise, .ms-draw, .gold-sep');
+      var lights = document.querySelectorAll('.ms-light, .hero-fb-light, .final-cta');
+      var i;
+      if (!('IntersectionObserver' in window)) { for (i = 0; i < els.length; i++) els[i].classList.add('is-in'); return; }
+      var io = new IntersectionObserver(function (entries) {
+        for (var k = 0; k < entries.length; k++) {
+          if (entries[k].isIntersecting) { entries[k].target.classList.add('is-in'); io.unobserve(entries[k].target); }
+        }
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      for (i = 0; i < els.length; i++) io.observe(els[i]);
+      var lo = new IntersectionObserver(function (entries) {
+        for (var k = 0; k < entries.length; k++) entries[k].target.classList.toggle('ms-off', !entries[k].isIntersecting);
+      });
+      for (i = 0; i < lights.length; i++) lo.observe(lights[i]);
+    })();
+  </script>
+
   <a
     class="js-wa-cta site-float-wa"
     data-label="floating_whatsapp_button"
