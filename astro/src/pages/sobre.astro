@@ -11,42 +11,16 @@
  * do .webp causaria double-download (mesma lição do Sprint 5).
  */
 import SiteLayout from '../layouts/SiteLayout.astro';
+import { PERSON } from '../lib/clinicIdentity';
 import '../styles/treatment.css'; // utilitários do Movimento Silencioso (ms-*)
 
+// A Dra. Carla — nó PERSON da fonte única (src/lib/clinicIdentity.ts), com o que
+// só esta página acrescenta (descrição longa, áreas de conhecimento, conselho).
 const personSchema = JSON.stringify({
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Carla Christoph',
-  jobTitle: 'Cirurgiã-Dentista Especialista',
+  ...PERSON,
   description:
     'Dentista especialista em Ipanema com mais de 20 anos de experiência em prótese dental, implantes e reabilitação oral estética.',
-  url: 'https://dracarlachristoph.com/sobre',
-  image: '/lovable-uploads/b1c1cbdb-bde0-4d9e-912e-74cf74cf716d.png',
-  sameAs: ['https://instagram.com/dracarlachristoph', 'https://wa.me/5521993304045'],
-  worksFor: {
-    '@type': 'Organization',
-    name: 'Clínica Dra. Carla Christoph',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
-      addressLocality: 'Ipanema',
-      addressRegion: 'RJ',
-      postalCode: '22410-901',
-      addressCountry: 'BR',
-    },
-  },
-  hasCredential: [
-    {
-      '@type': 'EducationalOccupationalCredential',
-      name: 'Especialista em Prótese Dental',
-      credentialCategory: 'Especialização Odontológica',
-    },
-    {
-      '@type': 'EducationalOccupationalCredential',
-      name: 'Especialista em Implantodontia',
-      credentialCategory: 'Especialização Odontológica',
-    },
-  ],
   knowsAbout: [
     'Prótese Dental',
     'Implantodontia',
@@ -58,7 +32,7 @@ const personSchema = JSON.stringify({
   ],
   memberOf: {
     '@type': 'Organization',
-    name: 'Conselho Regional de Odontologia',
+    name: 'Conselho Regional de Odontologia do Rio de Janeiro',
   },
 });
 

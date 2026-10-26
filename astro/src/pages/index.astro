@@ -19,15 +19,16 @@
  * copiados de scripts/generate-static-meta.cjs (bloco Sprint 5 da home), injetados
  * via slot "head" do SiteLayout → Base (a prop preloadImage não suporta media query).
  *
- * Schemas: Dentist rico (Index.tsx structuredData) + Dentist compacto com
- * aggregateRating real 5.0/18 (generateDentistSchema de generate-static-meta.cjs)
- * — paridade com produção, onde os dois coexistem (estático + helmet).
+ * Schemas: um único Dentist (@id do consultório) com aggregateRating real e a
+ * Dra. Carla como founder — identidade em src/lib/clinicIdentity.ts (26/10/2026;
+ * antes eram 2 blocos Dentist soltos, herança do SPA React).
  *
  * Tracking: CTAs WhatsApp usam APENAS class js-wa-cta + data-label (handler
  * global do Base.astro). Form de contato replica o fluxo do React
  * (dataLayer + POST /api/contact + gtag conversion + beacon /api/send-gclid).
  */
-import { GOOGLE_AGGREGATE_RATING, GOOGLE_REVIEWS_URL } from '../lib/googleBusiness';
+import { GOOGLE_AGGREGATE_RATING, GOOGLE_PROFILE_URL, GOOGLE_REVIEWS_URL } from '../lib/googleBusiness';
+import { CLINIC_ADDRESS, CLINIC_GEO, CLINIC_ID, CLINIC_NAME, CLINIC_SAME_AS, PERSON } from '../lib/clinicIdentity';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { getBlogData, postMeta } from '../lib/contentful';
 
@@ -209,25 +210,25 @@ const testimonials = [
 
 // ── Schemas JSON-LD ──
 
-// 1) Dentist rico — copiado VERBATIM do structuredData de src/pages/Index.tsx
+// Um único Dentist (o consultório) com a Dra. Carla como founder. Até 26/10/2026
+// eram 2 blocos Dentist sem @id (este + um compacto com aggregateRating) —
+// identidade em src/lib/clinicIdentity.ts.
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Dentist',
-  name: 'Dra. Carla Christoph',
+  '@id': CLINIC_ID,
+  name: CLINIC_NAME,
   url: 'https://dracarlachristoph.com',
   logo: 'https://dracarlachristoph.com/og-image.jpg',
-  image: 'https://dracarlachristoph.com/og-image.jpg',
+  image: [
+    'https://dracarlachristoph.com/og-image.jpg',
+    BASE_URL + '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
+  ],
   description:
     'Dentista especialista em Ipanema com mais de 20 anos de experiência. Odontologia estética, implantes dentários, lentes de contato dental, clareamento dental e reabilitação oral.',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
-    addressLocality: 'Ipanema',
-    addressRegion: 'RJ',
-    postalCode: '22410-901',
-    addressCountry: 'BR',
-  },
-  geo: { '@type': 'GeoCoordinates', latitude: '-22.9868', longitude: '-43.2005' },
+  address: CLINIC_ADDRESS,
+  geo: CLINIC_GEO,
+  hasMap: GOOGLE_PROFILE_URL,
   telephone: '+5521993304045',
   email: 'contato@dracarlachristoph.com',
   priceRange: '$$$',
@@ -244,10 +245,12 @@ const structuredData = {
   areaServed: { '@type': 'City', name: 'Rio de Janeiro', sameAs: 'https://en.wikipedia.org/wiki/Rio_de_Janeiro' },
   serviceArea: {
     '@type': 'GeoCircle',
-    geoMidpoint: { '@type': 'GeoCoordinates', latitude: '-22.9868', longitude: '-43.2005' },
+    geoMidpoint: CLINIC_GEO,
     geoRadius: '50000',
   },
-  sameAs: ['https://instagram.com/dracarlachristoph', 'https://wa.me/5521993304045'],
+  sameAs: CLINIC_SAME_AS,
+  aggregateRating: GOOGLE_AGGREGATE_RATING,
+  availableLanguage: ['pt-BR', 'en'],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Serviços Odontológicos Especializados',
@@ -294,57 +297,10 @@ const structuredData = {
       },
     ],
   },
-  founder: {
-    '@type': 'Person',
-    name: 'Carla Christoph',
-    jobTitle: 'Cirurgiã-Dentista',
-    worksFor: { '@type': 'Organization', name: 'Clínica Dra. Carla Christoph' },
-    hasCredential: [
-      { '@type': 'EducationalOccupationalCredential', name: 'Especialista em Prótese Dental' },
-      { '@type': 'EducationalOccupationalCredential', name: 'Especialista em Implantodontia' },
-    ],
-  },
+  founder: PERSON,
 };
 
-// 2) Dentist compacto — copiado VERBATIM de generateDentistSchema() de
-//    scripts/generate-static-meta.cjs (aggregateRating 5.0/18 = dados REAIS do Google)
-const dentistSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Dentist',
-  name: 'Dra. Carla Christoph',
-  description:
-    'Dentista especialista em Prótese Dental e Reabilitação Oral em Ipanema, Rio de Janeiro. Mais de 20 anos de experiência.',
-  telephone: '+5521993304045',
-  url: BASE_URL,
-  image: BASE_URL + '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp',
-  priceRange: '$$$',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
-    addressLocality: 'Ipanema',
-    addressRegion: 'RJ',
-    postalCode: '22410-901',
-    addressCountry: 'BR',
-  },
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-      opens: '09:00',
-      closes: '19:00',
-    },
-  ],
-  hasCredential: {
-    '@type': 'EducationalOccupationalCredential',
-    credentialCategory: 'CRO-RJ',
-    recognizedBy: { '@type': 'Organization', name: 'CRO-RJ' },
-    identifier: '27.509',
-  },
-  aggregateRating: GOOGLE_AGGREGATE_RATING,
-  availableLanguage: ['pt-BR', 'en'],
-};
-
-const schemas = [JSON.stringify(structuredData), JSON.stringify(dentistSchema)];
+const schemas = [JSON.stringify(structuredData)];
 ---
 
 <SiteLayout

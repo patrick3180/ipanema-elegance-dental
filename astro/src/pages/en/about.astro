@@ -11,52 +11,27 @@
  *   Dimensões reais: 800x1200 (React declarava 500x625).
  */
 import SiteLayout from '../../layouts/SiteLayout.astro';
+import { PERSON } from '../../lib/clinicIdentity';
 
 const WA_HREF = "https://wa.me/5521993304045?text=Hello!%20I'd%20like%20to%20book%20an%20appointment.";
 
-// Schema copiado VERBATIM de EnAboutPage.tsx (structuredData)
+// A Dra. Carla — nó PERSON de src/lib/clinicIdentity.ts com textos em inglês.
+// Até 26/10/2026 era um "Dentist" chamado "Dr. Carla Christoph" (pessoa e
+// consultório misturados) com worksFor em uma 4ª grafia do nome.
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "Dentist",
-  "name": "Dr. Carla Christoph",
-  "url": "https://dracarlachristoph.com/en/about",
-  "image": "https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp",
+  ...PERSON,
+  "jobTitle": "Dental Surgeon",
+  "disambiguatingDescription": "Dental surgeon (CRO-RJ 27.509), specialist in Prosthodontics and Implant Dentistry, with a practice in Ipanema, Rio de Janeiro.",
   "description": "Dental specialist in Ipanema, Rio de Janeiro with 20+ years of experience in prosthodontics and implant dentistry.",
-  "medicalSpecialty": ["Prosthodontics", "Dental Implants", "Cosmetic Dentistry"],
-  "hasCredential": [
-    {
-      "@type": "EducationalOccupationalCredential",
-      "credentialCategory": "Professional License",
-      "recognizedBy": {
-        "@type": "Organization",
-        "name": "Conselho Regional de Odontologia do Rio de Janeiro (CRO-RJ)"
-      },
-      "identifier": "CRO-RJ 27.509"
-    }
-  ],
+  "image": "https://dracarlachristoph.com/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp",
   "knowsAbout": [
     "Porcelain Veneers",
     "Dental Implants",
     "Dental Prosthetics",
     "Teeth Whitening",
-    "Orthodontics",
     "Cosmetic Dentistry",
     "Oral Rehabilitation"
-  ],
-  "worksFor": {
-    "@type": "Dentist",
-    "name": "Dr. Carla Christoph — Dental Clinic",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Rua Visconde de Pirajá, 550 - Suite 1107",
-      "addressLocality": "Ipanema, Rio de Janeiro",
-      "addressRegion": "RJ",
-      "postalCode": "22410-901",
-      "addressCountry": "BR"
-    }
-  },
-  "sameAs": [
-    "https://instagram.com/dracarlachristoph"
   ]
 };
 

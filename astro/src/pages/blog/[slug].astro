@@ -9,6 +9,7 @@ import { getBlogData, postMeta, resolveSlug } from '../../lib/contentful';
 import { richTextToHtml } from '../../lib/richtext';
 import ComparisonTable from '../../components/blog/ComparisonTable.astro';
 import { resolveBlogComposition } from '../../lib/blogComposition';
+import { CLINIC_ID, CLINIC_NAME, PERSON } from '../../lib/clinicIdentity';
 
 export async function getStaticPaths() {
   const { posts, assetMap, entryMap } = await getBlogData();
@@ -75,32 +76,13 @@ const blogPostingSchema = JSON.stringify({
   image: m.imageUrl || 'https://dracarlachristoph.com/lovable-uploads/doutora-em-pe-jaleco.webp',
   datePublished: m.date,
   dateModified: m.lastUpdated,
-  author: {
-    '@type': 'Person',
-    name: m.author,
-    jobTitle: 'Dentista Especialista em Prótese Dentária e Implantodontia',
-    hasCredential: {
-      '@type': 'EducationalOccupationalCredential',
-      credentialCategory: 'CRO-RJ',
-      recognizedBy: { '@type': 'Organization', name: 'Conselho Regional de Odontologia do Rio de Janeiro' },
-      identifier: '27.509',
-    },
-    worksFor: {
-      '@type': 'Dentist',
-      name: 'Dra. Carla Christoph',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: 'Rua Visconde de Pirajá, 550 - Sala 1107',
-        addressLocality: 'Ipanema',
-        addressRegion: 'RJ',
-        postalCode: '22410-901',
-        addressCountry: 'BR',
-      },
-    },
-  },
+  // Autora = o mesmo nó PERSON do site inteiro (src/lib/clinicIdentity.ts);
+  // autor diferente vindo do Contentful não herda o CRO dela.
+  author: /carla/i.test(m.author || '') ? PERSON : { '@type': 'Person', name: m.author },
   publisher: {
     '@type': 'Organization',
-    name: 'Dra. Carla Christoph',
+    '@id': CLINIC_ID,
+    name: CLINIC_NAME,
     logo: { '@type': 'ImageObject', url: 'https://dracarlachristoph.com/lovable-uploads/logo.png' },
   },
   mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },

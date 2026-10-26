@@ -10,6 +10,8 @@
  * - ScrollReveal e count-up removidos — conteúdo estático.
  */
 import SiteLayout from '../../layouts/SiteLayout.astro';
+import { GOOGLE_PROFILE_URL } from '../../lib/googleBusiness';
+import { CLINIC_GEO, CLINIC_ID, CLINIC_NAME, CLINIC_SAME_AS, PERSON } from '../../lib/clinicIdentity';
 import EnStatsBar from '../../components/site/en/EnStatsBar.astro';
 import EnAboutSection from '../../components/site/en/EnAboutSection.astro';
 import EnDifferentialsSection from '../../components/site/en/EnDifferentialsSection.astro';
@@ -21,11 +23,13 @@ import EnFinalCTA from '../../components/site/en/EnFinalCTA.astro';
 
 const WA_HREF = "https://wa.me/5521993304045?text=Hello!%20I'd%20like%20to%20book%20an%20appointment.";
 
-// Schema copiado VERBATIM de EnHomePage.tsx (structuredData)
+// Schema de EnHomePage.tsx; identidade (@id, geo, sameAs, founder) de src/lib/clinicIdentity.ts
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Dentist",
-  "name": "Dr. Carla Christoph",
+  "@id": CLINIC_ID,
+  "name": CLINIC_NAME,
+  "alternateName": "Dr. Carla Christoph",
   "url": "https://dracarlachristoph.com/en",
   "logo": "https://dracarlachristoph.com/og-image.jpg",
   "image": "https://dracarlachristoph.com/og-image.jpg",
@@ -38,11 +42,8 @@ const structuredData = {
     "postalCode": "22410-901",
     "addressCountry": "BR"
   },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "-22.9868",
-    "longitude": "-43.2005"
-  },
+  "geo": CLINIC_GEO,
+  "hasMap": GOOGLE_PROFILE_URL,
   "telephone": "+5521993304045",
   "email": "contato@dracarlachristoph.com",
   "priceRange": "$$$",
@@ -61,10 +62,7 @@ const structuredData = {
     "name": "Rio de Janeiro",
     "sameAs": "https://en.wikipedia.org/wiki/Rio_de_Janeiro"
   },
-  "sameAs": [
-    "https://instagram.com/dracarlachristoph",
-    "https://wa.me/5521993304045"
-  ],
+  "sameAs": CLINIC_SAME_AS,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Dental Treatments",
@@ -112,19 +110,9 @@ const structuredData = {
     ]
   },
   "founder": {
-    "@type": "Person",
-    "name": "Carla Christoph",
+    ...PERSON,
     "jobTitle": "Dental Surgeon",
-    "hasCredential": [
-      {
-        "@type": "EducationalOccupationalCredential",
-        "name": "Specialist in Prosthodontics"
-      },
-      {
-        "@type": "EducationalOccupationalCredential",
-        "name": "Specialist in Implant Dentistry"
-      }
-    ]
+    "disambiguatingDescription": "Dental surgeon (CRO-RJ 27.509), specialist in Prosthodontics and Implant Dentistry, with a practice in Ipanema, Rio de Janeiro."
   },
   "inLanguage": "en"
 };
