@@ -5,10 +5,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { gclid, page, timestamp, source } = req.body || {};
+  const { gclid, gbraid, wbraid, page, timestamp, source } = req.body || {};
 
-  if (!gclid) {
-    return res.status(400).json({ error: 'GCLID is required' });
+  // iPhone: o clique de anúncio pode chegar só com gbraid/wbraid (sem gclid).
+  if (!gclid && !gbraid && !wbraid) {
+    return res.status(400).json({ error: 'gclid, gbraid or wbraid is required' });
   }
 
   // Rede de segurança contra tráfego de desenvolvimento (ata #78, 27/07/2026).
@@ -34,7 +35,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     'https://oqszkriirsodegxpfazz.supabase.co/functions/v1/gc-gclid-track';
 
   const webhookData = {
-    gclid,
+    gclid: gclid || null,
+    gbraid: gbraid || null,
+    wbraid: wbraid || null,
     page: page || '',
     timestamp: timestamp || new Date().toISOString(),
     source: source || 'direct'

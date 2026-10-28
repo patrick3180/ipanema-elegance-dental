@@ -1892,12 +1892,16 @@ const schemas = [JSON.stringify(structuredData)];
     function sendGclidWebhook(label: string) {
       try {
         const gclid = localStorage.getItem('gclid');
-        if (!gclid) return;
+        const gbraid = localStorage.getItem('gbraid');
+        const wbraid = localStorage.getItem('wbraid');
+        if (!gclid && !gbraid && !wbraid) return;
         // timestamp SEMPRE em ISO (epoch millis quebra o timestamptz na edge fn)
         let ts = localStorage.getItem('gclid_timestamp');
         if (ts && /^\d{10,17}$/.test(ts)) ts = new Date(Number(ts)).toISOString();
         const payload = JSON.stringify({
           gclid,
+          gbraid,
+          wbraid,
           timestamp: ts || new Date().toISOString(),
           page: localStorage.getItem('gclid_landing_url') || window.location.pathname,
           label,

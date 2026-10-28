@@ -64,14 +64,23 @@ const {
       window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
     </script>
 
-    <!-- GCLID: captura no boot → localStorage (paridade com captureGCLID()/main.tsx) -->
+    <!-- Clique de anúncio: captura no boot → localStorage (gclid, gbraid, wbraid) -->
     <script is:inline>
       (function () {
         try {
           var p = new URLSearchParams(window.location.search);
           var g = p.get('gclid');
-          if (g) {
-            localStorage.setItem('gclid', g);
+          // iPhone: o Google às vezes manda o clique só com gbraid/wbraid, e o
+          // Safari tira o gclid da URL em navegação privada. Sem ler os dois,
+          // o beacon não disparava e a conversão sumia (revisão de 28/10/2026).
+          var gb = p.get('gbraid');
+          var wb = p.get('wbraid');
+          if (g || gb || wb) {
+            // Clique novo substitui o anterior INTEIRO: não pode sobrar o gclid
+            // de uma visita velha ao lado do gbraid desta.
+            if (g) localStorage.setItem('gclid', g); else localStorage.removeItem('gclid');
+            if (gb) localStorage.setItem('gbraid', gb); else localStorage.removeItem('gbraid');
+            if (wb) localStorage.setItem('wbraid', wb); else localStorage.removeItem('wbraid');
             localStorage.setItem('gclid_timestamp', new Date().toISOString());
             // URL completa de aterrissagem (com gad_campaignid etc.) — vira o
             // page_url em gc_gclid_clicks e permite atribuir a campanha
@@ -363,13 +372,17 @@ const {
             // gc_gclid_clicks é produção e alimenta a atribuição de campanha.
             if (!window.__TRACKING_ON__) return;
             var gclid = localStorage.getItem('gclid');
-            if (!gclid) return;
+            var gbraid = localStorage.getItem('gbraid');
+            var wbraid = localStorage.getItem('wbraid');
+            if (!gclid && !gbraid && !wbraid) return;
             // timestamp SEMPRE em ISO: epoch millis (String(Date.now())) quebrava
             // o insert timestamptz na edge fn gc-gclid-track (gclid morto 06-11/07)
             var ts = localStorage.getItem('gclid_timestamp');
             if (ts && /^\d{10,17}$/.test(ts)) ts = new Date(Number(ts)).toISOString();
             var payload = JSON.stringify({
               gclid: gclid,
+              gbraid: gbraid,
+              wbraid: wbraid,
               timestamp: ts || new Date().toISOString(),
               page: localStorage.getItem('gclid_landing_url') || window.location.pathname,
               label: label,
