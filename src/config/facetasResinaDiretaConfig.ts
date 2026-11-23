@@ -54,7 +54,7 @@ export const facetasResinaDiretaConfig: LandingPageConfig = {
   },
 
   socialProof: {
-    title: 'O que contam pacientes de facetas de resina',
+    title: 'O Que Nossos Pacientes Contam',
     testimonials: [
       { name: 'Camila R. — Ipanema', text: 'Tinha um casamento em duas semanas e estava infeliz com meus dentes. A Dra. Carla fez as facetas de resina em uma sessão. Me senti muito mais confiante nas fotos.' },
       { name: 'Pedro N. — Leblon', text: 'O processo de ver como ia ficar antes de fazer me deu muita segurança. O resultado ficou natural, ninguém diz que é resina.' },
@@ -75,15 +75,15 @@ export const facetasResinaDiretaConfig: LandingPageConfig = {
       { question: 'A resina mancha com o tempo?', answer: 'Resinas de alta performance, como as que utilizamos, têm alta resistência a manchas. No entanto, cuidados com alimentos muito pigmentados e o polimento anual são importantes para manter a cor estável por mais tempo.' },
       { question: 'Qual a principal diferença para a porcelana?', answer: 'A resina é esculpida direto no dente, em geral em uma única sessão. A porcelana é feita em laboratório, em mais sessões, dura mais (em média 15 anos ou mais) e resiste melhor a manchas. Na consulta, a Dra. Carla explica a indicação e os valores de cada uma.' },
       { question: 'Como saberei como ficará o resultado final?', answer: 'Antes de qualquer trabalho definitivo, a Dra. Carla pode aplicar uma resina removível para que você visualize e aprove o resultado. Uma vez que esteja tudo aprovado, ela faz o trabalho com a resina definitiva, de alta performance. Você vê na prática, na própria boca, como ficará o sorriso antes dele ser feito.' },
-      { question: 'Quanto custa fazer facetas de resina?', answer: 'O valor depende do número de dentes e do planejamento estético para o seu caso. As facetas de resina têm um investimento significativamente mais acessível que as de porcelana, com resultado igualmente harmonioso para a maioria das situações. Na consulta inicial, apresentamos o investimento completo com valores claros — você decide no seu tempo.' },
+      { question: 'Quanto custa fazer facetas de resina?', answer: 'O valor depende do número de dentes e do planejamento estético para o seu caso. Em geral, a resina tem investimento menor que a porcelana. Na consulta inicial, apresentamos o investimento completo com valores claros — você decide no seu tempo.' },
       { question: 'Como funciona o agendamento?', answer: 'Envie uma mensagem pelo WhatsApp descrevendo o que você deseja e nós iremos encontrar o melhor horário para você. A consulta com a Dra. Carla é feita sem pressa. Ela irá escutar com bastante atenção o que você deseja e apresentar a proposta de plano de tratamento. Caso tenha dúvidas, ela pode fazer o test drive do sorriso — uma aplicação de resina removível para que você possa ver e aprovar o resultado final antes de colocar a resina definitiva.' },
-      { question: 'O atendimento é particular?', answer: 'Sim. O atendimento da Dra. Carla é particular, o que permite dedicar tempo real ao seu caso e escolher o material indicado para cada um. Emitimos recibo para solicitação de reembolso ao seu convênio, caso o seu plano permita.' }
+      { question: 'O atendimento é particular?', answer: 'Sim. O atendimento da Dra. Carla é particular, o que permite dedicar tempo real ao seu caso e escolher o material indicado para ele. Emitimos recibo para solicitação de reembolso ao seu convênio, caso o seu plano permita.' }
     ]
   },
 
   cta: {
     title: 'Seu Sorriso Merece essa Atenção',
-    subtitle: 'Mande uma mensagem no WhatsApp e converse com a equipe da Dra. Carla sobre as suas facetas. Consulta individual, com tempo dedicado ao seu caso e valores apresentados na consulta.',
+    subtitle: 'Mande uma mensagem no WhatsApp e converse com a equipe da Dra. Carla sobre as suas facetas. Consulta individual, com tempo dedicado ao seu caso e valores apresentados com clareza.',
     buttonText: 'Quero Falar Sobre Minhas Facetas',
     urgency: 'Pequenas correções de forma e cor ficam mais simples quando planejadas com antecedência.'
   },

@@ -192,7 +192,7 @@ Exemplos:
 4. **Tom conversacional:** Como alguém realmente falaria, não copy de marketing
 5. **Mencionar algo específico:** O depoimento deve citar algo concreto do atendimento (tempo, explicação, tecnologia, resultado), não elogio genérico
 6. **Bairros permitidos:** Ipanema, Leblon, Copacabana, Jardim Botânico, Lagoa, Gávea, Humaitá, Botafogo, Barra da Tijuca
-7. **Stats permitidos:** "20+ anos de experiência", "4.000+ pacientes atendidos", "1h+ mínimo por consulta", "24h WhatsApp disponível"
+7. **Stats permitidos:** "20+ anos de experiência", "10.000+ pacientes atendidos", "1h+ mínimo por consulta", "24h WhatsApp disponível"
 
 ### O que NÃO usar em depoimentos
 
