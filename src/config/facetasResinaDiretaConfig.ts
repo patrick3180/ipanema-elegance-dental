@@ -15,14 +15,14 @@ export const facetasResinaDiretaConfig: LandingPageConfig = {
 
   hero: {
     // Onda 1 (jul/2026): H1 encurtado — o anterior tinha 4 linhas no mobile e empurrava o CTA p/ fora da dobra
-    headline: 'Facetas de resina em Ipanema — resultado em uma única sessão',
+    headline: 'Facetas de resina em Ipanema — feitas em uma única sessão',
     subheadline: 'Facetas esculpidas diretamente no dente pela Dra. Carla Christoph. Você acompanha e aprova cada etapa antes de finalizar — sem pressa e sem surpresas.',
     ctaText: 'Agendar minha consulta',
     backgroundImage: '/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp'
   },
 
   benefits: [
-    'Resultado no mesmo dia — uma única sessão',
+    'Em geral, feitas em uma única sessão',
     'Procedimento minimamente invasivo',
     'WhatsApp 24h — tire dúvidas agora',
     '20+ anos de experiência em estética dental'
@@ -30,7 +30,7 @@ export const facetasResinaDiretaConfig: LandingPageConfig = {
 
   problem: {
     title: 'Você Se Identifica com Alguma Dessas Situações?',
-    description: 'As facetas de resina são a escolha de quem quer renovar o sorriso de forma rápida, segura e acessível — sem sacrificar naturalidade nem conforto.',
+    description: 'As facetas de resina são uma opção para mudar forma, cor ou pequenos espaços dos dentes com preparo mínimo, mantendo a aparência natural.',
     problems: [
       'Um evento importante está se aproximando e você quer um sorriso mais bonito nas fotos.',
       'Seus dentes têm manchas, lascas ou espaços que te incomodam no dia a dia.',
@@ -49,12 +49,12 @@ export const facetasResinaDiretaConfig: LandingPageConfig = {
       { number: '2', title: 'Consulta e Planejamento', description: 'Na consulta, a Dra. Carla examina seus dentes, ouve com atenção o que você deseja e explica o que é possível alcançar com as facetas de resina no seu caso — com total transparência.' },
       { number: '3', title: 'Test Drive do Sorriso', description: 'Caso tenha dúvidas sobre o resultado, a Dra. Carla pode aplicar uma resina removível para que você visualize e aprove o resultado final antes de colocar a resina definitiva.' },
       { number: '4', title: 'Escultura com Aprovação em Tempo Real', description: 'As facetas são esculpidas dente a dente, diretamente na sua boca. Você acompanha cada etapa e aprova o resultado antes de finalizar.' },
-      { number: '5', title: 'Acabamento e Polimento', description: 'A sessão termina com acabamento de alta precisão e polimento com brilho natural. Você sai no mesmo dia com o sorriso pronto e orientações claras de cuidados.' }
+      { number: '5', title: 'Acabamento e Polimento', description: 'A sessão termina com acabamento de alta precisão e polimento com brilho natural. Você sai com as facetas prontas e orientações claras de cuidados.' }
     ]
   },
 
   socialProof: {
-    title: 'A Felicidade de um Sorriso Renovado no Mesmo Dia',
+    title: 'O que contam pacientes de facetas de resina',
     testimonials: [
       { name: 'Camila R. — Ipanema', text: 'Tinha um casamento em duas semanas e estava infeliz com meus dentes. A Dra. Carla fez as facetas de resina em uma sessão. Me senti muito mais confiante nas fotos.' },
       { name: 'Pedro N. — Leblon', text: 'O processo de ver como ia ficar antes de fazer me deu muita segurança. O resultado ficou natural, ninguém diz que é resina.' },
@@ -63,7 +63,7 @@ export const facetasResinaDiretaConfig: LandingPageConfig = {
     stats: [
       { number: '20+', label: 'Anos de Experiência' },
       { number: '10.000+', label: 'Pacientes Atendidos' },
-      { number: '1 Dia', label: 'Resultado no Mesmo Dia' },
+      { number: '1h+', label: 'Mínimo por Consulta' },
       { number: '24h', label: 'Atendimento WhatsApp' }
     ]
   },
@@ -73,17 +73,17 @@ export const facetasResinaDiretaConfig: LandingPageConfig = {
     questions: [
       { question: 'Qual a durabilidade das facetas de resina?', answer: 'Com os devidos cuidados e manutenções anuais (polimento), as facetas de resina compostas nanoparticuladas podem durar em média de 5 a 7 anos, mantendo a estética e o brilho.' },
       { question: 'A resina mancha com o tempo?', answer: 'Resinas de alta performance, como as que utilizamos, têm alta resistência a manchas. No entanto, cuidados com alimentos muito pigmentados e o polimento anual são importantes para manter a cor estável por mais tempo.' },
-      { question: 'Qual a principal diferença para a porcelana?', answer: 'A resina é uma solução mais rápida (feita em 1 dia) e com um investimento mais acessível. A porcelana, feita em laboratório, oferece maior durabilidade (15+ anos) e resistência total a manchas, sendo um investimento a longo prazo.' },
+      { question: 'Qual a principal diferença para a porcelana?', answer: 'A resina é esculpida direto no dente, em geral em uma única sessão. A porcelana é feita em laboratório, em mais sessões, dura mais (em média 15 anos ou mais) e resiste melhor a manchas. Na consulta, a Dra. Carla explica a indicação e os valores de cada uma.' },
       { question: 'Como saberei como ficará o resultado final?', answer: 'Antes de qualquer trabalho definitivo, a Dra. Carla pode aplicar uma resina removível para que você visualize e aprove o resultado. Uma vez que esteja tudo aprovado, ela faz o trabalho com a resina definitiva, de alta performance. Você vê na prática, na própria boca, como ficará o sorriso antes dele ser feito.' },
       { question: 'Quanto custa fazer facetas de resina?', answer: 'O valor depende do número de dentes e do planejamento estético para o seu caso. As facetas de resina têm um investimento significativamente mais acessível que as de porcelana, com resultado igualmente harmonioso para a maioria das situações. Na consulta inicial, apresentamos o investimento completo com valores claros — você decide no seu tempo.' },
       { question: 'Como funciona o agendamento?', answer: 'Envie uma mensagem pelo WhatsApp descrevendo o que você deseja e nós iremos encontrar o melhor horário para você. A consulta com a Dra. Carla é feita sem pressa. Ela irá escutar com bastante atenção o que você deseja e apresentar a proposta de plano de tratamento. Caso tenha dúvidas, ela pode fazer o test drive do sorriso — uma aplicação de resina removível para que você possa ver e aprovar o resultado final antes de colocar a resina definitiva.' },
-      { question: 'O atendimento é particular?', answer: 'Sim. O atendimento da Dra. Carla é particular, o que permite dedicar tempo real ao seu caso e usar materiais de primeira linha. Emitimos recibo para solicitação de reembolso ao seu convênio, caso o seu plano permita.' }
+      { question: 'O atendimento é particular?', answer: 'Sim. O atendimento da Dra. Carla é particular, o que permite dedicar tempo real ao seu caso e escolher o material indicado para cada um. Emitimos recibo para solicitação de reembolso ao seu convênio, caso o seu plano permita.' }
     ]
   },
 
   cta: {
     title: 'Seu Sorriso Merece essa Atenção',
-    subtitle: 'Mande uma mensagem no WhatsApp e converse com a equipe da Dra. Carla sobre as suas facetas. Consulta individual com tempo dedicado ao seu caso, valores transparentes e resultado no mesmo dia.',
+    subtitle: 'Mande uma mensagem no WhatsApp e converse com a equipe da Dra. Carla sobre as suas facetas. Consulta individual, com tempo dedicado ao seu caso e valores apresentados na consulta.',
     buttonText: 'Quero Falar Sobre Minhas Facetas',
     urgency: 'Pequenas correções de forma e cor ficam mais simples quando planejadas com antecedência.'
   },
@@ -96,8 +96,8 @@ export const facetasResinaDiretaConfig: LandingPageConfig = {
   },
 
   seo: {
-    title: 'Facetas de Resina Direta Ipanema | Sorriso Novo em 1 Dia',
-    description: 'Renove seu sorriso em uma única sessão com facetas de resina em Ipanema. Resultado estético, rápido e com investimento acessível. Dra. Carla Christoph — 20+ anos de experiência.',
+    title: 'Facetas de Resina Direta em Ipanema | Dra. Carla Christoph',
+    description: 'Facetas de resina esculpidas direto no dente, em geral em uma única sessão, em Ipanema. Test Drive do Sorriso quando indicado. Dra. Carla Christoph — 20+ anos de experiência.',
     keywords: [
       'facetas de resina ipanema',
       'lentes de resina preço',

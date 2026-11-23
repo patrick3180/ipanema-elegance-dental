@@ -44,8 +44,8 @@ export const lentesPorcelanaProfissionalConfig: LandingPageConfig = {
     steps: [
       { number: '1', title: 'Consulta e Análise Facial', description: 'Conversa sobre suas expectativas. Análise facial, fotografias e escaneamento digital para entender o que combina com o seu rosto.' },
       { number: '2', title: 'Test Drive do Sorriso', description: 'Você experimenta um modelo provisório na boca antes de iniciar. Vê, sente e aprova. Se não gostar, ajustamos até ficar do seu jeito.' },
-      { number: '3', title: 'Confecção em Laboratório', description: 'Com o projeto aprovado, cada lente é confeccionada em porcelana de alta translucidez — o material que mais se aproxima da aparência natural dos dentes.' },
-      { number: '4', title: 'Cimentação e Resultado', description: 'As lentes são cimentadas com precisão pela Dra. Carla. Somente materiais de primeira linha são utilizados. Você sai sorrindo.' }
+      { number: '3', title: 'Confecção em Laboratório', description: 'Com o projeto aprovado, cada lente é confeccionada em porcelana de alta translucidez, que reproduz a cor e o brilho dos dentes naturais.' },
+      { number: '4', title: 'Cimentação e Resultado', description: 'As lentes são cimentadas com precisão pela Dra. Carla. Você sai sorrindo.' }
     ]
   },
 
@@ -69,7 +69,7 @@ export const lentesPorcelanaProfissionalConfig: LandingPageConfig = {
     questions: [
       { question: 'Lente de contato dental dura quanto tempo?', answer: 'Lentes de porcelana bem cuidadas duram em média 15 a 20 anos. A durabilidade depende dos hábitos do paciente — ranger os dentes e morder objetos duros são os principais fatores que reduzem a vida útil.' },
       { question: 'Qual a diferença entre lente de contato e faceta de porcelana?', answer: 'A lente é mais fina (0,3 a 0,5mm) e exige pouco ou nenhum desgaste do dente. A faceta é levemente mais espessa e indicada quando há necessidade de correções maiores. Na consulta, avaliamos qual é a melhor opção para o seu caso.' },
-      { question: 'Lente de porcelana estraga o dente?', answer: 'Não. Na maioria dos casos, o preparo é mínimo ou até inexistente. O dente natural é preservado ao máximo. A porcelana é colada sobre o esmalte de forma permanente e segura.' },
+      { question: 'Lente de porcelana estraga o dente?', answer: 'Não. Na maioria dos casos, o preparo é mínimo ou até inexistente. O dente natural é preservado ao máximo. A porcelana é colada sobre o esmalte e, com os cuidados indicados, tem longa duração.' },
       { question: 'Como funciona o Test Drive do Sorriso?', answer: 'Antes de fazer qualquer desgaste, montamos uma simulação em resina sobre os seus dentes para você ver, tocar e aprovar o resultado. Se quiser ajustar formato, tamanho ou proporção, fazemos na hora.' },
       { question: 'Posso fazer lentes só nos dentes da frente?', answer: 'Sim, a maioria dos casos envolve de 6 a 10 dentes superiores — os que aparecem no sorriso. A quantidade exata depende da largura do seu sorriso e do resultado desejado.' },
       { question: 'Dentes com restauração antiga podem receber lentes?', answer: 'Depende do tamanho e estado da restauração. Em muitos casos, a lente pode cobrir e substituir restaurações escurecidas. Avaliamos caso a caso na consulta.' },

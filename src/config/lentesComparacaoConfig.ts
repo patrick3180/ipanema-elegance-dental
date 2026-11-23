@@ -76,7 +76,7 @@ export const lentesComparacaoConfig: LandingPageConfig = {
       { question: 'Dá para fechar diastema (espaço entre os dentes) com lente de contato dental?', answer: 'Sim. Tanto a resina quanto a porcelana fecham diastemas. Em espaços pequenos, a resina costuma resolver de forma rápida; em casos que pedem mais durabilidade e estabilidade de cor, a porcelana pode ser a melhor indicação. A Dra. Carla define isso com você na consulta.' },
       { question: 'Consigo mudar o formato do dente?', answer: 'Sim. Lentes e facetas permitem ajustar formato, tamanho, bordas e proporção dos dentes. Com o Test Drive do Sorriso você visualiza o novo formato na própria boca antes de decidir.' },
       { question: 'Quanto custa? Resina é mais barata que porcelana?', answer: 'Sim, a resina costuma ter investimento mais acessível. A porcelana é mais durável e resistente a manchas, por isso o investimento é maior e pensado para o longo prazo. Os valores dependem do número de dentes e do planejamento do seu caso, e são apresentados com clareza na consulta — você decide no seu tempo.' },
-      { question: 'O atendimento é particular?', answer: 'Sim. O atendimento da Dra. Carla é particular, o que permite dedicar tempo real ao seu caso e usar materiais de primeira linha. Emitimos recibo para solicitação de reembolso ao seu convênio, caso o seu plano permita.' }
+      { question: 'O atendimento é particular?', answer: 'Sim. O atendimento da Dra. Carla é particular, o que permite dedicar tempo real ao seu caso e escolher o material indicado para cada um. Emitimos recibo para solicitação de reembolso ao seu convênio, caso o seu plano permita.' }
     ]
   },
 
