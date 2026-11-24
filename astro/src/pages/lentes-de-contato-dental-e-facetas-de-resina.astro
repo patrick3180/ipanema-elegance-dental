@@ -31,8 +31,8 @@ const faqs = [
   { question: 'É necessário desgastar muito os meus dentes?', answer: 'Não. A filosofia do consultório é a máxima preservação da estrutura dentária. Para lentes, o preparo é mínimo (0,1-0,3mm quando necessário), limitado ao esmalte superficial. Para facetas de resina, o preparo também é conservador. O importante é buscar uma adaptação precisa e um resultado estético duradouro, preservando ao máximo seus dentes naturais.' },
   { question: 'Quanto tempo dura o tratamento completo?', answer: 'Lentes de contato dental: 2-3 consultas em 15-20 dias. Primeira consulta para planejamento e moldagem digital, segunda para aprovação do Test Drive do Sorriso, terceira para cimentação. Facetas de resina: 1-2 consultas, pois são confeccionadas diretamente no consultório. Trabalhamos com agenda espaçada para garantir tempo adequado em cada sessão.' },
   { question: 'O tratamento para melhorar a estética do sorriso dói?', answer: 'Não. Todos os procedimentos estéticos são realizados com o máximo de conforto, utilizando anestesia local sempre que necessário. A cimentação das lentes é um processo delicado que não causa dor. Pode haver sensibilidade leve nos primeiros dias, facilmente controlada com analgésicos simples se necessário. A prioridade é uma experiência tranquila e confortável.' },
-  { question: 'O que é o Test Drive do Sorriso (mock-up)?', answer: 'É uma técnica onde criamos seu novo sorriso com resina provisória não adesiva diretamente na sua boca, sem desgastar os dentes. Você pode se olhar no espelho, tirar fotos, vídeos, falar, sorrir. É uma experiência única! Ajustamos juntos até ficar do seu jeito. Só depois de você aprovar 100% é que partimos para o tratamento definitivo. Este é um dos nossos maiores diferenciais.' },
-  { question: 'As lentes podem parecer artificiais?', answer: 'Este é um dos maiores medos, e a nossa maior preocupação é evitá-lo. Quando bem executadas por uma especialista, absolutamente não. Usamos cerâmicas de última geração que mimetizam perfeitamente a beleza do dente natural. O segredo está na análise facial completa, estratificação de cor personalizada e proporções individualizadas. O resultado é um sorriso elogiado pela naturalidade.' },
+  { question: 'O que é o Test Drive do Sorriso (mock-up)?', answer: 'É uma técnica onde criamos seu novo sorriso com resina provisória não adesiva diretamente na sua boca, sem desgastar os dentes. Você pode se olhar no espelho, tirar fotos, vídeos, falar, sorrir. Ajustamos juntos até ficar do seu jeito. Só depois da sua aprovação partimos para o tratamento definitivo.' },
+  { question: 'As lentes podem parecer artificiais?', answer: 'Este é um dos maiores medos, e a nossa maior preocupação é evitá-lo. A porcelana reproduz bem a cor, o brilho e a translucidez do dente natural. O que define a naturalidade é o planejamento: análise facial, cor ajustada a você e proporções individualizadas, aprovadas antes no Test Drive do Sorriso.' },
   { question: 'Posso fazer lentes mesmo tendo os dentes tortos?', answer: 'Sim, desde que o desalinhamento seja leve. Lentes podem corrigir pequenos desalinhamentos, giros e espaços. Porém, em casos de apinhamento severo ou problemas de mordida significativos, pode ser necessário ortodontia prévia para um resultado duradouro e saudável. Na consulta, avalio seu caso específico e recomendo a melhor abordagem.' },
   { question: 'Preciso fazer em todos os dentes?', answer: 'Não necessariamente. Muitos casos envolvem apenas os dentes anteriores superiores (4 a 10 dentes). Na consulta, analiso seu sorriso para determinar quantos dentes precisam ser incluídos para um resultado harmonioso. O planejamento é individualizado para cada pessoa.' },
   { question: 'Qual o investimento para lentes de contato dental e facetas em Ipanema?', answer: 'O investimento varia conforme o número de dentes, a complexidade do caso e o material indicado. A porcelana dura mais (em média 15 a 20 anos); a resina é feita direto no dente, em menos sessões. Os valores são apresentados na consulta, depois do exame.' },
@@ -47,7 +47,7 @@ const comparisonRows = [
   { c: 'Preparo dental', a: 'Mínimo', b: 'Mínimo a moderado' },
   { c: 'Durabilidade', a: '15-20 anos (em média)', b: '5-8 anos' },
   { c: 'Manchamento', a: 'Não mancha', b: 'Pode manchar' },
-  { c: 'Consultas necessárias', a: '2-3 (15-20 dias)', b: '1-2 (imediato)' },
+  { c: 'Consultas necessárias', a: '2-3 (15-20 dias)', b: '1-2 (direto no dente)' },
   { c: 'Possibilidade de reparo', a: 'Não', b: 'Sim' },
   { c: 'Estética', a: 'Translucidez superior', b: 'Muito boa' },
   { c: 'Investimento', a: 'Maior investimento', b: 'Acessível' },
@@ -147,7 +147,7 @@ const schemas = [
 
 <SiteLayout
   title="Lentes de Contato Dental e Facetas de Resina em Ipanema | Dra. Carla Christoph"
-  description="Lentes de contato dental e facetas de resina em Ipanema com Dra. Carla Christoph. Test Drive do Sorriso exclusivo. 20+ anos de experiência. CRO-RJ 27.509."
+  description="Lentes de contato dental e facetas de resina em Ipanema com Dra. Carla Christoph. Test Drive do Sorriso antes de começar. 20+ anos de experiência. CRO-RJ 27.509."
   canonical="https://dracarlachristoph.com/lentes-de-contato-dental-e-facetas-de-resina"
   preloadImage="/lovable-uploads/dra-carla-jaleco-bracos-cruzados.webp"
   schemas={schemas}
@@ -230,8 +230,8 @@ const schemas = [
             <ul class="ben-list">
               <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Análise facial completa para harmonia com suas características únicas</span></li>
               <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Proporções individualizadas respeitando sua idade e personalidade</span></li>
-              <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Resultado natural que recebe elogios pela beleza, não pela aparência de 'dentes feitos'</span></li>
-              <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Textura e cor que imitam perfeitamente dentes naturais</span></li>
+              <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Planejado para parecer natural, sem aspecto de 'dentes feitos'</span></li>
+              <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Textura e cor próximas às dos dentes naturais</span></li>
               <li><Icon name="check-circle" size={16} class="tx-gold ben-check" /><span>Harmonização que realça sua beleza natural</span></li>
             </ul>
           </div>
@@ -350,7 +350,7 @@ const schemas = [
               <div class="mod-overlay"></div>
               <div class="mod-caption">
                 <h3>Facetas de Resina Composta</h3>
-                <p>Restaurações diretas confeccionadas artesanalmente no próprio consultório. Excelente opção para quem busca melhoria estética imediata com investimento mais acessível.</p>
+                <p>Restaurações diretas confeccionadas artesanalmente no próprio consultório. Opção para quem busca melhora estética em 1 a 2 consultas, com investimento mais acessível.</p>
               </div>
             </div>
 
@@ -363,7 +363,7 @@ const schemas = [
                     <li><span class="mod-arrow">▸</span><span><strong>Material:</strong> Resina composta nanoparticulada</span></li>
                     <li><span class="mod-arrow">▸</span><span><strong>Preparo:</strong> Mínimo a moderado</span></li>
                     <li><span class="mod-arrow">▸</span><span><strong>Durabilidade:</strong> 5 a 8 anos</span></li>
-                    <li><span class="mod-arrow">▸</span><span><strong>Estética:</strong> Muito boa, resultado imediato</span></li>
+                    <li><span class="mod-arrow">▸</span><span><strong>Estética:</strong> Muito boa, feita direto no dente</span></li>
                     <li><span class="mod-arrow">▸</span><span><strong>Aplicação:</strong> Direto na boca em 1-2 consultas</span></li>
                   </ul>
                 </div>
@@ -401,7 +401,7 @@ const schemas = [
                 <summary><span>Ideal Para</span><svg class="mod-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
                 <div class="mod-body">
                   <div class="mod-ideal">
-                    <p>Quem deseja melhorar o sorriso com investimento menor, casos menos complexos, resultado imediato, ou como opção temporária enquanto planeja um tratamento definitivo.</p>
+                    <p>Quem deseja melhorar o sorriso com investimento menor, casos menos complexos, quem quer o tratamento em 1 a 2 consultas, ou como opção temporária enquanto planeja um tratamento definitivo.</p>
                   </div>
                 </div>
               </details>
@@ -547,7 +547,7 @@ const schemas = [
                   <div class="td-step-num"><span>4</span></div>
                   <div>
                     <h4>Ajustes em Tempo Real</h4>
-                    <p>Modificamos juntos até ficar perfeito para você</p>
+                    <p>Ajustamos juntos até ficar do seu jeito</p>
                   </div>
                 </div>
               </div>
@@ -555,21 +555,21 @@ const schemas = [
 
             <!-- Coluna Direita - Benefícios -->
             <div class="td-right">
-              <h3>Por Que o Test Drive É Revolucionário?</h3>
+              <h3>Por Que Fazer o Test Drive?</h3>
 
               <div class="td-benefits">
                 <div class="td-benefit">
                   <Icon name="check-circle" size={20} class="tx-gold td-benefit-ic" />
                   <div>
-                    <strong>Zero Ansiedade</strong>
-                    <p>Você sabe exatamente como vai ficar antes de começar</p>
+                    <strong>Mais Tranquilidade</strong>
+                    <p>Você vê uma prévia na sua boca antes de começar</p>
                   </div>
                 </div>
                 <div class="td-benefit">
                   <Icon name="check-circle" size={20} class="tx-gold td-benefit-ic" />
                   <div>
                     <strong>Participação Ativa</strong>
-                    <p>Você decide junto comigo, ajustamos até sua aprovação 100%</p>
+                    <p>Você decide junto comigo, e ajustamos até a sua aprovação</p>
                   </div>
                 </div>
                 <div class="td-benefit">
@@ -582,14 +582,14 @@ const schemas = [
                 <div class="td-benefit">
                   <Icon name="check-circle" size={20} class="tx-gold td-benefit-ic" />
                   <div>
-                    <strong>Confiança Total</strong>
-                    <p>Só partimos para o definitivo quando você estiver 100% feliz</p>
+                    <strong>Decisão Segura</strong>
+                    <p>Só partimos para o definitivo depois da sua aprovação</p>
                   </div>
                 </div>
               </div>
 
               <div class="td-quote">
-                <p>"É impressionante! Ver exatamente como vai ficar seu novo sorriso antes de fazer qualquer coisa. Não é uma simulação no computador - é REAL, na sua boca!"</p>
+                <p>Ver o sorriso na própria boca, antes de qualquer procedimento, deixa a decisão mais tranquila. Não é uma simulação no computador: é na sua boca.</p>
               </div>
             </div>
           </div>
@@ -867,8 +867,8 @@ const schemas = [
         <ProcessTimeline
           steps={[
             { number: '1', title: 'Consulta Inicial e Planejamento Digital', description: 'Consulta inicial com análise facial completa e fotográfica. iTero Element 5D: moldagem digital sem massa, sem desconforto. Avaliação da saúde bucal e periodontal. Estudo das proporções ideais para harmonização facial. Apresentação do plano de tratamento personalizado.', icon: 'search' },
-            { number: '2', title: 'Test Drive do Sorriso (Mock-up)', description: 'O GRANDE DIFERENCIAL! Criação do seu novo sorriso com resina provisória não adesiva. Você vê, sente e aprova o resultado ANTES do tratamento definitivo. Tire fotos, vídeos, sorria, fale naturalmente. Ajustamos juntos até alcançar o resultado ideal. Momento emocionante de visualizar seu novo sorriso ao vivo.', icon: 'star' },
-            { number: '3', title: 'Preparo Conservador', description: 'Com o mock-up 100% aprovado, iniciamos o preparo. Lentes: preparo mínimo preservando ao máximo a estrutura dental. Facetas de resina: escultura direta no consultório (1-2 consultas). Novo escaneamento com iTero Element 5D para laboratório (apenas lentes). Provisórios estéticos enquanto aguarda (se necessário).', icon: 'shield' },
+            { number: '2', title: 'Test Drive do Sorriso (Mock-up)', description: 'Criação de uma prévia do sorriso com resina provisória não adesiva. Você vê, sente e aprova o resultado ANTES do tratamento definitivo. Tire fotos, vídeos, sorria, fale naturalmente. Ajustamos juntos até ficar do seu jeito.', icon: 'star' },
+            { number: '3', title: 'Preparo Conservador', description: 'Com o mock-up aprovado, iniciamos o preparo. Lentes: preparo mínimo preservando ao máximo a estrutura dental. Facetas de resina: escultura direta no consultório (1-2 consultas). Novo escaneamento com iTero Element 5D para laboratório (apenas lentes). Provisórios estéticos enquanto aguarda (se necessário).', icon: 'shield' },
             { number: '4', title: 'Confecção Artesanal', description: 'Lentes: laboratório especializado em cerâmica de alta translucidez (7-10 dias). Facetas de resina: confeccionadas diretamente pela Dra. Carla. Personalização total de cor, forma e textura. Controle de qualidade rigoroso antes da entrega.', icon: 'sparkles' },
             { number: '5', title: 'Cimentação e Finalização', description: 'Prova final e ajustes necessários. Cimentação adesiva de alta precisão (lentes) ou finalização (facetas). Polimento e acabamento impecável. Orientações de cuidados e higienização. Agendamento do retorno para acompanhamento.', icon: 'check-circle' },
           ]}
