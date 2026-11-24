@@ -33,10 +33,10 @@ export const GOOGLE_RATING = '5.0';
 export const GOOGLE_RATING_PT = GOOGLE_RATING.replace('.', ',');
 
 /** Total de avaliações no perfil. Conferido manualmente — ver cabeçalho. */
-export const GOOGLE_REVIEW_COUNT = 23;
+export const GOOGLE_REVIEW_COUNT = 24;
 
 /** Data da última conferência da contagem (YYYY-MM-DD). */
-export const GOOGLE_REVIEWS_CHECKED_AT = '2026-09-09';
+export const GOOGLE_REVIEWS_CHECKED_AT = '2026-11-24';
 
 /** Abre o perfil já na aba "Avaliações". Destino de todo selo/CTA de review. */
 export const GOOGLE_REVIEWS_URL =
@@ -45,10 +45,10 @@ export const GOOGLE_REVIEWS_URL =
 /** Ficha do perfil (visão geral). Usado no `hasMap` dos schemas. */
 export const GOOGLE_PROFILE_URL = 'https://www.google.com/maps?cid=4927906554488587972';
 
-/** "23 avaliações" — texto pronto para o selo em pt-BR. */
+/** "24 avaliações" — texto pronto para o selo em pt-BR. */
 export const GOOGLE_REVIEW_COUNT_PT = `${GOOGLE_REVIEW_COUNT} avaliações`;
 
-/** "23 reviews" — texto pronto para o selo em inglês. */
+/** "24 reviews" — texto pronto para o selo em inglês. */
 export const GOOGLE_REVIEW_COUNT_EN = `${GOOGLE_REVIEW_COUNT} reviews`;
 
 /** Bloco AggregateRating do schema.org, idêntico em todas as páginas. */
